@@ -1,6 +1,7 @@
 ---
 import fs from 'node:fs/promises';
 import { Icon } from 'astro-icon/components';
+import { logo } from '~/assets';
 import { Hide, SiteDescription, SiteTitle, Socials } from '~/config';
 import Nav from './Nav.astro';
 import ThemeToggler from './ThemeToggler.astro';
@@ -77,17 +78,17 @@ for (const platform in Socials) {
 	{
 		!Hide.includes('logo') ? (
 			<a
-  transition:persist
-  href="/"
-  aria-label="go to index"
-  class={customLogo ? 'h-52 w-80' : 'w-[4.5rem] text-4xl'}
->
-  {customLogo ? (
-    <Icon name="logo" class="h-52 w-80 fill-current" title="go to index" />
-  ) : (
-    <span>{SiteTitle}</span>  {/* 用 <span> 包裹 SiteTitle 确保其正确显示 */}
-  )}
-</a>
+				transition:persist
+				href="/"
+				aria-label="go to index"
+				class={customLogo ? '' : 'w-[4.5rem] text-4xl'}
+			>
+				{customLogo ? (
+					<Icon name="logo" class="size-16 fill-current" title="go to index" />
+				) : (
+					SiteTitle
+				)}
+			</a>
 
 		) : (
 			<div />
