@@ -1,6 +1,7 @@
 ---
 import { Picture } from 'astro:assets';
 import img from '~/assets/tito_xd-walk-by-frankuwu.png';
+import logo from '~/assets/logo.svg';
 import { SiteDescription, SiteTitle } from '~/config';
 import MarkdownLayout from '~/layouts/MarkdownLayout.astro';
 ---
@@ -12,7 +13,7 @@ import MarkdownLayout from '~/layouts/MarkdownLayout.astro';
 	currentNav="Home"
 >
 	<div class="flex flex-col items-center gap-4 xl:flex-row">
-		<Picture class="lg:max-w-md" src={img} formats={['avif', 'webp']} alt="a dog" loading="eager" />
+		<Picture class="lg:max-w-md" src={img} formats={['avif', 'webp']} alt="Tito_XD original character walking by artist Frankuwu" loading="eager" />
 		<div>
 			<h1>Hi there! <br>我是 Tito_XD，<br>也可以叫我头头👋</h1>
 			<p>
