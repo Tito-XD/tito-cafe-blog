@@ -40,15 +40,15 @@ const options: SatoriOptions = {
 	height: 630,
 	fonts: [
 		{
-			name: 'Noto Serif SC',
+			name: 'Inter',
 			data: await font(),
 		},
 	],
 	tailwindConfig: {
 		theme: {
 			fontFamily: {
-				sans: ['"Noto Sans SC"'],
-				serif: ['"Noto Serif SC"'],
+				sans: ['"Inter"'],
+				serif: ['"Inter"'],
 				mono: ['Menlo', 'Consolas'],
 			},
 		},
