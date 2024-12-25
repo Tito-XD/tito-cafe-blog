@@ -40,15 +40,15 @@ const options: SatoriOptions = {
 	height: 630,
 	fonts: [
 		{
-			name: 'LXGW WenKai GB Screen',
+			name: 'Noto Serif SC',
 			data: await font(),
 		},
 	],
 	tailwindConfig: {
 		theme: {
 			fontFamily: {
-				sans: ['"LXGW WenKai GB Screen"'],
-				serif: ['"LXGW WenKai GB Screen"'],
+				sans: ['"Noto Sans SC"'],
+				serif: ['"Noto Serif SC"'],
 				mono: ['Menlo', 'Consolas'],
 			},
 		},
