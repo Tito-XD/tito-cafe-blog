@@ -13,7 +13,7 @@ import { FooterDescription, Site, SiteDescription, SiteTitle } from '~/config';
 
 // or use a png file
 const logoImage = `data:image/png;base64,${(
-	await fs.promises.readFile('src/assets/logo.png')
+	await fs.promises.readFile('src/assets/new-logo.png')
 ).toString('base64')}`;
 
 // the font file is integrated to prevent Github action failure for now.
@@ -89,7 +89,7 @@ export async function siteOpenGraph() {
 				style={{ boxShadow: '0 0 20px 10px rgb(136, 136, 136, 0.35)' }}
 			>
 				<div tw="grow flex flex-col pl-4 mt-2">
-					<img alt="logo" src={logoImage} tw="h-20 w-18" />
+					<img alt="logo" src={logoImage} tw="h-20 w-80" />
 					<div tw="mt-2 grow flex flex-col items-center">
 						<p tw="text-9xl font-bold">{SiteTitle}</p>
 						<p tw="text-7xl text-neutral-500 font-bold">{SiteDescription}</p>
@@ -121,7 +121,7 @@ export async function postOpenGraph({ title, description, tags }: Config) {
 				style={{ boxShadow: '0 0 20px 10px rgb(136, 136, 136, 0.35)' }}
 			>
 				<div tw="flex justify-between mt-2">
-					<img alt="logo" src={logoImage} tw="h-20 w-18" />
+					<img alt="logo" src={logoImage} tw="h-20 w-80" />
 					<p tw="text-3xl">{SiteDescription}</p>
 				</div>
 				<div tw="grow flex flex-col pl-4 mt-5">
