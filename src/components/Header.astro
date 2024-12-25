@@ -80,18 +80,14 @@ for (const platform in Socials) {
 <header class="grid grid-cols-2 items-start justify-between lg:flex">
 	{
 		!Hide.includes("logo") ? (
-			<a
+		<a
 				transition:persist
 				href="/"
 				aria-label="go to index"
-				class={customLogo ? "h-30 w-auto" : "  "}
+				class={customLogo ? '' : 'w-[4.5rem] text-4xl'}
 			>
 				{customLogo ? (
-					<Icon
-						name="logo"
-						class="h-30 w-auto fill-current"
-						title="go to index"
-					/>
+					<Icon name="logo" class="size-16 fill-current" title="go to index" />
 				) : (
 					SiteTitle
 				)}
