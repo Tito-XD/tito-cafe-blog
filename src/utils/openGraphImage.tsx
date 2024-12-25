@@ -89,7 +89,7 @@ export async function siteOpenGraph() {
 				style={{ boxShadow: '0 0 20px 10px rgb(136, 136, 136, 0.35)' }}
 			>
 				<div tw="grow flex flex-col pl-4 mt-2">
-					<img alt="logo" src={logoImage} tw="h-52 w-80" />
+					<img alt="logo" src={logoImage} tw="w-60 h-auto" />
 					<div tw="mt-2 grow flex flex-col items-center">
 						<p tw="text-9xl font-bold">{SiteTitle}</p>
 						<p tw="text-7xl text-neutral-500 font-bold">{SiteDescription}</p>
@@ -121,7 +121,7 @@ export async function postOpenGraph({ title, description, tags }: Config) {
 				style={{ boxShadow: '0 0 20px 10px rgb(136, 136, 136, 0.35)' }}
 			>
 				<div tw="flex justify-between mt-2">
-					<img alt="logo" src={logoImage} tw="h-52 w-80" />
+					<img alt="logo" src={logoImage} tw="w-60 h-auto" />
 					<p tw="text-3xl">{SiteDescription}</p>
 				</div>
 				<div tw="grow flex flex-col pl-4 mt-5">
