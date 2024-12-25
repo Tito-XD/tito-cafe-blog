@@ -18,12 +18,12 @@ const logoImage = `data:image/png;base64,${(
 
 // the font file is integrated to prevent Github action failure for now.
 const font = async () => {
-	const fontPath = 'src/assets/NotoSerifSC.ttf';
+	const fontPath = 'src/assets/LXGWWenKaiGBScreen.ttf';
 	if (!fs.existsSync(fontPath)) {
 		// eslint-disable-next-line no-console
 		console.log('downloading a font for open graph, wait a minute');
 		const remoteFont =
-			'https://github.com/googlefonts/noto-cjk/raw/main/Serif/Variable/TTF/NotoSerifCJKsc-VF.ttf';
+			'https://github.com/lxgw/LxgwWenKai-Screen/releases/latest/download/LXGWWenKaiGBScreen.ttf';
 		const response = await fetch(remoteFont);
 		if (!response.ok) {
 			throw new Error(
@@ -40,15 +40,15 @@ const options: SatoriOptions = {
 	height: 630,
 	fonts: [
 		{
-			name: 'system-ui',
+			name: 'LXGW WenKai GB Screen',
 			data: await font(),
 		},
 	],
 	tailwindConfig: {
 		theme: {
 			fontFamily: {
-				sans: ['"system-ui"'],
-				serif: ['"system-ui"'],
+				sans: ['"LXGW WenKai GB Screen"'],
+				serif: ['"LXGW WenKai GB Screen"'],
 				mono: ['Menlo', 'Consolas'],
 			},
 		},
