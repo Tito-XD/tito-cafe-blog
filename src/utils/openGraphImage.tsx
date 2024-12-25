@@ -40,15 +40,15 @@ const options: SatoriOptions = {
 	height: 630,
 	fonts: [
 		{
-			name: 'Inter',
+			name: 'system-ui',
 			data: await font(),
 		},
 	],
 	tailwindConfig: {
 		theme: {
 			fontFamily: {
-				sans: ['"Inter"'],
-				serif: ['"Inter"'],
+				sans: ['"system-ui"'],
+				serif: ['"system-ui"'],
 				mono: ['Menlo', 'Consolas'],
 			},
 		},

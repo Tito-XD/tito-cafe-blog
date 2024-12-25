@@ -1,6 +1,6 @@
 import type { PostHideElements } from '~/content/config';
 
-export const Site = 'https://astro-blog-zozo.pages.dev';
+export const Site = 'https://titoxd.top';
 export const SiteLanguage = 'zh';
 export const SiteTitle = '头头咖啡屋 / Tito\'s Cafe';
 export const SiteDescription = '记录日常，写一些想到的东西';
