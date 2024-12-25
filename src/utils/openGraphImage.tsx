@@ -7,14 +7,14 @@ import sharp from 'sharp';
 import { FooterDescription, Site, SiteDescription, SiteTitle } from '~/config';
 
 // satori may have bug when rendering <img src="data:image/svg+xml;base64,...">. You can convert to png like below:
-// const logoImage =
-// 	'data:image/png;base64,' +
-// 	(await sharp('src/assets/logo.svg').png().toBuffer()).toString('base64');
+const logoImage =
+	'data:image/png;base64,' +
+	(await sharp('src/assets/logo.svg').png().toBuffer()).toString('base64');
 
 // or use a png file
-const logoImage = `data:image/png;base64,${(
-	await fs.promises.readFile('src/assets/og-logo.png')
-).toString('base64')}`;
+// const logoImage = `data:image/png;base64,${(
+// 	await fs.promises.readFile('src/assets/og-logo.png')
+// ).toString('base64')}`;
 
 // the font file is integrated to prevent Github action failure for now.
 const font = async () => {
