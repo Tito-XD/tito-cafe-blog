@@ -77,7 +77,7 @@ for (const platform in Socials) {
 }
 ---
 
-<header class="grid grid-cols-2 items-start justify-start lg:flex">
+<header class="grid grid-cols-2 items-start justify-between lg:flex">
 	{
 		!Hide.includes("logo") ? (
 		<a
@@ -87,7 +87,7 @@ for (const platform in Socials) {
 				class={customLogo ? '' : 'w-[30rem] text-4xl'}
 			>
 				{customLogo ? (
-					<Icon name="logo" class="size-48 m-0 p-0 fill-current" title="go to index" />
+					<Icon name="logo" class="size-48 m-0 p-0" title="go to index" />
 				) : (
 					SiteTitle
 				)}
