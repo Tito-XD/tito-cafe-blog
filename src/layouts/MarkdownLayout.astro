@@ -25,7 +25,7 @@ const showTimes = showDate || showLastmod || showReadingTime;
 
 <ScaffoldLayout {...Astro.props}>
 	{title && show('title') && <h1 class="text-5xl font-extrabold">{title}</h1>}
-	<div class="my-[1dvh] text-neutral-600 lg:my-[3dvh] dark:text-neutral-300">
+	<div class="my-[1dvh] text-neutral-500 lg:my-[3dvh] dark:text-neutral-300">
 		{
 			showTimes && (
 				<div class="flex flex-col opacity-70 *:flex *:items-center lg:flex-row lg:gap-4">
