@@ -1,7 +1,7 @@
 import { rehypeHeadingIds } from '@astrojs/markdown-remark';
 import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
-import toc from '@jsdevtools/rehype-toc';
+//import toc from '@jsdevtools/rehype-toc';
 import compress from '@playform/compress';
 import {
 	transformerMetaHighlight,
@@ -92,7 +92,7 @@ export default defineConfig({
 			rehypeAccessibleEmojis,
 			[rehypeExternalLinks, { target: '_blank' }],
 			rehypeHeadingIds,
-			toc,
+			//toc,
 			rehypeKatax,
 		],
 	},
