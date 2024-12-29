@@ -6,7 +6,6 @@ const hideElements = z.enum([
 	'lastmod',
 	'tags',
 	'readingTime',
-	'toc',
 	'comments',
 ]);
 export type PostHideElements = z.infer<typeof hideElements>;
