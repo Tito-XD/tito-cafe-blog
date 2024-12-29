@@ -2,15 +2,14 @@
 title: REWIND 2024 - 向前走、回头看。
 slug: REWIND-2024
 description: 这是我的2024。
-date: 2024-12-29T22:49:59+08:00
+date: 2024-12-30T09:59:59+08:00
 tags:
   - REWIND
   - 年终总结
-  - ‘2024’
+  - \2024
   - ChiliChill
   - 朋友
   - 工作
-  - 矫情
 ---
 
 # REWIND 2024 - 向前走、回头看。
