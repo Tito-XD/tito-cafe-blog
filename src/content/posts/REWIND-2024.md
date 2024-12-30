@@ -218,3 +218,9 @@ live结束后去了汤泉过夜，夜宵吃吃吃喝喝喝，十分惬意的一�
 还有你，我的朋友。感谢这一路走来的种种支持，辛苦你了。
 
 ENJOY THE RIDE.
+
+
+
+[在Telegram上的头头咖啡屋](https://t.me/titoxd_cafe)
+[在Twitter上的Tito_XD](https://x.com/Tito_XD2333)
+[在bilibili上的Tito_XD](https://space.bilibili.com/5895560)
