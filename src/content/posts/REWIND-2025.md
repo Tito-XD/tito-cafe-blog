@@ -194,7 +194,7 @@ tags:
 
 只是简单的晚饭后一起闲逛几家谷子店，在家做客而已，却也不知不觉到天色太晚，顶着狂风暴雨送下的一把雨伞是我为数不多还能做到的事情，毕竟之后的路你们还要一起走很久。
 
-![和景和OTTO的四人小Q](../attachments/REWIND-2025/going_to_autumn.PNG)
+![和景和OTTO的四人小Q](../attachments/REWIND-2025/going_to_autumn.png)
 
 ![在长沙的周末](../attachments/REWIND-2025/changsha_day1.png)
 
@@ -295,7 +295,7 @@ tags:
 
 比阳光更温暖的还是你的臂弯。
 
-![2025.02.14](../attachments/REWIND-2025/3rd-2.14.JPG)
+![2025.02.14](../attachments/REWIND-2025/3rd-2.14.jpg)
 
 ![四夕送的点点拼图](../attachments/REWIND-2025/puzzle-sixi.jpeg)
 
@@ -309,7 +309,7 @@ tags:
 
 ![雨夜步行回家](../attachments/REWIND-2025/rainy-night-walk.jpeg)
 
-![REWIND2024实体化](../attachments/REWIND-2025/REWIND-2024-Acrylic.JPG)
+![REWIND2024实体化](../attachments/REWIND-2025/REWIND-2024-Acrylic.jpg)
 
 ### REWIND 2024 立绘实体化
 
@@ -321,7 +321,7 @@ tags:
 
 ![麦麦夜灯](../attachments/REWIND-2025/mcd_neon_light.png)
 
-![和Frank一起双影奇境](../attachments/REWIND-2025/ae42c729-f32a-4928-96c9-d4963d9b144e.PNG)
+![和Frank一起双影奇境](../attachments/REWIND-2025/ae42c729-f32a-4928-96c9-d4963d9b144e.png)
 
 ### 别和傻子玩双影奇境
 
@@ -337,7 +337,7 @@ EMO/一毛是一朵胖樱花，是由武汉一位独立艺术家创作的角色�
 
 ![2025樱花季](../attachments/REWIND-2025/cherry_blossom.png)
 
-![25.05.01-together.JPG](../attachments/REWIND-2025/25.05.01-together.JPG)
+![25.05.01-together.JPG](../attachments/REWIND-2025/25.05.01-together.jpg)
 
 ### 五一小假的委托稿
 
@@ -349,7 +349,7 @@ EMO/一毛是一朵胖樱花，是由武汉一位独立艺术家创作的角色�
 
 ![绝绝绝ZZZ](../attachments/REWIND-2025/ZZZ.jpeg)
 
-![25.05.21-sunny-after-rain.JPG](../attachments/REWIND-2025/25.05.21-sunny-after-rain.JPG)
+![25.05.21-sunny-after-rain.JPG](../attachments/REWIND-2025/25.05.21-sunny-after-rain.jpg)
 
 ### 5.21 特别插图
 
@@ -359,7 +359,7 @@ EMO/一毛是一朵胖樱花，是由武汉一位独立艺术家创作的角色�
 
 是上文里提到的黑鸭煲与烤串的后续，这里＝和❌的意思是：要分一分烤串吗，不要不要。
 
-![再分几串给你！](../attachments/REWIND-2025/25.06.08-bbq.JPG)
+![再分几串给你！](../attachments/REWIND-2025/25.06.08-bbq.jpg)
 
 ![和虎的夜市](../attachments/REWIND-2025/night_markets_with_tz.png)
 
@@ -371,7 +371,7 @@ EMO/一毛是一朵胖樱花，是由武汉一位独立艺术家创作的角色�
 
 上文里提到的景和绘制的半委半赠图，本意只是担任委托但是被对方说感觉很好嗑所以决定多画上虎。延续了5.21的意象，撑伞过后阳光洒落时的一杯冷饮和一支雪糕，这样才是盛夏。
 
-![盛夏.PNG](../attachments/REWIND-2025/summer_shine.PNG)
+![盛夏.PNG](../attachments/REWIND-2025/summer_shine.png)
 
 ![好多芬达啊](../attachments/REWIND-2025/summer_drink.jpeg)
 
@@ -399,7 +399,7 @@ EMO/一毛是一朵胖樱花，是由武汉一位独立艺术家创作的角色�
 
 是喜茶目前还属于Lab烘焙店铺的新单品，十分浓郁的烘焙原料以及和果茶奶茶同源的配料，简直像在吃奶茶一样。目前仅在北京、深圳和武汉的三家店铺有售，喜欢这种甜品的朋友如果有机会一定要试试看！😋
 
-![算半个武汉限定](../attachments/REWIND-2025/heytea_aop_tart.JPG)
+![算半个武汉限定](../attachments/REWIND-2025/heytea_aop_tart.jpg)
 
 ![好耶](../attachments/REWIND-2025/smile_wide.jpg)
 
@@ -463,7 +463,7 @@ EMO/一毛是一朵胖樱花，是由武汉一位独立艺术家创作的角色�
 
 全部——都是Frank亲自设计、打样的头头亚克力立牌（坐牌），客观您要来一份吗。（并未锐意生产中）
 
-![头头头头](../attachments/REWIND-2025/100-tito.JPG)
+![头头头头](../attachments/REWIND-2025/100-tito.jpg)
 
 ![我爱薯饼！](../attachments/REWIND-2025/hash_brown_yeah.png)
 
@@ -475,7 +475,7 @@ EMO/一毛是一朵胖樱花，是由武汉一位独立艺术家创作的角色�
 
 实际为戴泽先生在武汉美术馆（汉口馆）的美术展，很佩服策展人的呈现，很温暖的一场美术展。
 
-![活在爱意里](../attachments/REWIND-2025/pink_bear.JPG)
+![活在爱意里](../attachments/REWIND-2025/pink_bear.jpg)
 
 ![喜欢喝小甜酒](../attachments/REWIND-2025/xmas_wine.jpg)
 
