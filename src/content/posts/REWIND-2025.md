@@ -194,7 +194,7 @@ tags:
 
 只是简单的晚饭后一起闲逛几家谷子店，在家做客而已，却也不知不觉到天色太晚，顶着狂风暴雨送下的一把雨伞是我为数不多还能做到的事情，毕竟之后的路你们还要一起走很久。
 
-![和景和OTTO的四人小Q](../attachments/REWIND-2025/going_to_autum.PNG)
+![和景和OTTO的四人小Q](../attachments/REWIND-2025/going_to_autumn.PNG)
 
 ![在长沙的周末](../attachments/REWIND-2025/changsha_day1.png)
 
