@@ -27,8 +27,14 @@ export const friends: FriendLink[] = [
 	},
 	{
 		id: 'Wr',
-		avatar: 'https://avatars.githubusercontent.com/u/89375068?v=4',
+		avatar: 'https://avatars.githubusercontent.com/u/45558679?v=4',
 		bio: '',
 		link: 'https://wrye.dev/',
+	},
+	{
+		id: 'Frank uwu',
+		avatar: 'https://frankuwu.link/_astro/profile-picture.B3m_m6U7_gWWnD.webp',
+		bio: '',
+		link: 'https://frankuwu.link/',
 	}
 ];
