@@ -132,11 +132,18 @@ const socialImg = new URL(socialImage ?? '/og.png', Astro.url).href;
 
 			.prose a {
 				text-decoration: none;
-				text-underline-offset: 0.25em;
-				text-decoration-thickness: 2px;
-				text-decoration-color: rgb(163 163 163 / 0.4);
 				border-bottom: 2px solid rgb(163 163 163 / 0.4);
 				transition: border-color 0.25s ease;
+			}
+
+			:root:is(.dark) .prose a {
+				border-bottom-color: rgb(163 163 163 / 0.25);
+			}
+
+			@media (prefers-color-scheme: dark) {
+				:root:not(.light) .prose a {
+					border-bottom-color: rgb(163 163 163 / 0.25);
+				}
 			}
 
 			.prose a:hover,
