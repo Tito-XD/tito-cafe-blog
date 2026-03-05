@@ -40,7 +40,7 @@ export default defineConfig({
 			applyBaseStyles: false,
 		}),
 		icon({
-			iconDir: 'src/assets',
+			iconDir: 'src/icons',
 		}),
 		pagefind(),
 		sitemap({
