@@ -33,6 +33,8 @@
 		"@astrojs/rss": "^4.0.9",
 		"@astrojs/sitemap": "^3.2.1",
 		"@astrojs/tailwind": "^5.1.2",
+		"@fontsource-variable/noto-sans": "^5.2.10",
+		"@fontsource-variable/noto-sans-sc": "^5.2.10",
 		"@iconify-json/ri": "^1.2.3",
 		"@jsdevtools/rehype-toc": "^3.0.2",
 		"@nanostores/persistent": "^0.10.2",
