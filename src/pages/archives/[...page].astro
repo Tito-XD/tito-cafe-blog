@@ -17,14 +17,16 @@ const { page } = Astro.props;
 		page.data.map((post) => {
 			const date = post.data.lastmod || post.data.date;
 			return (
-				<div class="flex justify-between">
+				<a
+					href={`/posts/${post.slug}`}
+					class="nav-link nav-link-compact flex justify-between"
+					aria-label={`Read post: ${post.data.title}`}
+				>
 					<h5 class="text-xl">
-						<a href={`/posts/${post.slug}`} aria-label={`Read post: ${post.data.title}`}>
-							{post.data.title}
-						</a>
+						{post.data.title}
 					</h5>
 					{date && <time datetime={date.toISOString()}>{date.toLocaleDateString()}</time>}
-				</div>
+				</a>
 			);
 		})
 	}

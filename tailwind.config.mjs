@@ -7,7 +7,7 @@ export default {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
 	theme: {
 		fontFamily: {
-			sans: ['"Noto Sans"', ...defaultTheme.fontFamily.sans],
+			sans: ['"Noto Sans SC Variable"', '"Noto Sans Variable"', ...defaultTheme.fontFamily.sans],
 			serif: ['"Noto Serif"', ...defaultTheme.fontFamily.serif],
 			mono: ['Menlo', 'Consolas', ...defaultTheme.fontFamily.mono],
 			'default-sans': defaultTheme.fontFamily.sans,

@@ -2,6 +2,8 @@
 import { ViewTransitions } from 'astro:transitions';
 import { SiteLanguage, SiteTitle } from '~/config';
 import 'lxgw-wenkai-screen-web/lxgwwenkaigbscreen/result.css';
+import '@fontsource-variable/noto-sans/wght.css';
+import '@fontsource-variable/noto-sans-sc/wght.css';
 
 export interface Props {
 	title?: string;
@@ -126,6 +128,43 @@ const socialImg = new URL(socialImage ?? '/og.png', Astro.url).href;
 				.prose pre {
 					@apply scrollbar-thin scrollbar-track-transparent scrollbar-thumb-neutral-200 dark:scrollbar-thumb-neutral-700;
 				}
+			}
+
+			.prose a {
+				text-decoration: none;
+				text-underline-offset: 0.25em;
+				text-decoration-thickness: 2px;
+				text-decoration-color: rgb(163 163 163 / 0.4);
+				border-bottom: 2px solid rgb(163 163 163 / 0.4);
+				transition: border-color 0.25s ease;
+			}
+
+			.prose a:hover,
+			.prose a:focus-visible {
+				border-color: currentColor;
+			}
+
+			.nav-link {
+				display: block;
+				text-decoration: none;
+				color: inherit;
+				font-weight: 400;
+				transition: font-weight 0.25s ease, letter-spacing 0.25s ease;
+			}
+
+			.nav-link:hover,
+			.nav-link:focus-visible {
+				font-weight: 500;
+				letter-spacing: 0.005em;
+			}
+
+			.nav-link-compact {
+				letter-spacing: 0em;
+			}
+
+			.nav-link-compact:hover,
+			.nav-link-compact:focus-visible {
+				letter-spacing: 0.02em;
 			}
 
 			@tailwind components;
