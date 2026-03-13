@@ -104,12 +104,14 @@ const items = getGalleryItemsByCategory(category.slug);
 		max-width: 44rem;
 		line-height: 1.7;
 		color: rgb(82 82 91);
+		overflow-wrap: anywhere;
 	}
 
 	.gallery-section-heading h1 {
 		margin: 0;
 		font-size: clamp(2.35rem, 6vw, 4rem);
 		line-height: 1;
+		text-wrap: balance;
 	}
 
 	.gallery-tab-list {
@@ -144,6 +146,7 @@ const items = getGalleryItemsByCategory(category.slug);
 	.gallery-wall-card {
 		position: relative;
 		display: grid;
+		min-width: 0;
 		overflow: hidden;
 		border-radius: 1.3rem;
 		border: 1px solid rgb(228 228 231 / 0.9);
@@ -177,6 +180,7 @@ const items = getGalleryItemsByCategory(category.slug);
 	.gallery-wall-card-copy {
 		display: grid;
 		gap: 0.45rem;
+		min-width: 0;
 		padding: 0.9rem 1rem 1rem;
 	}
 
@@ -211,11 +215,13 @@ const items = getGalleryItemsByCategory(category.slug);
 	.gallery-wall-card-copy h2 {
 		margin: 0;
 		font-size: 1.15rem;
+		overflow-wrap: anywhere;
 	}
 
 	.gallery-wall-card-copy span {
 		font-size: 0.92rem;
 		line-height: 1.55;
+		overflow-wrap: anywhere;
 	}
 
 	.gallery-wall-card-footer {

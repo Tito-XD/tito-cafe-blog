@@ -119,6 +119,7 @@ const totalHighlights = categories.reduce((total, category) => total + category.
 		margin: 0.5rem 0 0;
 		font-size: clamp(2.75rem, 7vw, 5rem);
 		line-height: 0.95;
+		text-wrap: balance;
 	}
 
 	.gallery-lead {
@@ -167,6 +168,7 @@ const totalHighlights = categories.reduce((total, category) => total + category.
 
 	.gallery-category-card {
 		display: grid;
+		min-width: 0;
 		overflow: hidden;
 		border-radius: 1.5rem;
 		border: 1px solid rgb(228 228 231 / 0.9);
@@ -239,6 +241,7 @@ const totalHighlights = categories.reduce((total, category) => total + category.
 	.gallery-category-copy {
 		display: grid;
 		gap: 0.65rem;
+		min-width: 0;
 		padding: 1.2rem 1.2rem 1.35rem;
 	}
 
@@ -253,6 +256,7 @@ const totalHighlights = categories.reduce((total, category) => total + category.
 	.gallery-category-copy h2 {
 		margin: 0;
 		font-size: 1.7rem;
+		overflow-wrap: anywhere;
 	}
 
 	.gallery-category-copy > p:last-of-type {
@@ -260,6 +264,7 @@ const totalHighlights = categories.reduce((total, category) => total + category.
 		font-size: 0.96rem;
 		line-height: 1.65;
 		color: rgb(82 82 91);
+		overflow-wrap: anywhere;
 	}
 
 	.gallery-category-preview-strip {
@@ -290,10 +295,12 @@ const totalHighlights = categories.reduce((total, category) => total + category.
 		letter-spacing: 0.12em;
 		text-transform: uppercase;
 		color: rgb(113 113 122);
+		overflow-wrap: anywhere;
 	}
 
 	.gallery-category-footer strong {
 		font-size: 0.9rem;
+		overflow-wrap: anywhere;
 	}
 
 	:root:is(.dark) .gallery-kicker,
