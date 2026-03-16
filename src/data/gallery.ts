@@ -3,14 +3,14 @@ import type { ImageMetadata } from 'astro';
 import titoCafeManager from '~/assets/tito_xd-cafe-manager-by-frankuwu.png';
 import titoCoffeeMaster from '~/assets/tito_xd-coffee-master-by-frankuwu.png';
 import titoWalk from '~/assets/tito_xd-walk-by-frankuwu.png';
-import together1000 from '~/content/attachments/1000-days/together-1000-days-revamped.png';
-import shanghaiView from '~/content/attachments/REWIND-2024/shanghai-2024.png';
-import viewWindow from '~/content/attachments/REWIND-2025/10.4_view.png';
-import togetherMay from '~/content/attachments/REWIND-2025/25.05.01-together.jpg';
-import combinationByKompass from '~/content/attachments/REWIND-2025/combination_by_kompass.png';
-import happyFour from '~/content/attachments/REWIND-2025/happy_four.jpg';
-import highschoolByTuosi from '~/content/attachments/REWIND-2025/highschool_by_tuosi.jpg';
-import rainyNightWalk from '~/content/attachments/REWIND-2025/rainy-night-walk.jpeg';
+import together1000 from '~/assets/attachments/1000-days/together-1000-days-revamped.png';
+import shanghaiView from '~/assets/attachments/REWIND-2024/shanghai-2024.png';
+import viewWindow from '~/assets/attachments/REWIND-2025/10.4_view.png';
+import togetherMay from '~/assets/attachments/REWIND-2025/25.05.01-together.jpg';
+import combinationByKompass from '~/assets/attachments/REWIND-2025/combination_by_kompass.png';
+import happyFour from '~/assets/attachments/REWIND-2025/happy_four.jpg';
+import highschoolByTuosi from '~/assets/attachments/REWIND-2025/highschool_by_tuosi.jpg';
+import rainyNightWalk from '~/assets/attachments/REWIND-2025/rainy-night-walk.jpeg';
 
 export type GalleryCategorySlug = 'illustration' | 'life' | 'view';
 
