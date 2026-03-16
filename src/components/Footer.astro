@@ -4,8 +4,16 @@ import { FooterDescription, Hide } from '~/config';
 
 <footer class="site-footer" transition:persist>
 	{!Hide.includes('footerDescription') && <p class="site-footer__tagline">{FooterDescription}</p>}
+	<p class="site-footer__badge">
+		<a href="https://app.netlify.com/projects/titocafe/deploys">
+			<img
+				src="https://api.netlify.com/api/v1/badges/aeecbae6-3875-47c0-a923-9ef102e4928b/deploy-status"
+				alt="Netlify Status"
+			/>
+		</a>
+	</p>
 	<p class="site-footer__copyright">
-		&copy; {new Date().getFullYear()} Tito_XD. Powered by <a
+		&copy; {new Date().getFullYear()} Tito's Cafe / 头头咖啡屋. Powered by <a
 			class="site-footer__link"
 			href="https://astro.build"
 			target="_blank"
@@ -39,6 +47,21 @@ import { FooterDescription, Hide } from '~/config';
 		font-size: 0.95rem;
 		letter-spacing: 0.01em;
 		color: color-mix(in srgb, var(--color-muted) 84%, var(--color-text));
+	}
+
+	.site-footer__badge {
+		margin: 0 0 0.9rem;
+	}
+
+	.site-footer__badge a {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.site-footer__badge img {
+		height: 1.25rem;
+		width: auto;
 	}
 
 	.site-footer__copyright {
