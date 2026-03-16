@@ -12,15 +12,104 @@ for (const post of posts) {
 ---
 
 <ScaffoldLayout title="Tags" description="Post tags" currentNav="Tags">
-	<h1 class="mb-8 text-5xl font-extrabold">Tags</h1>
-	<div class="flex flex-wrap items-center justify-center gap-6">
+	<section class="tags-page-heading">
+		<p>Browse</p>
+		<h1>Tags</h1>
+		<span>Pick a topic and jump straight into the posts around it.</span>
+	</section>
+	<div class="tags-cloud" aria-label="All tags">
 		{
 			[...tagsCount.entries()].map(([tag, count]) => (
-				<a class="text-lg hover:text-[var(--color-accent)]" href={`/tags/${tag}/1`} aria-label={`More posts of tag ${tag}`}>
-					{tag}
-					<span class="relative -top-2 text-sm text-[var(--color-muted)]">{count}</span>
+				<a class="tag-chip" href={`/tags/${tag}/1`} aria-label={`More posts of tag ${tag}`}>
+					<strong>{tag}</strong>
+					<span>{count}</span>
 				</a>
 			))
 		}
 	</div>
 </ScaffoldLayout>
+
+<style>
+	.tags-page-heading {
+		display: grid;
+		gap: 0.45rem;
+		padding-bottom: 1.75rem;
+	}
+
+	.tags-page-heading p,
+	.tags-page-heading span {
+		margin: 0;
+		color: var(--color-muted);
+	}
+
+	.tags-page-heading p {
+		font-size: 0.78rem;
+		letter-spacing: 0.16em;
+		text-transform: uppercase;
+	}
+
+	.tags-page-heading h1 {
+		margin: 0;
+		font-size: clamp(2.6rem, 6vw, 4.5rem);
+		line-height: 0.95;
+		text-wrap: balance;
+	}
+
+	.tags-page-heading span {
+		max-width: 34rem;
+		line-height: 1.7;
+	}
+
+	.tags-cloud {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.9rem;
+	}
+
+	.tag-chip {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.55rem;
+		border-radius: 1rem;
+		border: 1px solid color-mix(in srgb, var(--color-border) 88%, var(--color-accent-soft));
+		background: color-mix(in srgb, var(--color-surface) 94%, var(--color-accent-soft) 6%);
+		padding: 0.9rem 1rem;
+		color: inherit;
+		text-decoration: none;
+		box-shadow: 0 0.5rem 1.35rem rgba(var(--color-shadow-rgb), 0.08);
+		transition:
+			transform 280ms ease,
+			border-color 280ms ease,
+			background 280ms ease,
+			box-shadow 280ms ease,
+			color 280ms ease;
+	}
+
+	.tag-chip:hover,
+	.tag-chip:focus-visible {
+		transform: translateY(-4px);
+		border-color: color-mix(in srgb, var(--color-accent) 58%, var(--color-border));
+		background: color-mix(in srgb, var(--color-surface) 84%, var(--color-accent-soft) 16%);
+		color: var(--color-accent);
+		box-shadow: 0 0.9rem 1.8rem rgba(var(--color-shadow-rgb), 0.14);
+	}
+
+	.tag-chip strong,
+	.tag-chip span {
+		display: block;
+	}
+
+	.tag-chip strong {
+		font-size: 1rem;
+		font-weight: 650;
+	}
+
+	.tag-chip span {
+		border-radius: 999px;
+		background: color-mix(in srgb, var(--color-accent-soft) 72%, var(--color-surface));
+		padding: 0.2rem 0.55rem;
+		font-size: 0.78rem;
+		line-height: 1.2;
+		color: var(--color-muted);
+	}
+</style>

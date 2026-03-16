@@ -27,6 +27,62 @@ const { tag } = Astro.params;
 ---
 
 <ScaffoldLayout title={tag} description={`Posts with tag ${tag}`} currentNav="Tags">
+	<section class="tag-detail-heading">
+		<p>Tag Archive</p>
+		<h1>{tag}</h1>
+		<div class="tag-detail-chip" aria-label={`Current tag ${tag}`}>
+			<span>Current tag</span>
+			<strong>{tag}</strong>
+		</div>
+	</section>
 	{page.data.map((post) => <PostCard {...post} />)}
 	<Paginator {...page} />
 </ScaffoldLayout>
+
+<style>
+	.tag-detail-heading {
+		display: grid;
+		gap: 0.5rem;
+		padding-bottom: 1.5rem;
+	}
+
+	.tag-detail-heading p {
+		margin: 0;
+		font-size: 0.78rem;
+		letter-spacing: 0.16em;
+		text-transform: uppercase;
+		color: var(--color-muted);
+	}
+
+	.tag-detail-heading h1 {
+		margin: 0;
+		font-size: clamp(2.6rem, 6vw, 4.5rem);
+		line-height: 0.95;
+		text-wrap: balance;
+		overflow-wrap: anywhere;
+	}
+
+	.tag-detail-chip {
+		display: inline-flex;
+		width: fit-content;
+		align-items: center;
+		gap: 0.6rem;
+		border-radius: 1rem;
+		border: 1px solid color-mix(in srgb, var(--color-border) 88%, var(--color-accent-soft));
+		background: color-mix(in srgb, var(--color-surface) 94%, var(--color-accent-soft) 6%);
+		padding: 0.85rem 1rem;
+		box-shadow: 0 0.55rem 1.4rem rgba(var(--color-shadow-rgb), 0.08);
+	}
+
+	.tag-detail-chip span {
+		font-size: 0.76rem;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--color-muted);
+	}
+
+	.tag-detail-chip strong {
+		font-size: 1rem;
+		color: var(--color-accent);
+	}
+</style>
