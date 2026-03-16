@@ -1,4 +1,15 @@
-import { getCollection } from 'astro:content';
+import { type CollectionEntry, getCollection, render } from 'astro:content';
+
+export type PostEntry = CollectionEntry<'posts'>;
+
+export function getPostRouteSlug(post: PostEntry) {
+	return post.data.slug ?? post.id;
+}
+
+export async function findPostByRouteSlug(slug: string) {
+	const posts = await getCollection('posts');
+	return posts.find((post) => getPostRouteSlug(post) === slug);
+}
 
 export async function getPosts(hidden?: boolean, sortByDate?: string) {
 	let allPosts = await getCollection('posts', ({ data }) => {
@@ -36,3 +47,5 @@ export async function getPosts(hidden?: boolean, sortByDate?: string) {
 	}
 	return allPosts;
 }
+
+export { render };

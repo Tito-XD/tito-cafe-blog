@@ -1,5 +1,5 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions';
 import { SiteLanguage, SiteTitle } from '~/config';
 import 'lxgw-wenkai-screen-web/lxgwwenkaigbscreen/result.css';
 
@@ -46,7 +46,7 @@ const socialImg = new URL(socialImage ?? '/og.png', Astro.url).href;
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
 		<meta name="twitter:image" content={socialImg} />
-		<ViewTransitions />
+		<ClientRouter />
 
 		<style is:global>
 			@tailwind base;
@@ -164,3 +164,4 @@ const socialImg = new URL(socialImage ?? '/og.png', Astro.url).href;
 		<slot />
 	</body>
 </html>
+

@@ -32,6 +32,9 @@ const excludeSitemapFiles = (await getMarkdownEntries()).filter(
 // https://astro.build/config
 export default defineConfig({
 	site: Site,
+	legacy: {
+		collectionsBackwardsCompat: true,
+	},
 	build: {
 		format: 'file',
 	},

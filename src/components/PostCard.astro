@@ -1,6 +1,7 @@
 ---
 import { Picture } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
+import { getPostRouteSlug } from '~/utils/collection';
 
 type Props = CollectionEntry<'posts'>;
 const post = Astro.props;
@@ -11,12 +12,13 @@ if (post.data.hide?.includes('lastmod') && post.data.date) {
 		date = undefined;
 	}
 }
+const postSlug = getPostRouteSlug(post);
 ---
 
 <div class="my-5 flex flex-col gap-4 xl:flex-row">
 	<div class="flex-col gap-4">
 		<h2 class="text-4xl">
-			<a href={`/posts/${post.slug}`} aria-label={`Read post: ${post.data.title}`}>
+			<a href={`/posts/${postSlug}`} aria-label={`Read post: ${post.data.title}`}>
 				{post.data.title}
 			</a>
 		</h2>

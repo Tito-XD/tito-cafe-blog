@@ -1,16 +1,19 @@
-import { getEntry } from 'astro:content';
 import type { APIContext } from 'astro';
-import { getPosts } from '~/utils/collection';
+import {
+	findPostByRouteSlug,
+	getPostRouteSlug,
+	getPosts,
+} from '~/utils/collection';
 import { postOpenGraph } from '~/utils/openGraphImage';
 
 export async function getStaticPaths() {
 	return (await getPosts()).map((post) => ({
-		params: { slug: post.slug },
+		params: { slug: getPostRouteSlug(post) },
 	}));
 }
 
 export const GET = async ({ params }: APIContext) => {
-	const post = await getEntry('posts', params.slug as string);
+	const post = params.slug ? await findPostByRouteSlug(params.slug) : undefined;
 	return new Response(
 		await postOpenGraph({
 			title: post?.data.title ?? '',

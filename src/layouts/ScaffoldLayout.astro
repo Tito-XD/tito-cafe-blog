@@ -13,51 +13,93 @@ interface Props {
 ---
 
 <BaseLayout {...Astro.props} rootClass="scrollbar-none" bodyClass="app-body">
-	<div class="app-panel">
-		<Header currentNav={Astro.props.currentNav} />
-		<main class="app-main">
-			<slot />
-		</main>
+	<div class="app-shell">
+		<div class="app-panel">
+			<Header currentNav={Astro.props.currentNav} />
+			<main class="app-main">
+				<slot />
+			</main>
+			<Footer />
+		</div>
 	</div>
-	<Footer />
 	<BackToTop />
 </BaseLayout>
 
 <style>
 	:global(.app-body) {
-		display: flex;
 		min-height: 100dvh;
-		flex-direction: column;
-		justify-content: space-between;
-		background: transparent;
-		padding: 2dvh 0;
+		background:
+			radial-gradient(circle at top left, color-mix(in srgb, var(--color-accent-soft) 88%, transparent) 0, transparent 34%),
+			radial-gradient(circle at right 12%, color-mix(in srgb, var(--color-surface-2) 78%, transparent) 0, transparent 26%),
+			var(--color-bg);
+		padding: clamp(1.25rem, 2.5vw, 2.5rem);
 		color: var(--color-text);
 	}
 
-	.app-panel {
+	.app-shell {
 		margin: 0 auto;
+		width: min(100%, 88rem);
+	}
+
+	.app-panel {
 		display: flex;
-		width: 90dvw;
-		max-width: 1400px;
+		min-height: calc(100dvh - clamp(2.5rem, 5vw, 5rem));
 		flex-direction: column;
-		border: 1px solid color-mix(in srgb, var(--color-border) 92%, var(--color-accent-soft));
-		background: linear-gradient(180deg, color-mix(in srgb, var(--color-surface) 96%, var(--color-accent-soft) 4%), var(--color-surface));
-		padding: 3dvw;
-		box-shadow: 0 0.75rem 2.25rem 0 rgba(var(--color-shadow-rgb), 0.12);
+		border: 1px solid color-mix(
+			in srgb,
+			var(--color-border) 82%,
+			var(--color-accent-soft)
+		);
+		border-radius: 1.75rem;
+		background:
+			linear-gradient(
+				180deg,
+				color-mix(
+					in srgb,
+					var(--color-surface) 92%,
+					var(--color-accent-soft) 8%
+				),
+				color-mix(
+					in srgb,
+					var(--color-surface) 97%,
+					var(--color-surface-2) 3%
+				)
+			);
+		padding: clamp(1.5rem, 3vw, 2.75rem);
+		box-shadow:
+			0 1.25rem 3rem rgba(var(--color-shadow-rgb), 0.12),
+			0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+		backdrop-filter: blur(16px);
 	}
 
 	.app-main {
-		padding: 2dvh 2dvw 0;
+		flex: 1;
+		padding: clamp(1.5rem, 3vw, 2.75rem) 0 0;
 	}
 
 	@media (min-width: 1024px) {
 		:global(.app-body) {
-			padding-top: 6dvh;
-			padding-bottom: 3dvh;
+			padding: clamp(2rem, 4vw, 3.5rem);
 		}
 
 		.app-panel {
-			padding: 2dvw;
+			min-height: calc(100dvh - clamp(4rem, 8vw, 7rem));
+		}
+	}
+
+	@media (max-width: 767px) {
+		:global(.app-body) {
+			padding: 1rem;
+		}
+
+		.app-panel {
+			min-height: calc(100dvh - 2rem);
+			border-radius: 1.25rem;
+			padding: 1.25rem;
+		}
+
+		.app-main {
+			padding-top: 1.25rem;
 		}
 	}
 </style>
