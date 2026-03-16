@@ -6,19 +6,71 @@ type Props = Page;
 const page = Astro.props;
 ---
 
-<div class="mt-6 grid grid-cols-2">
+<div class="paginator-shell">
 	{
 		page.url.prev ? (
-			<a class="col-span-1 justify-self-end" href={page.url.prev} aria-label="Go to previous page">
+			<a class="paginator-link prev" href={page.url.prev} aria-label="Go to previous page">
 				<Icon name="ri:arrow-left-s-line" class="size-6 fill-current" title="Go to previous page" />
+				<span>Previous</span>
 			</a>
 		) : null
 	}
 	{
 		page.url.next ? (
-			<a class="col-span-1 col-start-2" href={page.url.next} aria-label="Go to next page">
+			<a class="paginator-link next" href={page.url.next} aria-label="Go to next page">
+				<span>Next</span>
 				<Icon name="ri:arrow-right-s-line" class="size-6 fill-current" title="Go to next page" />
 			</a>
 		) : null
 	}
 </div>
+
+<style>
+	.paginator-shell {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0.9rem;
+		margin-top: 1.75rem;
+	}
+
+	.paginator-link {
+		display: inline-flex;
+		width: fit-content;
+		align-items: center;
+		gap: 0.35rem;
+		border-radius: 999px;
+		border: 1px solid color-mix(in srgb, var(--color-border) 88%, var(--color-accent-soft));
+		background: color-mix(in srgb, var(--color-surface) 94%, var(--color-accent-soft) 6%);
+		padding: 0.7rem 1rem;
+		color: var(--color-text);
+		text-decoration: none;
+		box-shadow: 0 0.5rem 1.2rem rgba(var(--color-shadow-rgb), 0.08);
+		transition:
+			transform 260ms ease,
+			border-color 260ms ease,
+			background 260ms ease,
+			box-shadow 260ms ease,
+			color 260ms ease;
+	}
+
+	.paginator-link:hover,
+	.paginator-link:focus-visible {
+		transform: translateY(-3px);
+		border-color: color-mix(in srgb, var(--color-accent) 56%, var(--color-border));
+		background: color-mix(in srgb, var(--color-surface) 86%, var(--color-accent-soft) 14%);
+		color: var(--color-accent);
+		box-shadow: 0 0.8rem 1.7rem rgba(var(--color-shadow-rgb), 0.14);
+	}
+
+	.paginator-link.prev {
+		justify-self: start;
+	}
+
+	.paginator-link.next {
+		justify-self: end;
+	}
+
+	.paginator-link span {
+		font-size: 0.92rem;
+	}
+</style>

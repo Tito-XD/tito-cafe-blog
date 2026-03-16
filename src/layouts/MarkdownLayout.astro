@@ -24,11 +24,11 @@ const showTimes = showDate || showLastmod || showReadingTime;
 ---
 
 <ScaffoldLayout {...Astro.props}>
-	{title && show('title') && <h1 class="text-5xl font-bold">{title}</h1>}
-	<div class="my-[1dvh] text-[var(--color-muted)] lg:my-[3dvh]">
+	{title && show('title') && <h1 class="post-layout-title">{title}</h1>}
+	<div class="post-layout-meta">
 		{
 			showTimes && (
-				<div class="flex flex-col opacity-75 *:flex *:items-center lg:flex-row lg:gap-4">
+				<div class="post-layout-times">
 					{showDate && (
 						<time datetime={date.toISOString()}>
 							<Icon name="ri:time-line" class="fill-current" title="date" aria-label="date" />
@@ -62,10 +62,10 @@ const showTimes = showDate || showLastmod || showReadingTime;
 		}
 		{
 			tags && show('tags') && (
-				<div>
+				<div class="post-layout-tags">
 					{tags.map((tag: string) => (
 						<a
-							class="mr-2 text-xl opacity-80 hover:text-[var(--color-accent)] hover:opacity-100"
+							class="post-layout-tag"
 							href={`/tags/${tag}/1`}
 							aria-label={`More posts of tag ${tag}`}
 						>
@@ -109,6 +109,76 @@ const showTimes = showDate || showLastmod || showReadingTime;
 		)
 	}
 </ScaffoldLayout>
+
+<style>
+	.post-layout-title {
+		margin: 0;
+		font-size: clamp(2.75rem, 6vw, 4.5rem);
+		line-height: 0.95;
+		text-wrap: balance;
+	}
+
+	.post-layout-meta {
+		margin: 1dvh 0;
+		color: var(--color-muted);
+	}
+
+	.post-layout-times {
+		display: flex;
+		flex-direction: column;
+		gap: 0.4rem;
+		opacity: 0.8;
+	}
+
+	.post-layout-times > * {
+		display: flex;
+		align-items: center;
+		gap: 0.35rem;
+	}
+
+	.post-layout-tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.6rem;
+		padding-top: 0.85rem;
+	}
+
+	.post-layout-tag {
+		display: inline-flex;
+		align-items: center;
+		border-radius: 999px;
+		border: 1px solid color-mix(in srgb, var(--color-border) 84%, var(--color-accent-soft));
+		background: color-mix(in srgb, var(--color-surface) 93%, var(--color-accent-soft) 7%);
+		padding: 0.34rem 0.75rem;
+		font-size: 0.96rem;
+		color: var(--color-muted);
+		text-decoration: none;
+		transition:
+			transform 220ms ease,
+			border-color 220ms ease,
+			background 220ms ease,
+			color 220ms ease;
+	}
+
+	.post-layout-tag:hover,
+	.post-layout-tag:focus-visible {
+		transform: translateY(-2px);
+		border-color: color-mix(in srgb, var(--color-accent) 56%, var(--color-border));
+		background: color-mix(in srgb, var(--color-surface) 84%, var(--color-accent-soft) 16%);
+		color: var(--color-accent);
+	}
+
+	@media (min-width: 1024px) {
+		.post-layout-meta {
+			margin: 3dvh 0;
+		}
+
+		.post-layout-times {
+			flex-direction: row;
+			gap: 1rem;
+		}
+	}
+</style>
 <script is:inline type="module">
 	const copy = async (copyButton) => {
 		const code = copyButton.nextElementSibling?.children[0];
@@ -127,4 +197,3 @@ const showTimes = showDate || showLastmod || showReadingTime;
 		copyButton.addEventListener('click', () => copy(copyButton));
 	}
 </script>
-
