@@ -759,11 +759,18 @@ const positionLabel = `${String(itemIndex + 1).padStart(2, '0')} / ${String(item
 				target instanceof HTMLElement &&
 				(target.tagName === 'INPUT' ||
 					target.tagName === 'TEXTAREA' ||
-					target.isContentEditable)
-			) {
+					target.tagName === 'SELECT' ||
+					target.tagName === 'A' ||
+					target.tagName === 'BUTTON' ||
+					target.tagName === 'SUMMARY' ||
+					target.isContentEditable ||
+					(target !== root &&
+						target.closest(
+							'a, button, input, textarea, select, summary, [role="button"]',
+						)))
+				) {
 				return;
 			}
-
 			if (event.key === 'ArrowLeft' && root.dataset.prevHref) {
 				window.location.href = root.dataset.prevHref;
 			}

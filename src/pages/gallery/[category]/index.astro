@@ -49,11 +49,11 @@ const items = getGalleryItemsByCategory(category.slug);
 
 	<section class="gallery-wall" aria-label={`${category.title} wall`}>
 		{
-			items.map((item, index) => (
+			items.map((item) => (
 				<a
 					class:list={[
 						'gallery-wall-card',
-						{ featured: index === 0, interactive: Boolean(item.focusCharacters?.length) },
+						{ interactive: Boolean(item.focusCharacters?.length) },
 					]}
 					href={`/gallery/${category.slug}/${item.slug}/`}
 				>
@@ -169,13 +169,6 @@ const items = getGalleryItemsByCategory(category.slug);
 		object-fit: cover;
 	}
 
-	.gallery-wall-card.featured {
-		grid-column: span 2;
-	}
-
-	.gallery-wall-card.featured img {
-		aspect-ratio: 16 / 10;
-	}
 
 	.gallery-wall-card-copy {
 		display: grid;
@@ -235,11 +228,6 @@ const items = getGalleryItemsByCategory(category.slug);
 		color: rgb(113 113 122);
 	}
 
-	@media (max-width: 720px) {
-		.gallery-wall-card.featured {
-			grid-column: auto;
-		}
-	}
 
 	:root:is(.dark) .gallery-back-link,
 	:root:is(.dark) .gallery-section-heading p,
