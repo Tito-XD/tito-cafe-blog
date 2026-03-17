@@ -4,6 +4,8 @@ Revamped Astro Zozo is a sample-first Astro theme branch built with [Astro](http
 
 It starts from [astro-blog-zozo](https://github.com/ladit/astro-blog-zozo), which itself was inspired by [hugo-theme-zozo](https://github.com/varkai/hugo-theme-zozo), then pushes the theme toward a warmer editorial surface with more room for galleries, curated links, and landing-page style intros.
 
+Repository: [Tito-XD/tito-cafe-blog](https://github.com/Tito-XD/tito-cafe-blog/tree/codex/revamped-astro-zozo)
+
 Please read the [Code of Conduct](./CODE_OF_CONDUCT.md) before contributing or participating in project discussions.
 Additional attribution and copyright notes are collected in [NOTICE](./NOTICE).
 
@@ -49,6 +51,27 @@ This branch intentionally replaces personal material with reusable sample conten
 - sample branding, hero art, and intro copy
 
 Use this branch as a base, then swap the placeholder content for your own writing, media, and visual identity.
+
+## Open Source Readiness
+
+This branch is structured to be easier to publish and review as an open-source theme:
+
+- upstream MIT license notices are preserved
+- a top-level [Code of Conduct](./CODE_OF_CONDUCT.md) is included
+- footer attribution includes the required Netlify service link
+- personal posts, gallery notes, avatars, and branding have been replaced with sample content
+
+If you plan to apply for Netlify Open Source support, keep this branch non-commercial and continue using sample or redistributable assets only.
+
+## Quick Start
+
+To turn this into your own site, replace these first:
+
+- `src/config.ts` for site title, description, socials, and toggles
+- `src/content/posts/` for blog posts
+- `src/content/gallery/` for gallery entries and notes
+- `src/data/friends.ts` for curated links
+- `public/sample/` and `src/assets/sample/` for placeholder art and avatars
 
 ## Project Structure
 
