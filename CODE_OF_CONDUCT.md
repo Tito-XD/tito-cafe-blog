@@ -2,7 +2,7 @@
 
 ## Our Pledge
 
-We want Tito's Cafe to be a respectful, welcoming project for everyone who opens an issue, proposes a change, or joins a discussion.
+We want Revamped Astro Zozo to be a respectful, welcoming project for everyone who opens an issue, proposes a change, or joins a discussion.
 
 As contributors and maintainers, we pledge to make participation in this project a harassment-free experience for everyone, regardless of age, body size, disability, ethnicity, gender identity or expression, level of experience, nationality, personal appearance, race, religion, or sexual identity and orientation.
 
@@ -38,6 +38,6 @@ Repeated or severe violations may result in temporary or permanent restrictions 
 
 If you experience or witness unacceptable behavior, please contact the maintainer at:
 
-- `titow.xd@outlook.com`
+- `maintainer@example.com`
 
 All reports will be reviewed and handled as carefully and respectfully as possible.

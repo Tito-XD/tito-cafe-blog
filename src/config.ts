@@ -1,40 +1,38 @@
-﻿import type { PostHideElements } from '~/content.config';
+import type { PostHideElements } from '~/content.config';
 
-export const Site = 'https://tito.cafe';
-export const SiteLanguage = 'zh';
-export const SiteTitle = "头头咖啡屋 / Tito's Cafe";
-export const SiteDescription = '记录日常，写一些想到的东西';
-export const FooterDescription = 'make 21 grams interesting.';
-export const AdminName = 'Tito_XD';
-export const PageSize = 15;
+export const Site = 'https://example.com';
+export const SiteLanguage = 'en';
+export const SiteTitle = 'Revamped Astro Zozo';
+export const SiteDescription = 'A polished Astro blog template with gallery, friends, and richer content surfaces.';
+export const FooterDescription = 'A refreshed Astro theme starter.';
+export const AdminName = 'Template Author';
+export const PageSize = 12;
 
 // socialPlatform => userName
 // check components/Header.astro socialConfig for more info
 export const Socials: Record<string, Record<string, string>> = {
-	xiaohongshu: {
-		url: 'https://www.xiaohongshu.com/user/profile/606528a100000000010092d3',
-	},
-	x: { url: 'https://x.com/Tito_XD2333' },
-	weibo: { url: 'https://weibo.com/u/2100498774' },
-	bilibili: { url: 'https://space.bilibili.com/5895560' },
-	telegram: { url: 'https://t.me/@tito_xd' },
-	mail: { url: 'mailto:titow.xd@outlook.com' },
+	xiaohongshu: { url: '' },
+	x: { url: '' },
+	weibo: { url: '' },
+	bilibili: { url: '' },
+	telegram: { url: '' },
+	mail: { url: '' },
 	rss: { url: '/rss.xml' },
 };
 
 // doc: https://giscus.app
-// data-theme is auto changed between noborder_light / noborder_gray
+// comments are hidden by default in the template branch
 export const GiscusConfig: Record<string, string> = {
-	'data-repo': 'Tito-XD/tito-cafe-blog',
-	'data-repo-id': 'R_kgDONhjiGA',
-	'data-category': 'Announcements',
-	'data-category-id': 'DIC_kwDONhjiGM4ClevO',
+	'data-repo': '',
+	'data-repo-id': '',
+	'data-category': '',
+	'data-category-id': '',
 	'data-mapping': 'title',
 	'data-strict': '0',
 	'data-reactions-enabled': '1',
 	'data-emit-metadata': '0',
 	'data-input-position': 'top',
-	'data-lang': 'zh-CN',
+	'data-lang': 'en',
 	'data-loading': 'lazy',
 	crossorigin: 'anonymous',
 	async: '',
@@ -49,4 +47,4 @@ export type HideElements =
 	| 'footerDescription';
 
 // Always hide elements from site
-export const Hide: HideElements[] = [];
+export const Hide: HideElements[] = ['comments'];

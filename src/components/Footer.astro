@@ -4,14 +4,6 @@ import { FooterDescription, Hide } from '~/config';
 
 <footer class="site-footer" transition:persist>
 	{!Hide.includes('footerDescription') && <p class="site-footer__tagline">{FooterDescription}</p>}
-	<p class="site-footer__badge">
-		<a href="https://app.netlify.com/projects/titocafe/deploys">
-			<img
-				src="https://api.netlify.com/api/v1/badges/aeecbae6-3875-47c0-a923-9ef102e4928b/deploy-status"
-				alt="Netlify Status"
-			/>
-		</a>
-	</p>
 	<p class="site-footer__hosting">
 		<a
 			class="site-footer__link"
@@ -24,7 +16,7 @@ import { FooterDescription, Hide } from '~/config';
 		</a>
 	</p>
 	<p class="site-footer__copyright">
-		&copy; {new Date().getFullYear()} Tito's Cafe / &#x5934;&#x5934;&#x5496;&#x5561;&#x5C4B;. Powered by <a
+		&copy; {new Date().getFullYear()} Revamped Astro Zozo. Powered by <a
 			class="site-footer__link"
 			href="https://astro.build"
 			target="_blank"
@@ -60,26 +52,9 @@ import { FooterDescription, Hide } from '~/config';
 		color: color-mix(in srgb, var(--color-muted) 84%, var(--color-text));
 	}
 
-	.site-footer__badge {
-		margin: 0 0 0.9rem;
-	}
-
 	.site-footer__hosting {
 		margin: 0 0 0.9rem;
 		font-size: 0.92rem;
-	}
-
-	.site-footer__badge a {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		border-radius: var(--radius-button);
-		padding: 0.3rem 0.45rem;
-	}
-
-	.site-footer__badge img {
-		height: 1.25rem;
-		width: auto;
 	}
 
 	.site-footer__copyright {

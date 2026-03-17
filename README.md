@@ -1,10 +1,8 @@
-# Tito's Cafe
+# Revamped Astro Zozo
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/aeecbae6-3875-47c0-a923-9ef102e4928b/deploy-status)](https://app.netlify.com/projects/titocafe/deploys)
+Revamped Astro Zozo is a sample-first Astro theme branch built with [Astro](https://astro.build), [Tailwind CSS](https://tailwindcss.com/), and [Bun](https://bun.sh/).
 
-Tito's Cafe is a personal blog, friends page, and gallery built with [Astro](https://astro.build), [Tailwind CSS](https://tailwindcss.com/), and [Bun](https://bun.sh/).
-
-This project started from [astro-blog-zozo](https://github.com/ladit/astro-blog-zozo), which itself was inspired by [hugo-theme-zozo](https://github.com/varkai/hugo-theme-zozo). The current codebase has been extensively rewritten for Tito's Cafe with a custom visual system, revised layouts, a gallery content model, and site-specific interaction design.
+It starts from [astro-blog-zozo](https://github.com/ladit/astro-blog-zozo), which itself was inspired by [hugo-theme-zozo](https://github.com/varkai/hugo-theme-zozo), then pushes the theme toward a warmer editorial surface with more room for galleries, curated links, and landing-page style intros.
 
 Please read the [Code of Conduct](./CODE_OF_CONDUCT.md) before contributing or participating in project discussions.
 Additional attribution and copyright notes are collected in [NOTICE](./NOTICE).
@@ -29,17 +27,28 @@ Special thanks to the original authors and contributors whose work made this pro
 - Giscus comments
 - Netlify deployment
 
-## What Is Customized
+## What Changed From Astro Zozo
 
-This repository is no longer a stock theme mirror. Current custom work includes:
+This template branch keeps the lightweight writing flow of Astro Zozo, then adds:
 
-- a warm gray-blue light and dark theme with a unified set of surface, border, and accent tokens
-- a rewritten scaffold layout, footer, and navigation interaction system
-- a homepage and about page with matching hero-style layouts
-- a `/friends` page with adaptive cards and expand-on-focus details
-- a `/gallery` route with category walls, viewer pages, notes support, and illustration focus demos
-- gallery content moved into `src/content/gallery/` so markdown, metadata, and notes live in a predictable structure
-- customized post routing, RSS, and content handling for the current site structure
+- a warmer light and dark palette with a more unified surface system
+- a rewritten scaffold layout, footer, and navigation state treatment
+- matching hero-style `Home` and `About` layouts
+- a `/friends` page for curated link cards
+- a `/gallery` route with category walls, viewer pages, notes, and optional focus hotspots
+- markdown-backed gallery entries under `src/content/gallery/`
+- a more compact mobile menu and tightened page heading system
+
+## Sample Content
+
+This branch intentionally replaces personal material with reusable sample content:
+
+- sample blog posts
+- sample gallery entries, notes, and placeholder artwork
+- sample friends data
+- sample branding, hero art, and intro copy
+
+Use this branch as a base, then swap the placeholder content for your own writing, media, and visual identity.
 
 ## Project Structure
 
@@ -47,7 +56,11 @@ Important folders:
 
 - `src/content/posts/`: blog posts
 - `src/content/gallery/`: gallery entries grouped by category
-- `src/assets/attachments/`: post and gallery image assets
+- `src/assets/sample/gallery/`: placeholder gallery media used by the sample branch
+- `src/assets/sample/portraits/`: placeholder focus portraits for interactive illustration pages
+- `public/sample/`: hero art and sample avatars
+- `src/data/friends.ts`: friends page data
+- `src/config.ts`: site title, description, social links, and toggles
 - `src/pages/`: route files
 - `src/components/`: reusable UI parts
 - `src/layouts/`: site layouts and page shells
@@ -87,7 +100,7 @@ bun run format
 
 ## Deployment
 
-This site is deployed on Netlify.
+This theme is ready to deploy on Netlify.
 
 Recommended settings:
 
@@ -103,8 +116,6 @@ Recommended settings:
 The code in this repository continues to inherit and preserve the original [MIT](./LICENSE) license terms from its upstream project. Original copyright and license notices should be retained.
 See [NOTICE](./NOTICE) for additional attribution and project-specific copyright context.
 
-### Site Content
+### Sample Content
 
-Unless otherwise noted, the content published for Tito's Cafe is not covered by the template's MIT license.
-
-Articles, photography, illustrations, commissioned works, and other original site materials are copyrighted by **tito.cafe / Tito_XD**. Please do not reuse or redistribute those materials without permission.
+This branch includes sample copy and placeholder SVG assets so the theme can be previewed immediately. Replace them with your own branding and materials before publishing a real site.

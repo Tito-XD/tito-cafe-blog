@@ -6,21 +6,13 @@ import satori, { type SatoriOptions } from 'satori';
 import sharp from 'sharp';
 import { FooterDescription, Site, SiteDescription, SiteTitle } from '~/config';
 
-// satori may have bug when rendering <img src="data:image/svg+xml;base64,...">. You can convert to png like below:
-// const logoImage =
-// 	'data:image/png;base64,' +
-// 	(await sharp('src/assets/logo.svg').png().toBuffer()).toString('base64');
-
-// or use a png file
 const logoImage = `data:image/png;base64,${(
-	await fs.promises.readFile('src/assets/new-logo.png')
+	await sharp('public/sample/logo.svg').png().toBuffer()
 ).toString('base64')}`;
 
-// the font file is integrated to prevent Github action failure for now.
 const font = async () => {
 	const fontPath = 'src/assets/LXGWWenKaiGBScreen.ttf';
 	if (!fs.existsSync(fontPath)) {
-		// eslint-disable-next-line no-console
 		console.log('downloading a font for open graph, wait a minute');
 		const remoteFont =
 			'https://github.com/lxgw/LxgwWenKai-Screen/releases/latest/download/LXGWWenKaiGBScreen.ttf';
@@ -63,9 +55,7 @@ const options: SatoriOptions = {
 					return segment;
 				}
 				return `data:image/png;base64,${(
-					await sharp(await response.arrayBuffer())
-						.png()
-						.toBuffer()
+					await sharp(await response.arrayBuffer()).png().toBuffer()
 				).toString('base64')}`;
 			} catch {
 				return segment;
@@ -83,28 +73,26 @@ declare module 'react' {
 
 export async function siteOpenGraph() {
 	const template = (
-		<div tw="flex h-full w-full flex-col justify-between bg-[#202124] pb-3 pt-6 text-neutral-50">
+		<div tw="flex h-full w-full flex-col justify-between bg-[#f5f7fa] pb-4 pt-6 text-[#2d3436]">
 			<div
-				tw="mx-auto flex w-[85%] grow flex-col bg-[#212223] px-5 py-2"
-				style={{ boxShadow: '0 0 20px 10px rgb(136, 136, 136, 0.35)' }}
+				tw="mx-auto flex w-[85%] grow flex-col bg-white px-6 py-5"
+				style={{ boxShadow: '0 0 20px 10px rgba(93, 169, 255, 0.12)' }}
 			>
 				<div tw="grow flex flex-col pl-4 mt-2">
-					<img alt="logo" src={logoImage} tw="w-auto h-30" />
-					<div tw="mt-2 grow flex flex-col items-center">
-						<p tw="text-9xl font-bold">{SiteTitle}</p>
-						<p tw="text-7xl text-neutral-500 font-bold">{SiteDescription}</p>
+					<img alt="logo" src={logoImage} tw="w-auto h-28" />
+					<div tw="mt-6 grow flex flex-col items-center text-center">
+						<p tw="text-8xl font-bold">{SiteTitle}</p>
+						<p tw="mt-4 text-5xl text-[#5d8ecb] font-semibold">{SiteDescription}</p>
 					</div>
 				</div>
 			</div>
 			<div tw="mt-5 flex flex-col items-center text-xl">
 				<div>{FooterDescription}</div>
-				<div tw="text-neutral-400">{`© ${new Date().getFullYear()} ${Site}`}</div>
+				<div tw="text-[#7b8794]">{`Copyright ${new Date().getFullYear()} ${Site}`}</div>
 			</div>
 		</div>
 	);
-	return await sharp(Buffer.from(await satori(template, options)))
-		.png()
-		.toBuffer();
+	return await sharp(Buffer.from(await satori(template, options))).png().toBuffer();
 }
 
 type Config = {
@@ -115,19 +103,19 @@ type Config = {
 
 export async function postOpenGraph({ title, description, tags }: Config) {
 	const template = (
-		<div tw="flex h-full w-full flex-col justify-between bg-[#202124] pb-3 pt-6 text-neutral-50">
+		<div tw="flex h-full w-full flex-col justify-between bg-[#f5f7fa] pb-4 pt-6 text-[#2d3436]">
 			<div
-				tw="mx-auto flex w-[85%] grow flex-col bg-[#212223] px-5 py-2"
-				style={{ boxShadow: '0 0 20px 10px rgb(136, 136, 136, 0.35)' }}
+				tw="mx-auto flex w-[85%] grow flex-col bg-white px-6 py-5"
+				style={{ boxShadow: '0 0 20px 10px rgba(93, 169, 255, 0.12)' }}
 			>
-				<div tw="flex justify-between mt-2">
-					<img alt="logo" src={logoImage} tw="w-auto h-30" />
-					<p tw="text-3xl">{SiteDescription}</p>
+				<div tw="flex justify-between items-start mt-2" style={{ columnGap: 24 }}>
+					<img alt="logo" src={logoImage} tw="w-auto h-24" />
+					<p tw="text-3xl text-[#5d8ecb] text-right">{SiteDescription}</p>
 				</div>
-				<div tw="grow flex flex-col pl-4 mt-5">
+				<div tw="grow flex flex-col pl-4 mt-8">
 					<p tw="text-6xl font-bold">{title}</p>
-					<p tw="text-4xl font-bold">{description}</p>
-					<div tw="flex text-neutral-400">
+					{description && <p tw="mt-5 text-4xl font-bold">{description}</p>}
+					<div tw="mt-6 flex text-[#7b8794]">
 						{tags?.map((tag) => (
 							<p tw="text-xl mr-4" key={tag}>
 								{tag}
@@ -138,11 +126,10 @@ export async function postOpenGraph({ title, description, tags }: Config) {
 			</div>
 			<div tw="mt-5 flex flex-col items-center text-xl">
 				<div>{FooterDescription}</div>
-				<div tw="text-neutral-400">{`© ${new Date().getFullYear()} ${Site}`}</div>
+				<div tw="text-[#7b8794]">{`Copyright ${new Date().getFullYear()} ${Site}`}</div>
 			</div>
 		</div>
 	);
-	return await sharp(Buffer.from(await satori(template, options)))
-		.png()
-		.toBuffer();
+	return await sharp(Buffer.from(await satori(template, options))).png().toBuffer();
 }
+

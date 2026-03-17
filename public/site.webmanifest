@@ -1,6 +1,6 @@
 {
-  "name": "头头咖啡屋 / Tito's Cafe",
-  "short_name": "头头咖啡屋",
+  "name": "Revamped Astro Zozo",
+  "short_name": "Astro Zozo",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
@@ -15,7 +15,7 @@
       "purpose": "maskable"
     }
   ],
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff",
+  "theme_color": "#F5F7FA",
+  "background_color": "#F5F7FA",
   "display": "standalone"
 }

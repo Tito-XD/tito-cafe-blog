@@ -14,24 +14,24 @@ export const galleryCategories: GalleryCategoryMeta[] = [
 	{
 		slug: 'illustration',
 		title: 'Illustration',
-		subtitle: '委托插图',
-		description: '收纳委托、设定图和需要单独拆分人物高亮的作品。',
+		subtitle: 'Art samples',
+		description: 'A sample wall for commissions, character sheets, and spotlight interactions that can be customized per entry.',
 	},
 	{
 		slug: 'life',
 		title: 'Life',
-		subtitle: '生活碎片',
-		description: '记录和朋友、日常与纪念时刻有关的画面，也保留一点当时的心情。',
+		subtitle: 'Everyday moments',
+		description: 'A flexible category for notes, snapshots, and soft editorial storytelling anchored by markdown content.',
 	},
 	{
 		slug: 'view',
 		title: 'View',
-		subtitle: '所见',
-		description: '留给路上的光线、城市、天气和那些想悄悄记住的风景。',
+		subtitle: 'Places and light',
+		description: 'A lightweight gallery lane for scenery, travel references, and visual pauses between longer posts.',
 	},
 ];
 
-const collator = new Intl.Collator(['zh-Hans-u-co-pinyin', 'zh', 'en'], {
+const collator = new Intl.Collator(['en', 'zh-Hans-u-co-pinyin', 'zh'], {
 	numeric: true,
 	sensitivity: 'base',
 });

@@ -1,5 +1,4 @@
 ---
-import fs from 'node:fs/promises';
 import { Icon } from 'astro-icon/components';
 import { Hide, SiteDescription, SiteTitle, Socials } from '~/config';
 import Nav from './Nav.astro';
@@ -9,8 +8,6 @@ interface Props {
 	currentNav?: string;
 }
 const { currentNav } = Astro.props;
-
-const customLogo = (await fs.stat('./src/assets/logo.png')).isFile();
 
 const socialConfig: Record<string, Record<string, string>> = {
 	bilibili: { icon: 'ri:bilibili-fill' },
@@ -70,7 +67,7 @@ const socialOrder = ['xiaohongshu', 'x', 'weibo', 'bilibili', 'telegram', 'mail'
 
 const socials: Record<string, string>[] = [];
 for (const platform of socialOrder) {
-	if (Socials[platform].url && socialConfig[platform]) {
+	if (Socials[platform]?.url && socialConfig[platform]) {
 		socials.push({
 			platform,
 			...Socials[platform],
@@ -82,19 +79,10 @@ for (const platform of socialOrder) {
 
 <header class="relative grid grid-cols-2 items-start justify-between lg:flex">
 	{
-		!Hide.includes("logo") ? (
-		<a
-				transition:persist
-				href="/"
-				aria-label="go to index"
-				class={customLogo ? 'w-[20rem] h-[6rem]' : ' '}
-			>
-				{customLogo ? (
-
-					<Icon name="logo" title="go to index" class="w-[20rem] h-[6rem]"/>
-				) : (
-					SiteTitle
-				)}
+		!Hide.includes('logo') ? (
+			<a transition:persist href="/" aria-label="go to index" class="site-logo-link">
+				<img src="/sample/logo.svg" alt={SiteTitle} class="site-logo-mark" />
+				<span class="sr-only">{SiteTitle}</span>
 			</a>
 		) : (
 			<div />
@@ -111,15 +99,12 @@ for (const platform of socialOrder) {
 	>
 		<Icon name="ri:menu-fill" class="size-8" />
 	</button>
-	<div
-		id="menu"
-		class="mobile-menu-panel col-span-2 hidden lg:hidden"
-	>
+	<div id="menu" class="mobile-menu-panel col-span-2 hidden lg:hidden">
 		<div class="mobile-menu-surface">
 			<Nav currentNav={currentNav} compact />
 			<div class="mobile-menu-actions">
 				{
-					!Hide.includes("search") && (
+					!Hide.includes('search') && (
 						<a
 							href="/search"
 							class="header-icon-link ui-pressable"
@@ -130,9 +115,9 @@ for (const platform of socialOrder) {
 						</a>
 					)
 				}
-				{!Hide.includes("themeToggler") && <ThemeToggler />}
+				{!Hide.includes('themeToggler') && <ThemeToggler />}
 			</div>
-			{!Hide.includes("siteDescription") && <p class="mobile-menu-description">{SiteDescription}</p>}
+			{!Hide.includes('siteDescription') && <p class="mobile-menu-description">{SiteDescription}</p>}
 			{
 				socials.length > 0 && (
 					<div class="mobile-menu-socials">
@@ -146,15 +131,11 @@ for (const platform of socialOrder) {
 			}
 		</div>
 	</div>
-	<div
-		class="col-span-2 hidden flex-col gap-3 text-center lg:flex lg:items-end"
-	>
-		<div
-			class="mb-[2dvh] flex flex-col items-center gap-3 lg:mb-7 lg:flex-row lg:gap-8"
-		>
+	<div class="col-span-2 hidden flex-col gap-3 text-center lg:flex lg:items-end">
+		<div class="mb-[2dvh] flex flex-col items-center gap-3 lg:mb-7 lg:flex-row lg:gap-8">
 			<Nav currentNav={currentNav} />
 			{
-				!Hide.includes("search") && (
+				!Hide.includes('search') && (
 					<a
 						href="/search"
 						class="header-icon-link ui-pressable"
@@ -165,10 +146,10 @@ for (const platform of socialOrder) {
 					</a>
 				)
 			}
-			{!Hide.includes("themeToggler") && <ThemeToggler />}
+			{!Hide.includes('themeToggler') && <ThemeToggler />}
 		</div>
 		<Fragment transition:persist>
-			{!Hide.includes("siteDescription") && <div>{SiteDescription}</div>}
+			{!Hide.includes('siteDescription') && <div>{SiteDescription}</div>}
 			{
 				socials.length > 0 && (
 					<div class="mt-[2dvh] flex flex-wrap justify-center gap-3 lg:mt-0">
@@ -185,6 +166,17 @@ for (const platform of socialOrder) {
 </header>
 
 <style>
+	.site-logo-link {
+		display: inline-flex;
+		width: min(100%, 20rem);
+		align-items: center;
+	}
+
+	.site-logo-mark {
+		width: 100%;
+		height: auto;
+	}
+
 	.header-icon-link,
 	.header-social-link {
 		display: inline-flex;
@@ -269,19 +261,16 @@ for (const platform of socialOrder) {
 
 <script>
 	const toggleMenu = (document: Document) => {
-		if (window.matchMedia("(min-width: 1024px)").matches) {
+		if (window.matchMedia('(min-width: 1024px)').matches) {
 			return;
 		}
-		const btn = document.getElementById("menu-btn");
-		const menu = document.getElementById("menu");
-		btn?.addEventListener("click", () => {
-			const menuExpanded = btn.getAttribute("aria-expanded") === "true";
-			btn.setAttribute("aria-expanded", menuExpanded ? "false" : "true");
-			btn.setAttribute(
-				"aria-label",
-				menuExpanded ? "close menu" : "open menu",
-			);
-			menu?.classList.toggle("hidden");
+		const btn = document.getElementById('menu-btn');
+		const menu = document.getElementById('menu');
+		btn?.addEventListener('click', () => {
+			const menuExpanded = btn.getAttribute('aria-expanded') === 'true';
+			btn.setAttribute('aria-expanded', menuExpanded ? 'false' : 'true');
+			btn.setAttribute('aria-label', menuExpanded ? 'close menu' : 'open menu');
+			menu?.classList.toggle('hidden');
 		});
 		if (btn && menu) {
 			menu.querySelectorAll('a').forEach((link) => {
@@ -294,7 +283,5 @@ for (const platform of socialOrder) {
 		}
 	};
 	toggleMenu(document);
-	document.addEventListener("astro:before-swap", (e) =>
-		toggleMenu(e.newDocument),
-	);
+	document.addEventListener('astro:before-swap', (e) => toggleMenu(e.newDocument));
 </script>
