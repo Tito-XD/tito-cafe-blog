@@ -19,8 +19,6 @@ const categories = await Promise.all(
 	}),
 );
 
-const totalWorks = categories.reduce((total, category) => total + category.count, 0);
-const totalHighlights = categories.reduce((total, category) => total + category.highlightCount, 0);
 ---
 
 <ScaffoldLayout
@@ -29,25 +27,7 @@ const totalHighlights = categories.reduce((total, category) => total + category.
 	currentNav={undefined}
 >
 	<section class="gallery-hero">
-		<p class="gallery-kicker">Gallery</p>
-		<h1>Illustration, Life, View</h1>
-		<p class="gallery-lead">
-			Build the structure first, then keep growing it by dropping markdown, images, and notes into a fixed gallery folder.
-		</p>
-		<div class="gallery-hero-stats" aria-label="Gallery overview">
-			<div>
-				<strong>{categories.length}</strong>
-				<span>categories</span>
-			</div>
-			<div>
-				<strong>{totalWorks}</strong>
-				<span>works seeded</span>
-			</div>
-			<div>
-				<strong>{totalHighlights}</strong>
-				<span>focus demos</span>
-			</div>
-		</div>
+		<h1 class="page-title">Gallery</h1>
 	</section>
 
 	<section class="gallery-category-grid" aria-label="Gallery categories">
@@ -104,61 +84,7 @@ const totalHighlights = categories.reduce((total, category) => total + category.
 
 <style is:global>
 	.gallery-hero {
-		max-width: 48rem;
-		padding: 1.5rem 0 1rem;
-	}
-
-	.gallery-kicker {
-		margin: 0;
-		font-size: 0.78rem;
-		letter-spacing: 0.24em;
-		text-transform: uppercase;
-		color: var(--color-muted);
-	}
-
-	.gallery-hero h1 {
-		margin: 0.5rem 0 0;
-		font-size: clamp(2.75rem, 7vw, 5rem);
-		line-height: 0.95;
-		text-wrap: balance;
-	}
-
-	.gallery-lead {
-		margin: 1rem 0 0;
-		max-width: 38rem;
-		font-size: 1rem;
-		line-height: 1.7;
-		color: color-mix(in srgb, var(--color-muted) 92%, var(--color-text));
-	}
-
-	.gallery-hero-stats {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.8rem;
-		padding-top: 1.25rem;
-	}
-
-	.gallery-hero-stats div {
-		display: grid;
-		gap: 0.15rem;
-		min-width: 8rem;
-		border-radius: var(--radius-soft);
-		border: 1px solid var(--color-border);
-		background: color-mix(in srgb, var(--color-surface) 84%, var(--color-accent-soft));
-		padding: 0.85rem 1rem;
-		box-shadow: 0 0.85rem 1.75rem rgba(var(--color-shadow-rgb), 0.08);
-	}
-
-	.gallery-hero-stats strong {
-		font-size: 1.35rem;
-		line-height: 1;
-	}
-
-	.gallery-hero-stats span {
-		font-size: 0.76rem;
-		letter-spacing: 0.12em;
-		text-transform: uppercase;
-		color: var(--color-muted);
+		padding: 0.1rem 0 1.35rem;
 	}
 
 	.gallery-category-grid {

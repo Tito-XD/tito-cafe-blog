@@ -6,7 +6,7 @@ import { Icon } from 'astro-icon/components';
 	<button
 		type="button"
 		id="theme-toggler"
-		class="theme-toggler"
+		class="theme-toggler ui-pressable"
 		aria-label="Switch to dark theme"
 		title="Switch to dark theme"
 		data-theme="light"
@@ -23,25 +23,18 @@ import { Icon } from 'astro-icon/components';
 		justify-content: center;
 		height: 2.15rem;
 		width: 2.15rem;
-		border-radius: var(--radius-button);
-		border: 1px solid color-mix(in srgb, var(--color-border) 88%, var(--color-accent-soft));
-		background: color-mix(in srgb, var(--color-surface) 90%, var(--color-accent-soft) 10%);
 		color: var(--color-text);
 		opacity: 0.88;
 		transition:
 			transform var(--motion-gentle),
-			border-color var(--motion-gentle),
 			background var(--motion-gentle),
 			color var(--motion-gentle),
-			opacity var(--motion-gentle);
+			opacity var(--motion-gentle),
+			box-shadow var(--motion-gentle);
 	}
 
 	.theme-toggler:hover,
 	.theme-toggler:focus-visible {
-		transform: translateY(-2px);
-		border-color: color-mix(in srgb, var(--color-accent) 54%, var(--color-border));
-		background: color-mix(in srgb, var(--color-surface) 84%, var(--color-accent-soft) 16%);
-		color: var(--color-accent);
 		opacity: 1;
 	}
 

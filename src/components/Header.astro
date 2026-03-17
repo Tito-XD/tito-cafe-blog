@@ -103,7 +103,7 @@ for (const platform of socialOrder) {
 	<button
 		transition:persist
 		id="menu-btn"
-		class="justify-self-end lg:hidden"
+		class="ui-pressable justify-self-end p-2 text-[var(--color-text)] lg:hidden"
 		title="open menu"
 		aria-label="open menu"
 		aria-expanded="false"
@@ -123,7 +123,7 @@ for (const platform of socialOrder) {
 				!Hide.includes("search") && (
 					<a
 						href="/search"
-						class="header-icon-link"
+						class="header-icon-link ui-pressable"
 						title="Navigate to search page"
 						aria-label="Navigate to search page"
 					>
@@ -139,7 +139,7 @@ for (const platform of socialOrder) {
 				socials.length > 0 && (
 					<div class="mt-[2dvh] flex flex-wrap justify-center gap-3 lg:mt-0">
 						{socials.map(({ platform, icon, url, label }) => (
-							<a class="header-social-link" href={url} aria-label={label ?? platform}>
+							<a class="header-social-link ui-pressable" href={url} aria-label={label ?? platform}>
 								<Icon name={icon} class="fill-current" title={label ?? platform} />
 							</a>
 						))}
@@ -156,17 +156,14 @@ for (const platform of socialOrder) {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		border-radius: var(--radius-button);
-		border: 1px solid color-mix(in srgb, var(--color-border) 88%, var(--color-accent-soft));
-		background: color-mix(in srgb, var(--color-surface) 90%, var(--color-accent-soft) 10%);
 		color: var(--color-text);
 		text-decoration: none;
 		transition:
 			transform var(--motion-gentle),
-			border-color var(--motion-gentle),
 			background var(--motion-gentle),
 			color var(--motion-gentle),
-			opacity var(--motion-gentle);
+			opacity var(--motion-gentle),
+			box-shadow var(--motion-gentle);
 	}
 
 	.header-icon-link {
@@ -185,10 +182,6 @@ for (const platform of socialOrder) {
 	.header-icon-link:focus-visible,
 	.header-social-link:hover,
 	.header-social-link:focus-visible {
-		transform: translateY(-2px);
-		border-color: color-mix(in srgb, var(--color-accent) 54%, var(--color-border));
-		background: color-mix(in srgb, var(--color-surface) 84%, var(--color-accent-soft) 16%);
-		color: var(--color-accent);
 		opacity: 1;
 	}
 </style>

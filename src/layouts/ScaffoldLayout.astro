@@ -26,6 +26,19 @@ interface Props {
 </BaseLayout>
 
 <style>
+	:global(.page-heading) {
+		display: grid;
+		gap: 0.75rem;
+		padding: 0.1rem 0 1.4rem;
+	}
+
+	:global(.page-title) {
+		margin: 0;
+		font-size: clamp(2.2rem, 4.6vw, 3.4rem);
+		line-height: 1;
+		text-wrap: balance;
+	}
+
 	:global(.app-body) {
 		min-height: 100dvh;
 		background:

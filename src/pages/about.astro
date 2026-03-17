@@ -4,9 +4,12 @@ import img from '~/assets/tito_xd-walk-by-frankuwu.png';
 import MarkdownLayout from '~/layouts/MarkdownLayout.astro';
 ---
 
-<MarkdownLayout title="About" description="About this site." currentNav="About">
+<MarkdownLayout title="About" description="About this site." currentNav="About" hide={['title']}>
+	<section class="page-heading about-heading">
+		<h1 class="page-title">About</h1>
+	</section>
 	<Picture
-		class="lg:float-left lg:ml-4 lg:w-2/5"
+		class="about-art lg:float-left lg:ml-4 lg:w-2/5"
 		src={img}
 		formats={['avif', 'webp', 'png']}
 		alt="Tito_XD original character walking posture by artist Frankuwu"
@@ -21,3 +24,13 @@ import MarkdownLayout from '~/layouts/MarkdownLayout.astro';
 		lives in Hubei, Wuhan and working as marketing, website maintainer.
 	</p>
 </MarkdownLayout>
+
+<style>
+	.about-heading {
+		padding-bottom: 1rem;
+	}
+
+	.about-art {
+		margin-bottom: 1.2rem;
+	}
+</style>

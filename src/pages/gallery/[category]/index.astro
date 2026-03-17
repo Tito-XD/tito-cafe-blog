@@ -38,7 +38,7 @@ const items = await getGalleryItemsByCategory(category.slug);
 		{
 			galleryCategories.map((entry) => (
 				<a
-					class:list={['gallery-tab', { active: entry.slug === category.slug }]}
+					class:list={['gallery-tab', 'ui-pressable', { active: entry.slug === category.slug }]}
 					href={`/gallery/${entry.slug}/`}
 				>
 					{entry.title}
@@ -123,8 +123,6 @@ const items = await getGalleryItemsByCategory(category.slug);
 
 	.gallery-tab {
 		border-radius: var(--radius-chip);
-		border: 1px solid var(--color-border);
-		background: color-mix(in srgb, var(--color-surface) 86%, var(--color-accent-soft));
 		padding: 0.65rem 1rem;
 		font-size: 0.9rem;
 		text-decoration: none;
@@ -132,9 +130,7 @@ const items = await getGalleryItemsByCategory(category.slug);
 	}
 
 	.gallery-tab.active {
-		border-color: color-mix(in srgb, var(--color-accent) 84%, var(--color-border));
-		background: color-mix(in srgb, var(--color-accent) 14%, var(--color-surface));
-		box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-accent) 24%, transparent);
+		transform: translateY(1px);
 	}
 
 	.gallery-wall {

@@ -30,7 +30,7 @@ const { tag } = Astro.params;
 	<section class="tag-detail-heading">
 		<p>Tag Archive</p>
 		<h1>{tag}</h1>
-		<div class="tag-detail-chip" aria-label={`Current tag ${tag}`}>
+		<div class="tag-detail-chip ui-pressable is-active" aria-label={`Current tag ${tag}`}>
 			<span>Current tag</span>
 			<strong>{tag}</strong>
 		</div>
@@ -68,10 +68,7 @@ const { tag } = Astro.params;
 		align-items: center;
 		gap: 0.6rem;
 		border-radius: var(--radius-soft);
-		border: 1px solid color-mix(in srgb, var(--color-border) 88%, var(--color-accent-soft));
-		background: color-mix(in srgb, var(--color-surface) 94%, var(--color-accent-soft) 6%);
 		padding: 0.85rem 1rem;
-		box-shadow: 0 0.55rem 1.4rem rgba(var(--color-shadow-rgb), 0.08);
 	}
 
 	.tag-detail-chip span {
