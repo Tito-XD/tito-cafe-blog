@@ -21,14 +21,9 @@ import ScaffoldLayout from '~/layouts/ScaffoldLayout.astro';
 				<p>不知不觉已经走进春天了，生活又要这样继续往前走了。捡着空闲时间和摸鱼稍稍微装修了一下这里，看到这里不知道有没有觉得有点新意呢。</p>
 				<p>总归还是生活碎碎念。如果我的寥寥几字也能让你驻足停看，那也不错，谢谢。</p>
 				<p class="home-intro__links">
-					<a class="ui-type-link" href="/posts/rewind-2025">
-						<span class="ui-type-link__text">2025 年的 REWIND 在这里</span>
-					</a>
-					<span>，</span>
-					<a class="ui-type-link" href="/posts/onward-2026">
-						<span class="ui-type-link__text">2026 年的 ONWARD 在这里</span><span>。</span>
-					</a>
-					<span>欢迎光临，请开心。</span>
+					<a href="/posts/rewind-2025">2025 年的 REWIND 在这里</a>，
+					<a href="/posts/onward-2026">2026 年的 ONWARD 在这里</a>。
+					欢迎光临，请开心。
 				</p>
 			</div>
 		</div>
@@ -79,13 +74,18 @@ import ScaffoldLayout from '~/layouts/ScaffoldLayout.astro';
 	}
 
 	.home-intro__links {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.12rem 0.3rem;
+		color: color-mix(in srgb, var(--color-text) 92%, var(--color-muted));
 	}
 
 	.home-intro__links a {
 		color: var(--color-accent);
+		text-decoration-color: color-mix(in srgb, var(--color-accent) 54%, transparent);
+		text-underline-offset: 0.18em;
+	}
+
+	.home-intro__links a:hover,
+	.home-intro__links a:focus-visible {
+		color: color-mix(in srgb, var(--color-accent) 84%, var(--color-text));
 	}
 
 	@media (min-width: 1024px) {
