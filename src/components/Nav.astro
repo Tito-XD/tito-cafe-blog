@@ -1,8 +1,9 @@
 ---
 interface Props {
 	currentNav?: string;
+	compact?: boolean;
 }
-const { currentNav } = Astro.props;
+const { currentNav, compact = false } = Astro.props;
 
 const navs = [
 	{ name: 'Home', href: '/' },
@@ -15,7 +16,12 @@ const navs = [
 ---
 
 <nav>
-	<ul class="flex flex-col gap-3 font-default-sans lg:flex-row">
+	<ul class:list={[
+		'font-default-sans',
+		compact
+			? 'grid grid-cols-2 gap-2'
+			: 'flex flex-col gap-3 lg:flex-row',
+	]}>
 		{
 			navs.map((nav) => (
 				<li>
@@ -25,6 +31,7 @@ const navs = [
 						data-text={nav.name}
 						aria-label={`Navigate to ${nav.name}`}
 						aria-current={currentNav === nav.name ? 'page' : undefined}
+						data-compact={compact ? 'true' : 'false'}
 					>
 						<span class="ui-type-link__text">{nav.name}</span>
 					</a>
@@ -39,6 +46,7 @@ const navs = [
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
+		min-width: 0;
 		border-radius: var(--radius-button);
 		padding: 0.45rem 0.8rem;
 		color: var(--color-text);
@@ -50,6 +58,12 @@ const navs = [
 			color var(--motion-gentle),
 			opacity var(--motion-gentle),
 			box-shadow var(--motion-gentle);
+	}
+
+	.nav-link[data-compact='true'] {
+		width: 100%;
+		padding: 0.6rem 0.8rem;
+		font-size: 0.98rem;
 	}
 
 	.nav-link:hover,

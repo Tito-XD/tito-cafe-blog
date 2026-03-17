@@ -80,7 +80,7 @@ for (const platform of socialOrder) {
 }
 ---
 
-<header class="grid grid-cols-2 items-start justify-between lg:flex">
+<header class="relative grid grid-cols-2 items-start justify-between lg:flex">
 	{
 		!Hide.includes("logo") ? (
 		<a
@@ -113,6 +113,40 @@ for (const platform of socialOrder) {
 	</button>
 	<div
 		id="menu"
+		class="mobile-menu-panel col-span-2 hidden lg:hidden"
+	>
+		<div class="mobile-menu-surface">
+			<Nav currentNav={currentNav} compact />
+			<div class="mobile-menu-actions">
+				{
+					!Hide.includes("search") && (
+						<a
+							href="/search"
+							class="header-icon-link ui-pressable"
+							title="Navigate to search page"
+							aria-label="Navigate to search page"
+						>
+							<Icon name="ri:search-2-line" />
+						</a>
+					)
+				}
+				{!Hide.includes("themeToggler") && <ThemeToggler />}
+			</div>
+			{!Hide.includes("siteDescription") && <p class="mobile-menu-description">{SiteDescription}</p>}
+			{
+				socials.length > 0 && (
+					<div class="mobile-menu-socials">
+						{socials.map(({ platform, icon, url, label }) => (
+							<a class="header-social-link ui-pressable" href={url} aria-label={label ?? platform}>
+								<Icon name={icon} class="fill-current" title={label ?? platform} />
+							</a>
+						))}
+					</div>
+				)
+			}
+		</div>
+	</div>
+	<div
 		class="col-span-2 hidden flex-col gap-3 text-center lg:flex lg:items-end"
 	>
 		<div
@@ -184,6 +218,53 @@ for (const platform of socialOrder) {
 	.header-social-link:focus-visible {
 		opacity: 1;
 	}
+
+	.mobile-menu-panel {
+		padding-top: 0.9rem;
+	}
+
+	.mobile-menu-surface {
+		display: grid;
+		gap: 0.9rem;
+		border-radius: calc(var(--radius-card) - 0.1rem);
+		background: color-mix(in srgb, var(--color-surface) 94%, var(--color-accent-soft) 6%);
+		padding: 0.95rem;
+		box-shadow:
+			0 0.9rem 2rem rgba(var(--color-shadow-rgb), 0.1),
+			inset 0 1px 0 color-mix(in srgb, var(--color-surface) 82%, transparent);
+	}
+
+	.mobile-menu-actions {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		gap: 0.65rem;
+	}
+
+	.mobile-menu-description {
+		margin: 0;
+		font-size: 0.95rem;
+		line-height: 1.6;
+		text-align: left;
+		color: var(--color-muted);
+	}
+
+	.mobile-menu-socials {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.65rem;
+	}
+
+	@media (max-width: 767px) {
+		#menu-btn {
+			padding: 0.65rem;
+		}
+
+		#menu-btn :global(svg) {
+			width: 1.9rem;
+			height: 1.9rem;
+		}
+	}
 </style>
 
 <script>
@@ -192,6 +273,7 @@ for (const platform of socialOrder) {
 			return;
 		}
 		const btn = document.getElementById("menu-btn");
+		const menu = document.getElementById("menu");
 		btn?.addEventListener("click", () => {
 			const menuExpanded = btn.getAttribute("aria-expanded") === "true";
 			btn.setAttribute("aria-expanded", menuExpanded ? "false" : "true");
@@ -199,8 +281,17 @@ for (const platform of socialOrder) {
 				"aria-label",
 				menuExpanded ? "close menu" : "open menu",
 			);
-			document.getElementById("menu")?.classList.toggle("hidden");
+			menu?.classList.toggle("hidden");
 		});
+		if (btn && menu) {
+			menu.querySelectorAll('a').forEach((link) => {
+				link.addEventListener('click', () => {
+					btn.setAttribute('aria-expanded', 'false');
+					btn.setAttribute('aria-label', 'open menu');
+					menu.classList.add('hidden');
+				});
+			});
+		}
 	};
 	toggleMenu(document);
 	document.addEventListener("astro:before-swap", (e) =>
