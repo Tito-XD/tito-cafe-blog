@@ -2,15 +2,10 @@
 import { Picture } from 'astro:assets';
 import img from '~/assets/tito_xd-cafe-manager-by-frankuwu.png';
 import { SiteDescription, SiteTitle } from '~/config';
-import MarkdownLayout from '~/layouts/MarkdownLayout.astro';
+import ScaffoldLayout from '~/layouts/ScaffoldLayout.astro';
 ---
 
-<MarkdownLayout
-	title={SiteTitle}
-	description={SiteDescription}
-	hide={['title', 'comments']}
-	currentNav="Home"
->
+<ScaffoldLayout title={SiteTitle} description={SiteDescription} currentNav="Home">
 	<section class="home-intro">
 		<Picture
 			class="home-intro__art"
@@ -38,49 +33,55 @@ import MarkdownLayout from '~/layouts/MarkdownLayout.astro';
 			</div>
 		</div>
 	</section>
-</MarkdownLayout>
+</ScaffoldLayout>
 
 <style>
 	.home-intro {
 		display: grid;
-		gap: 1rem;
+		gap: 1.15rem;
 		align-items: center;
+		width: min(100%, 58rem);
+		margin: 0 auto;
+		padding: clamp(1rem, 4vh, 2.5rem) 0 clamp(0.5rem, 2vh, 1rem);
 	}
 
 	.home-intro__art {
-		max-width: min(100%, 17.5rem);
+		max-width: min(100%, 14rem);
 		justify-self: center;
 	}
 
 	.home-intro__copy {
 		display: grid;
-		gap: 0.9rem;
-		max-width: 34rem;
+		gap: 0.95rem;
+		max-width: 39rem;
 	}
 
 	.home-intro__title {
 		margin: 0;
-		font-size: clamp(2.2rem, 4.8vw, 3.4rem);
-		line-height: 0.98;
-		letter-spacing: -0.03em;
+		font-size: clamp(2rem, 4.2vw, 3rem);
+		font-weight: 800;
+		line-height: 1.12;
+		letter-spacing: -0.02em;
 		text-wrap: balance;
 	}
 
 	.home-intro__body {
 		display: grid;
-		gap: 0.75rem;
+		gap: 0.85rem;
 	}
 
 	.home-intro__body p {
 		margin: 0;
 		font-size: 1rem;
-		line-height: 1.82;
+		line-height: 1.9;
+		color: color-mix(in srgb, var(--color-text) 92%, var(--color-muted));
+		text-wrap: pretty;
 	}
 
 	.home-intro__links {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 0.1rem 0.3rem;
+		gap: 0.12rem 0.3rem;
 	}
 
 	.home-intro__links a {
@@ -89,12 +90,12 @@ import MarkdownLayout from '~/layouts/MarkdownLayout.astro';
 
 	@media (min-width: 1024px) {
 		.home-intro {
-			grid-template-columns: minmax(13rem, 17.5rem) minmax(0, 1fr);
-			gap: 1.35rem;
+			grid-template-columns: minmax(11rem, 14rem) minmax(0, 1fr);
+			gap: 1.75rem;
 		}
 
 		.home-intro__art {
-			justify-self: start;
+			justify-self: center;
 		}
 	}
 </style>
