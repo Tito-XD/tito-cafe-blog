@@ -45,25 +45,39 @@ import { Icon } from 'astro-icon/components';
 </style>
 
 <script>
-	const backToTop = (document: Document) => {
-		if (!window.matchMedia('(min-width: 1024px)').matches) {
+	const setupBackToTop = () => {
+		const windowWithCleanup = window as Window & {
+			__revampedBackToTopCleanup?: () => void;
+		};
+		windowWithCleanup.__revampedBackToTopCleanup?.();
+
+		const button = document.getElementById('back-to-top');
+		if (!button) {
 			return;
 		}
-		const btn = document.getElementById('back-to-top');
-		if (!btn) {
-			return;
-		}
-		btn.addEventListener('click', () =>
-			document.documentElement.scrollTo({ top: 0, behavior: 'smooth' })
-		);
-		document.addEventListener('scroll', () => {
-			if (document.documentElement.scrollTop >= 20) {
-				btn.classList.replace('hidden', 'flex');
-			} else {
-				btn.classList.replace('flex', 'hidden');
-			}
-		});
+
+		const updateVisibility = () => {
+			const scrolled = window.scrollY >= 24;
+			button.classList.toggle('hidden', !scrolled);
+			button.classList.toggle('grid', scrolled);
+		};
+
+		const scrollToTop = () => {
+			window.scrollTo({ top: 0, behavior: 'smooth' });
+		};
+
+		button.addEventListener('click', scrollToTop);
+		window.addEventListener('scroll', updateVisibility, { passive: true });
+		window.addEventListener('resize', updateVisibility);
+		updateVisibility();
+
+		windowWithCleanup.__revampedBackToTopCleanup = () => {
+			button.removeEventListener('click', scrollToTop);
+			window.removeEventListener('scroll', updateVisibility);
+			window.removeEventListener('resize', updateVisibility);
+		};
 	};
-	backToTop(document);
-	document.addEventListener('astro:before-swap', (e) => backToTop(e.newDocument));
+
+	setupBackToTop();
+	document.addEventListener('astro:page-load', setupBackToTop);
 </script>

@@ -107,44 +107,62 @@ for (const platform of socialOrder) {
 		title="open menu"
 		aria-label="open menu"
 		aria-expanded="false"
-		aria-controls="menu"
+		aria-controls="mobile-drawer"
 	>
 		<Icon name="ri:menu-fill" class="size-8" />
 	</button>
-	<div
-		id="menu"
-		class="mobile-menu-panel col-span-2 hidden lg:hidden"
-	>
-		<div class="mobile-menu-surface">
-			<Nav currentNav={currentNav} compact />
-			<div class="mobile-menu-actions">
+	<div id="mobile-drawer" class="mobile-drawer lg:hidden" data-state="closed" aria-hidden="true">
+		<button
+			id="mobile-drawer-overlay"
+			class="mobile-drawer__overlay"
+			type="button"
+			tabindex="-1"
+			aria-label="Close menu"
+		/>
+		<aside class="mobile-drawer__panel" aria-label="Mobile navigation">
+			<div class="mobile-drawer__header">
+				<span class="mobile-drawer__eyebrow">Menu</span>
+				<button
+					id="mobile-drawer-close"
+					type="button"
+					class="header-icon-link ui-pressable"
+					title="close menu"
+					aria-label="close menu"
+				>
+					<Icon name="ri:close-line" />
+				</button>
+			</div>
+			<div class="mobile-menu-surface">
+				<Nav currentNav={currentNav} compact />
+				<div class="mobile-menu-actions">
+					{
+						!Hide.includes("search") && (
+							<a
+								href="/search"
+								class="header-icon-link ui-pressable"
+								title="Navigate to search page"
+								aria-label="Navigate to search page"
+							>
+								<Icon name="ri:search-2-line" />
+							</a>
+						)
+					}
+					{!Hide.includes("themeToggler") && <ThemeToggler />}
+				</div>
+				{!Hide.includes("siteDescription") && <p class="mobile-menu-description">{SiteDescription}</p>}
 				{
-					!Hide.includes("search") && (
-						<a
-							href="/search"
-							class="header-icon-link ui-pressable"
-							title="Navigate to search page"
-							aria-label="Navigate to search page"
-						>
-							<Icon name="ri:search-2-line" />
-						</a>
+					socials.length > 0 && (
+						<div class="mobile-menu-socials">
+							{socials.map(({ platform, icon, url, label }) => (
+								<a class="header-social-link ui-pressable" href={url} aria-label={label ?? platform}>
+									<Icon name={icon} class="fill-current" title={label ?? platform} />
+								</a>
+							))}
+						</div>
 					)
 				}
-				{!Hide.includes("themeToggler") && <ThemeToggler />}
 			</div>
-			{!Hide.includes("siteDescription") && <p class="mobile-menu-description">{SiteDescription}</p>}
-			{
-				socials.length > 0 && (
-					<div class="mobile-menu-socials">
-						{socials.map(({ platform, icon, url, label }) => (
-							<a class="header-social-link ui-pressable" href={url} aria-label={label ?? platform}>
-								<Icon name={icon} class="fill-current" title={label ?? platform} />
-							</a>
-						))}
-					</div>
-				)
-			}
-		</div>
+		</aside>
 	</div>
 	<div
 		class="col-span-2 hidden flex-col gap-3 text-center lg:flex lg:items-end"
@@ -223,15 +241,76 @@ for (const platform of socialOrder) {
 		padding-top: 0.9rem;
 	}
 
+	.mobile-drawer {
+		position: fixed;
+		inset: 0;
+		z-index: 50;
+		pointer-events: none;
+	}
+
+	.mobile-drawer[data-state='open'] {
+		pointer-events: auto;
+	}
+
+	.mobile-drawer__overlay {
+		position: absolute;
+		inset: 0;
+		border: 0;
+		background: rgba(18, 20, 23, 0.32);
+		opacity: 0;
+		transition: opacity var(--motion-gentle);
+	}
+
+	.mobile-drawer__panel {
+		position: absolute;
+		top: 0;
+		right: 0;
+		display: grid;
+		gap: 0.9rem;
+		width: min(82vw, 22rem);
+		height: 100%;
+		padding: 1rem;
+		background:
+			linear-gradient(
+				180deg,
+				color-mix(in srgb, var(--color-surface) 96%, var(--color-accent-soft) 4%),
+				color-mix(in srgb, var(--color-surface) 90%, var(--color-surface-2) 10%)
+			);
+		box-shadow:
+			-1rem 0 2rem rgba(var(--color-shadow-rgb), 0.12),
+			inset 1px 0 0 color-mix(in srgb, var(--color-border) 78%, transparent);
+		transform: translateX(100%);
+		transition: transform var(--motion-lift);
+	}
+
+	.mobile-drawer[data-state='open'] .mobile-drawer__overlay {
+		opacity: 1;
+	}
+
+	.mobile-drawer[data-state='open'] .mobile-drawer__panel {
+		transform: translateX(0);
+	}
+
+	.mobile-drawer__header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.75rem;
+	}
+
+	.mobile-drawer__eyebrow {
+		font-size: 0.78rem;
+		font-weight: 700;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--color-muted);
+	}
+
 	.mobile-menu-surface {
 		display: grid;
 		gap: 0.9rem;
-		border-radius: calc(var(--radius-card) - 0.1rem);
-		background: color-mix(in srgb, var(--color-surface) 94%, var(--color-accent-soft) 6%);
-		padding: 0.95rem;
-		box-shadow:
-			0 0.9rem 2rem rgba(var(--color-shadow-rgb), 0.1),
-			inset 0 1px 0 color-mix(in srgb, var(--color-surface) 82%, transparent);
+		align-content: start;
+		padding: 0.25rem 0 0;
 	}
 
 	.mobile-menu-actions {
@@ -268,33 +347,79 @@ for (const platform of socialOrder) {
 </style>
 
 <script>
-	const toggleMenu = (document: Document) => {
-		if (window.matchMedia("(min-width: 1024px)").matches) {
+	const setupMobileDrawer = () => {
+		const windowWithCleanup = window as Window & {
+			__revampedMenuCleanup?: () => void;
+		};
+		windowWithCleanup.__revampedMenuCleanup?.();
+
+		const root = document.documentElement;
+		const button = document.getElementById('menu-btn');
+		const drawer = document.getElementById('mobile-drawer');
+		const overlay = document.getElementById('mobile-drawer-overlay');
+		const closeButton = document.getElementById('mobile-drawer-close');
+		if (!button || !drawer || !overlay || !closeButton) {
 			return;
 		}
-		const btn = document.getElementById("menu-btn");
-		const menu = document.getElementById("menu");
-		btn?.addEventListener("click", () => {
-			const menuExpanded = btn.getAttribute("aria-expanded") === "true";
-			btn.setAttribute("aria-expanded", menuExpanded ? "false" : "true");
-			btn.setAttribute(
-				"aria-label",
-				menuExpanded ? "close menu" : "open menu",
-			);
-			menu?.classList.toggle("hidden");
-		});
-		if (btn && menu) {
-			menu.querySelectorAll('a').forEach((link) => {
-				link.addEventListener('click', () => {
-					btn.setAttribute('aria-expanded', 'false');
-					btn.setAttribute('aria-label', 'open menu');
-					menu.classList.add('hidden');
-				});
-			});
-		}
+
+		const closeDrawer = () => {
+			drawer.setAttribute('data-state', 'closed');
+			drawer.setAttribute('aria-hidden', 'true');
+			button.setAttribute('aria-expanded', 'false');
+			button.setAttribute('aria-label', 'open menu');
+			root.style.removeProperty('overflow');
+		};
+
+		const openDrawer = () => {
+			drawer.setAttribute('data-state', 'open');
+			drawer.setAttribute('aria-hidden', 'false');
+			button.setAttribute('aria-expanded', 'true');
+			button.setAttribute('aria-label', 'close menu');
+			root.style.overflow = 'hidden';
+		};
+
+		const toggleDrawer = () => {
+			if (window.matchMedia('(min-width: 1024px)').matches) {
+				closeDrawer();
+				return;
+			}
+			if (drawer.getAttribute('data-state') === 'open') {
+				closeDrawer();
+				return;
+			}
+			openDrawer();
+		};
+
+		const handleKeydown = (event: KeyboardEvent) => {
+			if (event.key === 'Escape') {
+				closeDrawer();
+			}
+		};
+
+		const handleResize = () => {
+			if (window.matchMedia('(min-width: 1024px)').matches) {
+				closeDrawer();
+			}
+		};
+
+		button.addEventListener('click', toggleDrawer);
+		overlay.addEventListener('click', closeDrawer);
+		closeButton.addEventListener('click', closeDrawer);
+		drawer.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeDrawer));
+		document.addEventListener('keydown', handleKeydown);
+		window.addEventListener('resize', handleResize);
+
+		windowWithCleanup.__revampedMenuCleanup = () => {
+			closeDrawer();
+			button.removeEventListener('click', toggleDrawer);
+			overlay.removeEventListener('click', closeDrawer);
+			closeButton.removeEventListener('click', closeDrawer);
+			drawer.querySelectorAll('a').forEach((link) => link.removeEventListener('click', closeDrawer));
+			document.removeEventListener('keydown', handleKeydown);
+			window.removeEventListener('resize', handleResize);
+		};
 	};
-	toggleMenu(document);
-	document.addEventListener("astro:before-swap", (e) =>
-		toggleMenu(e.newDocument),
-	);
+
+	setupMobileDrawer();
+	document.addEventListener('astro:page-load', setupMobileDrawer);
 </script>
