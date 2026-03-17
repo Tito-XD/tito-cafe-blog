@@ -105,6 +105,6 @@ See [NOTICE](./NOTICE) for additional attribution and project-specific copyright
 
 ### Site Content
 
-Unless otherwise noted, the content published for Tito's Cafe is not covered by the template's MIT license.
+Unless otherwise noted, the content published for Tito's Cafe personal blog is not covered by the template's MIT license.
 
 Articles, photography, illustrations, commissioned works, and other original site materials are copyrighted by **tito.cafe / Tito_XD**. Please do not reuse or redistribute those materials without permission.
