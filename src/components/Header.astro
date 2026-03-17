@@ -245,10 +245,13 @@ for (const platform of socialOrder) {
 		position: fixed;
 		inset: 0;
 		z-index: 50;
+		overflow: hidden;
+		visibility: hidden;
 		pointer-events: none;
 	}
 
 	.mobile-drawer[data-state='open'] {
+		visibility: visible;
 		pointer-events: auto;
 	}
 
@@ -279,8 +282,10 @@ for (const platform of socialOrder) {
 		box-shadow:
 			-1rem 0 2rem rgba(var(--color-shadow-rgb), 0.12),
 			inset 1px 0 0 color-mix(in srgb, var(--color-border) 78%, transparent);
-		transform: translateX(100%);
+		visibility: inherit;
+		transform: translate3d(calc(100% + 2rem), 0, 0);
 		transition: transform var(--motion-lift);
+		will-change: transform;
 	}
 
 	.mobile-drawer[data-state='open'] .mobile-drawer__overlay {
