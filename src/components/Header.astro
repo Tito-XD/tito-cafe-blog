@@ -112,13 +112,6 @@ for (const platform of socialOrder) {
 		<Icon name="ri:menu-fill" class="size-8" />
 	</button>
 	<div id="mobile-drawer" class="mobile-drawer lg:hidden" data-state="closed" aria-hidden="true">
-		<button
-			id="mobile-drawer-overlay"
-			class="mobile-drawer__overlay"
-			type="button"
-			tabindex="-1"
-			aria-label="Close menu"
-		/>
 		<aside class="mobile-drawer__panel" aria-label="Mobile navigation">
 			<div class="mobile-drawer__header">
 				<span class="mobile-drawer__eyebrow">Menu</span>
@@ -242,39 +235,27 @@ for (const platform of socialOrder) {
 	}
 
 	.mobile-drawer {
-		position: fixed;
-		inset: 0;
-		z-index: 50;
-		overflow: hidden;
-		visibility: hidden;
+		position: absolute;
+		top: calc(100% + 0.75rem);
+		right: 0;
+		z-index: 40;
+		width: min(88vw, 22rem);
 		pointer-events: none;
 	}
 
 	.mobile-drawer[data-state='open'] {
-		visibility: visible;
 		pointer-events: auto;
 	}
 
-	.mobile-drawer__overlay {
-		position: absolute;
-		inset: 0;
-		border: 0;
-		background: rgba(18, 20, 23, 0.32);
-		opacity: 0;
-		transition: opacity var(--motion-gentle);
-	}
-
 	.mobile-drawer__panel {
-		position: absolute;
-		top: 0;
-		right: 0;
 		display: grid;
 		grid-template-rows: auto minmax(0, 1fr);
 		gap: 0.9rem;
-		width: min(82vw, 22rem);
-		height: 100dvh;
-		padding: max(1rem, env(safe-area-inset-top)) 1rem
-			max(1rem, env(safe-area-inset-bottom));
+		width: 100%;
+		max-height: min(72dvh, calc(100dvh - 7rem));
+		padding: 1rem;
+		border-radius: 1.35rem;
+		border: 1px solid color-mix(in srgb, var(--color-border) 82%, var(--color-accent-soft));
 		background:
 			linear-gradient(
 				180deg,
@@ -282,21 +263,21 @@ for (const platform of socialOrder) {
 				color-mix(in srgb, var(--color-surface) 90%, var(--color-surface-2) 10%)
 			);
 		box-shadow:
-			-1rem 0 2rem rgba(var(--color-shadow-rgb), 0.12),
-			inset 1px 0 0 color-mix(in srgb, var(--color-border) 78%, transparent);
-		visibility: inherit;
-		transform: translate3d(calc(100% + 2rem), 0, 0);
-		transition: transform var(--motion-lift);
+			0 1.1rem 2.6rem rgba(var(--color-shadow-rgb), 0.16),
+			0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+		opacity: 0;
+		transform: translateY(-0.5rem) scale(0.98);
+		transform-origin: top right;
+		transition:
+			transform var(--motion-lift),
+			opacity var(--motion-gentle);
 		will-change: transform;
 		overflow: hidden;
 	}
 
-	.mobile-drawer[data-state='open'] .mobile-drawer__overlay {
-		opacity: 1;
-	}
-
 	.mobile-drawer[data-state='open'] .mobile-drawer__panel {
-		transform: translateX(0);
+		opacity: 1;
+		transform: translateY(0) scale(1);
 	}
 
 	.mobile-drawer__header {
@@ -322,7 +303,7 @@ for (const platform of socialOrder) {
 		padding: 0.25rem 0 0;
 		min-height: 0;
 		overflow-y: auto;
-		padding-bottom: max(1rem, env(safe-area-inset-bottom));
+		padding-bottom: 0.35rem;
 		-webkit-overflow-scrolling: touch;
 	}
 
@@ -349,13 +330,8 @@ for (const platform of socialOrder) {
 	}
 
 	@media (max-width: 767px) {
-		.mobile-drawer {
-			inset: -1rem;
-		}
-
 		.mobile-drawer__panel {
-			width: min(88vw, 22rem);
-			padding-top: calc(1rem + env(safe-area-inset-top));
+			max-height: min(76dvh, calc(100dvh - 6rem));
 		}
 
 		#menu-btn {
@@ -379,9 +355,8 @@ for (const platform of socialOrder) {
 		const root = document.documentElement;
 		const button = document.getElementById('menu-btn');
 		const drawer = document.getElementById('mobile-drawer');
-		const overlay = document.getElementById('mobile-drawer-overlay');
 		const closeButton = document.getElementById('mobile-drawer-close');
-		if (!button || !drawer || !overlay || !closeButton) {
+		if (!button || !drawer || !closeButton) {
 			return;
 		}
 
@@ -419,6 +394,17 @@ for (const platform of socialOrder) {
 			}
 		};
 
+		const handlePointerDown = (event: MouseEvent) => {
+			const target = event.target;
+			if (!(target instanceof Node)) {
+				return;
+			}
+			if (drawer.contains(target) || button.contains(target)) {
+				return;
+			}
+			closeDrawer();
+		};
+
 		const handleResize = () => {
 			if (window.matchMedia('(min-width: 1024px)').matches) {
 				closeDrawer();
@@ -426,18 +412,18 @@ for (const platform of socialOrder) {
 		};
 
 		button.addEventListener('click', toggleDrawer);
-		overlay.addEventListener('click', closeDrawer);
 		closeButton.addEventListener('click', closeDrawer);
 		drawer.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeDrawer));
+		document.addEventListener('mousedown', handlePointerDown);
 		document.addEventListener('keydown', handleKeydown);
 		window.addEventListener('resize', handleResize);
 
 		windowWithCleanup.__revampedMenuCleanup = () => {
 			closeDrawer();
 			button.removeEventListener('click', toggleDrawer);
-			overlay.removeEventListener('click', closeDrawer);
 			closeButton.removeEventListener('click', closeDrawer);
 			drawer.querySelectorAll('a').forEach((link) => link.removeEventListener('click', closeDrawer));
+			document.removeEventListener('mousedown', handlePointerDown);
 			document.removeEventListener('keydown', handleKeydown);
 			window.removeEventListener('resize', handleResize);
 		};
