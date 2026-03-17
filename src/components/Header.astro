@@ -269,10 +269,12 @@ for (const platform of socialOrder) {
 		top: 0;
 		right: 0;
 		display: grid;
+		grid-template-rows: auto minmax(0, 1fr);
 		gap: 0.9rem;
 		width: min(82vw, 22rem);
-		height: 100%;
-		padding: 1rem;
+		height: 100dvh;
+		padding: max(1rem, env(safe-area-inset-top)) 1rem
+			max(1rem, env(safe-area-inset-bottom));
 		background:
 			linear-gradient(
 				180deg,
@@ -286,6 +288,7 @@ for (const platform of socialOrder) {
 		transform: translate3d(calc(100% + 2rem), 0, 0);
 		transition: transform var(--motion-lift);
 		will-change: transform;
+		overflow: hidden;
 	}
 
 	.mobile-drawer[data-state='open'] .mobile-drawer__overlay {
@@ -301,6 +304,7 @@ for (const platform of socialOrder) {
 		align-items: center;
 		justify-content: space-between;
 		gap: 0.75rem;
+		padding-bottom: 0.15rem;
 	}
 
 	.mobile-drawer__eyebrow {
@@ -316,6 +320,10 @@ for (const platform of socialOrder) {
 		gap: 0.9rem;
 		align-content: start;
 		padding: 0.25rem 0 0;
+		min-height: 0;
+		overflow-y: auto;
+		padding-bottom: max(1rem, env(safe-area-inset-bottom));
+		-webkit-overflow-scrolling: touch;
 	}
 
 	.mobile-menu-actions {
@@ -337,9 +345,19 @@ for (const platform of socialOrder) {
 		display: flex;
 		flex-wrap: wrap;
 		gap: 0.65rem;
+		padding-bottom: 0.15rem;
 	}
 
 	@media (max-width: 767px) {
+		.mobile-drawer {
+			inset: -1rem;
+		}
+
+		.mobile-drawer__panel {
+			width: min(88vw, 22rem);
+			padding-top: calc(1rem + env(safe-area-inset-top));
+		}
+
 		#menu-btn {
 			padding: 0.65rem;
 		}
