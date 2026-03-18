@@ -1,13 +1,18 @@
-This project is based on astro-blog-zozo by Ladit:
+This project is a derivative work based on astro-blog-zozo by Ladit:
 https://github.com/ladit/astro-blog-zozo
 
 astro-blog-zozo was inspired by hugo-theme-zozo by varkai:
 https://github.com/varkai/hugo-theme-zozo
 
-The current Tito's Cafe repository contains substantial modifications and ongoing customization by Tito_XD, including layout rewrites, gallery and friends pages, revised navigation interactions, and site-specific content structure changes.
+The current Tito's Cafe repository is an actively customized fork/derivative maintained by Tito_XD. It includes substantial changes such as layout rewrites, gallery and friends pages, revised navigation interactions, and site-specific content structure changes.
 
 Original license and copyright notices are retained in LICENSE.
 
 Code in this repository remains subject to the upstream MIT license unless otherwise noted.
+
+Copyright attribution for the current maintained codebase includes:
+
+- Copyright (c) 2024 Ladit
+- Copyright (c) 2026 Tito_XD
 
 Site content such as articles, photography, illustrations, commissioned works, and other original materials is not covered by the template's MIT license and remains copyrighted by tito.cafe / Tito_XD unless otherwise noted.

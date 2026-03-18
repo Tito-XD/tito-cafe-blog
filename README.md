@@ -9,6 +9,20 @@ This project started from [astro-blog-zozo](https://github.com/ladit/astro-blog-
 Please read the [Code of Conduct](./CODE_OF_CONDUCT.md) before contributing or participating in project discussions.
 Additional attribution and copyright notes are collected in [NOTICE](./NOTICE).
 
+## Project Lineage
+
+This repository is not an unrelated rewrite. It is a maintained derivative of:
+
+- [ladit/astro-blog-zozo](https://github.com/ladit/astro-blog-zozo)
+
+Which itself was inspired by:
+
+- [varkai/hugo-theme-zozo](https://github.com/varkai/hugo-theme-zozo)
+
+Original author: **Ladit**
+
+The current Tito's Cafe codebase is maintained and extended by **Tito_XD**.
+
 ## Thanks
 
 Special thanks to the original authors and contributors whose work made this project possible.
@@ -40,6 +54,37 @@ This repository is no longer a stock theme mirror. Current custom work includes:
 - a `/gallery` route with category walls, viewer pages, notes support, and illustration focus demos
 - gallery content moved into `src/content/gallery/` so markdown, metadata, and notes live in a predictable structure
 - customized post routing, RSS, and content handling for the current site structure
+
+## Maintenance And Refactors
+
+Beyond visual customization, the current codebase has also gone through several structural cleanup passes so the project is easier to maintain and easier to split into a reusable template later.
+
+Key repairs and refactors already completed include:
+
+- package metadata was updated for the current project and obsolete self-references were removed
+- dark-mode variables and related Shiki overrides were deduplicated in the base layout
+- background gradient ownership was consolidated so shared page shells do not redefine the same body background twice
+- post frontmatter route helpers were simplified to avoid the earlier `gray-matter` dependency for lightweight metadata reads
+- collection sorting helpers were tightened with clearer typing and less duplicated date-sort logic
+- the friends page was split to use a dedicated `FriendCard` component instead of one oversized page file
+- markdown article styling was consolidated into a more maintainable scoped prose layer
+- social icon metadata and ordering were extracted from `Header.astro` into a dedicated data module
+- a GitHub Actions CI smoke test was added for `main`
+- old Vercel-specific deployment leftovers were removed in favor of the current Netlify workflow
+
+These are intended to remain stable documentation points for both the real site branch and the future public template branch.
+
+## Template Branch Note
+
+There is also a separate template-oriented branch:
+
+- `codex/revamped-astro-zozo`
+
+That branch is being prepared as a sample-first public theme variant. The long-term plan is:
+
+- keep personal writing, gallery notes, branding, and owned media on the real-site branch
+- carry reusable code-level improvements into the template branch
+- keep the template branch focused on sample content, redistributable assets, and open-source readiness
 
 ## Project Structure
 
