@@ -76,28 +76,7 @@ const showTimes = showDate || showLastmod || showReadingTime;
 			)
 		}
 	</div>
-	<article
-		class:list={[
-			'prose',
-			'max-w-full',
-			'dark:prose-invert',
-			'prose-p:hyphens-auto',
-			'prose-p:text-justify',
-			'prose-headings:text-[var(--color-text)]',
-			'prose-strong:text-[var(--color-text)]',
-			'prose-a:text-[var(--color-accent)]',
-			'prose-pre:rounded-lg',
-			'prose-pre:!bg-[var(--color-surface-2)]',
-			'prose-img:rounded-lg',
-			'prose-video:rounded-lg',
-			'[&_iframe]:rounded-lg',
-			'[&_p_code]:rounded',
-			'[&_p_code]:bg-[var(--color-surface-2)]',
-			'[&_p_code]:p-1',
-			'[&_p_code]:before:content-none',
-			'[&_p_code]:after:content-none',
-		]}
-	>
+	<article class="post-prose prose max-w-full dark:prose-invert">
 		<slot />
 	</article>
 	{
@@ -166,6 +145,50 @@ const showTimes = showDate || showLastmod || showReadingTime;
 		border-color: color-mix(in srgb, var(--color-accent) 56%, var(--color-border));
 		background: color-mix(in srgb, var(--color-surface) 84%, var(--color-accent-soft) 16%);
 		color: var(--color-accent);
+	}
+
+	.post-prose :global(h1),
+	.post-prose :global(h2),
+	.post-prose :global(h3),
+	.post-prose :global(h4),
+	.post-prose :global(h5),
+	.post-prose :global(h6) {
+		color: var(--color-text);
+	}
+
+	.post-prose :global(strong) {
+		color: var(--color-text);
+	}
+
+	.post-prose :global(a) {
+		color: var(--color-accent);
+	}
+
+	.post-prose :global(p) {
+		hyphens: auto;
+		text-align: justify;
+	}
+
+	.post-prose :global(pre) {
+		border-radius: 0.5rem;
+		background: var(--color-surface-2) !important;
+	}
+
+	.post-prose :global(img),
+	.post-prose :global(video),
+	.post-prose :global(iframe) {
+		border-radius: 0.5rem;
+	}
+
+	.post-prose :global(p code) {
+		border-radius: 0.25rem;
+		background: var(--color-surface-2);
+		padding: 0.25rem;
+	}
+
+	.post-prose :global(p code)::before,
+	.post-prose :global(p code)::after {
+		content: none;
 	}
 
 	@media (min-width: 1024px) {
