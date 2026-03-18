@@ -179,21 +179,25 @@ const showTimes = showDate || showLastmod || showReadingTime;
 		}
 	}
 </style>
-<script is:inline type="module">
-	const copy = async (copyButton) => {
-		const code = copyButton.nextElementSibling?.children[0];
-		if (!code) {
-			return;
-		}
-		await navigator.clipboard.writeText(code.textContent);
-		copyButton.setAttribute('aria-pressed', 'true');
-		setTimeout(() => {
-			copyButton.setAttribute('aria-pressed', 'false');
-		}, 700);
-	};
+<script>
+	function setupCopyButtons() {
+		const copy = async (copyButton: Element) => {
+			const code = copyButton.nextElementSibling?.children[0];
+			if (!code) {
+				return;
+			}
+			await navigator.clipboard.writeText(code.textContent ?? '');
+			copyButton.setAttribute('aria-pressed', 'true');
+			setTimeout(() => {
+				copyButton.setAttribute('aria-pressed', 'false');
+			}, 700);
+		};
 
-	const copyButtons = Array.from(document.querySelectorAll('.prose button.copy'));
-	for (const copyButton of copyButtons) {
-		copyButton.addEventListener('click', () => copy(copyButton));
+		const copyButtons = Array.from(document.querySelectorAll('.prose button.copy'));
+		for (const copyButton of copyButtons) {
+			copyButton.addEventListener('click', () => copy(copyButton));
+		}
 	}
+
+	document.addEventListener('astro:page-load', setupCopyButtons);
 </script>

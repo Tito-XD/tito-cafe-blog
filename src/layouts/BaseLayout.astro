@@ -48,6 +48,23 @@ const socialImg = new URL(socialImage ?? '/og.png', Astro.url).href;
 		<meta name="twitter:image" content={socialImg} />
 		<ClientRouter />
 
+		<script is:inline>
+			// Blocking theme init — runs before first paint to prevent FOUC.
+			// Reads from the same localStorage key used by @nanostores/persistent in store.ts.
+			(function () {
+				try {
+					var raw = localStorage.getItem('theme');
+					var resolved =
+						raw === '"dark"' || raw === '"light"'
+							? raw.slice(1, -1)
+							: window.matchMedia('(prefers-color-scheme: dark)').matches
+								? 'dark'
+								: 'light';
+					document.documentElement.classList.add(resolved);
+				} catch (_) {}
+			})();
+		</script>
+
 		<style is:global>
 			@tailwind base;
 			@layer base {
@@ -101,25 +118,6 @@ const socialImg = new URL(socialImage ?? '/og.png', Astro.url).href;
 					--pagefind-ui-background: var(--color-surface);
 					--pagefind-ui-border: var(--color-border);
 					--pagefind-ui-tag: var(--color-surface-2);
-				}
-
-				@media (prefers-color-scheme: dark) {
-					:root:not(.light) {
-						--color-bg: #121417;
-						--color-surface: #1e2126;
-						--color-surface-2: #2c313a;
-						--color-text: #e1e6eb;
-						--color-muted: #a0a7b1;
-						--color-border: #383e4a;
-						--color-accent: #5da9ff;
-						--color-accent-soft: rgba(93, 169, 255, 0.15);
-						--color-shadow-rgb: 93 169 255;
-						--pagefind-ui-primary: var(--color-text);
-						--pagefind-ui-text: var(--color-muted);
-						--pagefind-ui-background: var(--color-surface);
-						--pagefind-ui-border: var(--color-border);
-						--pagefind-ui-tag: var(--color-surface-2);
-					}
 				}
 
 				body {
@@ -216,17 +214,6 @@ const socialImg = new URL(socialImage ?? '/og.png', Astro.url).href;
 				font-style: var(--shiki-dark-font-style) !important;
 				font-weight: var(--shiki-dark-font-weight) !important;
 				text-decoration: var(--shiki-dark-text-decoration) !important;
-			}
-
-			@media (prefers-color-scheme: dark) {
-				:root:not(.light) .astro-code,
-				:root:not(.light) .astro-code span {
-					color: var(--shiki-dark) !important;
-					background-color: var(--shiki-dark-bg) !important;
-					font-style: var(--shiki-dark-font-style) !important;
-					font-weight: var(--shiki-dark-font-weight) !important;
-					text-decoration: var(--shiki-dark-text-decoration) !important;
-				}
 			}
 
 			@tailwind components;

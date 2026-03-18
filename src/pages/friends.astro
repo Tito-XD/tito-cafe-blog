@@ -1,4 +1,4 @@
-﻿---
+---
 import ScaffoldLayout from '~/layouts/ScaffoldLayout.astro';
 import { friends, type FriendLink } from '~/data/friends';
 
@@ -32,7 +32,7 @@ const toAriaLabel = (friend: (typeof sortedFriends)[number], index: number) =>
 	friend.id || friend.link || `friend-${index + 1}`;
 ---
 
-<ScaffoldLayout title="Friends" description="友情链接" currentNav="Friends">
+<ScaffoldLayout title="友链" description="朋友们的链接" currentNav="Friends">
 	<section class="page-heading">
 		<h1 class="page-title">Friends</h1>
 	</section>
@@ -239,66 +239,70 @@ const toAriaLabel = (friend: (typeof sortedFriends)[number], index: number) =>
 	}
 </style>
 
-<script is:inline type="module">
-	const track = document.getElementById('friends-track');
+<script>
+	function setupFriendsTrack() {
+		const track = document.getElementById('friends-track');
 
-	if (track) {
-		const cards = Array.from(track.querySelectorAll('[data-friend-card]'));
+		if (track) {
+			const cards = Array.from(track.querySelectorAll('[data-friend-card]'));
 
-		const setCardOpen = (card, open) => {
-			card.setAttribute('data-open', open ? 'true' : 'false');
-			const trigger = card.querySelector('[data-friend-toggle]');
-			if (trigger) {
-				trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
-			}
-		};
-
-		const closeAll = (exceptCard = null) => {
-			for (const card of cards) {
-				if (exceptCard && card === exceptCard) {
-					continue;
+			const setCardOpen = (card: Element, open: boolean) => {
+				card.setAttribute('data-open', open ? 'true' : 'false');
+				const trigger = card.querySelector('[data-friend-toggle]');
+				if (trigger) {
+					trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
 				}
-				setCardOpen(card, false);
-			}
-		};
+			};
 
-		track.addEventListener('click', (event) => {
-			const target = event.target;
-			if (!(target instanceof Element)) {
-				return;
-			}
+			const closeAll = (exceptCard: Element | null = null) => {
+				for (const card of cards) {
+					if (exceptCard && card === exceptCard) {
+						continue;
+					}
+					setCardOpen(card, false);
+				}
+			};
 
-			const trigger = target.closest('[data-friend-toggle]');
-			if (!trigger) {
-				return;
-			}
+			track.addEventListener('click', (event) => {
+				const target = event.target;
+				if (!(target instanceof Element)) {
+					return;
+				}
 
-			const card = trigger.closest('[data-friend-card]');
-			if (!card) {
-				return;
-			}
+				const trigger = target.closest('[data-friend-toggle]');
+				if (!trigger) {
+					return;
+				}
 
-			const willOpen = card.getAttribute('data-open') !== 'true';
-			closeAll(card);
-			setCardOpen(card, willOpen);
-		});
+				const card = trigger.closest('[data-friend-card]');
+				if (!card) {
+					return;
+				}
 
-		document.addEventListener('click', (event) => {
-			const target = event.target;
-			if (!(target instanceof Node)) {
-				return;
-			}
-			if (!track.contains(target)) {
-				closeAll();
-			}
-		});
+				const willOpen = card.getAttribute('data-open') !== 'true';
+				closeAll(card);
+				setCardOpen(card, willOpen);
+			});
 
-		document.addEventListener('keydown', (event) => {
-			if (event.key === 'Escape') {
-				closeAll();
-			}
-		});
+			document.addEventListener('click', (event) => {
+				const target = event.target;
+				if (!(target instanceof Node)) {
+					return;
+				}
+				if (!track.contains(target)) {
+					closeAll();
+				}
+			});
+
+			document.addEventListener('keydown', (event) => {
+				if (event.key === 'Escape') {
+					closeAll();
+				}
+			});
+		}
 	}
+
+	document.addEventListener('astro:page-load', setupFriendsTrack);
 </script>
 
 
