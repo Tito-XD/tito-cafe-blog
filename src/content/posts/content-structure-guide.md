@@ -18,3 +18,5 @@ This template keeps most editable content in a few predictable places:
 - `src/config.ts` for site-wide branding and toggles
 
 If you want to publish your own version, start by replacing the sample markdown files and switching the site metadata to your own title, description, and links.
+
+The template branch is meant to stay sample-first, so future code merges should prefer reusable structural improvements while keeping personal writing and owned media out of the branch.
