@@ -103,13 +103,13 @@ for (const platform of socialOrder) {
 	<button
 		transition:persist
 		id="menu-btn"
-		class="ui-pressable justify-self-end p-2 text-[var(--color-text)] lg:hidden"
+		class="mobile-menu-trigger ui-pressable justify-self-end lg:hidden"
 		title="open menu"
 		aria-label="open menu"
 		aria-expanded="false"
 		aria-controls="mobile-drawer"
 	>
-		<Icon name="ri:menu-fill" class="size-8" />
+		<Icon name="ri:apps-2-line" class="mobile-menu-trigger__icon" />
 	</button>
 	<div id="mobile-drawer" class="mobile-drawer lg:hidden" data-state="closed" aria-hidden="true">
 		<aside class="mobile-drawer__panel" aria-label="Mobile navigation">
@@ -237,10 +237,11 @@ for (const platform of socialOrder) {
 	.mobile-drawer {
 		position: absolute;
 		top: calc(100% + 0.75rem);
-		right: 0;
+		left: 50%;
 		z-index: 40;
-		width: min(88vw, 22rem);
+		width: min(21rem, calc(100vw - 2.5rem), calc(100% - 0.5rem));
 		pointer-events: none;
+		transform: translateX(-50%);
 	}
 
 	.mobile-drawer[data-state='open'] {
@@ -267,7 +268,7 @@ for (const platform of socialOrder) {
 			0 0 0 1px rgba(255, 255, 255, 0.04) inset;
 		opacity: 0;
 		transform: translateY(-0.5rem) scale(0.98);
-		transform-origin: top right;
+		transform-origin: top center;
 		transition:
 			transform var(--motion-lift),
 			opacity var(--motion-gentle);
@@ -329,18 +330,51 @@ for (const platform of socialOrder) {
 		padding-bottom: 0.15rem;
 	}
 
+	.mobile-menu-trigger {
+		display: inline-flex;
+		height: 3rem;
+		width: 3rem;
+		align-items: center;
+		justify-content: center;
+		border-radius: 1rem;
+		border: 1px solid color-mix(in srgb, var(--color-border) 84%, var(--color-accent-soft));
+		background: color-mix(in srgb, var(--color-surface) 92%, var(--color-accent-soft) 8%);
+		color: var(--color-text);
+		box-shadow: 0 0.55rem 1.4rem rgba(var(--color-shadow-rgb), 0.08);
+		transition:
+			transform var(--motion-gentle),
+			border-color var(--motion-gentle),
+			background var(--motion-gentle),
+			box-shadow var(--motion-gentle),
+			color var(--motion-gentle);
+	}
+
+	.mobile-menu-trigger:hover,
+	.mobile-menu-trigger:focus-visible,
+	.mobile-menu-trigger[aria-expanded='true'] {
+		border-color: color-mix(in srgb, var(--color-accent) 48%, var(--color-border));
+		background: color-mix(in srgb, var(--color-surface) 86%, var(--color-accent-soft) 14%);
+		color: var(--color-accent);
+		box-shadow: 0 0.85rem 1.8rem rgba(var(--color-shadow-rgb), 0.14);
+	}
+
+	.mobile-menu-trigger__icon {
+		width: 1.4rem;
+		height: 1.4rem;
+	}
+
 	@media (max-width: 767px) {
 		.mobile-drawer__panel {
 			max-height: min(76dvh, calc(100dvh - 6rem));
 		}
 
-		#menu-btn {
-			padding: 0.65rem;
+		.mobile-drawer {
+			width: min(19.5rem, calc(100vw - 2rem), calc(100% - 0.25rem));
 		}
 
-		#menu-btn :global(svg) {
-			width: 1.9rem;
-			height: 1.9rem;
+		.mobile-menu-trigger {
+			height: 2.8rem;
+			width: 2.8rem;
 		}
 	}
 </style>
