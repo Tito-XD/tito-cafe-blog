@@ -1,7 +1,6 @@
 ---
 import { ClientRouter } from 'astro:transitions';
-import { SiteLanguage, SiteTitle } from '~/config';
-import 'lxgw-wenkai-screen-web/lxgwwenkaigbscreen/result.css';
+import { FontConfig, SiteLanguage, SiteTitle } from '~/config';
 
 export interface Props {
 	title?: string;
@@ -20,6 +19,23 @@ export interface Props {
 }
 const { title, description, socialImage, rootClass, bodyClass } = Astro.props;
 const socialImg = new URL(socialImage ?? '/og.png', Astro.url).href;
+const fontFaceStyles = `
+	@font-face {
+		font-family: 'Inter';
+		src: url('${FontConfig.sansLatinPath}') format('woff2');
+		font-style: normal;
+		font-weight: 400;
+		font-display: swap;
+	}
+
+	@font-face {
+		font-family: 'Noto Sans SC';
+		src: url('${FontConfig.sansCjkPath}') format('opentype');
+		font-style: normal;
+		font-weight: 400;
+		font-display: swap;
+	}
+`;
 ---
 
 <html lang={SiteLanguage} class:list={rootClass}>
@@ -65,6 +81,7 @@ const socialImg = new URL(socialImage ?? '/og.png', Astro.url).href;
 			})();
 		</script>
 
+		<style is:global set:html={fontFaceStyles} />
 		<style is:global>
 			@tailwind base;
 			@layer base {
@@ -126,6 +143,15 @@ const socialImg = new URL(socialImage ?? '/og.png', Astro.url).href;
 						radial-gradient(circle at right 12%, color-mix(in srgb, var(--color-surface-2) 78%, transparent) 0, transparent 26%),
 						var(--color-bg);
 					color: var(--color-text);
+					font-family:
+						'Inter',
+						'Noto Sans SC',
+						'PingFang SC',
+						'Hiragino Sans GB',
+						'Microsoft YaHei',
+						'Segoe UI',
+						system-ui,
+						sans-serif;
 				}
 
 				:focus-visible {

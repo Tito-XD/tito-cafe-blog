@@ -7,6 +7,22 @@ export const SiteDescription = '记录日常，写一些想到的东西';
 export const FooterDescription = 'make 21 grams interesting.';
 export const AdminName = 'Tito_XD';
 export const PageSize = 15;
+export const FontConfig = {
+	sansLatinFamily: 'Inter',
+	sansLatinPath: '/fonts/Inter-Regular.woff2',
+	sansCjkFamily: 'Noto Sans SC',
+	sansCjkPath: '/fonts/NotoSansSC-Regular.otf',
+};
+export const OpenGraphConfig = {
+	fontFamily: FontConfig.sansCjkFamily,
+	fontPath: 'public/fonts/NotoSansSC-Regular.otf',
+	background: '#f5f7fa',
+	surface: '#ffffff',
+	text: '#2d3436',
+	muted: '#636e72',
+	accent: '#4a90e2',
+	shadow: 'rgba(93, 169, 255, 0.14)',
+};
 export const SiteBrand = {
 	variant: 'icon' as const,
 	icon: 'logo',
