@@ -45,7 +45,6 @@
 		"astro-icon": "^1.1.5",
 		"astro-pagefind": "^1.8.5",
 		"katex": "^0.16.11",
-		"lxgw-wenkai-screen-web": "^1.501.0",
 		"mdast-util-to-string": "^4.0.0",
 		"node-gyp": "^10.2.0",
 		"react": "^18.3.1",

@@ -23,10 +23,27 @@ export type SiteBrandConfig =
 export const Site = 'https://revamped-astrozozo.netlify.app';
 export const SiteLanguage = 'en';
 export const SiteTitle = 'Revamped Astro Zozo';
-export const SiteDescription = 'A polished Astro blog template with gallery, friends, and richer content surfaces.';
+export const SiteDescription =
+	'A polished Astro blog template with gallery, friends, and richer content surfaces.';
 export const FooterDescription = 'A refreshed Astro theme starter.';
 export const AdminName = 'Template Author';
 export const PageSize = 12;
+export const FontConfig = {
+	sansLatinFamily: 'Inter',
+	sansLatinPath: '/fonts/Inter-Regular.woff2',
+	sansCjkFamily: 'Noto Sans SC',
+	sansCjkPath: '/fonts/NotoSansSC-Regular.otf',
+};
+export const OpenGraphConfig = {
+	fontFamily: FontConfig.sansCjkFamily,
+	fontPath: 'public/fonts/NotoSansSC-Regular.otf',
+	background: '#f5f7fa',
+	surface: '#ffffff',
+	text: '#2d3436',
+	muted: '#636e72',
+	accent: '#4a90e2',
+	shadow: 'rgba(93, 169, 255, 0.14)',
+};
 export const SiteBrand: SiteBrandConfig = {
 	variant: 'image',
 	src: '/sample/logo.svg',

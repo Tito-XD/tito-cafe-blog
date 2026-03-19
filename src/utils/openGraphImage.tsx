@@ -4,43 +4,30 @@
 import fs from 'node:fs';
 import satori, { type SatoriOptions } from 'satori';
 import sharp from 'sharp';
-import { FooterDescription, Site, SiteDescription, SiteTitle } from '~/config';
+import {
+	FooterDescription,
+	OpenGraphConfig,
+	Site,
+	SiteDescription,
+	SiteTitle,
+} from '~/config';
 
-const logoImage = `data:image/png;base64,${(
-	await sharp('public/sample/logo.svg').png().toBuffer()
-).toString('base64')}`;
-
-const font = async () => {
-	const fontPath = 'src/assets/LXGWWenKaiGBScreen.ttf';
-	if (!fs.existsSync(fontPath)) {
-		console.log('downloading a font for open graph, wait a minute');
-		const remoteFont =
-			'https://github.com/lxgw/LxgwWenKai-Screen/releases/latest/download/LXGWWenKaiGBScreen.ttf';
-		const response = await fetch(remoteFont);
-		if (!response.ok) {
-			throw new Error(
-				`can not download font from ${remoteFont} while generating open graph image`,
-			);
-		}
-		fs.promises.writeFile(fontPath, new DataView(await response.arrayBuffer()));
-	}
-	return fs.promises.readFile(fontPath);
-};
+const font = async () => fs.promises.readFile(OpenGraphConfig.fontPath);
 
 const options: SatoriOptions = {
 	width: 1200,
 	height: 630,
 	fonts: [
 		{
-			name: 'LXGW WenKai GB Screen',
+			name: OpenGraphConfig.fontFamily,
 			data: await font(),
 		},
 	],
 	tailwindConfig: {
 		theme: {
 			fontFamily: {
-				sans: ['"LXGW WenKai GB Screen"'],
-				serif: ['"LXGW WenKai GB Screen"'],
+				sans: [`"${OpenGraphConfig.fontFamily}"`],
+				serif: [`"${OpenGraphConfig.fontFamily}"`],
 				mono: ['Menlo', 'Consolas'],
 			},
 		},
@@ -73,22 +60,29 @@ declare module 'react' {
 
 export async function siteOpenGraph() {
 	const template = (
-		<div tw="flex h-full w-full flex-col justify-between bg-[#f5f7fa] pb-4 pt-6 text-[#2d3436]">
+		<div
+			tw="flex h-full w-full flex-col justify-between pb-4 pt-6"
+			style={{ backgroundColor: OpenGraphConfig.background, color: OpenGraphConfig.text }}
+		>
 			<div
-				tw="mx-auto flex w-[85%] grow flex-col bg-white px-6 py-5"
-				style={{ boxShadow: '0 0 20px 10px rgba(93, 169, 255, 0.12)' }}
+				tw="mx-auto flex w-[85%] grow flex-col px-6 py-5"
+				style={{
+					backgroundColor: OpenGraphConfig.surface,
+					boxShadow: `0 0 20px 10px ${OpenGraphConfig.shadow}`,
+				}}
 			>
-				<div tw="grow flex flex-col pl-4 mt-2">
-					<img alt="logo" src={logoImage} tw="w-auto h-28" />
-					<div tw="mt-6 grow flex flex-col items-center text-center">
-						<p tw="text-8xl font-bold">{SiteTitle}</p>
-						<p tw="mt-4 text-5xl text-[#5d8ecb] font-semibold">{SiteDescription}</p>
-					</div>
+				<div tw="mt-2 grow flex flex-col justify-center px-4 text-center">
+					<p tw="text-3xl font-semibold" style={{ color: OpenGraphConfig.muted }}>
+						{SiteTitle}
+					</p>
+					<p tw="mt-7 text-5xl font-semibold" style={{ color: OpenGraphConfig.accent }}>
+						{SiteDescription}
+					</p>
 				</div>
 			</div>
 			<div tw="mt-5 flex flex-col items-center text-xl">
 				<div>{FooterDescription}</div>
-				<div tw="text-[#7b8794]">{`Copyright ${new Date().getFullYear()} ${Site}`}</div>
+				<div style={{ color: OpenGraphConfig.muted }}>{`Copyright ${new Date().getFullYear()} ${Site}`}</div>
 			</div>
 		</div>
 	);
@@ -103,21 +97,31 @@ type Config = {
 
 export async function postOpenGraph({ title, description, tags }: Config) {
 	const template = (
-		<div tw="flex h-full w-full flex-col justify-between bg-[#f5f7fa] pb-4 pt-6 text-[#2d3436]">
+		<div
+			tw="flex h-full w-full flex-col justify-between pb-4 pt-6"
+			style={{ backgroundColor: OpenGraphConfig.background, color: OpenGraphConfig.text }}
+		>
 			<div
-				tw="mx-auto flex w-[85%] grow flex-col bg-white px-6 py-5"
-				style={{ boxShadow: '0 0 20px 10px rgba(93, 169, 255, 0.12)' }}
+				tw="mx-auto flex w-[85%] grow flex-col px-6 py-5"
+				style={{
+					backgroundColor: OpenGraphConfig.surface,
+					boxShadow: `0 0 20px 10px ${OpenGraphConfig.shadow}`,
+				}}
 			>
-				<div tw="flex justify-between items-start mt-2" style={{ columnGap: 24 }}>
-					<img alt="logo" src={logoImage} tw="w-auto h-24" />
-					<p tw="text-3xl text-[#5d8ecb] text-right">{SiteDescription}</p>
+				<div tw="mt-2 flex items-start justify-between" style={{ columnGap: 24 }}>
+					<p tw="text-3xl font-semibold" style={{ color: OpenGraphConfig.text }}>
+						{SiteTitle}
+					</p>
+					<p tw="text-right text-3xl" style={{ color: OpenGraphConfig.accent }}>
+						{SiteDescription}
+					</p>
 				</div>
-				<div tw="grow flex flex-col pl-4 mt-8">
+				<div tw="mt-8 grow flex flex-col pl-4">
 					<p tw="text-6xl font-bold">{title}</p>
 					{description && <p tw="mt-5 text-4xl font-bold">{description}</p>}
-					<div tw="mt-6 flex text-[#7b8794]">
+					<div tw="mt-6 flex" style={{ color: OpenGraphConfig.muted }}>
 						{tags?.map((tag) => (
-							<p tw="text-xl mr-4" key={tag}>
+							<p tw="mr-4 text-xl" key={tag}>
 								{tag}
 							</p>
 						))}
@@ -126,10 +130,9 @@ export async function postOpenGraph({ title, description, tags }: Config) {
 			</div>
 			<div tw="mt-5 flex flex-col items-center text-xl">
 				<div>{FooterDescription}</div>
-				<div tw="text-[#7b8794]">{`Copyright ${new Date().getFullYear()} ${Site}`}</div>
+				<div style={{ color: OpenGraphConfig.muted }}>{`Copyright ${new Date().getFullYear()} ${Site}`}</div>
 			</div>
 		</div>
 	);
 	return await sharp(Buffer.from(await satori(template, options))).png().toBuffer();
 }
-
