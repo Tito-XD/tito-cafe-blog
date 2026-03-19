@@ -1,5 +1,6 @@
 ---
 import FriendCard from '~/components/FriendCard.astro';
+import PageHeading from '~/components/PageHeading.astro';
 import ScaffoldLayout from '~/layouts/ScaffoldLayout.astro';
 import { friends, type FriendLink } from '~/data/friends';
 
@@ -28,9 +29,7 @@ const sortedFriends = [...normalizedFriends].sort((a, b) =>
 ---
 
 <ScaffoldLayout title="友链" description="朋友们的链接" currentNav="Friends">
-	<section class="page-heading">
-		<h1 class="page-title">Friends</h1>
-	</section>
+	<PageHeading title="Friends" />
 	{
 		sortedFriends.length > 0 ? (
 			<div class="relative mt-4">
@@ -66,12 +65,17 @@ const sortedFriends = [...normalizedFriends].sort((a, b) =>
 
 <script>
 	const setupFriendsTrack = () => {
+		const windowWithCleanup = window as Window & {
+			__friendsTrackCleanup?: () => void;
+		};
+		windowWithCleanup.__friendsTrackCleanup?.();
+
 		const track = document.getElementById('friends-track');
 		if (!track) {
 			return;
 		}
 
-		const cards = Array.from(track.querySelectorAll('[data-friend-card]'));
+		const cards = () => Array.from(track.querySelectorAll('[data-friend-card]'));
 
 		const setCardOpen = (card: Element, open: boolean) => {
 			card.setAttribute('data-open', open ? 'true' : 'false');
@@ -82,7 +86,7 @@ const sortedFriends = [...normalizedFriends].sort((a, b) =>
 		};
 
 		const closeAll = (exceptCard: Element | null = null) => {
-			for (const card of cards) {
+			for (const card of cards()) {
 				if (exceptCard && card === exceptCard) {
 					continue;
 				}
@@ -90,7 +94,7 @@ const sortedFriends = [...normalizedFriends].sort((a, b) =>
 			}
 		};
 
-		track.addEventListener('click', (event) => {
+		const handleTrackClick = (event: MouseEvent) => {
 			const target = event.target;
 			if (!(target instanceof Element)) {
 				return;
@@ -109,9 +113,9 @@ const sortedFriends = [...normalizedFriends].sort((a, b) =>
 			const willOpen = card.getAttribute('data-open') !== 'true';
 			closeAll(card);
 			setCardOpen(card, willOpen);
-		});
+		};
 
-		document.addEventListener('click', (event) => {
+		const handleDocumentClick = (event: MouseEvent) => {
 			const target = event.target;
 			if (!(target instanceof Node)) {
 				return;
@@ -119,13 +123,23 @@ const sortedFriends = [...normalizedFriends].sort((a, b) =>
 			if (!track.contains(target)) {
 				closeAll();
 			}
-		});
+		};
 
-		document.addEventListener('keydown', (event) => {
+		const handleKeydown = (event: KeyboardEvent) => {
 			if (event.key === 'Escape') {
 				closeAll();
 			}
-		});
+		};
+
+		track.addEventListener('click', handleTrackClick);
+		document.addEventListener('click', handleDocumentClick);
+		document.addEventListener('keydown', handleKeydown);
+
+		windowWithCleanup.__friendsTrackCleanup = () => {
+			track.removeEventListener('click', handleTrackClick);
+			document.removeEventListener('click', handleDocumentClick);
+			document.removeEventListener('keydown', handleKeydown);
+		};
 	};
 
 	setupFriendsTrack();

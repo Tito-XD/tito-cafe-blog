@@ -1,0 +1,13 @@
+---
+interface Props {
+	title: string;
+	className?: string;
+}
+
+const { title, className } = Astro.props;
+---
+
+<section class:list={['page-heading', className]}>
+	<h1 class="page-title">{title}</h1>
+	<slot />
+</section>

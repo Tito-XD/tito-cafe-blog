@@ -1,4 +1,5 @@
 ---
+import PageHeading from '~/components/PageHeading.astro';
 import type { GetStaticPathsOptions } from 'astro';
 import Paginator from '~/components/Paginator.astro';
 import PostCard from '~/components/PostCard.astro';
@@ -14,9 +15,7 @@ const { page } = Astro.props;
 ---
 
 <ScaffoldLayout title="Blog" description="Latest articles." currentNav="Blog">
-	<section class="page-heading">
-		<h1 class="page-title">Blog</h1>
-	</section>
+	<PageHeading title="Blog" />
 	{page.data.map((post) => <PostCard {...post} />)}
 	<Paginator {...page} />
 </ScaffoldLayout>

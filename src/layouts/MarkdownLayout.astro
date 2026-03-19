@@ -204,11 +204,27 @@ const showTimes = showDate || showLastmod || showReadingTime;
 </style>
 <script>
 	function setupCopyButtons() {
-		const copy = async (copyButton: Element) => {
+		const windowWithCleanup = window as Window & {
+			__copyButtonsCleanup?: () => void;
+		};
+		windowWithCleanup.__copyButtonsCleanup?.();
+
+		const handleCopyClick = async (event: MouseEvent) => {
+			const target = event.target;
+			if (!(target instanceof Element)) {
+				return;
+			}
+
+			const copyButton = target.closest('.prose button.copy');
+			if (!(copyButton instanceof HTMLElement)) {
+				return;
+			}
+
 			const code = copyButton.nextElementSibling?.children[0];
 			if (!code) {
 				return;
 			}
+
 			await navigator.clipboard.writeText(code.textContent ?? '');
 			copyButton.setAttribute('aria-pressed', 'true');
 			setTimeout(() => {
@@ -216,11 +232,12 @@ const showTimes = showDate || showLastmod || showReadingTime;
 			}, 700);
 		};
 
-		const copyButtons = Array.from(document.querySelectorAll('.prose button.copy'));
-		for (const copyButton of copyButtons) {
-			copyButton.addEventListener('click', () => copy(copyButton));
-		}
+		document.addEventListener('click', handleCopyClick);
+		windowWithCleanup.__copyButtonsCleanup = () => {
+			document.removeEventListener('click', handleCopyClick);
+		};
 	}
 
+	setupCopyButtons();
 	document.addEventListener('astro:page-load', setupCopyButtons);
 </script>

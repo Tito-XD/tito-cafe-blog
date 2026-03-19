@@ -64,10 +64,15 @@ Key repairs and refactors already completed include:
 - package metadata was updated for the current project and obsolete self-references were removed
 - dark-mode variables and related Shiki overrides were deduplicated in the base layout
 - background gradient ownership was consolidated so shared page shells do not redefine the same body background twice
+- the header was split into smaller brand, actions, socials, and mobile-menu components instead of one oversized file
+- site branding was moved to config so logo selection no longer depends on file-system checks inside UI components
+- theme toggling was updated to support multiple buttons safely across desktop and mobile surfaces
 - post frontmatter route helpers were simplified to avoid the earlier `gray-matter` dependency for lightweight metadata reads
 - collection sorting helpers were tightened with clearer typing and less duplicated date-sort logic
 - the friends page was split to use a dedicated `FriendCard` component instead of one oversized page file
+- repeated page heading markup and split-hero layouts were extracted into shared components to reduce duplication
 - markdown article styling was consolidated into a more maintainable scoped prose layer
+- page-level scripts such as copy buttons and friends-card toggles now clean up their own listeners during Astro page transitions
 - social icon metadata and ordering were extracted from `Header.astro` into a dedicated data module
 - a GitHub Actions CI smoke test was added for `main`
 - old Vercel-specific deployment leftovers were removed in favor of the current Netlify workflow
@@ -96,6 +101,7 @@ Important folders:
 - `src/pages/`: route files
 - `src/components/`: reusable UI parts
 - `src/layouts/`: site layouts and page shells
+- `src/utils/`: content, gallery, and UI-support helpers
 
 ## Development
 

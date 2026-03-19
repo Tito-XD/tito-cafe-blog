@@ -1,78 +1,33 @@
-﻿---
+---
 import { Picture } from 'astro:assets';
 import img from '~/assets/tito_xd-cafe-manager-by-frankuwu.png';
+import SplitHero from '~/components/SplitHero.astro';
 import { SiteDescription, SiteTitle } from '~/config';
 import ScaffoldLayout from '~/layouts/ScaffoldLayout.astro';
 ---
 
 <ScaffoldLayout title={SiteTitle} description={SiteDescription} currentNav="Home">
-	<section class="home-intro">
+	<SplitHero title={`路上辛苦了\n喝点什么？`} className="home-intro">
 		<Picture
+			slot="art"
 			class="home-intro__art"
 			src={img}
 			formats={['avif', 'webp']}
 			alt="Tito_XD original character coffee master version by Frankuwu"
 			loading="eager"
 		/>
-		<div class="home-intro__copy">
-			<h1 class="home-intro__title">路上辛苦了<br />喝点什么？</h1>
-			<div class="home-intro__body">
-				<p>我是 Tito_XD，本店的店长，也可以叫我头头。</p>
-				<p>不知不觉已经走进春天了，生活又要这样继续往前走了。捡着空闲时间和摸鱼稍稍微装修了一下这里，看到这里不知道有没有觉得有点新意呢。</p>
-				<p>总归还是生活碎碎念。如果我的寥寥几字也能让你驻足停看，那也不错，谢谢。</p>
-				<p class="home-intro__links">
-					<a href="/posts/rewind-2025">2025 年的 REWIND 在这里</a>，
-					<a href="/posts/onward-2026">2026 年的 ONWARD 在这里</a>。
-				</p>
-				<p>欢迎光临，请开心。</p>
-			</div>
-		</div>
-	</section>
+		<p>我是 Tito_XD，本店的店长，也可以叫我头头。</p>
+		<p>不知不觉已经走进春天了，生活又要这样继续往前走了。捡着空闲时间和摸鱼稍稍微装修了一下这里，看到这里不知道有没有觉得有点新意呢。</p>
+		<p>总归还是生活碎碎念。如果我的寥寥几字也能让你驻足停看，那也不错，谢谢。</p>
+		<p class="home-intro__links">
+			<a href="/posts/rewind-2025">2025 年的 REWIND 在这里</a>，
+			<a href="/posts/onward-2026">2026 年的 ONWARD 在这里</a>。
+		</p>
+		<p>欢迎光临，请开心。</p>
+	</SplitHero>
 </ScaffoldLayout>
 
 <style>
-	.home-intro {
-		display: grid;
-		gap: 1.15rem;
-		align-items: center;
-		width: min(100%, 58rem);
-		margin: 0 auto;
-		padding: clamp(1rem, 4vh, 2.5rem) 0 clamp(0.5rem, 2vh, 1rem);
-	}
-
-	.home-intro__art {
-		max-width: min(100%, 21rem);
-		justify-self: center;
-	}
-
-	.home-intro__copy {
-		display: grid;
-		gap: 0.95rem;
-		max-width: 39rem;
-	}
-
-	.home-intro__title {
-		margin: 0;
-		font-size: clamp(2rem, 4.2vw, 3rem);
-		font-weight: 800;
-		line-height: 1.12;
-		letter-spacing: -0.02em;
-		text-wrap: balance;
-	}
-
-	.home-intro__body {
-		display: grid;
-		gap: 0.85rem;
-	}
-
-	.home-intro__body p {
-		margin: 0;
-		font-size: 1rem;
-		line-height: 1.9;
-		color: color-mix(in srgb, var(--color-text) 92%, var(--color-muted));
-		text-wrap: pretty;
-	}
-
 	.home-intro__links {
 		color: color-mix(in srgb, var(--color-text) 92%, var(--color-muted));
 	}
@@ -86,16 +41,5 @@ import ScaffoldLayout from '~/layouts/ScaffoldLayout.astro';
 	.home-intro__links a:hover,
 	.home-intro__links a:focus-visible {
 		color: color-mix(in srgb, var(--color-accent) 84%, var(--color-text));
-	}
-
-	@media (min-width: 1024px) {
-		.home-intro {
-			grid-template-columns: minmax(15rem, 21rem) minmax(0, 1fr);
-			gap: 1.75rem;
-		}
-
-		.home-intro__art {
-			justify-self: center;
-		}
 	}
 </style>

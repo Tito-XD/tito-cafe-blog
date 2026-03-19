@@ -1,0 +1,30 @@
+---
+import { Icon } from 'astro-icon/components';
+import { Hide, SiteBrand, SiteTitle } from '~/config';
+
+const brandClasses =
+	SiteBrand.variant === 'icon'
+		? `${SiteBrand.widthClass} ${SiteBrand.heightClass}`
+		: undefined;
+---
+
+{
+	!Hide.includes('logo') ? (
+		<a
+			transition:persist
+			href="/"
+			aria-label="go to index"
+			class={brandClasses}
+		>
+			{
+				SiteBrand.variant === 'icon' ? (
+					<Icon name={SiteBrand.icon} title="go to index" class={brandClasses} />
+				) : (
+					SiteTitle
+				)
+			}
+		</a>
+	) : (
+		<div />
+	)
+}

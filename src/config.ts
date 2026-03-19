@@ -7,6 +7,12 @@ export const SiteDescription = '记录日常，写一些想到的东西';
 export const FooterDescription = 'make 21 grams interesting.';
 export const AdminName = 'Tito_XD';
 export const PageSize = 15;
+export const SiteBrand = {
+	variant: 'icon' as const,
+	icon: 'logo',
+	widthClass: 'w-[20rem]',
+	heightClass: 'h-[6rem]',
+};
 
 // socialPlatform => userName
 // check components/Header.astro socialConfig for more info
