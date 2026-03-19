@@ -1,5 +1,25 @@
 import type { PostHideElements } from '~/content.config';
 
+export type SiteBrandConfig =
+	| {
+			variant: 'icon';
+			icon: string;
+			widthClass: string;
+			heightClass: string;
+	  }
+	| {
+			variant: 'image';
+			src: string;
+			alt?: string;
+			widthClass: string;
+			heightClass: string;
+	  }
+	| {
+			variant: 'text';
+			widthClass?: string;
+			heightClass?: string;
+	  };
+
 export const Site = 'https://revamped-astrozozo.netlify.app';
 export const SiteLanguage = 'en';
 export const SiteTitle = 'Revamped Astro Zozo';
@@ -7,16 +27,14 @@ export const SiteDescription = 'A polished Astro blog template with gallery, fri
 export const FooterDescription = 'A refreshed Astro theme starter.';
 export const AdminName = 'Template Author';
 export const PageSize = 12;
-export const SiteBrand = {
-	variant: 'image' as const,
+export const SiteBrand: SiteBrandConfig = {
+	variant: 'image',
 	src: '/sample/logo.svg',
 	alt: 'Revamped Astro Zozo logo',
 	widthClass: 'w-[11.5rem]',
 	heightClass: 'h-[3.4rem]',
 };
 
-// socialPlatform => userName
-// check components/Header.astro socialConfig for more info
 export const Socials: Record<string, Record<string, string>> = {
 	xiaohongshu: { url: '' },
 	x: { url: '' },
@@ -27,8 +45,6 @@ export const Socials: Record<string, Record<string, string>> = {
 	rss: { url: '/rss.xml' },
 };
 
-// doc: https://giscus.app
-// comments are hidden by default in the template branch
 export const GiscusConfig: Record<string, string> = {
 	'data-repo': '',
 	'data-repo-id': '',
@@ -53,5 +69,4 @@ export type HideElements =
 	| 'siteDescription'
 	| 'footerDescription';
 
-// Always hide elements from site
 export const Hide: HideElements[] = ['comments'];

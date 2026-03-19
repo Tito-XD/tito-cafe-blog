@@ -65,4 +65,4 @@ export const socialOrder = [
 	'telegram',
 	'mail',
 	'rss',
-];
+] as const;

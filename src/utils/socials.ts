@@ -9,7 +9,7 @@ export interface EnabledSocialLink {
 }
 
 export const getEnabledSocialLinks = (): EnabledSocialLink[] =>
-	socialOrder.flatMap((platform) => {
+	socialOrder.flatMap((platform: (typeof socialOrder)[number]) => {
 		const social = Socials[platform];
 		const config = socialConfig[platform];
 		if (!social?.url || !config?.icon) {
