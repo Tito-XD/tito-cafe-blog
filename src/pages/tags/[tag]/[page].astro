@@ -1,4 +1,6 @@
 ---
+import BlogSectionTabs from '~/components/BlogSectionTabs.astro';
+import PageHeading from '~/components/PageHeading.astro';
 import type { GetStaticPathsOptions } from 'astro';
 import Paginator from '~/components/Paginator.astro';
 import PostCard from '~/components/PostCard.astro';
@@ -26,10 +28,13 @@ const { page } = Astro.props;
 const { tag } = Astro.params;
 ---
 
-<ScaffoldLayout title={tag} description={`Posts with tag ${tag}`} currentNav="Tags">
+<ScaffoldLayout title={tag} description={`Posts with tag ${tag}`} currentNav="Blog">
+	<PageHeading title="Blog" className="tag-page-heading">
+		<BlogSectionTabs active="tags" />
+	</PageHeading>
 	<section class="tag-detail-heading">
-		<p>Tag Archive</p>
-		<h1>{tag}</h1>
+		<p>Tag archive</p>
+		<h2>{tag}</h2>
 		<div class="tag-detail-chip ui-pressable is-active" aria-label={`Current tag ${tag}`}>
 			<span>Current tag</span>
 			<strong>{tag}</strong>
@@ -40,6 +45,10 @@ const { tag } = Astro.params;
 </ScaffoldLayout>
 
 <style>
+	.tag-page-heading {
+		padding-bottom: 0.55rem;
+	}
+
 	.tag-detail-heading {
 		display: grid;
 		gap: 0.5rem;
@@ -54,10 +63,10 @@ const { tag } = Astro.params;
 		color: var(--color-muted);
 	}
 
-	.tag-detail-heading h1 {
+	.tag-detail-heading h2 {
 		margin: 0;
-		font-size: clamp(2.6rem, 6vw, 4.5rem);
-		line-height: 0.95;
+		font-size: clamp(1.7rem, 4vw, 2.3rem);
+		line-height: 1;
 		text-wrap: balance;
 		overflow-wrap: anywhere;
 	}
