@@ -7,6 +7,13 @@ export const SiteDescription = 'A polished Astro blog template with gallery, fri
 export const FooterDescription = 'A refreshed Astro theme starter.';
 export const AdminName = 'Template Author';
 export const PageSize = 12;
+export const SiteBrand = {
+	variant: 'image' as const,
+	src: '/sample/logo.svg',
+	alt: 'Revamped Astro Zozo logo',
+	widthClass: 'w-[11.5rem]',
+	heightClass: 'h-[3.4rem]',
+};
 
 // socialPlatform => userName
 // check components/Header.astro socialConfig for more info

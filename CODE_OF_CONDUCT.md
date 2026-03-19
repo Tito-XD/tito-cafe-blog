@@ -26,7 +26,7 @@ Examples of unacceptable behavior include:
 
 ## Scope
 
-This Code of Conduct applies within all project spaces, including issues, pull requests, discussions, reviews, and other public or private communication directly related to this repository.
+This Code of Conduct applies within all project spaces, including issues, pull requests, discussions, reviews, branch-based collaboration, preview and deployment feedback, and other public or private communication directly related to this repository.
 
 ## Enforcement
 

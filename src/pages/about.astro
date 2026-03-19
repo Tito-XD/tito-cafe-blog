@@ -1,80 +1,36 @@
 ---
+import SplitHero from '~/components/SplitHero.astro';
 import ScaffoldLayout from '~/layouts/ScaffoldLayout.astro';
 ---
 
 <ScaffoldLayout title="About" description="About this template." currentNav="About">
-	<section class="about-intro">
+	<SplitHero title="About" className="about-intro">
 		<img
+			slot="art"
 			class="about-intro__art"
-			src="/sample/brand-tile.svg"
-			alt="Sample square avatar for Revamped Astro Zozo"
+			src="/sample/about-hero.svg"
+			alt="Sample about hero for Revamped Astro Zozo"
 		/>
-		<div class="about-intro__copy">
-			<h1 class="about-intro__title">About</h1>
-			<div class="about-intro__body">
-				<p>Revamped Astro Zozo is a derivative theme branch shaped from a heavily customized Astro blog codebase.</p>
-				<p>Compared with the original Astro Zozo baseline, it adds a gallery system, friends page, warmer theme tokens, compact mobile navigation, and a cleaner content structure for markdown-driven pages.</p>
-				<p>Use it as a starting point, swap the sample content, and keep only the pieces that fit your own writing and visual rhythm.</p>
-			</div>
-		</div>
-	</section>
+		<p>Revamped Astro Zozo is a derivative theme branch shaped from a heavily customized Astro blog codebase.</p>
+		<p>
+			Compared with the original Astro Zozo baseline, it adds a gallery system, friends
+			page, warmer theme tokens, compact mobile navigation, and a cleaner content structure
+			for markdown-driven pages.
+		</p>
+		<p>
+			Use it as a starting point, swap the sample content, and keep only the pieces that fit
+			your own writing and visual rhythm.
+		</p>
+	</SplitHero>
 </ScaffoldLayout>
 
 <style>
-	.about-intro {
-		display: grid;
-		gap: 1.15rem;
-		align-items: center;
-		width: min(100%, 58rem);
-		margin: 0 auto;
-		padding: clamp(1rem, 4vh, 2.5rem) 0 clamp(0.5rem, 2vh, 1rem);
-	}
-
 	.about-intro__art {
-		max-width: min(100%, 14rem);
-		justify-self: center;
+		width: 100%;
+		max-width: min(100%, 18rem);
 		border-radius: calc(var(--radius-card) + 0.15rem);
 		box-shadow:
 			0 1rem 2.1rem rgba(var(--color-shadow-rgb), 0.12),
 			inset 0 1px 0 color-mix(in srgb, white 50%, transparent);
-	}
-
-	.about-intro__copy {
-		display: grid;
-		gap: 0.95rem;
-		max-width: 39rem;
-	}
-
-	.about-intro__title {
-		margin: 0;
-		font-size: clamp(2rem, 4.2vw, 3rem);
-		font-weight: 800;
-		line-height: 1.12;
-		letter-spacing: -0.02em;
-		text-wrap: balance;
-	}
-
-	.about-intro__body {
-		display: grid;
-		gap: 0.85rem;
-	}
-
-	.about-intro__body p {
-		margin: 0;
-		font-size: 1rem;
-		line-height: 1.9;
-		color: color-mix(in srgb, var(--color-text) 92%, var(--color-muted));
-		text-wrap: pretty;
-	}
-
-	@media (min-width: 1024px) {
-		.about-intro {
-			grid-template-columns: minmax(11rem, 14rem) minmax(0, 1fr);
-			gap: 1.75rem;
-		}
-
-		.about-intro__art {
-			justify-self: center;
-		}
 	}
 </style>
