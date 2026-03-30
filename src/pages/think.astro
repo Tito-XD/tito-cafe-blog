@@ -1,0 +1,897 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import { SiteTitle } from '~/config';
+---
+
+<BaseLayout
+	title={`Think / ${SiteTitle}`}
+	description="A standalone, local-first writing desk for fast notes, fragments, and midnight thoughts."
+	rootClass="think-root"
+	bodyClass="think-body"
+>
+	<main class="think-app">
+		<div class="think-app__chrome">
+			<a class="think-app__portal" href="/thinks">Open /thinks</a>
+			<p class="think-app__hint">No nav, no feed pressure, just write.</p>
+		</div>
+
+		<section class="think-stage">
+			<header class="think-stage__hero">
+				<p class="think-stage__eyebrow">Private Composer</p>
+				<h1 class="think-stage__title">/think</h1>
+				<p class="think-stage__intro">
+					这是一个完全独立的写作台。输入、草稿、发布、回看都只发生在这个浏览器里，
+					节奏可以很轻，也可以很认真。
+				</p>
+				<div class="think-stage__chips">
+					<span>Autosave</span>
+					<span>Local-first</span>
+					<span>Cmd/Ctrl + Enter to publish</span>
+				</div>
+			</header>
+
+			<div class="think-stage__grid">
+				<form class="think-editor" id="think-form">
+					<div class="think-editor__head">
+						<div>
+							<p class="think-editor__eyebrow">Desk</p>
+							<h2 class="think-editor__title">Write first</h2>
+						</div>
+						<div class="think-editor__status">
+							<span id="think-mode">Create</span>
+							<span id="draft-status">Not saved yet</span>
+						</div>
+					</div>
+
+					<label class="think-field">
+						<span>Title</span>
+						<input
+							class="think-input"
+							id="think-title"
+							name="title"
+							type="text"
+							maxlength="120"
+							placeholder="可写可不写，留给未来的自己一个标题"
+						/>
+					</label>
+
+					<label class="think-field think-field--large">
+						<span>Thought</span>
+						<textarea
+							class="think-textarea"
+							id="think-content"
+							name="content"
+							rows="14"
+							maxlength="5000"
+							placeholder="今天的碎片、一个判断、一句吐槽、一个画面……都可以"
+							required
+						></textarea>
+					</label>
+
+					<div class="think-editor__row">
+						<label class="think-field">
+							<span>Mood</span>
+							<select class="think-input think-input--select" id="think-mood" name="mood">
+								<option value="clear">Clear</option>
+								<option value="warm">Warm</option>
+								<option value="restless">Restless</option>
+								<option value="midnight">Midnight</option>
+								<option value="small-win">Small Win</option>
+							</select>
+						</label>
+
+						<label class="think-field">
+							<span>Tags</span>
+							<input
+								class="think-input"
+								id="think-tags"
+								name="tags"
+								type="text"
+								placeholder="coffee, city, work"
+							/>
+						</label>
+					</div>
+
+					<div class="think-field">
+						<span>Accent</span>
+						<div class="think-palette" id="think-palette">
+							<button type="button" class="think-swatch is-active" data-color="sky" aria-label="Sky accent"></button>
+							<button type="button" class="think-swatch" data-color="amber" aria-label="Amber accent"></button>
+							<button type="button" class="think-swatch" data-color="mint" aria-label="Mint accent"></button>
+							<button type="button" class="think-swatch" data-color="blush" aria-label="Blush accent"></button>
+						</div>
+					</div>
+
+					<div class="think-editor__foot">
+						<p class="think-editor__meta" id="editor-meta">0 characters · 0 words</p>
+						<div class="think-editor__actions">
+							<button class="think-button think-button--primary" type="submit">Publish</button>
+							<button class="think-button" type="button" id="save-draft-button">Save to shelf</button>
+							<button class="think-button think-button--ghost" type="button" id="clear-button">Clear</button>
+						</div>
+					</div>
+				</form>
+
+				<aside class="think-side">
+					<section class="think-preview-card" data-accent="sky">
+						<div class="think-preview-card__head">
+							<p class="think-editor__eyebrow">Preview</p>
+							<span class="think-badge" id="preview-badge">clear</span>
+						</div>
+						<h2 class="think-preview-card__title" id="preview-title">Untitled thought</h2>
+						<p class="think-preview-card__content" id="preview-content">
+							还没有内容。写下一句，右边就会立刻长出一张卡片。
+						</p>
+						<div class="think-preview-card__foot">
+							<div class="think-tag-list" id="preview-tags"></div>
+							<p class="think-preview-card__time" id="preview-time">Saved locally in this browser</p>
+						</div>
+					</section>
+
+					<section class="think-rail">
+						<div class="think-rail__head">
+							<p class="think-editor__eyebrow">Recent</p>
+							<span class="think-badge think-badge--ghost" id="recent-count">0 items</span>
+						</div>
+						<div class="think-rail__list" id="recent-list">
+							<p class="think-rail__empty">还没有条目。发布第一条之后，这里会自动出现最近内容。</p>
+						</div>
+					</section>
+
+					<section class="think-rail think-rail--drafts">
+						<div class="think-rail__head">
+							<p class="think-editor__eyebrow">Draft shelf</p>
+							<span class="think-badge think-badge--ghost" id="drafts-count">0 drafts</span>
+						</div>
+						<div class="think-rail__list" id="drafts-list">
+							<p class="think-rail__empty">手动保存的草稿会挂在这里，方便之后回来继续。</p>
+						</div>
+					</section>
+				</aside>
+			</div>
+		</section>
+	</main>
+
+	<noscript>
+		<p class="think-noscript">这个页面需要启用 JavaScript 才能保存和展示本地随想。</p>
+	</noscript>
+
+	<script type="module" is:inline>
+		import {
+			clearDraft,
+			formatDate,
+			getThinkById,
+			loadDraftSnapshot,
+			deleteDraftSnapshot,
+			readDraft,
+			readDraftShelf,
+			readThinks,
+			relativeFromNow,
+			saveDraftSnapshot,
+			upsertThink,
+			writeDraft,
+			parseTagInput,
+			THINK_EVENT,
+			THINK_DRAFT_EVENT,
+		} from '/think/store.js';
+
+		const form = document.querySelector('#think-form');
+		const titleInput = document.querySelector('#think-title');
+		const contentInput = document.querySelector('#think-content');
+		const moodInput = document.querySelector('#think-mood');
+		const tagsInput = document.querySelector('#think-tags');
+		const palette = document.querySelector('#think-palette');
+		const swatches = [...palette.querySelectorAll('.think-swatch')];
+		const modeLabel = document.querySelector('#think-mode');
+		const draftStatus = document.querySelector('#draft-status');
+		const editorMeta = document.querySelector('#editor-meta');
+		const previewCard = document.querySelector('.think-preview-card');
+		const previewBadge = document.querySelector('#preview-badge');
+		const previewTitle = document.querySelector('#preview-title');
+		const previewContent = document.querySelector('#preview-content');
+		const previewTags = document.querySelector('#preview-tags');
+		const previewTime = document.querySelector('#preview-time');
+		const recentList = document.querySelector('#recent-list');
+		const recentCount = document.querySelector('#recent-count');
+		const draftsList = document.querySelector('#drafts-list');
+		const draftsCount = document.querySelector('#drafts-count');
+		const saveDraftButton = document.querySelector('#save-draft-button');
+		const clearButton = document.querySelector('#clear-button');
+
+		const params = new URLSearchParams(window.location.search);
+		let editingId = params.get('edit');
+		let activeColor = 'sky';
+		let activeDraftShelfId = null;
+		let lastDraftTimestamp = null;
+		let draftTimer = null;
+
+		function autoResize() {
+			contentInput.style.height = '0px';
+			contentInput.style.height = `${Math.max(contentInput.scrollHeight, 260)}px`;
+		}
+
+		function getFormState() {
+			return {
+				id: editingId,
+				title: titleInput.value,
+				content: contentInput.value,
+				mood: moodInput.value,
+				tags: parseTagInput(tagsInput.value),
+				color: activeColor,
+			};
+		}
+
+		function getShelfState() {
+			const state = getFormState();
+			return {
+				draftId: activeDraftShelfId,
+				title: state.title,
+				content: state.content,
+				mood: state.mood,
+				tags: state.tags,
+				color: state.color,
+			};
+		}
+
+		function applyColor(color) {
+			activeColor = color;
+			previewCard.dataset.accent = color;
+			swatches.forEach((swatch) => {
+				swatch.classList.toggle('is-active', swatch.dataset.color === color);
+			});
+		}
+
+		function renderPreview() {
+			const state = getFormState();
+			const rawContent = state.content.trim();
+			const words = rawContent ? rawContent.split(/\s+/u).length : 0;
+
+			editorMeta.textContent = `${state.content.length} characters · ${words} words`;
+			previewBadge.textContent = state.mood;
+			previewTitle.textContent = state.title.trim() || 'Untitled thought';
+			previewContent.textContent =
+				rawContent || '还没有内容。写下一句，右边就会立刻长出一张卡片。';
+			previewTags.innerHTML = '';
+			state.tags.forEach((tag) => {
+				const chip = document.createElement('span');
+				chip.className = 'think-tag';
+				chip.textContent = `#${tag}`;
+				previewTags.append(chip);
+			});
+			previewTime.textContent = lastDraftTimestamp
+				? `Draft updated ${relativeFromNow(lastDraftTimestamp)}`
+				: 'Saved locally in this browser';
+		}
+
+		function updateDraftStatus(label) {
+			draftStatus.textContent = label;
+		}
+
+		function persistDraft(manual = false) {
+			writeDraft(getFormState());
+			lastDraftTimestamp = new Date().toISOString();
+			renderPreview();
+			updateDraftStatus(manual ? 'Draft saved' : 'Autosaved');
+		}
+
+		function scheduleDraftSave() {
+			updateDraftStatus('Editing…');
+			window.clearTimeout(draftTimer);
+			draftTimer = window.setTimeout(() => persistDraft(false), 260);
+		}
+
+		function populateForm(payload) {
+			titleInput.value = payload?.title ?? '';
+			contentInput.value = payload?.content ?? '';
+			moodInput.value = payload?.mood ?? 'clear';
+			tagsInput.value = Array.isArray(payload?.tags) ? payload.tags.join(', ') : '';
+			applyColor(payload?.color ?? 'sky');
+			autoResize();
+			renderPreview();
+		}
+
+		function renderRecent() {
+			const items = readThinks().slice(0, 4);
+			recentCount.textContent = `${items.length} item${items.length === 1 ? '' : 's'}`;
+			recentList.innerHTML = '';
+
+			if (!items.length) {
+				recentList.innerHTML =
+					'<p class="think-rail__empty">还没有条目。发布第一条之后，这里会自动出现最近内容。</p>';
+				return;
+			}
+
+			for (const item of items) {
+				const article = document.createElement('article');
+				article.className = 'think-mini-card';
+				article.innerHTML = `
+					<div class="think-mini-card__meta">
+						<span>${item.mood}</span>
+						<time datetime="${item.updatedAt}">${formatDate(item.updatedAt)}</time>
+					</div>
+					<strong>${item.title || 'Untitled thought'}</strong>
+					<p>${item.content.slice(0, 108)}${item.content.length > 108 ? '…' : ''}</p>
+				`;
+				recentList.append(article);
+			}
+		}
+
+		function renderDraftShelf() {
+			const items = readDraftShelf().slice(0, 6);
+			draftsCount.textContent = `${items.length} draft${items.length === 1 ? '' : 's'}`;
+			draftsList.innerHTML = '';
+
+			if (!items.length) {
+				draftsList.innerHTML =
+					'<p class="think-rail__empty">手动保存的草稿会挂在这里，方便之后回来继续。</p>';
+				return;
+			}
+
+			for (const item of items) {
+				const article = document.createElement('article');
+				article.className = `think-mini-card ${activeDraftShelfId === item.draftId ? 'is-active' : ''}`;
+				article.innerHTML = `
+					<div class="think-mini-card__meta">
+						<span>${item.mood}</span>
+						<time datetime="${item.updatedAt}">${formatDate(item.updatedAt)}</time>
+					</div>
+					<strong>${item.title || 'Untitled draft'}</strong>
+					<p>${item.content.slice(0, 88)}${item.content.length > 88 ? '…' : ''}</p>
+					<div class="think-mini-card__actions">
+						<button type="button" data-action="load">Load</button>
+						<button type="button" data-action="delete">Delete</button>
+					</div>
+				`;
+
+				article.addEventListener('click', (event) => {
+					const button = event.target.closest('button[data-action]');
+					if (!button) return;
+					const action = button.dataset.action;
+					if (action === 'load') {
+						const loaded = loadDraftSnapshot(item.draftId);
+						if (!loaded) return;
+						activeDraftShelfId = item.draftId;
+						editingId = null;
+						history.replaceState({}, '', '/think');
+						modeLabel.textContent = 'Create';
+						lastDraftTimestamp = loaded.updatedAt;
+						updateDraftStatus(`Loaded draft from ${formatDate(loaded.updatedAt)}`);
+						populateForm(loaded);
+						renderDraftShelf();
+						return;
+					}
+
+					if (action === 'delete') {
+						if (!window.confirm('Delete this saved draft?')) return;
+						deleteDraftSnapshot(item.draftId);
+						if (activeDraftShelfId === item.draftId) activeDraftShelfId = null;
+					}
+				});
+
+				draftsList.append(article);
+			}
+		}
+
+		function hydrate() {
+			const fromEntry = editingId ? getThinkById(editingId) : null;
+			const fromDraft = readDraft();
+			const source = fromEntry ?? fromDraft;
+
+			if (fromEntry) {
+				activeDraftShelfId = null;
+				modeLabel.textContent = 'Update';
+				updateDraftStatus(`Editing item from ${formatDate(fromEntry.updatedAt)}`);
+			} else {
+				modeLabel.textContent = 'Create';
+				if (fromDraft?.updatedAt) {
+					lastDraftTimestamp = fromDraft.updatedAt;
+					updateDraftStatus(`Recovered draft from ${formatDate(fromDraft.updatedAt)}`);
+				}
+			}
+
+			populateForm(source);
+			renderRecent();
+			renderDraftShelf();
+		}
+
+		form.addEventListener('submit', (event) => {
+			event.preventDefault();
+			if (!contentInput.value.trim()) {
+				updateDraftStatus('Need some content before publishing');
+				contentInput.focus();
+				return;
+			}
+
+			const saved = upsertThink(getFormState());
+			editingId = saved.id;
+			clearDraft();
+			if (activeDraftShelfId) {
+				deleteDraftSnapshot(activeDraftShelfId);
+				activeDraftShelfId = null;
+			}
+			lastDraftTimestamp = saved.updatedAt;
+			modeLabel.textContent = 'Update';
+			updateDraftStatus(`Published ${relativeFromNow(saved.updatedAt)}`);
+			history.replaceState({}, '', `/think?edit=${saved.id}`);
+			renderRecent();
+			renderDraftShelf();
+			renderPreview();
+		});
+
+		form.addEventListener('input', () => {
+			autoResize();
+			renderPreview();
+			scheduleDraftSave();
+		});
+
+		form.addEventListener('change', () => {
+			renderPreview();
+			scheduleDraftSave();
+		});
+
+		saveDraftButton.addEventListener('click', () => {
+			persistDraft(true);
+			const snapshot = saveDraftSnapshot(getShelfState());
+			activeDraftShelfId = snapshot.draftId;
+			updateDraftStatus(`Saved to shelf ${relativeFromNow(snapshot.updatedAt)}`);
+			renderDraftShelf();
+		});
+
+		clearButton.addEventListener('click', () => {
+			const hasContent =
+				titleInput.value.trim() ||
+				contentInput.value.trim() ||
+				tagsInput.value.trim() ||
+				moodInput.value !== 'clear' ||
+				activeColor !== 'sky';
+			if (hasContent && !window.confirm('Clear the current draft?')) return;
+
+			editingId = null;
+			activeDraftShelfId = null;
+			clearDraft();
+			history.replaceState({}, '', '/think');
+			modeLabel.textContent = 'Create';
+			lastDraftTimestamp = null;
+			updateDraftStatus('Draft cleared');
+			populateForm({});
+		});
+
+		swatches.forEach((swatch) => {
+			swatch.addEventListener('click', () => {
+				applyColor(swatch.dataset.color ?? 'sky');
+				renderPreview();
+				scheduleDraftSave();
+			});
+		});
+
+		window.addEventListener(THINK_EVENT, renderRecent);
+		window.addEventListener(THINK_DRAFT_EVENT, renderDraftShelf);
+		window.addEventListener('keydown', (event) => {
+			if ((event.metaKey || event.ctrlKey) && event.key === 'Enter') {
+				form.requestSubmit();
+			}
+		});
+
+		hydrate();
+	</script>
+
+	<style>
+		:global(.think-root) {
+			background:
+				radial-gradient(circle at 8% 10%, rgba(74, 144, 226, 0.18), transparent 24%),
+				radial-gradient(circle at 92% 14%, rgba(255, 185, 90, 0.18), transparent 24%),
+				linear-gradient(180deg, color-mix(in srgb, var(--color-bg) 88%, white), var(--color-bg));
+		}
+
+		:global(.think-body) {
+			min-height: 100dvh;
+			padding: clamp(1rem, 2vw, 1.75rem);
+		}
+
+		.think-app {
+			max-width: 110rem;
+			margin: 0 auto;
+			display: grid;
+			gap: 1rem;
+		}
+
+		.think-app__chrome {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 1rem;
+			padding-inline: 0.25rem;
+		}
+
+		.think-app__portal,
+		.think-app__hint {
+			font-size: 0.82rem;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+			color: var(--color-muted);
+		}
+
+		.think-app__portal {
+			text-decoration: none;
+		}
+
+		.think-stage {
+			display: grid;
+			gap: 1.35rem;
+			padding: clamp(1.2rem, 2vw, 1.7rem);
+			border: 1px solid color-mix(in srgb, var(--color-border) 78%, transparent);
+			border-radius: 2rem;
+			background:
+				linear-gradient(
+					160deg,
+					color-mix(in srgb, var(--color-surface) 94%, var(--color-accent-soft) 6%),
+					color-mix(in srgb, var(--color-surface) 98%, var(--color-surface-2) 2%)
+				);
+			box-shadow:
+				0 2rem 4rem rgba(var(--color-shadow-rgb), 0.08),
+				inset 0 1px 0 rgba(255, 255, 255, 0.38);
+		}
+
+		.think-stage__hero {
+			display: grid;
+			gap: 0.85rem;
+			max-width: 48rem;
+			padding: clamp(0.4rem, 1vw, 0.8rem);
+		}
+
+		.think-stage__eyebrow,
+		.think-editor__eyebrow {
+			margin: 0;
+			font-size: 0.74rem;
+			font-weight: 700;
+			letter-spacing: 0.22em;
+			text-transform: uppercase;
+			color: var(--color-accent);
+		}
+
+		.think-stage__title {
+			margin: 0;
+			font-size: clamp(3rem, 7vw, 5.6rem);
+			line-height: 0.92;
+			letter-spacing: -0.06em;
+		}
+
+		.think-stage__intro {
+			margin: 0;
+			max-width: 42rem;
+			line-height: 1.72;
+			color: var(--color-muted);
+		}
+
+		.think-stage__chips {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.55rem;
+		}
+
+		.think-stage__chips span,
+		.think-badge,
+		.think-tag {
+			display: inline-flex;
+			align-items: center;
+			min-height: 2rem;
+			padding: 0.18rem 0.72rem;
+			border-radius: 999px;
+			background: color-mix(in srgb, var(--color-surface) 78%, var(--color-accent-soft) 22%);
+			font-size: 0.8rem;
+			font-weight: 600;
+		}
+
+		.think-stage__grid {
+			display: grid;
+			grid-template-columns: minmax(0, 1.2fr) minmax(20rem, 0.8fr);
+			gap: 1rem;
+			align-items: start;
+		}
+
+		.think-editor,
+		.think-preview-card,
+		.think-rail {
+			border: 1px solid color-mix(in srgb, var(--color-border) 82%, transparent);
+			border-radius: 1.6rem;
+			background: color-mix(in srgb, var(--color-surface) 96%, var(--color-surface-2) 4%);
+			box-shadow: 0 1rem 2.2rem rgba(var(--color-shadow-rgb), 0.06);
+		}
+
+		.think-editor {
+			display: grid;
+			gap: 1rem;
+			padding: clamp(1.15rem, 2vw, 1.5rem);
+		}
+
+		.think-editor__head,
+		.think-editor__foot,
+		.think-preview-card__head,
+		.think-rail__head {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 1rem;
+		}
+
+		.think-editor__title,
+		.think-preview-card__title {
+			margin: 0.22rem 0 0;
+			font-size: clamp(1.2rem, 2vw, 1.7rem);
+			line-height: 1.05;
+		}
+
+		.think-editor__status {
+			display: grid;
+			gap: 0.35rem;
+			text-align: right;
+			font-size: 0.82rem;
+			color: var(--color-muted);
+		}
+
+		.think-field {
+			display: grid;
+			gap: 0.5rem;
+		}
+
+		.think-field span {
+			font-size: 0.84rem;
+			font-weight: 600;
+		}
+
+		.think-editor__row {
+			display: grid;
+			grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+			gap: 0.9rem;
+		}
+
+		.think-input,
+		.think-textarea {
+			width: 100%;
+			border: 1px solid color-mix(in srgb, var(--color-border) 84%, transparent);
+			border-radius: 1.15rem;
+			background:
+				linear-gradient(
+					180deg,
+					color-mix(in srgb, var(--color-surface) 92%, var(--color-surface-2) 8%),
+					color-mix(in srgb, var(--color-surface) 97%, white 3%)
+				);
+			padding: 0.9rem 1rem;
+			color: var(--color-text);
+			font: inherit;
+			box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
+		}
+
+		.think-input--select {
+			appearance: none;
+		}
+
+		.think-textarea {
+			min-height: 18rem;
+			resize: none;
+			line-height: 1.76;
+		}
+
+		.think-palette {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.7rem;
+		}
+
+		.think-swatch {
+			width: 2.55rem;
+			height: 2.55rem;
+			border: 2px solid transparent;
+			border-radius: 999px;
+			box-shadow: 0 0.8rem 1.4rem rgba(0, 0, 0, 0.08);
+		}
+
+		.think-swatch[data-color='sky'] { background: linear-gradient(135deg, #4a90e2, #7bc2ff); }
+		.think-swatch[data-color='amber'] { background: linear-gradient(135deg, #ef9b28, #ffd36e); }
+		.think-swatch[data-color='mint'] { background: linear-gradient(135deg, #1ba78d, #89e0c6); }
+		.think-swatch[data-color='blush'] { background: linear-gradient(135deg, #d66e9a, #ffbfd3); }
+
+		.think-swatch.is-active {
+			border-color: color-mix(in srgb, var(--color-text) 24%, white);
+			transform: scale(1.06);
+		}
+
+		.think-editor__meta {
+			margin: 0;
+			color: var(--color-muted);
+			font-size: 0.84rem;
+		}
+
+		.think-editor__actions {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.65rem;
+		}
+
+		.think-button {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			min-height: 2.85rem;
+			padding: 0.75rem 1.05rem;
+			border: 1px solid color-mix(in srgb, var(--color-border) 84%, transparent);
+			border-radius: 999px;
+			background: color-mix(in srgb, var(--color-surface) 94%, var(--color-accent-soft) 6%);
+			color: var(--color-text);
+			font: inherit;
+			font-weight: 600;
+		}
+
+		.think-button--primary {
+			border-color: transparent;
+			background: linear-gradient(
+				135deg,
+				color-mix(in srgb, var(--color-accent) 86%, white),
+				color-mix(in srgb, var(--color-accent) 62%, white)
+			);
+			color: white;
+		}
+
+		.think-button--ghost {
+			background: transparent;
+		}
+
+		.think-side {
+			display: grid;
+			gap: 1rem;
+		}
+
+		.think-preview-card,
+		.think-rail {
+			padding: 1.15rem;
+		}
+
+		.think-preview-card {
+			position: relative;
+			display: grid;
+			gap: 0.9rem;
+			overflow: hidden;
+		}
+
+		.think-preview-card::before {
+			content: '';
+			position: absolute;
+			inset: 0;
+			background: linear-gradient(
+				145deg,
+				var(--preview-accent, rgba(74, 144, 226, 0.16)),
+				transparent 62%
+			);
+			pointer-events: none;
+		}
+
+		.think-preview-card[data-accent='sky'] { --preview-accent: rgba(74, 144, 226, 0.18); }
+		.think-preview-card[data-accent='amber'] { --preview-accent: rgba(239, 155, 40, 0.18); }
+		.think-preview-card[data-accent='mint'] { --preview-accent: rgba(27, 167, 141, 0.18); }
+		.think-preview-card[data-accent='blush'] { --preview-accent: rgba(214, 110, 154, 0.18); }
+
+		.think-preview-card > * {
+			position: relative;
+			z-index: 1;
+		}
+
+		.think-badge--ghost {
+			background: color-mix(in srgb, var(--color-surface-2) 72%, transparent);
+			color: var(--color-muted);
+		}
+
+		.think-preview-card__content,
+		.think-mini-card p {
+			margin: 0;
+			white-space: pre-wrap;
+			line-height: 1.75;
+			color: color-mix(in srgb, var(--color-text) 88%, var(--color-muted));
+		}
+
+		.think-preview-card__foot {
+			display: grid;
+			gap: 0.75rem;
+		}
+
+		.think-tag-list {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.5rem;
+		}
+
+		.think-preview-card__time,
+		.think-rail__empty {
+			margin: 0;
+			color: var(--color-muted);
+		}
+
+		.think-rail__list {
+			display: grid;
+			gap: 0.7rem;
+			margin-top: 0.9rem;
+		}
+
+		.think-mini-card {
+			display: grid;
+			gap: 0.45rem;
+			padding: 0.95rem 1rem;
+			border-radius: 1.1rem;
+			background: color-mix(in srgb, var(--color-surface-2) 50%, transparent);
+		}
+
+		.think-mini-card.is-active {
+			outline: 1px solid color-mix(in srgb, var(--color-accent) 34%, transparent);
+			box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-accent) 14%, transparent);
+		}
+
+		.think-mini-card__meta {
+			display: flex;
+			justify-content: space-between;
+			gap: 1rem;
+			font-size: 0.76rem;
+			color: var(--color-muted);
+			text-transform: capitalize;
+		}
+
+		.think-mini-card strong {
+			font-size: 1rem;
+			line-height: 1.22;
+		}
+
+		.think-mini-card__actions {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.45rem;
+		}
+
+		.think-mini-card__actions button {
+			border: 0;
+			border-radius: 999px;
+			background: color-mix(in srgb, var(--color-surface) 82%, white);
+			padding: 0.34rem 0.72rem;
+			font: inherit;
+			font-size: 0.8rem;
+			font-weight: 600;
+			cursor: pointer;
+			color: inherit;
+		}
+
+		.think-noscript {
+			max-width: 110rem;
+			margin: 1rem auto 0;
+			color: var(--color-muted);
+		}
+
+		@media (max-width: 980px) {
+			.think-stage__grid,
+			.think-editor__row {
+				grid-template-columns: 1fr;
+			}
+		}
+
+		@media (max-width: 720px) {
+			:global(.think-body) {
+				padding: 0.85rem;
+			}
+
+			.think-app__chrome,
+			.think-editor__head,
+			.think-editor__foot {
+				flex-direction: column;
+				align-items: stretch;
+			}
+
+			.think-editor__status {
+				text-align: left;
+			}
+
+			.think-editor__actions {
+				display: grid;
+			}
+
+			.think-button {
+				width: 100%;
+			}
+		}
+	</style>
+</BaseLayout>

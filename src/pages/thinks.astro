@@ -1,0 +1,849 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import { SiteTitle } from '~/config';
+---
+
+<BaseLayout
+	title={`Thinks / ${SiteTitle}`}
+	description="A standalone local-first stream for short thoughts published from /think."
+	rootClass="thinks-root"
+	bodyClass="thinks-body"
+>
+	<main class="thinks-app">
+		<div class="thinks-app__chrome">
+			<a class="thinks-app__portal" href="/think">Write at /think</a>
+			<p class="thinks-app__hint">Stored in this browser, shown in this stream.</p>
+		</div>
+
+		<section class="thinks-stage">
+			<header class="thinks-stage__hero">
+				<div class="thinks-stage__copy">
+					<p class="thinks-stage__eyebrow">Standalone Stream</p>
+					<h1 class="thinks-stage__title">/thinks</h1>
+					<p class="thinks-stage__intro">
+						这不是博客归档，也不是社交 feed。它更像一面墙，把刚刚写下来的东西按你自己的节奏挂起来，
+						可筛选、可导出、可批量整理、可继续编辑。
+					</p>
+				</div>
+
+				<div class="thinks-stage__actions">
+					<a class="thinks-button thinks-button--primary" href="/think">New thought</a>
+					<button class="thinks-button" type="button" id="export-thinks">Export JSON</button>
+					<label class="thinks-button thinks-button--ghost" for="import-thinks">Import JSON</label>
+					<input id="import-thinks" type="file" accept="application/json" hidden />
+				</div>
+			</header>
+
+			<div class="thinks-dashboard">
+				<div class="thinks-stat">
+					<span>Total</span>
+					<strong id="stat-total">0</strong>
+				</div>
+				<div class="thinks-stat">
+					<span>Pinned</span>
+					<strong id="stat-pinned">0</strong>
+				</div>
+				<div class="thinks-stat">
+					<span>Tags</span>
+					<strong id="stat-tags">0</strong>
+				</div>
+			</div>
+
+			<section class="thinks-toolbar">
+				<label class="thinks-control">
+					<span>Search</span>
+					<input id="filter-query" type="search" placeholder="search title, content, tags" />
+				</label>
+
+				<label class="thinks-control">
+					<span>Mood</span>
+					<select id="filter-mood">
+						<option value="">All moods</option>
+						<option value="clear">Clear</option>
+						<option value="warm">Warm</option>
+						<option value="restless">Restless</option>
+						<option value="midnight">Midnight</option>
+						<option value="small-win">Small Win</option>
+					</select>
+				</label>
+
+				<label class="thinks-control">
+					<span>Sort</span>
+					<select id="filter-sort">
+						<option value="updated">Updated</option>
+						<option value="newest">Newest</option>
+						<option value="oldest">Oldest</option>
+					</select>
+				</label>
+
+				<label class="thinks-toggle">
+					<input id="filter-pinned" type="checkbox" />
+					<span>Pinned only</span>
+				</label>
+
+				<div class="thinks-layout" id="layout-toggle">
+					<button class="thinks-chip is-active" type="button" data-layout="wall">Wall</button>
+					<button class="thinks-chip" type="button" data-layout="stack">Stack</button>
+					<button class="thinks-chip" type="button" data-layout="compact">Compact</button>
+				</div>
+			</section>
+
+			<div class="thinks-tag-cloud" id="tag-cloud"></div>
+
+			<section class="thinks-bulk" id="bulk-bar" hidden>
+				<div class="thinks-bulk__copy">
+					<strong id="bulk-count">0 selected</strong>
+					<span>对当前选中的条目做批量操作</span>
+				</div>
+				<div class="thinks-bulk__actions">
+					<button class="thinks-button" type="button" id="bulk-select-visible">Select visible</button>
+					<button class="thinks-button" type="button" id="bulk-pin">Pin</button>
+					<button class="thinks-button" type="button" id="bulk-unpin">Unpin</button>
+					<button class="thinks-button thinks-button--ghost" type="button" id="bulk-clear">Clear</button>
+					<button class="thinks-button thinks-button--danger" type="button" id="bulk-delete">Delete</button>
+				</div>
+			</section>
+
+			<section class="thinks-feed" id="thinks-feed">
+				<p class="thinks-empty">还没有任何条目。先去 <a href="/think">/think</a> 写一条吧。</p>
+			</section>
+		</section>
+	</main>
+
+	<noscript>
+		<p class="thinks-empty thinks-empty--standalone">
+			这个页面需要启用 JavaScript 才能读取浏览器里的本地随想。
+		</p>
+	</noscript>
+
+	<script type="module" is:inline>
+		import {
+			createEditableDraft,
+			deleteThink,
+			deleteThinks,
+			exportThinks,
+			formatDate,
+			getThinkStats,
+			importThinks,
+			readThinks,
+			relativeFromNow,
+			setPinned,
+			togglePinned,
+			THINK_EVENT,
+		} from '/think/store.js';
+
+		const feed = document.querySelector('#thinks-feed');
+		const tagCloud = document.querySelector('#tag-cloud');
+		const queryInput = document.querySelector('#filter-query');
+		const moodInput = document.querySelector('#filter-mood');
+		const sortInput = document.querySelector('#filter-sort');
+		const pinnedInput = document.querySelector('#filter-pinned');
+		const layoutToggle = document.querySelector('#layout-toggle');
+		const layoutButtons = [...layoutToggle.querySelectorAll('[data-layout]')];
+		const bulkBar = document.querySelector('#bulk-bar');
+		const bulkCount = document.querySelector('#bulk-count');
+		const bulkSelectVisible = document.querySelector('#bulk-select-visible');
+		const bulkPin = document.querySelector('#bulk-pin');
+		const bulkUnpin = document.querySelector('#bulk-unpin');
+		const bulkClear = document.querySelector('#bulk-clear');
+		const bulkDelete = document.querySelector('#bulk-delete');
+		const exportButton = document.querySelector('#export-thinks');
+		const importInput = document.querySelector('#import-thinks');
+		const stats = {
+			total: document.querySelector('#stat-total'),
+			pinned: document.querySelector('#stat-pinned'),
+			tags: document.querySelector('#stat-tags'),
+		};
+
+		let activeTag = '';
+		let viewMode = localStorage.getItem('tito-cafe-thinks-layout.v1') || 'wall';
+		let selectedIds = new Set();
+
+		function syncLayoutButtons() {
+			layoutButtons.forEach((button) => {
+				button.classList.toggle('is-active', button.dataset.layout === viewMode);
+			});
+			feed.dataset.layout = viewMode;
+		}
+
+		function syncBulkBar() {
+			const count = selectedIds.size;
+			bulkBar.hidden = count === 0;
+			bulkCount.textContent = `${count} selected`;
+		}
+
+		function getFilteredItems() {
+			const query = queryInput.value.trim().toLocaleLowerCase();
+			const mood = moodInput.value;
+			const pinnedOnly = pinnedInput.checked;
+			const sort = sortInput.value;
+
+			let items = readThinks().filter((item) => {
+				if (mood && item.mood !== mood) return false;
+				if (pinnedOnly && !item.pinned) return false;
+				if (activeTag && !item.tags.some((tag) => tag.toLocaleLowerCase() === activeTag)) return false;
+				if (!query) return true;
+				const haystack = [item.title, item.content, item.tags.join(' ')].join(' ').toLocaleLowerCase();
+				return haystack.includes(query);
+			});
+
+			items = [...items].sort((left, right) => {
+				if (sort === 'newest') {
+					return new Date(right.createdAt).getTime() - new Date(left.createdAt).getTime();
+				}
+				if (sort === 'oldest') {
+					return new Date(left.createdAt).getTime() - new Date(right.createdAt).getTime();
+				}
+				if (left.pinned !== right.pinned) return left.pinned ? -1 : 1;
+				return new Date(right.updatedAt).getTime() - new Date(left.updatedAt).getTime();
+			});
+
+			return items;
+		}
+
+		function renderStats(items) {
+			const next = getThinkStats(items);
+			stats.total.textContent = String(next.total);
+			stats.pinned.textContent = String(next.pinned);
+			stats.tags.textContent = String(next.tags);
+		}
+
+		function renderTags(items) {
+			const tags = new Map();
+			items.forEach((item) => {
+				item.tags.forEach((tag) => {
+					const key = tag.toLocaleLowerCase();
+					tags.set(key, { label: tag, count: (tags.get(key)?.count ?? 0) + 1 });
+				});
+			});
+
+			tagCloud.innerHTML = '';
+			if (!tags.size) return;
+
+			const allButton = document.createElement('button');
+			allButton.type = 'button';
+			allButton.className = `thinks-chip ${!activeTag ? 'is-active' : ''}`;
+			allButton.textContent = 'All';
+			allButton.addEventListener('click', () => {
+				activeTag = '';
+				render();
+			});
+			tagCloud.append(allButton);
+
+			[...tags.entries()]
+				.sort((left, right) => right[1].count - left[1].count || left[1].label.localeCompare(right[1].label))
+				.forEach(([key, value]) => {
+					const button = document.createElement('button');
+					button.type = 'button';
+					button.className = `thinks-chip ${activeTag === key ? 'is-active' : ''}`;
+					button.textContent = `${value.label} · ${value.count}`;
+					button.addEventListener('click', () => {
+						activeTag = activeTag === key ? '' : key;
+						render();
+					});
+					tagCloud.append(button);
+				});
+		}
+
+		function renderCard(item) {
+			const article = document.createElement('article');
+			article.className = 'think-card';
+			article.dataset.color = item.color;
+			article.innerHTML = `
+				<div class="think-card__wash"></div>
+				<div class="think-card__topline">
+					<div class="think-card__meta">
+						<label class="think-card__selector">
+							<input type="checkbox" data-action="select" ${selectedIds.has(item.id) ? 'checked' : ''} />
+							<span>Select</span>
+						</label>
+						<span class="think-card__mood">${item.mood}</span>
+						${item.pinned ? '<span class="think-card__pin">Pinned</span>' : ''}
+					</div>
+					<div class="think-card__actions">
+						<button type="button" data-action="pin">${item.pinned ? 'Unpin' : 'Pin'}</button>
+						<button type="button" data-action="copy">Copy</button>
+						<button type="button" data-action="edit">Edit</button>
+						<button type="button" data-action="delete">Delete</button>
+					</div>
+				</div>
+				<h2 class="think-card__title">${item.title || 'Untitled thought'}</h2>
+				<p class="think-card__content"></p>
+				<div class="think-card__footer">
+					<div class="think-card__tags"></div>
+					<div class="think-card__timestamps">
+						<time datetime="${item.createdAt}">Created ${formatDate(item.createdAt)}</time>
+						<time datetime="${item.updatedAt}">Updated ${relativeFromNow(item.updatedAt)}</time>
+					</div>
+				</div>
+			`;
+
+			article.querySelector('.think-card__content').textContent = item.content;
+
+			const tags = article.querySelector('.think-card__tags');
+			item.tags.forEach((tag) => {
+				const chip = document.createElement('button');
+				chip.type = 'button';
+				chip.className = 'thinks-chip thinks-chip--inline';
+				chip.textContent = `#${tag}`;
+				chip.addEventListener('click', () => {
+					activeTag = tag.toLocaleLowerCase();
+					render();
+				});
+				tags.append(chip);
+			});
+
+			article.addEventListener('click', async (event) => {
+				const checkbox = event.target.closest('input[data-action="select"]');
+				if (checkbox) {
+					if (checkbox.checked) selectedIds.add(item.id);
+					else selectedIds.delete(item.id);
+					syncBulkBar();
+					return;
+				}
+
+				const button = event.target.closest('button[data-action]');
+				if (!button) return;
+				event.stopPropagation();
+				const action = button.dataset.action;
+
+				if (action === 'pin') {
+					togglePinned(item.id);
+					return;
+				}
+
+				if (action === 'copy') {
+					await navigator.clipboard.writeText(
+						[item.title, item.content, item.tags.length ? `#${item.tags.join(' #')}` : '']
+							.filter(Boolean)
+							.join('\n\n'),
+					);
+					button.textContent = 'Copied';
+					window.setTimeout(() => {
+						button.textContent = 'Copy';
+					}, 1200);
+					return;
+				}
+
+				if (action === 'edit') {
+					createEditableDraft(item.id);
+					window.location.href = `/think?edit=${item.id}`;
+					return;
+				}
+
+				if (action === 'delete') {
+					if (window.confirm('Delete this thought from local storage?')) {
+						deleteThink(item.id);
+					}
+				}
+			});
+
+			return article;
+		}
+
+		function render() {
+			const allItems = readThinks();
+			const visibleItems = getFilteredItems();
+			selectedIds = new Set([...selectedIds].filter((id) => allItems.some((item) => item.id === id)));
+			renderStats(allItems);
+			renderTags(allItems);
+			syncLayoutButtons();
+			syncBulkBar();
+			feed.innerHTML = '';
+
+			if (!visibleItems.length) {
+				const empty = document.createElement('p');
+				empty.className = 'thinks-empty';
+				empty.innerHTML = '没有符合当前筛选条件的条目。换个关键词，或者回到 <a href="/think">/think</a> 再写一条。';
+				feed.append(empty);
+				return;
+			}
+
+			visibleItems.forEach((item) => feed.append(renderCard(item)));
+		}
+
+		exportButton.addEventListener('click', () => {
+			const blob = new Blob([exportThinks()], { type: 'application/json' });
+			const href = URL.createObjectURL(blob);
+			const anchor = document.createElement('a');
+			anchor.href = href;
+			anchor.download = `thinks-${new Date().toISOString().slice(0, 10)}.json`;
+			anchor.click();
+			URL.revokeObjectURL(href);
+		});
+
+		importInput.addEventListener('change', async () => {
+			const file = importInput.files?.[0];
+			if (!file) return;
+			const raw = await file.text();
+			try {
+				importThinks(raw);
+			} catch (error) {
+				window.alert(error instanceof Error ? error.message : 'Import failed');
+			} finally {
+				importInput.value = '';
+			}
+		});
+
+		[queryInput, moodInput, sortInput, pinnedInput].forEach((control) => {
+			control.addEventListener('input', render);
+			control.addEventListener('change', render);
+		});
+
+		layoutButtons.forEach((button) => {
+			button.addEventListener('click', () => {
+				viewMode = button.dataset.layout || 'wall';
+				localStorage.setItem('tito-cafe-thinks-layout.v1', viewMode);
+				syncLayoutButtons();
+			});
+		});
+
+		bulkSelectVisible.addEventListener('click', () => {
+			selectedIds = new Set(getFilteredItems().map((item) => item.id));
+			render();
+		});
+
+		bulkPin.addEventListener('click', () => {
+			setPinned([...selectedIds], true);
+		});
+
+		bulkUnpin.addEventListener('click', () => {
+			setPinned([...selectedIds], false);
+		});
+
+		bulkClear.addEventListener('click', () => {
+			selectedIds.clear();
+			render();
+		});
+
+		bulkDelete.addEventListener('click', () => {
+			if (!selectedIds.size) return;
+			if (!window.confirm(`Delete ${selectedIds.size} selected thoughts from local storage?`)) return;
+			deleteThinks([...selectedIds]);
+			selectedIds.clear();
+		});
+
+		window.addEventListener(THINK_EVENT, render);
+		syncLayoutButtons();
+		syncBulkBar();
+		render();
+	</script>
+
+	<style>
+		:global(.thinks-root) {
+			background:
+				radial-gradient(circle at 10% 12%, rgba(74, 144, 226, 0.18), transparent 22%),
+				radial-gradient(circle at 90% 8%, rgba(213, 111, 155, 0.16), transparent 22%),
+				linear-gradient(180deg, color-mix(in srgb, var(--color-bg) 90%, white), var(--color-bg));
+		}
+
+		:global(.thinks-body) {
+			min-height: 100dvh;
+			padding: clamp(1rem, 2vw, 1.75rem);
+		}
+
+		.thinks-app {
+			max-width: 116rem;
+			margin: 0 auto;
+			display: grid;
+			gap: 1rem;
+		}
+
+		.thinks-app__chrome {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 1rem;
+			padding-inline: 0.25rem;
+		}
+
+		.thinks-app__portal,
+		.thinks-app__hint {
+			font-size: 0.82rem;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+			color: var(--color-muted);
+		}
+
+		.thinks-app__portal {
+			text-decoration: none;
+		}
+
+		.thinks-stage {
+			display: grid;
+			gap: 1rem;
+			padding: clamp(1.2rem, 2vw, 1.7rem);
+			border: 1px solid color-mix(in srgb, var(--color-border) 78%, transparent);
+			border-radius: 2rem;
+			background:
+				linear-gradient(
+					180deg,
+					color-mix(in srgb, var(--color-surface) 95%, var(--color-accent-soft) 5%),
+					color-mix(in srgb, var(--color-surface) 98%, var(--color-surface-2) 2%)
+				);
+			box-shadow:
+				0 2rem 4rem rgba(var(--color-shadow-rgb), 0.08),
+				inset 0 1px 0 rgba(255, 255, 255, 0.36);
+		}
+
+		.thinks-stage__hero {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			align-items: end;
+			gap: 1rem;
+		}
+
+		.thinks-stage__copy {
+			max-width: 46rem;
+			display: grid;
+			gap: 0.8rem;
+		}
+
+		.thinks-stage__eyebrow {
+			margin: 0;
+			font-size: 0.74rem;
+			font-weight: 700;
+			letter-spacing: 0.22em;
+			text-transform: uppercase;
+			color: var(--color-accent);
+		}
+
+		.thinks-stage__title {
+			margin: 0;
+			font-size: clamp(3rem, 7vw, 5.6rem);
+			line-height: 0.92;
+			letter-spacing: -0.06em;
+		}
+
+		.thinks-stage__intro {
+			margin: 0;
+			line-height: 1.72;
+			color: var(--color-muted);
+		}
+
+		.thinks-stage__actions,
+		.thinks-dashboard,
+		.thinks-toolbar,
+		.thinks-tag-cloud,
+		.thinks-layout,
+		.thinks-bulk__actions {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.75rem;
+		}
+
+		.thinks-button,
+		.thinks-chip,
+		.thinks-control input,
+		.thinks-control select,
+		.thinks-toggle {
+			border-radius: 999px;
+			border: 1px solid color-mix(in srgb, var(--color-border) 84%, transparent);
+			background: color-mix(in srgb, var(--color-surface) 94%, var(--color-accent-soft) 6%);
+			color: var(--color-text);
+			text-decoration: none;
+		}
+
+		.thinks-button {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			min-height: 2.9rem;
+			padding: 0.78rem 1.05rem;
+			font-weight: 600;
+		}
+
+		.thinks-button--primary {
+			border-color: transparent;
+			background: linear-gradient(
+				135deg,
+				color-mix(in srgb, var(--color-accent) 86%, white),
+				color-mix(in srgb, var(--color-accent) 62%, white)
+			);
+			color: white;
+		}
+
+		.thinks-button--ghost {
+			cursor: pointer;
+		}
+
+		.thinks-button--danger {
+			border-color: transparent;
+			background: linear-gradient(135deg, #e55c5c, #c94141);
+			color: white;
+		}
+
+		.thinks-stat {
+			display: grid;
+			gap: 0.2rem;
+			min-width: 10rem;
+			padding: 1rem 1.08rem;
+			border: 1px solid color-mix(in srgb, var(--color-border) 84%, transparent);
+			border-radius: 1.3rem;
+			background: color-mix(in srgb, var(--color-surface) 96%, var(--color-surface-2) 4%);
+		}
+
+		.thinks-stat span {
+			font-size: 0.74rem;
+			letter-spacing: 0.16em;
+			text-transform: uppercase;
+			color: var(--color-muted);
+		}
+
+		.thinks-stat strong {
+			font-size: 1.65rem;
+			line-height: 1;
+		}
+
+		.thinks-toolbar {
+			align-items: end;
+		}
+
+		.thinks-control {
+			display: grid;
+			gap: 0.42rem;
+			min-width: 12rem;
+		}
+
+		.thinks-control span {
+			font-size: 0.78rem;
+			font-weight: 600;
+			color: var(--color-muted);
+		}
+
+		.thinks-control input,
+		.thinks-control select {
+			min-height: 2.8rem;
+			padding: 0.72rem 0.95rem;
+			font: inherit;
+		}
+
+		.thinks-toggle {
+			display: inline-flex;
+			align-items: center;
+			gap: 0.55rem;
+			min-height: 2.8rem;
+			padding: 0.72rem 0.95rem;
+			font-weight: 600;
+		}
+
+		.thinks-chip {
+			display: inline-flex;
+			align-items: center;
+			min-height: 2.25rem;
+			padding: 0.35rem 0.8rem;
+			font-weight: 600;
+		}
+
+		.thinks-chip.is-active {
+			background: color-mix(in srgb, var(--color-accent-soft) 82%, white);
+			color: var(--color-accent);
+		}
+
+		.thinks-chip--inline {
+			min-height: 2rem;
+			padding-inline: 0.72rem;
+		}
+
+		.thinks-bulk {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			gap: 1rem;
+			padding: 1rem 1.05rem;
+			border: 1px solid color-mix(in srgb, var(--color-border) 84%, transparent);
+			border-radius: 1.3rem;
+			background:
+				linear-gradient(
+					180deg,
+					color-mix(in srgb, var(--color-surface) 94%, var(--color-accent-soft) 6%),
+					color-mix(in srgb, var(--color-surface) 98%, var(--color-surface-2) 2%)
+				);
+		}
+
+		.thinks-bulk__copy {
+			display: grid;
+			gap: 0.16rem;
+		}
+
+		.thinks-bulk__copy span {
+			font-size: 0.84rem;
+			color: var(--color-muted);
+		}
+
+		.thinks-feed {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 1rem;
+		}
+
+		.thinks-feed[data-layout='stack'] {
+			grid-template-columns: 1fr;
+		}
+
+		.thinks-feed[data-layout='compact'] {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+
+		.think-card {
+			position: relative;
+			display: grid;
+			gap: 0.95rem;
+			padding: 1.2rem;
+			border: 1px solid color-mix(in srgb, var(--color-border) 84%, transparent);
+			border-radius: 1.45rem;
+			background: color-mix(in srgb, var(--color-surface) 96%, var(--color-surface-2) 4%);
+			overflow: hidden;
+			box-shadow: 0 1rem 2rem rgba(var(--color-shadow-rgb), 0.06);
+		}
+
+		.think-card__wash {
+			position: absolute;
+			inset: 0;
+			background: linear-gradient(
+				145deg,
+				var(--card-accent, rgba(74, 144, 226, 0.15)),
+				transparent 62%
+			);
+			pointer-events: none;
+		}
+
+		.think-card[data-color='sky'] { --card-accent: rgba(74, 144, 226, 0.18); }
+		.think-card[data-color='amber'] { --card-accent: rgba(239, 155, 40, 0.18); }
+		.think-card[data-color='mint'] { --card-accent: rgba(27, 167, 141, 0.18); }
+		.think-card[data-color='blush'] { --card-accent: rgba(214, 110, 154, 0.18); }
+
+		.think-card > * {
+			position: relative;
+			z-index: 1;
+		}
+
+		.think-card__topline,
+		.think-card__meta,
+		.think-card__actions,
+		.think-card__footer,
+		.think-card__timestamps,
+		.think-card__tags {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			gap: 0.6rem;
+		}
+
+		.think-card__topline,
+		.think-card__footer {
+			justify-content: space-between;
+		}
+
+		.think-card__mood,
+		.think-card__pin {
+			display: inline-flex;
+			align-items: center;
+			min-height: 1.95rem;
+			padding: 0.18rem 0.72rem;
+			border-radius: 999px;
+			background: color-mix(in srgb, var(--color-surface) 78%, var(--color-accent-soft) 22%);
+			font-size: 0.8rem;
+			font-weight: 700;
+			text-transform: capitalize;
+		}
+
+		.think-card__selector {
+			display: inline-flex;
+			align-items: center;
+			gap: 0.35rem;
+			font-size: 0.78rem;
+			color: var(--color-muted);
+		}
+
+		.think-card__title {
+			margin: 0;
+			font-size: clamp(1.28rem, 2vw, 1.62rem);
+			line-height: 1.08;
+			text-wrap: balance;
+		}
+
+		.think-card__content {
+			margin: 0;
+			line-height: 1.78;
+			white-space: pre-wrap;
+			overflow-wrap: anywhere;
+		}
+
+		.thinks-feed[data-layout='compact'] .think-card {
+			padding: 1rem;
+			gap: 0.78rem;
+		}
+
+		.thinks-feed[data-layout='compact'] .think-card__title {
+			font-size: 1.08rem;
+		}
+
+		.thinks-feed[data-layout='compact'] .think-card__content {
+			font-size: 0.94rem;
+			line-height: 1.62;
+		}
+
+		.think-card__timestamps {
+			font-size: 0.78rem;
+			color: var(--color-muted);
+		}
+
+		.think-card__actions button {
+			border: 0;
+			border-radius: 999px;
+			background: color-mix(in srgb, var(--color-surface) 84%, white);
+			padding: 0.38rem 0.74rem;
+			font: inherit;
+			font-weight: 600;
+			cursor: pointer;
+			color: inherit;
+		}
+
+		.thinks-empty {
+			margin: 0;
+			padding: 1rem 0;
+			line-height: 1.72;
+			color: var(--color-muted);
+		}
+
+		.thinks-empty--standalone {
+			max-width: 116rem;
+			margin: 1rem auto 0;
+		}
+
+		@media (max-width: 960px) {
+			.thinks-feed {
+				grid-template-columns: 1fr;
+			}
+
+			.thinks-feed[data-layout='compact'] {
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+			}
+		}
+
+		@media (max-width: 760px) {
+			:global(.thinks-body) {
+				padding: 0.85rem;
+			}
+
+			.thinks-app__chrome,
+			.thinks-stage__hero,
+			.thinks-bulk,
+			.think-card__topline,
+			.think-card__footer {
+				flex-direction: column;
+				align-items: stretch;
+			}
+
+			.thinks-stage__actions > * {
+				flex: 1 1 100%;
+			}
+
+			.thinks-feed[data-layout='compact'] {
+				grid-template-columns: 1fr;
+			}
+		}
+	</style>
+</BaseLayout>
