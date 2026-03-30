@@ -110,6 +110,38 @@ import { SiteTitle } from '~/config';
 		</section>
 	</main>
 
+	<dialog class="think-reader" id="think-reader">
+		<div class="think-reader__surface">
+			<div class="think-reader__topline">
+				<div class="think-reader__meta">
+					<span class="think-reader__mood" id="reader-mood">clear</span>
+					<span class="think-reader__pin" id="reader-pin" hidden>Pinned</span>
+				</div>
+				<div class="think-reader__actions">
+					<button class="thinks-button" type="button" id="reader-copy">Copy</button>
+					<button class="thinks-button" type="button" id="reader-edit">Edit</button>
+					<button class="thinks-button thinks-button--ghost" type="button" id="reader-close">Close</button>
+				</div>
+			</div>
+
+			<h2 class="think-reader__title" id="reader-title">Untitled thought</h2>
+			<p class="think-reader__content" id="reader-content"></p>
+
+			<div class="think-reader__tags" id="reader-tags"></div>
+
+			<div class="think-reader__footer">
+				<div class="think-reader__timestamps">
+					<time id="reader-created"></time>
+					<time id="reader-updated"></time>
+				</div>
+				<div class="think-reader__pager">
+					<button class="thinks-button" type="button" id="reader-prev">Previous</button>
+					<button class="thinks-button" type="button" id="reader-next">Next</button>
+				</div>
+			</div>
+		</div>
+	</dialog>
+
 	<noscript>
 		<p class="thinks-empty thinks-empty--standalone">
 			这个页面需要启用 JavaScript 才能读取浏览器里的本地随想。
@@ -149,6 +181,19 @@ import { SiteTitle } from '~/config';
 		const bulkDelete = document.querySelector('#bulk-delete');
 		const exportButton = document.querySelector('#export-thinks');
 		const importInput = document.querySelector('#import-thinks');
+		const reader = document.querySelector('#think-reader');
+		const readerMood = document.querySelector('#reader-mood');
+		const readerPin = document.querySelector('#reader-pin');
+		const readerTitle = document.querySelector('#reader-title');
+		const readerContent = document.querySelector('#reader-content');
+		const readerTags = document.querySelector('#reader-tags');
+		const readerCreated = document.querySelector('#reader-created');
+		const readerUpdated = document.querySelector('#reader-updated');
+		const readerCopy = document.querySelector('#reader-copy');
+		const readerEdit = document.querySelector('#reader-edit');
+		const readerClose = document.querySelector('#reader-close');
+		const readerPrev = document.querySelector('#reader-prev');
+		const readerNext = document.querySelector('#reader-next');
 		const stats = {
 			total: document.querySelector('#stat-total'),
 			pinned: document.querySelector('#stat-pinned'),
@@ -158,6 +203,7 @@ import { SiteTitle } from '~/config';
 		let activeTag = '';
 		let viewMode = localStorage.getItem('tito-cafe-thinks-layout.v1') || 'wall';
 		let selectedIds = new Set();
+		let readerId = null;
 
 		function syncLayoutButtons() {
 			layoutButtons.forEach((button) => {
@@ -170,6 +216,55 @@ import { SiteTitle } from '~/config';
 			const count = selectedIds.size;
 			bulkBar.hidden = count === 0;
 			bulkCount.textContent = `${count} selected`;
+		}
+
+		function getReaderIndex(items) {
+			return items.findIndex((item) => item.id === readerId);
+		}
+
+		function closeReader() {
+			if (reader.open) reader.close();
+			readerId = null;
+		}
+
+		function openReader(id) {
+			readerId = id;
+			renderReader();
+			if (!reader.open) reader.showModal();
+		}
+
+		function renderReader() {
+			if (!readerId) return;
+			const items = getFilteredItems();
+			const index = getReaderIndex(items);
+			const item = items[index];
+			if (!item) {
+				closeReader();
+				return;
+			}
+
+			reader.dataset.color = item.color;
+			readerMood.textContent = item.mood;
+			readerPin.hidden = !item.pinned;
+			readerTitle.textContent = item.title || 'Untitled thought';
+			readerContent.textContent = item.content;
+			readerTags.innerHTML = '';
+			item.tags.forEach((tag) => {
+				const chip = document.createElement('button');
+				chip.type = 'button';
+				chip.className = 'thinks-chip thinks-chip--inline';
+				chip.textContent = `#${tag}`;
+				chip.addEventListener('click', () => {
+					activeTag = tag.toLocaleLowerCase();
+					render();
+					renderReader();
+				});
+				readerTags.append(chip);
+			});
+			readerCreated.textContent = `Created ${formatDate(item.createdAt)}`;
+			readerUpdated.textContent = `Updated ${relativeFromNow(item.updatedAt)}`;
+			readerPrev.disabled = index <= 0;
+			readerNext.disabled = index >= items.length - 1;
 		}
 
 		function getFilteredItems() {
@@ -303,7 +398,10 @@ import { SiteTitle } from '~/config';
 				}
 
 				const button = event.target.closest('button[data-action]');
-				if (!button) return;
+				if (!button) {
+					openReader(item.id);
+					return;
+				}
 				event.stopPropagation();
 				const action = button.dataset.action;
 
@@ -360,6 +458,7 @@ import { SiteTitle } from '~/config';
 			}
 
 			visibleItems.forEach((item) => feed.append(renderCard(item)));
+			if (reader.open) renderReader();
 		}
 
 		exportButton.addEventListener('click', () => {
@@ -423,7 +522,59 @@ import { SiteTitle } from '~/config';
 			selectedIds.clear();
 		});
 
+		readerCopy.addEventListener('click', async () => {
+			if (!readerId) return;
+			const item = readThinks().find((entry) => entry.id === readerId);
+			if (!item) return;
+			await navigator.clipboard.writeText(
+				[item.title, item.content, item.tags.length ? `#${item.tags.join(' #')}` : '']
+					.filter(Boolean)
+					.join('\n\n'),
+			);
+			readerCopy.textContent = 'Copied';
+			window.setTimeout(() => {
+				readerCopy.textContent = 'Copy';
+			}, 1200);
+		});
+
+		readerEdit.addEventListener('click', () => {
+			if (!readerId) return;
+			createEditableDraft(readerId);
+			window.location.href = `/think?edit=${readerId}`;
+		});
+
+		readerClose.addEventListener('click', closeReader);
+
+		readerPrev.addEventListener('click', () => {
+			const items = getFilteredItems();
+			const index = getReaderIndex(items);
+			if (index > 0) {
+				readerId = items[index - 1].id;
+				renderReader();
+			}
+		});
+
+		readerNext.addEventListener('click', () => {
+			const items = getFilteredItems();
+			const index = getReaderIndex(items);
+			if (index >= 0 && index < items.length - 1) {
+				readerId = items[index + 1].id;
+				renderReader();
+			}
+		});
+
 		window.addEventListener(THINK_EVENT, render);
+		window.addEventListener('keydown', (event) => {
+			if (!reader.open) return;
+			if (event.key === 'Escape') {
+				closeReader();
+			} else if (event.key === 'ArrowLeft') {
+				readerPrev.click();
+			} else if (event.key === 'ArrowRight') {
+				readerNext.click();
+			}
+		});
+
 		syncLayoutButtons();
 		syncBulkBar();
 		render();
@@ -813,6 +964,101 @@ import { SiteTitle } from '~/config';
 			margin: 1rem auto 0;
 		}
 
+		.think-reader {
+			width: min(100%, 54rem);
+			border: 0;
+			padding: 0;
+			background: transparent;
+		}
+
+		.think-reader::backdrop {
+			background: rgba(7, 10, 16, 0.55);
+			backdrop-filter: blur(16px);
+		}
+
+		.think-reader__surface {
+			position: relative;
+			display: grid;
+			gap: 1rem;
+			padding: clamp(1.1rem, 2vw, 1.5rem);
+			border: 1px solid color-mix(in srgb, var(--color-border) 84%, transparent);
+			border-radius: 1.7rem;
+			background:
+				linear-gradient(
+					160deg,
+					color-mix(in srgb, var(--color-surface) 96%, var(--color-accent-soft) 4%),
+					color-mix(in srgb, var(--color-surface) 99%, var(--color-surface-2) 1%)
+				);
+			box-shadow: 0 2rem 4rem rgba(var(--color-shadow-rgb), 0.16);
+		}
+
+		.think-reader[data-color='sky'] .think-reader__surface {
+			box-shadow: 0 2rem 4rem rgba(74, 144, 226, 0.18);
+		}
+
+		.think-reader[data-color='amber'] .think-reader__surface {
+			box-shadow: 0 2rem 4rem rgba(239, 155, 40, 0.18);
+		}
+
+		.think-reader[data-color='mint'] .think-reader__surface {
+			box-shadow: 0 2rem 4rem rgba(27, 167, 141, 0.18);
+		}
+
+		.think-reader[data-color='blush'] .think-reader__surface {
+			box-shadow: 0 2rem 4rem rgba(214, 110, 154, 0.18);
+		}
+
+		.think-reader__topline,
+		.think-reader__meta,
+		.think-reader__actions,
+		.think-reader__footer,
+		.think-reader__timestamps,
+		.think-reader__pager,
+		.think-reader__tags {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			gap: 0.6rem;
+		}
+
+		.think-reader__topline,
+		.think-reader__footer {
+			justify-content: space-between;
+		}
+
+		.think-reader__mood,
+		.think-reader__pin {
+			display: inline-flex;
+			align-items: center;
+			min-height: 2rem;
+			padding: 0.18rem 0.72rem;
+			border-radius: 999px;
+			background: color-mix(in srgb, var(--color-surface) 80%, var(--color-accent-soft) 20%);
+			font-size: 0.82rem;
+			font-weight: 700;
+			text-transform: capitalize;
+		}
+
+		.think-reader__title {
+			margin: 0;
+			font-size: clamp(1.6rem, 3vw, 2.4rem);
+			line-height: 1.02;
+			text-wrap: balance;
+		}
+
+		.think-reader__content {
+			margin: 0;
+			line-height: 1.86;
+			white-space: pre-wrap;
+			overflow-wrap: anywhere;
+			font-size: 1.02rem;
+		}
+
+		.think-reader__timestamps {
+			font-size: 0.82rem;
+			color: var(--color-muted);
+		}
+
 		@media (max-width: 960px) {
 			.thinks-feed {
 				grid-template-columns: 1fr;
@@ -831,6 +1077,8 @@ import { SiteTitle } from '~/config';
 			.thinks-app__chrome,
 			.thinks-stage__hero,
 			.thinks-bulk,
+			.think-reader__topline,
+			.think-reader__footer,
 			.think-card__topline,
 			.think-card__footer {
 				flex-direction: column;
