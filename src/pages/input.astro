@@ -3,141 +3,248 @@ import ScaffoldLayout from '~/layouts/ScaffoldLayout.astro';
 ---
 
 <ScaffoldLayout title="Thoughts Input" description="Input your thoughts here.">
-	<div class="thoughts-input-container">
-		<h1 class="thoughts-input-title">随想</h1>
-		<p class="thoughts-input-subtitle">记录当下的想法</p>
-		<textarea
-			id="thought-content"
-			class="thoughts-textarea"
-			placeholder="在这里写下你的想法..."
-		></textarea>
-		<div class="thoughts-input-actions">
-			<button id="save-btn" class="thoughts-save-btn">保存</button>
-			<a href="/thoughts" class="thoughts-view-btn">查看随想</a>
+	<div class="thoughts-wrapper">
+		<div class="thoughts-container">
+			<div class="thoughts-header">
+				<div class="thoughts-icon">
+					<svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+						<path d="M24 4C12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20S35.05 4 24 4z" fill="currentColor" opacity="0.08"/>
+						<path d="M24 8c-8.82 0-16 7.18-16 16s7.18 16 16 16 16-7.18 16-16-7.18-16-16-16zm0 28c-6.63 0-12-5.37-12-12s5.37-12 12-12 12 5.37 12 12-5.37 12-12 12z" fill="currentColor" opacity="0.12"/>
+						<circle cx="24" cy="24" r="8" fill="currentColor" opacity="0.2"/>
+						<circle cx="24" cy="24" r="4" fill="currentColor" opacity="0.4"/>
+					</svg>
+				</div>
+				<h1 class="thoughts-title">随想</h1>
+				<p class="thoughts-subtitle">记录此刻的想法</p>
+			</div>
+
+			<div class="thoughts-input-wrapper">
+				<textarea
+					id="thought-content"
+					class="thoughts-textarea"
+					placeholder="写下你的想法..."
+					rows="8"
+				></textarea>
+				<div class="thoughts-actions">
+					<button id="save-btn" class="thoughts-save-btn">
+						<span>保存</span>
+						<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+							<path d="M8 3v10M3 8h10"/>
+						</svg>
+					</button>
+					<a href="/thoughts" class="thoughts-view-btn">查看</a>
+				</div>
+			</div>
+
+			<div id="message" class="thoughts-message"></div>
+
+			<div class="thoughts-hint">
+				<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5">
+					<rect x="2" y="2" width="10" height="10" rx="2"/>
+					<path d="M5 7h4"/>
+				</svg>
+				<span>按 Ctrl/Cmd + Enter 保存</span>
+			</div>
 		</div>
-		<div id="message" class="thoughts-message"></div>
 	</div>
 </ScaffoldLayout>
 
 <style>
-	.thoughts-input-container {
-		max-width: 48rem;
-		margin: 2rem auto;
-		padding: 1.5rem;
-		border-radius: var(--radius-card);
-		border: 1px solid color-mix(in srgb, var(--color-border) 88%, var(--color-accent-soft));
-		background: linear-gradient(
-			180deg,
-			color-mix(in srgb, var(--color-surface) 96%, var(--color-accent-soft) 4%),
-			color-mix(in srgb, var(--color-surface) 94%, var(--color-surface-2) 6%)
-		);
+	.thoughts-wrapper {
+		min-height: calc(100vh - 8rem);
+		padding: 3rem 1.5rem;
+		background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-surface-2) 100%);
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 
-	.thoughts-input-title {
+	.thoughts-container {
+		width: 100%;
+		max-width: 36rem;
+		position: relative;
+	}
+
+	.thoughts-header {
+		text-align: center;
+		margin-bottom: 2.5rem;
+	}
+
+	.thoughts-icon {
+		width: 80px;
+		height: 80px;
+		margin: 0 auto 1.5rem;
+		background: linear-gradient(135deg, var(--color-accent) 0%, color-mix(in srgb, var(--color-accent) 70%, #6366f1) 100%);
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: white;
+		animation: float 6s ease-in-out infinite;
+	}
+
+	@keyframes float {
+		0%, 100% {
+			transform: translateY(0);
+		}
+		50% {
+			transform: translateY(-12px);
+		}
+	}
+
+	.thoughts-title {
+		font-size: clamp(2rem, 5vw, 2.5rem);
+		font-weight: 700;
 		margin: 0 0 0.5rem 0;
-		font-size: clamp(2rem, 4vw, 2.5rem);
-		line-height: 1.1;
-		text-wrap: balance;
+		background: linear-gradient(135deg, var(--color-text) 0%, color-mix(in srgb, var(--color-text) 70%, var(--color-accent)) 100%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
 	}
 
-	.thoughts-input-subtitle {
-		margin: 0 0 1.5rem 0;
+	.thoughts-subtitle {
+		font-size: 1rem;
 		color: var(--color-muted);
-		font-size: 1.05rem;
+		margin: 0;
+		letter-spacing: 0.5px;
+	}
+
+	.thoughts-input-wrapper {
+		background: var(--color-surface);
+		border-radius: 24px;
+		padding: 2rem;
+		box-shadow:
+			0 4px 6px -1px rgba(0, 0, 0, 0.1),
+			0 2px 4px -1px rgba(0, 0, 0, 0.06),
+			0 0 0 1px color-mix(in srgb, var(--color-border) 50%, transparent);
+		backdrop-filter: blur(20px);
+		border: 1px solid color-mix(in srgb, var(--color-border) 30%, transparent);
 	}
 
 	.thoughts-textarea {
 		width: 100%;
-		min-height: 12rem;
-		padding: 1rem;
-		border-radius: var(--radius-chip);
-		border: 1px solid color-mix(in srgb, var(--color-border) 84%, var(--color-accent-soft));
-		background: var(--color-surface-2);
-		color: var(--color-text);
+		padding: 1.25rem;
 		font-size: 1rem;
-		line-height: 1.6;
+		line-height: 1.7;
+		color: var(--color-text);
+		background: var(--color-surface-2);
+		border: 2px solid transparent;
+		border-radius: 16px;
 		resize: vertical;
-		font-family: var(--font-default-sans);
-		transition:
-			border-color var(--motion-gentle),
-			box-shadow var(--motion-gentle);
-	}
-
-	.thoughts-textarea:focus {
+		min-height: 160px;
+		font-family: system-ui, -apple-system, sans-serif;
+		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 		outline: none;
-		border-color: color-mix(in srgb, var(--color-accent) 48%, var(--color-border));
-		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 12%, transparent);
 	}
 
 	.thoughts-textarea::placeholder {
 		color: var(--color-muted);
-		opacity: 0.7;
+		opacity: 0.6;
 	}
 
-	.thoughts-input-actions {
+	.thoughts-textarea:focus {
+		background: var(--color-surface);
+		border-color: var(--color-accent);
+		box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-accent) 15%, transparent);
+	}
+
+	.thoughts-actions {
 		display: flex;
-		gap: 0.75rem;
-		margin-top: 1rem;
-	}
-
-	.thoughts-save-btn,
-	.thoughts-view-btn {
-		border-radius: var(--radius-chip);
-		padding: 0.6rem 1.2rem;
-		font-size: 0.98rem;
-		font-weight: 500;
-		text-decoration: none;
-		cursor: pointer;
-		transition:
-			transform var(--motion-gentle),
-			background var(--motion-gentle),
-			color var(--motion-gentle),
-			box-shadow var(--motion-gentle);
+		gap: 1rem;
+		margin-top: 1.5rem;
+		align-items: center;
 	}
 
 	.thoughts-save-btn {
-		border: 1px solid color-mix(in srgb, var(--color-accent) 56%, var(--color-border));
-		background: color-mix(in srgb, var(--color-accent) 12%, var(--color-surface));
-		color: var(--color-accent);
+		flex: 1;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+		padding: 0.875rem 1.75rem;
+		font-size: 0.95rem;
+		font-weight: 600;
+		color: white;
+		background: linear-gradient(135deg, var(--color-accent) 0%, color-mix(in srgb, var(--color-accent) 70%, #6366f1) 100%);
+		border: none;
+		border-radius: 12px;
+		cursor: pointer;
+		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		box-shadow:
+			0 4px 6px -1px color-mix(in srgb, var(--color-accent) 40%, transparent),
+			0 2px 4px -1px color-mix(in srgb, var(--color-accent) 30%, transparent);
 	}
 
 	.thoughts-save-btn:hover {
-		transform: translateY(-1px);
-		background: color-mix(in srgb, var(--color-accent) 20%, var(--color-surface));
-		box-shadow: 0 0.3rem 0.6rem rgba(var(--color-shadow-rgb), 0.12);
+		transform: translateY(-2px);
+		box-shadow:
+			0 10px 15px -3px color-mix(in srgb, var(--color-accent) 40%, transparent),
+			0 4px 6px -2px color-mix(in srgb, var(--color-accent) 30%, transparent);
+	}
+
+	.thoughts-save-btn:active {
+		transform: translateY(0);
 	}
 
 	.thoughts-view-btn {
-		border: 1px solid color-mix(in srgb, var(--color-border) 84%, var(--color-accent-soft));
-		background: color-mix(in srgb, var(--color-surface) 92%, var(--color-accent-soft) 8%);
-		color: var(--color-muted);
+		padding: 0.875rem 1.5rem;
+		font-size: 0.95rem;
+		font-weight: 600;
+		color: var(--color-text);
+		background: var(--color-surface-2);
+		border: 1px solid color-mix(in srgb, var(--color-border) 40%, transparent);
+		border-radius: 12px;
+		text-decoration: none;
+		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 	}
 
 	.thoughts-view-btn:hover {
-		transform: translateY(-1px);
-		border-color: color-mix(in srgb, var(--color-accent) 48%, var(--color-border));
-		background: color-mix(in srgb, var(--color-surface) 84%, var(--color-accent-soft) 16%);
+		background: var(--color-surface);
+		border-color: var(--color-accent);
 		color: var(--color-accent);
 	}
 
 	.thoughts-message {
 		margin-top: 1rem;
-		min-height: 1.5rem;
-		font-size: 0.95rem;
+		padding: 1rem;
+		border-radius: 12px;
+		font-size: 0.9rem;
+		font-weight: 500;
 		opacity: 0;
-		transition: opacity var(--motion-gentle);
+		transform: translateY(10px);
+		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 	}
 
 	.thoughts-message.show {
 		opacity: 1;
+		transform: translateY(0);
 	}
 
 	.thoughts-message.success {
-		color: color-mix(in srgb, #10b981 85%, var(--color-surface));
+		background: color-mix(in srgb, #10b981 10%, var(--color-surface));
+		color: #10b981;
+		border: 1px solid color-mix(in srgb, #10b981 30%, transparent);
 	}
 
 	.thoughts-message.error {
-		color: color-mix(in srgb, #ef4444 85%, var(--color-surface));
+		background: color-mix(in srgb, #ef4444 10%, var(--color-surface));
+		color: #ef4444;
+		border: 1px solid color-mix(in srgb, #ef4444 30%, transparent);
+	}
+
+	.thoughts-hint {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+		margin-top: 1.5rem;
+		font-size: 0.85rem;
+		color: var(--color-muted);
+		opacity: 0.7;
+	}
+
+	.thoughts-hint svg {
+		flex-shrink: 0;
 	}
 </style>
 
@@ -157,13 +264,14 @@ import ScaffoldLayout from '~/layouts/ScaffoldLayout.astro';
 			messageEl.className = `thoughts-message show ${type}`;
 			setTimeout(() => {
 				messageEl.className = 'thoughts-message';
-			}, 2500);
+			}, 3000);
 		};
 
 		const saveThought = () => {
 			const content = textarea.value.trim();
 			if (!content) {
 				showMessage('请输入内容', 'error');
+				textarea.focus();
 				return;
 			}
 
@@ -185,7 +293,6 @@ import ScaffoldLayout from '~/layouts/ScaffoldLayout.astro';
 		};
 
 		saveBtn?.addEventListener('click', saveThought);
-
 		textarea?.addEventListener('keydown', (e) => {
 			if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
 				saveThought();
