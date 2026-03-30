@@ -6,54 +6,50 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 
 <BaseLayout
 	title={`Markdown / ${SiteTitle}`}
-	description="A standalone local-first markdown studio with source and WYSIWYG editing, media inserts, and export tools."
+	description="本地 Markdown 编辑、预览与导出页。"
 	rootClass="markdown-root"
 	bodyClass="markdown-body"
 >
 	<main class="markdown-app">
 		<div class="markdown-app__chrome">
-			<p class="markdown-app__portal">Markdown Studio</p>
-			<p class="markdown-app__hint">Source, visual mode, mixed media, export ready.</p>
+			<p class="markdown-app__portal">Markdown</p>
+			<p class="markdown-app__hint">本地编辑与导出</p>
 		</div>
 
 		<section class="markdown-stage">
 			<header class="markdown-hero">
 				<div class="markdown-hero__copy">
-					<p class="markdown-eyebrow">Standalone Writing Workbench</p>
+					<p class="markdown-eyebrow">Markdown 写作</p>
 					<h1 class="markdown-title">/markdown</h1>
-					<p class="markdown-intro">
-						这是一个本地写作工作台。你可以用源码模式写 Markdown，也可以切到可视化模式直接编辑。
-						图片、视频、音频和其他附件会进入旁边的素材架，最后一键导出为纯
-						<code>.md</code> 或带 <code>assets/</code> 的 <code>.zip</code>。
-					</p>
+					<p class="markdown-intro">写完后可直接导出为 <code>.md</code> 或带素材的 <code>.zip</code>。</p>
 				</div>
 
 				<div class="markdown-actions">
 					<button class="markdown-button markdown-button--primary" type="button" id="export-md">
-						Export .md
+						导出 .md
 					</button>
-					<button class="markdown-button" type="button" id="export-zip">Export .zip</button>
-					<label class="markdown-button markdown-button--ghost" for="load-md">Load .md</label>
+					<button class="markdown-button" type="button" id="export-zip">导出 .zip</button>
+					<label class="markdown-button markdown-button--ghost" for="load-md">导入 .md</label>
 					<input id="load-md" type="file" accept=".md,.markdown,text/markdown,text/plain" hidden />
 				</div>
 			</header>
 
 			<section class="markdown-dashboard">
 				<div class="markdown-stat">
-					<span>Mode</span>
-					<strong id="editor-mode">wysiwyg</strong>
+					<span>模式</span>
+					<strong id="editor-mode">可视</strong>
 				</div>
 				<div class="markdown-stat">
-					<span>Words</span>
+					<span>字数</span>
 					<strong id="stat-words">0</strong>
 				</div>
 				<div class="markdown-stat">
-					<span>Assets</span>
+					<span>素材</span>
 					<strong id="stat-assets">0</strong>
 				</div>
 				<div class="markdown-stat">
-					<span>Status</span>
-					<strong id="save-status">Local draft</strong>
+					<span>状态</span>
+					<strong id="save-status">本地草稿</strong>
 				</div>
 			</section>
 
@@ -61,18 +57,18 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 				<section class="markdown-editor-panel">
 					<div class="markdown-editor-panel__head">
 						<div>
-							<p class="markdown-eyebrow">Editor</p>
-							<h2 class="markdown-panel-title">Write, switch, export</h2>
+							<p class="markdown-eyebrow">编辑</p>
+							<h2 class="markdown-panel-title">编写与导出</h2>
 						</div>
 						<div class="markdown-mode-switches">
 							<button class="markdown-button markdown-button--tiny" type="button" id="mode-markdown">
-								Code
+								源码
 							</button>
 							<button class="markdown-button markdown-button--tiny" type="button" id="mode-wysiwyg">
-								Visual
+								可视
 							</button>
 							<button class="markdown-button markdown-button--tiny markdown-button--ghost" type="button" id="render-markdown">
-								Render MD
+								渲染 Markdown
 							</button>
 						</div>
 					</div>
@@ -82,12 +78,12 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 					<section class="markdown-render-panel">
 						<div class="markdown-panel__head">
 							<div>
-								<p class="markdown-eyebrow">View</p>
-								<h2 class="markdown-panel-title">Mixed layout preview</h2>
+								<p class="markdown-eyebrow">预览</p>
+								<h2 class="markdown-panel-title">混排预览</h2>
 							</div>
 							<div class="markdown-editor-panel__notes">
-								<span>Text + media</span>
-								<span>Live rendered</span>
+								<span>文字 + 媒体</span>
+								<span>实时渲染</span>
 							</div>
 						</div>
 
@@ -101,43 +97,43 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 					<section class="markdown-panel">
 						<div class="markdown-panel__head">
 							<div>
-								<p class="markdown-eyebrow">Blocks</p>
-								<h2 class="markdown-panel-title">Quick inserts</h2>
+								<p class="markdown-eyebrow">常用块</p>
+								<h2 class="markdown-panel-title">快速插入</h2>
 							</div>
 						</div>
 
 						<div class="markdown-template-grid">
 							<button class="markdown-template" type="button" data-insert-snippet="heading">
-								<strong>Heading</strong>
-								<span>Section title + lead</span>
+								<strong>标题</strong>
+								<span>分节标题与导语</span>
 							</button>
 							<button class="markdown-template" type="button" data-insert-snippet="quote">
-								<strong>Quote</strong>
-								<span>Blockquote with spacing</span>
+								<strong>引用</strong>
+								<span>引用段落</span>
 							</button>
 							<button class="markdown-template" type="button" data-insert-snippet="code">
-								<strong>Code</strong>
-								<span>Fenced code block</span>
+								<strong>代码</strong>
+								<span>代码块</span>
 							</button>
 							<button class="markdown-template" type="button" data-insert-snippet="callout">
-								<strong>Callout</strong>
-								<span>Highlighted note block</span>
+								<strong>提示块</strong>
+								<span>高亮说明块</span>
 							</button>
 							<button class="markdown-template" type="button" data-insert-snippet="details">
-								<strong>Details</strong>
-								<span>Foldable HTML section</span>
+								<strong>折叠块</strong>
+								<span>可折叠区块</span>
 							</button>
 							<button class="markdown-template" type="button" data-insert-snippet="media-grid">
-								<strong>Media Grid</strong>
-								<span>Two-up image layout</span>
+								<strong>媒体宫格</strong>
+								<span>双栏图片布局</span>
 							</button>
 							<button class="markdown-template" type="button" data-insert-snippet="video">
-								<strong>Video</strong>
-								<span>Embedded video tag</span>
+								<strong>视频</strong>
+								<span>插入视频标签</span>
 							</button>
 							<button class="markdown-template" type="button" data-insert-snippet="audio">
-								<strong>Audio</strong>
-								<span>Embedded audio tag</span>
+								<strong>音频</strong>
+								<span>插入音频标签</span>
 							</button>
 						</div>
 					</section>
@@ -145,43 +141,43 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 					<section class="markdown-panel">
 						<div class="markdown-panel__head">
 							<div>
-								<p class="markdown-eyebrow">Frontmatter</p>
-								<h2 class="markdown-panel-title">Export metadata</h2>
+								<p class="markdown-eyebrow">元数据</p>
+								<h2 class="markdown-panel-title">导出信息</h2>
 							</div>
-							<span class="markdown-chip" id="slug-preview">untitled-note</span>
+							<span class="markdown-chip" id="slug-preview">未命名</span>
 						</div>
 
 						<div class="markdown-fields">
 							<label class="markdown-field">
-								<span>Title</span>
+								<span>标题</span>
 								<input class="markdown-input" id="meta-title" type="text" placeholder="文章标题" />
 							</label>
 							<label class="markdown-field">
-								<span>Slug</span>
-								<input class="markdown-input" id="meta-slug" type="text" placeholder="auto-generated-slug" />
+								<span>链接名</span>
+								<input class="markdown-input" id="meta-slug" type="text" placeholder="自动生成的链接名" />
 							</label>
 							<label class="markdown-field">
-								<span>Description</span>
+								<span>摘要</span>
 								<textarea
 									class="markdown-input markdown-input--textarea"
 									id="meta-description"
 									rows="3"
-									placeholder="导出 frontmatter description"
+									placeholder="导出的 frontmatter 摘要"
 								></textarea>
 							</label>
 							<div class="markdown-fields__row">
 								<label class="markdown-field">
-									<span>Date</span>
+									<span>日期</span>
 									<input class="markdown-input" id="meta-date" type="datetime-local" />
 								</label>
 								<label class="markdown-field markdown-field--check">
 									<input id="meta-draft" type="checkbox" />
-									<span>Draft</span>
+									<span>草稿</span>
 								</label>
 							</div>
 							<label class="markdown-field">
-								<span>Tags</span>
-								<input class="markdown-input" id="meta-tags" type="text" placeholder="coffee, review, note" />
+								<span>标签</span>
+								<input class="markdown-input" id="meta-tags" type="text" placeholder="咖啡, 回顾, 随记" />
 							</label>
 						</div>
 					</section>
@@ -189,10 +185,10 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 					<section class="markdown-panel">
 						<div class="markdown-panel__head">
 							<div>
-								<p class="markdown-eyebrow">Assets</p>
-								<h2 class="markdown-panel-title">Media shelf</h2>
+								<p class="markdown-eyebrow">素材</p>
+								<h2 class="markdown-panel-title">素材架</h2>
 							</div>
-							<label class="markdown-button markdown-button--ghost" for="asset-input">Add files</label>
+							<label class="markdown-button markdown-button--ghost" for="asset-input">添加文件</label>
 						</div>
 
 						<input
@@ -215,8 +211,8 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 					<section class="markdown-panel">
 						<div class="markdown-panel__head">
 							<div>
-								<p class="markdown-eyebrow">Output</p>
-								<h2 class="markdown-panel-title">Export preview</h2>
+								<p class="markdown-eyebrow">输出</p>
+								<h2 class="markdown-panel-title">导出预览</h2>
 							</div>
 						</div>
 						<pre class="markdown-output" id="output-preview">---</pre>
@@ -267,15 +263,15 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 		let hasManualSlug = false;
 		let assetCache = [];
 		const snippetLibrary = {
-			heading: '## New section\n\nWrite a short lead-in here.\n',
-			quote: '> Pull one line out and let it breathe a little.\n',
-			code: '```ts\nconsole.log("hello from markdown studio");\n```\n',
+			heading: '## 新的小节\n\n在这里写一段导语。\n',
+			quote: '> 摘一句重点，让它单独呼吸一下。\n',
+			code: '```ts\nconsole.log("hello from markdown");\n```\n',
 			callout:
-				'> [!NOTE]\n> Add a short highlight, warning, or context block here.\n',
+				'> [!NOTE]\n> 在这里补一段提示、警告或上下文说明。\n',
 			details:
-				'<details>\n<summary>Expand notes</summary>\n\nAdd the hidden details here.\n\n</details>\n',
+				'<details>\n<summary>展开更多</summary>\n\n把折叠内容写在这里。\n\n</details>\n',
 			'media-grid':
-				'<div class="media-grid">\n  <figure>\n    <img src="./assets/example-image-1.jpg" alt="Describe image one." />\n    <figcaption>Caption one.</figcaption>\n  </figure>\n  <figure>\n    <img src="./assets/example-image-2.jpg" alt="Describe image two." />\n    <figcaption>Caption two.</figcaption>\n  </figure>\n</div>\n',
+				'<div class="media-grid">\n  <figure>\n    <img src="./assets/example-image-1.jpg" alt="描述第一张图片。" />\n    <figcaption>第一条说明。</figcaption>\n  </figure>\n  <figure>\n    <img src="./assets/example-image-2.jpg" alt="描述第二张图片。" />\n    <figcaption>第二条说明。</figcaption>\n  </figure>\n</div>\n',
 			video: '<video controls src="./assets/example-video.mp4"></video>\n',
 			audio: '<audio controls src="./assets/example-audio.mp3"></audio>\n'
 		};
@@ -399,12 +395,12 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 
 		function saveDraft() {
 			localStorage.setItem(DRAFT_KEY, JSON.stringify(getDraftPayload()));
-			setSaveStatus('Saved locally');
+			setSaveStatus('已保存到本地');
 			updatePreview();
 		}
 
 		function scheduleSave() {
-			setSaveStatus('Editing…');
+			setSaveStatus('编辑中…');
 			window.clearTimeout(autosaveTimer);
 			autosaveTimer = window.setTimeout(saveDraft, 280);
 		}
@@ -555,7 +551,7 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 				article.className = 'markdown-asset';
 				const preview = asset.type.startsWith('image/')
 					? `<img class="markdown-asset__thumb" src="${asset.previewUrl}" alt="${asset.alt}" />`
-					: `<div class="markdown-asset__icon">${asset.type.startsWith('video/') ? 'Video' : asset.type.startsWith('audio/') ? 'Audio' : 'File'}</div>`;
+					: `<div class="markdown-asset__icon">${asset.type.startsWith('video/') ? '视频' : asset.type.startsWith('audio/') ? '音频' : '文件'}</div>`;
 				article.innerHTML = `
 					${preview}
 					<div class="markdown-asset__copy">
@@ -692,7 +688,7 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 		function updateStats() {
 			const markdown = editor.getMarkdown();
 			wordsLabel.textContent = String(getWordCount(markdown));
-			modeLabel.textContent = editor.isMarkdownMode?.() ? 'markdown' : 'wysiwyg';
+			modeLabel.textContent = editor.isMarkdownMode?.() ? '源码' : '可视';
 			updatePreview();
 			renderMixedView();
 			syncModeButtons();
@@ -773,7 +769,7 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 			updateStats();
 
 			if (stored?.savedAt) {
-				setSaveStatus(`Recovered draft from ${new Intl.DateTimeFormat('zh-CN', {
+				setSaveStatus(`已恢复本地草稿：${new Intl.DateTimeFormat('zh-CN', {
 					dateStyle: 'medium',
 					timeStyle: 'short',
 				}).format(new Date(stored.savedAt))}`);
@@ -825,11 +821,11 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 			const selected = editor.getSelectedText().trim();
 			if (selected) {
 				replaceSelectionWithMarkdown(selected);
-				setSaveStatus('Rendered selected markdown');
+				setSaveStatus('已渲染选中的 Markdown');
 				return;
 			}
 			rerenderDocument();
-			setSaveStatus('Re-rendered current document');
+			setSaveStatus('已重新渲染全文');
 		});
 
 		snippetButtons.forEach((button) => {
@@ -855,7 +851,7 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 
 			event.preventDefault();
 			replaceSelectionWithMarkdown(pastedText);
-			setSaveStatus('Pasted markdown rendered');
+			setSaveStatus('已将粘贴内容渲染为 Markdown');
 		});
 
 		exportZipButton.addEventListener('click', exportZip);
