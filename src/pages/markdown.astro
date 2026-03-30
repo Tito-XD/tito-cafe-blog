@@ -1,0 +1,1420 @@
+---
+import { SiteTitle } from '~/config';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import '@toast-ui/editor/dist/toastui-editor.css';
+---
+
+<BaseLayout
+	title={`Markdown / ${SiteTitle}`}
+	description="A standalone local-first markdown studio with source and WYSIWYG editing, media inserts, and export tools."
+	rootClass="markdown-root"
+	bodyClass="markdown-body"
+>
+	<main class="markdown-app">
+		<div class="markdown-app__chrome">
+			<p class="markdown-app__portal">Markdown Studio</p>
+			<p class="markdown-app__hint">Source, visual mode, mixed media, export ready.</p>
+		</div>
+
+		<section class="markdown-stage">
+			<header class="markdown-hero">
+				<div class="markdown-hero__copy">
+					<p class="markdown-eyebrow">Standalone Writing Workbench</p>
+					<h1 class="markdown-title">/markdown</h1>
+					<p class="markdown-intro">
+						这是一个本地写作工作台。你可以用源码模式写 Markdown，也可以切到可视化模式直接编辑。
+						图片、视频、音频和其他附件会进入旁边的素材架，最后一键导出为纯
+						<code>.md</code> 或带 <code>assets/</code> 的 <code>.zip</code>。
+					</p>
+				</div>
+
+				<div class="markdown-actions">
+					<button class="markdown-button markdown-button--primary" type="button" id="export-md">
+						Export .md
+					</button>
+					<button class="markdown-button" type="button" id="export-zip">Export .zip</button>
+					<label class="markdown-button markdown-button--ghost" for="load-md">Load .md</label>
+					<input id="load-md" type="file" accept=".md,.markdown,text/markdown,text/plain" hidden />
+				</div>
+			</header>
+
+			<section class="markdown-dashboard">
+				<div class="markdown-stat">
+					<span>Mode</span>
+					<strong id="editor-mode">wysiwyg</strong>
+				</div>
+				<div class="markdown-stat">
+					<span>Words</span>
+					<strong id="stat-words">0</strong>
+				</div>
+				<div class="markdown-stat">
+					<span>Assets</span>
+					<strong id="stat-assets">0</strong>
+				</div>
+				<div class="markdown-stat">
+					<span>Status</span>
+					<strong id="save-status">Local draft</strong>
+				</div>
+			</section>
+
+			<div class="markdown-grid">
+				<section class="markdown-editor-panel">
+					<div class="markdown-editor-panel__head">
+						<div>
+							<p class="markdown-eyebrow">Editor</p>
+							<h2 class="markdown-panel-title">Write, switch, export</h2>
+						</div>
+						<div class="markdown-mode-switches">
+							<button class="markdown-button markdown-button--tiny" type="button" id="mode-markdown">
+								Code
+							</button>
+							<button class="markdown-button markdown-button--tiny" type="button" id="mode-wysiwyg">
+								Visual
+							</button>
+						</div>
+					</div>
+
+					<div class="markdown-editor" id="markdown-editor"></div>
+
+					<section class="markdown-render-panel">
+						<div class="markdown-panel__head">
+							<div>
+								<p class="markdown-eyebrow">View</p>
+								<h2 class="markdown-panel-title">Mixed layout preview</h2>
+							</div>
+							<div class="markdown-editor-panel__notes">
+								<span>Text + media</span>
+								<span>Live rendered</span>
+							</div>
+						</div>
+
+						<div class="markdown-rendered" id="rendered-view">
+							<p class="markdown-empty">这里会显示实时渲染后的排版效果。</p>
+						</div>
+					</section>
+				</section>
+
+				<aside class="markdown-side">
+					<section class="markdown-panel">
+						<div class="markdown-panel__head">
+							<div>
+								<p class="markdown-eyebrow">Blocks</p>
+								<h2 class="markdown-panel-title">Quick inserts</h2>
+							</div>
+						</div>
+
+						<div class="markdown-template-grid">
+							<button class="markdown-template" type="button" data-insert-snippet="heading">
+								<strong>Heading</strong>
+								<span>Section title + lead</span>
+							</button>
+							<button class="markdown-template" type="button" data-insert-snippet="quote">
+								<strong>Quote</strong>
+								<span>Blockquote with spacing</span>
+							</button>
+							<button class="markdown-template" type="button" data-insert-snippet="code">
+								<strong>Code</strong>
+								<span>Fenced code block</span>
+							</button>
+							<button class="markdown-template" type="button" data-insert-snippet="callout">
+								<strong>Callout</strong>
+								<span>Highlighted note block</span>
+							</button>
+							<button class="markdown-template" type="button" data-insert-snippet="details">
+								<strong>Details</strong>
+								<span>Foldable HTML section</span>
+							</button>
+							<button class="markdown-template" type="button" data-insert-snippet="media-grid">
+								<strong>Media Grid</strong>
+								<span>Two-up image layout</span>
+							</button>
+							<button class="markdown-template" type="button" data-insert-snippet="video">
+								<strong>Video</strong>
+								<span>Embedded video tag</span>
+							</button>
+							<button class="markdown-template" type="button" data-insert-snippet="audio">
+								<strong>Audio</strong>
+								<span>Embedded audio tag</span>
+							</button>
+						</div>
+					</section>
+
+					<section class="markdown-panel">
+						<div class="markdown-panel__head">
+							<div>
+								<p class="markdown-eyebrow">Frontmatter</p>
+								<h2 class="markdown-panel-title">Export metadata</h2>
+							</div>
+							<span class="markdown-chip" id="slug-preview">untitled-note</span>
+						</div>
+
+						<div class="markdown-fields">
+							<label class="markdown-field">
+								<span>Title</span>
+								<input class="markdown-input" id="meta-title" type="text" placeholder="文章标题" />
+							</label>
+							<label class="markdown-field">
+								<span>Slug</span>
+								<input class="markdown-input" id="meta-slug" type="text" placeholder="auto-generated-slug" />
+							</label>
+							<label class="markdown-field">
+								<span>Description</span>
+								<textarea
+									class="markdown-input markdown-input--textarea"
+									id="meta-description"
+									rows="3"
+									placeholder="导出 frontmatter description"
+								></textarea>
+							</label>
+							<div class="markdown-fields__row">
+								<label class="markdown-field">
+									<span>Date</span>
+									<input class="markdown-input" id="meta-date" type="datetime-local" />
+								</label>
+								<label class="markdown-field markdown-field--check">
+									<input id="meta-draft" type="checkbox" />
+									<span>Draft</span>
+								</label>
+							</div>
+							<label class="markdown-field">
+								<span>Tags</span>
+								<input class="markdown-input" id="meta-tags" type="text" placeholder="coffee, review, note" />
+							</label>
+						</div>
+					</section>
+
+					<section class="markdown-panel">
+						<div class="markdown-panel__head">
+							<div>
+								<p class="markdown-eyebrow">Assets</p>
+								<h2 class="markdown-panel-title">Media shelf</h2>
+							</div>
+							<label class="markdown-button markdown-button--ghost" for="asset-input">Add files</label>
+						</div>
+
+						<input
+							id="asset-input"
+							type="file"
+							multiple
+							accept="image/*,video/*,audio/*,.pdf,.svg,.webp,.png,.jpg,.jpeg,.gif,.mp4,.mp3,.wav,.m4a,.mov"
+							hidden
+						/>
+
+						<p class="markdown-panel__hint">
+							图片会自动插入成 Markdown 图片语法，视频和音频会插入成 HTML 标签，其他文件会插入成相对路径链接。
+						</p>
+
+						<div class="markdown-assets" id="asset-list">
+							<p class="markdown-empty">还没有素材。把图、视频或附件放进来之后，可以直接插入正文并随 zip 一起导出。</p>
+						</div>
+					</section>
+
+					<section class="markdown-panel">
+						<div class="markdown-panel__head">
+							<div>
+								<p class="markdown-eyebrow">Output</p>
+								<h2 class="markdown-panel-title">Export preview</h2>
+							</div>
+						</div>
+						<pre class="markdown-output" id="output-preview">---</pre>
+					</section>
+				</aside>
+			</div>
+		</section>
+	</main>
+
+	<script>
+		// @ts-nocheck
+		import { Editor } from '@toast-ui/editor';
+		import JSZip from 'jszip';
+
+		const DRAFT_KEY = 'tito-cafe-markdown-studio.v1';
+		const DB_NAME = 'tito-cafe-markdown-studio';
+		const STORE_NAME = 'assets';
+
+		const mount = document.querySelector('#markdown-editor');
+		const modeLabel = document.querySelector('#editor-mode');
+		const wordsLabel = document.querySelector('#stat-words');
+		const assetsLabel = document.querySelector('#stat-assets');
+		const saveStatus = document.querySelector('#save-status');
+		const exportMdButton = document.querySelector('#export-md');
+		const exportZipButton = document.querySelector('#export-zip');
+		const loadMdInput = document.querySelector('#load-md');
+		const assetInput = document.querySelector('#asset-input');
+		const assetList = document.querySelector('#asset-list');
+		const outputPreview = document.querySelector('#output-preview');
+		const slugPreview = document.querySelector('#slug-preview');
+		const renderedView = document.querySelector('#rendered-view');
+		const modeMarkdownButton = document.querySelector('#mode-markdown');
+		const modeWysiwygButton = document.querySelector('#mode-wysiwyg');
+		const snippetButtons = [...document.querySelectorAll('[data-insert-snippet]')];
+
+		const fields = {
+			title: document.querySelector('#meta-title'),
+			slug: document.querySelector('#meta-slug'),
+			description: document.querySelector('#meta-description'),
+			date: document.querySelector('#meta-date'),
+			tags: document.querySelector('#meta-tags'),
+			draft: document.querySelector('#meta-draft'),
+		};
+
+		let editor;
+		let autosaveTimer = null;
+		let hasManualSlug = false;
+		let assetCache = [];
+		const snippetLibrary = {
+			heading: '## New section\n\nWrite a short lead-in here.\n',
+			quote: '> Pull one line out and let it breathe a little.\n',
+			code: '```ts\nconsole.log("hello from markdown studio");\n```\n',
+			callout:
+				'> [!NOTE]\n> Add a short highlight, warning, or context block here.\n',
+			details:
+				'<details>\n<summary>Expand notes</summary>\n\nAdd the hidden details here.\n\n</details>\n',
+			'media-grid':
+				'<div class="media-grid">\n  <figure>\n    <img src="./assets/example-image-1.jpg" alt="Describe image one." />\n    <figcaption>Caption one.</figcaption>\n  </figure>\n  <figure>\n    <img src="./assets/example-image-2.jpg" alt="Describe image two." />\n    <figcaption>Caption two.</figcaption>\n  </figure>\n</div>\n',
+			video: '<video controls src="./assets/example-video.mp4"></video>\n',
+			audio: '<audio controls src="./assets/example-audio.mp3"></audio>\n'
+		};
+
+		function slugify(value) {
+			return String(value ?? '')
+				.toLocaleLowerCase()
+				.trim()
+				.replace(/['"]/g, '')
+				.replace(/[^a-z0-9\u4e00-\u9fff]+/g, '-')
+				.replace(/^-+|-+$/g, '') || 'untitled-note';
+		}
+
+		function parseTags(value) {
+			return [...new Set(String(value ?? '')
+				.split(',')
+				.map((item) => item.trim())
+				.filter(Boolean))];
+		}
+
+		function escapeYaml(value) {
+			return String(value ?? '').replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+		}
+
+		function formatDateForInput(iso) {
+			const date = iso ? new Date(iso) : new Date();
+			const pad = (value) => String(value).padStart(2, '0');
+			return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(
+				date.getHours(),
+			)}:${pad(date.getMinutes())}`;
+		}
+
+		function inputToIso(value) {
+			if (!value) return new Date().toISOString();
+			return new Date(value).toISOString();
+		}
+
+		function buildFrontmatter() {
+			const tags = parseTags(fields.tags.value);
+			const lines = ['---'];
+			if (fields.title.value.trim()) lines.push(`title: "${escapeYaml(fields.title.value.trim())}"`);
+			lines.push(`slug: "${escapeYaml(fields.slug.value.trim() || slugify(fields.title.value))}"`);
+			if (fields.description.value.trim()) {
+				lines.push(`description: "${escapeYaml(fields.description.value.trim())}"`);
+			}
+			lines.push(`date: ${inputToIso(fields.date.value)}`);
+			if (tags.length) {
+				lines.push('tags:');
+				tags.forEach((tag) => lines.push(`  - "${escapeYaml(tag)}"`));
+			}
+			if (fields.draft.checked) lines.push('draft: true');
+			lines.push('---');
+			return lines.join('\n');
+		}
+
+		function buildMarkdownDocument() {
+			const frontmatter = buildFrontmatter();
+			const content = editor.getMarkdown().trim();
+			return `${frontmatter}\n\n${content}\n`;
+		}
+
+		function updatePreview() {
+			const output = buildMarkdownDocument();
+			outputPreview.textContent = output.slice(0, 1400) + (output.length > 1400 ? '\n…' : '');
+			slugPreview.textContent = `${fields.slug.value.trim() || slugify(fields.title.value)}.md`;
+		}
+
+		function renderMixedView() {
+			const html = editor.getHTML().trim();
+			renderedView.innerHTML = html || '<p class="markdown-empty">这里会显示实时渲染后的排版效果。</p>';
+		}
+
+		function getWordCount(markdown) {
+			const plain = markdown
+				.replace(/```[\s\S]*?```/g, ' ')
+				.replace(/`[^`]+`/g, ' ')
+				.replace(/!\[[^\]]*\]\([^)]+\)/g, ' ')
+				.replace(/\[[^\]]+\]\([^)]+\)/g, ' ')
+				.replace(/[#>*_\-\[\]()]/g, ' ')
+				.trim();
+			return plain ? plain.split(/\s+/u).length : 0;
+		}
+
+		function setSaveStatus(label) {
+			saveStatus.textContent = label;
+		}
+
+		function downloadBlob(blob, filename) {
+			const href = URL.createObjectURL(blob);
+			const anchor = document.createElement('a');
+			anchor.href = href;
+			anchor.download = filename;
+			anchor.click();
+			URL.revokeObjectURL(href);
+		}
+
+		function getDraftPayload() {
+			return {
+				meta: {
+					title: fields.title.value,
+					slug: fields.slug.value,
+					description: fields.description.value,
+					date: fields.date.value,
+					tags: fields.tags.value,
+					draft: fields.draft.checked,
+					hasManualSlug,
+				},
+				content: editor.getMarkdown(),
+				mode: editor?.isMarkdownMode?.() ? 'markdown' : 'wysiwyg',
+				savedAt: new Date().toISOString(),
+			};
+		}
+
+		function saveDraft() {
+			localStorage.setItem(DRAFT_KEY, JSON.stringify(getDraftPayload()));
+			setSaveStatus('Saved locally');
+			updatePreview();
+		}
+
+		function scheduleSave() {
+			setSaveStatus('Editing…');
+			window.clearTimeout(autosaveTimer);
+			autosaveTimer = window.setTimeout(saveDraft, 280);
+		}
+
+		function restoreDraft() {
+			try {
+				const raw = localStorage.getItem(DRAFT_KEY);
+				if (!raw) return null;
+				return JSON.parse(raw);
+			} catch {
+				return null;
+			}
+		}
+
+		function openDb() {
+			return new Promise((resolve, reject) => {
+				const request = indexedDB.open(DB_NAME, 1);
+				request.onupgradeneeded = () => {
+					const db = request.result;
+					if (!db.objectStoreNames.contains(STORE_NAME)) {
+						db.createObjectStore(STORE_NAME, { keyPath: 'id' });
+					}
+				};
+				request.onsuccess = () => resolve(request.result);
+				request.onerror = () => reject(request.error);
+			});
+		}
+
+		async function readAssets() {
+			const db = await openDb();
+			return new Promise((resolve, reject) => {
+				const transaction = db.transaction(STORE_NAME, 'readonly');
+				const store = transaction.objectStore(STORE_NAME);
+				const request = store.getAll();
+				request.onsuccess = () => resolve(request.result ?? []);
+				request.onerror = () => reject(request.error);
+			});
+		}
+
+		async function writeAsset(asset) {
+			const db = await openDb();
+			return new Promise((resolve, reject) => {
+				const transaction = db.transaction(STORE_NAME, 'readwrite');
+				transaction.objectStore(STORE_NAME).put(asset);
+				transaction.oncomplete = () => resolve(asset);
+				transaction.onerror = () => reject(transaction.error);
+			});
+		}
+
+		async function deleteAsset(assetId) {
+			const db = await openDb();
+			return new Promise((resolve, reject) => {
+				const transaction = db.transaction(STORE_NAME, 'readwrite');
+				transaction.objectStore(STORE_NAME).delete(assetId);
+				transaction.oncomplete = () => resolve();
+				transaction.onerror = () => reject(transaction.error);
+			});
+		}
+
+		function sanitizeFilename(name) {
+			const extMatch = /\.([a-zA-Z0-9]+)$/.exec(name);
+			const ext = extMatch ? `.${extMatch[1].toLowerCase()}` : '';
+			const base = name
+				.replace(ext, '')
+				.toLocaleLowerCase()
+				.replace(/[^a-z0-9\u4e00-\u9fff]+/g, '-')
+				.replace(/^-+|-+$/g, '') || 'asset';
+			return `${base}${ext}`;
+		}
+
+		function ensureUniqueFilename(name) {
+			const taken = new Set(assetCache.map((item) => item.fileName));
+			if (!taken.has(name)) return name;
+			const extIndex = name.lastIndexOf('.');
+			const ext = extIndex >= 0 ? name.slice(extIndex) : '';
+			const base = extIndex >= 0 ? name.slice(0, extIndex) : name;
+			let index = 2;
+			let next = `${base}-${index}${ext}`;
+			while (taken.has(next)) {
+				index += 1;
+				next = `${base}-${index}${ext}`;
+			}
+			return next;
+		}
+
+		function snippetForAsset(asset) {
+			const src = `./assets/${asset.fileName}`;
+			if (asset.type.startsWith('image/')) {
+				return `![${asset.alt || asset.fileName}](${src})`;
+			}
+			if (asset.type.startsWith('video/')) {
+				return `<video controls src="${src}"></video>`;
+			}
+			if (asset.type.startsWith('audio/')) {
+				return `<audio controls src="${src}"></audio>`;
+			}
+			return `[${asset.fileName}](${src})`;
+		}
+
+		function insertSnippet(snippet) {
+			editor.insertText(`${snippet}\n`);
+			scheduleSave();
+		}
+
+		function syncModeButtons() {
+			const isMarkdown = editor.isMarkdownMode?.() ?? false;
+			modeMarkdownButton.dataset.current = String(isMarkdown);
+			modeWysiwygButton.dataset.current = String(!isMarkdown);
+		}
+
+		function renderAssets() {
+			assetsLabel.textContent = String(assetCache.length);
+			assetList.innerHTML = '';
+
+			if (!assetCache.length) {
+				assetList.innerHTML =
+					'<p class="markdown-empty">还没有素材。把图、视频或附件放进来之后，可以直接插入正文并随 zip 一起导出。</p>';
+				return;
+			}
+
+			for (const asset of assetCache) {
+				const article = document.createElement('article');
+				article.className = 'markdown-asset';
+				const preview = asset.type.startsWith('image/')
+					? `<img class="markdown-asset__thumb" src="${asset.previewUrl}" alt="${asset.alt}" />`
+					: `<div class="markdown-asset__icon">${asset.type.startsWith('video/') ? 'Video' : asset.type.startsWith('audio/') ? 'Audio' : 'File'}</div>`;
+				article.innerHTML = `
+					${preview}
+					<div class="markdown-asset__copy">
+						<strong>${asset.fileName}</strong>
+						<p>${Math.round(asset.size / 1024)} KB · ${asset.type || 'application/octet-stream'}</p>
+					</div>
+					<div class="markdown-asset__actions">
+						<button type="button" data-action="insert">Insert</button>
+						<button type="button" data-action="remove">Remove</button>
+					</div>
+				`;
+
+				article.addEventListener('click', async (event) => {
+					const button = event.target.closest('button[data-action]');
+					if (!button) return;
+					const action = button.dataset.action;
+					if (action === 'insert') {
+						insertSnippet(snippetForAsset(asset));
+						return;
+					}
+					if (action === 'remove') {
+						if (!window.confirm(`Remove ${asset.fileName} from the media shelf?`)) return;
+						await deleteAsset(asset.id);
+						if (asset.previewUrl) URL.revokeObjectURL(asset.previewUrl);
+						assetCache = await hydrateAssets();
+						renderAssets();
+					}
+				});
+
+				assetList.append(article);
+			}
+		}
+
+		async function hydrateAssets() {
+			const items = await readAssets();
+			return items.map((asset) => ({
+				...asset,
+				previewUrl: asset.type.startsWith('image/') ? URL.createObjectURL(asset.blob) : '',
+			}));
+		}
+
+		async function addFiles(fileList, { insert = false } = {}) {
+			const files = [...fileList];
+			const addedAssets = [];
+			for (const file of files) {
+				const fileName = ensureUniqueFilename(sanitizeFilename(file.name));
+				const asset = {
+					id: crypto.randomUUID?.() || `${Date.now()}-${Math.random().toString(16).slice(2, 8)}`,
+					fileName,
+					alt: file.name.replace(/\.[^.]+$/, ''),
+					type: file.type || 'application/octet-stream',
+					size: file.size,
+					blob: file,
+				};
+				await writeAsset(asset);
+				addedAssets.push(asset);
+			}
+			assetCache = await hydrateAssets();
+			renderAssets();
+			if (insert) {
+				addedAssets.forEach((asset) => insertSnippet(snippetForAsset(asset)));
+			}
+			scheduleSave();
+			return addedAssets;
+		}
+
+		function stripFrontmatter(raw) {
+			if (!raw.startsWith('---')) return { content: raw, meta: null };
+			const match = raw.match(/^---\n([\s\S]*?)\n---\n?/);
+			if (!match) return { content: raw, meta: null };
+			return { content: raw.slice(match[0].length), meta: match[1] };
+		}
+
+		function parseFrontmatterBlock(block) {
+			if (!block) return null;
+			const result = { tags: [] };
+			let currentArray = null;
+			block.split('\n').forEach((line) => {
+				if (/^\s*-\s+/.test(line) && currentArray === 'tags') {
+					result.tags.push(line.replace(/^\s*-\s+/, '').replace(/^"|"$/g, ''));
+					return;
+				}
+				currentArray = null;
+				const [key, ...rest] = line.split(':');
+				if (!key || !rest.length) return;
+				const value = rest.join(':').trim().replace(/^"|"$/g, '');
+				if (key.trim() === 'tags') {
+					currentArray = 'tags';
+					return;
+				}
+				result[key.trim()] = value;
+			});
+			return result;
+		}
+
+		function applyLoadedMarkdown(raw) {
+			const { content, meta } = stripFrontmatter(raw);
+			const parsed = parseFrontmatterBlock(meta);
+			if (parsed) {
+				fields.title.value = parsed.title || '';
+				fields.slug.value = parsed.slug || '';
+				fields.description.value = parsed.description || '';
+				fields.date.value = parsed.date ? formatDateForInput(parsed.date) : formatDateForInput();
+				fields.tags.value = Array.isArray(parsed.tags) ? parsed.tags.join(', ') : '';
+				fields.draft.checked = parsed.draft === 'true';
+				hasManualSlug = Boolean(parsed.slug);
+			}
+			editor.setMarkdown(content.trim());
+			updatePreview();
+			scheduleSave();
+		}
+
+		function buildFileBaseName() {
+			return fields.slug.value.trim() || slugify(fields.title.value);
+		}
+
+		async function exportZip() {
+			const zip = new JSZip();
+			const baseName = buildFileBaseName();
+			zip.file(`${baseName}.md`, buildMarkdownDocument());
+			for (const asset of assetCache) {
+				zip.file(`assets/${asset.fileName}`, asset.blob);
+			}
+			const blob = await zip.generateAsync({ type: 'blob' });
+			downloadBlob(blob, `${baseName}.zip`);
+		}
+
+		function syncSlug() {
+			if (!hasManualSlug) fields.slug.value = slugify(fields.title.value);
+			updatePreview();
+			scheduleSave();
+		}
+
+		function updateStats() {
+			const markdown = editor.getMarkdown();
+			wordsLabel.textContent = String(getWordCount(markdown));
+			modeLabel.textContent = editor.isMarkdownMode?.() ? 'markdown' : 'wysiwyg';
+			updatePreview();
+			renderMixedView();
+			syncModeButtons();
+		}
+
+		function initEditor(initialContent, initialMode) {
+			editor = new Editor({
+				el: mount,
+				height: '72dvh',
+				initialValue: initialContent,
+				initialEditType: initialMode === 'markdown' ? 'markdown' : 'wysiwyg',
+				previewStyle: 'vertical',
+				usageStatistics: false,
+				hideModeSwitch: false,
+				autofocus: false,
+				toolbarItems: [
+					['heading', 'bold', 'italic', 'strike'],
+					['hr', 'quote'],
+					['ul', 'ol', 'task'],
+					['table', 'link'],
+					['code', 'codeblock'],
+				],
+				hooks: {
+					addImageBlobHook: async (blob, callback) => {
+						const fileName = ensureUniqueFilename(sanitizeFilename(blob.name || 'image'));
+						const asset = {
+							id: crypto.randomUUID?.() || `${Date.now()}-${Math.random().toString(16).slice(2, 8)}`,
+							fileName,
+							alt: blob.name?.replace(/\.[^.]+$/, '') || 'image',
+							type: blob.type || 'image/png',
+							size: blob.size,
+							blob,
+						};
+						await writeAsset(asset);
+						assetCache = await hydrateAssets();
+						renderAssets();
+						callback(`./assets/${asset.fileName}`, asset.alt);
+						scheduleSave();
+						return false;
+					},
+				},
+			});
+
+			editor.on('change', () => {
+				updateStats();
+				scheduleSave();
+			});
+
+			mount.addEventListener('click', () => {
+				window.setTimeout(updateStats, 40);
+			});
+
+			mount.addEventListener('dragover', (event) => {
+				event.preventDefault();
+			});
+
+			mount.addEventListener('drop', async (event) => {
+				event.preventDefault();
+				const files = event.dataTransfer?.files;
+				if (!files?.length) return;
+				await addFiles(files, { insert: true });
+			});
+		}
+
+		async function bootstrap() {
+			const stored = restoreDraft();
+			fields.date.value = stored?.meta?.date || formatDateForInput();
+			fields.title.value = stored?.meta?.title || '';
+			fields.slug.value = stored?.meta?.slug || slugify(fields.title.value);
+			fields.description.value = stored?.meta?.description || '';
+			fields.tags.value = stored?.meta?.tags || '';
+			fields.draft.checked = Boolean(stored?.meta?.draft);
+			hasManualSlug = Boolean(stored?.meta?.hasManualSlug);
+
+			initEditor(stored?.content || '', stored?.mode || 'wysiwyg');
+			assetCache = await hydrateAssets();
+			renderAssets();
+			updateStats();
+
+			if (stored?.savedAt) {
+				setSaveStatus(`Recovered draft from ${new Intl.DateTimeFormat('zh-CN', {
+					dateStyle: 'medium',
+					timeStyle: 'short',
+				}).format(new Date(stored.savedAt))}`);
+			}
+		}
+
+		fields.title.addEventListener('input', syncSlug);
+		fields.slug.addEventListener('input', () => {
+			hasManualSlug = Boolean(fields.slug.value.trim());
+			updatePreview();
+			scheduleSave();
+		});
+		fields.description.addEventListener('input', scheduleSave);
+		fields.date.addEventListener('change', scheduleSave);
+		fields.tags.addEventListener('input', scheduleSave);
+		fields.draft.addEventListener('change', scheduleSave);
+
+		assetInput.addEventListener('change', async () => {
+			const files = assetInput.files;
+			if (!files?.length) return;
+			await addFiles(files);
+			assetInput.value = '';
+		});
+
+		loadMdInput.addEventListener('change', async () => {
+			const file = loadMdInput.files?.[0];
+			if (!file) return;
+			const raw = await file.text();
+			applyLoadedMarkdown(raw);
+			loadMdInput.value = '';
+		});
+
+		exportMdButton.addEventListener('click', () => {
+			const baseName = buildFileBaseName();
+			downloadBlob(new Blob([buildMarkdownDocument()], { type: 'text/markdown;charset=utf-8' }), `${baseName}.md`);
+		});
+
+		modeMarkdownButton.addEventListener('click', () => {
+			editor.changeMode('markdown');
+			window.setTimeout(updateStats, 40);
+		});
+
+		modeWysiwygButton.addEventListener('click', () => {
+			editor.changeMode('wysiwyg');
+			window.setTimeout(updateStats, 40);
+		});
+
+		snippetButtons.forEach((button) => {
+			button.addEventListener('click', () => {
+				const key = button.dataset.insertSnippet;
+				if (!key || !snippetLibrary[key]) return;
+				insertSnippet(snippetLibrary[key]);
+			});
+		});
+
+		document.addEventListener('paste', async (event) => {
+			const files = [...(event.clipboardData?.files ?? [])];
+			if (!files.length) return;
+			await addFiles(files, { insert: true });
+		});
+
+		exportZipButton.addEventListener('click', exportZip);
+
+		bootstrap();
+	</script>
+
+	<style>
+		:global(.markdown-root) {
+			background:
+				radial-gradient(circle at 10% 8%, rgba(74, 144, 226, 0.18), transparent 22%),
+				radial-gradient(circle at 88% 12%, rgba(239, 155, 40, 0.15), transparent 24%),
+				linear-gradient(180deg, color-mix(in srgb, var(--color-bg) 90%, white), var(--color-bg));
+		}
+
+		:global(.markdown-body) {
+			min-height: 100dvh;
+			padding: clamp(1rem, 2vw, 1.8rem);
+		}
+
+		.markdown-app {
+			max-width: 118rem;
+			margin: 0 auto;
+			display: grid;
+			gap: 1rem;
+		}
+
+		.markdown-app__chrome {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			gap: 1rem;
+			padding-inline: 0.25rem;
+		}
+
+		.markdown-app__portal,
+		.markdown-app__hint {
+			font-size: 0.82rem;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+			color: var(--color-muted);
+		}
+
+		.markdown-stage {
+			display: grid;
+			gap: 1rem;
+			padding: clamp(1.2rem, 2vw, 1.8rem);
+			border: 1px solid color-mix(in srgb, var(--color-border) 78%, transparent);
+			border-radius: 2rem;
+			background:
+				linear-gradient(
+					180deg,
+					color-mix(in srgb, var(--color-surface) 95%, var(--color-accent-soft) 5%),
+					color-mix(in srgb, var(--color-surface) 98%, var(--color-surface-2) 2%)
+				);
+			box-shadow:
+				0 2rem 4rem rgba(var(--color-shadow-rgb), 0.08),
+				inset 0 1px 0 rgba(255, 255, 255, 0.38);
+		}
+
+		.markdown-hero {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			align-items: end;
+			gap: 1rem;
+		}
+
+		.markdown-hero__copy {
+			max-width: 48rem;
+			display: grid;
+			gap: 0.8rem;
+		}
+
+		.markdown-eyebrow {
+			margin: 0;
+			font-size: 0.74rem;
+			font-weight: 700;
+			letter-spacing: 0.22em;
+			text-transform: uppercase;
+			color: var(--color-accent);
+		}
+
+		.markdown-title {
+			margin: 0;
+			font-size: clamp(3rem, 7vw, 5.8rem);
+			line-height: 0.92;
+			letter-spacing: -0.06em;
+		}
+
+		.markdown-intro {
+			margin: 0;
+			line-height: 1.76;
+			color: var(--color-muted);
+		}
+
+		.markdown-actions,
+		.markdown-dashboard,
+		.markdown-editor-panel__notes,
+		.markdown-asset__actions {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.75rem;
+		}
+
+		.markdown-button,
+		.markdown-chip {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			min-height: 2.9rem;
+			padding: 0.76rem 1.05rem;
+			border-radius: 999px;
+			border: 1px solid color-mix(in srgb, var(--color-border) 84%, transparent);
+			background: color-mix(in srgb, var(--color-surface) 94%, var(--color-accent-soft) 6%);
+			color: var(--color-text);
+			font-weight: 600;
+			text-decoration: none;
+		}
+
+		.markdown-button--primary {
+			border-color: transparent;
+			background: linear-gradient(
+				135deg,
+				color-mix(in srgb, var(--color-accent) 86%, white),
+				color-mix(in srgb, var(--color-accent) 62%, white)
+			);
+			color: white;
+		}
+
+		.markdown-button--ghost {
+			cursor: pointer;
+			background: transparent;
+		}
+
+		.markdown-button--tiny {
+			min-height: 2.45rem;
+			padding: 0.58rem 0.9rem;
+			font-size: 0.88rem;
+		}
+
+		.markdown-button--tiny[data-current='true'] {
+			border-color: transparent;
+			background: linear-gradient(
+				135deg,
+				color-mix(in srgb, var(--color-accent) 84%, white),
+				color-mix(in srgb, var(--color-accent) 62%, white)
+			);
+			color: white;
+		}
+
+		.markdown-dashboard {
+			align-items: stretch;
+		}
+
+		.markdown-stat,
+		.markdown-panel,
+		.markdown-editor-panel {
+			border: 1px solid color-mix(in srgb, var(--color-border) 82%, transparent);
+			border-radius: 1.5rem;
+			background: color-mix(in srgb, var(--color-surface) 96%, var(--color-surface-2) 4%);
+			box-shadow: 0 1rem 2rem rgba(var(--color-shadow-rgb), 0.06);
+		}
+
+		.markdown-stat {
+			min-width: 10rem;
+			display: grid;
+			gap: 0.2rem;
+			padding: 1rem 1.05rem;
+		}
+
+		.markdown-stat span {
+			font-size: 0.74rem;
+			letter-spacing: 0.16em;
+			text-transform: uppercase;
+			color: var(--color-muted);
+		}
+
+		.markdown-stat strong {
+			font-size: 1.6rem;
+			line-height: 1;
+			text-transform: lowercase;
+		}
+
+		.markdown-grid {
+			display: grid;
+			grid-template-columns: minmax(0, 1.5fr) minmax(22rem, 0.78fr);
+			gap: 1rem;
+			align-items: start;
+		}
+
+		.markdown-editor-panel,
+		.markdown-panel {
+			padding: 1.1rem;
+		}
+
+		.markdown-editor-panel {
+			display: grid;
+			gap: 1rem;
+		}
+
+		.markdown-render-panel {
+			display: grid;
+			gap: 0.9rem;
+			padding: 1rem;
+			border-radius: 1.25rem;
+			background: color-mix(in srgb, var(--color-surface-2) 54%, transparent);
+			border: 1px solid color-mix(in srgb, var(--color-border) 80%, transparent);
+		}
+
+		.markdown-editor-panel__head,
+		.markdown-panel__head {
+			display: flex;
+			justify-content: space-between;
+			align-items: start;
+			gap: 1rem;
+		}
+
+		.markdown-panel-title {
+			margin: 0.22rem 0 0;
+			font-size: clamp(1.15rem, 2vw, 1.45rem);
+			line-height: 1.08;
+		}
+
+		.markdown-editor-panel__notes span,
+		.markdown-panel__hint {
+			color: var(--color-muted);
+			font-size: 0.84rem;
+		}
+
+		.markdown-mode-switches {
+			display: inline-flex;
+			flex-wrap: wrap;
+			gap: 0.6rem;
+		}
+
+		.markdown-editor {
+			overflow: hidden;
+			border-radius: 1.2rem;
+		}
+
+		.markdown-side {
+			display: grid;
+			gap: 1rem;
+		}
+
+		.markdown-template-grid {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 0.7rem;
+			margin-top: 0.95rem;
+		}
+
+		.markdown-template {
+			display: grid;
+			gap: 0.28rem;
+			padding: 0.9rem;
+			border: 1px solid color-mix(in srgb, var(--color-border) 82%, transparent);
+			border-radius: 1rem;
+			background:
+				linear-gradient(
+					180deg,
+					color-mix(in srgb, var(--color-surface) 92%, var(--color-accent-soft) 8%),
+					color-mix(in srgb, var(--color-surface) 98%, white 2%)
+				);
+			text-align: left;
+			cursor: pointer;
+			font: inherit;
+			color: inherit;
+			transition:
+				transform 160ms ease,
+				border-color 160ms ease,
+				box-shadow 160ms ease;
+		}
+
+		.markdown-template:hover {
+			transform: translateY(-2px);
+			border-color: color-mix(in srgb, var(--color-accent) 45%, var(--color-border));
+			box-shadow: 0 0.9rem 1.6rem rgba(var(--color-shadow-rgb), 0.08);
+		}
+
+		.markdown-template strong {
+			font-size: 0.96rem;
+		}
+
+		.markdown-template span {
+			font-size: 0.8rem;
+			line-height: 1.5;
+			color: var(--color-muted);
+		}
+
+		.markdown-fields {
+			display: grid;
+			gap: 0.85rem;
+			margin-top: 1rem;
+		}
+
+		.markdown-fields__row {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr) auto;
+			gap: 0.8rem;
+			align-items: end;
+		}
+
+		.markdown-field {
+			display: grid;
+			gap: 0.45rem;
+		}
+
+		.markdown-field--check {
+			display: inline-flex;
+			align-items: center;
+			gap: 0.55rem;
+			min-height: 2.9rem;
+		}
+
+		.markdown-field span {
+			font-size: 0.82rem;
+			font-weight: 600;
+		}
+
+		.markdown-input {
+			width: 100%;
+			min-height: 2.8rem;
+			border: 1px solid color-mix(in srgb, var(--color-border) 84%, transparent);
+			border-radius: 1rem;
+			background:
+				linear-gradient(
+					180deg,
+					color-mix(in srgb, var(--color-surface) 92%, var(--color-surface-2) 8%),
+					color-mix(in srgb, var(--color-surface) 97%, white 3%)
+				);
+			padding: 0.78rem 0.95rem;
+			font: inherit;
+			color: var(--color-text);
+			box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+		}
+
+		.markdown-input--textarea {
+			min-height: 6rem;
+			resize: vertical;
+		}
+
+		.markdown-assets {
+			display: grid;
+			gap: 0.75rem;
+			margin-top: 0.9rem;
+		}
+
+		.markdown-asset {
+			display: grid;
+			grid-template-columns: 4.2rem minmax(0, 1fr);
+			gap: 0.75rem;
+			padding: 0.82rem;
+			border-radius: 1.05rem;
+			background: color-mix(in srgb, var(--color-surface-2) 50%, transparent);
+		}
+
+		.markdown-asset__thumb,
+		.markdown-asset__icon {
+			width: 4.2rem;
+			height: 4.2rem;
+			border-radius: 0.9rem;
+		}
+
+		.markdown-asset__thumb {
+			object-fit: cover;
+			background: color-mix(in srgb, var(--color-surface) 80%, transparent);
+		}
+
+		.markdown-asset__icon {
+			display: grid;
+			place-items: center;
+			font-size: 0.78rem;
+			font-weight: 700;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+			background: color-mix(in srgb, var(--color-accent-soft) 76%, white);
+			color: var(--color-accent);
+		}
+
+		.markdown-asset__copy {
+			display: grid;
+			gap: 0.35rem;
+			align-content: start;
+		}
+
+		.markdown-asset__copy strong {
+			overflow-wrap: anywhere;
+		}
+
+		.markdown-asset__copy p {
+			margin: 0;
+			color: var(--color-muted);
+			font-size: 0.82rem;
+		}
+
+		.markdown-asset__actions {
+			grid-column: 2;
+		}
+
+		.markdown-asset__actions button {
+			border: 0;
+			border-radius: 999px;
+			background: color-mix(in srgb, var(--color-surface) 82%, white);
+			padding: 0.38rem 0.75rem;
+			font: inherit;
+			font-weight: 600;
+			cursor: pointer;
+			color: inherit;
+		}
+
+		.markdown-output {
+			margin: 0.95rem 0 0;
+			max-height: 18rem;
+			overflow: auto;
+			padding: 1rem;
+			border-radius: 1rem;
+			background: color-mix(in srgb, var(--color-surface-2) 58%, transparent);
+			font-size: 0.84rem;
+			line-height: 1.65;
+			white-space: pre-wrap;
+			overflow-wrap: anywhere;
+		}
+
+		.markdown-empty {
+			margin: 0;
+			color: var(--color-muted);
+			line-height: 1.72;
+		}
+
+		.markdown-rendered {
+			min-height: 18rem;
+			padding: 1.2rem;
+			border-radius: 1rem;
+			background:
+				linear-gradient(
+					180deg,
+					color-mix(in srgb, var(--color-surface) 98%, white 2%),
+					color-mix(in srgb, var(--color-surface-2) 55%, transparent)
+				);
+			overflow: auto;
+		}
+
+		.markdown-rendered :global(*) {
+			box-sizing: border-box;
+		}
+
+		.markdown-rendered :global(h1),
+		.markdown-rendered :global(h2),
+		.markdown-rendered :global(h3) {
+			line-height: 1.08;
+			letter-spacing: -0.03em;
+		}
+
+		.markdown-rendered :global(h1) {
+			font-size: clamp(2rem, 4vw, 3rem);
+		}
+
+		.markdown-rendered :global(h2) {
+			font-size: clamp(1.5rem, 3vw, 2.1rem);
+			margin-top: 1.8rem;
+		}
+
+		.markdown-rendered :global(p),
+		.markdown-rendered :global(li),
+		.markdown-rendered :global(blockquote) {
+			line-height: 1.78;
+			overflow-wrap: anywhere;
+		}
+
+		.markdown-rendered :global(img),
+		.markdown-rendered :global(video),
+		.markdown-rendered :global(audio) {
+			max-width: 100%;
+		}
+
+		.markdown-rendered :global(img),
+		.markdown-rendered :global(video) {
+			display: block;
+			width: 100%;
+			margin: 1rem 0;
+			border-radius: 1rem;
+			background: color-mix(in srgb, var(--color-surface-2) 50%, transparent);
+		}
+
+		.markdown-rendered :global(audio) {
+			width: 100%;
+			margin: 1rem 0;
+		}
+
+		.markdown-rendered :global(pre) {
+			overflow: auto;
+			padding: 1rem;
+			border-radius: 1rem;
+			background: color-mix(in srgb, var(--color-surface-2) 70%, transparent);
+		}
+
+		.markdown-rendered :global(code) {
+			font-family:
+				'SFMono-Regular',
+				'JetBrains Mono',
+				'Fira Code',
+				ui-monospace,
+				monospace;
+		}
+
+		.markdown-rendered :global(blockquote) {
+			margin: 1.2rem 0;
+			padding: 0.2rem 0 0.2rem 1rem;
+			border-left: 3px solid color-mix(in srgb, var(--color-accent) 55%, transparent);
+			color: color-mix(in srgb, var(--color-text) 84%, var(--color-muted) 16%);
+		}
+
+		.markdown-rendered :global(table) {
+			width: 100%;
+			border-collapse: collapse;
+			margin: 1rem 0;
+		}
+
+		.markdown-rendered :global(th),
+		.markdown-rendered :global(td) {
+			padding: 0.7rem 0.8rem;
+			border: 1px solid color-mix(in srgb, var(--color-border) 80%, transparent);
+		}
+
+		.markdown-rendered :global(figure) {
+			margin: 1rem 0;
+		}
+
+		.markdown-rendered :global(figcaption) {
+			margin-top: 0.55rem;
+			font-size: 0.84rem;
+			color: var(--color-muted);
+		}
+
+		.markdown-rendered :global(.media-grid) {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 0.9rem;
+			margin: 1rem 0;
+		}
+
+		.markdown-rendered :global(details) {
+			margin: 1rem 0;
+			padding: 0.95rem 1rem;
+			border: 1px solid color-mix(in srgb, var(--color-border) 80%, transparent);
+			border-radius: 1rem;
+			background: color-mix(in srgb, var(--color-surface-2) 46%, transparent);
+		}
+
+		:global(.toastui-editor-defaultUI) {
+			border: 1px solid color-mix(in srgb, var(--color-border) 84%, transparent) !important;
+			border-radius: 1.2rem !important;
+			overflow: hidden;
+			background: var(--color-surface);
+		}
+
+		:global(.toastui-editor-defaultUI-toolbar) {
+			background: color-mix(in srgb, var(--color-surface) 95%, var(--color-accent-soft) 5%) !important;
+			border-bottom-color: color-mix(in srgb, var(--color-border) 84%, transparent) !important;
+		}
+
+		:global(.toastui-editor-md-container),
+		:global(.toastui-editor-ww-container) {
+			background: var(--color-surface) !important;
+		}
+
+		:global(.toastui-editor-md-preview),
+		:global(.toastui-editor-md-container .CodeMirror),
+		:global(.toastui-editor-ww-container .toastui-editor-contents) {
+			color: var(--color-text) !important;
+			font-family:
+				'Inter',
+				'Noto Sans SC',
+				'PingFang SC',
+				'Hiragino Sans GB',
+				'Microsoft YaHei',
+				'Segoe UI',
+				system-ui,
+				sans-serif !important;
+		}
+
+		:global(.toastui-editor-mode-switch) {
+			border-top-color: color-mix(in srgb, var(--color-border) 84%, transparent) !important;
+			background: color-mix(in srgb, var(--color-surface) 95%, var(--color-accent-soft) 5%) !important;
+		}
+
+		@media (max-width: 980px) {
+			.markdown-grid {
+				grid-template-columns: 1fr;
+			}
+		}
+
+		@media (max-width: 760px) {
+			:global(.markdown-body) {
+				padding: 0.85rem;
+			}
+
+			.markdown-app__chrome,
+			.markdown-hero,
+			.markdown-editor-panel__head,
+			.markdown-panel__head {
+				flex-direction: column;
+				align-items: stretch;
+			}
+
+			.markdown-fields__row {
+				grid-template-columns: 1fr;
+			}
+
+			.markdown-actions > * {
+				flex: 1 1 100%;
+			}
+
+			.markdown-template-grid,
+			.markdown-rendered :global(.media-grid) {
+				grid-template-columns: 1fr;
+			}
+		}
+	</style>
+</BaseLayout>

@@ -78,13 +78,16 @@ function normalizeDraft(entry) {
 function sortEntries(entries) {
 	return [...entries].sort((left, right) => {
 		if (left.pinned !== right.pinned) return left.pinned ? -1 : 1;
-		return new Date(right.updatedAt).getTime() - new Date(left.updatedAt).getTime();
+		return (
+			new Date(right.updatedAt).getTime() - new Date(left.updatedAt).getTime()
+		);
 	});
 }
 
 function sortDrafts(entries) {
 	return [...entries].sort(
-		(left, right) => new Date(right.updatedAt).getTime() - new Date(left.updatedAt).getTime(),
+		(left, right) =>
+			new Date(right.updatedAt).getTime() - new Date(left.updatedAt).getTime(),
 	);
 }
 
@@ -110,7 +113,9 @@ export function readThinks() {
 }
 
 export function writeThinks(entries) {
-	const normalized = sortEntries(entries.map(normalizeEntry).filter((item) => item.content));
+	const normalized = sortEntries(
+		entries.map(normalizeEntry).filter((item) => item.content),
+	);
 	localStorage.setItem(THINKS_KEY, JSON.stringify(normalized));
 	emitChange(normalized);
 	return normalized;
@@ -211,7 +216,9 @@ export function readDraftShelf() {
 }
 
 function writeDraftShelf(entries) {
-	const normalized = sortDrafts(entries.map(normalizeDraft).filter((item) => item.content));
+	const normalized = sortDrafts(
+		entries.map(normalizeDraft).filter((item) => item.content),
+	);
 	localStorage.setItem(THINK_DRAFTS_KEY, JSON.stringify(normalized));
 	emitDraftChange(normalized);
 	return normalized;
@@ -258,12 +265,16 @@ export function loadDraftSnapshot(draftId) {
 }
 
 export function deleteDraftSnapshot(draftId) {
-	return writeDraftShelf(readDraftShelf().filter((item) => item.draftId !== draftId));
+	return writeDraftShelf(
+		readDraftShelf().filter((item) => item.draftId !== draftId),
+	);
 }
 
 export function deleteDraftSnapshots(draftIds) {
 	const targetIds = new Set(draftIds);
-	return writeDraftShelf(readDraftShelf().filter((item) => !targetIds.has(item.draftId)));
+	return writeDraftShelf(
+		readDraftShelf().filter((item) => !targetIds.has(item.draftId)),
+	);
 }
 
 export function createEditableDraft(id) {
@@ -285,7 +296,8 @@ export function importThinks(raw) {
 	const parsed = safeParse(raw, null);
 	if (!parsed) throw new Error('Invalid JSON payload');
 	const source = Array.isArray(parsed) ? parsed : parsed.items;
-	if (!Array.isArray(source)) throw new Error('Imported payload does not contain a valid items array');
+	if (!Array.isArray(source))
+		throw new Error('Imported payload does not contain a valid items array');
 	return replaceAllThinks(source);
 }
 
@@ -321,7 +333,9 @@ export function parseTagInput(value) {
 }
 
 export function getThinkStats(items = readThinks()) {
-	const tagCount = new Set(items.flatMap((item) => item.tags.map((tag) => tag.toLocaleLowerCase()))).size;
+	const tagCount = new Set(
+		items.flatMap((item) => item.tags.map((tag) => tag.toLocaleLowerCase())),
+	).size;
 	return {
 		total: items.length,
 		pinned: items.filter((item) => item.pinned).length,
