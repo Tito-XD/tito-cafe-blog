@@ -11,7 +11,8 @@ const categories = await Promise.all(
 			count: items.length,
 			cover: items[0],
 			previews: items.slice(0, 3),
-			highlightCount: items.filter((item) => item.data.focusCharacters?.length).length,
+			highlightCount: items.filter((item) => item.data.focusCharacters?.length)
+				.length,
 			latestYear: items
 				.map((item) => Number(item.data.year))
 				.filter((year) => Number.isFinite(year))
@@ -19,7 +20,6 @@ const categories = await Promise.all(
 		};
 	}),
 );
-
 ---
 
 <ScaffoldLayout

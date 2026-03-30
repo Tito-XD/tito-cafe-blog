@@ -1,8 +1,8 @@
 ---
 import FriendCard from '~/components/FriendCard.astro';
 import PageHeading from '~/components/PageHeading.astro';
+import { type FriendLink, friends } from '~/data/friends';
 import ScaffoldLayout from '~/layouts/ScaffoldLayout.astro';
-import { friends, type FriendLink } from '~/data/friends';
 
 const trim = (value?: string) => value?.trim() ?? '';
 

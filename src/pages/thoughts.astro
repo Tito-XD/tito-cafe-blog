@@ -1,0 +1,232 @@
+---
+import ScaffoldLayout from '~/layouts/ScaffoldLayout.astro';
+---
+
+<ScaffoldLayout title="Thoughts" description="My thoughts and reflections.">
+	<div class="thoughts-container">
+		<h1 class="thoughts-title">随想</h1>
+		<p class="thoughts-subtitle">记录当下的想法</p>
+		<div id="thoughts-list" class="thoughts-list">
+			<p class="thoughts-empty">暂无随想</p>
+		</div>
+		<div class="thoughts-actions">
+			<a href="/input" class="thoughts-input-btn">添加随想</a>
+		</div>
+	</div>
+</ScaffoldLayout>
+
+<style>
+	.thoughts-container {
+		max-width: 48rem;
+		margin: 2rem auto;
+		padding: 1.5rem;
+		border-radius: var(--radius-card);
+		border: 1px solid color-mix(in srgb, var(--color-border) 88%, var(--color-accent-soft));
+		background: linear-gradient(
+			180deg,
+			color-mix(in srgb, var(--color-surface) 96%, var(--color-accent-soft) 4%),
+			color-mix(in srgb, var(--color-surface) 94%, var(--color-surface-2) 6%)
+		);
+	}
+
+	.thoughts-title {
+		margin: 0 0 0.5rem 0;
+		font-size: clamp(2rem, 4vw, 2.5rem);
+		line-height: 1.1;
+		text-wrap: balance;
+	}
+
+	.thoughts-subtitle {
+		margin: 0 0 2rem 0;
+		color: var(--color-muted);
+		font-size: 1.05rem;
+	}
+
+	.thoughts-list {
+		display: flex;
+		flex-direction: column;
+		gap: 1.2rem;
+	}
+
+	.thought-item {
+		padding: 1rem 1.2rem;
+		border-radius: var(--radius-chip);
+		border: 1px solid color-mix(in srgb, var(--color-border) 88%, var(--color-accent-soft));
+		background: color-mix(in srgb, var(--color-surface) 94%, var(--color-surface-2) 6%);
+		transition:
+			transform var(--motion-gentle),
+			border-color var(--motion-gentle),
+			background var(--motion-gentle);
+	}
+
+	.thought-item:hover {
+		transform: translateX(4px);
+		border-color: color-mix(in srgb, var(--color-accent) 32%, var(--color-border));
+		background: color-mix(in srgb, var(--color-surface) 90%, var(--color-accent-soft) 10%);
+	}
+
+	.thought-content {
+		margin: 0 0 0.6rem 0;
+		color: var(--color-text);
+		font-size: 1rem;
+		line-height: 1.7;
+		white-space: pre-wrap;
+		word-wrap: break-word;
+	}
+
+	.thought-meta {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.thought-time {
+		color: var(--color-muted);
+		font-size: 0.86rem;
+		opacity: 0.8;
+	}
+
+	.thought-delete {
+		padding: 0.3rem 0.6rem;
+		border-radius: var(--radius-chip);
+		border: 1px solid color-mix(in srgb, #ef4444 32%, var(--color-border));
+		background: transparent;
+		color: color-mix(in srgb, #ef4444 85%, var(--color-text));
+		font-size: 0.82rem;
+		cursor: pointer;
+		transition:
+			transform var(--motion-gentle),
+			background var(--motion-gentle),
+			color var(--motion-gentle);
+	}
+
+	.thought-delete:hover {
+		background: color-mix(in srgb, #ef4444 12%, var(--color-surface));
+		color: #ef4444;
+	}
+
+	.thoughts-empty {
+		text-align: center;
+		padding: 3rem 1rem;
+		color: var(--color-muted);
+		font-size: 1.05rem;
+	}
+
+	.thoughts-actions {
+		margin-top: 2rem;
+		text-align: center;
+	}
+
+	.thoughts-input-btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: var(--radius-chip);
+		padding: 0.7rem 1.4rem;
+		font-size: 1rem;
+		font-weight: 500;
+		text-decoration: none;
+		color: var(--color-accent);
+		border: 1px solid color-mix(in srgb, var(--color-accent) 56%, var(--color-border));
+		background: color-mix(in srgb, var(--color-accent) 12%, var(--color-surface));
+		transition:
+			transform var(--motion-gentle),
+			background var(--motion-gentle),
+			color var(--motion-gentle),
+			box-shadow var(--motion-gentle);
+	}
+
+	.thoughts-input-btn:hover {
+		transform: translateY(-2px);
+		background: color-mix(in srgb, var(--color-accent) 20%, var(--color-surface));
+		box-shadow: 0 0.4rem 0.8rem rgba(var(--color-shadow-rgb), 0.14);
+	}
+</style>
+
+<script>
+	function setupThoughtsDisplay() {
+		const windowWithCleanup = window as Window & {
+			__thoughtsDisplayCleanup?: () => void;
+		};
+		windowWithCleanup.__thoughtsDisplayCleanup?.();
+
+		const thoughtsList = document.getElementById('thoughts-list');
+
+		const formatTime = (isoString: string) => {
+			const date = new Date(isoString);
+			const now = new Date();
+			const diff = now.getTime() - date.getTime();
+			const hours = Math.floor(diff / (1000 * 60 * 60));
+			const days = Math.floor(hours / 24);
+
+			if (hours < 1) {
+				return '刚刚';
+			} else if (hours < 24) {
+				return `${hours} 小时前`;
+			} else if (days < 7) {
+				return `${days} 天前`;
+			} else {
+				return date.toLocaleDateString('zh-CN', {
+					year: 'numeric',
+					month: '2-digit',
+					day: '2-digit'
+				});
+			}
+		};
+
+	 const renderThoughts = () => {
+			try {
+				const existing = localStorage.getItem('thoughts');
+				const thoughts = existing ? JSON.parse(existing) : [];
+
+				if (thoughts.length === 0) {
+					thoughtsList!.innerHTML = '<p class="thoughts-empty">暂无随想</p>';
+					return;
+				}
+
+				thoughtsList!.innerHTML = thoughts.map((thought: { id: string, content: string, timestamp: string }) => `
+					<div class="thought-item" data-id="${thought.id}">
+						<p class="thought-content">${thought.content.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</p>
+						<div class="thought-meta">
+							<time class="thought-time">${formatTime(thought.timestamp)}</time>
+							<button class="thought-delete" data-id="${thought.id}">删除</button>
+						</div>
+					</div>
+				`).join('');
+
+				document.querySelectorAll('.thought-delete').forEach((btn) => {
+					btn.addEventListener('click', (e) => {
+						const target = e.currentTarget as HTMLElement;
+						const id = target.dataset.id;
+						if (!id) return;
+
+						try {
+							const existing = localStorage.getItem('thoughts');
+							const thoughts = existing ? JSON.parse(existing) : [];
+							const updated = thoughts.filter((t: { id: string }) => t.id !== id);
+							localStorage.setItem('thoughts', JSON.stringify(updated));
+							renderThoughts();
+						} catch (error) {
+							console.error('删除失败', error);
+						}
+					});
+				});
+			} catch (error) {
+				console.error('加载随想失败', error);
+				thoughtsList!.innerHTML = '<p class="thoughts-empty">加载失败</p>';
+			}
+		};
+
+		renderThoughts();
+
+		windowWithCleanup.__thoughtsDisplayCleanup = () => {
+			document.querySelectorAll('.thought-delete').forEach((btn) => {
+				btn.removeEventListener('click', () => {});
+			});
+		};
+	}
+
+	setupThoughtsDisplay();
+	document.addEventListener('astro:page-load', setupThoughtsDisplay);
+</script>

@@ -42,7 +42,9 @@ const options: SatoriOptions = {
 					return segment;
 				}
 				return `data:image/png;base64,${(
-					await sharp(await response.arrayBuffer()).png().toBuffer()
+					await sharp(await response.arrayBuffer())
+						.png()
+						.toBuffer()
 				).toString('base64')}`;
 			} catch {
 				return segment;
@@ -62,7 +64,10 @@ export async function siteOpenGraph() {
 	const template = (
 		<div
 			tw="flex h-full w-full flex-col justify-between pb-4 pt-6"
-			style={{ backgroundColor: OpenGraphConfig.background, color: OpenGraphConfig.text }}
+			style={{
+				backgroundColor: OpenGraphConfig.background,
+				color: OpenGraphConfig.text,
+			}}
 		>
 			<div
 				tw="mx-auto flex w-[85%] grow flex-col px-6 py-5"
@@ -72,7 +77,10 @@ export async function siteOpenGraph() {
 				}}
 			>
 				<div tw="mt-2 grow flex flex-col justify-center px-4 text-center">
-					<p tw="text-3xl font-semibold" style={{ color: OpenGraphConfig.muted }}>
+					<p
+						tw="text-3xl font-semibold"
+						style={{ color: OpenGraphConfig.muted }}
+					>
 						{SiteTitle}
 					</p>
 					<p
@@ -85,11 +93,15 @@ export async function siteOpenGraph() {
 			</div>
 			<div tw="mt-5 flex flex-col items-center text-xl">
 				<div>{FooterDescription}</div>
-				<div style={{ color: OpenGraphConfig.muted }}>{`Copyright ${new Date().getFullYear()} ${Site}`}</div>
+				<div
+					style={{ color: OpenGraphConfig.muted }}
+				>{`Copyright ${new Date().getFullYear()} ${Site}`}</div>
 			</div>
 		</div>
 	);
-	return await sharp(Buffer.from(await satori(template, options))).png().toBuffer();
+	return await sharp(Buffer.from(await satori(template, options)))
+		.png()
+		.toBuffer();
 }
 
 type Config = {
@@ -102,7 +114,10 @@ export async function postOpenGraph({ title, description, tags }: Config) {
 	const template = (
 		<div
 			tw="flex h-full w-full flex-col justify-between pb-4 pt-6"
-			style={{ backgroundColor: OpenGraphConfig.background, color: OpenGraphConfig.text }}
+			style={{
+				backgroundColor: OpenGraphConfig.background,
+				color: OpenGraphConfig.text,
+			}}
 		>
 			<div
 				tw="mx-auto flex w-[85%] grow flex-col px-6 py-5"
@@ -111,8 +126,14 @@ export async function postOpenGraph({ title, description, tags }: Config) {
 					boxShadow: `0 0 20px 10px ${OpenGraphConfig.shadow}`,
 				}}
 			>
-				<div tw="mt-2 flex items-start justify-between" style={{ columnGap: 24 }}>
-					<p tw="text-3xl font-semibold" style={{ color: OpenGraphConfig.text }}>
+				<div
+					tw="mt-2 flex items-start justify-between"
+					style={{ columnGap: 24 }}
+				>
+					<p
+						tw="text-3xl font-semibold"
+						style={{ color: OpenGraphConfig.text }}
+					>
 						{SiteTitle}
 					</p>
 					<p tw="text-right text-3xl" style={{ color: OpenGraphConfig.accent }}>
@@ -133,9 +154,13 @@ export async function postOpenGraph({ title, description, tags }: Config) {
 			</div>
 			<div tw="mt-5 flex flex-col items-center text-xl">
 				<div>{FooterDescription}</div>
-				<div style={{ color: OpenGraphConfig.muted }}>{`Copyright ${new Date().getFullYear()} ${Site}`}</div>
+				<div
+					style={{ color: OpenGraphConfig.muted }}
+				>{`Copyright ${new Date().getFullYear()} ${Site}`}</div>
 			</div>
 		</div>
 	);
-	return await sharp(Buffer.from(await satori(template, options))).png().toBuffer();
+	return await sharp(Buffer.from(await satori(template, options)))
+		.png()
+		.toBuffer();
 }

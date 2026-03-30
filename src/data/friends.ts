@@ -42,5 +42,5 @@ export const friends: FriendLink[] = [
 		avatar: 'https://blog.grilledfish9.xyz/images/2.PNG',
 		bio: '',
 		link: 'blog.grilledfish9.xyz',
-	}
+	},
 ];
