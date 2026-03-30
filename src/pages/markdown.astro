@@ -71,6 +71,9 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 							<button class="markdown-button markdown-button--tiny" type="button" id="mode-wysiwyg">
 								Visual
 							</button>
+							<button class="markdown-button markdown-button--tiny markdown-button--ghost" type="button" id="render-markdown">
+								Render MD
+							</button>
 						</div>
 					</div>
 
@@ -247,6 +250,7 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 		const renderedView = document.querySelector('#rendered-view');
 		const modeMarkdownButton = document.querySelector('#mode-markdown');
 		const modeWysiwygButton = document.querySelector('#mode-wysiwyg');
+		const renderMarkdownButton = document.querySelector('#render-markdown');
 		const snippetButtons = [...document.querySelectorAll('[data-insert-snippet]')];
 
 		const fields = {
@@ -342,6 +346,14 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 		function renderMixedView() {
 			const html = editor.getHTML().trim();
 			renderedView.innerHTML = html || '<p class="markdown-empty">这里会显示实时渲染后的排版效果。</p>';
+		}
+
+		function looksLikeMarkdownSnippet(text) {
+			const value = String(text ?? '').trim();
+			if (!value) return false;
+			return /(^|\n)(#{1,6}\s|>\s|[-*+]\s|\d+\.\s|```|!\[[^\]]*\]\([^)]+\)|\[[^\]]+\]\([^)]+\)|<audio|<video|<details|---)/.test(
+				value
+			);
 		}
 
 		function getWordCount(markdown) {
@@ -494,6 +506,31 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 
 		function insertSnippet(snippet) {
 			editor.insertText(`${snippet}\n`);
+			scheduleSave();
+		}
+
+		function replaceSelectionWithMarkdown(markdown) {
+			const currentMode = editor.isMarkdownMode() ? 'markdown' : 'wysiwyg';
+			const selection = editor.getSelection();
+			const [start, end = start] = Array.isArray(selection) ? selection : [selection, selection];
+			const [mdStart, mdEnd] = editor.convertPosToMatchEditorMode(start, end, 'markdown');
+			editor.changeMode('markdown', true);
+			editor.replaceSelection(markdown, mdStart, mdEnd);
+			if (currentMode === 'wysiwyg') {
+				editor.changeMode('wysiwyg', true);
+			}
+			updateStats();
+			scheduleSave();
+		}
+
+		function rerenderDocument() {
+			const currentMode = editor.isMarkdownMode() ? 'markdown' : 'wysiwyg';
+			const markdown = editor.getMarkdown();
+			editor.setMarkdown(markdown);
+			if (currentMode === 'wysiwyg') {
+				editor.changeMode('wysiwyg', true);
+			}
+			updateStats();
 			scheduleSave();
 		}
 
@@ -784,6 +821,17 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 			window.setTimeout(updateStats, 40);
 		});
 
+		renderMarkdownButton.addEventListener('click', () => {
+			const selected = editor.getSelectedText().trim();
+			if (selected) {
+				replaceSelectionWithMarkdown(selected);
+				setSaveStatus('Rendered selected markdown');
+				return;
+			}
+			rerenderDocument();
+			setSaveStatus('Re-rendered current document');
+		});
+
 		snippetButtons.forEach((button) => {
 			button.addEventListener('click', () => {
 				const key = button.dataset.insertSnippet;
@@ -794,8 +842,20 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 
 		document.addEventListener('paste', async (event) => {
 			const files = [...(event.clipboardData?.files ?? [])];
-			if (!files.length) return;
-			await addFiles(files, { insert: true });
+			if (files.length) {
+				await addFiles(files, { insert: true });
+				return;
+			}
+
+			if (!editor?.isWysiwygMode?.()) return;
+			if (!mount?.contains(document.activeElement)) return;
+
+			const pastedText = event.clipboardData?.getData('text/plain') ?? '';
+			if (!looksLikeMarkdownSnippet(pastedText)) return;
+
+			event.preventDefault();
+			replaceSelectionWithMarkdown(pastedText);
+			setSaveStatus('Pasted markdown rendered');
 		});
 
 		exportZipButton.addEventListener('click', exportZip);
