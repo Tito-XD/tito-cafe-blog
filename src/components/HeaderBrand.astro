@@ -14,11 +14,11 @@ const brandClasses =
 			transition:persist
 			href="/"
 			aria-label="go to index"
-			class={brandClasses}
+			class:list={['site-brand', brandClasses]}
 		>
 			{
 				SiteBrand.variant === 'icon' ? (
-					<Icon name={SiteBrand.icon} title="go to index" class={brandClasses} />
+					<Icon name={SiteBrand.icon} title="go to index" class="site-brand__icon" />
 				) : (
 					SiteTitle
 				)
@@ -28,3 +28,29 @@ const brandClasses =
 		<div />
 	)
 }
+
+<style>
+	.site-brand {
+		display: inline-flex;
+		align-items: flex-start;
+		justify-content: flex-start;
+		width: fit-content;
+		max-width: min(100%, 14rem);
+		flex-shrink: 1;
+		text-decoration: none;
+	}
+
+	.site-brand :global(svg),
+	.site-brand__icon {
+		display: block;
+		height: 100%;
+		width: auto;
+		max-width: 100%;
+	}
+
+	@media (min-width: 1024px) {
+		.site-brand {
+			max-width: 20rem;
+		}
+	}
+</style>

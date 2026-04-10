@@ -26,8 +26,8 @@ export const OpenGraphConfig = {
 export const SiteBrand = {
 	variant: 'icon' as const,
 	icon: 'logo',
-	widthClass: 'w-[20rem]',
-	heightClass: 'h-[6rem]',
+	widthClass: 'lg:w-[20rem]',
+	heightClass: 'h-[4.5rem] lg:h-[6rem]',
 };
 
 // socialPlatform => userName
