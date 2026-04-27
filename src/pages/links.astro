@@ -1,0 +1,832 @@
+---
+import { Picture } from 'astro:assets';
+import { SiteTitle } from '~/config';
+import { linkResidents } from '~/data/links';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+
+const initialResident = linkResidents[0];
+---
+
+<BaseLayout
+	title={`Links / ${SiteTitle}`}
+	description="Character links for tito.cafe."
+	rootClass="links-root"
+	bodyClass="links-body"
+>
+	<main class="links-page" data-links-app>
+		<section class="links-shell" aria-labelledby="links-title">
+			<header class="links-header">
+				<div>
+					<p class="links-kicker">tito.cafe staff room</p>
+					<h1 id="links-title">STAFF MEMBER</h1>
+				</div>
+				<p class="links-signal" data-active-label>{initialResident.id}</p>
+			</header>
+
+			<section class="resident-accordion" aria-label="Cafe residents">
+				{
+					linkResidents.map((resident, index) => (
+						<article
+							class="resident-card"
+							data-resident-card={resident.id}
+							data-active={index === 0 ? 'true' : 'false'}
+							style={`--accent:${resident.accent};--accent-2:${resident.secondaryAccent};--portrait-position:${resident.portraitPosition};`}
+						>
+							<Picture
+								src={resident.background}
+								formats={['avif', 'webp']}
+								alt=""
+								class="resident-card__background"
+								loading={index === 0 ? 'eager' : 'lazy'}
+							/>
+							<span class="resident-card__warmth" aria-hidden="true"></span>
+
+							<button
+								class="resident-card__tab"
+								type="button"
+								data-resident-trigger={resident.id}
+								aria-expanded={index === 0 ? 'true' : 'false'}
+							>
+								<span>{String(index + 1).padStart(2, '0')}</span>
+								<strong>{resident.id}</strong>
+							</button>
+
+							<div class="resident-card__scene">
+								<Picture
+									src={resident.portrait}
+									formats={['avif', 'webp']}
+									alt={`${resident.id} character portrait`}
+									class="resident-card__portrait"
+									loading={index === 0 ? 'eager' : 'lazy'}
+								/>
+
+								<div class="resident-card__details">
+									<div class="resident-card__identity">
+										<Picture
+											src={resident.avatar}
+											formats={['avif', 'webp']}
+											alt={`${resident.id} avatar`}
+											class="resident-card__avatar"
+											loading="lazy"
+										/>
+										<div>
+											<p class="links-kicker">Now serving</p>
+											<h2>{resident.id}</h2>
+											{resident.domain && <p>{resident.domain}</p>}
+										</div>
+									</div>
+
+									<div class="resident-card__pinboard" aria-hidden="true">
+										{
+											resident.stickers.map((sticker) => (
+												<figure
+													class="resident-sticker"
+													style={`--x:${sticker.x}%;--y:${sticker.y}%;--w:${sticker.width}%;--r:${sticker.rotate}deg;`}
+												>
+													<span class="resident-sticker__pin"></span>
+													<Picture
+														src={sticker.image}
+														formats={['avif', 'webp']}
+														alt={sticker.alt}
+														class="resident-sticker__image"
+														loading="lazy"
+													/>
+												</figure>
+											))
+										}
+									</div>
+
+									<nav class="resident-card__actions" aria-label={`${resident.id} links`}>
+										{
+											resident.buttons.map((button) =>
+												button.href ? (
+													<a href={button.href} target={button.href.startsWith('http') ? '_blank' : undefined} rel={button.href.startsWith('http') ? 'noreferrer' : undefined}>
+														{button.label}
+													</a>
+												) : (
+													<span aria-disabled="true">{button.label}</span>
+												)
+											)
+										}
+									</nav>
+								</div>
+							</div>
+						</article>
+					))
+				}
+			</section>
+
+			<p class="links-credit">Artwork by TSURU汀 and respective artists.</p>
+		</section>
+	</main>
+
+	<script>
+		// @ts-nocheck
+		const app = document.querySelector('[data-links-app]');
+		const cards = [...document.querySelectorAll('[data-resident-card]')];
+		const triggers = [...document.querySelectorAll('[data-resident-trigger]')];
+		const activeLabel = document.querySelector('[data-active-label]');
+
+		function setActiveResident(id) {
+			cards.forEach((card) => {
+				card.dataset.active = String(card.dataset.residentCard === id);
+			});
+			triggers.forEach((trigger) => {
+				const isActive = trigger.dataset.residentTrigger === id;
+				trigger.dataset.active = String(isActive);
+				trigger.setAttribute('aria-expanded', String(isActive));
+			});
+			if (activeLabel) activeLabel.textContent = id;
+			app?.style.setProperty('--active-id', `"${id}"`);
+		}
+
+		cards.forEach((card) => {
+			const id = card.dataset.residentCard;
+			if (!id) return;
+			card.addEventListener('mouseenter', () => setActiveResident(id));
+		});
+
+		triggers.forEach((trigger) => {
+			const id = trigger.dataset.residentTrigger;
+			if (!id) return;
+			trigger.addEventListener('focus', () => setActiveResident(id));
+			trigger.addEventListener('click', () => setActiveResident(id));
+		});
+	</script>
+
+	<style>
+		:global(.links-root) {
+			background:
+				radial-gradient(circle at 16% 12%, rgba(255, 196, 112, 0.28), transparent 26rem),
+				radial-gradient(circle at 86% 18%, rgba(138, 84, 43, 0.3), transparent 25rem),
+				linear-gradient(135deg, rgba(113, 66, 37, 0.18) 0 25%, transparent 25% 50%, rgba(113, 66, 37, 0.12) 50% 75%, transparent 75%),
+				#2b1d16;
+			background-size:
+				auto,
+				auto,
+				28px 28px,
+				auto;
+		}
+
+		:global(.links-body) {
+			min-height: 100dvh;
+			padding: clamp(0.75rem, 2vw, 1.4rem);
+			color: #fff4df;
+			overflow-x: hidden;
+		}
+
+		.links-page {
+			min-height: calc(100dvh - clamp(1.5rem, 4vw, 2.8rem));
+			display: grid;
+			place-items: stretch;
+		}
+
+		.links-shell {
+			position: relative;
+			display: grid;
+			grid-template-rows: auto minmax(34rem, 1fr) auto;
+			gap: clamp(0.85rem, 1.6vw, 1.2rem);
+			width: min(100%, 118rem);
+			min-height: calc(100dvh - clamp(1.5rem, 4vw, 2.8rem));
+			margin: 0 auto;
+			padding: clamp(0.9rem, 1.8vw, 1.25rem);
+			border: 1px solid rgba(255, 224, 174, 0.36);
+			border-radius: 22px;
+			background:
+				linear-gradient(180deg, rgba(255, 244, 219, 0.1), rgba(255, 244, 219, 0.035)),
+				linear-gradient(135deg, rgba(80, 45, 25, 0.94), rgba(37, 24, 18, 0.96));
+			box-shadow:
+				0 1.8rem 5rem rgba(32, 16, 8, 0.44),
+				inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+			overflow: hidden;
+		}
+
+		.links-shell::before {
+			position: absolute;
+			inset: 0;
+			pointer-events: none;
+			content: '';
+			background:
+				linear-gradient(90deg, rgba(255, 224, 174, 0.06) 1px, transparent 1px),
+				linear-gradient(180deg, rgba(255, 224, 174, 0.045) 1px, transparent 1px);
+			background-size: 34px 34px;
+			mask-image: linear-gradient(180deg, black, transparent 82%);
+		}
+
+		.links-header {
+			position: relative;
+			z-index: 2;
+			display: flex;
+			align-items: end;
+			justify-content: space-between;
+			gap: 1rem;
+			min-width: 0;
+		}
+
+		.links-kicker,
+		.links-signal,
+		.links-credit {
+			margin: 0;
+			font-family: 'SFMono-Regular', 'JetBrains Mono', ui-monospace, monospace;
+			font-size: 0.78rem;
+			line-height: 1.3;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+			color: rgba(255, 244, 223, 0.68);
+		}
+
+		.links-header h1 {
+			margin: 0.22rem 0 0;
+			font-size: clamp(2.65rem, 7vw, 6.6rem);
+			line-height: 0.88;
+			letter-spacing: -0.06em;
+			color: #fff4df;
+			text-shadow: 0 0.8rem 2.2rem rgba(38, 18, 8, 0.46);
+		}
+
+		.links-signal {
+			max-width: 45%;
+			padding: 0.55rem 0.72rem;
+			border: 1px solid rgba(255, 224, 174, 0.24);
+			border-radius: 999px;
+			background: rgba(255, 244, 223, 0.08);
+			overflow-wrap: anywhere;
+		}
+
+		.resident-accordion {
+			position: relative;
+			z-index: 1;
+			display: flex;
+			gap: clamp(0.55rem, 1.1vw, 0.9rem);
+			min-height: 0;
+		}
+
+		.resident-card {
+			position: relative;
+			isolation: isolate;
+			flex: 0.72 1 0;
+			min-width: 5.2rem;
+			border: 1px solid color-mix(in srgb, var(--accent) 28%, rgba(255, 224, 174, 0.28));
+			border-radius: 20px;
+			background:
+				linear-gradient(180deg, rgba(255, 244, 223, 0.12), rgba(255, 244, 223, 0.03)),
+				color-mix(in srgb, var(--accent) 15%, #2d1b12);
+			overflow: hidden;
+			box-shadow:
+				0 1rem 2rem rgba(25, 12, 6, 0.22),
+				inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+			transition:
+				flex 520ms cubic-bezier(0.2, 0.8, 0.2, 1),
+				border-color 240ms ease,
+				box-shadow 240ms ease,
+				filter 240ms ease;
+		}
+
+		.resident-card[data-active='true'] {
+			flex: 5.4 1 0;
+			border-color: color-mix(in srgb, var(--accent) 58%, #ffe0ae);
+			box-shadow:
+				0 1.6rem 3.6rem rgba(25, 12, 6, 0.34),
+				inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+			filter: saturate(1.08);
+		}
+
+		:global(.resident-card__background),
+		:global(.resident-card__background img),
+		.resident-card__warmth,
+		.resident-card__scene {
+			position: absolute;
+			inset: 0;
+		}
+
+		:global(.resident-card__background) {
+			display: block;
+			overflow: hidden;
+		}
+
+		:global(.resident-card__background img) {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: center;
+			opacity: 0.34;
+			filter: sepia(0.22) saturate(0.82) contrast(1.02);
+			transform: scale(1.14);
+			transition:
+				opacity 320ms ease,
+				transform 540ms cubic-bezier(0.2, 0.8, 0.2, 1),
+				filter 320ms ease;
+		}
+
+		.resident-card[data-active='true'] :global(.resident-card__background img) {
+			opacity: 0.5;
+			filter: sepia(0.1) saturate(1) contrast(1.02);
+			transform: scale(1.02);
+		}
+
+		.resident-card:not([data-active='true']) :global(.resident-card__background) {
+			inset: 0;
+			width: auto;
+			transform: none;
+		}
+
+		.resident-card:not([data-active='true']) :global(.resident-card__background img) {
+			inset: auto;
+			left: 50%;
+			top: -22%;
+			width: auto;
+			height: 158%;
+			max-width: none;
+			object-fit: contain;
+			object-position: center top;
+			opacity: 0.46;
+			transform: translateX(-50%);
+		}
+
+		.resident-card__warmth {
+			z-index: 1;
+			background:
+				radial-gradient(circle at 26% 22%, color-mix(in srgb, var(--accent) 34%, transparent), transparent 18rem),
+				linear-gradient(90deg, rgba(36, 18, 9, 0.76), rgba(54, 29, 15, 0.28) 45%, rgba(35, 18, 10, 0.82)),
+				linear-gradient(180deg, rgba(255, 229, 188, 0.08), rgba(33, 17, 9, 0.58));
+		}
+
+		.resident-card__tab {
+			position: absolute;
+			z-index: 6;
+			left: 0.8rem;
+			bottom: 0.8rem;
+			display: grid;
+			gap: 0.28rem;
+			width: calc(100% - 1.6rem);
+			padding: 0.72rem;
+			border: 1px solid rgba(255, 224, 174, 0.24);
+			border-left: 3px solid var(--accent);
+			border-radius: 14px;
+			background:
+				linear-gradient(90deg, rgba(49, 25, 13, 0.88), rgba(49, 25, 13, 0.48)),
+				rgba(255, 244, 223, 0.08);
+			color: inherit;
+			text-align: left;
+			cursor: pointer;
+			backdrop-filter: blur(8px);
+			transition:
+				background 220ms ease,
+				border-color 220ms ease,
+				transform 220ms ease;
+		}
+
+		.resident-card[data-active='true'] .resident-card__tab {
+			top: 1rem;
+			bottom: auto;
+			width: min(18rem, calc(100% - 2rem));
+			background:
+				linear-gradient(90deg, rgba(49, 25, 13, 0.78), rgba(49, 25, 13, 0.32)),
+				rgba(255, 244, 223, 0.1);
+		}
+
+		.resident-card__tab:hover,
+		.resident-card__tab:focus-visible {
+			border-color: color-mix(in srgb, var(--accent) 55%, #ffe0ae);
+			transform: translateY(-2px);
+			outline: none;
+		}
+
+		.resident-card__tab span {
+			font-family: 'SFMono-Regular', 'JetBrains Mono', ui-monospace, monospace;
+			font-size: 0.75rem;
+			color: color-mix(in srgb, var(--accent) 78%, #ffe0ae);
+		}
+
+		.resident-card__tab strong {
+			font-size: clamp(1rem, 2vw, 1.5rem);
+			line-height: 1;
+			overflow-wrap: anywhere;
+		}
+
+		.resident-card__scene {
+			z-index: 2;
+			display: grid;
+			grid-template-columns: minmax(18rem, 0.9fr) minmax(22rem, 0.82fr);
+			align-items: stretch;
+			gap: clamp(0.9rem, 1.8vw, 1.4rem);
+			padding: clamp(1rem, 2vw, 1.35rem);
+		}
+
+		:global(.resident-card__portrait) {
+			position: absolute;
+			z-index: 3;
+			left: clamp(2rem, 10vw, 12rem);
+			bottom: -4%;
+			display: block;
+			width: auto;
+			height: 92%;
+			overflow: visible;
+			opacity: 0.2;
+			pointer-events: none;
+			transform: translateX(-50%) scale(0.94);
+			transition:
+				opacity 320ms ease,
+				transform 540ms cubic-bezier(0.2, 0.8, 0.2, 1),
+				filter 320ms ease;
+		}
+
+		:global(.resident-card__portrait img) {
+			display: block;
+			width: auto;
+			height: 100%;
+			max-width: none;
+			object-fit: contain;
+			object-position: var(--portrait-position);
+			filter: brightness(0.68) saturate(0.55);
+		}
+
+		.resident-card[data-active='true'] :global(.resident-card__portrait) {
+			opacity: 1;
+			transform: translateX(-50%) scale(1);
+		}
+
+		.resident-card[data-active='true'] :global(.resident-card__portrait img) {
+			filter: drop-shadow(0 1.8rem 1.35rem rgba(32, 14, 6, 0.46));
+		}
+
+		.resident-card:not([data-active='true']) :global(.resident-card__portrait) {
+			left: 50%;
+			bottom: -12%;
+			width: min(72%, 8.6rem);
+			height: 102%;
+			overflow: hidden;
+			opacity: 0.28;
+			clip-path: none;
+			transform: translateX(-50%);
+		}
+
+		.resident-card:not([data-active='true']) :global(.resident-card__portrait img) {
+			position: absolute;
+			left: 50%;
+			bottom: 0;
+			width: auto;
+			height: 100%;
+			max-width: none;
+			transform: translateX(-50%);
+			filter: brightness(0.7) saturate(0.52);
+		}
+
+		.resident-card__details {
+			position: relative;
+			z-index: 5;
+			grid-column: 2;
+			display: grid;
+			grid-template-rows: auto minmax(13rem, 1fr) auto;
+			gap: 0.8rem;
+			min-width: 0;
+			padding: 1rem;
+			border: 1px solid rgba(255, 224, 174, 0.28);
+			border-radius: 18px;
+			background:
+				linear-gradient(180deg, rgba(255, 244, 223, 0.24), rgba(255, 244, 223, 0.1)),
+				rgba(68, 38, 20, 0.62);
+			backdrop-filter: blur(12px);
+			box-shadow:
+				0 1.2rem 2.8rem rgba(35, 16, 7, 0.28),
+				inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+			opacity: 0;
+			pointer-events: none;
+			transform: translateY(0.75rem);
+			transition:
+				opacity 260ms ease,
+				transform 320ms ease;
+		}
+
+		.resident-card[data-active='true'] .resident-card__details {
+			opacity: 1;
+			pointer-events: auto;
+			transform: none;
+		}
+
+		.resident-card__identity {
+			display: flex;
+			align-items: center;
+			gap: 0.8rem;
+			min-width: 0;
+		}
+
+		:global(.resident-card__avatar),
+		:global(.resident-card__avatar img) {
+			width: 4.5rem;
+			height: 4.5rem;
+			flex: 0 0 auto;
+			border-radius: 16px;
+		}
+
+		:global(.resident-card__avatar img) {
+			object-fit: cover;
+			background: color-mix(in srgb, var(--accent) 18%, #4b2b17);
+			border: 1px solid color-mix(in srgb, var(--accent) 48%, rgba(255, 224, 174, 0.34));
+		}
+
+		.resident-card__identity h2 {
+			margin: 0.12rem 0 0;
+			font-size: clamp(2rem, 4.8vw, 4.25rem);
+			line-height: 0.9;
+			letter-spacing: -0.05em;
+			overflow-wrap: anywhere;
+			text-shadow: 0 0.5rem 1.2rem rgba(39, 17, 8, 0.36);
+		}
+
+		.resident-card__identity p:last-child {
+			margin: 0.42rem 0 0;
+			font-family: 'SFMono-Regular', 'JetBrains Mono', ui-monospace, monospace;
+			color: color-mix(in srgb, var(--accent) 70%, #ffe0ae);
+			overflow-wrap: anywhere;
+		}
+
+		.resident-card__pinboard {
+			position: relative;
+			min-height: 13rem;
+			border: 1px dashed rgba(255, 224, 174, 0.28);
+			border-radius: 16px;
+			background:
+				radial-gradient(circle at 20% 18%, rgba(255, 224, 174, 0.24), transparent 8rem),
+				linear-gradient(135deg, rgba(255, 244, 223, 0.14), rgba(255, 244, 223, 0.04));
+			overflow: hidden;
+		}
+
+		.resident-card__actions {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.55rem;
+		}
+
+		.resident-card__actions a,
+		.resident-card__actions span {
+			display: inline-flex;
+			min-height: 2.45rem;
+			align-items: center;
+			justify-content: center;
+			padding: 0.62rem 0.82rem;
+			border: 1px solid color-mix(in srgb, var(--accent) 38%, rgba(255, 224, 174, 0.32));
+			border-radius: 999px;
+			background: color-mix(in srgb, var(--accent) 13%, rgba(255, 244, 223, 0.12));
+			color: #fff4df;
+			font-weight: 700;
+			text-decoration: none;
+			transition:
+				transform 160ms ease,
+				background 160ms ease,
+				border-color 160ms ease;
+		}
+
+		.resident-card__actions a:hover,
+		.resident-card__actions a:focus-visible {
+			transform: translateY(-2px);
+			border-color: color-mix(in srgb, var(--accent) 65%, #ffe0ae);
+			background: color-mix(in srgb, var(--accent) 22%, rgba(255, 244, 223, 0.16));
+			outline: none;
+		}
+
+		.resident-card__actions span {
+			opacity: 0.48;
+		}
+
+		:global(.resident-sticker) {
+			position: absolute;
+			left: var(--x);
+			top: var(--y);
+			width: var(--w);
+			margin: 0;
+			opacity: 0.94;
+			transform-origin: 50% 0.7rem;
+			filter: drop-shadow(0 0.85rem 0.7rem rgba(33, 15, 7, 0.24));
+			animation: sticker-settle 520ms cubic-bezier(0.22, 0.8, 0.24, 1) both;
+		}
+
+		:global(.resident-card[data-active='true'] .resident-sticker:nth-child(2n)) {
+			animation:
+				sticker-settle 520ms cubic-bezier(0.22, 0.8, 0.24, 1) both,
+				sticker-sway 4.8s ease-in-out 620ms infinite;
+		}
+
+		:global(.resident-card[data-active='true'] .resident-sticker:nth-child(2n + 1)) {
+			animation:
+				sticker-settle 520ms cubic-bezier(0.22, 0.8, 0.24, 1) both,
+				sticker-sway-alt 5.4s ease-in-out 760ms infinite;
+		}
+
+		:global(.resident-sticker:nth-child(1)) {
+			animation-delay: 40ms, 680ms;
+		}
+
+		:global(.resident-sticker:nth-child(2)) {
+			animation-delay: 120ms, 760ms;
+		}
+
+		:global(.resident-sticker:nth-child(3)) {
+			animation-delay: 200ms, 840ms;
+		}
+
+		:global(.resident-sticker:nth-child(4)) {
+			animation-delay: 280ms, 920ms;
+		}
+
+		.resident-sticker__pin {
+			position: absolute;
+			z-index: 2;
+			left: 50%;
+			top: 0.15rem;
+			width: 0.7rem;
+			height: 0.7rem;
+			border: 1px solid rgba(255, 255, 255, 0.72);
+			border-radius: 50%;
+			background:
+				radial-gradient(circle at 34% 28%, rgba(255, 255, 255, 0.95), transparent 18%),
+				color-mix(in srgb, var(--accent) 58%, #f4b66a);
+			box-shadow:
+				0 0.22rem 0.55rem rgba(42, 18, 7, 0.34),
+				0 0 0 0.18rem rgba(74, 37, 16, 0.16);
+			transform: translateX(-50%);
+		}
+
+		.resident-sticker__pin::after {
+			position: absolute;
+			left: 50%;
+			top: 100%;
+			width: 1px;
+			height: 1rem;
+			content: '';
+			background: linear-gradient(180deg, rgba(255, 255, 255, 0.7), transparent);
+			transform: translateX(-50%);
+		}
+
+		:global(.resident-sticker__image) {
+			display: block;
+			width: 100%;
+			padding: 0.28rem;
+			border: 1px solid rgba(255, 244, 223, 0.42);
+			border-radius: 10px;
+			background: rgba(255, 244, 223, 0.16);
+			backdrop-filter: blur(5px);
+			box-shadow:
+				inset 0 0 0 1px rgba(255, 255, 255, 0.12),
+				0 1rem 2rem rgba(35, 16, 7, 0.16);
+		}
+
+		:global(.resident-sticker__image img) {
+			width: 100%;
+			height: auto;
+			display: block;
+			object-fit: contain;
+		}
+
+		@keyframes sticker-settle {
+			from {
+				opacity: 0;
+				transform: rotate(calc(var(--r) - 8deg)) translateY(2rem) scale(0.9);
+			}
+
+			to {
+				opacity: 0.94;
+				transform: rotate(var(--r)) translateY(0) scale(1);
+			}
+		}
+
+		@keyframes sticker-sway {
+			0%,
+			100% {
+				transform: rotate(var(--r)) translateY(0) scale(1);
+			}
+
+			50% {
+				transform: rotate(calc(var(--r) + 2deg)) translateY(0.12rem) scale(1);
+			}
+		}
+
+		@keyframes sticker-sway-alt {
+			0%,
+			100% {
+				transform: rotate(var(--r)) translateY(0) scale(1);
+			}
+
+			50% {
+				transform: rotate(calc(var(--r) - 2deg)) translateY(0.08rem) scale(1);
+			}
+		}
+
+		.links-credit {
+			position: relative;
+			z-index: 2;
+			text-align: right;
+		}
+
+		@media (max-width: 980px) {
+			:global(.links-body) {
+				padding: 0.7rem;
+			}
+
+			.links-shell {
+				min-height: calc(100dvh - 1.4rem);
+				grid-template-rows: auto auto auto;
+			}
+
+			.links-header {
+				align-items: start;
+				flex-direction: column;
+			}
+
+			.links-signal {
+				max-width: 100%;
+			}
+
+			.resident-accordion {
+				display: grid;
+				grid-template-columns: 1fr;
+			}
+
+			.resident-card,
+			.resident-card[data-active='true'] {
+				min-height: 9rem;
+				flex: none;
+			}
+
+			.resident-card[data-active='true'] {
+				min-height: 42rem;
+			}
+
+			.resident-card__tab,
+			.resident-card[data-active='true'] .resident-card__tab {
+				top: auto;
+				bottom: 0.7rem;
+				left: 0.7rem;
+				width: min(18rem, calc(100% - 1.4rem));
+			}
+
+			.resident-card__scene {
+				grid-template-columns: 1fr;
+				padding: 1rem;
+			}
+
+			.resident-card__details {
+				grid-column: 1;
+				align-self: end;
+				margin-top: 17rem;
+			}
+
+			:global(.resident-card__portrait) {
+				left: 50%;
+				bottom: 12rem;
+				height: 60%;
+			}
+
+			.resident-card:not([data-active='true']) :global(.resident-card__portrait) {
+				bottom: -18%;
+				height: 128%;
+			}
+		}
+
+		@media (max-width: 640px) {
+			.links-header h1 {
+				font-size: clamp(2.45rem, 14vw, 4.2rem);
+			}
+
+			.resident-card[data-active='true'] {
+				min-height: 45rem;
+			}
+
+			.resident-card__details {
+				margin-top: 16rem;
+				padding: 0.82rem;
+			}
+
+			.resident-card__identity {
+				align-items: start;
+				flex-direction: column;
+			}
+
+			.resident-card__pinboard {
+				min-height: 12rem;
+			}
+
+			:global(.resident-card__portrait) {
+				bottom: 15rem;
+				height: 52%;
+			}
+
+			:global(.resident-sticker) {
+				width: calc(var(--w) * 1.25);
+			}
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			.resident-card,
+			.resident-card__tab,
+			.resident-card__details,
+			:global(.resident-card__background img),
+			:global(.resident-card__portrait),
+			:global(.resident-sticker),
+			:global(.resident-card[data-active='true'] .resident-sticker) {
+				animation: none !important;
+				transition: none !important;
+			}
+		}
+	</style>
+</BaseLayout>
