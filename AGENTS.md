@@ -145,3 +145,40 @@ setup();
 3. Run `bun run lint` - check for lint issues
 4. Verify site builds: `bun run build`
 5. Test locally: `bun run preview` after build
+
+## Cursor Cloud specific instructions
+
+### Runtime
+
+- **Node.js** ≥ 22.12.0 (see `.nvmrc`) and **Bun** ≥ 1.1.34 (lockfile pins `bun@1.3.10`).
+- If `bun` is missing, install with `curl -fsSL https://bun.sh/install | bash` and ensure `~/.bun/bin` is on `PATH`.
+- No `.env` file, database, or Docker services are required.
+
+### Services
+
+This is a static Astro site with no backend. Only one process is needed for local development:
+
+| Service | Command | Default URL |
+|---------|---------|-------------|
+| Astro dev server | `bun run dev --host 0.0.0.0 --port 4321` | http://127.0.0.1:4321 |
+
+For production-like testing (Pagefind search index, OG images, compression), run `bun run build` then `bun run preview`.
+
+### Verification commands
+
+Standard commands are documented above. Quick smoke sequence:
+
+```bash
+bun run lint
+bun run check
+bun run build
+```
+
+No unit-test framework is configured; CI only runs `bun install --frozen-lockfile` and `bun run build`.
+
+### Gotchas
+
+- **Search** (`/search`) relies on the Pagefind index generated at build time; use `bun run preview` after a build to test search against production output. Dev mode still serves the search page but indexing behavior differs from the built site.
+- **Giscus comments** load from `giscus.app` and require GitHub Discussions; they may not appear in offline or restricted network environments.
+- **Build time**: first `bun run build` can take several minutes due to image optimization and `@playform/compress`.
+- **Fonts**: OG image generation references fonts under `public/fonts/`; missing font files may cause build warnings but the site still builds.
