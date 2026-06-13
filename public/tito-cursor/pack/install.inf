@@ -1,0 +1,52 @@
+[Version]
+signature="$CHICAGO$"
+
+[DefaultInstall]
+CopyFiles = Tito.Cursors
+AddReg = Tito.Reg
+
+[DestinationDirs]
+Tito.Cursors = 10,"%CURSOR_DIR%\Tito"
+
+[Tito.Cursors]
+arrow.cur
+help.cur
+appstarting.ani
+wait.ani
+crosshair.cur
+ibeam.cur
+nwpens.cur
+no.cur
+sizens.cur
+sizewe.cur
+sizenwse.cur
+sizenesw.cur
+sizeall.cur
+uparrow.cur
+hand.cur
+pin.cur
+person.cur
+
+[Tito.Reg]
+HKCU,"Control Panel\Cursors",,0x00020000,"%CURSOR_DIR%\Tito"
+HKCU,"Control Panel\Cursors",Scheme Source,0x00010003,2
+HKCU,"Control Panel\Cursors",Arrow,0x00020000,"%CURSOR_DIR%\Tito\arrow.cur"
+HKCU,"Control Panel\Cursors",Help,0x00020000,"%CURSOR_DIR%\Tito\help.cur"
+HKCU,"Control Panel\Cursors",AppStarting,0x00020000,"%CURSOR_DIR%\Tito\appstarting.ani"
+HKCU,"Control Panel\Cursors",Wait,0x00020000,"%CURSOR_DIR%\Tito\wait.ani"
+HKCU,"Control Panel\Cursors",Crosshair,0x00020000,"%CURSOR_DIR%\Tito\crosshair.cur"
+HKCU,"Control Panel\Cursors",IBeam,0x00020000,"%CURSOR_DIR%\Tito\ibeam.cur"
+HKCU,"Control Panel\Cursors",NWPen,0x00020000,"%CURSOR_DIR%\Tito\nwpens.cur"
+HKCU,"Control Panel\Cursors",No,0x00020000,"%CURSOR_DIR%\Tito\no.cur"
+HKCU,"Control Panel\Cursors",SizeNS,0x00020000,"%CURSOR_DIR%\Tito\sizens.cur"
+HKCU,"Control Panel\Cursors",SizeWE,0x00020000,"%CURSOR_DIR%\Tito\sizewe.cur"
+HKCU,"Control Panel\Cursors",SizeNWSE,0x00020000,"%CURSOR_DIR%\Tito\sizenwse.cur"
+HKCU,"Control Panel\Cursors",SizeNESW,0x00020000,"%CURSOR_DIR%\Tito\sizenesw.cur"
+HKCU,"Control Panel\Cursors",SizeAll,0x00020000,"%CURSOR_DIR%\Tito\sizeall.cur"
+HKCU,"Control Panel\Cursors",UpArrow,0x00020000,"%CURSOR_DIR%\Tito\uparrow.cur"
+HKCU,"Control Panel\Cursors",Hand,0x00020000,"%CURSOR_DIR%\Tito\hand.cur"
+HKCU,"Control Panel\Cursors",Pin,0x00020000,"%CURSOR_DIR%\Tito\pin.cur"
+HKCU,"Control Panel\Cursors",Person,0x00020000,"%CURSOR_DIR%\Tito\person.cur"
+
+[Strings]
+CURSOR_DIR = "C:\Windows\Cursors"

@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Tito 光标 · 头头狼主题鼠标指针</title>
+	<meta name="description" content="Tito 光标 — 头头狼主题 Windows 鼠标指针包。在线预览每一种指针，下载 ZIP / EXE 安装包，一键分享给朋友。" />
+	<meta property="og:title" content="Tito 光标" />
+	<meta property="og:description" content="头头狼主题鼠标指针，17 种系统指针全覆盖。" />
+	<meta property="og:image" content="/tito-cursor/preview-sheet.png" />
+	<meta property="og:url" content="https://tito.cafe/tito-cursor/" />
+	<link rel="canonical" href="https://tito.cafe/tito-cursor/" />
+	<style>
+		@font-face {
+			font-family: 'Inter';
+			src: url('/fonts/Inter-Regular.woff2') format('woff2');
+			font-weight: 400;
+			font-display: swap;
+		}
+
+		@font-face {
+			font-family: 'Noto Sans SC';
+			src: url('/fonts/NotoSansSC-Regular.otf') format('opentype');
+			font-weight: 400;
+			font-display: swap;
+		}
+
+		:root {
+			color-scheme: light dark;
+			--bg: #f5f7fa;
+			--panel: #ffffff;
+			--panel-soft: #e9edf2;
+			--text: #2d3436;
+			--muted: #636e72;
+			--line: #dfe6e9;
+			--soft: #e1f0ff;
+			--accent: #4a90e2;
+			--accent-strong: #5da9ff;
+			--shadow: 0 24px 48px rgba(74, 144, 226, 0.1);
+			--radius: 24px;
+			--radius-sm: 16px;
+		}
+
+		@media (prefers-color-scheme: dark) {
+			:root {
+				--bg: #121417;
+				--panel: #1e2126;
+				--panel-soft: #2c313a;
+				--text: #e1e6eb;
+				--muted: #a0a7b1;
+				--line: #383e4a;
+				--soft: rgba(93, 169, 255, 0.14);
+				--accent: #5da9ff;
+				--accent-strong: #5da9ff;
+				--shadow: 0 24px 48px rgba(93, 169, 255, 0.12);
+			}
+		}
+
+		* { box-sizing: border-box; }
+
+		html, body {
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+			min-height: 100vh;
+			font-family: 'Inter', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+			color: var(--text);
+			background:
+				radial-gradient(circle at 12% 8%, color-mix(in srgb, var(--soft) 90%, transparent), transparent 36%),
+				radial-gradient(circle at 88% 12%, color-mix(in srgb, var(--panel-soft) 70%, transparent), transparent 28%),
+				var(--bg);
+		}
+
+		a {
+			color: var(--accent);
+			text-underline-offset: 0.15em;
+		}
+
+		.shell {
+			width: min(100% - 32px, 1080px);
+			margin: 0 auto;
+			padding: 28px 0 64px;
+		}
+
+		.topbar {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 16px;
+			margin-bottom: 28px;
+		}
+
+		.topbar a.back {
+			color: var(--muted);
+			text-decoration: none;
+			font-size: 0.92rem;
+		}
+
+		.topbar a.back:hover { color: var(--accent); }
+
+		.hero {
+			display: grid;
+			grid-template-columns: 1.1fr 0.9fr;
+			gap: 28px;
+			align-items: center;
+			padding: 32px;
+			border-radius: var(--radius);
+			background: linear-gradient(145deg, color-mix(in srgb, var(--panel) 94%, var(--soft) 6%), var(--panel));
+			border: 1px solid color-mix(in srgb, var(--line) 88%, transparent);
+			box-shadow: var(--shadow);
+		}
+
+		.hero__eyebrow {
+			font-size: 0.78rem;
+			font-weight: 600;
+			letter-spacing: 0.14em;
+			text-transform: uppercase;
+			color: var(--accent);
+			margin: 0 0 10px;
+		}
+
+		.hero h1 {
+			font-size: clamp(2rem, 4vw, 2.75rem);
+			line-height: 1.15;
+			margin: 0 0 12px;
+		}
+
+		.hero__lead {
+			color: var(--muted);
+			line-height: 1.7;
+			margin: 0 0 20px;
+			max-width: 36rem;
+		}
+
+		.hero__chips {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 8px;
+			margin-bottom: 24px;
+		}
+
+		.hero__chips span {
+			font-size: 0.82rem;
+			padding: 6px 12px;
+			border-radius: 999px;
+			background: color-mix(in srgb, var(--soft) 65%, var(--panel) 35%);
+			border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
+			color: var(--text);
+		}
+
+		.actions {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 12px;
+		}
+
+		.btn {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			padding: 12px 20px;
+			border-radius: 14px;
+			font-weight: 600;
+			font-size: 0.95rem;
+			text-decoration: none;
+			border: 1px solid transparent;
+			transition: transform 0.15s ease, box-shadow 0.15s ease;
+		}
+
+		.btn:hover { transform: translateY(-1px); }
+
+		.btn--primary {
+			background: var(--accent);
+			color: #fff;
+			box-shadow: 0 12px 28px color-mix(in srgb, var(--accent) 35%, transparent);
+		}
+
+		.btn--ghost {
+			background: var(--panel);
+			color: var(--text);
+			border-color: color-mix(in srgb, var(--line) 90%, transparent);
+		}
+
+		.hero__preview {
+			position: relative;
+			border-radius: var(--radius-sm);
+			overflow: hidden;
+			border: 1px solid color-mix(in srgb, var(--line) 88%, transparent);
+			background: color-mix(in srgb, var(--panel-soft) 40%, var(--panel) 60%);
+		}
+
+		.hero__preview img {
+			display: block;
+			width: 100%;
+			height: auto;
+		}
+
+		.hero__preview-bar {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding: 10px 14px;
+			background: color-mix(in srgb, var(--panel-soft) 80%, #2c313a 20%);
+			color: #e1e6eb;
+			font-size: 0.78rem;
+		}
+
+		.hero__preview-dots {
+			display: flex;
+			gap: 6px;
+		}
+
+		.hero__preview-dots span {
+			width: 10px;
+			height: 10px;
+			border-radius: 50%;
+			background: color-mix(in srgb, #fff 25%, transparent);
+		}
+
+		.hero__preview-dots span:first-child { background: #ff6b6b; }
+		.hero__preview-dots span:nth-child(2) { background: #ffd93d; }
+		.hero__preview-dots span:nth-child(3) { background: #6bcb77; }
+
+		.section {
+			margin-top: 36px;
+		}
+
+		.section__head {
+			display: flex;
+			align-items: flex-end;
+			justify-content: space-between;
+			gap: 16px;
+			margin-bottom: 18px;
+		}
+
+		.section h2 {
+			margin: 0;
+			font-size: 1.35rem;
+		}
+
+		.section p.hint {
+			margin: 0;
+			color: var(--muted);
+			font-size: 0.9rem;
+		}
+
+		.arena {
+			border-radius: var(--radius);
+			border: 1px dashed color-mix(in srgb, var(--accent) 45%, var(--line) 55%);
+			background:
+				linear-gradient(90deg, color-mix(in srgb, var(--line) 35%, transparent) 1px, transparent 1px),
+				linear-gradient(color-mix(in srgb, var(--line) 35%, transparent) 1px, transparent 1px),
+				color-mix(in srgb, var(--panel) 92%, var(--soft) 8%);
+			background-size: 24px 24px;
+			min-height: 200px;
+			padding: 28px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			gap: 8px;
+			transition: border-color 0.2s ease;
+		}
+
+		.arena__title {
+			font-size: 1.1rem;
+			font-weight: 600;
+		}
+
+		.arena__meta {
+			color: var(--muted);
+			font-size: 0.9rem;
+		}
+
+		.grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+			gap: 14px;
+		}
+
+		.card {
+			padding: 16px;
+			border-radius: var(--radius-sm);
+			background: var(--panel);
+			border: 1px solid color-mix(in srgb, var(--line) 88%, transparent);
+			cursor: default;
+			transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+		}
+
+		.card:hover,
+		.card.is-active {
+			border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+			box-shadow: 0 12px 28px color-mix(in srgb, var(--accent) 12%, transparent);
+			transform: translateY(-2px);
+		}
+
+		.card__preview {
+			width: 64px;
+			height: 64px;
+			margin: 0 auto 12px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background: color-mix(in srgb, var(--panel-soft) 55%, var(--panel) 45%);
+			border-radius: 12px;
+		}
+
+		.card__preview img {
+			width: 48px;
+			height: 48px;
+			image-rendering: pixelated;
+		}
+
+		.card h3 {
+			margin: 0 0 4px;
+			font-size: 0.95rem;
+			text-align: center;
+		}
+
+		.card p {
+			margin: 0;
+			text-align: center;
+			font-size: 0.78rem;
+			color: var(--muted);
+		}
+
+		.card__hover {
+			margin-top: 10px;
+			text-align: center;
+			font-size: 0.75rem;
+			color: var(--accent);
+		}
+
+		.video-wrap {
+			border-radius: var(--radius);
+			overflow: hidden;
+			border: 1px solid color-mix(in srgb, var(--line) 88%, transparent);
+			background: var(--panel);
+			box-shadow: var(--shadow);
+		}
+
+		.video-wrap video {
+			display: block;
+			width: 100%;
+			max-height: 520px;
+			background: #0d1117;
+		}
+
+		.steps {
+			display: grid;
+			gap: 12px;
+		}
+
+		.step {
+			padding: 18px 20px;
+			border-radius: var(--radius-sm);
+			background: var(--panel);
+			border: 1px solid color-mix(in srgb, var(--line) 88%, transparent);
+		}
+
+		.step strong { color: var(--accent); }
+
+		.footer-note {
+			margin-top: 40px;
+			padding-top: 20px;
+			border-top: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
+			color: var(--muted);
+			font-size: 0.85rem;
+			line-height: 1.7;
+		}
+
+		@media (max-width: 860px) {
+			.hero {
+				grid-template-columns: 1fr;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="shell">
+		<div class="topbar">
+			<a class="back" href="/">← 回到 Tito's Cafe</a>
+			<span style="color: var(--muted); font-size: 0.85rem;">tito.cafe/tito-cursor</span>
+		</div>
+
+		<section class="hero">
+			<div>
+				<p class="hero__eyebrow">Cursor Pack</p>
+				<h1>Tito 光标</h1>
+				<p class="hero__lead">
+					头头狼主题 Windows 鼠标指针，覆盖系统常用的 17 种指针状态。
+					在线悬停预览每一种，下载安装包后分享给朋友，链接以 <strong>tito-cursor</strong> 结尾，好记也好发。
+				</p>
+				<div class="hero__chips">
+					<span>17 种指针</span>
+					<span>Windows 10 / 11</span>
+					<span>像素风头头狼</span>
+					<span>ZIP + EXE</span>
+				</div>
+				<div class="actions">
+					<a class="btn btn--primary" href="/tito-cursor/downloads/Tito-cursor.zip" download>下载 ZIP 安装包</a>
+					<a class="btn btn--ghost" id="exe-download" href="/tito-cursor/downloads/Tito-cursor.exe" download hidden>下载 EXE 安装包</a>
+				</div>
+			</div>
+			<div class="hero__preview">
+				<div class="hero__preview-bar">
+					<span>Tito 光标 · 预览</span>
+					<div class="hero__preview-dots" aria-hidden="true">
+						<span></span><span></span><span></span>
+					</div>
+				</div>
+				<img src="/tito-cursor/preview-sheet.png" alt="Tito 光标全套预览" width="512" height="416" />
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="section__head">
+				<div>
+					<h2>互动预览区</h2>
+					<p class="hint">点击下方卡片，或把鼠标移入卡片，感受当前指针样式</p>
+				</div>
+			</div>
+			<div class="arena" id="arena">
+				<div class="arena__title" id="arena-title">正常选择</div>
+				<div class="arena__meta" id="arena-meta">Normal Select · 在这里移动鼠标</div>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="section__head">
+				<div>
+					<h2>全部指针</h2>
+					<p class="hint">悬停卡片即可切换网页指针（浏览器预览，与 Windows 实机一致度取决于浏览器）</p>
+				</div>
+			</div>
+			<div class="grid" id="cursor-grid"></div>
+		</section>
+
+		<section class="section">
+			<div class="section__head">
+				<div>
+					<h2>演示视频</h2>
+					<p class="hint">逐个展示每一种指针效果</p>
+				</div>
+			</div>
+			<div class="video-wrap">
+				<video id="demo-video" controls playsinline poster="/tito-cursor/preview-sheet.png">
+					<source src="/tito-cursor/demo.mp4" type="video/mp4" />
+				</video>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="section__head">
+				<h2>安装方法</h2>
+			</div>
+			<div class="steps">
+				<div class="step"><strong>ZIP：</strong>解压后右键 <code>install.inf</code> → 选择「安装」。</div>
+				<div class="step"><strong>EXE：</strong>双击运行安装包（内容与 ZIP 相同，方便一键分发）。</div>
+				<div class="step"><strong>启用：</strong>设置 → 个性化 → 主题 → 鼠标指针样式，选择 <strong>Tito</strong> 方案。</div>
+				<div class="step"><strong>分享：</strong>把本页链接 <code>https://tito.cafe/tito-cursor</code> 发给朋友即可。</div>
+			</div>
+		</section>
+
+		<p class="footer-note">
+			由 Tito_XD 制作 · 托管于 <a href="https://tito.cafe">tito.cafe</a>。
+			分享链接：<a href="https://tito.cafe/tito-cursor">https://tito.cafe/tito-cursor</a>。
+			若你有原版「Tito 光标.exe」，可在仓库中运行
+			<code>python3 scripts/import-tito-cursor-local.py "路径/Tito 光标.zip" "路径/Tito 光标.exe"</code> 后重新部署。
+		</p>
+	</div>
+
+	<script>
+		const arena = document.getElementById('arena');
+		const arenaTitle = document.getElementById('arena-title');
+		const arenaMeta = document.getElementById('arena-meta');
+		const grid = document.getElementById('cursor-grid');
+
+		function applyCursor(item) {
+			const [hx, hy] = item.hotspot;
+			const url = `${item.preview} ${hx} ${hy}, auto`;
+			arena.style.cursor = `url('${item.preview}') ${hx} ${hy}, auto`;
+			document.body.style.cursor = `url('${item.preview}') ${hx} ${hy}, auto`;
+			arenaTitle.textContent = item.name;
+			arenaMeta.textContent = `${item.nameEn} · 在这里移动鼠标`;
+		}
+
+		function resetBodyCursor() {
+			document.body.style.cursor = '';
+		}
+
+		fetch('/tito-cursor/cursors.json')
+			.then((r) => r.json())
+			.then((items) => {
+				items.forEach((item) => {
+					const card = document.createElement('article');
+					card.className = 'card';
+					card.dataset.id = item.id;
+					const [hx, hy] = item.hotspot;
+					card.innerHTML = `
+						<div class="card__preview"><img src="${item.preview}" alt="${item.name}" width="48" height="48" /></div>
+						<h3>${item.name}</h3>
+						<p>${item.nameEn}</p>
+						<div class="card__hover">悬停试用 →</div>
+					`;
+					card.addEventListener('mouseenter', () => {
+						document.querySelectorAll('.card').forEach((c) => c.classList.remove('is-active'));
+						card.classList.add('is-active');
+						applyCursor(item);
+					});
+					card.addEventListener('mouseleave', () => {
+						card.classList.remove('is-active');
+						resetBodyCursor();
+					});
+					card.addEventListener('click', () => {
+						document.querySelectorAll('.card').forEach((c) => c.classList.remove('is-active'));
+						card.classList.add('is-active');
+						applyCursor(item);
+					});
+					card.style.cursor = `url('${item.preview}') ${hx} ${hy}, pointer`;
+					grid.appendChild(card);
+				});
+				if (items[0]) applyCursor(items[0]);
+			})
+			.catch(() => {
+				grid.innerHTML = '<p style="color: var(--muted);">指针列表加载失败，请刷新重试。</p>';
+			});
+
+		arena.addEventListener('mouseleave', resetBodyCursor);
+
+		fetch('/tito-cursor/downloads/Tito-cursor.exe', { method: 'HEAD' })
+			.then((r) => {
+				if (r.ok) {
+					const exe = document.getElementById('exe-download');
+					if (exe) exe.hidden = false;
+				}
+			})
+			.catch(() => {});
+	</script>
+</body>
+</html>
