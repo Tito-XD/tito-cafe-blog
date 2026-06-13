@@ -28,7 +28,8 @@
 		"preview:wrangler": "wrangler pages dev ./dist",
 		"astro": "astro",
 		"lint": "bun x @biomejs/biome check .",
-		"format": "bun x @biomejs/biome check --write ."
+		"format": "bun x @biomejs/biome check --write .",
+		"sync:cursor": "python3 scripts/sync-tito-cursor-from-assets.py"
 	},
 	"dependencies": {
 		"@astrojs/markdown-remark": "^7.0.0",
