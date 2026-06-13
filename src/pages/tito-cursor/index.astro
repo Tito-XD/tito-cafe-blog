@@ -1,0 +1,211 @@
+---
+import { Icon } from 'astro-icon/components';
+import PageHeading from '~/components/PageHeading.astro';
+import ScaffoldLayout from '~/layouts/ScaffoldLayout.astro';
+
+const downloads = {
+	zip: '/tito-cursor/downloads/Tito-Cursor.zip',
+	exe: '/tito-cursor/downloads/Tito-Cursor.exe',
+	softCursor: '/tito-cursor/downloads/SoftCursor-1.0.zip',
+};
+
+const installSteps = [
+	{
+		title: 'ZIP 压缩包',
+		body: '解压后右键 install.inf，选择「安装」。',
+	},
+	{
+		title: 'EXE 安装包',
+		body: '双击 Tito-Cursor.exe，按提示完成安装。',
+	},
+	{
+		title: '启用主题',
+		body: '设置 → 个性化 → 主题 → 鼠标指针样式 → 选择 Tito 方案。',
+	},
+];
+
+const softCursorSteps = [
+	'解压 SoftCursor-1.0.zip，运行其中的 SoftCursor。',
+	'在界面中选择 Software cursor（软件渲染），立即生效，无需常驻后台。',
+	'若要恢复硬件渲染，再次运行并选择 Hardware cursor。',
+];
+---
+
+<ScaffoldLayout
+	title="Tito 光标"
+	description="头头狼主题 Windows 鼠标指针。预览、下载与颜色变浅修复指引。"
+	socialImage="/tito-cursor/preview.png"
+>
+	<PageHeading title="Tito 光标" />
+	<p class="cursor-lead">
+		头头狼主题 Windows 鼠标指针，覆盖常用系统指针状态。下载安装后即可使用，也可把本页分享给朋友：
+		<a href="https://tito.cafe/tito-cursor">tito.cafe/tito-cursor</a>
+	</p>
+
+	<div class="cursor-actions">
+		<a class="cursor-download ui-pressable" href={downloads.zip} download>
+			<Icon name="ri:download-2-line" class="cursor-download__icon" aria-hidden="true" />
+			<span>下载 ZIP</span>
+		</a>
+		<a class="cursor-download cursor-download--ghost ui-pressable" href={downloads.exe} download>
+			<Icon name="ri:install-line" class="cursor-download__icon" aria-hidden="true" />
+			<span>下载 EXE</span>
+		</a>
+	</div>
+
+	<section class="cursor-preview" aria-label="全套指针预览">
+		<img
+			src="/tito-cursor/preview.png"
+			alt="Tito 光标全套预览"
+			width="800"
+			height="600"
+			loading="eager"
+			decoding="async"
+		/>
+	</section>
+
+	<section class="cursor-section">
+		<h2 class="cursor-section__title">安装方法</h2>
+		<ul class="cursor-steps">
+			{
+				installSteps.map((step) => (
+					<li class="cursor-step">
+						<strong>{step.title}</strong>
+						<p>{step.body}</p>
+					</li>
+				))
+			}
+		</ul>
+	</section>
+
+	<section class="cursor-section cursor-section--soft">
+		<h2 class="cursor-section__title">指针颜色变浅？</h2>
+		<p class="cursor-section__text">
+			部分电脑在独显、HDR 或游戏中，自定义指针可能变淡、泛白。可下载 SoftCursor，将渲染方式改为
+			<strong>Software cursor</strong>（软件渲染）以恢复正常颜色。
+		</p>
+		<a class="cursor-download cursor-download--ghost ui-pressable" href={downloads.softCursor} download>
+			<Icon name="ri:tools-line" class="cursor-download__icon" aria-hidden="true" />
+			<span>下载 SoftCursor</span>
+		</a>
+		<ul class="cursor-steps cursor-steps--compact">
+			{
+				softCursorSteps.map((step) => (
+					<li class="cursor-step">
+						<p>{step}</p>
+					</li>
+				))
+			}
+		</ul>
+	</section>
+</ScaffoldLayout>
+
+<style>
+	.cursor-lead {
+		margin: 0 0 1.5rem;
+		max-width: 42rem;
+		color: var(--color-muted);
+		line-height: 1.75;
+	}
+
+	.cursor-actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin-bottom: 1.75rem;
+	}
+
+	.cursor-download {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.65rem 1.1rem;
+		border-radius: var(--radius-button);
+		border: 1px solid color-mix(in srgb, var(--color-accent) 42%, var(--color-border) 58%);
+		background: var(--color-accent);
+		color: #fff;
+		font-weight: 600;
+		font-size: 0.95rem;
+		text-decoration: none;
+	}
+
+	.cursor-download--ghost {
+		background: color-mix(in srgb, var(--color-surface) 92%, var(--color-accent-soft) 8%);
+		color: var(--color-text);
+	}
+
+	.cursor-download__icon {
+		width: 1.1rem;
+		height: 1.1rem;
+	}
+
+	.cursor-preview {
+		margin-bottom: 2rem;
+		border-radius: var(--radius-card);
+		border: 1px solid color-mix(in srgb, var(--color-border) 88%, transparent);
+		background: color-mix(in srgb, var(--color-surface) 94%, var(--color-accent-soft) 6%);
+		overflow: hidden;
+	}
+
+	.cursor-preview img {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+
+	.cursor-section {
+		margin-bottom: 1.75rem;
+	}
+
+	.cursor-section__title {
+		margin: 0 0 0.85rem;
+		font-size: 1.15rem;
+	}
+
+	.cursor-section__text {
+		margin: 0 0 1rem;
+		max-width: 42rem;
+		color: var(--color-muted);
+		line-height: 1.75;
+	}
+
+	.cursor-section--soft {
+		padding: 1.25rem 1.35rem;
+		border-radius: var(--radius-card);
+		border: 1px solid color-mix(in srgb, var(--color-accent) 28%, var(--color-border) 72%);
+		background: color-mix(in srgb, var(--color-accent-soft) 35%, var(--color-surface) 65%);
+	}
+
+	.cursor-steps {
+		display: grid;
+		gap: 0.75rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.cursor-steps--compact {
+		margin-top: 1rem;
+	}
+
+	.cursor-step {
+		padding: 0.9rem 1rem;
+		border-radius: var(--radius-soft);
+		border: 1px solid color-mix(in srgb, var(--color-border) 86%, transparent);
+		background: var(--color-surface);
+	}
+
+	.cursor-step strong {
+		display: block;
+		margin-bottom: 0.35rem;
+		color: var(--color-accent);
+		font-size: 0.92rem;
+	}
+
+	.cursor-step p {
+		margin: 0;
+		color: var(--color-muted);
+		line-height: 1.65;
+		font-size: 0.92rem;
+	}
+</style>
