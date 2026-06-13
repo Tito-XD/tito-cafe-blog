@@ -29,7 +29,6 @@
 		"astro": "astro",
 		"lint": "bun x @biomejs/biome check .",
 		"format": "bun x @biomejs/biome check --write .",
-		"build:cursor": "python3 scripts/build-tito-cursor-pack.py",
 		"sync:cursor": "python3 scripts/sync-tito-cursor-from-assets.py"
 	},
 	"dependencies": {
