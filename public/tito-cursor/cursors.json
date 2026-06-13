@@ -1,172 +1,189 @@
 [
-  {
-    "id": "arrow",
-    "name": "正常选择",
-    "nameEn": "Normal Select",
-    "preview": "/tito-cursor/previews/arrow.png",
-    "hotspot": [
-      2,
-      2
-    ]
-  },
-  {
-    "id": "help",
-    "name": "帮助选择",
-    "nameEn": "Help Select",
-    "preview": "/tito-cursor/previews/help.png",
-    "hotspot": [
-      15,
-      15
-    ]
-  },
-  {
-    "id": "appstarting",
-    "name": "后台运行中",
-    "nameEn": "Working in Background",
-    "preview": "/tito-cursor/previews/appstarting.png",
-    "hotspot": [
-      15,
-      15
-    ]
-  },
-  {
-    "id": "wait",
-    "name": "忙碌",
-    "nameEn": "Busy",
-    "preview": "/tito-cursor/previews/wait.png",
-    "hotspot": [
-      15,
-      15
-    ]
-  },
-  {
-    "id": "crosshair",
-    "name": "精确选择",
-    "nameEn": "Precision Select",
-    "preview": "/tito-cursor/previews/crosshair.png",
-    "hotspot": [
-      15,
-      15
-    ]
-  },
-  {
-    "id": "ibeam",
-    "name": "文本选择",
-    "nameEn": "Text Select",
-    "preview": "/tito-cursor/previews/ibeam.png",
-    "hotspot": [
-      15,
-      15
-    ]
-  },
-  {
-    "id": "nwpens",
-    "name": "手写",
-    "nameEn": "Handwriting",
-    "preview": "/tito-cursor/previews/nwpens.png",
-    "hotspot": [
-      4,
-      28
-    ]
-  },
-  {
-    "id": "no",
-    "name": "不可用",
-    "nameEn": "Unavailable",
-    "preview": "/tito-cursor/previews/no.png",
-    "hotspot": [
-      15,
-      15
-    ]
-  },
-  {
-    "id": "sizens",
-    "name": "垂直调整大小",
-    "nameEn": "Vertical Resize",
-    "preview": "/tito-cursor/previews/sizens.png",
-    "hotspot": [
-      15,
-      15
-    ]
-  },
-  {
-    "id": "sizewe",
-    "name": "水平调整大小",
-    "nameEn": "Horizontal Resize",
-    "preview": "/tito-cursor/previews/sizewe.png",
-    "hotspot": [
-      15,
-      15
-    ]
-  },
-  {
-    "id": "sizenwse",
-    "name": "对角调整大小 1",
-    "nameEn": "Diagonal Resize 1",
-    "preview": "/tito-cursor/previews/sizenwse.png",
-    "hotspot": [
-      15,
-      15
-    ]
-  },
-  {
-    "id": "sizenesw",
-    "name": "对角调整大小 2",
-    "nameEn": "Diagonal Resize 2",
-    "preview": "/tito-cursor/previews/sizenesw.png",
-    "hotspot": [
-      15,
-      15
-    ]
-  },
-  {
-    "id": "sizeall",
-    "name": "移动",
-    "nameEn": "Move",
-    "preview": "/tito-cursor/previews/sizeall.png",
-    "hotspot": [
-      15,
-      15
-    ]
-  },
-  {
-    "id": "uparrow",
-    "name": "备用选择",
-    "nameEn": "Alternate Select",
-    "preview": "/tito-cursor/previews/uparrow.png",
-    "hotspot": [
-      15,
-      4
-    ]
-  },
-  {
-    "id": "hand",
-    "name": "链接选择",
-    "nameEn": "Link Select",
-    "preview": "/tito-cursor/previews/hand.png",
-    "hotspot": [
-      10,
-      4
-    ]
-  },
-  {
-    "id": "pin",
-    "name": "位置选择",
-    "nameEn": "Location Select",
-    "preview": "/tito-cursor/previews/pin.png",
-    "hotspot": [
-      15,
-      28
-    ]
-  },
-  {
-    "id": "person",
-    "name": "人员选择",
-    "nameEn": "Person Select",
-    "preview": "/tito-cursor/previews/person.png",
-    "hotspot": [
-      15,
-      28
-    ]
-  }
+	{
+		"id": "arrow",
+		"name": "正常选择",
+		"nameEn": "Normal Select",
+		"preview": "/tito-cursor/previews/arrow.png",
+		"hotspot": [
+			0,
+			0
+		],
+		"file": "Normal.cur"
+	},
+	{
+		"id": "help",
+		"name": "帮助选择",
+		"nameEn": "Help Select",
+		"preview": "/tito-cursor/previews/help.png",
+		"hotspot": [
+			1,
+			1
+		],
+		"file": "Help.cur"
+	},
+	{
+		"id": "appstarting",
+		"name": "后台运行中",
+		"nameEn": "Working in Background",
+		"preview": "/tito-cursor/previews/appstarting.png",
+		"hotspot": [
+			1,
+			1
+		],
+		"file": "Working.cur"
+	},
+	{
+		"id": "wait",
+		"name": "忙碌",
+		"nameEn": "Busy",
+		"preview": "/tito-cursor/previews/wait.png",
+		"hotspot": [
+			2,
+			2
+		],
+		"file": "Busy.cur"
+	},
+	{
+		"id": "crosshair",
+		"name": "精确选择",
+		"nameEn": "Precision Select",
+		"preview": "/tito-cursor/previews/crosshair.png",
+		"hotspot": [
+			1,
+			1
+		],
+		"file": "Precision.cur"
+	},
+	{
+		"id": "ibeam",
+		"name": "文本选择",
+		"nameEn": "Text Select",
+		"preview": "/tito-cursor/previews/ibeam.png",
+		"hotspot": [
+			2,
+			3
+		],
+		"file": "Text.cur"
+	},
+	{
+		"id": "nwpens",
+		"name": "手写",
+		"nameEn": "Handwriting",
+		"preview": "/tito-cursor/previews/nwpens.png",
+		"hotspot": [
+			0,
+			0
+		],
+		"file": "Handwriting.cur"
+	},
+	{
+		"id": "no",
+		"name": "不可用",
+		"nameEn": "Unavailable",
+		"preview": "/tito-cursor/previews/no.png",
+		"hotspot": [
+			16,
+			16
+		],
+		"file": "Unavailable.cur"
+	},
+	{
+		"id": "sizens",
+		"name": "垂直调整大小",
+		"nameEn": "Vertical Resize",
+		"preview": "/tito-cursor/previews/sizens.png",
+		"hotspot": [
+			15,
+			0
+		],
+		"file": "Vertical.cur"
+	},
+	{
+		"id": "sizewe",
+		"name": "水平调整大小",
+		"nameEn": "Horizontal Resize",
+		"preview": "/tito-cursor/previews/sizewe.png",
+		"hotspot": [
+			0,
+			15
+		],
+		"file": "Horizontal.cur"
+	},
+	{
+		"id": "sizenwse",
+		"name": "对角调整大小 1",
+		"nameEn": "Diagonal Resize 1",
+		"preview": "/tito-cursor/previews/sizenwse.png",
+		"hotspot": [
+			1,
+			1
+		],
+		"file": "Diagonal1.cur"
+	},
+	{
+		"id": "sizenesw",
+		"name": "对角调整大小 2",
+		"nameEn": "Diagonal Resize 2",
+		"preview": "/tito-cursor/previews/sizenesw.png",
+		"hotspot": [
+			30,
+			1
+		],
+		"file": "Diagonal2.cur"
+	},
+	{
+		"id": "sizeall",
+		"name": "移动",
+		"nameEn": "Move",
+		"preview": "/tito-cursor/previews/sizeall.png",
+		"hotspot": [
+			0,
+			0
+		],
+		"file": "Move.cur"
+	},
+	{
+		"id": "uparrow",
+		"name": "备用选择",
+		"nameEn": "Alternate Select",
+		"preview": "/tito-cursor/previews/uparrow.png",
+		"hotspot": [
+			2,
+			1
+		],
+		"file": "Alternate.cur"
+	},
+	{
+		"id": "hand",
+		"name": "链接选择",
+		"nameEn": "Link Select",
+		"preview": "/tito-cursor/previews/hand.png",
+		"hotspot": [
+			7,
+			7
+		],
+		"file": "Link.cur"
+	},
+	{
+		"id": "pin",
+		"name": "位置选择",
+		"nameEn": "Location Select",
+		"preview": "/tito-cursor/previews/pin.png",
+		"hotspot": [
+			1,
+			1
+		],
+		"file": "Pin.cur"
+	},
+	{
+		"id": "person",
+		"name": "人员选择",
+		"nameEn": "Person Select",
+		"preview": "/tito-cursor/previews/person.png",
+		"hotspot": [
+			1,
+			1
+		],
+		"file": "Person.cur"
+	}
 ]
