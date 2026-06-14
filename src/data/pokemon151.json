@@ -1,0 +1,908 @@
+[
+	{
+		"id": 1,
+		"nameEn": "Bulbasaur",
+		"nameCn": "妙蛙种子",
+		"slug": "bulbasaur"
+	},
+	{
+		"id": 2,
+		"nameEn": "Ivysaur",
+		"nameCn": "妙蛙草",
+		"slug": "ivysaur"
+	},
+	{
+		"id": 3,
+		"nameEn": "Venusaur",
+		"nameCn": "妙蛙花",
+		"slug": "venusaur"
+	},
+	{
+		"id": 4,
+		"nameEn": "Charmander",
+		"nameCn": "小火龙",
+		"slug": "charmander"
+	},
+	{
+		"id": 5,
+		"nameEn": "Charmeleon",
+		"nameCn": "火恐龙",
+		"slug": "charmeleon"
+	},
+	{
+		"id": 6,
+		"nameEn": "Charizard",
+		"nameCn": "喷火龙",
+		"slug": "charizard"
+	},
+	{
+		"id": 7,
+		"nameEn": "Squirtle",
+		"nameCn": "杰尼龟",
+		"slug": "squirtle"
+	},
+	{
+		"id": 8,
+		"nameEn": "Wartortle",
+		"nameCn": "卡咪龟",
+		"slug": "wartortle"
+	},
+	{
+		"id": 9,
+		"nameEn": "Blastoise",
+		"nameCn": "水箭龟",
+		"slug": "blastoise"
+	},
+	{
+		"id": 10,
+		"nameEn": "Caterpie",
+		"nameCn": "绿毛虫",
+		"slug": "caterpie"
+	},
+	{
+		"id": 11,
+		"nameEn": "Metapod",
+		"nameCn": "铁甲蛹",
+		"slug": "metapod"
+	},
+	{
+		"id": 12,
+		"nameEn": "Butterfree",
+		"nameCn": "巴大蝶",
+		"slug": "butterfree"
+	},
+	{
+		"id": 13,
+		"nameEn": "Weedle",
+		"nameCn": "独角虫",
+		"slug": "weedle"
+	},
+	{
+		"id": 14,
+		"nameEn": "Kakuna",
+		"nameCn": "铁壳蛹",
+		"slug": "kakuna"
+	},
+	{
+		"id": 15,
+		"nameEn": "Beedrill",
+		"nameCn": "大针蜂",
+		"slug": "beedrill"
+	},
+	{
+		"id": 16,
+		"nameEn": "Pidgey",
+		"nameCn": "波波",
+		"slug": "pidgey"
+	},
+	{
+		"id": 17,
+		"nameEn": "Pidgeotto",
+		"nameCn": "比比鸟",
+		"slug": "pidgeotto"
+	},
+	{
+		"id": 18,
+		"nameEn": "Pidgeot",
+		"nameCn": "大比鸟",
+		"slug": "pidgeot"
+	},
+	{
+		"id": 19,
+		"nameEn": "Rattata",
+		"nameCn": "小拉达",
+		"slug": "rattata"
+	},
+	{
+		"id": 20,
+		"nameEn": "Raticate",
+		"nameCn": "拉达",
+		"slug": "raticate"
+	},
+	{
+		"id": 21,
+		"nameEn": "Spearow",
+		"nameCn": "烈雀",
+		"slug": "spearow"
+	},
+	{
+		"id": 22,
+		"nameEn": "Fearow",
+		"nameCn": "大嘴雀",
+		"slug": "fearow"
+	},
+	{
+		"id": 23,
+		"nameEn": "Ekans",
+		"nameCn": "阿柏蛇",
+		"slug": "ekans"
+	},
+	{
+		"id": 24,
+		"nameEn": "Arbok",
+		"nameCn": "阿柏怪",
+		"slug": "arbok"
+	},
+	{
+		"id": 25,
+		"nameEn": "Pikachu",
+		"nameCn": "皮卡丘",
+		"slug": "pikachu"
+	},
+	{
+		"id": 26,
+		"nameEn": "Raichu",
+		"nameCn": "雷丘",
+		"slug": "raichu"
+	},
+	{
+		"id": 27,
+		"nameEn": "Sandshrew",
+		"nameCn": "穿山鼠",
+		"slug": "sandshrew"
+	},
+	{
+		"id": 28,
+		"nameEn": "Sandslash",
+		"nameCn": "穿山王",
+		"slug": "sandslash"
+	},
+	{
+		"id": 29,
+		"nameEn": "Nidoran♀",
+		"nameCn": "尼多兰",
+		"slug": "nidoran-f"
+	},
+	{
+		"id": 30,
+		"nameEn": "Nidorina",
+		"nameCn": "尼多娜",
+		"slug": "nidorina"
+	},
+	{
+		"id": 31,
+		"nameEn": "Nidoqueen",
+		"nameCn": "尼多后",
+		"slug": "nidoqueen"
+	},
+	{
+		"id": 32,
+		"nameEn": "Nidoran♂",
+		"nameCn": "尼多朗",
+		"slug": "nidoran-m"
+	},
+	{
+		"id": 33,
+		"nameEn": "Nidorino",
+		"nameCn": "尼多力诺",
+		"slug": "nidorino"
+	},
+	{
+		"id": 34,
+		"nameEn": "Nidoking",
+		"nameCn": "尼多王",
+		"slug": "nidoking"
+	},
+	{
+		"id": 35,
+		"nameEn": "Clefairy",
+		"nameCn": "皮皮",
+		"slug": "clefairy"
+	},
+	{
+		"id": 36,
+		"nameEn": "Clefable",
+		"nameCn": "皮可西",
+		"slug": "clefable"
+	},
+	{
+		"id": 37,
+		"nameEn": "Vulpix",
+		"nameCn": "六尾",
+		"slug": "vulpix"
+	},
+	{
+		"id": 38,
+		"nameEn": "Ninetales",
+		"nameCn": "九尾",
+		"slug": "ninetales"
+	},
+	{
+		"id": 39,
+		"nameEn": "Jigglypuff",
+		"nameCn": "胖丁",
+		"slug": "jigglypuff"
+	},
+	{
+		"id": 40,
+		"nameEn": "Wigglytuff",
+		"nameCn": "胖可丁",
+		"slug": "wigglytuff"
+	},
+	{
+		"id": 41,
+		"nameEn": "Zubat",
+		"nameCn": "超音蝠",
+		"slug": "zubat"
+	},
+	{
+		"id": 42,
+		"nameEn": "Golbat",
+		"nameCn": "大嘴蝠",
+		"slug": "golbat"
+	},
+	{
+		"id": 43,
+		"nameEn": "Oddish",
+		"nameCn": "走路草",
+		"slug": "oddish"
+	},
+	{
+		"id": 44,
+		"nameEn": "Gloom",
+		"nameCn": "臭臭花",
+		"slug": "gloom"
+	},
+	{
+		"id": 45,
+		"nameEn": "Vileplume",
+		"nameCn": "霸王花",
+		"slug": "vileplume"
+	},
+	{
+		"id": 46,
+		"nameEn": "Paras",
+		"nameCn": "派拉斯",
+		"slug": "paras"
+	},
+	{
+		"id": 47,
+		"nameEn": "Parasect",
+		"nameCn": "派拉斯特",
+		"slug": "parasect"
+	},
+	{
+		"id": 48,
+		"nameEn": "Venonat",
+		"nameCn": "毛球",
+		"slug": "venonat"
+	},
+	{
+		"id": 49,
+		"nameEn": "Venomoth",
+		"nameCn": "摩鲁蛾",
+		"slug": "venomoth"
+	},
+	{
+		"id": 50,
+		"nameEn": "Diglett",
+		"nameCn": "地鼠",
+		"slug": "diglett"
+	},
+	{
+		"id": 51,
+		"nameEn": "Dugtrio",
+		"nameCn": "三地鼠",
+		"slug": "dugtrio"
+	},
+	{
+		"id": 52,
+		"nameEn": "Meowth",
+		"nameCn": "喵喵",
+		"slug": "meowth"
+	},
+	{
+		"id": 53,
+		"nameEn": "Persian",
+		"nameCn": "猫老大",
+		"slug": "persian"
+	},
+	{
+		"id": 54,
+		"nameEn": "Psyduck",
+		"nameCn": "可达鸭",
+		"slug": "psyduck"
+	},
+	{
+		"id": 55,
+		"nameEn": "Golduck",
+		"nameCn": "哥达鸭",
+		"slug": "golduck"
+	},
+	{
+		"id": 56,
+		"nameEn": "Mankey",
+		"nameCn": "猴怪",
+		"slug": "mankey"
+	},
+	{
+		"id": 57,
+		"nameEn": "Primeape",
+		"nameCn": "火暴猴",
+		"slug": "primeape"
+	},
+	{
+		"id": 58,
+		"nameEn": "Growlithe",
+		"nameCn": "卡蒂狗",
+		"slug": "growlithe"
+	},
+	{
+		"id": 59,
+		"nameEn": "Arcanine",
+		"nameCn": "风速狗",
+		"slug": "arcanine"
+	},
+	{
+		"id": 60,
+		"nameEn": "Poliwag",
+		"nameCn": "蚊香蝌蚪",
+		"slug": "poliwag"
+	},
+	{
+		"id": 61,
+		"nameEn": "Poliwhirl",
+		"nameCn": "蚊香君",
+		"slug": "poliwhirl"
+	},
+	{
+		"id": 62,
+		"nameEn": "Poliwrath",
+		"nameCn": "蚊香泳士",
+		"slug": "poliwrath"
+	},
+	{
+		"id": 63,
+		"nameEn": "Abra",
+		"nameCn": "凯西",
+		"slug": "abra"
+	},
+	{
+		"id": 64,
+		"nameEn": "Kadabra",
+		"nameCn": "勇基拉",
+		"slug": "kadabra"
+	},
+	{
+		"id": 65,
+		"nameEn": "Alakazam",
+		"nameCn": "胡地",
+		"slug": "alakazam"
+	},
+	{
+		"id": 66,
+		"nameEn": "Machop",
+		"nameCn": "腕力",
+		"slug": "machop"
+	},
+	{
+		"id": 67,
+		"nameEn": "Machoke",
+		"nameCn": "豪力",
+		"slug": "machoke"
+	},
+	{
+		"id": 68,
+		"nameEn": "Machamp",
+		"nameCn": "怪力",
+		"slug": "machamp"
+	},
+	{
+		"id": 69,
+		"nameEn": "Bellsprout",
+		"nameCn": "喇叭芽",
+		"slug": "bellsprout"
+	},
+	{
+		"id": 70,
+		"nameEn": "Weepinbell",
+		"nameCn": "口呆花",
+		"slug": "weepinbell"
+	},
+	{
+		"id": 71,
+		"nameEn": "Victreebel",
+		"nameCn": "大食花",
+		"slug": "victreebel"
+	},
+	{
+		"id": 72,
+		"nameEn": "Tentacool",
+		"nameCn": "玛瑙水母",
+		"slug": "tentacool"
+	},
+	{
+		"id": 73,
+		"nameEn": "Tentacruel",
+		"nameCn": "毒刺水母",
+		"slug": "tentacruel"
+	},
+	{
+		"id": 74,
+		"nameEn": "Geodude",
+		"nameCn": "小拳石",
+		"slug": "geodude"
+	},
+	{
+		"id": 75,
+		"nameEn": "Graveler",
+		"nameCn": "隆隆石",
+		"slug": "graveler"
+	},
+	{
+		"id": 76,
+		"nameEn": "Golem",
+		"nameCn": "隆隆岩",
+		"slug": "golem"
+	},
+	{
+		"id": 77,
+		"nameEn": "Ponyta",
+		"nameCn": "小火马",
+		"slug": "ponyta"
+	},
+	{
+		"id": 78,
+		"nameEn": "Rapidash",
+		"nameCn": "烈焰马",
+		"slug": "rapidash"
+	},
+	{
+		"id": 79,
+		"nameEn": "Slowpoke",
+		"nameCn": "呆呆兽",
+		"slug": "slowpoke"
+	},
+	{
+		"id": 80,
+		"nameEn": "Slowbro",
+		"nameCn": "呆壳兽",
+		"slug": "slowbro"
+	},
+	{
+		"id": 81,
+		"nameEn": "Magnemite",
+		"nameCn": "小磁怪",
+		"slug": "magnemite"
+	},
+	{
+		"id": 82,
+		"nameEn": "Magneton",
+		"nameCn": "三合一磁怪",
+		"slug": "magneton"
+	},
+	{
+		"id": 83,
+		"nameEn": "Farfetch’d",
+		"nameCn": "大葱鸭",
+		"slug": "farfetchd"
+	},
+	{
+		"id": 84,
+		"nameEn": "Doduo",
+		"nameCn": "嘟嘟",
+		"slug": "doduo"
+	},
+	{
+		"id": 85,
+		"nameEn": "Dodrio",
+		"nameCn": "嘟嘟利",
+		"slug": "dodrio"
+	},
+	{
+		"id": 86,
+		"nameEn": "Seel",
+		"nameCn": "小海狮",
+		"slug": "seel"
+	},
+	{
+		"id": 87,
+		"nameEn": "Dewgong",
+		"nameCn": "白海狮",
+		"slug": "dewgong"
+	},
+	{
+		"id": 88,
+		"nameEn": "Grimer",
+		"nameCn": "臭泥",
+		"slug": "grimer"
+	},
+	{
+		"id": 89,
+		"nameEn": "Muk",
+		"nameCn": "臭臭泥",
+		"slug": "muk"
+	},
+	{
+		"id": 90,
+		"nameEn": "Shellder",
+		"nameCn": "大舌贝",
+		"slug": "shellder"
+	},
+	{
+		"id": 91,
+		"nameEn": "Cloyster",
+		"nameCn": "刺甲贝",
+		"slug": "cloyster"
+	},
+	{
+		"id": 92,
+		"nameEn": "Gastly",
+		"nameCn": "鬼斯",
+		"slug": "gastly"
+	},
+	{
+		"id": 93,
+		"nameEn": "Haunter",
+		"nameCn": "鬼斯通",
+		"slug": "haunter"
+	},
+	{
+		"id": 94,
+		"nameEn": "Gengar",
+		"nameCn": "耿鬼",
+		"slug": "gengar"
+	},
+	{
+		"id": 95,
+		"nameEn": "Onix",
+		"nameCn": "大岩蛇",
+		"slug": "onix"
+	},
+	{
+		"id": 96,
+		"nameEn": "Drowzee",
+		"nameCn": "催眠貘",
+		"slug": "drowzee"
+	},
+	{
+		"id": 97,
+		"nameEn": "Hypno",
+		"nameCn": "引梦貘人",
+		"slug": "hypno"
+	},
+	{
+		"id": 98,
+		"nameEn": "Krabby",
+		"nameCn": "大钳蟹",
+		"slug": "krabby"
+	},
+	{
+		"id": 99,
+		"nameEn": "Kingler",
+		"nameCn": "巨钳蟹",
+		"slug": "kingler"
+	},
+	{
+		"id": 100,
+		"nameEn": "Voltorb",
+		"nameCn": "霹雳电球",
+		"slug": "voltorb"
+	},
+	{
+		"id": 101,
+		"nameEn": "Electrode",
+		"nameCn": "顽皮雷弹",
+		"slug": "electrode"
+	},
+	{
+		"id": 102,
+		"nameEn": "Exeggcute",
+		"nameCn": "蛋蛋",
+		"slug": "exeggcute"
+	},
+	{
+		"id": 103,
+		"nameEn": "Exeggutor",
+		"nameCn": "椰蛋树",
+		"slug": "exeggutor"
+	},
+	{
+		"id": 104,
+		"nameEn": "Cubone",
+		"nameCn": "卡拉卡拉",
+		"slug": "cubone"
+	},
+	{
+		"id": 105,
+		"nameEn": "Marowak",
+		"nameCn": "嘎啦嘎啦",
+		"slug": "marowak"
+	},
+	{
+		"id": 106,
+		"nameEn": "Hitmonlee",
+		"nameCn": "飞腿郎",
+		"slug": "hitmonlee"
+	},
+	{
+		"id": 107,
+		"nameEn": "Hitmonchan",
+		"nameCn": "快拳郎",
+		"slug": "hitmonchan"
+	},
+	{
+		"id": 108,
+		"nameEn": "Lickitung",
+		"nameCn": "大舌头",
+		"slug": "lickitung"
+	},
+	{
+		"id": 109,
+		"nameEn": "Koffing",
+		"nameCn": "瓦斯弹",
+		"slug": "koffing"
+	},
+	{
+		"id": 110,
+		"nameEn": "Weezing",
+		"nameCn": "双弹瓦斯",
+		"slug": "weezing"
+	},
+	{
+		"id": 111,
+		"nameEn": "Rhyhorn",
+		"nameCn": "独角犀牛",
+		"slug": "rhyhorn"
+	},
+	{
+		"id": 112,
+		"nameEn": "Rhydon",
+		"nameCn": "钻角犀兽",
+		"slug": "rhydon"
+	},
+	{
+		"id": 113,
+		"nameEn": "Chansey",
+		"nameCn": "吉利蛋",
+		"slug": "chansey"
+	},
+	{
+		"id": 114,
+		"nameEn": "Tangela",
+		"nameCn": "蔓藤怪",
+		"slug": "tangela"
+	},
+	{
+		"id": 115,
+		"nameEn": "Kangaskhan",
+		"nameCn": "袋兽",
+		"slug": "kangaskhan"
+	},
+	{
+		"id": 116,
+		"nameEn": "Horsea",
+		"nameCn": "墨海马",
+		"slug": "horsea"
+	},
+	{
+		"id": 117,
+		"nameEn": "Seadra",
+		"nameCn": "海刺龙",
+		"slug": "seadra"
+	},
+	{
+		"id": 118,
+		"nameEn": "Goldeen",
+		"nameCn": "角金鱼",
+		"slug": "goldeen"
+	},
+	{
+		"id": 119,
+		"nameEn": "Seaking",
+		"nameCn": "金鱼王",
+		"slug": "seaking"
+	},
+	{
+		"id": 120,
+		"nameEn": "Staryu",
+		"nameCn": "海星星",
+		"slug": "staryu"
+	},
+	{
+		"id": 121,
+		"nameEn": "Starmie",
+		"nameCn": "宝石海星",
+		"slug": "starmie"
+	},
+	{
+		"id": 122,
+		"nameEn": "Mr. Mime",
+		"nameCn": "魔墙人偶",
+		"slug": "mr-mime"
+	},
+	{
+		"id": 123,
+		"nameEn": "Scyther",
+		"nameCn": "飞天螳螂",
+		"slug": "scyther"
+	},
+	{
+		"id": 124,
+		"nameEn": "Jynx",
+		"nameCn": "迷唇姐",
+		"slug": "jynx"
+	},
+	{
+		"id": 125,
+		"nameEn": "Electabuzz",
+		"nameCn": "电击兽",
+		"slug": "electabuzz"
+	},
+	{
+		"id": 126,
+		"nameEn": "Magmar",
+		"nameCn": "鸭嘴火兽",
+		"slug": "magmar"
+	},
+	{
+		"id": 127,
+		"nameEn": "Pinsir",
+		"nameCn": "凯罗斯",
+		"slug": "pinsir"
+	},
+	{
+		"id": 128,
+		"nameEn": "Tauros",
+		"nameCn": "肯泰罗",
+		"slug": "tauros"
+	},
+	{
+		"id": 129,
+		"nameEn": "Magikarp",
+		"nameCn": "鲤鱼王",
+		"slug": "magikarp"
+	},
+	{
+		"id": 130,
+		"nameEn": "Gyarados",
+		"nameCn": "暴鲤龙",
+		"slug": "gyarados"
+	},
+	{
+		"id": 131,
+		"nameEn": "Lapras",
+		"nameCn": "拉普拉斯",
+		"slug": "lapras"
+	},
+	{
+		"id": 132,
+		"nameEn": "Ditto",
+		"nameCn": "百变怪",
+		"slug": "ditto"
+	},
+	{
+		"id": 133,
+		"nameEn": "Eevee",
+		"nameCn": "伊布",
+		"slug": "eevee"
+	},
+	{
+		"id": 134,
+		"nameEn": "Vaporeon",
+		"nameCn": "水伊布",
+		"slug": "vaporeon"
+	},
+	{
+		"id": 135,
+		"nameEn": "Jolteon",
+		"nameCn": "雷伊布",
+		"slug": "jolteon"
+	},
+	{
+		"id": 136,
+		"nameEn": "Flareon",
+		"nameCn": "火伊布",
+		"slug": "flareon"
+	},
+	{
+		"id": 137,
+		"nameEn": "Porygon",
+		"nameCn": "多边兽",
+		"slug": "porygon"
+	},
+	{
+		"id": 138,
+		"nameEn": "Omanyte",
+		"nameCn": "菊石兽",
+		"slug": "omanyte"
+	},
+	{
+		"id": 139,
+		"nameEn": "Omastar",
+		"nameCn": "多刺菊石兽",
+		"slug": "omastar"
+	},
+	{
+		"id": 140,
+		"nameEn": "Kabuto",
+		"nameCn": "化石盔",
+		"slug": "kabuto"
+	},
+	{
+		"id": 141,
+		"nameEn": "Kabutops",
+		"nameCn": "镰刀盔",
+		"slug": "kabutops"
+	},
+	{
+		"id": 142,
+		"nameEn": "Aerodactyl",
+		"nameCn": "化石翼龙",
+		"slug": "aerodactyl"
+	},
+	{
+		"id": 143,
+		"nameEn": "Snorlax",
+		"nameCn": "卡比兽",
+		"slug": "snorlax"
+	},
+	{
+		"id": 144,
+		"nameEn": "Articuno",
+		"nameCn": "急冻鸟",
+		"slug": "articuno"
+	},
+	{
+		"id": 145,
+		"nameEn": "Zapdos",
+		"nameCn": "闪电鸟",
+		"slug": "zapdos"
+	},
+	{
+		"id": 146,
+		"nameEn": "Moltres",
+		"nameCn": "火焰鸟",
+		"slug": "moltres"
+	},
+	{
+		"id": 147,
+		"nameEn": "Dratini",
+		"nameCn": "迷你龙",
+		"slug": "dratini"
+	},
+	{
+		"id": 148,
+		"nameEn": "Dragonair",
+		"nameCn": "哈克龙",
+		"slug": "dragonair"
+	},
+	{
+		"id": 149,
+		"nameEn": "Dragonite",
+		"nameCn": "快龙",
+		"slug": "dragonite"
+	},
+	{
+		"id": 150,
+		"nameEn": "Mewtwo",
+		"nameCn": "超梦",
+		"slug": "mewtwo"
+	},
+	{
+		"id": 151,
+		"nameEn": "Mew",
+		"nameCn": "梦幻",
+		"slug": "mew"
+	}
+]

@@ -1,0 +1,586 @@
+---
+import { Icon } from 'astro-icon/components';
+import PageHeading from '~/components/PageHeading.astro';
+import pokemon151 from '~/data/pokemon151.json';
+import ScaffoldLayout from '~/layouts/ScaffoldLayout.astro';
+
+const wikiBase = 'https://wiki.52poke.com/wiki/';
+const spriteBase =
+	'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork';
+---
+
+<ScaffoldLayout
+	title="宝可梦 151 图鉴"
+	description="初代 151 只宝可梦图鉴速查与中文名测验，备战线下答题。"
+>
+	<PageHeading title="宝可梦 151" />
+	<p class="p151-lead">
+		初代 151 只宝可梦速查 + 中文名小测验。线下活动答题前可以先在这里练一练。
+		中文名参考 <a href="https://wiki.52poke.com/" target="_blank" rel="noreferrer noopener">神奇宝贝百科</a>。
+	</p>
+
+	<div class="p151-tabs" role="tablist" aria-label="页面模式">
+		<button class="p151-tab ui-pressable is-active" type="button" role="tab" aria-selected="true" data-tab="dex">
+			图鉴速查
+		</button>
+		<button class="p151-tab ui-pressable" type="button" role="tab" aria-selected="false" data-tab="quiz">
+			名字测验
+		</button>
+	</div>
+
+	<section class="p151-panel is-active" id="panel-dex" role="tabpanel" aria-labelledby="tab-dex">
+		<div class="p151-toolbar">
+			<label class="p151-search">
+				<Icon name="ri:search-line" class="p151-search__icon" aria-hidden="true" />
+				<input id="dex-search" type="search" placeholder="搜索编号、中文名或英文名…" autocomplete="off" />
+			</label>
+			<span class="p151-count" id="dex-count">{pokemon151.length} 只</span>
+		</div>
+		<ul class="p151-grid" id="dex-grid"></ul>
+	</section>
+
+	<section class="p151-panel" id="panel-quiz" role="tabpanel" hidden>
+		<div class="p151-quiz-setup" id="quiz-setup">
+			<h2 class="p151-section-title">选择测验方式</h2>
+			<div class="p151-mode-cards">
+				<label class="p151-mode-card">
+					<input type="radio" name="quiz-mode" value="choice" checked />
+					<span class="p151-mode-card__title">四选一</span>
+					<span class="p151-mode-card__desc">看立绘，从四个中文名里选正确答案。</span>
+				</label>
+				<label class="p151-mode-card">
+					<input type="radio" name="quiz-mode" value="typing" />
+					<span class="p151-mode-card__title">输入中文名</span>
+					<span class="p151-mode-card__desc">看立绘，输入完整中文名，需完全匹配。</span>
+				</label>
+			</div>
+			<button class="p151-primary ui-pressable" type="button" id="quiz-start">开始测验</button>
+		</div>
+
+		<div class="p151-quiz-play" id="quiz-play" hidden>
+			<div class="p151-quiz-meta">
+				<span id="quiz-progress">1 / 151</span>
+				<span id="quiz-score">正确 0</span>
+				<button class="p151-ghost ui-pressable" type="button" id="quiz-end">结束</button>
+			</div>
+			<div class="p151-quiz-card">
+				<p class="p151-quiz-no" id="quiz-number">#001</p>
+				<img class="p151-quiz-art" id="quiz-art" src="" alt="" width="220" height="220" />
+				<div id="quiz-choice" class="p151-choices"></div>
+				<form id="quiz-typing" class="p151-typing" hidden>
+					<input id="quiz-input" type="text" placeholder="输入中文名" autocomplete="off" />
+					<button class="p151-primary ui-pressable" type="submit">确认</button>
+				</form>
+				<p class="p151-feedback" id="quiz-feedback" hidden></p>
+				<button class="p151-primary ui-pressable" type="button" id="quiz-next" hidden>下一题</button>
+			</div>
+		</div>
+
+		<div class="p151-quiz-done" id="quiz-done" hidden>
+			<h2 class="p151-section-title">本轮结束</h2>
+			<p id="quiz-summary"></p>
+			<button class="p151-primary ui-pressable" type="button" id="quiz-restart">再来一轮</button>
+		</div>
+	</section>
+
+	<script is:inline define:vars={{ pokemon151, wikiBase, spriteBase }}>
+		const state = {
+			tab: 'dex',
+			quizMode: 'choice',
+			queue: [],
+			index: 0,
+			score: 0,
+			answered: false,
+		};
+
+		const els = {
+			tabs: document.querySelectorAll('[data-tab]'),
+			panelDex: document.getElementById('panel-dex'),
+			panelQuiz: document.getElementById('panel-quiz'),
+			dexSearch: document.getElementById('dex-search'),
+			dexGrid: document.getElementById('dex-grid'),
+			dexCount: document.getElementById('dex-count'),
+			quizSetup: document.getElementById('quiz-setup'),
+			quizPlay: document.getElementById('quiz-play'),
+			quizDone: document.getElementById('quiz-done'),
+			quizStart: document.getElementById('quiz-start'),
+			quizEnd: document.getElementById('quiz-end'),
+			quizRestart: document.getElementById('quiz-restart'),
+			quizProgress: document.getElementById('quiz-progress'),
+			quizScore: document.getElementById('quiz-score'),
+			quizNumber: document.getElementById('quiz-number'),
+			quizArt: document.getElementById('quiz-art'),
+			quizChoice: document.getElementById('quiz-choice'),
+			quizTyping: document.getElementById('quiz-typing'),
+			quizInput: document.getElementById('quiz-input'),
+			quizFeedback: document.getElementById('quiz-feedback'),
+			quizNext: document.getElementById('quiz-next'),
+			quizSummary: document.getElementById('quiz-summary'),
+		};
+
+		const wikiUrl = (nameCn) => `${wikiBase}${encodeURIComponent(nameCn)}`;
+		const artUrl = (id) => `${spriteBase}/${id}.png`;
+
+		const shuffle = (arr) => {
+			const copy = [...arr];
+			for (let i = copy.length - 1; i > 0; i -= 1) {
+				const j = Math.floor(Math.random() * (i + 1));
+				[copy[i], copy[j]] = [copy[j], copy[i]];
+			}
+			return copy;
+		};
+
+		const pickWrongNames = (correct, count = 3) => {
+			const pool = pokemon151.filter((p) => p.nameCn !== correct.nameCn);
+			return shuffle(pool).slice(0, count);
+		};
+
+		const renderDex = (filter = '') => {
+			const q = filter.trim().toLowerCase();
+			const list = pokemon151.filter((p) => {
+				if (!q) return true;
+				return (
+					String(p.id).includes(q) ||
+					p.nameCn.includes(filter.trim()) ||
+					p.nameEn.toLowerCase().includes(q) ||
+					p.slug.includes(q)
+				);
+			});
+			els.dexCount.textContent = `${list.length} 只`;
+			els.dexGrid.innerHTML = list
+				.map(
+					(p) => `
+				<li class="p151-card">
+					<a class="p151-card__link" href="${wikiUrl(p.nameCn)}" target="_blank" rel="noreferrer noopener">
+						<img src="${artUrl(p.id)}" alt="${p.nameCn}" width="96" height="96" loading="lazy" />
+						<span class="p151-card__no">#${String(p.id).padStart(3, '0')}</span>
+						<span class="p151-card__cn">${p.nameCn}</span>
+						<span class="p151-card__en">${p.nameEn}</span>
+					</a>
+				</li>`,
+				)
+				.join('');
+		};
+
+		const switchTab = (tab) => {
+			state.tab = tab;
+			els.tabs.forEach((btn) => {
+				const active = btn.dataset.tab === tab;
+				btn.classList.toggle('is-active', active);
+				btn.setAttribute('aria-selected', active ? 'true' : 'false');
+			});
+			els.panelDex.classList.toggle('is-active', tab === 'dex');
+			els.panelDex.hidden = tab !== 'dex';
+			els.panelQuiz.hidden = tab !== 'quiz';
+		};
+
+		const showQuizPhase = (phase) => {
+			els.quizSetup.hidden = phase !== 'setup';
+			els.quizPlay.hidden = phase !== 'play';
+			els.quizDone.hidden = phase !== 'done';
+		};
+
+		const currentPokemon = () => state.queue[state.index];
+
+		const updateQuizMeta = () => {
+			els.quizProgress.textContent = `${state.index + 1} / ${state.queue.length}`;
+			els.quizScore.textContent = `正确 ${state.score}`;
+		};
+
+		const renderQuestion = () => {
+			const p = currentPokemon();
+			if (!p) return;
+			state.answered = false;
+			els.quizNumber.textContent = `#${String(p.id).padStart(3, '0')}`;
+			els.quizArt.src = artUrl(p.id);
+			els.quizArt.alt = '猜猜这是哪只宝可梦';
+			els.quizFeedback.hidden = true;
+			els.quizNext.hidden = true;
+
+			if (state.quizMode === 'choice') {
+				els.quizChoice.hidden = false;
+				els.quizTyping.hidden = true;
+				const options = shuffle([p, ...pickWrongNames(p)]);
+				els.quizChoice.innerHTML = options
+					.map(
+						(opt) =>
+							`<button type="button" class="p151-choice ui-pressable" data-cn="${opt.nameCn}">${opt.nameCn}</button>`,
+					)
+					.join('');
+			} else {
+				els.quizChoice.hidden = true;
+				els.quizTyping.hidden = false;
+				els.quizInput.value = '';
+				els.quizInput.focus();
+			}
+			updateQuizMeta();
+		};
+
+		const showFeedback = (ok, p) => {
+			state.answered = true;
+			els.quizFeedback.hidden = false;
+			els.quizFeedback.className = `p151-feedback ${ok ? 'is-ok' : 'is-bad'}`;
+			els.quizFeedback.textContent = ok
+				? `正确！${p.nameCn}（${p.nameEn}）`
+				: `不对，正确答案是：${p.nameCn}（${p.nameEn}）`;
+			els.quizNext.hidden = false;
+			if (state.quizMode === 'choice') {
+				els.quizChoice.querySelectorAll('.p151-choice').forEach((btn) => {
+					btn.disabled = true;
+					if (btn.dataset.cn === p.nameCn) btn.classList.add('is-correct');
+				});
+			}
+		};
+
+		const startQuiz = () => {
+			const modeInput = document.querySelector('input[name="quiz-mode"]:checked');
+			state.quizMode = modeInput?.value === 'typing' ? 'typing' : 'choice';
+			state.queue = shuffle(pokemon151);
+			state.index = 0;
+			state.score = 0;
+			showQuizPhase('play');
+			renderQuestion();
+		};
+
+		const nextQuestion = () => {
+			if (state.index + 1 >= state.queue.length) {
+				els.quizSummary.textContent = `共 ${state.queue.length} 题，答对 ${state.score} 题。继续加油，线下活动稳了！`;
+				showQuizPhase('done');
+				return;
+			}
+			state.index += 1;
+			renderQuestion();
+		};
+
+		const setup = () => {
+			renderDex();
+			switchTab('dex');
+			showQuizPhase('setup');
+
+			els.tabs.forEach((btn) => {
+				btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+			});
+			els.dexSearch?.addEventListener('input', (e) => renderDex(e.target.value));
+			els.quizStart?.addEventListener('click', startQuiz);
+			els.quizEnd?.addEventListener('click', () => showQuizPhase('setup'));
+			els.quizRestart?.addEventListener('click', () => showQuizPhase('setup'));
+			els.quizNext?.addEventListener('click', nextQuestion);
+
+			els.quizChoice?.addEventListener('click', (e) => {
+				const btn = e.target.closest('.p151-choice');
+				if (!btn || state.answered) return;
+				const p = currentPokemon();
+				const ok = btn.dataset.cn === p.nameCn;
+				if (ok) state.score += 1;
+				showFeedback(ok, p);
+				updateQuizMeta();
+			});
+
+			els.quizTyping?.addEventListener('submit', (e) => {
+				e.preventDefault();
+				if (state.answered) return;
+				const p = currentPokemon();
+				const input = els.quizInput.value.trim();
+				const ok = input === p.nameCn;
+				if (ok) state.score += 1;
+				showFeedback(ok, p);
+				updateQuizMeta();
+			});
+		};
+
+		setup();
+		document.addEventListener('astro:page-load', setup);
+	</script>
+</ScaffoldLayout>
+
+<style>
+	.p151-lead {
+		margin: 0 0 1.25rem;
+		max-width: 42rem;
+		color: var(--color-muted);
+		line-height: 1.75;
+	}
+
+	.p151-tabs {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		margin-bottom: 1.25rem;
+	}
+
+	.p151-tab {
+		padding: 0.55rem 1rem;
+		border-radius: var(--radius-button);
+		border: 1px solid color-mix(in srgb, var(--color-border) 88%, transparent);
+		background: var(--color-surface);
+		color: var(--color-text);
+		font-weight: 600;
+		font-size: 0.92rem;
+		cursor: pointer;
+	}
+
+	.p151-tab.is-active {
+		border-color: color-mix(in srgb, var(--color-accent) 45%, var(--color-border) 55%);
+		background: color-mix(in srgb, var(--color-accent-soft) 55%, var(--color-surface) 45%);
+	}
+
+	.p151-panel[hidden] {
+		display: none;
+	}
+
+	.p151-toolbar {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		margin-bottom: 1rem;
+	}
+
+	.p151-search {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		flex: 1;
+		padding: 0.55rem 0.85rem;
+		border-radius: var(--radius-soft);
+		border: 1px solid color-mix(in srgb, var(--color-border) 88%, transparent);
+		background: var(--color-surface);
+	}
+
+	.p151-search input {
+		flex: 1;
+		border: none;
+		background: transparent;
+		color: var(--color-text);
+		font-size: 0.95rem;
+		outline: none;
+	}
+
+	.p151-search__icon {
+		width: 1.1rem;
+		height: 1.1rem;
+		color: var(--color-muted);
+	}
+
+	.p151-count {
+		color: var(--color-muted);
+		font-size: 0.88rem;
+	}
+
+	.p151-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr));
+		gap: 0.75rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.p151-card {
+		border-radius: var(--radius-soft);
+		border: 1px solid color-mix(in srgb, var(--color-border) 86%, transparent);
+		background: color-mix(in srgb, var(--color-surface) 94%, var(--color-accent-soft) 6%);
+		overflow: hidden;
+		transition: transform var(--motion-gentle), box-shadow var(--motion-gentle);
+	}
+
+	.p151-card:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 10px 24px color-mix(in srgb, var(--color-shadow-rgb) 14%, transparent);
+	}
+
+	.p151-card__link {
+		display: grid;
+		gap: 0.25rem;
+		padding: 0.65rem;
+		text-decoration: none;
+		color: inherit;
+		text-align: center;
+	}
+
+	.p151-card img {
+		margin: 0 auto;
+		width: 5.5rem;
+		height: 5.5rem;
+		object-fit: contain;
+	}
+
+	.p151-card__no {
+		font-size: 0.75rem;
+		color: var(--color-muted);
+	}
+
+	.p151-card__cn {
+		font-weight: 600;
+		font-size: 0.92rem;
+	}
+
+	.p151-card__en {
+		font-size: 0.75rem;
+		color: var(--color-muted);
+	}
+
+	.p151-section-title {
+		margin: 0 0 0.85rem;
+		font-size: 1.1rem;
+	}
+
+	.p151-mode-cards {
+		display: grid;
+		gap: 0.75rem;
+		margin-bottom: 1rem;
+	}
+
+	@media (min-width: 640px) {
+		.p151-mode-cards {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	.p151-mode-card {
+		display: grid;
+		gap: 0.35rem;
+		padding: 1rem;
+		border-radius: var(--radius-soft);
+		border: 1px solid color-mix(in srgb, var(--color-border) 88%, transparent);
+		background: var(--color-surface);
+		cursor: pointer;
+	}
+
+	.p151-mode-card input {
+		margin-bottom: 0.25rem;
+	}
+
+	.p151-mode-card__title {
+		font-weight: 600;
+	}
+
+	.p151-mode-card__desc {
+		font-size: 0.88rem;
+		color: var(--color-muted);
+		line-height: 1.55;
+	}
+
+	.p151-primary,
+	.p151-ghost {
+		padding: 0.6rem 1.1rem;
+		border-radius: var(--radius-button);
+		border: 1px solid color-mix(in srgb, var(--color-accent) 42%, var(--color-border) 58%);
+		font-weight: 600;
+		font-size: 0.92rem;
+		cursor: pointer;
+	}
+
+	.p151-primary {
+		background: var(--color-accent);
+		color: #fff;
+	}
+
+	.p151-ghost {
+		background: transparent;
+		color: var(--color-text);
+	}
+
+	.p151-quiz-meta {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.75rem;
+		margin-bottom: 1rem;
+		color: var(--color-muted);
+		font-size: 0.9rem;
+	}
+
+	.p151-quiz-card {
+		padding: 1.25rem;
+		border-radius: var(--radius-card);
+		border: 1px solid color-mix(in srgb, var(--color-border) 88%, transparent);
+		background: color-mix(in srgb, var(--color-surface) 94%, var(--color-accent-soft) 6%);
+		text-align: center;
+	}
+
+	.p151-quiz-no {
+		margin: 0 0 0.5rem;
+		color: var(--color-muted);
+		font-weight: 600;
+	}
+
+	.p151-quiz-art {
+		display: block;
+		margin: 0 auto 1rem;
+		max-width: 14rem;
+		height: auto;
+		object-fit: contain;
+	}
+
+	.p151-choices {
+		display: grid;
+		gap: 0.5rem;
+	}
+
+	@media (min-width: 520px) {
+		.p151-choices {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	.p151-choice {
+		padding: 0.7rem 0.85rem;
+		border-radius: var(--radius-soft);
+		border: 1px solid color-mix(in srgb, var(--color-border) 88%, transparent);
+		background: var(--color-surface);
+		color: var(--color-text);
+		font-size: 0.95rem;
+		cursor: pointer;
+	}
+
+	.p151-choice.is-correct {
+		border-color: color-mix(in srgb, #3cb371 70%, var(--color-border) 30%);
+		background: color-mix(in srgb, #3cb371 18%, var(--color-surface) 82%);
+	}
+
+	.p151-choice:disabled {
+		opacity: 0.85;
+		cursor: default;
+	}
+
+	.p151-typing {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		justify-content: center;
+	}
+
+	.p151-typing input {
+		min-width: min(100%, 14rem);
+		padding: 0.65rem 0.85rem;
+		border-radius: var(--radius-soft);
+		border: 1px solid color-mix(in srgb, var(--color-border) 88%, transparent);
+		background: var(--color-surface);
+		color: var(--color-text);
+		font-size: 1rem;
+	}
+
+	.p151-feedback {
+		margin: 1rem 0 0;
+		font-size: 0.95rem;
+	}
+
+	.p151-feedback.is-ok {
+		color: #2f9e62;
+	}
+
+	.p151-feedback.is-bad {
+		color: #d64545;
+	}
+
+	#quiz-next {
+		margin-top: 0.75rem;
+	}
+
+	.p151-quiz-done {
+		padding: 1.25rem;
+		border-radius: var(--radius-card);
+		border: 1px solid color-mix(in srgb, var(--color-border) 88%, transparent);
+		background: var(--color-surface);
+	}
+</style>
