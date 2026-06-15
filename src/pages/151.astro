@@ -44,18 +44,22 @@ const spriteBase =
 	<section class="p151-panel" id="panel-quiz" role="tabpanel" hidden>
 		<div class="p151-quiz-setup" id="quiz-setup">
 			<h2 class="p151-section-title">选择测验方式</h2>
-			<div class="p151-mode-cards">
-				<label class="p151-mode-card">
-					<input type="radio" name="quiz-mode" value="choice" checked />
-					<span class="p151-mode-card__title">四选一</span>
-					<span class="p151-mode-card__desc">看立绘，从四个中文名里选正确答案。</span>
-				</label>
-				<label class="p151-mode-card">
-					<input type="radio" name="quiz-mode" value="typing" />
-					<span class="p151-mode-card__title">输入中文名</span>
-					<span class="p151-mode-card__desc">看立绘，输入完整中文名，需完全匹配。</span>
-				</label>
+			<div class="p151-tabs" role="group" aria-label="测验方式">
+				<button
+					class="p151-tab is-active"
+					type="button"
+					data-quiz-mode="choice"
+					aria-pressed="true"
+				>
+					四选一
+				</button>
+				<button class="p151-tab" type="button" data-quiz-mode="typing" aria-pressed="false">
+					输入中文名
+				</button>
 			</div>
+			<p class="p151-mode-hint" id="quiz-mode-hint">
+				看立绘，从四个中文名里选正确答案。
+			</p>
 			<button class="p151-primary ui-pressable" type="button" id="quiz-start">开始测验</button>
 		</div>
 
@@ -102,6 +106,11 @@ const spriteBase =
 			answered: false,
 		};
 
+		const modeHints = {
+			choice: '看立绘，从四个中文名里选正确答案。',
+			typing: '看立绘，输入完整中文名，需完全匹配。',
+		};
+
 		const els = {
 			tabs: document.querySelectorAll('[data-tab]'),
 			panelDex: document.getElementById('panel-dex'),
@@ -125,6 +134,8 @@ const spriteBase =
 			quizFeedback: document.getElementById('quiz-feedback'),
 			quizNext: document.getElementById('quiz-next'),
 			quizSummary: document.getElementById('quiz-summary'),
+			quizModeHint: document.getElementById('quiz-mode-hint'),
+			quizModeTabs: document.querySelectorAll('[data-quiz-mode]'),
 		};
 
 		const wikiUrl = (nameCn) => `${wikiBase}${encodeURIComponent(nameCn)}`;
@@ -241,9 +252,19 @@ const spriteBase =
 			}
 		};
 
+		const switchQuizMode = (mode) => {
+			state.quizMode = mode === 'typing' ? 'typing' : 'choice';
+			els.quizModeTabs.forEach((btn) => {
+				const active = btn.dataset.quizMode === state.quizMode;
+				btn.classList.toggle('is-active', active);
+				btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+			});
+			if (els.quizModeHint) {
+				els.quizModeHint.textContent = modeHints[state.quizMode];
+			}
+		};
+
 		const startQuiz = () => {
-			const modeInput = document.querySelector('input[name="quiz-mode"]:checked');
-			state.quizMode = modeInput?.value === 'typing' ? 'typing' : 'choice';
 			state.queue = shuffle(pokemon151);
 			state.index = 0;
 			state.score = 0;
@@ -265,9 +286,13 @@ const spriteBase =
 			renderDex();
 			switchTab('dex');
 			showQuizPhase('setup');
+			switchQuizMode('choice');
 
 			els.tabs.forEach((btn) => {
 				btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+			});
+			els.quizModeTabs.forEach((btn) => {
+				btn.addEventListener('click', () => switchQuizMode(btn.dataset.quizMode));
 			});
 			els.dexSearch?.addEventListener('input', (e) => renderDex(e.target.value));
 			els.quizStart?.addEventListener('click', startQuiz);
@@ -460,40 +485,12 @@ const spriteBase =
 		font-size: 1.1rem;
 	}
 
-	.p151-mode-cards {
-		display: grid;
-		gap: 0.75rem;
-		margin-bottom: 1rem;
-	}
-
-	@media (min-width: 640px) {
-		.p151-mode-cards {
-			grid-template-columns: 1fr 1fr;
-		}
-	}
-
-	.p151-mode-card {
-		display: grid;
-		gap: 0.35rem;
-		padding: 1rem;
-		border-radius: var(--radius-soft);
-		border: 1px solid color-mix(in srgb, var(--color-border) 88%, transparent);
-		background: var(--color-surface);
-		cursor: pointer;
-	}
-
-	.p151-mode-card input {
-		margin-bottom: 0.25rem;
-	}
-
-	.p151-mode-card__title {
-		font-weight: 600;
-	}
-
-	.p151-mode-card__desc {
-		font-size: 0.88rem;
+	.p151-mode-hint {
+		margin: 0 0 1rem;
+		max-width: 36rem;
 		color: var(--color-muted);
-		line-height: 1.55;
+		font-size: 0.88rem;
+		line-height: 1.6;
 	}
 
 	.p151-primary,
