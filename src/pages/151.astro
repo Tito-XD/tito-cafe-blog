@@ -36,7 +36,6 @@ const spriteBase =
 				<Icon name="ri:search-line" class="p151-search__icon" aria-hidden="true" />
 				<input id="dex-search" type="search" placeholder="搜索编号、中文名或英文名…" autocomplete="off" />
 			</label>
-			<span class="p151-count" id="dex-count">{pokemon151.length} 只</span>
 		</div>
 		<ul class="p151-grid" id="dex-grid"></ul>
 	</section>
@@ -141,7 +140,6 @@ const spriteBase =
 			panelQuiz: document.getElementById('panel-quiz'),
 			dexSearch: document.getElementById('dex-search'),
 			dexGrid: document.getElementById('dex-grid'),
-			dexCount: document.getElementById('dex-count'),
 			quizSetup: document.getElementById('quiz-setup'),
 			quizPlay: document.getElementById('quiz-play'),
 			quizDone: document.getElementById('quiz-done'),
@@ -193,21 +191,29 @@ const spriteBase =
 		const typeIconUrl = (typeName) =>
 			`${typeIconBase}/${TYPE_ICON_IDS[typeName] || TYPE_ICON_IDS.normal}.png`;
 
-		const renderTypeChips = (p) => {
+		const renderTypeIcons = (p) => {
 			const types = p.types || [];
 			const typesCn = p.typesCn || [];
 			return types
 				.map((typeName, index) => {
 					const label = typesCn[index] || typeName;
-					return `<span class="p151-type-chip"><img src="${typeIconUrl(typeName)}" alt="${label}" width="20" height="20" loading="lazy" /><span>${label}</span></span>`;
+					return `<img class="p151-type-icon" src="${typeIconUrl(typeName)}" alt="${label}" title="${label}" width="18" height="18" loading="lazy" />`;
 				})
 				.join('');
 		};
 
 		const renderWeaknessRow = (p) => {
+			const weaknesses = p.weaknesses || [];
 			const labels = p.weaknessesCn || [];
-			if (labels.length === 0) return '';
-			return `<span class="p151-card__weak"><span class="p151-card__weak-label">弱</span>${labels.join(' ')}</span>`;
+			if (weaknesses.length === 0) return '';
+			const icons = weaknesses
+				.map((typeName, index) => {
+					const label = labels[index] || typeName;
+					return `<img class="p151-weak-icon" src="${typeIconUrl(typeName)}" alt="${label}" title="${label}" width="16" height="16" loading="lazy" />`;
+				})
+				.join('');
+			const weakLabel = labels.join('、');
+			return `<span class="p151-card__weak-row" aria-label="弱点 ${weakLabel}">${icons}</span>`;
 		};
 
 		const shuffle = (arr) => {
@@ -249,10 +255,9 @@ const spriteBase =
 					weakText.includes(filter.trim())
 				);
 			});
-			els.dexCount.textContent = `${list.length} 只`;
 			els.dexGrid.innerHTML = list
 				.map((p) => {
-					const typeChips = renderTypeChips(p);
+					const typeIcons = renderTypeIcons(p);
 					const weakRow = renderWeaknessRow(p);
 					return `
 				<li class="p151-card">
@@ -261,7 +266,7 @@ const spriteBase =
 						<span class="p151-card__no">${formatNo(p.id)}</span>
 						<span class="p151-card__cn">${p.nameCn}</span>
 						<span class="p151-card__en">${p.nameEn}</span>
-						${typeChips ? `<span class="p151-card__types-row">${typeChips}</span>` : ''}
+						${typeIcons ? `<span class="p151-card__types-row">${typeIcons}</span>` : ''}
 						${weakRow}
 					</a>
 				</li>`;
@@ -603,9 +608,6 @@ const spriteBase =
 	}
 
 	.p151-toolbar {
-		display: flex;
-		align-items: center;
-		gap: 1rem;
 		margin-bottom: 1rem;
 	}
 
@@ -613,7 +615,7 @@ const spriteBase =
 		display: flex;
 		align-items: center;
 		gap: 0.5rem;
-		flex: 1;
+		width: 100%;
 		padding: 0.55rem 0.85rem;
 		border-radius: var(--radius-soft);
 		border: 1px solid color-mix(in srgb, var(--color-border) 88%, transparent);
@@ -633,11 +635,6 @@ const spriteBase =
 		width: 1.1rem;
 		height: 1.1rem;
 		color: var(--color-muted);
-	}
-
-	.p151-count {
-		color: var(--color-muted);
-		font-size: 0.88rem;
 	}
 
 	.p151-grid {
@@ -697,45 +694,71 @@ const spriteBase =
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: center;
-		gap: 0.3rem;
+		align-items: center;
+		gap: 0.35rem;
 		margin-top: 0.35rem;
 		padding-top: 0.35rem;
 		border-top: 1px solid color-mix(in srgb, var(--color-border) 55%, transparent);
 	}
 
-	.p151-type-chip {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.2rem;
-		padding: 0.12rem 0.38rem 0.12rem 0.28rem;
-		border-radius: var(--radius-chip);
-		background: color-mix(in srgb, var(--color-surface) 88%, var(--color-accent-soft) 12%);
-		font-size: 0.66rem;
-		font-weight: 600;
-		line-height: 1.2;
-		color: color-mix(in srgb, var(--color-text) 88%, var(--color-accent) 12%);
-	}
-
-	.p151-type-chip img {
+	.p151-type-icon {
 		width: 1rem;
 		height: 1rem;
 		object-fit: contain;
 		flex-shrink: 0;
 	}
 
-	.p151-card__weak {
-		display: block;
-		margin-top: 0.25rem;
-		font-size: 0.64rem;
-		color: var(--color-muted);
-		line-height: 1.45;
-		word-break: break-word;
+	.p151-card__weak-row {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
+		gap: 0.3rem;
+		margin-top: 0.3rem;
+		padding-top: 0.3rem;
+		border-top: 1px solid color-mix(in srgb, var(--color-border) 40%, transparent);
 	}
 
-	.p151-card__weak-label {
-		margin-right: 0.2rem;
-		font-weight: 600;
-		color: color-mix(in srgb, var(--color-muted) 82%, var(--color-text) 18%);
+	.p151-weak-icon {
+		width: 0.9rem;
+		height: 0.9rem;
+		object-fit: contain;
+		flex-shrink: 0;
+		opacity: 0.92;
+	}
+
+	@media (min-width: 640px) {
+		.p151-grid {
+			grid-template-columns: repeat(auto-fill, minmax(9.75rem, 1fr));
+			gap: 1rem;
+		}
+
+		.p151-card__link {
+			gap: 0.35rem;
+			padding: 0.8rem 0.7rem;
+		}
+
+		.p151-card__types-row {
+			gap: 0.5rem;
+			margin-top: 0.5rem;
+			padding-top: 0.5rem;
+		}
+
+		.p151-card__weak-row {
+			gap: 0.4rem;
+			margin-top: 0.4rem;
+			padding-top: 0.4rem;
+		}
+
+		.p151-type-icon {
+			width: 1.2rem;
+			height: 1.2rem;
+		}
+
+		.p151-weak-icon {
+			width: 1.05rem;
+			height: 1.05rem;
+		}
 	}
 
 	.p151-section-title {
