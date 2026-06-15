@@ -3,906 +3,1591 @@
 		"id": 1,
 		"nameEn": "Bulbasaur",
 		"nameCn": "妙蛙种子",
-		"slug": "bulbasaur"
+		"slug": "bulbasaur",
+		"types": ["grass", "poison"],
+		"typesCn": ["草", "毒"],
+		"weaknesses": [
+			"bug",
+			"fire",
+			"flying",
+			"ground",
+			"ice",
+			"poison",
+			"psychic"
+		],
+		"weaknessesCn": ["虫", "火", "飞", "地", "冰", "毒", "超能"]
 	},
 	{
 		"id": 2,
 		"nameEn": "Ivysaur",
 		"nameCn": "妙蛙草",
-		"slug": "ivysaur"
+		"slug": "ivysaur",
+		"types": ["grass", "poison"],
+		"typesCn": ["草", "毒"],
+		"weaknesses": [
+			"bug",
+			"fire",
+			"flying",
+			"ground",
+			"ice",
+			"poison",
+			"psychic"
+		],
+		"weaknessesCn": ["虫", "火", "飞", "地", "冰", "毒", "超能"]
 	},
 	{
 		"id": 3,
 		"nameEn": "Venusaur",
 		"nameCn": "妙蛙花",
-		"slug": "venusaur"
+		"slug": "venusaur",
+		"types": ["grass", "poison"],
+		"typesCn": ["草", "毒"],
+		"weaknesses": [
+			"bug",
+			"fire",
+			"flying",
+			"ground",
+			"ice",
+			"poison",
+			"psychic"
+		],
+		"weaknessesCn": ["虫", "火", "飞", "地", "冰", "毒", "超能"]
 	},
 	{
 		"id": 4,
 		"nameEn": "Charmander",
 		"nameCn": "小火龙",
-		"slug": "charmander"
+		"slug": "charmander",
+		"types": ["fire"],
+		"typesCn": ["火"],
+		"weaknesses": ["ground", "rock", "water"],
+		"weaknessesCn": ["地", "岩", "水"]
 	},
 	{
 		"id": 5,
 		"nameEn": "Charmeleon",
 		"nameCn": "火恐龙",
-		"slug": "charmeleon"
+		"slug": "charmeleon",
+		"types": ["fire"],
+		"typesCn": ["火"],
+		"weaknesses": ["ground", "rock", "water"],
+		"weaknessesCn": ["地", "岩", "水"]
 	},
 	{
 		"id": 6,
 		"nameEn": "Charizard",
 		"nameCn": "喷火龙",
-		"slug": "charizard"
+		"slug": "charizard",
+		"types": ["fire", "flying"],
+		"typesCn": ["火", "飞"],
+		"weaknesses": ["electric", "ground", "ice", "rock", "water"],
+		"weaknessesCn": ["电", "地", "冰", "岩", "水"]
 	},
 	{
 		"id": 7,
 		"nameEn": "Squirtle",
 		"nameCn": "杰尼龟",
-		"slug": "squirtle"
+		"slug": "squirtle",
+		"types": ["water"],
+		"typesCn": ["水"],
+		"weaknesses": ["electric", "grass"],
+		"weaknessesCn": ["电", "草"]
 	},
 	{
 		"id": 8,
 		"nameEn": "Wartortle",
 		"nameCn": "卡咪龟",
-		"slug": "wartortle"
+		"slug": "wartortle",
+		"types": ["water"],
+		"typesCn": ["水"],
+		"weaknesses": ["electric", "grass"],
+		"weaknessesCn": ["电", "草"]
 	},
 	{
 		"id": 9,
 		"nameEn": "Blastoise",
 		"nameCn": "水箭龟",
-		"slug": "blastoise"
+		"slug": "blastoise",
+		"types": ["water"],
+		"typesCn": ["水"],
+		"weaknesses": ["electric", "grass"],
+		"weaknessesCn": ["电", "草"]
 	},
 	{
 		"id": 10,
 		"nameEn": "Caterpie",
 		"nameCn": "绿毛虫",
-		"slug": "caterpie"
+		"slug": "caterpie",
+		"types": ["bug"],
+		"typesCn": ["虫"],
+		"weaknesses": ["fire", "flying", "rock"],
+		"weaknessesCn": ["火", "飞", "岩"]
 	},
 	{
 		"id": 11,
 		"nameEn": "Metapod",
 		"nameCn": "铁甲蛹",
-		"slug": "metapod"
+		"slug": "metapod",
+		"types": ["bug"],
+		"typesCn": ["虫"],
+		"weaknesses": ["fire", "flying", "rock"],
+		"weaknessesCn": ["火", "飞", "岩"]
 	},
 	{
 		"id": 12,
 		"nameEn": "Butterfree",
 		"nameCn": "巴大蝶",
-		"slug": "butterfree"
+		"slug": "butterfree",
+		"types": ["bug", "flying"],
+		"typesCn": ["虫", "飞"],
+		"weaknesses": ["electric", "fire", "flying", "ice", "rock"],
+		"weaknessesCn": ["电", "火", "飞", "冰", "岩"]
 	},
 	{
 		"id": 13,
 		"nameEn": "Weedle",
 		"nameCn": "独角虫",
-		"slug": "weedle"
+		"slug": "weedle",
+		"types": ["bug", "poison"],
+		"typesCn": ["虫", "毒"],
+		"weaknesses": ["fire", "flying", "ground", "psychic", "rock"],
+		"weaknessesCn": ["火", "飞", "地", "超能", "岩"]
 	},
 	{
 		"id": 14,
 		"nameEn": "Kakuna",
 		"nameCn": "铁壳蛹",
-		"slug": "kakuna"
+		"slug": "kakuna",
+		"types": ["bug", "poison"],
+		"typesCn": ["虫", "毒"],
+		"weaknesses": ["fire", "flying", "ground", "psychic", "rock"],
+		"weaknessesCn": ["火", "飞", "地", "超能", "岩"]
 	},
 	{
 		"id": 15,
 		"nameEn": "Beedrill",
 		"nameCn": "大针蜂",
-		"slug": "beedrill"
+		"slug": "beedrill",
+		"types": ["bug", "poison"],
+		"typesCn": ["虫", "毒"],
+		"weaknesses": ["fire", "flying", "ground", "psychic", "rock"],
+		"weaknessesCn": ["火", "飞", "地", "超能", "岩"]
 	},
 	{
 		"id": 16,
 		"nameEn": "Pidgey",
 		"nameCn": "波波",
-		"slug": "pidgey"
+		"slug": "pidgey",
+		"types": ["normal", "flying"],
+		"typesCn": ["一般", "飞"],
+		"weaknesses": ["electric", "fighting", "ice", "rock"],
+		"weaknessesCn": ["电", "格斗", "冰", "岩"]
 	},
 	{
 		"id": 17,
 		"nameEn": "Pidgeotto",
 		"nameCn": "比比鸟",
-		"slug": "pidgeotto"
+		"slug": "pidgeotto",
+		"types": ["normal", "flying"],
+		"typesCn": ["一般", "飞"],
+		"weaknesses": ["electric", "fighting", "ice", "rock"],
+		"weaknessesCn": ["电", "格斗", "冰", "岩"]
 	},
 	{
 		"id": 18,
 		"nameEn": "Pidgeot",
 		"nameCn": "大比鸟",
-		"slug": "pidgeot"
+		"slug": "pidgeot",
+		"types": ["normal", "flying"],
+		"typesCn": ["一般", "飞"],
+		"weaknesses": ["electric", "fighting", "ice", "rock"],
+		"weaknessesCn": ["电", "格斗", "冰", "岩"]
 	},
 	{
 		"id": 19,
 		"nameEn": "Rattata",
 		"nameCn": "小拉达",
-		"slug": "rattata"
+		"slug": "rattata",
+		"types": ["normal"],
+		"typesCn": ["一般"],
+		"weaknesses": ["fighting"],
+		"weaknessesCn": ["格斗"]
 	},
 	{
 		"id": 20,
 		"nameEn": "Raticate",
 		"nameCn": "拉达",
-		"slug": "raticate"
+		"slug": "raticate",
+		"types": ["normal"],
+		"typesCn": ["一般"],
+		"weaknesses": ["fighting"],
+		"weaknessesCn": ["格斗"]
 	},
 	{
 		"id": 21,
 		"nameEn": "Spearow",
 		"nameCn": "烈雀",
-		"slug": "spearow"
+		"slug": "spearow",
+		"types": ["normal", "flying"],
+		"typesCn": ["一般", "飞"],
+		"weaknesses": ["electric", "fighting", "ice", "rock"],
+		"weaknessesCn": ["电", "格斗", "冰", "岩"]
 	},
 	{
 		"id": 22,
 		"nameEn": "Fearow",
 		"nameCn": "大嘴雀",
-		"slug": "fearow"
+		"slug": "fearow",
+		"types": ["normal", "flying"],
+		"typesCn": ["一般", "飞"],
+		"weaknesses": ["electric", "fighting", "ice", "rock"],
+		"weaknessesCn": ["电", "格斗", "冰", "岩"]
 	},
 	{
 		"id": 23,
 		"nameEn": "Ekans",
 		"nameCn": "阿柏蛇",
-		"slug": "ekans"
+		"slug": "ekans",
+		"types": ["poison"],
+		"typesCn": ["毒"],
+		"weaknesses": ["ground", "psychic"],
+		"weaknessesCn": ["地", "超能"]
 	},
 	{
 		"id": 24,
 		"nameEn": "Arbok",
 		"nameCn": "阿柏怪",
-		"slug": "arbok"
+		"slug": "arbok",
+		"types": ["poison"],
+		"typesCn": ["毒"],
+		"weaknesses": ["ground", "psychic"],
+		"weaknessesCn": ["地", "超能"]
 	},
 	{
 		"id": 25,
 		"nameEn": "Pikachu",
 		"nameCn": "皮卡丘",
-		"slug": "pikachu"
+		"slug": "pikachu",
+		"types": ["electric"],
+		"typesCn": ["电"],
+		"weaknesses": ["ground"],
+		"weaknessesCn": ["地"]
 	},
 	{
 		"id": 26,
 		"nameEn": "Raichu",
 		"nameCn": "雷丘",
-		"slug": "raichu"
+		"slug": "raichu",
+		"types": ["electric"],
+		"typesCn": ["电"],
+		"weaknesses": ["ground"],
+		"weaknessesCn": ["地"]
 	},
 	{
 		"id": 27,
 		"nameEn": "Sandshrew",
 		"nameCn": "穿山鼠",
-		"slug": "sandshrew"
+		"slug": "sandshrew",
+		"types": ["ground"],
+		"typesCn": ["地"],
+		"weaknesses": ["grass", "ice", "water"],
+		"weaknessesCn": ["草", "冰", "水"]
 	},
 	{
 		"id": 28,
 		"nameEn": "Sandslash",
 		"nameCn": "穿山王",
-		"slug": "sandslash"
+		"slug": "sandslash",
+		"types": ["ground"],
+		"typesCn": ["地"],
+		"weaknesses": ["grass", "ice", "water"],
+		"weaknessesCn": ["草", "冰", "水"]
 	},
 	{
 		"id": 29,
 		"nameEn": "Nidoran♀",
 		"nameCn": "尼多兰",
-		"slug": "nidoran-f"
+		"slug": "nidoran-f",
+		"types": ["poison"],
+		"typesCn": ["毒"],
+		"weaknesses": ["ground", "psychic"],
+		"weaknessesCn": ["地", "超能"]
 	},
 	{
 		"id": 30,
 		"nameEn": "Nidorina",
 		"nameCn": "尼多娜",
-		"slug": "nidorina"
+		"slug": "nidorina",
+		"types": ["poison"],
+		"typesCn": ["毒"],
+		"weaknesses": ["ground", "psychic"],
+		"weaknessesCn": ["地", "超能"]
 	},
 	{
 		"id": 31,
 		"nameEn": "Nidoqueen",
 		"nameCn": "尼多后",
-		"slug": "nidoqueen"
+		"slug": "nidoqueen",
+		"types": ["poison", "ground"],
+		"typesCn": ["毒", "地"],
+		"weaknesses": ["grass", "ground", "ice", "psychic", "water"],
+		"weaknessesCn": ["草", "地", "冰", "超能", "水"]
 	},
 	{
 		"id": 32,
 		"nameEn": "Nidoran♂",
 		"nameCn": "尼多朗",
-		"slug": "nidoran-m"
+		"slug": "nidoran-m",
+		"types": ["poison"],
+		"typesCn": ["毒"],
+		"weaknesses": ["ground", "psychic"],
+		"weaknessesCn": ["地", "超能"]
 	},
 	{
 		"id": 33,
 		"nameEn": "Nidorino",
 		"nameCn": "尼多力诺",
-		"slug": "nidorino"
+		"slug": "nidorino",
+		"types": ["poison"],
+		"typesCn": ["毒"],
+		"weaknesses": ["ground", "psychic"],
+		"weaknessesCn": ["地", "超能"]
 	},
 	{
 		"id": 34,
 		"nameEn": "Nidoking",
 		"nameCn": "尼多王",
-		"slug": "nidoking"
+		"slug": "nidoking",
+		"types": ["poison", "ground"],
+		"typesCn": ["毒", "地"],
+		"weaknesses": ["grass", "ground", "ice", "psychic", "water"],
+		"weaknessesCn": ["草", "地", "冰", "超能", "水"]
 	},
 	{
 		"id": 35,
 		"nameEn": "Clefairy",
 		"nameCn": "皮皮",
-		"slug": "clefairy"
+		"slug": "clefairy",
+		"types": ["fairy"],
+		"typesCn": ["妖"],
+		"weaknesses": ["poison", "steel"],
+		"weaknessesCn": ["毒", "钢"]
 	},
 	{
 		"id": 36,
 		"nameEn": "Clefable",
 		"nameCn": "皮可西",
-		"slug": "clefable"
+		"slug": "clefable",
+		"types": ["fairy"],
+		"typesCn": ["妖"],
+		"weaknesses": ["poison", "steel"],
+		"weaknessesCn": ["毒", "钢"]
 	},
 	{
 		"id": 37,
 		"nameEn": "Vulpix",
 		"nameCn": "六尾",
-		"slug": "vulpix"
+		"slug": "vulpix",
+		"types": ["fire"],
+		"typesCn": ["火"],
+		"weaknesses": ["ground", "rock", "water"],
+		"weaknessesCn": ["地", "岩", "水"]
 	},
 	{
 		"id": 38,
 		"nameEn": "Ninetales",
 		"nameCn": "九尾",
-		"slug": "ninetales"
+		"slug": "ninetales",
+		"types": ["fire"],
+		"typesCn": ["火"],
+		"weaknesses": ["ground", "rock", "water"],
+		"weaknessesCn": ["地", "岩", "水"]
 	},
 	{
 		"id": 39,
 		"nameEn": "Jigglypuff",
 		"nameCn": "胖丁",
-		"slug": "jigglypuff"
+		"slug": "jigglypuff",
+		"types": ["normal", "fairy"],
+		"typesCn": ["一般", "妖"],
+		"weaknesses": ["fighting", "poison", "steel"],
+		"weaknessesCn": ["格斗", "毒", "钢"]
 	},
 	{
 		"id": 40,
 		"nameEn": "Wigglytuff",
 		"nameCn": "胖可丁",
-		"slug": "wigglytuff"
+		"slug": "wigglytuff",
+		"types": ["normal", "fairy"],
+		"typesCn": ["一般", "妖"],
+		"weaknesses": ["fighting", "poison", "steel"],
+		"weaknessesCn": ["格斗", "毒", "钢"]
 	},
 	{
 		"id": 41,
 		"nameEn": "Zubat",
 		"nameCn": "超音蝠",
-		"slug": "zubat"
+		"slug": "zubat",
+		"types": ["poison", "flying"],
+		"typesCn": ["毒", "飞"],
+		"weaknesses": ["electric", "ground", "ice", "psychic", "rock"],
+		"weaknessesCn": ["电", "地", "冰", "超能", "岩"]
 	},
 	{
 		"id": 42,
 		"nameEn": "Golbat",
 		"nameCn": "大嘴蝠",
-		"slug": "golbat"
+		"slug": "golbat",
+		"types": ["poison", "flying"],
+		"typesCn": ["毒", "飞"],
+		"weaknesses": ["electric", "ground", "ice", "psychic", "rock"],
+		"weaknessesCn": ["电", "地", "冰", "超能", "岩"]
 	},
 	{
 		"id": 43,
 		"nameEn": "Oddish",
 		"nameCn": "走路草",
-		"slug": "oddish"
+		"slug": "oddish",
+		"types": ["grass", "poison"],
+		"typesCn": ["草", "毒"],
+		"weaknesses": [
+			"bug",
+			"fire",
+			"flying",
+			"ground",
+			"ice",
+			"poison",
+			"psychic"
+		],
+		"weaknessesCn": ["虫", "火", "飞", "地", "冰", "毒", "超能"]
 	},
 	{
 		"id": 44,
 		"nameEn": "Gloom",
 		"nameCn": "臭臭花",
-		"slug": "gloom"
+		"slug": "gloom",
+		"types": ["grass", "poison"],
+		"typesCn": ["草", "毒"],
+		"weaknesses": [
+			"bug",
+			"fire",
+			"flying",
+			"ground",
+			"ice",
+			"poison",
+			"psychic"
+		],
+		"weaknessesCn": ["虫", "火", "飞", "地", "冰", "毒", "超能"]
 	},
 	{
 		"id": 45,
 		"nameEn": "Vileplume",
 		"nameCn": "霸王花",
-		"slug": "vileplume"
+		"slug": "vileplume",
+		"types": ["grass", "poison"],
+		"typesCn": ["草", "毒"],
+		"weaknesses": [
+			"bug",
+			"fire",
+			"flying",
+			"ground",
+			"ice",
+			"poison",
+			"psychic"
+		],
+		"weaknessesCn": ["虫", "火", "飞", "地", "冰", "毒", "超能"]
 	},
 	{
 		"id": 46,
 		"nameEn": "Paras",
 		"nameCn": "派拉斯",
-		"slug": "paras"
+		"slug": "paras",
+		"types": ["bug", "grass"],
+		"typesCn": ["虫", "草"],
+		"weaknesses": ["bug", "fire", "flying", "ice", "poison", "rock"],
+		"weaknessesCn": ["虫", "火", "飞", "冰", "毒", "岩"]
 	},
 	{
 		"id": 47,
 		"nameEn": "Parasect",
 		"nameCn": "派拉斯特",
-		"slug": "parasect"
+		"slug": "parasect",
+		"types": ["bug", "grass"],
+		"typesCn": ["虫", "草"],
+		"weaknesses": ["bug", "fire", "flying", "ice", "poison", "rock"],
+		"weaknessesCn": ["虫", "火", "飞", "冰", "毒", "岩"]
 	},
 	{
 		"id": 48,
 		"nameEn": "Venonat",
 		"nameCn": "毛球",
-		"slug": "venonat"
+		"slug": "venonat",
+		"types": ["bug", "poison"],
+		"typesCn": ["虫", "毒"],
+		"weaknesses": ["fire", "flying", "ground", "psychic", "rock"],
+		"weaknessesCn": ["火", "飞", "地", "超能", "岩"]
 	},
 	{
 		"id": 49,
 		"nameEn": "Venomoth",
 		"nameCn": "摩鲁蛾",
-		"slug": "venomoth"
+		"slug": "venomoth",
+		"types": ["bug", "poison"],
+		"typesCn": ["虫", "毒"],
+		"weaknesses": ["fire", "flying", "ground", "psychic", "rock"],
+		"weaknessesCn": ["火", "飞", "地", "超能", "岩"]
 	},
 	{
 		"id": 50,
 		"nameEn": "Diglett",
 		"nameCn": "地鼠",
-		"slug": "diglett"
+		"slug": "diglett",
+		"types": ["ground"],
+		"typesCn": ["地"],
+		"weaknesses": ["grass", "ice", "water"],
+		"weaknessesCn": ["草", "冰", "水"]
 	},
 	{
 		"id": 51,
 		"nameEn": "Dugtrio",
 		"nameCn": "三地鼠",
-		"slug": "dugtrio"
+		"slug": "dugtrio",
+		"types": ["ground"],
+		"typesCn": ["地"],
+		"weaknesses": ["grass", "ice", "water"],
+		"weaknessesCn": ["草", "冰", "水"]
 	},
 	{
 		"id": 52,
 		"nameEn": "Meowth",
 		"nameCn": "喵喵",
-		"slug": "meowth"
+		"slug": "meowth",
+		"types": ["normal"],
+		"typesCn": ["一般"],
+		"weaknesses": ["fighting"],
+		"weaknessesCn": ["格斗"]
 	},
 	{
 		"id": 53,
 		"nameEn": "Persian",
 		"nameCn": "猫老大",
-		"slug": "persian"
+		"slug": "persian",
+		"types": ["normal"],
+		"typesCn": ["一般"],
+		"weaknesses": ["fighting"],
+		"weaknessesCn": ["格斗"]
 	},
 	{
 		"id": 54,
 		"nameEn": "Psyduck",
 		"nameCn": "可达鸭",
-		"slug": "psyduck"
+		"slug": "psyduck",
+		"types": ["water"],
+		"typesCn": ["水"],
+		"weaknesses": ["electric", "grass"],
+		"weaknessesCn": ["电", "草"]
 	},
 	{
 		"id": 55,
 		"nameEn": "Golduck",
 		"nameCn": "哥达鸭",
-		"slug": "golduck"
+		"slug": "golduck",
+		"types": ["water"],
+		"typesCn": ["水"],
+		"weaknesses": ["electric", "grass"],
+		"weaknessesCn": ["电", "草"]
 	},
 	{
 		"id": 56,
 		"nameEn": "Mankey",
 		"nameCn": "猴怪",
-		"slug": "mankey"
+		"slug": "mankey",
+		"types": ["fighting"],
+		"typesCn": ["格斗"],
+		"weaknesses": ["fairy", "flying", "psychic"],
+		"weaknessesCn": ["妖", "飞", "超能"]
 	},
 	{
 		"id": 57,
 		"nameEn": "Primeape",
 		"nameCn": "火暴猴",
-		"slug": "primeape"
+		"slug": "primeape",
+		"types": ["fighting"],
+		"typesCn": ["格斗"],
+		"weaknesses": ["fairy", "flying", "psychic"],
+		"weaknessesCn": ["妖", "飞", "超能"]
 	},
 	{
 		"id": 58,
 		"nameEn": "Growlithe",
 		"nameCn": "卡蒂狗",
-		"slug": "growlithe"
+		"slug": "growlithe",
+		"types": ["fire"],
+		"typesCn": ["火"],
+		"weaknesses": ["ground", "rock", "water"],
+		"weaknessesCn": ["地", "岩", "水"]
 	},
 	{
 		"id": 59,
 		"nameEn": "Arcanine",
 		"nameCn": "风速狗",
-		"slug": "arcanine"
+		"slug": "arcanine",
+		"types": ["fire"],
+		"typesCn": ["火"],
+		"weaknesses": ["ground", "rock", "water"],
+		"weaknessesCn": ["地", "岩", "水"]
 	},
 	{
 		"id": 60,
 		"nameEn": "Poliwag",
 		"nameCn": "蚊香蝌蚪",
-		"slug": "poliwag"
+		"slug": "poliwag",
+		"types": ["water"],
+		"typesCn": ["水"],
+		"weaknesses": ["electric", "grass"],
+		"weaknessesCn": ["电", "草"]
 	},
 	{
 		"id": 61,
 		"nameEn": "Poliwhirl",
 		"nameCn": "蚊香君",
-		"slug": "poliwhirl"
+		"slug": "poliwhirl",
+		"types": ["water"],
+		"typesCn": ["水"],
+		"weaknesses": ["electric", "grass"],
+		"weaknessesCn": ["电", "草"]
 	},
 	{
 		"id": 62,
 		"nameEn": "Poliwrath",
 		"nameCn": "蚊香泳士",
-		"slug": "poliwrath"
+		"slug": "poliwrath",
+		"types": ["water", "fighting"],
+		"typesCn": ["水", "格斗"],
+		"weaknesses": ["electric", "fairy", "flying", "grass", "psychic"],
+		"weaknessesCn": ["电", "妖", "飞", "草", "超能"]
 	},
 	{
 		"id": 63,
 		"nameEn": "Abra",
 		"nameCn": "凯西",
-		"slug": "abra"
+		"slug": "abra",
+		"types": ["psychic"],
+		"typesCn": ["超能"],
+		"weaknesses": ["bug", "dark", "ghost"],
+		"weaknessesCn": ["虫", "恶", "幽灵"]
 	},
 	{
 		"id": 64,
 		"nameEn": "Kadabra",
 		"nameCn": "勇基拉",
-		"slug": "kadabra"
+		"slug": "kadabra",
+		"types": ["psychic"],
+		"typesCn": ["超能"],
+		"weaknesses": ["bug", "dark", "ghost"],
+		"weaknessesCn": ["虫", "恶", "幽灵"]
 	},
 	{
 		"id": 65,
 		"nameEn": "Alakazam",
 		"nameCn": "胡地",
-		"slug": "alakazam"
+		"slug": "alakazam",
+		"types": ["psychic"],
+		"typesCn": ["超能"],
+		"weaknesses": ["bug", "dark", "ghost"],
+		"weaknessesCn": ["虫", "恶", "幽灵"]
 	},
 	{
 		"id": 66,
 		"nameEn": "Machop",
 		"nameCn": "腕力",
-		"slug": "machop"
+		"slug": "machop",
+		"types": ["fighting"],
+		"typesCn": ["格斗"],
+		"weaknesses": ["fairy", "flying", "psychic"],
+		"weaknessesCn": ["妖", "飞", "超能"]
 	},
 	{
 		"id": 67,
 		"nameEn": "Machoke",
 		"nameCn": "豪力",
-		"slug": "machoke"
+		"slug": "machoke",
+		"types": ["fighting"],
+		"typesCn": ["格斗"],
+		"weaknesses": ["fairy", "flying", "psychic"],
+		"weaknessesCn": ["妖", "飞", "超能"]
 	},
 	{
 		"id": 68,
 		"nameEn": "Machamp",
 		"nameCn": "怪力",
-		"slug": "machamp"
+		"slug": "machamp",
+		"types": ["fighting"],
+		"typesCn": ["格斗"],
+		"weaknesses": ["fairy", "flying", "psychic"],
+		"weaknessesCn": ["妖", "飞", "超能"]
 	},
 	{
 		"id": 69,
 		"nameEn": "Bellsprout",
 		"nameCn": "喇叭芽",
-		"slug": "bellsprout"
+		"slug": "bellsprout",
+		"types": ["grass", "poison"],
+		"typesCn": ["草", "毒"],
+		"weaknesses": [
+			"bug",
+			"fire",
+			"flying",
+			"ground",
+			"ice",
+			"poison",
+			"psychic"
+		],
+		"weaknessesCn": ["虫", "火", "飞", "地", "冰", "毒", "超能"]
 	},
 	{
 		"id": 70,
 		"nameEn": "Weepinbell",
 		"nameCn": "口呆花",
-		"slug": "weepinbell"
+		"slug": "weepinbell",
+		"types": ["grass", "poison"],
+		"typesCn": ["草", "毒"],
+		"weaknesses": [
+			"bug",
+			"fire",
+			"flying",
+			"ground",
+			"ice",
+			"poison",
+			"psychic"
+		],
+		"weaknessesCn": ["虫", "火", "飞", "地", "冰", "毒", "超能"]
 	},
 	{
 		"id": 71,
 		"nameEn": "Victreebel",
 		"nameCn": "大食花",
-		"slug": "victreebel"
+		"slug": "victreebel",
+		"types": ["grass", "poison"],
+		"typesCn": ["草", "毒"],
+		"weaknesses": [
+			"bug",
+			"fire",
+			"flying",
+			"ground",
+			"ice",
+			"poison",
+			"psychic"
+		],
+		"weaknessesCn": ["虫", "火", "飞", "地", "冰", "毒", "超能"]
 	},
 	{
 		"id": 72,
 		"nameEn": "Tentacool",
 		"nameCn": "玛瑙水母",
-		"slug": "tentacool"
+		"slug": "tentacool",
+		"types": ["water", "poison"],
+		"typesCn": ["水", "毒"],
+		"weaknesses": ["electric", "grass", "ground", "psychic"],
+		"weaknessesCn": ["电", "草", "地", "超能"]
 	},
 	{
 		"id": 73,
 		"nameEn": "Tentacruel",
 		"nameCn": "毒刺水母",
-		"slug": "tentacruel"
+		"slug": "tentacruel",
+		"types": ["water", "poison"],
+		"typesCn": ["水", "毒"],
+		"weaknesses": ["electric", "grass", "ground", "psychic"],
+		"weaknessesCn": ["电", "草", "地", "超能"]
 	},
 	{
 		"id": 74,
 		"nameEn": "Geodude",
 		"nameCn": "小拳石",
-		"slug": "geodude"
+		"slug": "geodude",
+		"types": ["rock", "ground"],
+		"typesCn": ["岩", "地"],
+		"weaknesses": ["fighting", "grass", "ground", "ice", "steel", "water"],
+		"weaknessesCn": ["格斗", "草", "地", "冰", "钢", "水"]
 	},
 	{
 		"id": 75,
 		"nameEn": "Graveler",
 		"nameCn": "隆隆石",
-		"slug": "graveler"
+		"slug": "graveler",
+		"types": ["rock", "ground"],
+		"typesCn": ["岩", "地"],
+		"weaknesses": ["fighting", "grass", "ground", "ice", "steel", "water"],
+		"weaknessesCn": ["格斗", "草", "地", "冰", "钢", "水"]
 	},
 	{
 		"id": 76,
 		"nameEn": "Golem",
 		"nameCn": "隆隆岩",
-		"slug": "golem"
+		"slug": "golem",
+		"types": ["rock", "ground"],
+		"typesCn": ["岩", "地"],
+		"weaknesses": ["fighting", "grass", "ground", "ice", "steel", "water"],
+		"weaknessesCn": ["格斗", "草", "地", "冰", "钢", "水"]
 	},
 	{
 		"id": 77,
 		"nameEn": "Ponyta",
 		"nameCn": "小火马",
-		"slug": "ponyta"
+		"slug": "ponyta",
+		"types": ["fire"],
+		"typesCn": ["火"],
+		"weaknesses": ["ground", "rock", "water"],
+		"weaknessesCn": ["地", "岩", "水"]
 	},
 	{
 		"id": 78,
 		"nameEn": "Rapidash",
 		"nameCn": "烈焰马",
-		"slug": "rapidash"
+		"slug": "rapidash",
+		"types": ["fire"],
+		"typesCn": ["火"],
+		"weaknesses": ["ground", "rock", "water"],
+		"weaknessesCn": ["地", "岩", "水"]
 	},
 	{
 		"id": 79,
 		"nameEn": "Slowpoke",
 		"nameCn": "呆呆兽",
-		"slug": "slowpoke"
+		"slug": "slowpoke",
+		"types": ["water", "psychic"],
+		"typesCn": ["水", "超能"],
+		"weaknesses": ["bug", "dark", "electric", "ghost", "grass"],
+		"weaknessesCn": ["虫", "恶", "电", "幽灵", "草"]
 	},
 	{
 		"id": 80,
 		"nameEn": "Slowbro",
 		"nameCn": "呆壳兽",
-		"slug": "slowbro"
+		"slug": "slowbro",
+		"types": ["water", "psychic"],
+		"typesCn": ["水", "超能"],
+		"weaknesses": ["bug", "dark", "electric", "ghost", "grass"],
+		"weaknessesCn": ["虫", "恶", "电", "幽灵", "草"]
 	},
 	{
 		"id": 81,
 		"nameEn": "Magnemite",
 		"nameCn": "小磁怪",
-		"slug": "magnemite"
+		"slug": "magnemite",
+		"types": ["electric", "steel"],
+		"typesCn": ["电", "钢"],
+		"weaknesses": ["fighting", "fire", "ground"],
+		"weaknessesCn": ["格斗", "火", "地"]
 	},
 	{
 		"id": 82,
 		"nameEn": "Magneton",
 		"nameCn": "三合一磁怪",
-		"slug": "magneton"
+		"slug": "magneton",
+		"types": ["electric", "steel"],
+		"typesCn": ["电", "钢"],
+		"weaknesses": ["fighting", "fire", "ground"],
+		"weaknessesCn": ["格斗", "火", "地"]
 	},
 	{
 		"id": 83,
 		"nameEn": "Farfetch’d",
 		"nameCn": "大葱鸭",
-		"slug": "farfetchd"
+		"slug": "farfetchd",
+		"types": ["normal", "flying"],
+		"typesCn": ["一般", "飞"],
+		"weaknesses": ["electric", "fighting", "ice", "rock"],
+		"weaknessesCn": ["电", "格斗", "冰", "岩"]
 	},
 	{
 		"id": 84,
 		"nameEn": "Doduo",
 		"nameCn": "嘟嘟",
-		"slug": "doduo"
+		"slug": "doduo",
+		"types": ["normal", "flying"],
+		"typesCn": ["一般", "飞"],
+		"weaknesses": ["electric", "fighting", "ice", "rock"],
+		"weaknessesCn": ["电", "格斗", "冰", "岩"]
 	},
 	{
 		"id": 85,
 		"nameEn": "Dodrio",
 		"nameCn": "嘟嘟利",
-		"slug": "dodrio"
+		"slug": "dodrio",
+		"types": ["normal", "flying"],
+		"typesCn": ["一般", "飞"],
+		"weaknesses": ["electric", "fighting", "ice", "rock"],
+		"weaknessesCn": ["电", "格斗", "冰", "岩"]
 	},
 	{
 		"id": 86,
 		"nameEn": "Seel",
 		"nameCn": "小海狮",
-		"slug": "seel"
+		"slug": "seel",
+		"types": ["water"],
+		"typesCn": ["水"],
+		"weaknesses": ["electric", "grass"],
+		"weaknessesCn": ["电", "草"]
 	},
 	{
 		"id": 87,
 		"nameEn": "Dewgong",
 		"nameCn": "白海狮",
-		"slug": "dewgong"
+		"slug": "dewgong",
+		"types": ["water", "ice"],
+		"typesCn": ["水", "冰"],
+		"weaknesses": ["electric", "fighting", "fire", "grass", "rock", "steel"],
+		"weaknessesCn": ["电", "格斗", "火", "草", "岩", "钢"]
 	},
 	{
 		"id": 88,
 		"nameEn": "Grimer",
 		"nameCn": "臭泥",
-		"slug": "grimer"
+		"slug": "grimer",
+		"types": ["poison"],
+		"typesCn": ["毒"],
+		"weaknesses": ["ground", "psychic"],
+		"weaknessesCn": ["地", "超能"]
 	},
 	{
 		"id": 89,
 		"nameEn": "Muk",
 		"nameCn": "臭臭泥",
-		"slug": "muk"
+		"slug": "muk",
+		"types": ["poison"],
+		"typesCn": ["毒"],
+		"weaknesses": ["ground", "psychic"],
+		"weaknessesCn": ["地", "超能"]
 	},
 	{
 		"id": 90,
 		"nameEn": "Shellder",
 		"nameCn": "大舌贝",
-		"slug": "shellder"
+		"slug": "shellder",
+		"types": ["water"],
+		"typesCn": ["水"],
+		"weaknesses": ["electric", "grass"],
+		"weaknessesCn": ["电", "草"]
 	},
 	{
 		"id": 91,
 		"nameEn": "Cloyster",
 		"nameCn": "刺甲贝",
-		"slug": "cloyster"
+		"slug": "cloyster",
+		"types": ["water", "ice"],
+		"typesCn": ["水", "冰"],
+		"weaknesses": ["electric", "fighting", "fire", "grass", "rock", "steel"],
+		"weaknessesCn": ["电", "格斗", "火", "草", "岩", "钢"]
 	},
 	{
 		"id": 92,
 		"nameEn": "Gastly",
 		"nameCn": "鬼斯",
-		"slug": "gastly"
+		"slug": "gastly",
+		"types": ["ghost", "poison"],
+		"typesCn": ["幽灵", "毒"],
+		"weaknesses": ["dark", "ghost", "ground", "psychic"],
+		"weaknessesCn": ["恶", "幽灵", "地", "超能"]
 	},
 	{
 		"id": 93,
 		"nameEn": "Haunter",
 		"nameCn": "鬼斯通",
-		"slug": "haunter"
+		"slug": "haunter",
+		"types": ["ghost", "poison"],
+		"typesCn": ["幽灵", "毒"],
+		"weaknesses": ["dark", "ghost", "ground", "psychic"],
+		"weaknessesCn": ["恶", "幽灵", "地", "超能"]
 	},
 	{
 		"id": 94,
 		"nameEn": "Gengar",
 		"nameCn": "耿鬼",
-		"slug": "gengar"
+		"slug": "gengar",
+		"types": ["ghost", "poison"],
+		"typesCn": ["幽灵", "毒"],
+		"weaknesses": ["dark", "ghost", "ground", "psychic"],
+		"weaknessesCn": ["恶", "幽灵", "地", "超能"]
 	},
 	{
 		"id": 95,
 		"nameEn": "Onix",
 		"nameCn": "大岩蛇",
-		"slug": "onix"
+		"slug": "onix",
+		"types": ["rock", "ground"],
+		"typesCn": ["岩", "地"],
+		"weaknesses": ["fighting", "grass", "ground", "ice", "steel", "water"],
+		"weaknessesCn": ["格斗", "草", "地", "冰", "钢", "水"]
 	},
 	{
 		"id": 96,
 		"nameEn": "Drowzee",
 		"nameCn": "催眠貘",
-		"slug": "drowzee"
+		"slug": "drowzee",
+		"types": ["psychic"],
+		"typesCn": ["超能"],
+		"weaknesses": ["bug", "dark", "ghost"],
+		"weaknessesCn": ["虫", "恶", "幽灵"]
 	},
 	{
 		"id": 97,
 		"nameEn": "Hypno",
 		"nameCn": "引梦貘人",
-		"slug": "hypno"
+		"slug": "hypno",
+		"types": ["psychic"],
+		"typesCn": ["超能"],
+		"weaknesses": ["bug", "dark", "ghost"],
+		"weaknessesCn": ["虫", "恶", "幽灵"]
 	},
 	{
 		"id": 98,
 		"nameEn": "Krabby",
 		"nameCn": "大钳蟹",
-		"slug": "krabby"
+		"slug": "krabby",
+		"types": ["water"],
+		"typesCn": ["水"],
+		"weaknesses": ["electric", "grass"],
+		"weaknessesCn": ["电", "草"]
 	},
 	{
 		"id": 99,
 		"nameEn": "Kingler",
 		"nameCn": "巨钳蟹",
-		"slug": "kingler"
+		"slug": "kingler",
+		"types": ["water"],
+		"typesCn": ["水"],
+		"weaknesses": ["electric", "grass"],
+		"weaknessesCn": ["电", "草"]
 	},
 	{
 		"id": 100,
 		"nameEn": "Voltorb",
 		"nameCn": "霹雳电球",
-		"slug": "voltorb"
+		"slug": "voltorb",
+		"types": ["electric"],
+		"typesCn": ["电"],
+		"weaknesses": ["ground"],
+		"weaknessesCn": ["地"]
 	},
 	{
 		"id": 101,
 		"nameEn": "Electrode",
 		"nameCn": "顽皮雷弹",
-		"slug": "electrode"
+		"slug": "electrode",
+		"types": ["electric"],
+		"typesCn": ["电"],
+		"weaknesses": ["ground"],
+		"weaknessesCn": ["地"]
 	},
 	{
 		"id": 102,
 		"nameEn": "Exeggcute",
 		"nameCn": "蛋蛋",
-		"slug": "exeggcute"
+		"slug": "exeggcute",
+		"types": ["grass", "psychic"],
+		"typesCn": ["草", "超能"],
+		"weaknesses": ["bug", "dark", "fire", "flying", "ghost", "ice", "poison"],
+		"weaknessesCn": ["虫", "恶", "火", "飞", "幽灵", "冰", "毒"]
 	},
 	{
 		"id": 103,
 		"nameEn": "Exeggutor",
 		"nameCn": "椰蛋树",
-		"slug": "exeggutor"
+		"slug": "exeggutor",
+		"types": ["grass", "psychic"],
+		"typesCn": ["草", "超能"],
+		"weaknesses": ["bug", "dark", "fire", "flying", "ghost", "ice", "poison"],
+		"weaknessesCn": ["虫", "恶", "火", "飞", "幽灵", "冰", "毒"]
 	},
 	{
 		"id": 104,
 		"nameEn": "Cubone",
 		"nameCn": "卡拉卡拉",
-		"slug": "cubone"
+		"slug": "cubone",
+		"types": ["ground"],
+		"typesCn": ["地"],
+		"weaknesses": ["grass", "ice", "water"],
+		"weaknessesCn": ["草", "冰", "水"]
 	},
 	{
 		"id": 105,
 		"nameEn": "Marowak",
 		"nameCn": "嘎啦嘎啦",
-		"slug": "marowak"
+		"slug": "marowak",
+		"types": ["ground"],
+		"typesCn": ["地"],
+		"weaknesses": ["grass", "ice", "water"],
+		"weaknessesCn": ["草", "冰", "水"]
 	},
 	{
 		"id": 106,
 		"nameEn": "Hitmonlee",
 		"nameCn": "飞腿郎",
-		"slug": "hitmonlee"
+		"slug": "hitmonlee",
+		"types": ["fighting"],
+		"typesCn": ["格斗"],
+		"weaknesses": ["fairy", "flying", "psychic"],
+		"weaknessesCn": ["妖", "飞", "超能"]
 	},
 	{
 		"id": 107,
 		"nameEn": "Hitmonchan",
 		"nameCn": "快拳郎",
-		"slug": "hitmonchan"
+		"slug": "hitmonchan",
+		"types": ["fighting"],
+		"typesCn": ["格斗"],
+		"weaknesses": ["fairy", "flying", "psychic"],
+		"weaknessesCn": ["妖", "飞", "超能"]
 	},
 	{
 		"id": 108,
 		"nameEn": "Lickitung",
 		"nameCn": "大舌头",
-		"slug": "lickitung"
+		"slug": "lickitung",
+		"types": ["normal"],
+		"typesCn": ["一般"],
+		"weaknesses": ["fighting"],
+		"weaknessesCn": ["格斗"]
 	},
 	{
 		"id": 109,
 		"nameEn": "Koffing",
 		"nameCn": "瓦斯弹",
-		"slug": "koffing"
+		"slug": "koffing",
+		"types": ["poison"],
+		"typesCn": ["毒"],
+		"weaknesses": ["ground", "psychic"],
+		"weaknessesCn": ["地", "超能"]
 	},
 	{
 		"id": 110,
 		"nameEn": "Weezing",
 		"nameCn": "双弹瓦斯",
-		"slug": "weezing"
+		"slug": "weezing",
+		"types": ["poison"],
+		"typesCn": ["毒"],
+		"weaknesses": ["ground", "psychic"],
+		"weaknessesCn": ["地", "超能"]
 	},
 	{
 		"id": 111,
 		"nameEn": "Rhyhorn",
 		"nameCn": "独角犀牛",
-		"slug": "rhyhorn"
+		"slug": "rhyhorn",
+		"types": ["ground", "rock"],
+		"typesCn": ["地", "岩"],
+		"weaknesses": ["fighting", "grass", "ground", "ice", "steel", "water"],
+		"weaknessesCn": ["格斗", "草", "地", "冰", "钢", "水"]
 	},
 	{
 		"id": 112,
 		"nameEn": "Rhydon",
 		"nameCn": "钻角犀兽",
-		"slug": "rhydon"
+		"slug": "rhydon",
+		"types": ["ground", "rock"],
+		"typesCn": ["地", "岩"],
+		"weaknesses": ["fighting", "grass", "ground", "ice", "steel", "water"],
+		"weaknessesCn": ["格斗", "草", "地", "冰", "钢", "水"]
 	},
 	{
 		"id": 113,
 		"nameEn": "Chansey",
 		"nameCn": "吉利蛋",
-		"slug": "chansey"
+		"slug": "chansey",
+		"types": ["normal"],
+		"typesCn": ["一般"],
+		"weaknesses": ["fighting"],
+		"weaknessesCn": ["格斗"]
 	},
 	{
 		"id": 114,
 		"nameEn": "Tangela",
 		"nameCn": "蔓藤怪",
-		"slug": "tangela"
+		"slug": "tangela",
+		"types": ["grass"],
+		"typesCn": ["草"],
+		"weaknesses": ["bug", "fire", "flying", "ice", "poison"],
+		"weaknessesCn": ["虫", "火", "飞", "冰", "毒"]
 	},
 	{
 		"id": 115,
 		"nameEn": "Kangaskhan",
 		"nameCn": "袋兽",
-		"slug": "kangaskhan"
+		"slug": "kangaskhan",
+		"types": ["normal"],
+		"typesCn": ["一般"],
+		"weaknesses": ["fighting"],
+		"weaknessesCn": ["格斗"]
 	},
 	{
 		"id": 116,
 		"nameEn": "Horsea",
 		"nameCn": "墨海马",
-		"slug": "horsea"
+		"slug": "horsea",
+		"types": ["water"],
+		"typesCn": ["水"],
+		"weaknesses": ["electric", "grass"],
+		"weaknessesCn": ["电", "草"]
 	},
 	{
 		"id": 117,
 		"nameEn": "Seadra",
 		"nameCn": "海刺龙",
-		"slug": "seadra"
+		"slug": "seadra",
+		"types": ["water"],
+		"typesCn": ["水"],
+		"weaknesses": ["electric", "grass"],
+		"weaknessesCn": ["电", "草"]
 	},
 	{
 		"id": 118,
 		"nameEn": "Goldeen",
 		"nameCn": "角金鱼",
-		"slug": "goldeen"
+		"slug": "goldeen",
+		"types": ["water"],
+		"typesCn": ["水"],
+		"weaknesses": ["electric", "grass"],
+		"weaknessesCn": ["电", "草"]
 	},
 	{
 		"id": 119,
 		"nameEn": "Seaking",
 		"nameCn": "金鱼王",
-		"slug": "seaking"
+		"slug": "seaking",
+		"types": ["water"],
+		"typesCn": ["水"],
+		"weaknesses": ["electric", "grass"],
+		"weaknessesCn": ["电", "草"]
 	},
 	{
 		"id": 120,
 		"nameEn": "Staryu",
 		"nameCn": "海星星",
-		"slug": "staryu"
+		"slug": "staryu",
+		"types": ["water"],
+		"typesCn": ["水"],
+		"weaknesses": ["electric", "grass"],
+		"weaknessesCn": ["电", "草"]
 	},
 	{
 		"id": 121,
 		"nameEn": "Starmie",
 		"nameCn": "宝石海星",
-		"slug": "starmie"
+		"slug": "starmie",
+		"types": ["water", "psychic"],
+		"typesCn": ["水", "超能"],
+		"weaknesses": ["bug", "dark", "electric", "ghost", "grass"],
+		"weaknessesCn": ["虫", "恶", "电", "幽灵", "草"]
 	},
 	{
 		"id": 122,
 		"nameEn": "Mr. Mime",
 		"nameCn": "魔墙人偶",
-		"slug": "mr-mime"
+		"slug": "mr-mime",
+		"types": ["psychic", "fairy"],
+		"typesCn": ["超能", "妖"],
+		"weaknesses": ["bug", "dark", "ghost", "poison", "steel"],
+		"weaknessesCn": ["虫", "恶", "幽灵", "毒", "钢"]
 	},
 	{
 		"id": 123,
 		"nameEn": "Scyther",
 		"nameCn": "飞天螳螂",
-		"slug": "scyther"
+		"slug": "scyther",
+		"types": ["bug", "flying"],
+		"typesCn": ["虫", "飞"],
+		"weaknesses": ["electric", "fire", "flying", "ice", "rock"],
+		"weaknessesCn": ["电", "火", "飞", "冰", "岩"]
 	},
 	{
 		"id": 124,
 		"nameEn": "Jynx",
 		"nameCn": "迷唇姐",
-		"slug": "jynx"
+		"slug": "jynx",
+		"types": ["ice", "psychic"],
+		"typesCn": ["冰", "超能"],
+		"weaknesses": ["bug", "dark", "fighting", "fire", "ghost", "rock", "steel"],
+		"weaknessesCn": ["虫", "恶", "格斗", "火", "幽灵", "岩", "钢"]
 	},
 	{
 		"id": 125,
 		"nameEn": "Electabuzz",
 		"nameCn": "电击兽",
-		"slug": "electabuzz"
+		"slug": "electabuzz",
+		"types": ["electric"],
+		"typesCn": ["电"],
+		"weaknesses": ["ground"],
+		"weaknessesCn": ["地"]
 	},
 	{
 		"id": 126,
 		"nameEn": "Magmar",
 		"nameCn": "鸭嘴火兽",
-		"slug": "magmar"
+		"slug": "magmar",
+		"types": ["fire"],
+		"typesCn": ["火"],
+		"weaknesses": ["ground", "rock", "water"],
+		"weaknessesCn": ["地", "岩", "水"]
 	},
 	{
 		"id": 127,
 		"nameEn": "Pinsir",
 		"nameCn": "凯罗斯",
-		"slug": "pinsir"
+		"slug": "pinsir",
+		"types": ["bug"],
+		"typesCn": ["虫"],
+		"weaknesses": ["fire", "flying", "rock"],
+		"weaknessesCn": ["火", "飞", "岩"]
 	},
 	{
 		"id": 128,
 		"nameEn": "Tauros",
 		"nameCn": "肯泰罗",
-		"slug": "tauros"
+		"slug": "tauros",
+		"types": ["normal"],
+		"typesCn": ["一般"],
+		"weaknesses": ["fighting"],
+		"weaknessesCn": ["格斗"]
 	},
 	{
 		"id": 129,
 		"nameEn": "Magikarp",
 		"nameCn": "鲤鱼王",
-		"slug": "magikarp"
+		"slug": "magikarp",
+		"types": ["water"],
+		"typesCn": ["水"],
+		"weaknesses": ["electric", "grass"],
+		"weaknessesCn": ["电", "草"]
 	},
 	{
 		"id": 130,
 		"nameEn": "Gyarados",
 		"nameCn": "暴鲤龙",
-		"slug": "gyarados"
+		"slug": "gyarados",
+		"types": ["water", "flying"],
+		"typesCn": ["水", "飞"],
+		"weaknesses": ["electric", "grass", "ice", "rock"],
+		"weaknessesCn": ["电", "草", "冰", "岩"]
 	},
 	{
 		"id": 131,
 		"nameEn": "Lapras",
 		"nameCn": "拉普拉斯",
-		"slug": "lapras"
+		"slug": "lapras",
+		"types": ["water", "ice"],
+		"typesCn": ["水", "冰"],
+		"weaknesses": ["electric", "fighting", "fire", "grass", "rock", "steel"],
+		"weaknessesCn": ["电", "格斗", "火", "草", "岩", "钢"]
 	},
 	{
 		"id": 132,
 		"nameEn": "Ditto",
 		"nameCn": "百变怪",
-		"slug": "ditto"
+		"slug": "ditto",
+		"types": ["normal"],
+		"typesCn": ["一般"],
+		"weaknesses": ["fighting"],
+		"weaknessesCn": ["格斗"]
 	},
 	{
 		"id": 133,
 		"nameEn": "Eevee",
 		"nameCn": "伊布",
-		"slug": "eevee"
+		"slug": "eevee",
+		"types": ["normal"],
+		"typesCn": ["一般"],
+		"weaknesses": ["fighting"],
+		"weaknessesCn": ["格斗"]
 	},
 	{
 		"id": 134,
 		"nameEn": "Vaporeon",
 		"nameCn": "水伊布",
-		"slug": "vaporeon"
+		"slug": "vaporeon",
+		"types": ["water"],
+		"typesCn": ["水"],
+		"weaknesses": ["electric", "grass"],
+		"weaknessesCn": ["电", "草"]
 	},
 	{
 		"id": 135,
 		"nameEn": "Jolteon",
 		"nameCn": "雷伊布",
-		"slug": "jolteon"
+		"slug": "jolteon",
+		"types": ["electric"],
+		"typesCn": ["电"],
+		"weaknesses": ["ground"],
+		"weaknessesCn": ["地"]
 	},
 	{
 		"id": 136,
 		"nameEn": "Flareon",
 		"nameCn": "火伊布",
-		"slug": "flareon"
+		"slug": "flareon",
+		"types": ["fire"],
+		"typesCn": ["火"],
+		"weaknesses": ["ground", "rock", "water"],
+		"weaknessesCn": ["地", "岩", "水"]
 	},
 	{
 		"id": 137,
 		"nameEn": "Porygon",
 		"nameCn": "多边兽",
-		"slug": "porygon"
+		"slug": "porygon",
+		"types": ["normal"],
+		"typesCn": ["一般"],
+		"weaknesses": ["fighting"],
+		"weaknessesCn": ["格斗"]
 	},
 	{
 		"id": 138,
 		"nameEn": "Omanyte",
 		"nameCn": "菊石兽",
-		"slug": "omanyte"
+		"slug": "omanyte",
+		"types": ["rock", "water"],
+		"typesCn": ["岩", "水"],
+		"weaknesses": ["electric", "fighting", "grass", "ground", "steel", "water"],
+		"weaknessesCn": ["电", "格斗", "草", "地", "钢", "水"]
 	},
 	{
 		"id": 139,
 		"nameEn": "Omastar",
 		"nameCn": "多刺菊石兽",
-		"slug": "omastar"
+		"slug": "omastar",
+		"types": ["rock", "water"],
+		"typesCn": ["岩", "水"],
+		"weaknesses": ["electric", "fighting", "grass", "ground", "steel", "water"],
+		"weaknessesCn": ["电", "格斗", "草", "地", "钢", "水"]
 	},
 	{
 		"id": 140,
 		"nameEn": "Kabuto",
 		"nameCn": "化石盔",
-		"slug": "kabuto"
+		"slug": "kabuto",
+		"types": ["rock", "water"],
+		"typesCn": ["岩", "水"],
+		"weaknesses": ["electric", "fighting", "grass", "ground", "steel", "water"],
+		"weaknessesCn": ["电", "格斗", "草", "地", "钢", "水"]
 	},
 	{
 		"id": 141,
 		"nameEn": "Kabutops",
 		"nameCn": "镰刀盔",
-		"slug": "kabutops"
+		"slug": "kabutops",
+		"types": ["rock", "water"],
+		"typesCn": ["岩", "水"],
+		"weaknesses": ["electric", "fighting", "grass", "ground", "steel", "water"],
+		"weaknessesCn": ["电", "格斗", "草", "地", "钢", "水"]
 	},
 	{
 		"id": 142,
 		"nameEn": "Aerodactyl",
 		"nameCn": "化石翼龙",
-		"slug": "aerodactyl"
+		"slug": "aerodactyl",
+		"types": ["rock", "flying"],
+		"typesCn": ["岩", "飞"],
+		"weaknesses": [
+			"electric",
+			"fighting",
+			"grass",
+			"ground",
+			"ice",
+			"rock",
+			"steel",
+			"water"
+		],
+		"weaknessesCn": ["电", "格斗", "草", "地", "冰", "岩", "钢", "水"]
 	},
 	{
 		"id": 143,
 		"nameEn": "Snorlax",
 		"nameCn": "卡比兽",
-		"slug": "snorlax"
+		"slug": "snorlax",
+		"types": ["normal"],
+		"typesCn": ["一般"],
+		"weaknesses": ["fighting"],
+		"weaknessesCn": ["格斗"]
 	},
 	{
 		"id": 144,
 		"nameEn": "Articuno",
 		"nameCn": "急冻鸟",
-		"slug": "articuno"
+		"slug": "articuno",
+		"types": ["ice", "flying"],
+		"typesCn": ["冰", "飞"],
+		"weaknesses": ["electric", "fighting", "fire", "ice", "rock", "steel"],
+		"weaknessesCn": ["电", "格斗", "火", "冰", "岩", "钢"]
 	},
 	{
 		"id": 145,
 		"nameEn": "Zapdos",
 		"nameCn": "闪电鸟",
-		"slug": "zapdos"
+		"slug": "zapdos",
+		"types": ["electric", "flying"],
+		"typesCn": ["电", "飞"],
+		"weaknesses": ["electric", "ground", "ice", "rock"],
+		"weaknessesCn": ["电", "地", "冰", "岩"]
 	},
 	{
 		"id": 146,
 		"nameEn": "Moltres",
 		"nameCn": "火焰鸟",
-		"slug": "moltres"
+		"slug": "moltres",
+		"types": ["fire", "flying"],
+		"typesCn": ["火", "飞"],
+		"weaknesses": ["electric", "ground", "ice", "rock", "water"],
+		"weaknessesCn": ["电", "地", "冰", "岩", "水"]
 	},
 	{
 		"id": 147,
 		"nameEn": "Dratini",
 		"nameCn": "迷你龙",
-		"slug": "dratini"
+		"slug": "dratini",
+		"types": ["dragon"],
+		"typesCn": ["龙"],
+		"weaknesses": ["dragon", "fairy", "ice"],
+		"weaknessesCn": ["龙", "妖", "冰"]
 	},
 	{
 		"id": 148,
 		"nameEn": "Dragonair",
 		"nameCn": "哈克龙",
-		"slug": "dragonair"
+		"slug": "dragonair",
+		"types": ["dragon"],
+		"typesCn": ["龙"],
+		"weaknesses": ["dragon", "fairy", "ice"],
+		"weaknessesCn": ["龙", "妖", "冰"]
 	},
 	{
 		"id": 149,
 		"nameEn": "Dragonite",
 		"nameCn": "快龙",
-		"slug": "dragonite"
+		"slug": "dragonite",
+		"types": ["dragon", "flying"],
+		"typesCn": ["龙", "飞"],
+		"weaknesses": ["dragon", "electric", "fairy", "ice", "rock"],
+		"weaknessesCn": ["龙", "电", "妖", "冰", "岩"]
 	},
 	{
 		"id": 150,
 		"nameEn": "Mewtwo",
 		"nameCn": "超梦",
-		"slug": "mewtwo"
+		"slug": "mewtwo",
+		"types": ["psychic"],
+		"typesCn": ["超能"],
+		"weaknesses": ["bug", "dark", "ghost"],
+		"weaknessesCn": ["虫", "恶", "幽灵"]
 	},
 	{
 		"id": 151,
 		"nameEn": "Mew",
 		"nameCn": "梦幻",
-		"slug": "mew"
+		"slug": "mew",
+		"types": ["psychic"],
+		"typesCn": ["超能"],
+		"weaknesses": ["bug", "dark", "ghost"],
+		"weaknessesCn": ["虫", "恶", "幽灵"]
 	}
 ]

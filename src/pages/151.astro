@@ -56,6 +56,15 @@ const spriteBase =
 				<button class="p151-tab" type="button" data-quiz-mode="typing" aria-pressed="false">
 					输入中文名
 				</button>
+				<button class="p151-tab" type="button" data-quiz-mode="num-name" aria-pressed="false">
+					编号猜名
+				</button>
+				<button class="p151-tab" type="button" data-quiz-mode="name-num" aria-pressed="false">
+					名猜编号
+				</button>
+				<button class="p151-tab" type="button" data-quiz-mode="round3" aria-pressed="false">
+					三题练习
+				</button>
 			</div>
 			<p class="p151-mode-hint" id="quiz-mode-hint">
 				看立绘，从四个中文名里选正确答案。
@@ -67,10 +76,12 @@ const spriteBase =
 			<div class="p151-quiz-meta">
 				<span id="quiz-progress">1 / 151</span>
 				<span id="quiz-score">正确 0</span>
+				<span id="quiz-chances" class="p151-quiz-chances" hidden>本题还剩 3 次机会</span>
 				<button class="p151-ghost ui-pressable" type="button" id="quiz-end">结束</button>
 			</div>
 			<div class="p151-quiz-card">
 				<p class="p151-quiz-no" id="quiz-number">#001</p>
+				<p class="p151-quiz-prompt" id="quiz-prompt" hidden></p>
 				<img class="p151-quiz-art" id="quiz-art" src="" alt="" width="220" height="220" />
 				<div id="quiz-choice" class="p151-choices"></div>
 				<form id="quiz-typing" class="p151-typing" hidden>
@@ -97,6 +108,9 @@ const spriteBase =
 	</p>
 
 	<script is:inline define:vars={{ pokemon151, wikiBase, spriteBase }}>
+		const ROUND3_SIZE = 3;
+		const ROUND3_TRIES = 3;
+
 		const state = {
 			tab: 'dex',
 			quizMode: 'choice',
@@ -104,11 +118,21 @@ const spriteBase =
 			index: 0,
 			score: 0,
 			answered: false,
+			attemptsLeft: ROUND3_TRIES,
+			retryQueue: [],
+			roundPhase: 'main',
+			round3MainScore: 0,
+			round3RetryScore: 0,
+			retryRoundSize: 0,
 		};
 
 		const modeHints = {
 			choice: '看立绘，从四个中文名里选正确答案。',
 			typing: '看立绘，输入完整中文名，需完全匹配。',
+			'num-name': '只看编号，从四个中文名里选正确答案。',
+			'name-num': '只看中文名，从四个编号里选正确答案。',
+			round3:
+				'模拟线下答题：随机 3 题，每题最多说 3 次中文名；本回合猜错的题会在末尾再练一遍。',
 		};
 
 		const els = {
@@ -126,7 +150,9 @@ const spriteBase =
 			quizRestart: document.getElementById('quiz-restart'),
 			quizProgress: document.getElementById('quiz-progress'),
 			quizScore: document.getElementById('quiz-score'),
+			quizChances: document.getElementById('quiz-chances'),
 			quizNumber: document.getElementById('quiz-number'),
+			quizPrompt: document.getElementById('quiz-prompt'),
 			quizArt: document.getElementById('quiz-art'),
 			quizChoice: document.getElementById('quiz-choice'),
 			quizTyping: document.getElementById('quiz-typing'),
@@ -140,6 +166,7 @@ const spriteBase =
 
 		const wikiUrl = (nameCn) => `${wikiBase}${encodeURIComponent(nameCn)}`;
 		const artUrl = (id) => `${spriteBase}/${id}.png`;
+		const formatNo = (id) => `#${String(id).padStart(3, '0')}`;
 
 		const shuffle = (arr) => {
 			const copy = [...arr];
@@ -155,30 +182,51 @@ const spriteBase =
 			return shuffle(pool).slice(0, count);
 		};
 
+		const pickWrongIds = (correct, count = 3) => {
+			const pool = pokemon151.filter((p) => p.id !== correct.id);
+			return shuffle(pool).slice(0, count);
+		};
+
+		const isChoiceMode = () =>
+			state.quizMode === 'choice' ||
+			state.quizMode === 'num-name' ||
+			state.quizMode === 'name-num';
+
 		const renderDex = (filter = '') => {
 			const q = filter.trim().toLowerCase();
 			const list = pokemon151.filter((p) => {
 				if (!q) return true;
+				const typesText = (p.typesCn || []).join('');
+				const weakText = (p.weaknessesCn || []).join('');
 				return (
 					String(p.id).includes(q) ||
 					p.nameCn.includes(filter.trim()) ||
 					p.nameEn.toLowerCase().includes(q) ||
-					p.slug.includes(q)
+					p.slug.includes(q) ||
+					typesText.includes(filter.trim()) ||
+					weakText.includes(filter.trim())
 				);
 			});
 			els.dexCount.textContent = `${list.length} 只`;
 			els.dexGrid.innerHTML = list
-				.map(
-					(p) => `
+				.map((p) => {
+					const typesLine = (p.typesCn || []).join(' · ');
+					const weakLine =
+						(p.weaknessesCn || []).length > 0
+							? `弱 ${p.weaknessesCn.join(' ')}`
+							: '';
+					return `
 				<li class="p151-card">
 					<a class="p151-card__link" href="${wikiUrl(p.nameCn)}" target="_blank" rel="noreferrer noopener">
 						<img src="${artUrl(p.id)}" alt="${p.nameCn}" width="96" height="96" loading="lazy" />
-						<span class="p151-card__no">#${String(p.id).padStart(3, '0')}</span>
+						<span class="p151-card__no">${formatNo(p.id)}</span>
 						<span class="p151-card__cn">${p.nameCn}</span>
 						<span class="p151-card__en">${p.nameEn}</span>
+						${typesLine ? `<span class="p151-card__types">${typesLine}</span>` : ''}
+						${weakLine ? `<span class="p151-card__weak">${weakLine}</span>` : ''}
 					</a>
-				</li>`,
-				)
+				</li>`;
+				})
 				.join('');
 		};
 
@@ -203,37 +251,92 @@ const spriteBase =
 		const currentPokemon = () => state.queue[state.index];
 
 		const updateQuizMeta = () => {
-			els.quizProgress.textContent = `${state.index + 1} / ${state.queue.length}`;
-			els.quizScore.textContent = `正确 ${state.score}`;
+			if (state.quizMode === 'round3') {
+				const phaseLabel = state.roundPhase === 'retry' ? '错题重练 ' : '';
+				els.quizProgress.textContent = `${phaseLabel}${state.index + 1} / ${state.queue.length}`;
+				els.quizScore.textContent = `主回合 ${state.round3MainScore} · 重练 ${state.round3RetryScore}`;
+				els.quizChances.hidden = false;
+				els.quizChances.textContent = `本题还剩 ${state.attemptsLeft} 次机会`;
+			} else {
+				els.quizProgress.textContent = `${state.index + 1} / ${state.queue.length}`;
+				els.quizScore.textContent = `正确 ${state.score}`;
+				els.quizChances.hidden = true;
+			}
 		};
 
 		const renderQuestion = () => {
 			const p = currentPokemon();
 			if (!p) return;
 			state.answered = false;
-			els.quizNumber.textContent = `#${String(p.id).padStart(3, '0')}`;
-			els.quizArt.src = artUrl(p.id);
-			els.quizArt.alt = '猜猜这是哪只宝可梦';
+			state.attemptsLeft = ROUND3_TRIES;
 			els.quizFeedback.hidden = true;
 			els.quizNext.hidden = true;
 
-			if (state.quizMode === 'choice') {
+			const numName = state.quizMode === 'num-name';
+			const nameNum = state.quizMode === 'name-num';
+			const showArt = state.quizMode === 'choice' || state.quizMode === 'typing' || state.quizMode === 'round3';
+
+			els.quizArt.hidden = !showArt;
+			els.quizNumber.hidden = nameNum;
+			els.quizPrompt.hidden = !nameNum;
+
+			if (nameNum) {
+				els.quizPrompt.textContent = p.nameCn;
+			} else if (numName) {
+				els.quizNumber.textContent = formatNo(p.id);
+				els.quizNumber.classList.add('is-prominent');
+			} else {
+				els.quizNumber.classList.remove('is-prominent');
+				els.quizNumber.textContent = formatNo(p.id);
+			}
+
+			if (showArt) {
+				els.quizArt.src = artUrl(p.id);
+				els.quizArt.alt = '猜猜这是哪只宝可梦';
+			}
+
+			if (isChoiceMode()) {
 				els.quizChoice.hidden = false;
 				els.quizTyping.hidden = true;
-				const options = shuffle([p, ...pickWrongNames(p)]);
-				els.quizChoice.innerHTML = options
-					.map(
-						(opt) =>
-							`<button type="button" class="p151-choice ui-pressable" data-cn="${opt.nameCn}">${opt.nameCn}</button>`,
-					)
-					.join('');
+				let options;
+				let html;
+				if (nameNum) {
+					options = shuffle([p, ...pickWrongIds(p)]);
+					html = options
+						.map(
+							(opt) =>
+								`<button type="button" class="p151-choice ui-pressable" data-id="${opt.id}">${formatNo(opt.id)}</button>`,
+						)
+						.join('');
+				} else {
+					options = shuffle([p, ...pickWrongNames(p)]);
+					html = options
+						.map(
+							(opt) =>
+								`<button type="button" class="p151-choice ui-pressable" data-cn="${opt.nameCn}">${opt.nameCn}</button>`,
+						)
+						.join('');
+				}
+				els.quizChoice.innerHTML = html;
 			} else {
 				els.quizChoice.hidden = true;
 				els.quizTyping.hidden = false;
 				els.quizInput.value = '';
+				els.quizInput.placeholder = '输入中文名';
 				els.quizInput.focus();
 			}
 			updateQuizMeta();
+		};
+
+		const highlightChoiceAnswer = (p) => {
+			els.quizChoice.querySelectorAll('.p151-choice').forEach((btn) => {
+				btn.disabled = true;
+				const isCorrect =
+					state.quizMode === 'name-num'
+						? Number(btn.dataset.id) === p.id
+						: btn.dataset.cn === p.nameCn;
+				if (isCorrect) btn.classList.add('is-correct');
+			});
 		};
 
 		const showFeedback = (ok, p) => {
@@ -241,19 +344,14 @@ const spriteBase =
 			els.quizFeedback.hidden = false;
 			els.quizFeedback.className = `p151-feedback ${ok ? 'is-ok' : 'is-bad'}`;
 			els.quizFeedback.textContent = ok
-				? `正确！${p.nameCn}（${p.nameEn}）`
-				: `不对，正确答案是：${p.nameCn}（${p.nameEn}）`;
+				? `正确！${p.nameCn}（${p.nameEn}）${formatNo(p.id)}`
+				: `不对，正确答案是：${p.nameCn}（${p.nameEn}）${formatNo(p.id)}`;
 			els.quizNext.hidden = false;
-			if (state.quizMode === 'choice') {
-				els.quizChoice.querySelectorAll('.p151-choice').forEach((btn) => {
-					btn.disabled = true;
-					if (btn.dataset.cn === p.nameCn) btn.classList.add('is-correct');
-				});
-			}
+			if (isChoiceMode()) highlightChoiceAnswer(p);
 		};
 
 		const switchQuizMode = (mode) => {
-			state.quizMode = mode === 'typing' ? 'typing' : 'choice';
+			state.quizMode = modeHints[mode] ? mode : 'choice';
 			els.quizModeTabs.forEach((btn) => {
 				const active = btn.dataset.quizMode === state.quizMode;
 				btn.classList.toggle('is-active', active);
@@ -265,21 +363,107 @@ const spriteBase =
 		};
 
 		const startQuiz = () => {
-			state.queue = shuffle(pokemon151);
-			state.index = 0;
 			state.score = 0;
+			state.index = 0;
+			state.roundPhase = 'main';
+			state.retryQueue = [];
+			state.round3MainScore = 0;
+			state.round3RetryScore = 0;
+			state.retryRoundSize = 0;
+
+			if (state.quizMode === 'round3') {
+				state.queue = shuffle(pokemon151).slice(0, ROUND3_SIZE);
+			} else {
+				state.queue = shuffle(pokemon151);
+			}
+			state.attemptsLeft = ROUND3_TRIES;
 			showQuizPhase('play');
 			renderQuestion();
 		};
 
-		const nextQuestion = () => {
-			if (state.index + 1 >= state.queue.length) {
+		const finishQuiz = () => {
+			if (state.quizMode === 'round3') {
+				const retryPart =
+					state.retryRoundSize > 0
+						? `错题重练 ${state.retryRoundSize} 题，答对 ${state.round3RetryScore} 题。`
+						: '三题全部一次过关！';
+				els.quizSummary.textContent = `主回合 3 题答对 ${state.round3MainScore} 题。${retryPart}继续加油，线下活动稳了！`;
+			} else {
 				els.quizSummary.textContent = `共 ${state.queue.length} 题，答对 ${state.score} 题。继续加油，线下活动稳了！`;
-				showQuizPhase('done');
+			}
+			showQuizPhase('done');
+		};
+
+		const nextQuestion = () => {
+			if (state.index + 1 < state.queue.length) {
+				state.index += 1;
+				renderQuestion();
 				return;
 			}
-			state.index += 1;
-			renderQuestion();
+			if (state.quizMode === 'round3' && state.roundPhase === 'main' && state.retryQueue.length > 0) {
+				state.retryRoundSize = state.retryQueue.length;
+				state.roundPhase = 'retry';
+				state.queue = shuffle([...state.retryQueue]);
+				state.retryQueue = [];
+				state.index = 0;
+				renderQuestion();
+				return;
+			}
+			finishQuiz();
+		};
+
+		const checkChoiceAnswer = (btn) => {
+			if (!btn || state.answered) return;
+			const p = currentPokemon();
+			let ok = false;
+			if (state.quizMode === 'name-num') {
+				ok = Number(btn.dataset.id) === p.id;
+			} else {
+				ok = btn.dataset.cn === p.nameCn;
+			}
+			if (ok) state.score += 1;
+			showFeedback(ok, p);
+			updateQuizMeta();
+		};
+
+		const checkTypingAnswer = () => {
+			if (state.answered) return;
+			const p = currentPokemon();
+			const input = els.quizInput.value.trim();
+			const ok = input === p.nameCn;
+
+			if (state.quizMode === 'round3') {
+				if (ok) {
+					if (state.roundPhase === 'main') state.round3MainScore += 1;
+					else state.round3RetryScore += 1;
+					showFeedback(true, p);
+					updateQuizMeta();
+					return;
+				}
+				state.attemptsLeft -= 1;
+				if (state.attemptsLeft > 0) {
+					els.quizFeedback.hidden = false;
+					els.quizFeedback.className = 'p151-feedback is-bad';
+					els.quizFeedback.textContent = `不对，再试一次（还剩 ${state.attemptsLeft} 次）`;
+					els.quizInput.value = '';
+					els.quizInput.focus();
+					updateQuizMeta();
+					return;
+				}
+				if (
+					state.roundPhase === 'main' &&
+					!state.retryQueue.some((item) => item.id === p.id)
+				) {
+					state.retryQueue.push(p);
+				}
+				showFeedback(false, p);
+				updateQuizMeta();
+				return;
+			}
+
+			if (ok) state.score += 1;
+			showFeedback(ok, p);
+			updateQuizMeta();
 		};
 
 		const setup = () => {
@@ -302,23 +486,13 @@ const spriteBase =
 
 			els.quizChoice?.addEventListener('click', (e) => {
 				const btn = e.target.closest('.p151-choice');
-				if (!btn || state.answered) return;
-				const p = currentPokemon();
-				const ok = btn.dataset.cn === p.nameCn;
-				if (ok) state.score += 1;
-				showFeedback(ok, p);
-				updateQuizMeta();
+				if (!btn || !isChoiceMode()) return;
+				checkChoiceAnswer(btn);
 			});
 
 			els.quizTyping?.addEventListener('submit', (e) => {
 				e.preventDefault();
-				if (state.answered) return;
-				const p = currentPokemon();
-				const input = els.quizInput.value.trim();
-				const ok = input === p.nameCn;
-				if (ok) state.score += 1;
-				showFeedback(ok, p);
-				updateQuizMeta();
+				checkTypingAnswer();
 			});
 		};
 
@@ -480,6 +654,18 @@ const spriteBase =
 		color: var(--color-muted);
 	}
 
+	.p151-card__types {
+		font-size: 0.72rem;
+		color: color-mix(in srgb, var(--color-accent) 72%, var(--color-muted) 28%);
+		font-weight: 600;
+	}
+
+	.p151-card__weak {
+		font-size: 0.68rem;
+		color: var(--color-muted);
+		line-height: 1.4;
+	}
+
 	.p151-section-title {
 		margin: 0 0 0.85rem;
 		font-size: 1.1rem;
@@ -517,10 +703,17 @@ const spriteBase =
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		gap: 0.75rem;
+		flex-wrap: wrap;
+		gap: 0.5rem 0.75rem;
 		margin-bottom: 1rem;
 		color: var(--color-muted);
 		font-size: 0.9rem;
+	}
+
+	.p151-quiz-chances {
+		font-size: 0.85rem;
+		color: color-mix(in srgb, var(--color-accent) 65%, var(--color-muted) 35%);
+		font-weight: 600;
 	}
 
 	.p151-quiz-card {
@@ -535,6 +728,20 @@ const spriteBase =
 		margin: 0 0 0.5rem;
 		color: var(--color-muted);
 		font-weight: 600;
+	}
+
+	.p151-quiz-no.is-prominent {
+		margin-bottom: 1rem;
+		color: var(--color-text);
+		font-size: 2rem;
+		font-weight: 700;
+	}
+
+	.p151-quiz-prompt {
+		margin: 0 0 1rem;
+		font-size: 1.75rem;
+		font-weight: 700;
+		line-height: 1.3;
 	}
 
 	.p151-quiz-art {
