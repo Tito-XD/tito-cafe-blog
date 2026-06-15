@@ -54,12 +54,6 @@ const artworkBase = '/pokemon151/artwork';
 				<button class="p151-tab" type="button" data-quiz-mode="typing" aria-pressed="false">
 					输入中文名
 				</button>
-				<button class="p151-tab" type="button" data-quiz-mode="num-name" aria-pressed="false">
-					编号猜名
-				</button>
-				<button class="p151-tab" type="button" data-quiz-mode="name-num" aria-pressed="false">
-					名猜编号
-				</button>
 				<button class="p151-tab" type="button" data-quiz-mode="round3" aria-pressed="false">
 					三题练习
 				</button>
@@ -79,7 +73,6 @@ const artworkBase = '/pokemon151/artwork';
 			</div>
 			<div class="p151-quiz-card">
 				<p class="p151-quiz-no" id="quiz-number">#001</p>
-				<p class="p151-quiz-prompt" id="quiz-prompt" hidden></p>
 				<img class="p151-quiz-art" id="quiz-art" src="" alt="" width="220" height="220" />
 				<div id="quiz-choice" class="p151-choices"></div>
 				<form id="quiz-typing" class="p151-typing" hidden>
@@ -127,8 +120,6 @@ const artworkBase = '/pokemon151/artwork';
 		const modeHints = {
 			choice: '看立绘，从四个中文名里选正确答案。',
 			typing: '看立绘，输入完整中文名，需完全匹配。',
-			'num-name': '只看编号，从四个中文名里选正确答案。',
-			'name-num': '只看中文名，从四个编号里选正确答案。',
 			round3:
 				'模拟线下答题：随机 3 题，每题最多说 3 次中文名；本回合猜错的题会在末尾再练一遍。',
 		};
@@ -149,7 +140,6 @@ const artworkBase = '/pokemon151/artwork';
 			quizScore: document.getElementById('quiz-score'),
 			quizChances: document.getElementById('quiz-chances'),
 			quizNumber: document.getElementById('quiz-number'),
-			quizPrompt: document.getElementById('quiz-prompt'),
 			quizArt: document.getElementById('quiz-art'),
 			quizChoice: document.getElementById('quiz-choice'),
 			quizTyping: document.getElementById('quiz-typing'),
@@ -228,16 +218,6 @@ const artworkBase = '/pokemon151/artwork';
 			return shuffle(pool).slice(0, count);
 		};
 
-		const pickWrongIds = (correct, count = 3) => {
-			const pool = pokemon151.filter((p) => p.id !== correct.id);
-			return shuffle(pool).slice(0, count);
-		};
-
-		const isChoiceMode = () =>
-			state.quizMode === 'choice' ||
-			state.quizMode === 'num-name' ||
-			state.quizMode === 'name-num';
-
 		const renderDex = (filter = '') => {
 			const q = filter.trim().toLowerCase();
 			const list = pokemon151.filter((p) => {
@@ -314,52 +294,20 @@ const artworkBase = '/pokemon151/artwork';
 			els.quizFeedback.hidden = true;
 			els.quizNext.hidden = true;
 
-			const numName = state.quizMode === 'num-name';
-			const nameNum = state.quizMode === 'name-num';
-			const showArt = state.quizMode === 'choice' || state.quizMode === 'typing' || state.quizMode === 'round3';
+			els.quizNumber.textContent = formatNo(p.id);
+			els.quizArt.src = artUrl(p.id);
+			els.quizArt.alt = '猜猜这是哪只宝可梦';
 
-			els.quizArt.hidden = !showArt;
-			els.quizNumber.hidden = nameNum;
-			els.quizPrompt.hidden = !nameNum;
-
-			if (nameNum) {
-				els.quizPrompt.textContent = p.nameCn;
-			} else if (numName) {
-				els.quizNumber.textContent = formatNo(p.id);
-				els.quizNumber.classList.add('is-prominent');
-			} else {
-				els.quizNumber.classList.remove('is-prominent');
-				els.quizNumber.textContent = formatNo(p.id);
-			}
-
-			if (showArt) {
-				els.quizArt.src = artUrl(p.id);
-				els.quizArt.alt = '猜猜这是哪只宝可梦';
-			}
-
-			if (isChoiceMode()) {
+			if (state.quizMode === 'choice') {
 				els.quizChoice.hidden = false;
 				els.quizTyping.hidden = true;
-				let options;
-				let html;
-				if (nameNum) {
-					options = shuffle([p, ...pickWrongIds(p)]);
-					html = options
-						.map(
-							(opt) =>
-								`<button type="button" class="p151-choice ui-pressable" data-id="${opt.id}">${formatNo(opt.id)}</button>`,
-						)
-						.join('');
-				} else {
-					options = shuffle([p, ...pickWrongNames(p)]);
-					html = options
-						.map(
-							(opt) =>
-								`<button type="button" class="p151-choice ui-pressable" data-cn="${opt.nameCn}">${opt.nameCn}</button>`,
-						)
-						.join('');
-				}
-				els.quizChoice.innerHTML = html;
+				const options = shuffle([p, ...pickWrongNames(p)]);
+				els.quizChoice.innerHTML = options
+					.map(
+						(opt) =>
+							`<button type="button" class="p151-choice ui-pressable" data-cn="${opt.nameCn}">${opt.nameCn}</button>`,
+					)
+					.join('');
 			} else {
 				els.quizChoice.hidden = true;
 				els.quizTyping.hidden = false;
@@ -373,11 +321,7 @@ const artworkBase = '/pokemon151/artwork';
 		const highlightChoiceAnswer = (p) => {
 			els.quizChoice.querySelectorAll('.p151-choice').forEach((btn) => {
 				btn.disabled = true;
-				const isCorrect =
-					state.quizMode === 'name-num'
-						? Number(btn.dataset.id) === p.id
-						: btn.dataset.cn === p.nameCn;
-				if (isCorrect) btn.classList.add('is-correct');
+				if (btn.dataset.cn === p.nameCn) btn.classList.add('is-correct');
 			});
 		};
 
@@ -389,7 +333,7 @@ const artworkBase = '/pokemon151/artwork';
 				? `正确！${p.nameCn}（${p.nameEn}）${formatNo(p.id)}`
 				: `不对，正确答案是：${p.nameCn}（${p.nameEn}）${formatNo(p.id)}`;
 			els.quizNext.hidden = false;
-			if (isChoiceMode()) highlightChoiceAnswer(p);
+			if (state.quizMode === 'choice') highlightChoiceAnswer(p);
 		};
 
 		const switchQuizMode = (mode) => {
@@ -455,14 +399,9 @@ const artworkBase = '/pokemon151/artwork';
 		};
 
 		const checkChoiceAnswer = (btn) => {
-			if (!btn || state.answered) return;
+			if (!btn || state.answered || state.quizMode !== 'choice') return;
 			const p = currentPokemon();
-			let ok = false;
-			if (state.quizMode === 'name-num') {
-				ok = Number(btn.dataset.id) === p.id;
-			} else {
-				ok = btn.dataset.cn === p.nameCn;
-			}
+			const ok = btn.dataset.cn === p.nameCn;
 			if (ok) state.score += 1;
 			showFeedback(ok, p);
 			updateQuizMeta();
@@ -528,7 +467,6 @@ const artworkBase = '/pokemon151/artwork';
 
 			els.quizChoice?.addEventListener('click', (e) => {
 				const btn = e.target.closest('.p151-choice');
-				if (!btn || !isChoiceMode()) return;
 				checkChoiceAnswer(btn);
 			});
 
