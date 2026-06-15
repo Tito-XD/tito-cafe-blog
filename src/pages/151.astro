@@ -15,15 +15,17 @@ const spriteBase =
 >
 	<PageHeading title="宝可梦 151" />
 	<p class="p151-lead">
-		初代 151 只宝可梦速查 + 中文名小测验。线下活动答题前可以先在这里练一练。
-		中文名参考 <a href="https://wiki.52poke.com/" target="_blank" rel="noreferrer noopener">神奇宝贝百科</a>。
+		初代 151 只宝可梦速查 + 中文名小测验。数据来自
+		<a href="https://pokeapi.co/" target="_blank" rel="noreferrer noopener">PokeAPI</a>
+		与
+		<a href="https://wiki.52poke.com/" target="_blank" rel="noreferrer noopener">神奇宝贝百科</a>。
 	</p>
 
 	<div class="p151-tabs" role="tablist" aria-label="页面模式">
-		<button class="p151-tab ui-pressable is-active" type="button" role="tab" aria-selected="true" data-tab="dex">
+		<button class="p151-tab is-active" type="button" role="tab" aria-selected="true" data-tab="dex">
 			图鉴速查
 		</button>
-		<button class="p151-tab ui-pressable" type="button" role="tab" aria-selected="false" data-tab="quiz">
+		<button class="p151-tab" type="button" role="tab" aria-selected="false" data-tab="quiz">
 			名字测验
 		</button>
 	</div>
@@ -82,6 +84,13 @@ const spriteBase =
 			<button class="p151-primary ui-pressable" type="button" id="quiz-restart">再来一轮</button>
 		</div>
 	</section>
+
+	<p class="p151-copy">
+		宝可梦、Pokémon 及相关素材为 Nintendo / Creatures Inc. / GAME FREAK inc. 的商标或版权资产。
+		立绘来自
+		<a href="https://github.com/PokeAPI/sprites" target="_blank" rel="noreferrer noopener">PokeAPI Sprites</a>，
+		中文名与百科链接参考神奇宝贝百科。本页为个人学习向速查工具，与任天堂等公司无关联。
+	</p>
 
 	<script is:inline define:vars={{ pokemon151, wikiBase, spriteBase }}>
 		const state = {
@@ -317,11 +326,38 @@ const spriteBase =
 		font-weight: 600;
 		font-size: 0.92rem;
 		cursor: pointer;
+		transition:
+			background var(--motion-gentle),
+			color var(--motion-gentle),
+			border-color var(--motion-gentle);
+	}
+
+	.p151-tab:hover,
+	.p151-tab:focus-visible {
+		border-color: color-mix(in srgb, var(--color-accent) 35%, var(--color-border) 65%);
+		color: var(--color-accent);
 	}
 
 	.p151-tab.is-active {
-		border-color: color-mix(in srgb, var(--color-accent) 45%, var(--color-border) 55%);
-		background: color-mix(in srgb, var(--color-accent-soft) 55%, var(--color-surface) 45%);
+		border-color: color-mix(in srgb, var(--color-accent) 72%, var(--color-border) 28%);
+		background: var(--color-accent);
+		color: #fff;
+	}
+
+	.p151-tab.is-active:hover,
+	.p151-tab.is-active:focus-visible {
+		color: #fff;
+		background: color-mix(in srgb, var(--color-accent) 88%, var(--color-text) 12%);
+	}
+
+	.p151-copy {
+		margin-top: 2rem;
+		padding-top: 1rem;
+		border-top: 1px solid color-mix(in srgb, var(--color-border) 70%, transparent);
+		color: var(--color-muted);
+		font-size: 0.82rem;
+		line-height: 1.7;
+		max-width: 42rem;
 	}
 
 	.p151-panel[hidden] {
