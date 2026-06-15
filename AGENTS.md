@@ -16,6 +16,10 @@ bun run format               # Biome formatter (write)
 
 # Preview production build
 bun run preview
+
+# Pokémon 151 page assets (official artwork from PokeAPI Sprites)
+bun run sync:pokemon151   # copy src/assets/pokemon151 → public (download if missing)
+bun run build:pokemon151    # regenerate src/data/pokemon151.json from PokeAPI
 ```
 
 **Note:** No test framework is currently configured. Add vitest/jest for unit tests.

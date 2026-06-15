@@ -5,6 +5,9 @@ dist/
 .vscode/
 .wrangler/
 
+# generated from src/assets/pokemon151 (see bun run sync:pokemon151)
+public/pokemon151/artwork/
+
 # dependencies
 node_modules/
 
