@@ -122,6 +122,7 @@ def main() -> None:
 		species = fetch(f'https://pokeapi.co/api/v2/pokemon-species/{i}')
 		chain_urls.add(species['evolution_chain']['url'])
 		names = {n['language']['name']: n['name'] for n in species['names']}
+		genera = {g['language']['name']: g['genus'] for g in species['genera']}
 		pokemon = fetch(f'https://pokeapi.co/api/v2/pokemon/{i}')
 		types = [t['type']['name'] for t in pokemon['types']]
 		weaknesses = pokemon_weaknesses(types, type_chart)
@@ -130,6 +131,8 @@ def main() -> None:
 				'id': i,
 				'nameEn': names.get('en', ''),
 				'nameCn': names.get('zh-hans') or names.get('zh-hant') or '',
+				'nameJa': names.get('ja', ''),
+				'genusCn': genera.get('zh-hans') or genera.get('zh-hant') or genera.get('en') or '',
 				'slug': pokemon['name'],
 				'types': types,
 				'typesCn': [type_cn(t) for t in types],
