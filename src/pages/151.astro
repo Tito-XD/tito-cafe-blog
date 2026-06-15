@@ -157,7 +157,7 @@ const artworkBase = '/pokemon151/artwork';
 		const formatNo = (id) => `#${String(id).padStart(3, '0')}`;
 		const pokemonById = Object.fromEntries(pokemon151.map((p) => [p.id, p]));
 
-		const TYPE_PILL_BG = {
+		const TYPE_COLORS = {
 			normal: '#9fa19f',
 			fighting: '#c22e28',
 			fire: '#ee8130',
@@ -178,9 +178,36 @@ const artworkBase = '/pokemon151/artwork';
 			fairy: '#d685ad',
 		};
 
-		const renderTypePill = (typeName, label) => {
-			const bg = TYPE_PILL_BG[typeName] || TYPE_PILL_BG.normal;
-			return `<span class="p151-type-pill" style="background:${bg}">${label}</span>`;
+		const typeSignature = (p) => (p.types || []).join('/');
+
+		const primaryTypeColor = (p) => TYPE_COLORS[p.types?.[0]] || TYPE_COLORS.normal;
+
+		const renderTypeLabel = (typeName, label, kind = 'type') => {
+			const color = TYPE_COLORS[typeName] || TYPE_COLORS.normal;
+			const fontSize = kind === 'weak' ? '0.66rem' : '0.72rem';
+			const fontWeight = kind === 'weak' ? '600' : '700';
+			return `<span style="color:${color};font-size:${fontSize};font-weight:${fontWeight};line-height:1.35">${label}</span>`;
+		};
+
+		const renderTypeRow = (p) => {
+			const types = p.types || [];
+			const typesCn = p.typesCn || [];
+			return types
+				.map((typeName, index) => renderTypeLabel(typeName, typesCn[index] || typeName))
+				.join('');
+		};
+
+		const renderWeaknessRow = (p) => {
+			const weaknesses = p.weaknesses || [];
+			const labels = p.weaknessesCn || [];
+			if (weaknesses.length === 0) return '';
+			const items = weaknesses
+				.map((typeName, index) =>
+					renderTypeLabel(typeName, labels[index] || typeName, 'weak'),
+				)
+				.join('');
+			const weakLabel = labels.join('、');
+			return `<div class="p151-member__weak" aria-label="弱点 ${weakLabel}"><span class="p151-weak-prefix">弱</span>${items}</div>`;
 		};
 
 		const shuffle = (arr) => {
@@ -217,55 +244,39 @@ const artworkBase = '/pokemon151/artwork';
 		};
 
 		const renderMember = (p) => {
-			const types = p.types || [];
-			const typesCn = p.typesCn || [];
-			const typePills = types
-				.map((typeName, index) => renderTypePill(typeName, typesCn[index] || typeName))
-				.join('');
-			const headerType =
-				types[0] ? renderTypePill(types[0], typesCn[0] || types[0]) : '';
-			const dexId = String(p.id).padStart(4, '0');
-			const genus = p.genusCn || '—';
-			const nameJa = p.nameJa || '';
+			const typeRow = renderTypeRow(p);
+			const weakRow = renderWeaknessRow(p);
+			const sup = String(p.id).padStart(3, '0');
+			const typeColor = primaryTypeColor(p);
 
 			return `
-    <a class="p151-wiki-card" href="${wikiUrl(p.nameCn)}" target="_blank" rel="noreferrer noopener">
-      <header class="p151-wiki-card__head">
-        <div class="p151-wiki-card__names">
-          <strong class="p151-wiki-card__cn">${p.nameCn}</strong>
-          ${nameJa ? `<span class="p151-wiki-card__sub p151-wiki-card__ja">${nameJa}</span>` : ''}
-          <span class="p151-wiki-card__sub">${p.nameEn}</span>
-        </div>
-        <div class="p151-wiki-card__idbox">
-          ${headerType}
-          <span class="p151-wiki-card__id">#${dexId}</span>
-        </div>
-      </header>
-      <div class="p151-wiki-card__artbox">
-        <img class="p151-wiki-card__art" src="${artUrl(p.id)}" alt="${p.nameCn}" width="120" height="120" loading="lazy" />
-        <span class="p151-wiki-card__art-label">官方绘图</span>
-      </div>
-      <div class="p151-wiki-card__foot">
-        <div class="p151-wiki-card__panel">
-          <span class="p151-wiki-card__panel-title">属性</span>
-          <div class="p151-wiki-card__panel-body">${typePills}</div>
-        </div>
-        <div class="p151-wiki-card__panel">
-          <span class="p151-wiki-card__panel-title">分类</span>
-          <div class="p151-wiki-card__panel-body">
-            <span class="p151-wiki-card__genus">${genus}</span>
-          </div>
-        </div>
-      </div>
+    <a class="p151-member" href="${wikiUrl(p.nameCn)}" target="_blank" rel="noreferrer noopener" style="--p151-type: ${typeColor}">
+      <img class="p151-member__art" src="${artUrl(p.id)}" alt="${p.nameCn}" width="72" height="72" loading="lazy" />
+      <span class="p151-member__label"><sup class="p151-member__no">${sup}</sup>${p.nameCn}</span>
+      <span class="p151-member__en">${p.nameEn}</span>
+      ${typeRow ? `<div class="p151-member__types">${typeRow}</div>` : ''}
+      ${weakRow}
     </a>`;
+		};
+
+		const chainHasUniformTypes = (ids) => {
+			const first = typeSignature(pokemonById[ids[0]]);
+			return ids.every((id) => typeSignature(pokemonById[id]) === first);
 		};
 
 		const renderEvoline = (ids) => {
 			const members = ids
 				.map((id) => renderMember(pokemonById[id]))
 				.join('<span class="p151-evoline__sep" aria-hidden="true">›</span>');
+			const uniform = chainHasUniformTypes(ids);
+			const uniformClass = uniform ? ' p151-evoline--uniform' : '';
 			const scrollClass = ids.length > 3 ? ' p151-evoline--scroll' : '';
-			return `<li class="p151-evoline${scrollClass}" data-count="${ids.length}">${members}</li>`;
+			const chainType = uniform ? pokemonById[ids[0]].types?.[0] || 'normal' : '';
+			const chainColor = uniform ? TYPE_COLORS[chainType] : '';
+			const chainStyle =
+				uniform && chainColor ? ` style="--p151-chain-type: ${chainColor}"` : '';
+
+			return `<li class="p151-evoline${uniformClass}${scrollClass}" data-count="${ids.length}"${chainStyle}>${members}</li>`;
 		};
 
 		const renderDex = (filter = '') => {
@@ -634,184 +645,126 @@ const artworkBase = '/pokemon151/artwork';
 		line-height: 1;
 	}
 
-	.p151-wiki-card {
-		flex: 0 0 8.75rem;
-		width: 8.75rem;
-		min-width: 8.75rem;
-		display: flex;
-		flex-direction: column;
+	.p151-evoline--uniform {
+		border-color: color-mix(in srgb, var(--p151-chain-type, var(--color-border)) 34%, var(--color-border) 66%);
+		border-top-color: color-mix(in srgb, var(--p151-chain-type, var(--color-accent)) 52%, var(--color-border) 48%);
+		background: color-mix(in srgb, var(--p151-chain-type, transparent) 9%, var(--color-surface) 91%);
+		box-shadow: inset 0 1px 0 color-mix(in srgb, var(--p151-chain-type, transparent) 14%, transparent);
+	}
+
+	.p151-member {
+		flex: 0 0 5.6rem;
+		width: 5.6rem;
+		min-width: 5.6rem;
+		display: grid;
+		gap: 0.15rem;
+		padding: 0.28rem 0.2rem 0.32rem;
 		text-decoration: none;
 		color: inherit;
-		border: 1px solid color-mix(in srgb, #5bbd4a 42%, var(--color-border) 58%);
-		border-radius: 0.45rem;
-		background: var(--color-surface);
-		overflow: hidden;
+		text-align: center;
+		border: 1px solid color-mix(in srgb, var(--p151-type, var(--color-border)) 40%, var(--color-border) 60%);
+		border-radius: 0.38rem;
+		background: color-mix(in srgb, var(--p151-type, transparent) 12%, var(--color-surface) 88%);
 		transition:
 			border-color var(--motion-gentle),
-			box-shadow var(--motion-gentle);
+			background var(--motion-gentle);
 	}
 
-	.p151-wiki-card:hover,
-	.p151-wiki-card:focus-visible {
-		border-color: color-mix(in srgb, #5bbd4a 62%, var(--color-accent) 38%);
-		box-shadow: 0 2px 10px color-mix(in srgb, #5bbd4a 14%, transparent);
+	.p151-member:hover,
+	.p151-member:focus-visible {
+		border-color: color-mix(in srgb, var(--p151-type, var(--color-accent)) 55%, var(--color-border) 45%);
+		background: color-mix(in srgb, var(--p151-type, transparent) 16%, var(--color-surface) 84%);
 	}
 
-	.p151-wiki-card__head {
-		display: flex;
-		align-items: stretch;
-		gap: 0.2rem;
-		padding: 0.28rem 0.32rem;
-		background: color-mix(in srgb, #5bbd4a 10%, var(--color-surface) 90%);
-		border-bottom: 1px solid color-mix(in srgb, #5bbd4a 28%, var(--color-border) 72%);
+	.p151-evoline--uniform .p151-member {
+		border-color: color-mix(in srgb, var(--p151-chain-type, var(--p151-type)) 26%, var(--color-border) 74%);
+		background: color-mix(in srgb, var(--p151-chain-type, var(--p151-type)) 7%, var(--color-surface) 93%);
 	}
 
-	.p151-wiki-card__names {
-		flex: 1;
-		min-width: 0;
-		display: flex;
-		flex-direction: column;
-		gap: 0.02rem;
-		line-height: 1.25;
-	}
-
-	.p151-wiki-card__cn {
-		font-size: 0.72rem;
-		font-weight: 700;
-		word-break: break-word;
-	}
-
-	.p151-wiki-card__sub {
-		font-size: 0.58rem;
-		color: var(--color-muted);
-		word-break: break-word;
-	}
-
-	.p151-wiki-card__idbox {
-		flex: 0 0 auto;
-		display: flex;
-		flex-direction: column;
-		align-items: flex-end;
-		justify-content: center;
-		gap: 0.12rem;
-	}
-
-	.p151-wiki-card__id {
-		font-size: 0.68rem;
-		font-weight: 800;
-		font-variant-numeric: tabular-nums;
-		color: color-mix(in srgb, var(--color-text) 88%, #5bbd4a 12%);
-	}
-
-	.p151-type-pill {
-		display: inline-block;
-		padding: 0.06rem 0.38rem;
-		border-radius: 999px;
-		font-size: 0.58rem;
-		font-weight: 700;
-		line-height: 1.35;
-		color: #fff;
-		text-shadow: 0 1px 0 color-mix(in srgb, #000 18%, transparent);
-		white-space: nowrap;
-	}
-
-	.p151-wiki-card__artbox {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 0.12rem;
-		padding: 0.35rem 0.25rem 0.28rem;
-		background: var(--color-surface);
-	}
-
-	.p151-wiki-card__art {
-		width: 4.5rem;
-		height: 4.5rem;
+	.p151-member__art {
+		margin: 0 auto;
+		width: 3.35rem;
+		height: 3.35rem;
 		object-fit: contain;
 	}
 
-	.p151-wiki-card__art-label {
-		font-size: 0.56rem;
-		color: var(--color-muted);
+	.p151-member__label {
+		font-weight: 600;
+		font-size: 0.7rem;
+		line-height: 1.3;
+		word-break: break-word;
 	}
 
-	.p151-wiki-card__foot {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 0.2rem;
-		padding: 0.22rem 0.28rem 0.3rem;
-		border-top: 1px solid color-mix(in srgb, #5bbd4a 22%, var(--color-border) 78%);
-		background: color-mix(in srgb, var(--color-surface) 96%, #5bbd4a 4%);
-	}
-
-	.p151-wiki-card__panel {
-		display: flex;
-		flex-direction: column;
-		min-width: 0;
-		border: 1px solid color-mix(in srgb, #5bbd4a 30%, var(--color-border) 70%);
-		border-radius: 0.32rem;
-		overflow: hidden;
-		background: var(--color-surface);
-	}
-
-	.p151-wiki-card__panel-title {
-		padding: 0.14rem 0.2rem;
-		font-size: 0.56rem;
+	.p151-member__no {
+		font-size: 0.6rem;
 		font-weight: 700;
-		text-align: center;
-		background: color-mix(in srgb, #5bbd4a 12%, var(--color-surface) 88%);
-		border-bottom: 1px solid color-mix(in srgb, #5bbd4a 24%, var(--color-border) 76%);
+		color: var(--color-muted);
+		margin-right: 0.12rem;
+		vertical-align: super;
+		line-height: 0;
 	}
 
-	.p151-wiki-card__panel-body {
+	.p151-member__en {
+		font-size: 0.6rem;
+		color: var(--color-muted);
+		line-height: 1.2;
+		word-break: break-word;
+	}
+
+	.p151-member__types {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 0.22rem;
+		line-height: 1.2;
+	}
+
+	.p151-member__weak {
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: center;
 		align-items: center;
-		gap: 0.14rem;
-		padding: 0.22rem 0.16rem;
-		min-height: 1.65rem;
+		gap: 0.18rem;
+		line-height: 1.2;
 	}
 
-	.p151-wiki-card__genus {
-		display: inline-block;
-		padding: 0.06rem 0.32rem;
-		border: 1px solid color-mix(in srgb, #9140a0 42%, var(--color-border) 58%);
-		border-radius: 999px;
-		font-size: 0.56rem;
-		line-height: 1.35;
-		color: color-mix(in srgb, var(--color-text) 82%, #9140a0 18%);
-		word-break: break-word;
-		text-align: center;
+	.p151-weak-prefix {
+		font-size: 0.58rem;
+		font-weight: 600;
+		color: var(--color-muted);
 	}
 
 	@media (max-width: 639px) {
 		.p151-grid {
-			display: flex;
-			flex-wrap: wrap;
+			display: grid;
+			grid-template-columns: repeat(3, minmax(0, 1fr));
 			gap: 0.35rem;
 		}
 
 		.p151-evoline {
-			flex-direction: row;
+			flex-direction: column;
 			align-items: stretch;
-			flex: 0 0 auto;
-			max-width: 100%;
-			padding: 0.28rem 0.3rem 0.26rem;
-			gap: 0.12rem;
+			min-width: 0;
+			overflow: hidden;
+			padding: 0.38rem 0.28rem 0.32rem;
 		}
 
 		.p151-evoline__sep {
-			display: block;
-			font-size: 0.58rem;
+			display: none;
 		}
 
 		.p151-evoline--scroll {
+			grid-column: 1 / -1;
+			flex-direction: row;
 			flex-wrap: nowrap;
 			overflow-x: auto;
 			scrollbar-width: thin;
 			-webkit-overflow-scrolling: touch;
 			padding-right: 0.15rem;
+		}
+
+		.p151-evoline--scroll .p151-evoline__sep {
+			display: block;
 		}
 
 		.p151-evoline--scroll::after {
@@ -829,112 +782,59 @@ const artworkBase = '/pokemon151/artwork';
 			pointer-events: none;
 		}
 
-		.p151-wiki-card {
-			flex: 0 0 4.45rem;
-			width: 4.45rem;
-			min-width: 4.45rem;
-			border-radius: 0.38rem;
+		.p151-member {
+			flex: none;
+			width: 100%;
+			min-width: 0;
+			padding: 0.24rem 0.16rem 0.28rem;
 		}
 
-		.p151-evoline--scroll .p151-wiki-card {
-			flex: 0 0 4.2rem;
-			width: 4.2rem;
-			min-width: 4.2rem;
+		.p151-evoline--scroll .p151-member {
+			flex: 0 0 4.15rem;
+			width: 4.15rem;
+			min-width: 4.15rem;
 		}
 
-		.p151-wiki-card__head {
-			flex-direction: row;
-			align-items: flex-start;
-			gap: 0.15rem;
-			padding: 0.18rem 0.2rem;
-		}
-
-		.p151-wiki-card__cn {
-			font-size: 0.62rem;
-			line-height: 1.2;
-		}
-
-		.p151-wiki-card__sub,
-		.p151-wiki-card__ja {
-			display: none;
-		}
-
-		.p151-wiki-card__idbox {
-			flex-direction: column;
-			gap: 0.08rem;
-		}
-
-		.p151-wiki-card__idbox .p151-type-pill {
-			font-size: 0.48rem;
-			padding: 0.04rem 0.22rem;
-		}
-
-		.p151-wiki-card__id {
-			font-size: 0.58rem;
-		}
-
-		.p151-wiki-card__artbox {
-			padding: 0.12rem 0.1rem 0.1rem;
-			gap: 0;
-		}
-
-		.p151-wiki-card__art {
+		.p151-member__art {
 			width: 2.65rem;
 			height: 2.65rem;
 		}
 
-		.p151-wiki-card__art-label {
+		.p151-member__label {
+			font-size: 0.62rem;
+		}
+
+		.p151-member__en {
 			display: none;
 		}
 
-		.p151-wiki-card__foot {
-			display: grid;
-			grid-template-columns: 1fr;
-			gap: 0;
-			padding: 0 0.18rem 0.2rem;
-			border-top: none;
-			background: transparent;
+		.p151-member__types {
+			gap: 0.16rem;
 		}
 
-		.p151-wiki-card__panel:last-child {
-			display: none;
-		}
-
-		.p151-wiki-card__panel:first-child {
-			border: none;
-			background: transparent;
-		}
-
-		.p151-wiki-card__panel-title {
-			display: none;
-		}
-
-		.p151-wiki-card__panel-body {
-			padding: 0;
-			min-height: 0;
+		.p151-member__weak {
 			gap: 0.12rem;
-		}
-
-		.p151-type-pill {
-			font-size: 0.48rem;
-			padding: 0.04rem 0.24rem;
 		}
 	}
 
 	@media (min-width: 640px) {
-		.p151-wiki-card {
-			flex: 0 0 9rem;
-			width: 9rem;
-			min-width: 9rem;
+		.p151-member {
+			flex: 0 0 5.85rem;
+			width: 5.85rem;
+			min-width: 5.85rem;
 		}
 
-		.p151-wiki-card__cn {
-			font-size: 0.74rem;
+		.p151-member__art {
+			width: 3.5rem;
+			height: 3.5rem;
 		}
 
-		.p151-wiki-card__art {
-			width: 4.75rem;
-			height: 4.75rem;
+		.p151-member__label {
+			font-size: 0.72rem;
+		}
+
+		.p151-member__en {
+			font-size: 0.62rem;
 		}
 	}
 
@@ -943,15 +843,15 @@ const artworkBase = '/pokemon151/artwork';
 			gap: 0.5rem;
 		}
 
-		.p151-wiki-card {
-			flex: 0 0 8.5rem;
-			width: 8.5rem;
-			min-width: 8.5rem;
+		.p151-member {
+			flex: 0 0 5.5rem;
+			width: 5.5rem;
+			min-width: 5.5rem;
 		}
 
-		.p151-wiki-card__art {
-			width: 4.25rem;
-			height: 4.25rem;
+		.p151-member__art {
+			width: 3.2rem;
+			height: 3.2rem;
 		}
 	}
 </style>
