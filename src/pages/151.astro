@@ -166,39 +166,16 @@ const spriteBase =
 		const artUrl = (id) => `${spriteBase}/${id}.png`;
 		const formatNo = (id) => `#${String(id).padStart(3, '0')}`;
 
-		const TYPE_ICON_IDS = {
-			normal: 1,
-			fighting: 2,
-			fire: 3,
-			water: 4,
-			electric: 5,
-			grass: 6,
-			ice: 7,
-			poison: 8,
-			ground: 9,
-			flying: 10,
-			psychic: 11,
-			bug: 12,
-			rock: 13,
-			ghost: 14,
-			dragon: 15,
-			dark: 16,
-			steel: 17,
-			fairy: 18,
+		const renderTypeLabel = (typeName, label, kind = 'type') => {
+			const cls = kind === 'weak' ? 'p151-weak-text' : 'p151-type-text';
+			return `<span class="${cls}" data-type="${typeName}">${label}</span>`;
 		};
-		const typeIconBase =
-			'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield';
-		const typeIconUrl = (typeName) =>
-			`${typeIconBase}/${TYPE_ICON_IDS[typeName] || TYPE_ICON_IDS.normal}.png`;
 
-		const renderTypeIcons = (p) => {
+		const renderTypeRow = (p) => {
 			const types = p.types || [];
 			const typesCn = p.typesCn || [];
 			return types
-				.map((typeName, index) => {
-					const label = typesCn[index] || typeName;
-					return `<img class="p151-type-icon" src="${typeIconUrl(typeName)}" alt="${label}" title="${label}" width="18" height="18" loading="lazy" />`;
-				})
+				.map((typeName, index) => renderTypeLabel(typeName, typesCn[index] || typeName))
 				.join('');
 		};
 
@@ -206,14 +183,13 @@ const spriteBase =
 			const weaknesses = p.weaknesses || [];
 			const labels = p.weaknessesCn || [];
 			if (weaknesses.length === 0) return '';
-			const icons = weaknesses
-				.map((typeName, index) => {
-					const label = labels[index] || typeName;
-					return `<img class="p151-weak-icon" src="${typeIconUrl(typeName)}" alt="${label}" title="${label}" width="16" height="16" loading="lazy" />`;
-				})
+			const items = weaknesses
+				.map((typeName, index) =>
+					renderTypeLabel(typeName, labels[index] || typeName, 'weak'),
+				)
 				.join('');
 			const weakLabel = labels.join('、');
-			return `<span class="p151-card__weak-row" aria-label="弱点 ${weakLabel}">${icons}</span>`;
+			return `<span class="p151-card__weak-row" aria-label="弱点 ${weakLabel}"><span class="p151-weak-prefix">弱</span>${items}</span>`;
 		};
 
 		const shuffle = (arr) => {
@@ -257,7 +233,7 @@ const spriteBase =
 			});
 			els.dexGrid.innerHTML = list
 				.map((p) => {
-					const typeIcons = renderTypeIcons(p);
+					const typeRow = renderTypeRow(p);
 					const weakRow = renderWeaknessRow(p);
 					return `
 				<li class="p151-card">
@@ -266,7 +242,7 @@ const spriteBase =
 						<span class="p151-card__no">${formatNo(p.id)}</span>
 						<span class="p151-card__cn">${p.nameCn}</span>
 						<span class="p151-card__en">${p.nameEn}</span>
-						${typeIcons ? `<span class="p151-card__types-row">${typeIcons}</span>` : ''}
+						${typeRow ? `<span class="p151-card__types-row">${typeRow}</span>` : ''}
 						${weakRow}
 					</a>
 				</li>`;
@@ -699,13 +675,12 @@ const spriteBase =
 		margin-top: 0.35rem;
 		padding-top: 0.35rem;
 		border-top: 1px solid color-mix(in srgb, var(--color-border) 55%, transparent);
+		line-height: 1.35;
 	}
 
-	.p151-type-icon {
-		width: 1rem;
-		height: 1rem;
-		object-fit: contain;
-		flex-shrink: 0;
+	.p151-type-text {
+		font-size: 0.72rem;
+		font-weight: 700;
 	}
 
 	.p151-card__weak-row {
@@ -713,18 +688,137 @@ const spriteBase =
 		flex-wrap: wrap;
 		justify-content: center;
 		align-items: center;
-		gap: 0.3rem;
+		gap: 0.28rem;
 		margin-top: 0.3rem;
 		padding-top: 0.3rem;
 		border-top: 1px solid color-mix(in srgb, var(--color-border) 40%, transparent);
+		line-height: 1.35;
 	}
 
-	.p151-weak-icon {
-		width: 0.9rem;
-		height: 0.9rem;
-		object-fit: contain;
-		flex-shrink: 0;
-		opacity: 0.92;
+	.p151-weak-prefix {
+		font-size: 0.66rem;
+		font-weight: 600;
+		color: var(--color-muted);
+	}
+
+	.p151-weak-text {
+		font-size: 0.66rem;
+		font-weight: 600;
+	}
+
+	.p151-type-text[data-type='normal'],
+	.p151-weak-text[data-type='normal'] {
+		color: #9fa19f;
+	}
+
+	.p151-type-text[data-type='fighting'],
+	.p151-weak-text[data-type='fighting'] {
+		color: #c22e28;
+	}
+
+	.p151-type-text[data-type='fire'],
+	.p151-weak-text[data-type='fire'] {
+		color: #ee8130;
+	}
+
+	.p151-type-text[data-type='water'],
+	.p151-weak-text[data-type='water'] {
+		color: #4592c4;
+	}
+
+	.p151-type-text[data-type='electric'],
+	.p151-weak-text[data-type='electric'] {
+		color: #c9a01e;
+	}
+
+	.p151-type-text[data-type='grass'],
+	.p151-weak-text[data-type='grass'] {
+		color: #74cb48;
+	}
+
+	.p151-type-text[data-type='ice'],
+	.p151-weak-text[data-type='ice'] {
+		color: #3aa8a3;
+	}
+
+	.p151-type-text[data-type='poison'],
+	.p151-weak-text[data-type='poison'] {
+		color: #a33ea1;
+	}
+
+	.p151-type-text[data-type='ground'],
+	.p151-weak-text[data-type='ground'] {
+		color: #e2bf65;
+	}
+
+	.p151-type-text[data-type='flying'],
+	.p151-weak-text[data-type='flying'] {
+		color: #a891ec;
+	}
+
+	.p151-type-text[data-type='psychic'],
+	.p151-weak-text[data-type='psychic'] {
+		color: #ee6b76;
+	}
+
+	.p151-type-text[data-type='bug'],
+	.p151-weak-text[data-type='bug'] {
+		color: #91a119;
+	}
+
+	.p151-type-text[data-type='rock'],
+	.p151-weak-text[data-type='rock'] {
+		color: #bfb889;
+	}
+
+	.p151-type-text[data-type='ghost'],
+	.p151-weak-text[data-type='ghost'] {
+		color: #735797;
+	}
+
+	.p151-type-text[data-type='dragon'],
+	.p151-weak-text[data-type='dragon'] {
+		color: #6f35fc;
+	}
+
+	.p151-type-text[data-type='dark'],
+	.p151-weak-text[data-type='dark'] {
+		color: #715344;
+	}
+
+	.p151-type-text[data-type='steel'],
+	.p151-weak-text[data-type='steel'] {
+		color: #b7b7ce;
+	}
+
+	.p151-type-text[data-type='fairy'],
+	.p151-weak-text[data-type='fairy'] {
+		color: #d685ad;
+	}
+
+	:global(.dark) .p151-type-text[data-type='electric'],
+	:global(.dark) .p151-weak-text[data-type='electric'] {
+		color: #f8d030;
+	}
+
+	:global(.dark) .p151-type-text[data-type='ice'],
+	:global(.dark) .p151-weak-text[data-type='ice'] {
+		color: #b8e8e6;
+	}
+
+	:global(.dark) .p151-type-text[data-type='ground'],
+	:global(.dark) .p151-weak-text[data-type='ground'] {
+		color: #f0d078;
+	}
+
+	:global(.dark) .p151-type-text[data-type='rock'],
+	:global(.dark) .p151-weak-text[data-type='rock'] {
+		color: #d4c89a;
+	}
+
+	:global(.dark) .p151-type-text[data-type='steel'],
+	:global(.dark) .p151-weak-text[data-type='steel'] {
+		color: #d8d8e8;
 	}
 
 	@media (min-width: 640px) {
@@ -739,25 +833,24 @@ const spriteBase =
 		}
 
 		.p151-card__types-row {
-			gap: 0.5rem;
+			gap: 0.45rem;
 			margin-top: 0.5rem;
 			padding-top: 0.5rem;
 		}
 
 		.p151-card__weak-row {
-			gap: 0.4rem;
+			gap: 0.35rem;
 			margin-top: 0.4rem;
 			padding-top: 0.4rem;
 		}
 
-		.p151-type-icon {
-			width: 1.2rem;
-			height: 1.2rem;
+		.p151-type-text {
+			font-size: 0.76rem;
 		}
 
-		.p151-weak-icon {
-			width: 1.05rem;
-			height: 1.05rem;
+		.p151-weak-text,
+		.p151-weak-prefix {
+			font-size: 0.7rem;
 		}
 	}
 
