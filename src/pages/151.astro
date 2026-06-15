@@ -1,6 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
 import PageHeading from '~/components/PageHeading.astro';
+import pokemon151Chains from '~/data/pokemon151-chains.json';
 import pokemon151 from '~/data/pokemon151.json';
 import ScaffoldLayout from '~/layouts/ScaffoldLayout.astro';
 
@@ -98,7 +99,7 @@ const artworkBase = '/pokemon151/artwork';
 		中文名与百科链接参考神奇宝贝百科。属性弱点按双属性倍率计算（含免疫、抵抗），数据来自 PokeAPI 现行相克表。本页为个人学习向速查工具，与任天堂等公司无关联。
 	</p>
 
-	<script is:inline define:vars={{ pokemon151, wikiBase, artworkBase }}>
+	<script is:inline define:vars={{ pokemon151, pokemon151Chains, wikiBase, artworkBase }}>
 		const ROUND3_SIZE = 3;
 		const ROUND3_TRIES = 3;
 
@@ -154,6 +155,7 @@ const artworkBase = '/pokemon151/artwork';
 		const wikiUrl = (nameCn) => `${wikiBase}${encodeURIComponent(nameCn)}`;
 		const artUrl = (id) => `${artworkBase}/${id}.png`;
 		const formatNo = (id) => `#${String(id).padStart(3, '0')}`;
+		const pokemonById = Object.fromEntries(pokemon151.map((p) => [p.id, p]));
 
 		const TYPE_COLORS = {
 			normal: '#9fa19f',
@@ -201,7 +203,7 @@ const artworkBase = '/pokemon151/artwork';
 				)
 				.join('');
 			const weakLabel = labels.join('、');
-			return `<div class="p151-card__weak-row" aria-label="弱点 ${weakLabel}"><span class="p151-weak-prefix">弱</span>${items}</div>`;
+			return `<div class="p151-member__weak" aria-label="弱点 ${weakLabel}"><span class="p151-weak-prefix">弱</span>${items}</div>`;
 		};
 
 		const shuffle = (arr) => {
@@ -218,38 +220,48 @@ const artworkBase = '/pokemon151/artwork';
 			return shuffle(pool).slice(0, count);
 		};
 
+		const matchesPokemon = (p, filterText) => {
+			const q = filterText.trim().toLowerCase();
+			if (!q) return true;
+			const typesText = (p.typesCn || []).join('');
+			const weakText = (p.weaknessesCn || []).join('');
+			return (
+				String(p.id).includes(q) ||
+				p.nameCn.includes(filterText.trim()) ||
+				p.nameEn.toLowerCase().includes(q) ||
+				p.slug.includes(q) ||
+				typesText.includes(filterText.trim()) ||
+				weakText.includes(filterText.trim())
+			);
+		};
+
+		const renderMember = (p) => {
+			const typeRow = renderTypeRow(p);
+			const weakRow = renderWeaknessRow(p);
+			const sup = String(p.id).padStart(3, '0');
+			return `
+    <a class="p151-member" href="${wikiUrl(p.nameCn)}" target="_blank" rel="noreferrer noopener">
+      <img class="p151-member__art" src="${artUrl(p.id)}" alt="${p.nameCn}" width="72" height="72" loading="lazy" />
+      <span class="p151-member__label"><sup class="p151-member__no">${sup}</sup>${p.nameCn}</span>
+      <span class="p151-member__en">${p.nameEn}</span>
+      ${typeRow ? `<div class="p151-member__types">${typeRow}</div>` : ''}
+      ${weakRow}
+    </a>`;
+		};
+
+		const renderEvoline = (ids) => {
+			const members = ids
+				.map((id) => renderMember(pokemonById[id]))
+				.join('<span class="p151-evoline__sep" aria-hidden="true">›</span>');
+			return `<li class="p151-evoline">${members}</li>`;
+		};
+
 		const renderDex = (filter = '') => {
-			const q = filter.trim().toLowerCase();
-			const list = pokemon151.filter((p) => {
-				if (!q) return true;
-				const typesText = (p.typesCn || []).join('');
-				const weakText = (p.weaknessesCn || []).join('');
-				return (
-					String(p.id).includes(q) ||
-					p.nameCn.includes(filter.trim()) ||
-					p.nameEn.toLowerCase().includes(q) ||
-					p.slug.includes(q) ||
-					typesText.includes(filter.trim()) ||
-					weakText.includes(filter.trim())
-				);
-			});
-			els.dexGrid.innerHTML = list
-				.map((p) => {
-					const typeRow = renderTypeRow(p);
-					const weakRow = renderWeaknessRow(p);
-					return `
-				<li class="p151-card">
-					<a class="p151-card__link" href="${wikiUrl(p.nameCn)}" target="_blank" rel="noreferrer noopener">
-						<img class="p151-card__art" src="${artUrl(p.id)}" alt="${p.nameCn}" width="96" height="96" loading="lazy" />
-						<span class="p151-card__no">${formatNo(p.id)}</span>
-						<span class="p151-card__cn">${p.nameCn}</span>
-						<span class="p151-card__en">${p.nameEn}</span>
-						${typeRow ? `<div class="p151-card__types-row">${typeRow}</div>` : ''}
-						${weakRow}
-					</a>
-				</li>`;
-				})
-				.join('');
+			const trimmed = filter.trim();
+			const chains = pokemon151Chains.filter(
+				(ids) => !trimmed || ids.some((id) => matchesPokemon(pokemonById[id], filter)),
+			);
+			els.dexGrid.innerHTML = chains.map(renderEvoline).join('');
 		};
 
 		const switchTab = (tab) => {
@@ -577,111 +589,159 @@ const artworkBase = '/pokemon151/artwork';
 
 	.p151-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(8.25rem, 1fr));
-		gap: 0.75rem;
+		grid-template-columns: repeat(auto-fill, minmax(5.5rem, 1fr));
+		gap: 0.45rem;
 		margin: 0;
 		padding: 0;
 		list-style: none;
 	}
 
-	.p151-card {
+	.p151-evoline {
+		display: flex;
+		flex-direction: row;
+		align-items: stretch;
+		gap: 0.12rem;
+		padding: 0.35rem 0.3rem;
 		border-radius: var(--radius-soft);
 		border: 1px solid color-mix(in srgb, var(--color-border) 86%, transparent);
 		background: color-mix(in srgb, var(--color-surface) 94%, var(--color-accent-soft) 6%);
-		overflow: hidden;
-		transition: transform var(--motion-gentle), box-shadow var(--motion-gentle);
+		min-width: 0;
 	}
 
-	.p151-card:hover {
-		transform: translateY(-2px);
-		box-shadow: 0 10px 24px color-mix(in srgb, var(--color-shadow-rgb) 14%, transparent);
+	.p151-evoline__sep {
+		flex: 0 0 auto;
+		align-self: center;
+		color: var(--color-muted);
+		font-size: 0.68rem;
+		opacity: 0.5;
+		line-height: 1;
 	}
 
-	.p151-card__link {
+	.p151-member {
+		flex: 1 1 0;
+		min-width: 0;
 		display: grid;
-		gap: 0.2rem;
-		padding: 0.65rem 0.55rem;
+		gap: 0.12rem;
+		padding: 0.2rem 0.12rem;
 		text-decoration: none;
 		color: inherit;
 		text-align: center;
 	}
 
-	.p151-card__art {
+	.p151-member__art {
 		margin: 0 auto;
-		width: 5.5rem;
-		height: 5.5rem;
+		width: 3.25rem;
+		height: 3.25rem;
 		object-fit: contain;
 	}
 
-	.p151-card__no {
-		font-size: 0.75rem;
-		color: var(--color-muted);
-	}
-
-	.p151-card__cn {
+	.p151-member__label {
 		font-weight: 600;
-		font-size: 0.92rem;
+		font-size: 0.68rem;
+		line-height: 1.25;
 	}
 
-	.p151-card__en {
-		font-size: 0.75rem;
+	.p151-member__no {
+		font-size: 0.58rem;
+		font-weight: 700;
 		color: var(--color-muted);
+		margin-right: 0.1rem;
+		vertical-align: super;
+		line-height: 0;
 	}
 
-	.p151-card__types-row {
+	.p151-member__en {
+		font-size: 0.58rem;
+		color: var(--color-muted);
+		line-height: 1.2;
+	}
+
+	.p151-member__types {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 0.2rem;
+		line-height: 1.2;
+	}
+
+	.p151-member__weak {
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: center;
 		align-items: center;
-		gap: 0.35rem;
-		margin-top: 0.35rem;
-		padding-top: 0.35rem;
-		border-top: 1px solid color-mix(in srgb, var(--color-border) 55%, transparent);
-		line-height: 1.35;
-	}
-
-	.p151-card__weak-row {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
-		align-items: center;
-		gap: 0.28rem;
-		margin-top: 0.3rem;
-		padding-top: 0.3rem;
-		border-top: 1px solid color-mix(in srgb, var(--color-border) 40%, transparent);
-		line-height: 1.35;
+		gap: 0.18rem;
+		line-height: 1.2;
 	}
 
 	.p151-weak-prefix {
-		font-size: 0.66rem;
+		font-size: 0.58rem;
 		font-weight: 600;
 		color: var(--color-muted);
+	}
+
+	@media (max-width: 639px) {
+		.p151-grid {
+			grid-template-columns: 1fr;
+			gap: 0.4rem;
+		}
+
+		.p151-evoline {
+			flex-wrap: nowrap;
+			overflow-x: auto;
+			scrollbar-width: thin;
+			-webkit-overflow-scrolling: touch;
+		}
+
+		.p151-member {
+			flex: 1 0 4.35rem;
+			max-width: 5.1rem;
+		}
+
+		.p151-member__en {
+			display: none;
+		}
 	}
 
 	@media (min-width: 640px) {
 		.p151-grid {
-			grid-template-columns: repeat(auto-fill, minmax(9.75rem, 1fr));
-			gap: 1rem;
+			grid-template-columns: repeat(auto-fill, minmax(5.75rem, 1fr));
+			gap: 0.5rem;
 		}
 
-		.p151-card__link {
-			gap: 0.35rem;
-			padding: 0.8rem 0.7rem;
+		.p151-evoline {
+			padding: 0.4rem 0.35rem;
 		}
 
-		.p151-card__types-row {
+		.p151-member {
+			padding: 0.25rem 0.15rem;
+		}
+
+		.p151-member__art {
+			width: 3.5rem;
+			height: 3.5rem;
+		}
+
+		.p151-member__label {
+			font-size: 0.72rem;
+		}
+
+		.p151-member__en {
+			font-size: 0.6rem;
+		}
+	}
+
+	@media (min-width: 960px) {
+		.p151-grid {
+			grid-template-columns: repeat(auto-fill, minmax(5.25rem, 1fr));
 			gap: 0.45rem;
-			margin-top: 0.5rem;
-			padding-top: 0.5rem;
 		}
 
-		.p151-card__weak-row {
-			gap: 0.35rem;
-			margin-top: 0.4rem;
-			padding-top: 0.4rem;
+		.p151-member__art {
+			width: 3.1rem;
+			height: 3.1rem;
 		}
 
-		.p151-weak-prefix {
+		.p151-member__label {
 			font-size: 0.7rem;
 		}
 	}
@@ -750,20 +810,6 @@ const artworkBase = '/pokemon151/artwork';
 		margin: 0 0 0.5rem;
 		color: var(--color-muted);
 		font-weight: 600;
-	}
-
-	.p151-quiz-no.is-prominent {
-		margin-bottom: 1rem;
-		color: var(--color-text);
-		font-size: 2rem;
-		font-weight: 700;
-	}
-
-	.p151-quiz-prompt {
-		margin: 0 0 1rem;
-		font-size: 1.75rem;
-		font-weight: 700;
-		line-height: 1.3;
 	}
 
 	.p151-quiz-art {

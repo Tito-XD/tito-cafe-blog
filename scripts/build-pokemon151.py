@@ -9,6 +9,8 @@ import urllib.request
 from pathlib import Path
 
 OUT = Path(__file__).resolve().parents[1] / 'src' / 'data' / 'pokemon151.json'
+CHAINS_OUT = Path(__file__).resolve().parents[1] / 'src' / 'data' / 'pokemon151-chains.json'
+GEN1_MAX_ID = 151
 UA = 'Mozilla/5.0 (compatible; tito-cafe/1.0)'
 
 TYPE_CN: dict[str, str] = {
@@ -79,12 +81,46 @@ def pokemon_weaknesses(types: list[str], chart: dict[str, dict[str, float]]) -> 
 	return weaknesses
 
 
+def species_id_from_url(url: str) -> int:
+	return int(url.rstrip('/').split('/')[-1])
+
+
+def flatten_evolution_chain(node: dict) -> list[int]:
+	ids: list[int] = []
+	sid = species_id_from_url(node['species']['url'])
+	if sid <= GEN1_MAX_ID:
+		ids.append(sid)
+	for child in node.get('evolves_to', []):
+		ids.extend(flatten_evolution_chain(child))
+	return ids
+
+
+def build_evolution_chains(chain_urls: set[str]) -> list[list[int]]:
+	cache: dict[str, list[int]] = {}
+	for url in sorted(chain_urls):
+		data = fetch(url)
+		cache[url] = flatten_evolution_chain(data['chain'])
+		time.sleep(0.04)
+	chains = sorted(cache.values(), key=lambda row: row[0])
+	all_ids: list[int] = []
+	for row in chains:
+		all_ids.extend(row)
+	expected = list(range(1, GEN1_MAX_ID + 1))
+	if sorted(all_ids) != expected:
+		missing = set(expected) - set(all_ids)
+		extra = set(all_ids) - set(expected)
+		raise SystemExit(f'Evolution chain mismatch. missing={missing} extra={extra}')
+	return chains
+
+
 def main() -> None:
 	print('Loading type chart from PokeAPI...')
 	type_chart = load_type_chart()
 	rows = []
-	for i in range(1, 152):
+	chain_urls: set[str] = set()
+	for i in range(1, GEN1_MAX_ID + 1):
 		species = fetch(f'https://pokeapi.co/api/v2/pokemon-species/{i}')
+		chain_urls.add(species['evolution_chain']['url'])
 		names = {n['language']['name']: n['name'] for n in species['names']}
 		pokemon = fetch(f'https://pokeapi.co/api/v2/pokemon/{i}')
 		types = [t['type']['name'] for t in pokemon['types']]
@@ -104,6 +140,11 @@ def main() -> None:
 		time.sleep(0.03)
 	OUT.write_text(json.dumps(rows, ensure_ascii=False, indent='\t') + '\n', encoding='utf-8')
 	print(f'Wrote {len(rows)} entries to {OUT}')
+
+	print('Building evolution chains...')
+	chains = build_evolution_chains(chain_urls)
+	CHAINS_OUT.write_text(json.dumps(chains, ensure_ascii=False, indent='\t') + '\n', encoding='utf-8')
+	print(f'Wrote {len(chains)} chains to {CHAINS_OUT}')
 
 
 if __name__ == '__main__':
