@@ -32,27 +32,7 @@ TYPE_CN: dict[str, str] = {
 	'fairy': '妖',
 }
 
-# PokeAPI damage_relations.double_damage_from (for TYPE_CN keys only)
-TYPE_WEAKNESS: dict[str, list[str]] = {
-	'normal': ['fighting'],
-	'fire': ['water', 'ground', 'rock'],
-	'water': ['grass', 'electric'],
-	'electric': ['ground'],
-	'grass': ['fire', 'ice', 'poison', 'flying', 'bug'],
-	'ice': ['fire', 'fighting', 'rock', 'steel'],
-	'fighting': ['flying', 'psychic', 'fairy'],
-	'poison': ['ground', 'psychic'],
-	'ground': ['water', 'grass', 'ice'],
-	'flying': ['rock', 'electric', 'ice'],
-	'psychic': ['bug', 'ghost', 'dark'],
-	'bug': ['fire', 'flying', 'rock'],
-	'rock': ['water', 'grass', 'fighting', 'ground', 'steel'],
-	'ghost': ['ghost', 'dark'],
-	'dragon': ['ice', 'dragon', 'fairy'],
-	'dark': ['fighting', 'bug', 'fairy'],
-	'steel': ['fire', 'fighting', 'ground'],
-	'fairy': ['poison', 'steel'],
-}
+TYPE_NAMES = list(TYPE_CN.keys())
 
 
 def fetch(url: str) -> dict:
@@ -65,21 +45,50 @@ def type_cn(name: str) -> str:
 	return TYPE_CN.get(name, name)
 
 
-def pokemon_weaknesses(types: list[str]) -> list[str]:
-	weak: set[str] = set()
-	for t in types:
-		weak.update(TYPE_WEAKNESS.get(t, []))
-	return sorted(weak)
+def load_type_chart() -> dict[str, dict[str, float]]:
+	"""For each defending type, map attacking type -> damage multiplier."""
+	chart: dict[str, dict[str, float]] = {}
+	for def_type in TYPE_NAMES:
+		data = fetch(f'https://pokeapi.co/api/v2/type/{def_type}')
+		multipliers = {name: 1.0 for name in TYPE_NAMES}
+		for entry in data['damage_relations']['no_damage_from']:
+			name = entry['name']
+			if name in multipliers:
+				multipliers[name] = 0.0
+		for entry in data['damage_relations']['half_damage_from']:
+			name = entry['name']
+			if name in multipliers:
+				multipliers[name] = 0.5
+		for entry in data['damage_relations']['double_damage_from']:
+			name = entry['name']
+			if name in multipliers:
+				multipliers[name] = 2.0
+		chart[def_type] = multipliers
+		time.sleep(0.02)
+	return chart
+
+
+def pokemon_weaknesses(types: list[str], chart: dict[str, dict[str, float]]) -> list[str]:
+	weaknesses: list[str] = []
+	for attack_type in TYPE_NAMES:
+		multiplier = 1.0
+		for def_type in types:
+			multiplier *= chart[def_type].get(attack_type, 1.0)
+		if multiplier >= 2.0:
+			weaknesses.append(attack_type)
+	return weaknesses
 
 
 def main() -> None:
+	print('Loading type chart from PokeAPI...')
+	type_chart = load_type_chart()
 	rows = []
 	for i in range(1, 152):
 		species = fetch(f'https://pokeapi.co/api/v2/pokemon-species/{i}')
 		names = {n['language']['name']: n['name'] for n in species['names']}
 		pokemon = fetch(f'https://pokeapi.co/api/v2/pokemon/{i}')
 		types = [t['type']['name'] for t in pokemon['types']]
-		weaknesses = pokemon_weaknesses(types)
+		weaknesses = pokemon_weaknesses(types, type_chart)
 		rows.append(
 			{
 				'id': i,
