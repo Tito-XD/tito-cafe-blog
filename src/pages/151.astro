@@ -178,10 +178,6 @@ const artworkBase = '/pokemon151/artwork';
 			fairy: '#d685ad',
 		};
 
-		const typeSignature = (p) => (p.types || []).join('/');
-
-		const primaryTypeColor = (p) => TYPE_COLORS[p.types?.[0]] || TYPE_COLORS.normal;
-
 		const renderTypeLabel = (typeName, label, kind = 'type') => {
 			const color = TYPE_COLORS[typeName] || TYPE_COLORS.normal;
 			const fontSize = kind === 'weak' ? '0.66rem' : '0.72rem';
@@ -208,6 +204,23 @@ const artworkBase = '/pokemon151/artwork';
 				.join('');
 			const weakLabel = labels.join('、');
 			return `<div class="p151-member__weak" aria-label="弱点 ${weakLabel}"><span class="p151-weak-prefix">弱</span>${items}</div>`;
+		};
+
+		const chainSharedType = (ids) => {
+			const typeSets = ids.map((id) => pokemonById[id].types || []);
+			if (typeSets.length === 0) return 'normal';
+
+			const sharedAcrossAll = [...new Set(typeSets.flat())].filter((typeName) =>
+				typeSets.every((set) => set.includes(typeName)),
+			);
+
+			if (sharedAcrossAll.length > 0) {
+				const firstPrimary = typeSets[0][0];
+				if (sharedAcrossAll.includes(firstPrimary)) return firstPrimary;
+				return sharedAcrossAll[0];
+			}
+
+			return typeSets[0][0] || 'normal';
 		};
 
 		const shuffle = (arr) => {
@@ -247,10 +260,9 @@ const artworkBase = '/pokemon151/artwork';
 			const typeRow = renderTypeRow(p);
 			const weakRow = renderWeaknessRow(p);
 			const sup = String(p.id).padStart(3, '0');
-			const typeColor = primaryTypeColor(p);
 
 			return `
-    <a class="p151-member" href="${wikiUrl(p.nameCn)}" target="_blank" rel="noreferrer noopener" style="--p151-type: ${typeColor}">
+    <a class="p151-member" href="${wikiUrl(p.nameCn)}" target="_blank" rel="noreferrer noopener">
       <img class="p151-member__art" src="${artUrl(p.id)}" alt="${p.nameCn}" width="72" height="72" loading="lazy" />
       <span class="p151-member__label"><sup class="p151-member__no">${sup}</sup>${p.nameCn}</span>
       <span class="p151-member__en">${p.nameEn}</span>
@@ -259,24 +271,15 @@ const artworkBase = '/pokemon151/artwork';
     </a>`;
 		};
 
-		const chainHasUniformTypes = (ids) => {
-			const first = typeSignature(pokemonById[ids[0]]);
-			return ids.every((id) => typeSignature(pokemonById[id]) === first);
-		};
-
 		const renderEvoline = (ids) => {
 			const members = ids
 				.map((id) => renderMember(pokemonById[id]))
 				.join('<span class="p151-evoline__sep" aria-hidden="true">›</span>');
-			const uniform = chainHasUniformTypes(ids);
-			const uniformClass = uniform ? ' p151-evoline--uniform' : '';
-			const scrollClass = ids.length > 3 ? ' p151-evoline--scroll' : '';
-			const chainType = uniform ? pokemonById[ids[0]].types?.[0] || 'normal' : '';
-			const chainColor = uniform ? TYPE_COLORS[chainType] : '';
-			const chainStyle =
-				uniform && chainColor ? ` style="--p151-chain-type: ${chainColor}"` : '';
+			const chainType = chainSharedType(ids);
+			const chainColor = TYPE_COLORS[chainType] || TYPE_COLORS.normal;
+			const chainStyle = ` style="--p151-chain-type: ${chainColor}"`;
 
-			return `<li class="p151-evoline${uniformClass}${scrollClass}" data-count="${ids.length}"${chainStyle}>${members}</li>`;
+			return `<li class="p151-evoline p151-evoline--typed" data-count="${ids.length}"${chainStyle}>${members}</li>`;
 		};
 
 		const renderDex = (filter = '') => {
@@ -624,9 +627,10 @@ const artworkBase = '/pokemon151/artwork';
 		position: relative;
 		display: flex;
 		flex-direction: row;
+		flex-wrap: wrap;
 		align-items: stretch;
 		flex: 0 0 auto;
-		gap: 0.15rem;
+		gap: 0.1rem 0.12rem;
 		padding: 0.5rem 0.4rem 0.4rem;
 		border-radius: var(--radius-soft);
 		border: 1px solid color-mix(in srgb, var(--color-border) 86%, transparent);
@@ -645,11 +649,11 @@ const artworkBase = '/pokemon151/artwork';
 		line-height: 1;
 	}
 
-	.p151-evoline--uniform {
-		border-color: color-mix(in srgb, var(--p151-chain-type, var(--color-border)) 34%, var(--color-border) 66%);
-		border-top-color: color-mix(in srgb, var(--p151-chain-type, var(--color-accent)) 52%, var(--color-border) 48%);
-		background: color-mix(in srgb, var(--p151-chain-type, transparent) 9%, var(--color-surface) 91%);
-		box-shadow: inset 0 1px 0 color-mix(in srgb, var(--p151-chain-type, transparent) 14%, transparent);
+	.p151-evoline--typed {
+		border-color: color-mix(in srgb, var(--p151-chain-type) 38%, var(--color-border) 62%);
+		border-top-color: color-mix(in srgb, var(--p151-chain-type) 58%, var(--color-border) 42%);
+		background: color-mix(in srgb, var(--p151-chain-type) 14%, var(--color-surface) 86%);
+		box-shadow: inset 0 1px 0 color-mix(in srgb, var(--p151-chain-type) 18%, transparent);
 	}
 
 	.p151-member {
@@ -662,23 +666,15 @@ const artworkBase = '/pokemon151/artwork';
 		text-decoration: none;
 		color: inherit;
 		text-align: center;
-		border: 1px solid color-mix(in srgb, var(--p151-type, var(--color-border)) 40%, var(--color-border) 60%);
-		border-radius: 0.38rem;
-		background: color-mix(in srgb, var(--p151-type, transparent) 12%, var(--color-surface) 88%);
-		transition:
-			border-color var(--motion-gentle),
-			background var(--motion-gentle);
+		border: none;
+		border-radius: 0.32rem;
+		background: transparent;
+		transition: background var(--motion-gentle);
 	}
 
-	.p151-member:hover,
-	.p151-member:focus-visible {
-		border-color: color-mix(in srgb, var(--p151-type, var(--color-accent)) 55%, var(--color-border) 45%);
-		background: color-mix(in srgb, var(--p151-type, transparent) 16%, var(--color-surface) 84%);
-	}
-
-	.p151-evoline--uniform .p151-member {
-		border-color: color-mix(in srgb, var(--p151-chain-type, var(--p151-type)) 26%, var(--color-border) 74%);
-		background: color-mix(in srgb, var(--p151-chain-type, var(--p151-type)) 7%, var(--color-surface) 93%);
+	.p151-evoline .p151-member:hover,
+	.p151-evoline .p151-member:focus-visible {
+		background: color-mix(in srgb, var(--p151-chain-type) 12%, var(--color-surface) 88%);
 	}
 
 	.p151-member__art {
@@ -736,63 +732,29 @@ const artworkBase = '/pokemon151/artwork';
 
 	@media (max-width: 639px) {
 		.p151-grid {
-			display: grid;
-			grid-template-columns: repeat(3, minmax(0, 1fr));
+			display: flex;
+			flex-wrap: wrap;
 			gap: 0.35rem;
 		}
 
 		.p151-evoline {
-			flex-direction: column;
+			flex-direction: row;
+			flex-wrap: wrap;
 			align-items: stretch;
-			min-width: 0;
-			overflow: hidden;
-			padding: 0.38rem 0.28rem 0.32rem;
+			flex: 0 0 auto;
+			max-width: 100%;
+			padding: 0.35rem 0.3rem 0.32rem;
 		}
 
 		.p151-evoline__sep {
-			display: none;
-		}
-
-		.p151-evoline--scroll {
-			grid-column: 1 / -1;
-			flex-direction: row;
-			flex-wrap: nowrap;
-			overflow-x: auto;
-			scrollbar-width: thin;
-			-webkit-overflow-scrolling: touch;
-			padding-right: 0.15rem;
-		}
-
-		.p151-evoline--scroll .p151-evoline__sep {
 			display: block;
 		}
 
-		.p151-evoline--scroll::after {
-			content: '';
-			position: absolute;
-			top: 0;
-			right: 0;
-			bottom: 0;
-			width: 0.65rem;
-			background: linear-gradient(
-				to right,
-				color-mix(in srgb, var(--color-surface) 0%, transparent),
-				color-mix(in srgb, var(--color-surface) 88%, var(--color-accent-soft) 12%)
-			);
-			pointer-events: none;
-		}
-
 		.p151-member {
-			flex: none;
-			width: 100%;
-			min-width: 0;
-			padding: 0.24rem 0.16rem 0.28rem;
-		}
-
-		.p151-evoline--scroll .p151-member {
-			flex: 0 0 4.15rem;
-			width: 4.15rem;
-			min-width: 4.15rem;
+			flex: 0 0 4.2rem;
+			width: 4.2rem;
+			min-width: 4.2rem;
+			padding: 0.22rem 0.14rem 0.26rem;
 		}
 
 		.p151-member__art {
