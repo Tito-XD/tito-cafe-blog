@@ -36,7 +36,16 @@ const artworkBase = '/pokemon151/artwork';
 				<Icon name="ri:search-line" class="p151-search__icon" aria-hidden="true" />
 				<input id="dex-search" type="search" placeholder="搜索编号、中文名或英文名…" autocomplete="off" />
 			</label>
+			<button
+				class="p151-toolbar__toggle"
+				type="button"
+				id="dex-hide-names"
+				aria-pressed="false"
+			>
+				隐藏名字核对
+			</button>
 		</div>
+		<p class="p151-toolbar-hint" id="dex-hide-hint" hidden>名字已隐藏，点按卡片显示中文名核对。</p>
 		<ul class="p151-grid" id="dex-grid"></ul>
 	</section>
 
@@ -105,6 +114,7 @@ const artworkBase = '/pokemon151/artwork';
 
 		const state = {
 			tab: 'dex',
+			dexHideNames: false,
 			quizMode: 'choice',
 			queue: [],
 			index: 0,
@@ -131,6 +141,8 @@ const artworkBase = '/pokemon151/artwork';
 			panelQuiz: document.getElementById('panel-quiz'),
 			dexSearch: document.getElementById('dex-search'),
 			dexGrid: document.getElementById('dex-grid'),
+			dexHideNamesBtn: document.getElementById('dex-hide-names'),
+			dexHideHint: document.getElementById('dex-hide-hint'),
 			quizSetup: document.getElementById('quiz-setup'),
 			quizPlay: document.getElementById('quiz-play'),
 			quizDone: document.getElementById('quiz-done'),
@@ -260,16 +272,27 @@ const artworkBase = '/pokemon151/artwork';
 			const typeRow = renderTypeRow(p);
 			const weakRow = renderWeaknessRow(p);
 			const sup = String(p.id).padStart(3, '0');
+			const artAlt = state.dexHideNames ? '宝可梦立绘' : p.nameCn;
 
 			return `
-    <a class="p151-member" href="${wikiUrl(p.nameCn)}" target="_blank" rel="noreferrer noopener">
-      <img class="p151-member__art" src="${artUrl(p.id)}" alt="${p.nameCn}" width="72" height="72" loading="lazy" />
+    <a class="p151-member" href="${wikiUrl(p.nameCn)}" target="_blank" rel="noreferrer noopener" data-id="${p.id}">
+      <img class="p151-member__art" src="${artUrl(p.id)}" alt="${artAlt}" width="72" height="72" loading="lazy" />
       <span class="p151-member__no">${sup}</span>
       <span class="p151-member__label">${p.nameCn}</span>
       <span class="p151-member__en">${p.nameEn}</span>
       ${typeRow ? `<div class="p151-member__types">${typeRow}</div>` : ''}
       ${weakRow}
     </a>`;
+		};
+
+		const setDexHideNames = (on) => {
+			state.dexHideNames = on;
+			els.panelDex.classList.toggle('p151-panel--hide-names', on);
+			els.dexHideNamesBtn?.setAttribute('aria-pressed', on ? 'true' : 'false');
+			els.dexHideNamesBtn?.classList.toggle('is-active', on);
+			els.dexHideNamesBtn.textContent = on ? '显示全部名字' : '隐藏名字核对';
+			if (els.dexHideHint) els.dexHideHint.hidden = !on;
+			renderDex(els.dexSearch?.value || '');
 		};
 
 		const renderEvoline = (ids) => {
@@ -487,7 +510,7 @@ const artworkBase = '/pokemon151/artwork';
 		};
 
 		const setup = () => {
-			renderDex();
+			setDexHideNames(false);
 			switchTab('dex');
 			showQuizPhase('setup');
 			switchQuizMode('choice');
@@ -499,6 +522,22 @@ const artworkBase = '/pokemon151/artwork';
 				btn.addEventListener('click', () => switchQuizMode(btn.dataset.quizMode));
 			});
 			els.dexSearch?.addEventListener('input', (e) => renderDex(e.target.value));
+			els.dexHideNamesBtn?.addEventListener('click', () => setDexHideNames(!state.dexHideNames));
+			els.dexGrid?.addEventListener('click', (e) => {
+				if (!state.dexHideNames) return;
+				const member = e.target.closest('.p151-member');
+				if (!member) return;
+				if (!member.classList.contains('p151-member--revealed')) {
+					e.preventDefault();
+					member.classList.add('p151-member--revealed');
+					const id = Number(member.dataset.id);
+					const p = pokemonById[id];
+					if (p) {
+						const art = member.querySelector('.p151-member__art');
+						if (art) art.alt = p.nameCn;
+					}
+				}
+			});
 			els.quizStart?.addEventListener('click', startQuiz);
 			els.quizEnd?.addEventListener('click', () => showQuizPhase('setup'));
 			els.quizRestart?.addEventListener('click', () => showQuizPhase('setup'));
@@ -581,18 +620,59 @@ const artworkBase = '/pokemon151/artwork';
 	.p151-panel[hidden] {
 		display: none;
 	}
+
+	.p151-toolbar-hint {
+		margin: 0 0 0.75rem;
+		font-size: 0.82rem;
+		color: var(--color-muted);
+		line-height: 1.5;
+	}
 </style>
 
 <style is:global>
 	.p151-toolbar {
-		margin-bottom: 1rem;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: stretch;
+		gap: 0.5rem;
+		margin-bottom: 0.55rem;
+	}
+
+	.p151-toolbar__toggle {
+		flex: 0 0 auto;
+		padding: 0.55rem 0.85rem;
+		border-radius: var(--radius-soft);
+		border: 1px solid color-mix(in srgb, var(--color-border) 88%, transparent);
+		background: var(--color-surface);
+		color: var(--color-text);
+		font-weight: 600;
+		font-size: 0.88rem;
+		line-height: 1.2;
+		cursor: pointer;
+		transition:
+			background var(--motion-gentle),
+			border-color var(--motion-gentle),
+			color var(--motion-gentle);
+	}
+
+	.p151-toolbar__toggle:hover,
+	.p151-toolbar__toggle:focus-visible {
+		border-color: color-mix(in srgb, var(--color-accent) 38%, var(--color-border) 62%);
+	}
+
+	.p151-toolbar__toggle.is-active {
+		border-color: color-mix(in srgb, var(--color-accent) 72%, var(--color-border) 28%);
+		background: color-mix(in srgb, var(--color-accent) 14%, var(--color-surface) 86%);
+		color: color-mix(in srgb, var(--color-accent) 82%, var(--color-text) 18%);
 	}
 
 	.p151-search {
 		display: flex;
 		align-items: center;
 		gap: 0.5rem;
-		width: 100%;
+		flex: 1 1 12rem;
+		width: auto;
+		min-width: 0;
 		padding: 0.55rem 0.85rem;
 		border-radius: var(--radius-soft);
 		border: 1px solid color-mix(in srgb, var(--color-border) 88%, transparent);
@@ -729,6 +809,22 @@ const artworkBase = '/pokemon151/artwork';
 		font-size: 0.58rem;
 		font-weight: 600;
 		color: var(--color-muted);
+	}
+
+	.p151-panel--hide-names .p151-member:not(.p151-member--revealed) {
+		cursor: pointer;
+	}
+
+	.p151-panel--hide-names .p151-member:not(.p151-member--revealed) .p151-member__label {
+		color: transparent;
+		user-select: none;
+		background: color-mix(in srgb, var(--color-muted) 18%, transparent);
+		border-radius: 0.22rem;
+		min-height: 1.15em;
+	}
+
+	.p151-panel--hide-names .p151-member:not(.p151-member--revealed) .p151-member__en {
+		display: none;
 	}
 
 	@media (max-width: 639px) {

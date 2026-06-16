@@ -1,0 +1,126 @@
+---
+import { Icon } from 'astro-icon/components';
+import PageHeading from '~/components/PageHeading.astro';
+import { tools } from '~/data/tools';
+import ScaffoldLayout from '~/layouts/ScaffoldLayout.astro';
+---
+
+<ScaffoldLayout
+	title="Touls"
+	description="头头咖啡屋的小工具合集：图鉴、写作、光标与测验等。"
+	currentNav="Touls"
+>
+	<PageHeading title="Touls" />
+	<p class="touls-lead">
+		小工具角。名字是 Tools 的故意拼写版——毕竟是头头（Tito）的地盘。
+	</p>
+
+	<ul class="touls-grid">
+		{
+			tools.map((tool) => (
+				<li>
+					<a class="touls-card ui-pressable" href={tool.href}>
+						<div class="touls-card__head">
+							<h2 class="touls-card__title">{tool.title}</h2>
+							{tool.tag ? <span class="touls-card__tag">{tool.tag}</span> : null}
+						</div>
+						<p class="touls-card__desc">{tool.description}</p>
+						<span class="touls-card__go">
+							打开
+							<Icon name="ri:arrow-right-up-line" class="touls-card__icon" aria-hidden="true" />
+						</span>
+					</a>
+				</li>
+			))
+		}
+	</ul>
+</ScaffoldLayout>
+
+<style>
+	.touls-lead {
+		margin: 0 0 1.25rem;
+		max-width: 40rem;
+		color: var(--color-muted);
+		line-height: 1.7;
+		font-size: 0.95rem;
+	}
+
+	.touls-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+		gap: 0.75rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.touls-card {
+		display: flex;
+		flex-direction: column;
+		gap: 0.55rem;
+		padding: 1rem 1.05rem 0.9rem;
+		border-radius: var(--radius-card);
+		border: 1px solid color-mix(in srgb, var(--color-border) 88%, transparent);
+		background: color-mix(in srgb, var(--color-surface) 94%, var(--color-accent-soft) 6%);
+		color: inherit;
+		text-decoration: none;
+		transition:
+			border-color var(--motion-gentle),
+			background var(--motion-gentle),
+			box-shadow var(--motion-gentle);
+	}
+
+	.touls-card:hover,
+	.touls-card:focus-visible {
+		border-color: color-mix(in srgb, var(--color-accent) 42%, var(--color-border) 58%);
+		background: color-mix(in srgb, var(--color-surface) 90%, var(--color-accent-soft) 10%);
+		box-shadow: 0 4px 18px color-mix(in srgb, var(--color-accent) 10%, transparent);
+	}
+
+	.touls-card__head {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 0.5rem;
+	}
+
+	.touls-card__title {
+		margin: 0;
+		font-size: 1.05rem;
+		font-weight: 700;
+		line-height: 1.35;
+	}
+
+	.touls-card__tag {
+		flex: 0 0 auto;
+		padding: 0.12rem 0.45rem;
+		border-radius: 999px;
+		font-size: 0.68rem;
+		font-weight: 600;
+		color: color-mix(in srgb, var(--color-accent) 78%, var(--color-text) 22%);
+		background: color-mix(in srgb, var(--color-accent) 12%, var(--color-surface) 88%);
+		border: 1px solid color-mix(in srgb, var(--color-accent) 28%, var(--color-border) 72%);
+	}
+
+	.touls-card__desc {
+		margin: 0;
+		flex: 1;
+		color: var(--color-muted);
+		font-size: 0.88rem;
+		line-height: 1.6;
+	}
+
+	.touls-card__go {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.25rem;
+		font-size: 0.82rem;
+		font-weight: 600;
+		color: var(--color-accent);
+	}
+
+	.touls-card__icon {
+		width: 0.95rem;
+		height: 0.95rem;
+	}
+</style>
