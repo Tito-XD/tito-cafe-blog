@@ -34,7 +34,7 @@ const artworkBase = '/pokemon151/artwork';
 		<div class="p151-toolbar">
 			<label class="p151-search">
 				<Icon name="ri:search-line" class="p151-search__icon" aria-hidden="true" />
-				<input id="dex-search" type="search" placeholder="搜索编号、中文名或英文名…" autocomplete="off" />
+				<input id="dex-search" type="search" placeholder="输入编号/中英文名" autocomplete="off" />
 			</label>
 			<button
 				class="p151-toolbar__toggle"
@@ -136,32 +136,61 @@ const artworkBase = '/pokemon151/artwork';
 		};
 
 		const els = {
-			tabs: document.querySelectorAll('[data-tab]'),
-			panelDex: document.getElementById('panel-dex'),
-			panelQuiz: document.getElementById('panel-quiz'),
-			dexSearch: document.getElementById('dex-search'),
-			dexGrid: document.getElementById('dex-grid'),
-			dexHideNamesBtn: document.getElementById('dex-hide-names'),
-			dexHideHint: document.getElementById('dex-hide-hint'),
-			quizSetup: document.getElementById('quiz-setup'),
-			quizPlay: document.getElementById('quiz-play'),
-			quizDone: document.getElementById('quiz-done'),
-			quizStart: document.getElementById('quiz-start'),
-			quizEnd: document.getElementById('quiz-end'),
-			quizRestart: document.getElementById('quiz-restart'),
-			quizProgress: document.getElementById('quiz-progress'),
-			quizScore: document.getElementById('quiz-score'),
-			quizChances: document.getElementById('quiz-chances'),
-			quizNumber: document.getElementById('quiz-number'),
-			quizArt: document.getElementById('quiz-art'),
-			quizChoice: document.getElementById('quiz-choice'),
-			quizTyping: document.getElementById('quiz-typing'),
-			quizInput: document.getElementById('quiz-input'),
-			quizFeedback: document.getElementById('quiz-feedback'),
-			quizNext: document.getElementById('quiz-next'),
-			quizSummary: document.getElementById('quiz-summary'),
-			quizModeHint: document.getElementById('quiz-mode-hint'),
-			quizModeTabs: document.querySelectorAll('[data-quiz-mode]'),
+			tabs: [],
+			panelDex: null,
+			panelQuiz: null,
+			dexSearch: null,
+			dexGrid: null,
+			dexHideNamesBtn: null,
+			dexHideHint: null,
+			quizSetup: null,
+			quizPlay: null,
+			quizDone: null,
+			quizStart: null,
+			quizEnd: null,
+			quizRestart: null,
+			quizProgress: null,
+			quizScore: null,
+			quizChances: null,
+			quizNumber: null,
+			quizArt: null,
+			quizChoice: null,
+			quizTyping: null,
+			quizInput: null,
+			quizFeedback: null,
+			quizNext: null,
+			quizSummary: null,
+			quizModeHint: null,
+			quizModeTabs: [],
+		};
+
+		const refreshEls = () => {
+			els.tabs = document.querySelectorAll('[data-tab]');
+			els.panelDex = document.getElementById('panel-dex');
+			els.panelQuiz = document.getElementById('panel-quiz');
+			els.dexSearch = document.getElementById('dex-search');
+			els.dexGrid = document.getElementById('dex-grid');
+			els.dexHideNamesBtn = document.getElementById('dex-hide-names');
+			els.dexHideHint = document.getElementById('dex-hide-hint');
+			els.quizSetup = document.getElementById('quiz-setup');
+			els.quizPlay = document.getElementById('quiz-play');
+			els.quizDone = document.getElementById('quiz-done');
+			els.quizStart = document.getElementById('quiz-start');
+			els.quizEnd = document.getElementById('quiz-end');
+			els.quizRestart = document.getElementById('quiz-restart');
+			els.quizProgress = document.getElementById('quiz-progress');
+			els.quizScore = document.getElementById('quiz-score');
+			els.quizChances = document.getElementById('quiz-chances');
+			els.quizNumber = document.getElementById('quiz-number');
+			els.quizArt = document.getElementById('quiz-art');
+			els.quizChoice = document.getElementById('quiz-choice');
+			els.quizTyping = document.getElementById('quiz-typing');
+			els.quizInput = document.getElementById('quiz-input');
+			els.quizFeedback = document.getElementById('quiz-feedback');
+			els.quizNext = document.getElementById('quiz-next');
+			els.quizSummary = document.getElementById('quiz-summary');
+			els.quizModeHint = document.getElementById('quiz-mode-hint');
+			els.quizModeTabs = document.querySelectorAll('[data-quiz-mode]');
 		};
 
 		const wikiUrl = (nameCn) => `${wikiBase}${encodeURIComponent(nameCn)}`;
@@ -273,9 +302,10 @@ const artworkBase = '/pokemon151/artwork';
 			const weakRow = renderWeaknessRow(p);
 			const sup = String(p.id).padStart(3, '0');
 			const artAlt = state.dexHideNames ? '宝可梦立绘' : p.nameCn;
+			const maskClass = state.dexHideNames ? ' p151-member--mask-name' : '';
 
 			return `
-    <a class="p151-member" href="${wikiUrl(p.nameCn)}" target="_blank" rel="noreferrer noopener" data-id="${p.id}">
+    <a class="p151-member${maskClass}" href="${wikiUrl(p.nameCn)}" target="_blank" rel="noreferrer noopener" data-id="${p.id}">
       <img class="p151-member__art" src="${artUrl(p.id)}" alt="${artAlt}" width="72" height="72" loading="lazy" />
       <span class="p151-member__no">${sup}</span>
       <span class="p151-member__label">${p.nameCn}</span>
@@ -290,7 +320,9 @@ const artworkBase = '/pokemon151/artwork';
 			els.panelDex.classList.toggle('p151-panel--hide-names', on);
 			els.dexHideNamesBtn?.setAttribute('aria-pressed', on ? 'true' : 'false');
 			els.dexHideNamesBtn?.classList.toggle('is-active', on);
-			els.dexHideNamesBtn.textContent = on ? '显示全部名字' : '隐藏名字核对';
+			if (els.dexHideNamesBtn) {
+				els.dexHideNamesBtn.textContent = on ? '显示全部名字' : '隐藏名字核对';
+			}
 			if (els.dexHideHint) els.dexHideHint.hidden = !on;
 			renderDex(els.dexSearch?.value || '');
 		};
@@ -510,20 +542,29 @@ const artworkBase = '/pokemon151/artwork';
 		};
 
 		const setup = () => {
+			const windowWithCleanup = window;
+			windowWithCleanup.__p151Cleanup?.();
+			refreshEls();
+			if (!els.panelDex) return;
+
 			setDexHideNames(false);
 			switchTab('dex');
 			showQuizPhase('setup');
 			switchQuizMode('choice');
 
+			const onTabClick = (btn) => switchTab(btn.dataset.tab);
 			els.tabs.forEach((btn) => {
-				btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+				btn.addEventListener('click', () => onTabClick(btn));
 			});
+
+			const onQuizModeClick = (btn) => switchQuizMode(btn.dataset.quizMode);
 			els.quizModeTabs.forEach((btn) => {
-				btn.addEventListener('click', () => switchQuizMode(btn.dataset.quizMode));
+				btn.addEventListener('click', () => onQuizModeClick(btn));
 			});
-			els.dexSearch?.addEventListener('input', (e) => renderDex(e.target.value));
-			els.dexHideNamesBtn?.addEventListener('click', () => setDexHideNames(!state.dexHideNames));
-			els.dexGrid?.addEventListener('click', (e) => {
+
+			const onDexSearch = (e) => renderDex(e.target.value);
+			const onHideNames = () => setDexHideNames(!state.dexHideNames);
+			const onDexGridClick = (e) => {
 				if (!state.dexHideNames) return;
 				const member = e.target.closest('.p151-member');
 				if (!member) return;
@@ -537,21 +578,41 @@ const artworkBase = '/pokemon151/artwork';
 						if (art) art.alt = p.nameCn;
 					}
 				}
-			});
-			els.quizStart?.addEventListener('click', startQuiz);
-			els.quizEnd?.addEventListener('click', () => showQuizPhase('setup'));
-			els.quizRestart?.addEventListener('click', () => showQuizPhase('setup'));
-			els.quizNext?.addEventListener('click', nextQuestion);
-
-			els.quizChoice?.addEventListener('click', (e) => {
+			};
+			const onQuizStart = () => startQuiz();
+			const onQuizEnd = () => showQuizPhase('setup');
+			const onQuizRestart = () => showQuizPhase('setup');
+			const onQuizNext = () => nextQuestion();
+			const onQuizChoice = (e) => {
 				const btn = e.target.closest('.p151-choice');
 				checkChoiceAnswer(btn);
-			});
-
-			els.quizTyping?.addEventListener('submit', (e) => {
+			};
+			const onQuizTyping = (e) => {
 				e.preventDefault();
 				checkTypingAnswer();
-			});
+			};
+
+			els.dexSearch?.addEventListener('input', onDexSearch);
+			els.dexHideNamesBtn?.addEventListener('click', onHideNames);
+			els.dexGrid?.addEventListener('click', onDexGridClick);
+			els.quizStart?.addEventListener('click', onQuizStart);
+			els.quizEnd?.addEventListener('click', onQuizEnd);
+			els.quizRestart?.addEventListener('click', onQuizRestart);
+			els.quizNext?.addEventListener('click', onQuizNext);
+			els.quizChoice?.addEventListener('click', onQuizChoice);
+			els.quizTyping?.addEventListener('submit', onQuizTyping);
+
+			windowWithCleanup.__p151Cleanup = () => {
+				els.dexSearch?.removeEventListener('input', onDexSearch);
+				els.dexHideNamesBtn?.removeEventListener('click', onHideNames);
+				els.dexGrid?.removeEventListener('click', onDexGridClick);
+				els.quizStart?.removeEventListener('click', onQuizStart);
+				els.quizEnd?.removeEventListener('click', onQuizEnd);
+				els.quizRestart?.removeEventListener('click', onQuizRestart);
+				els.quizNext?.removeEventListener('click', onQuizNext);
+				els.quizChoice?.removeEventListener('click', onQuizChoice);
+				els.quizTyping?.removeEventListener('submit', onQuizTyping);
+			};
 		};
 
 		setup();
@@ -681,6 +742,7 @@ const artworkBase = '/pokemon151/artwork';
 
 	.p151-search input {
 		flex: 1;
+		min-width: 0;
 		border: none;
 		background: transparent;
 		color: var(--color-text);
@@ -811,19 +873,22 @@ const artworkBase = '/pokemon151/artwork';
 		color: var(--color-muted);
 	}
 
-	.p151-panel--hide-names .p151-member:not(.p151-member--revealed) {
+	.p151-panel--hide-names .p151-member:not(.p151-member--revealed),
+	.p151-member--mask-name:not(.p151-member--revealed) {
 		cursor: pointer;
 	}
 
-	.p151-panel--hide-names .p151-member:not(.p151-member--revealed) .p151-member__label {
+	.p151-panel--hide-names .p151-member:not(.p151-member--revealed) .p151-member__label,
+	.p151-member--mask-name:not(.p151-member--revealed) .p151-member__label {
 		color: transparent;
 		user-select: none;
-		background: color-mix(in srgb, var(--color-muted) 18%, transparent);
+		background: color-mix(in srgb, var(--color-muted) 22%, transparent);
 		border-radius: 0.22rem;
 		min-height: 1.15em;
 	}
 
-	.p151-panel--hide-names .p151-member:not(.p151-member--revealed) .p151-member__en {
+	.p151-panel--hide-names .p151-member:not(.p151-member--revealed) .p151-member__en,
+	.p151-member--mask-name:not(.p151-member--revealed) .p151-member__en {
 		display: none;
 	}
 
@@ -832,6 +897,15 @@ const artworkBase = '/pokemon151/artwork';
 			display: grid;
 			grid-template-columns: repeat(3, minmax(0, 1fr));
 			gap: 0.35rem;
+		}
+
+		.p151-toolbar__toggle {
+			font-size: 0.78rem;
+			padding: 0.5rem 0.65rem;
+		}
+
+		.p151-search input {
+			font-size: 0.86rem;
 		}
 
 		.p151-evoline {
