@@ -7,9 +7,15 @@ export type ToolLink = {
 
 export const tools: ToolLink[] = [
 	{
-		title: '宝可梦 151',
+		title: '全国图鉴',
+		href: '/pokedex',
+		description: '全国图鉴速查，可按地区切换，支持传说/幻/形态筛选。',
+		tag: '图鉴',
+	},
+	{
+		title: '宝可梦 151 · 关都',
 		href: '/151',
-		description: '初代 151 只图鉴速查、属性弱点与中文名测验。',
+		description: '关都 151 只图鉴速查、属性弱点与中文名测验。',
 		tag: '图鉴',
 	},
 	{

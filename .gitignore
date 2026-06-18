@@ -7,6 +7,8 @@ dist/
 
 # generated from src/assets/pokemon151 (see bun run sync:pokemon151)
 public/pokemon151/artwork/
+# optional local cache (see bun run sync:pokemon -- --download)
+public/pokemon/artwork/
 
 # dependencies
 node_modules/

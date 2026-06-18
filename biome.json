@@ -1,7 +1,13 @@
 {
 	"$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
 	"files": {
-		"ignore": [".wrangler", ".astro", "dist"]
+		"ignore": [
+			".wrangler",
+			".astro",
+			"dist",
+			"src/data/pokemon.json",
+			"src/data/pokemon-chains.json"
+		]
 	},
 	"organizeImports": {
 		"enabled": true

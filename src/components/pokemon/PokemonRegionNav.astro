@@ -1,0 +1,68 @@
+---
+import type { PokemonRegion } from '~/data/pokemon-regions';
+import { pokemonNational, pokemonRegions } from '~/data/pokemon-regions';
+
+type Props = {
+	currentSlug?: string;
+};
+
+const { currentSlug } = Astro.props;
+---
+
+<nav class="pokedex-nav" aria-label="图鉴范围">
+	<a
+		class:list={['pokedex-nav__link', { 'is-active': !currentSlug }]}
+		href={pokemonNational.href}
+	>
+		全国图鉴
+	</a>
+	{
+		pokemonRegions.map((region: PokemonRegion) => (
+			<a
+				class:list={[
+					'pokedex-nav__link',
+					{ 'is-active': currentSlug === region.slug },
+				]}
+				href={region.legacyHref ?? `/pokedex/${region.slug}`}
+			>
+				{region.regionCn}
+			</a>
+		))
+	}
+</nav>
+
+<style>
+	.pokedex-nav {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.4rem;
+		margin: 0 0 1rem;
+	}
+
+	.pokedex-nav__link {
+		padding: 0.4rem 0.72rem;
+		border-radius: var(--radius-chip);
+		border: 1px solid color-mix(in srgb, var(--color-border) 88%, transparent);
+		background: color-mix(in srgb, var(--color-surface) 94%, var(--color-accent-soft) 6%);
+		color: var(--color-muted);
+		font-size: 0.82rem;
+		font-weight: 600;
+		text-decoration: none;
+		transition:
+			background var(--motion-gentle),
+			border-color var(--motion-gentle),
+			color var(--motion-gentle);
+	}
+
+	.pokedex-nav__link:hover,
+	.pokedex-nav__link:focus-visible {
+		border-color: color-mix(in srgb, var(--color-accent) 38%, var(--color-border) 62%);
+		color: var(--color-text);
+	}
+
+	.pokedex-nav__link.is-active {
+		border-color: color-mix(in srgb, var(--color-accent) 72%, var(--color-border) 28%);
+		background: color-mix(in srgb, var(--color-accent) 14%, var(--color-surface) 86%);
+		color: color-mix(in srgb, var(--color-accent) 82%, var(--color-text) 18%);
+	}
+</style>

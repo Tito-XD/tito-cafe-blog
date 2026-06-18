@@ -1,0 +1,429 @@
+---
+import { Icon } from 'astro-icon/components';
+
+type Props = {
+	dexId: string;
+	pokemonList: unknown;
+	chains: unknown;
+	artworkBase: string;
+	showFilters?: boolean;
+};
+
+const {
+	dexId,
+	pokemonList,
+	chains,
+	artworkBase,
+	showFilters = false,
+} = Astro.props;
+const wikiBase = 'https://wiki.52poke.com/wiki/';
+---
+
+<div class="pokemon-dex" data-dex-id={dexId}>
+	<div class="p151-toolbar">
+		<label class="p151-search">
+			<Icon name="ri:search-line" class="p151-search__icon" aria-hidden="true" />
+			<input
+				class="pokemon-dex-search"
+				type="search"
+				placeholder="输入编号/中英文名"
+				autocomplete="off"
+			/>
+		</label>
+		<button class="p151-toolbar__toggle pokemon-dex-hide-names" type="button" aria-pressed="false">
+			隐藏名字核对
+		</button>
+	</div>
+	{
+		showFilters && (
+			<div class="pokedex-filters" role="group" aria-label="图鉴筛选">
+				<button class="pokedex-filter" type="button" data-filter="legendary">传说</button>
+				<button class="pokedex-filter" type="button" data-filter="mythical">幻</button>
+				<button class="pokedex-filter" type="button" data-filter="forms">形态</button>
+				<button class="pokedex-filter" type="button" data-filter="regional">地区</button>
+			</div>
+		)
+	}
+	<p class="p151-toolbar-hint pokemon-dex-hide-hint" hidden>名字已隐藏，点按卡片显示中文名核对。</p>
+	<ul class="p151-grid pokemon-dex-grid"></ul>
+</div>
+
+<script
+	is:inline
+	define:vars={{ dexId, pokemonList, chains, artworkBase, wikiBase, showFilters }}
+>
+	const state = {
+		dexHideNames: false,
+		activeFilters: [],
+	};
+
+	const els = {
+		root: null,
+		panelDex: null,
+		dexSearch: null,
+		dexGrid: null,
+		dexHideNamesBtn: null,
+		dexHideHint: null,
+		filterBtns: [],
+	};
+
+	const refreshEls = () => {
+		els.root = document.querySelector(`[data-dex-id="${dexId}"]`);
+		if (!els.root) return;
+		els.panelDex = els.root;
+		els.dexSearch = els.root.querySelector('.pokemon-dex-search');
+		els.dexGrid = els.root.querySelector('.pokemon-dex-grid');
+		els.dexHideNamesBtn = els.root.querySelector('.pokemon-dex-hide-names');
+		els.dexHideHint = els.root.querySelector('.pokemon-dex-hide-hint');
+		els.filterBtns = [...els.root.querySelectorAll('.pokedex-filter')];
+	};
+
+	const pokemonById = Object.fromEntries(pokemonList.map((p) => [p.id, p]));
+
+	const TYPE_COLORS = {
+		normal: '#9fa19f',
+		fighting: '#c22e28',
+		fire: '#ee8130',
+		water: '#4592c4',
+		electric: '#c9a01e',
+		grass: '#5bbd4a',
+		ice: '#3aa8a3',
+		poison: '#9140a0',
+		ground: '#c9a227',
+		flying: '#8b7ad6',
+		psychic: '#ee6b76',
+		bug: '#91a119',
+		rock: '#bfb889',
+		ghost: '#735797',
+		dragon: '#6f35fc',
+		dark: '#715344',
+		steel: '#8a8aa8',
+		fairy: '#d685ad',
+	};
+
+	const REMOTE_ART =
+		'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork';
+
+	const wikiUrl = (nameCn) => `${wikiBase}${encodeURIComponent(nameCn)}`;
+	const artUrl = (artId) => `${artworkBase}/${artId}.png`;
+	const artFallback = (artId) => `${REMOTE_ART}/${artId}.png`;
+
+	const renderTypeLabel = (typeName, label, kind = 'type') => {
+		const color = TYPE_COLORS[typeName] || TYPE_COLORS.normal;
+		const fontSize = kind === 'weak' ? '0.66rem' : '0.72rem';
+		const fontWeight = kind === 'weak' ? '600' : '700';
+		return `<span style="color:${color};font-size:${fontSize};font-weight:${fontWeight};line-height:1.35">${label}</span>`;
+	};
+
+	const renderTypeRow = (p) => {
+		const types = p.types || [];
+		const typesCn = p.typesCn || [];
+		return types
+			.map((typeName, index) => renderTypeLabel(typeName, typesCn[index] || typeName))
+			.join('');
+	};
+
+	const renderWeaknessRow = (p) => {
+		const weaknesses = p.weaknesses || [];
+		const labels = p.weaknessesCn || [];
+		if (weaknesses.length === 0) return '';
+		const items = weaknesses
+			.map((typeName, index) =>
+				renderTypeLabel(typeName, labels[index] || typeName, 'weak'),
+			)
+			.join('');
+		const weakLabel = labels.join('、');
+		return `<div class="p151-member__weak" aria-label="弱点 ${weakLabel}"><span class="p151-weak-prefix">弱</span>${items}</div>`;
+	};
+
+	const chainSharedType = (ids) => {
+		const typeSets = ids.map((id) => (pokemonById[id]?.types || []));
+		if (typeSets.length === 0) return 'normal';
+
+		const sharedAcrossAll = [...new Set(typeSets.flat())].filter((typeName) =>
+			typeSets.every((set) => set.includes(typeName)),
+		);
+
+		if (sharedAcrossAll.length > 0) {
+			const firstPrimary = typeSets[0][0];
+			if (sharedAcrossAll.includes(firstPrimary)) return firstPrimary;
+			return sharedAcrossAll[0];
+		}
+
+		return typeSets[0][0] || 'normal';
+	};
+
+	const speciesToEntry = (species, variety) => {
+		const v = variety || species.varieties.find((row) => row.isDefault) || species.varieties[0];
+		return {
+			key: `${species.id}-${v.formKey}`,
+			speciesId: species.id,
+			artId: v.artId,
+			nameCn: v.nameCn || species.nameCn,
+			nameEn: v.nameEn || species.nameEn,
+			formLabelCn: v.formLabelCn || '',
+			types: v.types,
+			typesCn: v.typesCn,
+			weaknesses: v.weaknesses,
+			weaknessesCn: v.weaknessesCn,
+		};
+	};
+
+	const matchesPokemon = (entry, filterText) => {
+		const q = filterText.trim().toLowerCase();
+		if (!q) return true;
+		const typesText = (entry.typesCn || []).join('');
+		const weakText = (entry.weaknessesCn || []).join('');
+		const species = pokemonById[entry.speciesId];
+		const genusText = species?.genusCn || '';
+		const jaText = species?.nameJa || '';
+		return (
+			String(entry.speciesId).includes(q) ||
+			entry.nameCn.includes(filterText.trim()) ||
+			entry.nameEn.toLowerCase().includes(q) ||
+			(entry.formLabelCn && entry.formLabelCn.includes(filterText.trim())) ||
+			typesText.includes(filterText.trim()) ||
+			weakText.includes(filterText.trim()) ||
+			genusText.includes(filterText.trim()) ||
+			jaText.includes(filterText.trim())
+		);
+	};
+
+	const filterModeActive = () => showFilters && state.activeFilters.length > 0;
+
+	const speciesMatchesFilters = (species) => {
+		if (state.activeFilters.length === 0) return true;
+		if (state.activeFilters.includes('legendary') && species.isLegendary) return true;
+		if (state.activeFilters.includes('mythical') && species.isMythical) return true;
+		if (state.activeFilters.includes('forms') && species.hasAltForms) return true;
+		if (state.activeFilters.includes('regional') && species.hasRegionalForm) return true;
+		return false;
+	};
+
+	const buildFilterEntries = () => {
+		const seen = new Set();
+		const entries = [];
+		const push = (entry) => {
+			if (seen.has(entry.key)) return;
+			seen.add(entry.key);
+			entries.push(entry);
+		};
+		for (const species of pokemonList) {
+			if (!speciesMatchesFilters(species)) continue;
+
+			const wantForms = state.activeFilters.includes('forms');
+			const wantRegional = state.activeFilters.includes('regional');
+			const wantLegend = state.activeFilters.includes('legendary');
+			const wantMyth = state.activeFilters.includes('mythical');
+
+			if (wantForms || wantRegional) {
+				for (const variety of species.varieties) {
+					if (wantForms && !variety.isDefault && !variety.isRegional) {
+						push(speciesToEntry(species, variety));
+					}
+					if (wantRegional && variety.isRegional) {
+						push(speciesToEntry(species, variety));
+					}
+				}
+			}
+
+			if (wantLegend && species.isLegendary) {
+				push(speciesToEntry(species));
+			}
+			if (wantMyth && species.isMythical) {
+				push(speciesToEntry(species));
+			}
+
+			if (
+				!wantLegend &&
+				!wantMyth &&
+				!wantForms &&
+				!wantRegional &&
+				speciesMatchesFilters(species)
+			) {
+				entries.push(speciesToEntry(species));
+			}
+		}
+		return entries;
+	};
+
+	const renderMember = (entry) => {
+		const typeRow = renderTypeRow(entry);
+		const weakRow = renderWeaknessRow(entry);
+		const sup = String(entry.speciesId).padStart(3, '0');
+		const label = entry.formLabelCn
+			? `${entry.nameCn}（${entry.formLabelCn}）`
+			: entry.nameCn;
+		const artAlt = state.dexHideNames ? '宝可梦立绘' : label;
+		const maskClass = state.dexHideNames ? ' p151-member--mask-name' : '';
+
+		return `
+    <a class="p151-member${maskClass}" href="${wikiUrl(entry.nameCn)}" target="_blank" rel="noreferrer noopener" data-key="${entry.key}" data-id="${entry.speciesId}">
+      <img class="p151-member__art" src="${artUrl(entry.artId)}" onerror="this.onerror=null;this.src='${artFallback(entry.artId)}'" alt="${artAlt}" width="72" height="72" loading="lazy" />
+      <span class="p151-member__no">${sup}</span>
+      <span class="p151-member__label">${label}</span>
+      <span class="p151-member__en">${entry.nameEn}</span>
+      ${typeRow ? `<div class="p151-member__types">${typeRow}</div>` : ''}
+      ${weakRow}
+    </a>`;
+	};
+
+	const renderFlatGrid = (entries) => {
+		const cells = entries
+			.map((entry) => `<li class="pokedex-flat-cell">${renderMember(entry)}</li>`)
+			.join('');
+		els.dexGrid.innerHTML = cells;
+		els.dexGrid.classList.add('pokedex-grid--flat');
+	};
+
+	const renderEvoline = (ids) => {
+		const members = ids
+			.map((id) => renderMember(speciesToEntry(pokemonById[id])))
+			.join('<span class="p151-evoline__sep" aria-hidden="true">›</span>');
+		const chainType = chainSharedType(ids);
+		const chainColor = TYPE_COLORS[chainType] || TYPE_COLORS.normal;
+		const chainStyle = ` style="--p151-chain-type: ${chainColor}"`;
+
+		return `<li class="p151-evoline p151-evoline--typed" data-count="${ids.length}"${chainStyle}>${members}</li>`;
+	};
+
+	const renderDex = (filter = '') => {
+		if (!els.dexGrid) return;
+
+		if (filterModeActive()) {
+			const entries = buildFilterEntries().filter((entry) => matchesPokemon(entry, filter));
+			renderFlatGrid(entries);
+			return;
+		}
+
+		els.dexGrid.classList.remove('pokedex-grid--flat');
+		const trimmed = filter.trim();
+		const visibleChains = chains.filter(
+			(ids) =>
+				!trimmed ||
+				ids.some((id) => matchesPokemon(speciesToEntry(pokemonById[id]), filter)),
+		);
+		els.dexGrid.innerHTML = visibleChains.map(renderEvoline).join('');
+	};
+
+	const setDexHideNames = (on) => {
+		state.dexHideNames = on;
+		els.panelDex?.classList.toggle('p151-panel--hide-names', on);
+		els.dexHideNamesBtn?.setAttribute('aria-pressed', on ? 'true' : 'false');
+		els.dexHideNamesBtn?.classList.toggle('is-active', on);
+		if (els.dexHideNamesBtn) {
+			els.dexHideNamesBtn.textContent = on ? '显示全部名字' : '隐藏名字核对';
+		}
+		if (els.dexHideHint) els.dexHideHint.hidden = !on;
+		renderDex(els.dexSearch?.value || '');
+	};
+
+	const toggleFilter = (filterKey) => {
+		const idx = state.activeFilters.indexOf(filterKey);
+		if (idx >= 0) state.activeFilters.splice(idx, 1);
+		else state.activeFilters.push(filterKey);
+
+		els.filterBtns.forEach((btn) => {
+			const active = state.activeFilters.includes(btn.dataset.filter);
+			btn.classList.toggle('is-active', active);
+			btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+		});
+		renderDex(els.dexSearch?.value || '');
+	};
+
+	const cleanupKey = `__pokemonDexCleanup_${dexId}`;
+
+	const setup = () => {
+		const windowWithCleanup = window;
+		windowWithCleanup[cleanupKey]?.();
+		refreshEls();
+		if (!els.root) return;
+
+		setDexHideNames(false);
+		state.activeFilters = [];
+		els.filterBtns.forEach((btn) => {
+			btn.classList.remove('is-active');
+			btn.setAttribute('aria-pressed', 'false');
+		});
+
+		const onDexSearch = (e) => renderDex(e.target.value);
+		const onHideNames = () => setDexHideNames(!state.dexHideNames);
+		const onDexGridClick = (e) => {
+			if (!state.dexHideNames) return;
+			const member = e.target.closest('.p151-member');
+			if (!member) return;
+			if (!member.classList.contains('p151-member--revealed')) {
+				e.preventDefault();
+				member.classList.add('p151-member--revealed');
+				const label = member.querySelector('.p151-member__label');
+				if (label) {
+					const art = member.querySelector('.p151-member__art');
+					if (art) art.alt = label.textContent || '宝可梦立绘';
+				}
+			}
+		};
+		const onFilterClick = (e) => {
+			const btn = e.target.closest('.pokedex-filter');
+			if (!btn) return;
+			toggleFilter(btn.dataset.filter);
+		};
+
+		els.dexSearch?.addEventListener('input', onDexSearch);
+		els.dexHideNamesBtn?.addEventListener('click', onHideNames);
+		els.dexGrid?.addEventListener('click', onDexGridClick);
+		els.root.addEventListener('click', onFilterClick);
+
+		renderDex('');
+
+		windowWithCleanup[cleanupKey] = () => {
+			els.dexSearch?.removeEventListener('input', onDexSearch);
+			els.dexHideNamesBtn?.removeEventListener('click', onHideNames);
+			els.dexGrid?.removeEventListener('click', onDexGridClick);
+			els.root?.removeEventListener('click', onFilterClick);
+		};
+	};
+
+	setup();
+	document.addEventListener('astro:page-load', setup);
+</script>
+
+<style is:global>
+	.pokedex-filters {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.4rem;
+		margin: 0 0 0.85rem;
+	}
+
+	.pokedex-filter {
+		padding: 0.38rem 0.72rem;
+		border-radius: var(--radius-chip);
+		border: 1px solid color-mix(in srgb, var(--color-border) 88%, transparent);
+		background: var(--color-surface);
+		color: var(--color-muted);
+		font-size: 0.8rem;
+		font-weight: 600;
+		cursor: pointer;
+	}
+
+	.pokedex-filter.is-active {
+		border-color: color-mix(in srgb, var(--color-accent) 72%, var(--color-border) 28%);
+		background: color-mix(in srgb, var(--color-accent) 14%, var(--color-surface) 86%);
+		color: color-mix(in srgb, var(--color-accent) 82%, var(--color-text) 18%);
+	}
+
+	.pokedex-grid--flat {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(5.5rem, 1fr));
+		gap: 0.45rem;
+	}
+
+	.pokedex-flat-cell {
+		list-style: none;
+		min-width: 0;
+	}
+
+	.pokedex-flat-cell .p151-member {
+		width: 100%;
+	}
+</style>

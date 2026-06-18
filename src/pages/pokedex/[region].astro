@@ -1,0 +1,76 @@
+---
+import PageHeading from '~/components/PageHeading.astro';
+import PokemonDex from '~/components/pokemon/PokemonDex.astro';
+import PokemonDexGridStyles from '~/components/pokemon/PokemonDexGridStyles.astro';
+import PokemonRegionNav from '~/components/pokemon/PokemonRegionNav.astro';
+import pokemonChains from '~/data/pokemon-chains.json';
+import { pokemonRegions } from '~/data/pokemon-regions';
+import pokemonAll from '~/data/pokemon.json';
+import ScaffoldLayout from '~/layouts/ScaffoldLayout.astro';
+import {
+	filterChainsForRange,
+	filterPokemonByRange,
+} from '~/utils/pokemon-dex';
+
+export function getStaticPaths() {
+	return pokemonRegions
+		.filter((region) => !region.legacyHref)
+		.map((region) => ({
+			params: { region: region.slug },
+			props: { region },
+		}));
+}
+
+const { region } = Astro.props;
+const pokemonList = filterPokemonByRange(
+	pokemonAll,
+	region.idMin,
+	region.idMax,
+);
+const chains = filterChainsForRange(pokemonChains, region.idMin, region.idMax);
+const artworkBase = '/pokemon/artwork';
+---
+
+<ScaffoldLayout title={region.title} description={region.description}>
+	<PageHeading title={region.title} />
+	<p class="pokedex-lead">
+		{region.regionCn}地区新增宝可梦图鉴速查（全国编号 #{String(region.idMin).padStart(3, '0')}–#{String(region.idMax).padStart(3, '0')}）。数据来自
+		<a href="https://pokeapi.co/" target="_blank" rel="noreferrer noopener">PokeAPI</a>
+		与
+		<a href="https://wiki.52poke.com/" target="_blank" rel="noreferrer noopener">神奇宝贝百科</a>。
+	</p>
+
+	<PokemonRegionNav currentSlug={region.slug} />
+	<PokemonDex
+		dexId={region.slug}
+		pokemonList={pokemonList}
+		chains={chains}
+		artworkBase={artworkBase}
+		showFilters={false}
+	/>
+
+	<p class="pokedex-copy">
+		宝可梦、Pokémon 及相关素材为 Nintendo / Creatures Inc. / GAME FREAK inc. 的商标或版权资产。立绘来自
+		<a href="https://github.com/PokeAPI/sprites" target="_blank" rel="noreferrer noopener">PokeAPI Sprites</a>。
+		本页为个人学习向速查工具，与任天堂等公司无关联。
+	</p>
+</ScaffoldLayout>
+
+<PokemonDexGridStyles />
+
+<style>
+	.pokedex-lead {
+		margin: 0 0 1rem;
+		max-width: 42rem;
+		color: var(--color-muted);
+		line-height: 1.75;
+	}
+
+	.pokedex-copy {
+		margin: 1.5rem 0 0;
+		max-width: 42rem;
+		font-size: 0.82rem;
+		color: var(--color-muted);
+		line-height: 1.65;
+	}
+</style>
