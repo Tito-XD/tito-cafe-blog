@@ -41,12 +41,17 @@ export function filterPokemonByRange(
 	return list.filter((p) => p.id >= idMin && p.id <= idMax);
 }
 
+export function sortChainsByMinId(chains: number[][]): number[][] {
+	return [...chains].sort((a, b) => Math.min(...a) - Math.min(...b));
+}
+
 export function filterChainsForRange(
 	chains: number[][],
 	idMin: number,
 	idMax: number,
 ): number[][] {
-	return chains
+	const filtered = chains
 		.map((chain) => chain.filter((id) => id >= idMin && id <= idMax))
 		.filter((chain) => chain.length > 0);
+	return sortChainsByMinId(filtered);
 }

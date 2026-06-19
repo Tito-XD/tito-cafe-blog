@@ -108,6 +108,9 @@ const wikiBase = 'https://wiki.52poke.com/wiki/';
 	const artUrl = (artId) => `${artworkBase}/${artId}.png`;
 	const artFallback = (artId) => `${REMOTE_ART}/${artId}.png`;
 
+	const sortChainsByMinId = (list) =>
+		[...list].sort((a, b) => Math.min(...a) - Math.min(...b));
+
 	const renderTypeLabel = (typeName, label, kind = 'type') => {
 		const color = TYPE_COLORS[typeName] || TYPE_COLORS.normal;
 		const fontSize = kind === 'weak' ? '0.66rem' : '0.72rem';
@@ -291,17 +294,21 @@ const wikiBase = 'https://wiki.52poke.com/wiki/';
 		if (!els.dexGrid) return;
 
 		if (filterModeActive()) {
-			const entries = buildFilterEntries().filter((entry) => matchesPokemon(entry, filter));
+			const entries = buildFilterEntries()
+				.filter((entry) => matchesPokemon(entry, filter))
+				.sort((a, b) => a.speciesId - b.speciesId || a.artId - b.artId);
 			renderFlatGrid(entries);
 			return;
 		}
 
 		els.dexGrid.classList.remove('pokedex-grid--flat');
 		const trimmed = filter.trim();
-		const visibleChains = chains.filter(
-			(ids) =>
-				!trimmed ||
-				ids.some((id) => matchesPokemon(speciesToEntry(pokemonById[id]), filter)),
+		const visibleChains = sortChainsByMinId(
+			chains.filter(
+				(ids) =>
+					!trimmed ||
+					ids.some((id) => matchesPokemon(speciesToEntry(pokemonById[id]), filter)),
+			),
 		);
 		els.dexGrid.innerHTML = visibleChains.map(renderEvoline).join('');
 	};
