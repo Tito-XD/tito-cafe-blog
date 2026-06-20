@@ -4,6 +4,7 @@ import PokemonDex from '~/components/pokemon/PokemonDex.astro';
 import PokemonDexGridStyles from '~/components/pokemon/PokemonDexGridStyles.astro';
 import PokemonRegionNav from '~/components/pokemon/PokemonRegionNav.astro';
 import pokemon151 from '~/data/pokemon151.json';
+import pokemon30ArtKeys from '~/data/pokemon30-art-keys.json';
 import pokemonChains from '~/data/pokemon-chains.json';
 import pokemonAll from '~/data/pokemon.json';
 import ScaffoldLayout from '~/layouts/ScaffoldLayout.astro';
@@ -13,6 +14,7 @@ import {
 } from '~/utils/pokemon-dex';
 
 const artworkBase = '/pokemon151/artwork';
+const pokemon30ArtBase = '/pokemon30/artwork';
 const pokemonList = filterPokemonByRange(pokemonAll, 1, 151);
 const chains = filterChainsForRange(pokemonChains, 1, 151);
 ---
@@ -111,7 +113,15 @@ const chains = filterChainsForRange(pokemonChains, 1, 151);
 		中文名与百科链接参考神奇宝贝百科。属性弱点按双属性倍率计算（含免疫、抵抗），数据来自 PokeAPI 现行相克表。本页为个人学习向速查工具，与任天堂等公司无关联。
 	</p>
 
-	<script is:inline define:vars={{ pokemon151, artworkBase }}>
+	<script
+		is:inline
+		define:vars={{
+			pokemon151,
+			artworkBase,
+			pokemon30ArtKeys,
+			pokemon30ArtBase,
+		}}
+	>
 		const ROUND3_SIZE = 3;
 		const ROUND3_TRIES = 3;
 
@@ -187,7 +197,35 @@ const chains = filterChainsForRange(pokemonChains, 1, 151);
 			els.quizModeTabs = document.querySelectorAll('[data-quiz-mode]');
 		};
 
-		const artUrl = (id) => `${artworkBase}/${id}.png`;
+		const isPokemon30ArtOn = () => {
+			try {
+				const raw = localStorage.getItem('pokemon-30th-art');
+				if (raw === 'on' || raw === '"on"') return true;
+			} catch {
+				/* ignore */
+			}
+			return false;
+		};
+
+		const get30thArtKey = (id) =>
+			pokemon30ArtKeys.byArtId?.[id] || String(id).padStart(4, '0');
+
+		const pokemon30RemoteBase =
+			pokemon30ArtKeys.remoteBase ||
+			'https://www.pokemon.co.jp/ex/30th_logo/assets/img/download';
+
+		const artUrl = (id) => {
+			if (!isPokemon30ArtOn()) return `${artworkBase}/${id}.png`;
+			return `${pokemon30ArtBase}/${get30thArtKey(id)}.png`;
+		};
+
+		const artFallback = (id) => {
+			if (isPokemon30ArtOn()) {
+				return `${pokemon30RemoteBase}/${get30thArtKey(id)}.png`;
+			}
+			return `${artworkBase}/${id}.png`;
+		};
+
 		const formatNo = (id) => `#${String(id).padStart(3, '0')}`;
 
 		const shuffle = (arr) => {
@@ -238,6 +276,15 @@ const chains = filterChainsForRange(pokemonChains, 1, 151);
 			}
 		};
 
+		const setQuizArt = (p) => {
+			els.quizArt.onerror = null;
+			setQuizArt(p);
+			els.quizArt.onerror = function () {
+				this.onerror = null;
+				this.src = artFallback(p.id);
+			};
+		};
+
 		const renderQuestion = () => {
 			const p = currentPokemon();
 			if (!p) return;
@@ -247,7 +294,7 @@ const chains = filterChainsForRange(pokemonChains, 1, 151);
 			els.quizNext.hidden = true;
 
 			els.quizNumber.textContent = formatNo(p.id);
-			els.quizArt.src = artUrl(p.id);
+			setQuizArt(p);
 			els.quizArt.alt = '猜猜这是哪只宝可梦';
 
 			if (state.quizMode === 'choice') {
@@ -431,6 +478,12 @@ const chains = filterChainsForRange(pokemonChains, 1, 151);
 				e.preventDefault();
 				checkTypingAnswer();
 			};
+			const onArtModeChange = () => {
+				if (!els.quizPlay.hidden && state.queue.length > 0) {
+					const p = currentPokemon();
+					if (p) setQuizArt(p);
+				}
+			};
 
 			els.quizStart?.addEventListener('click', onQuizStart);
 			els.quizEnd?.addEventListener('click', onQuizEnd);
@@ -438,6 +491,7 @@ const chains = filterChainsForRange(pokemonChains, 1, 151);
 			els.quizNext?.addEventListener('click', onQuizNext);
 			els.quizChoice?.addEventListener('click', onQuizChoice);
 			els.quizTyping?.addEventListener('submit', onQuizTyping);
+			document.addEventListener('pokemon-art-mode-change', onArtModeChange);
 
 			windowWithCleanup.__p151Cleanup = () => {
 				els.quizStart?.removeEventListener('click', onQuizStart);
@@ -446,6 +500,7 @@ const chains = filterChainsForRange(pokemonChains, 1, 151);
 				els.quizNext?.removeEventListener('click', onQuizNext);
 				els.quizChoice?.removeEventListener('click', onQuizChoice);
 				els.quizTyping?.removeEventListener('submit', onQuizTyping);
+				document.removeEventListener('pokemon-art-mode-change', onArtModeChange);
 			};
 		};
 

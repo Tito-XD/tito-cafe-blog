@@ -6,6 +6,10 @@
 # Run development server
 bun run dev
 
+# Pokémon 30th anniversary logo artwork (official Pokémon Japan site)
+bun run sync:pokemon30          # copy src/assets/pokemon30 → public
+bun run sync:pokemon30 -- --download  # fetch from pokemon.co.jp/ex/30th_logo
+
 # Type checking and build
 bun run build                # Runs astro check && astro build
 bun run check                # Runs astro type checking only
