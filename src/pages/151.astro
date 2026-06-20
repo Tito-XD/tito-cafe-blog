@@ -286,15 +286,21 @@ const artworkBase = '/pokemon151/artwork';
 			);
 		};
 
+		const getPrimaryTypeColor = (p) => {
+			const primaryType = p.types?.[0] || 'normal';
+			return TYPE_COLORS[primaryType] || TYPE_COLORS.normal;
+		};
+
 		const renderMember = (p) => {
 			const typeRow = renderTypeRow(p);
 			const weakRow = renderWeaknessRow(p);
 			const sup = String(p.id).padStart(3, '0');
 			const artAlt = state.dexHideNames ? '宝可梦立绘' : p.nameCn;
 			const maskClass = state.dexHideNames ? ' p151-member--mask-name' : '';
+			const typeColor = getPrimaryTypeColor(p);
 
 			return `
-    <a class="p151-member p151-member--card${maskClass}" href="${wikiUrl(p.nameCn)}" target="_blank" rel="noreferrer noopener" data-id="${p.id}">
+    <a class="p151-member p151-member--card p151-member--typed${maskClass}" style="--p151-chain-type:${typeColor}" href="${wikiUrl(p.nameCn)}" target="_blank" rel="noreferrer noopener" data-id="${p.id}">
       <img class="p151-member__art" src="${artUrl(p.id)}" alt="${artAlt}" width="72" height="72" loading="lazy" />
       <span class="p151-member__no">${sup}</span>
       <span class="p151-member__label">${p.nameCn}</span>

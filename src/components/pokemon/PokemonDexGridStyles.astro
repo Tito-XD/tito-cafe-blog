@@ -126,16 +126,27 @@
 	}
 
 	.p151-member--card {
-		border: 1px solid color-mix(in srgb, var(--color-border) 86%, transparent);
+		box-sizing: border-box;
 		border-radius: var(--radius-soft);
-		background: color-mix(in srgb, var(--color-surface) 96%, var(--color-accent-soft) 4%);
-		box-shadow: inset 0 1px 0 color-mix(in srgb, var(--color-accent) 8%, transparent);
+		width: var(--p151-card-width, 5.85rem);
+		min-width: var(--p151-card-width, 5.85rem);
+		max-width: var(--p151-card-width, 5.85rem);
+		min-height: var(--p151-card-min-height, 9.15rem);
+		flex: 0 0 var(--p151-card-width, 5.85rem);
 	}
 
-	.p151-member--card:hover,
-	.p151-member--card:focus-visible {
-		border-color: color-mix(in srgb, var(--color-accent) 32%, var(--color-border) 68%);
-		background: color-mix(in srgb, var(--color-accent) 10%, var(--color-surface) 90%);
+	.p151-member--card.p151-member--typed {
+		border: 1px solid color-mix(in srgb, var(--p151-chain-type) 38%, var(--color-border) 62%);
+		border-top: 2px solid color-mix(in srgb, var(--p151-chain-type) 58%, var(--color-border) 42%);
+		background: color-mix(in srgb, var(--p151-chain-type) 14%, var(--color-surface) 86%);
+		box-shadow: inset 0 1px 0 color-mix(in srgb, var(--p151-chain-type) 18%, transparent);
+	}
+
+	.p151-member--card.p151-member--typed:hover,
+	.p151-member--card.p151-member--typed:focus-visible {
+		border-color: color-mix(in srgb, var(--p151-chain-type) 48%, var(--color-border) 52%);
+		border-top-color: color-mix(in srgb, var(--p151-chain-type) 68%, var(--color-border) 32%);
+		background: color-mix(in srgb, var(--p151-chain-type) 22%, var(--color-surface) 78%);
 	}
 
 	.pokedex-chain-group {
@@ -164,19 +175,26 @@
 
 	.pokedex-flat-cell {
 		list-style: none;
+		display: flex;
+		align-items: stretch;
 		min-width: 0;
+		min-height: var(--p151-card-min-height, 9.15rem);
 	}
 
 	.pokedex-grid--flat {
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(5.5rem, 1fr));
+		grid-template-columns: repeat(auto-fill, var(--p151-card-width, 5.85rem));
 		gap: 0.45rem;
+		justify-content: start;
+		align-items: stretch;
 	}
 
 	.pokedex-grid--flat .p151-member {
 		width: 100%;
 		min-width: 0;
-		flex: none;
+		max-width: none;
+		flex: 1 1 auto;
+		min-height: 100%;
 	}
 
 	.pokedex-grid--chains {
@@ -212,6 +230,10 @@
 		font-size: 0.7rem;
 		line-height: 1.3;
 		word-break: break-word;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+		overflow: hidden;
 	}
 
 	.p151-member__en {
@@ -342,10 +364,25 @@
 		}
 
 		.p151-member {
-			width: auto;
-			min-width: 0;
-			flex: none;
 			padding: 0.22rem 0.12rem 0.26rem;
+		}
+
+		.p151-member--card {
+			--p151-card-width: 100%;
+			--p151-card-min-height: 7.85rem;
+			width: 100%;
+			min-width: 0;
+			max-width: none;
+			flex: 1 1 auto;
+		}
+
+		.pokedex-grid--flat {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 0.35rem;
+		}
+
+		.pokedex-flat-cell {
+			min-height: var(--p151-card-min-height, 7.85rem);
 		}
 
 		.p151-member__art {
@@ -400,13 +437,13 @@
 			gap: 0.5rem;
 		}
 
-		.p151-member {
+		.p151-member:not(.p151-member--card) {
 			flex: 0 0 5.5rem;
 			width: 5.5rem;
 			min-width: 5.5rem;
 		}
 
-		.p151-member__art {
+		.p151-member:not(.p151-member--card) .p151-member__art {
 			width: calc(3.2rem + 5px);
 			height: calc(3.2rem + 5px);
 		}

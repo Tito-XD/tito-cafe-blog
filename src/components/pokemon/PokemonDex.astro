@@ -425,6 +425,11 @@ const visiblePrimaryFilters = filterMeta
 		return entries;
 	};
 
+	const getPrimaryTypeColor = (entry) => {
+		const primaryType = entry.types?.[0] || 'normal';
+		return TYPE_COLORS[primaryType] || TYPE_COLORS.normal;
+	};
+
 	const renderMember = (entry) => {
 		const typeRow = renderTypeRow(entry);
 		const weakRow = renderWeaknessRow(entry);
@@ -434,9 +439,10 @@ const visiblePrimaryFilters = filterMeta
 			: entry.nameCn;
 		const artAlt = state.dexHideNames ? '宝可梦立绘' : label;
 		const maskClass = state.dexHideNames ? ' p151-member--mask-name' : '';
+		const typeColor = getPrimaryTypeColor(entry);
 
 		return `
-    <a class="p151-member p151-member--card${maskClass}" href="${wikiUrl(entry.nameCn)}" target="_blank" rel="noreferrer noopener" data-key="${entry.key}" data-id="${entry.speciesId}">
+    <a class="p151-member p151-member--card p151-member--typed${maskClass}" style="--p151-chain-type:${typeColor}" href="${wikiUrl(entry.nameCn)}" target="_blank" rel="noreferrer noopener" data-key="${entry.key}" data-id="${entry.speciesId}">
       <img class="p151-member__art" src="${artUrl(entry.artId)}" onerror="this.onerror=null;this.src='${artFallback(entry.artId)}'" alt="${artAlt}" width="72" height="72" loading="lazy" />
       <span class="p151-member__no">${sup}</span>
       <span class="p151-member__label">${label}</span>
@@ -732,18 +738,4 @@ const visiblePrimaryFilters = filterMeta
 		color: color-mix(in srgb, var(--color-accent) 82%, var(--color-text) 18%);
 	}
 
-	.pokedex-grid--flat {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(5.5rem, 1fr));
-		gap: 0.45rem;
-	}
-
-	.pokedex-flat-cell {
-		list-style: none;
-		min-width: 0;
-	}
-
-	.pokedex-grid--flat .p151-member {
-		width: 100%;
-	}
 </style>
