@@ -32,6 +32,7 @@
 		"sync:cursor": "python3 scripts/sync-tito-cursor-from-assets.py",
 		"build:pokemon151": "python3 scripts/build-pokemon151.py",
 		"build:pokemon": "python3 scripts/build-pokemon-data.py",
+		"patch:pokemon-taxonomy": "python3 scripts/patch-pokemon-taxonomy.py",
 		"sync:pokemon151": "python3 scripts/sync-pokemon151-sprites.py",
 		"sync:pokemon": "python3 scripts/sync-pokemon-artwork.py"
 	},

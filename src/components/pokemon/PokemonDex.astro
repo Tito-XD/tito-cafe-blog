@@ -1,6 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
-import { pokemonPrimaryFilters } from '~/data/pokemon-filters';
+import { GENERATION_HOME_REGION, pokemonPrimaryFilters } from '~/data/pokemon-filters';
 import {
 	buildDexFilterMeta,
 	type DexScope,
@@ -13,9 +13,7 @@ type Props = {
 	chains: unknown;
 	artworkBase: string;
 	showFilters?: boolean;
-	/** National = full cross-region filters; regional = scoped to current dex page. */
 	dexScope?: DexScope;
-	/** Required when dexScope is regional — the page's region label (关都, 帕底亚, …). */
 	pageRegionCn?: string;
 };
 
@@ -60,56 +58,34 @@ const visiblePrimaryFilters = filterMeta
 			<div class="pokedex-filters-wrap">
 				<div class="pokedex-filters" role="group" aria-label="图鉴筛选">
 					{visiblePrimaryFilters.map((filter) => (
-						<button
-							class="pokedex-filter"
-							type="button"
-							data-filter={filter.key}
-						>
+						<button class="pokedex-filter" type="button" data-filter={filter.key}>
 							{filter.label}
 						</button>
 					))}
 				</div>
 				{
-					filterMeta?.showHomeSubfilters && (
+					filterMeta?.subGroups.map((group) => (
 						<div
-							class="pokedex-subfilters pokedex-subfilters--home"
+							class="pokedex-subfilters"
+							data-sub-group={group.id}
 							role="group"
-							aria-label="出身地区"
+							aria-label={group.ariaLabel}
 							hidden
 						>
-							<span class="pokedex-subfilters__label">出身</span>
-							{filterMeta.availableHomeRegions.map((region) => (
+							{group.showLabel && group.label && (
+								<span class="pokedex-subfilters__label">{group.label}</span>
+							)}
+							{group.options.map((option) => (
 								<button
 									class="pokedex-filter pokedex-subfilter"
 									type="button"
-									data-filter={`home:${region}`}
+									data-filter={option.filterKey}
 								>
-									{region}
+									{option.label}
 								</button>
 							))}
 						</div>
-					)
-				}
-				{
-					filterMeta && filterMeta.availableFormRegions.length > 0 && (
-						<div
-							class="pokedex-subfilters pokedex-subfilters--form"
-							role="group"
-							aria-label="地区形态"
-							hidden
-						>
-							<span class="pokedex-subfilters__label">形态</span>
-							{filterMeta.availableFormRegions.map((region) => (
-								<button
-									class="pokedex-filter pokedex-subfilter"
-									type="button"
-									data-filter={`form:${region}`}
-								>
-									{region}
-								</button>
-							))}
-						</div>
-					)
+					))
 				}
 			</div>
 		)
@@ -128,15 +104,10 @@ const visiblePrimaryFilters = filterMeta
 		wikiBase,
 		showFilters,
 		filterMeta,
+		generationHomeRegion: GENERATION_HOME_REGION,
 	}}
 >
-	const PRIMARY_KEYS = ['legendary', 'mythical', 'forms', 'regional', 'paradox'];
-	const HOME_PARENT_KEYS = ['legendary', 'mythical', 'paradox'];
-
-	const state = {
-		dexHideNames: false,
-		activeFilters: [],
-	};
+	const state = { dexHideNames: false, activeFilters: [] };
 
 	const els = {
 		root: null,
@@ -146,8 +117,6 @@ const visiblePrimaryFilters = filterMeta
 		dexHideNamesBtn: null,
 		dexHideHint: null,
 		filterBtns: [],
-		homeSubfilterRow: null,
-		formSubfilterRow: null,
 	};
 
 	const refreshEls = () => {
@@ -159,8 +128,6 @@ const visiblePrimaryFilters = filterMeta
 		els.dexHideNamesBtn = els.root.querySelector('.pokemon-dex-hide-names');
 		els.dexHideHint = els.root.querySelector('.pokemon-dex-hide-hint');
 		els.filterBtns = [...els.root.querySelectorAll('.pokedex-filter')];
-		els.homeSubfilterRow = els.root.querySelector('.pokedex-subfilters--home');
-		els.formSubfilterRow = els.root.querySelector('.pokedex-subfilters--form');
 	};
 
 	const pokemonById = Object.fromEntries(pokemonList.map((p) => [p.id, p]));
@@ -229,17 +196,14 @@ const visiblePrimaryFilters = filterMeta
 	const chainSharedType = (ids) => {
 		const typeSets = ids.map((id) => (pokemonById[id]?.types || []));
 		if (typeSets.length === 0) return 'normal';
-
 		const sharedAcrossAll = [...new Set(typeSets.flat())].filter((typeName) =>
 			typeSets.every((set) => set.includes(typeName)),
 		);
-
 		if (sharedAcrossAll.length > 0) {
 			const firstPrimary = typeSets[0][0];
 			if (sharedAcrossAll.includes(firstPrimary)) return firstPrimary;
 			return sharedAcrossAll[0];
 		}
-
 		return typeSets[0][0] || 'normal';
 	};
 
@@ -262,12 +226,9 @@ const visiblePrimaryFilters = filterMeta
 	const matchesPokemon = (entry, filterText) => {
 		const q = filterText.trim().toLowerCase();
 		if (!q) return true;
+		const species = pokemonById[entry.speciesId];
 		const typesText = (entry.typesCn || []).join('');
 		const weakText = (entry.weaknessesCn || []).join('');
-		const species = pokemonById[entry.speciesId];
-		const genusText = species?.genusCn || '';
-		const jaText = species?.nameJa || '';
-		const regionText = species?.regionCn || '';
 		return (
 			String(entry.speciesId).includes(q) ||
 			entry.nameCn.includes(filterText.trim()) ||
@@ -275,27 +236,23 @@ const visiblePrimaryFilters = filterMeta
 			(entry.formLabelCn && entry.formLabelCn.includes(filterText.trim())) ||
 			typesText.includes(filterText.trim()) ||
 			weakText.includes(filterText.trim()) ||
-			genusText.includes(filterText.trim()) ||
-			jaText.includes(filterText.trim()) ||
-			regionText.includes(filterText.trim())
+			(species?.genusCn || '').includes(filterText.trim()) ||
+			(species?.nameJa || '').includes(filterText.trim()) ||
+			(species?.regionCn || '').includes(filterText.trim())
 		);
 	};
 
-	const getPrimaries = () =>
-		state.activeFilters.filter((key) => PRIMARY_KEYS.includes(key));
+	const getPrimaries = () => {
+		if (!filterMeta) return [];
+		return state.activeFilters.filter((key) => filterMeta.primaryKeys.includes(key));
+	};
 
-	const getHomeRegions = () =>
+	const getSubs = (prefix) =>
 		state.activeFilters
-			.filter((key) => key.startsWith('home:'))
-			.map((key) => key.slice(5));
-
-	const getFormRegions = () =>
-		state.activeFilters
-			.filter((key) => key.startsWith('form:'))
-			.map((key) => key.slice(5));
+			.filter((key) => key.startsWith(`${prefix}:`))
+			.map((key) => key.slice(prefix.length + 1));
 
 	const hasActiveFilters = () => state.activeFilters.length > 0;
-
 	const filterModeActive = () => showFilters && hasActiveFilters();
 
 	const matchesScopedRegionalSpecies = (species) => {
@@ -314,12 +271,35 @@ const visiblePrimaryFilters = filterMeta
 		return variety.isRegional && variety.formLabelCn === filterMeta.pageRegionCn;
 	};
 
+	const isOtherAltVariety = (variety) =>
+		!variety.isDefault &&
+		!variety.isRegional &&
+		!variety.isMega &&
+		!variety.isGmax &&
+		!variety.isTotem;
+
+	const varietyMatchesKind = (variety, kind) => {
+		if (kind === 'mega') return variety.isMega;
+		if (kind === 'gmax') return variety.isGmax;
+		if (kind === 'totem') return variety.isTotem;
+		return false;
+	};
+
 	const speciesMatchesFilters = (species) => {
 		const primaries = getPrimaries();
-		const homeRegions = getHomeRegions();
-		const formRegions = getFormRegions();
+		const homeRegions = getSubs('home');
+		const formRegions = getSubs('form');
+		const starterRegions = getSubs('starter');
+		const typeNames = getSubs('type');
 
-		if (primaries.length === 0 && homeRegions.length === 0 && formRegions.length === 0) {
+		if (
+			primaries.length === 0 &&
+			homeRegions.length === 0 &&
+			formRegions.length === 0 &&
+			starterRegions.length === 0 &&
+			typeNames.length === 0 &&
+			getSubs('kind').length === 0
+		) {
 			return true;
 		}
 
@@ -327,11 +307,29 @@ const visiblePrimaryFilters = filterMeta
 			if (key === 'legendary' && !species.isLegendary) return false;
 			if (key === 'mythical' && !species.isMythical) return false;
 			if (key === 'paradox' && !species.isParadox) return false;
+			if (key === 'baby' && !species.isBaby) return false;
+			if (key === 'pseudo' && !species.isPseudoLegendary) return false;
+			if (key === 'ultra' && !species.isUltraBeast) return false;
+			if (key === 'fossil' && !species.isFossil) return false;
+			if (key === 'starter' && !species.isStarter) return false;
+			if (key === 'basic' && species.evolutionStage !== 'basic') return false;
+			if (key === 'final' && species.evolutionStage !== 'final') return false;
+			if (key === 'monotype' && species.types.length !== 1) return false;
+			if (key === 'dualtype' && species.types.length !== 2) return false;
 			if (key === 'forms' && !species.hasAltForms) return false;
 			if (key === 'regional' && !matchesScopedRegionalSpecies(species)) return false;
 		}
 
 		if (homeRegions.length > 0 && !homeRegions.includes(species.regionCn)) return false;
+
+		if (starterRegions.length > 0) {
+			const label = generationHomeRegion[species.starterGen] || '';
+			if (!starterRegions.includes(label)) return false;
+		}
+
+		if (typeNames.length > 0) {
+			if (!species.types.some((typeName) => typeNames.includes(typeName))) return false;
+		}
 
 		if (formRegions.length > 0) {
 			const hasForm = species.varieties.some(
@@ -345,7 +343,8 @@ const visiblePrimaryFilters = filterMeta
 
 	const varietyMatchesFilters = (variety) => {
 		const primaries = getPrimaries();
-		const formRegions = getFormRegions();
+		const formRegions = getSubs('form');
+		const kindFilters = getSubs('kind');
 		const wantForms = primaries.includes('forms');
 		const wantRegional = primaries.includes('regional');
 
@@ -354,13 +353,26 @@ const visiblePrimaryFilters = filterMeta
 		}
 
 		if (wantForms && wantRegional) {
-			const isAlt = !variety.isDefault && !variety.isRegional;
+			const isAlt = wantForms && (kindFilters.length > 0
+				? kindFilters.some((kind) => varietyMatchesKind(variety, kind))
+				: isOtherAltVariety(variety));
 			const isReg = matchesScopedRegionalVariety(variety);
-			return (wantForms && isAlt) || (wantRegional && isReg);
+			return isAlt || isReg;
 		}
 
-		if (wantForms) return !variety.isDefault && !variety.isRegional;
+		if (wantForms) {
+			if (kindFilters.length > 0) {
+				return kindFilters.some((kind) => varietyMatchesKind(variety, kind));
+			}
+			return isOtherAltVariety(variety);
+		}
+
 		if (wantRegional) return matchesScopedRegionalVariety(variety);
+
+		if (kindFilters.length > 0) {
+			return kindFilters.some((kind) => varietyMatchesKind(variety, kind));
+		}
+
 		if (formRegions.length > 0) {
 			return variety.isRegional && formRegions.includes(variety.formLabelCn);
 		}
@@ -368,14 +380,15 @@ const visiblePrimaryFilters = filterMeta
 		return variety.isDefault;
 	};
 
-	const buildFilterEntries = () => {
+	const varietyModeActive = () => {
 		const primaries = getPrimaries();
-		const formRegions = getFormRegions();
-		const varietyMode =
-			primaries.includes('forms') ||
-			primaries.includes('regional') ||
-			formRegions.length > 0;
+		if (primaries.includes('forms') || primaries.includes('regional')) return true;
+		if (getSubs('kind').length > 0) return true;
+		if (getSubs('form').length > 0) return true;
+		return false;
+	};
 
+	const buildFilterEntries = () => {
 		const seen = new Set();
 		const entries = [];
 		const push = (entry) => {
@@ -387,7 +400,7 @@ const visiblePrimaryFilters = filterMeta
 		for (const species of pokemonList) {
 			if (!speciesMatchesFilters(species)) continue;
 
-			if (varietyMode) {
+			if (varietyModeActive()) {
 				for (const variety of species.varieties) {
 					if (varietyMatchesFilters(variety)) {
 						push(speciesToEntry(species, variety));
@@ -426,10 +439,9 @@ const visiblePrimaryFilters = filterMeta
 	};
 
 	const renderFlatGrid = (entries) => {
-		const cells = entries
+		els.dexGrid.innerHTML = entries
 			.map((entry) => `<li class="pokedex-flat-cell">${renderMember(entry)}</li>`)
 			.join('');
-		els.dexGrid.innerHTML = cells;
 		els.dexGrid.classList.add('pokedex-grid--flat');
 	};
 
@@ -439,9 +451,7 @@ const visiblePrimaryFilters = filterMeta
 			.join('<span class="p151-evoline__sep" aria-hidden="true">›</span>');
 		const chainType = chainSharedType(ids);
 		const chainColor = TYPE_COLORS[chainType] || TYPE_COLORS.normal;
-		const chainStyle = ` style="--p151-chain-type: ${chainColor}"`;
-
-		return `<li class="p151-evoline p151-evoline--typed" data-count="${ids.length}"${chainStyle}>${members}</li>`;
+		return `<li class="p151-evoline p151-evoline--typed" data-count="${ids.length}" style="--p151-chain-type: ${chainColor}">${members}</li>`;
 	};
 
 	const renderDex = (filter = '') => {
@@ -475,63 +485,53 @@ const visiblePrimaryFilters = filterMeta
 		});
 	};
 
-	const pruneOrphanSubfilters = () => {
-		const primaries = getPrimaries();
-		const showHomeParents = primaries.some((key) => HOME_PARENT_KEYS.includes(key));
-		if (!showHomeParents) {
-			state.activeFilters = state.activeFilters.filter((key) => !key.startsWith('home:'));
-		}
-		if (!primaries.includes('regional')) {
-			state.activeFilters = state.activeFilters.filter((key) => !key.startsWith('form:'));
-		}
+	const allSubFilterKeys = () => {
+		if (!filterMeta) return [];
+		return filterMeta.subGroups.flatMap((group) =>
+			group.options.map((option) => option.filterKey),
+		);
+	};
 
+	const pruneOrphanSubfilters = () => {
 		if (!filterMeta) return;
 
+		const primaries = getPrimaries();
+
+		for (const group of filterMeta.subGroups) {
+			const parentActive = group.parentKeys.some((key) => primaries.includes(key));
+			if (!parentActive) {
+				const keys = new Set(group.options.map((option) => option.filterKey));
+				state.activeFilters = state.activeFilters.filter((key) => !keys.has(key));
+			}
+		}
+
+		const allowedSubs = new Set(allSubFilterKeys());
 		state.activeFilters = state.activeFilters.filter((key) => {
-			if (PRIMARY_KEYS.includes(key)) {
+			if (filterMeta.primaryKeys.includes(key)) {
 				return filterMeta.enabledPrimaries.includes(key);
 			}
-			if (key.startsWith('home:')) {
-				return (
-					filterMeta.showHomeSubfilters &&
-					filterMeta.availableHomeRegions.includes(key.slice(5))
-				);
-			}
-			if (key.startsWith('form:')) {
-				return filterMeta.availableFormRegions.includes(key.slice(5));
-			}
+			if (allowedSubs.has(key)) return true;
 			return false;
 		});
 	};
 
 	const updateSubfilterVisibility = () => {
+		if (!filterMeta || !els.root) return;
 		const primaries = getPrimaries();
-		const showHome =
-			filterMeta?.showHomeSubfilters &&
-			primaries.some((key) => HOME_PARENT_KEYS.includes(key));
-		const showForm =
-			filterMeta &&
-			filterMeta.availableFormRegions.length > 0 &&
-			(primaries.includes('regional') || getFormRegions().length > 0);
-		if (els.homeSubfilterRow) els.homeSubfilterRow.hidden = !showHome;
-		if (els.formSubfilterRow) els.formSubfilterRow.hidden = !showForm;
+		for (const group of filterMeta.subGroups) {
+			const row = els.root.querySelector(`[data-sub-group="${group.id}"]`);
+			if (!row) continue;
+			const parentActive = group.parentKeys.some((key) => primaries.includes(key));
+			row.hidden = !parentActive;
+		}
 	};
 
 	const isFilterAllowed = (filterKey) => {
 		if (!filterMeta) return false;
-		if (PRIMARY_KEYS.includes(filterKey)) {
+		if (filterMeta.primaryKeys.includes(filterKey)) {
 			return filterMeta.enabledPrimaries.includes(filterKey);
 		}
-		if (filterKey.startsWith('home:')) {
-			return (
-				filterMeta.showHomeSubfilters &&
-				filterMeta.availableHomeRegions.includes(filterKey.slice(5))
-			);
-		}
-		if (filterKey.startsWith('form:')) {
-			return filterMeta.availableFormRegions.includes(filterKey.slice(5));
-		}
-		return false;
+		return allSubFilterKeys().includes(filterKey);
 	};
 
 	const setDexHideNames = (on) => {
@@ -548,11 +548,9 @@ const visiblePrimaryFilters = filterMeta
 
 	const toggleFilter = (filterKey) => {
 		if (!isFilterAllowed(filterKey)) return;
-
 		const idx = state.activeFilters.indexOf(filterKey);
 		if (idx >= 0) state.activeFilters.splice(idx, 1);
 		else state.activeFilters.push(filterKey);
-
 		pruneOrphanSubfilters();
 		updateSubfilterVisibility();
 		syncFilterButtons();
@@ -577,14 +575,13 @@ const visiblePrimaryFilters = filterMeta
 		const onDexGridClick = (e) => {
 			if (!state.dexHideNames) return;
 			const member = e.target.closest('.p151-member');
-			if (!member) return;
-			if (!member.classList.contains('p151-member--revealed')) {
-				e.preventDefault();
-				member.classList.add('p151-member--revealed');
-				const label = member.querySelector('.p151-member__label');
-				if (label) {
+			if (!member?.classList.contains('p151-member--revealed')) {
+				if (member) {
+					e.preventDefault();
+					member.classList.add('p151-member--revealed');
+					const label = member.querySelector('.p151-member__label');
 					const art = member.querySelector('.p151-member__art');
-					if (art) art.alt = label.textContent || '宝可梦立绘';
+					if (label && art) art.alt = label.textContent || '宝可梦立绘';
 				}
 			}
 		};
@@ -598,7 +595,6 @@ const visiblePrimaryFilters = filterMeta
 		els.dexHideNamesBtn?.addEventListener('click', onHideNames);
 		els.dexGrid?.addEventListener('click', onDexGridClick);
 		els.root.addEventListener('click', onFilterClick);
-
 		renderDex('');
 
 		windowWithCleanup[cleanupKey] = () => {

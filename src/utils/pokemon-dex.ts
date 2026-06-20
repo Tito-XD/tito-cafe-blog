@@ -1,7 +1,12 @@
-import type { PokemonPrimaryFilterKey } from '~/data/pokemon-filters';
 import {
+	ALL_PRIMARY_FILTER_KEYS,
+	GENERATION_HOME_REGION,
+	pokemonFormKindOptions,
 	pokemonFormRegions,
 	pokemonHomeRegions,
+	pokemonTypeOptions,
+	type PokemonPrimaryFilterKey,
+	type PokemonSubGroupId,
 } from '~/data/pokemon-filters';
 
 export type PokemonSpecies = {
@@ -20,8 +25,18 @@ export type PokemonSpecies = {
 	isLegendary: boolean;
 	isMythical: boolean;
 	isParadox: boolean;
+	isBaby: boolean;
+	isPseudoLegendary: boolean;
+	isUltraBeast: boolean;
+	isFossil: boolean;
+	isStarter: boolean;
+	starterGen: number;
+	evolutionStage: string;
 	hasAltForms: boolean;
 	hasRegionalForm: boolean;
+	hasMega: boolean;
+	hasGmax: boolean;
+	hasTotem: boolean;
 	defaultArtId: number;
 	varieties: PokemonVariety[];
 };
@@ -35,6 +50,9 @@ export type PokemonVariety = {
 	formLabelCn: string;
 	isRegional: boolean;
 	isDefault: boolean;
+	isMega: boolean;
+	isGmax: boolean;
+	isTotem: boolean;
 	types: string[];
 	typesCn: string[];
 	weaknesses: string[];
@@ -66,14 +84,26 @@ export function filterChainsForRange(
 
 export type DexScope = 'national' | 'regional';
 
+export type DexSubFilterOption = {
+	filterKey: string;
+	label: string;
+};
+
+export type DexSubFilterGroup = {
+	id: PokemonSubGroupId;
+	ariaLabel: string;
+	showLabel: boolean;
+	label?: string;
+	parentKeys: PokemonPrimaryFilterKey[];
+	options: DexSubFilterOption[];
+};
+
 export type DexFilterMeta = {
 	scope: DexScope;
-	/** Set on regional dex pages (e.g. 帕底亚); empty on national. */
 	pageRegionCn: string;
-	showHomeSubfilters: boolean;
-	availableHomeRegions: string[];
-	availableFormRegions: string[];
+	primaryKeys: PokemonPrimaryFilterKey[];
 	enabledPrimaries: PokemonPrimaryFilterKey[];
+	subGroups: DexSubFilterGroup[];
 };
 
 export function getAvailableHomeRegions(list: PokemonSpecies[]): string[] {
@@ -96,7 +126,6 @@ export function getAvailableFormRegions(list: PokemonSpecies[]): string[] {
 	return pokemonFormRegions.filter((region) => found.has(region));
 }
 
-/** Regional dex pages only catalogue forms native to that region label. */
 export function getScopedFormRegions(
 	list: PokemonSpecies[],
 	pageRegionCn: string,
@@ -122,22 +151,144 @@ export function speciesHasScopedRegionalForm(
 	);
 }
 
+export function getAvailableFormKinds(list: PokemonSpecies[]): DexSubFilterOption[] {
+	const found = new Set<string>();
+	for (const species of list) {
+		if (species.hasMega) found.add('mega');
+		if (species.hasGmax) found.add('gmax');
+		if (species.hasTotem) found.add('totem');
+	}
+	return pokemonFormKindOptions
+		.filter((row) => found.has(row.key))
+		.map((row) => ({ filterKey: `kind:${row.key}`, label: row.label }));
+}
+
+export function getAvailableTypes(list: PokemonSpecies[]): DexSubFilterOption[] {
+	const found = new Set<string>();
+	for (const species of list) {
+		for (const typeName of species.types) found.add(typeName);
+	}
+	return pokemonTypeOptions
+		.filter((row) => found.has(row.key))
+		.map((row) => ({ filterKey: `type:${row.key}`, label: row.label }));
+}
+
+export function getAvailableStarterGens(list: PokemonSpecies[]): DexSubFilterOption[] {
+	const gens = new Set<number>();
+	for (const species of list) {
+		if (species.isStarter && species.starterGen > 0) gens.add(species.starterGen);
+	}
+	return [...gens]
+		.sort((a, b) => a - b)
+		.map((gen) => {
+			const label = GENERATION_HOME_REGION[gen] || String(gen);
+			return { filterKey: `starter:${label}`, label };
+		});
+}
+
 export function getEnabledPrimaries(
 	list: PokemonSpecies[],
 	scope: DexScope,
 	pageRegionCn = '',
 ): PokemonPrimaryFilterKey[] {
 	const keys: PokemonPrimaryFilterKey[] = [];
-	if (list.some((species) => species.isLegendary)) keys.push('legendary');
-	if (list.some((species) => species.isMythical)) keys.push('mythical');
-	if (list.some((species) => species.isParadox)) keys.push('paradox');
-	if (list.some((species) => species.hasAltForms)) keys.push('forms');
+	if (list.some((s) => s.isLegendary)) keys.push('legendary');
+	if (list.some((s) => s.isMythical)) keys.push('mythical');
+	if (list.some((s) => s.isParadox)) keys.push('paradox');
+	if (list.some((s) => s.isBaby)) keys.push('baby');
+	if (list.some((s) => s.isPseudoLegendary)) keys.push('pseudo');
+	if (list.some((s) => s.isUltraBeast)) keys.push('ultra');
+	if (list.some((s) => s.isStarter)) keys.push('starter');
+	if (list.some((s) => s.isFossil)) keys.push('fossil');
+	if (list.some((s) => s.evolutionStage === 'basic')) keys.push('basic');
+	if (list.some((s) => s.evolutionStage === 'final')) keys.push('final');
+	if (list.some((s) => s.types.length === 1)) keys.push('monotype');
+	if (list.some((s) => s.types.length === 2)) keys.push('dualtype');
+	if (getAvailableTypes(list).length > 0) keys.push('type');
+	if (list.some((s) => s.hasAltForms)) keys.push('forms');
 	if (scope === 'national') {
-		if (list.some((species) => species.hasRegionalForm)) keys.push('regional');
+		if (list.some((s) => s.hasRegionalForm)) keys.push('regional');
 	} else if (getScopedFormRegions(list, pageRegionCn).length > 0) {
 		keys.push('regional');
 	}
 	return keys;
+}
+
+function buildSubGroups(
+	list: PokemonSpecies[],
+	scope: DexScope,
+	pageRegionCn: string,
+): DexSubFilterGroup[] {
+	const groups: DexSubFilterGroup[] = [];
+
+	const homeRegions =
+		scope === 'national' ? getAvailableHomeRegions(list) : [];
+	if (homeRegions.length > 1) {
+		groups.push({
+			id: 'home',
+			ariaLabel: '出身地区',
+			showLabel: true,
+			label: '出身',
+			parentKeys: ['legendary', 'mythical', 'paradox'],
+			options: homeRegions.map((region) => ({
+				filterKey: `home:${region}`,
+				label: region,
+			})),
+		});
+	}
+
+	const formRegions =
+		scope === 'national'
+			? getAvailableFormRegions(list)
+			: getScopedFormRegions(list, pageRegionCn);
+	if (formRegions.length > 0) {
+		groups.push({
+			id: 'formRegion',
+			ariaLabel: '地区形态来源',
+			showLabel: false,
+			parentKeys: ['regional'],
+			options: formRegions.map((region) => ({
+				filterKey: `form:${region}`,
+				label: region,
+			})),
+		});
+	}
+
+	const formKinds = getAvailableFormKinds(list);
+	if (formKinds.length > 0) {
+		groups.push({
+			id: 'formKind',
+			ariaLabel: '特殊形态种类',
+			showLabel: false,
+			parentKeys: ['forms'],
+			options: formKinds,
+		});
+	}
+
+	const starterGens = getAvailableStarterGens(list);
+	if (starterGens.length > 0) {
+		groups.push({
+			id: 'starterGen',
+			ariaLabel: '御三家世代',
+			showLabel: true,
+			label: '世代',
+			parentKeys: ['starter'],
+			options: starterGens,
+		});
+	}
+
+	const types = getAvailableTypes(list);
+	if (types.length > 0) {
+		groups.push({
+			id: 'element',
+			ariaLabel: '属性',
+			showLabel: false,
+			parentKeys: ['type'],
+			options: types,
+		});
+	}
+
+	return groups;
 }
 
 export function buildDexFilterMeta(
@@ -145,20 +296,11 @@ export function buildDexFilterMeta(
 	scope: DexScope,
 	pageRegionCn = '',
 ): DexFilterMeta {
-	const availableHomeRegions =
-		scope === 'national' ? getAvailableHomeRegions(list) : [];
-	const availableFormRegions =
-		scope === 'national'
-			? getAvailableFormRegions(list)
-			: getScopedFormRegions(list, pageRegionCn);
-	const enabledPrimaries = getEnabledPrimaries(list, scope, pageRegionCn);
-
 	return {
 		scope,
 		pageRegionCn: scope === 'regional' ? pageRegionCn : '',
-		showHomeSubfilters: scope === 'national' && availableHomeRegions.length > 1,
-		availableHomeRegions,
-		availableFormRegions,
-		enabledPrimaries,
+		primaryKeys: [...ALL_PRIMARY_FILTER_KEYS],
+		enabledPrimaries: getEnabledPrimaries(list, scope, pageRegionCn),
+		subGroups: buildSubGroups(list, scope, pageRegionCn),
 	};
 }
