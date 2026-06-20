@@ -11,7 +11,6 @@ import ScaffoldLayout from '~/layouts/ScaffoldLayout.astro';
 const wikiBase = 'https://wiki.52poke.com/wiki/';
 const artworkBase = '/pokemon151/artwork';
 const pokemon30ArtBase = '/pokemon30/artwork';
-const pokemon30RemoteBase = 'https://www.serebii.net/pokemon30';
 ---
 
 <ScaffoldLayout
@@ -124,7 +123,6 @@ const pokemon30RemoteBase = 'https://www.serebii.net/pokemon30';
 			artworkBase,
 			pokemon30ArtKeys,
 			pokemon30ArtBase,
-			pokemon30RemoteBase,
 		}}
 	>
 		const ROUND3_SIZE = 3;
@@ -224,7 +222,11 @@ const pokemon30RemoteBase = 'https://www.serebii.net/pokemon30';
 		};
 
 		const get30thArtKey = (id) =>
-			pokemon30ArtKeys.byArtId?.[id] || String(id).padStart(3, '0');
+			pokemon30ArtKeys.byArtId?.[id] || String(id).padStart(4, '0');
+
+		const pokemon30RemoteBase =
+			pokemon30ArtKeys.remoteBase ||
+			'https://www.pokemon.co.jp/ex/30th_logo/assets/img/download';
 
 		const artUrl = (id) => {
 			if (!isPokemon30ArtOn()) return `${artworkBase}/${id}.png`;

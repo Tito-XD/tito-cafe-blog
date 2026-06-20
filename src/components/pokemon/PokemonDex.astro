@@ -121,7 +121,6 @@ const visiblePrimaryFilters = filterMeta
 		generationHomeRegion: GENERATION_HOME_REGION,
 		pokemon30ArtKeys,
 		pokemon30ArtBase: '/pokemon30/artwork',
-		pokemon30RemoteBase: 'https://www.serebii.net/pokemon30',
 	}}
 >
 	const state = { dexHideNames: false, activeFilters: [], filtersExpanded: false };
@@ -192,14 +191,18 @@ const visiblePrimaryFilters = filterMeta
 	const get30thArtKey = (entry) => {
 		const mapped = pokemon30ArtKeys.byArtId?.[entry.artId];
 		if (mapped) return mapped;
-		return String(entry.speciesId).padStart(3, '0');
+		return String(entry.speciesId).padStart(4, '0');
 	};
+
+	const pokemon30RemoteBase =
+		pokemon30ArtKeys.remoteBase ||
+		'https://www.pokemon.co.jp/ex/30th_logo/assets/img/download';
 
 	const artUrl = (entry) => {
 		if (!isPokemon30ArtOn()) {
 			return `${artworkBase}/${entry.artId}.png`;
 		}
-		return `${pokemon30ArtBase}/${get30thArtKey(entry)}.png`;
+		return `/pokemon30/artwork/${get30thArtKey(entry)}.png`;
 	};
 
 	const artFallback = (entry) => {

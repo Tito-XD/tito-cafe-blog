@@ -1,0 +1,10019 @@
+[
+  {
+    "No": 1,
+    "branch": null,
+    "initial": "フ",
+    "name": "フシギダネ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0001"
+  },
+  {
+    "No": 2,
+    "branch": null,
+    "initial": "フ",
+    "name": "フシギソウ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0002"
+  },
+  {
+    "No": 3,
+    "branch": null,
+    "initial": "フ",
+    "name": "フシギバナ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0003"
+  },
+  {
+    "No": 4,
+    "branch": null,
+    "initial": "ヒ",
+    "name": "ヒトカゲ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0004"
+  },
+  {
+    "No": 5,
+    "branch": null,
+    "initial": "リ",
+    "name": "リザード",
+    "sub_name": null,
+    "area": 1,
+    "file": "0005"
+  },
+  {
+    "No": 6,
+    "branch": null,
+    "initial": "リ",
+    "name": "リザードン",
+    "sub_name": null,
+    "area": 1,
+    "file": "0006"
+  },
+  {
+    "No": 7,
+    "branch": null,
+    "initial": "セ",
+    "name": "ゼニガメ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0007"
+  },
+  {
+    "No": 8,
+    "branch": null,
+    "initial": "カ",
+    "name": "カメール",
+    "sub_name": null,
+    "area": 1,
+    "file": "0008"
+  },
+  {
+    "No": 9,
+    "branch": null,
+    "initial": "カ",
+    "name": "カメックス",
+    "sub_name": null,
+    "area": 1,
+    "file": "0009"
+  },
+  {
+    "No": 10,
+    "branch": null,
+    "initial": "キ",
+    "name": "キャタピー",
+    "sub_name": null,
+    "area": 1,
+    "file": "0010"
+  },
+  {
+    "No": 11,
+    "branch": null,
+    "initial": "ト",
+    "name": "トランセル",
+    "sub_name": null,
+    "area": 1,
+    "file": "0011"
+  },
+  {
+    "No": 12,
+    "branch": null,
+    "initial": "ハ",
+    "name": "バタフリー",
+    "sub_name": null,
+    "area": 1,
+    "file": "0012"
+  },
+  {
+    "No": 13,
+    "branch": null,
+    "initial": "ヒ",
+    "name": "ビードル",
+    "sub_name": null,
+    "area": 1,
+    "file": "0013"
+  },
+  {
+    "No": 14,
+    "branch": null,
+    "initial": "コ",
+    "name": "コクーン",
+    "sub_name": null,
+    "area": 1,
+    "file": "0014"
+  },
+  {
+    "No": 15,
+    "branch": null,
+    "initial": "ス",
+    "name": "スピアー",
+    "sub_name": null,
+    "area": 1,
+    "file": "0015"
+  },
+  {
+    "No": 16,
+    "branch": null,
+    "initial": "ホ",
+    "name": "ポッポ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0016"
+  },
+  {
+    "No": 17,
+    "branch": null,
+    "initial": "ヒ",
+    "name": "ピジョン",
+    "sub_name": null,
+    "area": 1,
+    "file": "0017"
+  },
+  {
+    "No": 18,
+    "branch": null,
+    "initial": "ヒ",
+    "name": "ピジョット",
+    "sub_name": null,
+    "area": 1,
+    "file": "0018"
+  },
+  {
+    "No": 19,
+    "branch": null,
+    "initial": "コ",
+    "name": "コラッタ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0019"
+  },
+  {
+    "No": 19,
+    "branch": 1,
+    "initial": "コ",
+    "name": "コラッタ",
+    "sub_name": "アローラのすがた",
+    "area": 7,
+    "file": "0019_01"
+  },
+  {
+    "No": 20,
+    "branch": null,
+    "initial": "ラ",
+    "name": "ラッタ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0020"
+  },
+  {
+    "No": 20,
+    "branch": 1,
+    "initial": "ラ",
+    "name": "ラッタ",
+    "sub_name": "アローラのすがた",
+    "area": 7,
+    "file": "0020_01"
+  },
+  {
+    "No": 21,
+    "branch": null,
+    "initial": "オ",
+    "name": "オニスズメ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0021"
+  },
+  {
+    "No": 22,
+    "branch": null,
+    "initial": "オ",
+    "name": "オニドリル",
+    "sub_name": null,
+    "area": 1,
+    "file": "0022"
+  },
+  {
+    "No": 23,
+    "branch": null,
+    "initial": "ア",
+    "name": "アーボ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0023"
+  },
+  {
+    "No": 24,
+    "branch": null,
+    "initial": "ア",
+    "name": "アーボック",
+    "sub_name": null,
+    "area": 1,
+    "file": "0024"
+  },
+  {
+    "No": 25,
+    "branch": null,
+    "initial": "ヒ",
+    "name": "ピカチュウ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0025"
+  },
+  {
+    "No": 26,
+    "branch": null,
+    "initial": "ラ",
+    "name": "ライチュウ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0026"
+  },
+  {
+    "No": 26,
+    "branch": 1,
+    "initial": "ラ",
+    "name": "ライチュウ",
+    "sub_name": "アローラのすがた",
+    "area": 7,
+    "file": "0026_01"
+  },
+  {
+    "No": 27,
+    "branch": null,
+    "initial": "サ",
+    "name": "サンド",
+    "sub_name": null,
+    "area": 1,
+    "file": "0027"
+  },
+  {
+    "No": 27,
+    "branch": 1,
+    "initial": "サ",
+    "name": "サンド",
+    "sub_name": "アローラのすがた",
+    "area": 7,
+    "file": "0027_01"
+  },
+  {
+    "No": 28,
+    "branch": null,
+    "initial": "サ",
+    "name": "サンドパン",
+    "sub_name": null,
+    "area": 1,
+    "file": "0028"
+  },
+  {
+    "No": 28,
+    "branch": 1,
+    "initial": "サ",
+    "name": "サンドパン",
+    "sub_name": "アローラのすがた",
+    "area": 7,
+    "file": "0028_01"
+  },
+  {
+    "No": 29,
+    "branch": null,
+    "initial": "ニ",
+    "name": "ニドラン♀",
+    "sub_name": null,
+    "area": 1,
+    "file": "0029"
+  },
+  {
+    "No": 30,
+    "branch": null,
+    "initial": "ニ",
+    "name": "ニドリーナ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0030"
+  },
+  {
+    "No": 31,
+    "branch": null,
+    "initial": "ニ",
+    "name": "ニドクイン",
+    "sub_name": null,
+    "area": 1,
+    "file": "0031"
+  },
+  {
+    "No": 32,
+    "branch": null,
+    "initial": "ニ",
+    "name": "ニドラン♂",
+    "sub_name": null,
+    "area": 1,
+    "file": "0032"
+  },
+  {
+    "No": 33,
+    "branch": null,
+    "initial": "ニ",
+    "name": "ニドリーノ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0033"
+  },
+  {
+    "No": 34,
+    "branch": null,
+    "initial": "ニ",
+    "name": "ニドキング",
+    "sub_name": null,
+    "area": 1,
+    "file": "0034"
+  },
+  {
+    "No": 35,
+    "branch": null,
+    "initial": "ヒ",
+    "name": "ピッピ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0035"
+  },
+  {
+    "No": 36,
+    "branch": null,
+    "initial": "ヒ",
+    "name": "ピクシー",
+    "sub_name": null,
+    "area": 1,
+    "file": "0036"
+  },
+  {
+    "No": 37,
+    "branch": null,
+    "initial": "ロ",
+    "name": "ロコン",
+    "sub_name": null,
+    "area": 1,
+    "file": "0037"
+  },
+  {
+    "No": 37,
+    "branch": 1,
+    "initial": "ロ",
+    "name": "ロコン",
+    "sub_name": "アローラのすがた",
+    "area": 7,
+    "file": "0037_01"
+  },
+  {
+    "No": 38,
+    "branch": null,
+    "initial": "キ",
+    "name": "キュウコン",
+    "sub_name": null,
+    "area": 1,
+    "file": "0038"
+  },
+  {
+    "No": 38,
+    "branch": 1,
+    "initial": "キ",
+    "name": "キュウコン",
+    "sub_name": "アローラのすがた",
+    "area": 7,
+    "file": "0038_01"
+  },
+  {
+    "No": 39,
+    "branch": null,
+    "initial": "フ",
+    "name": "プリン",
+    "sub_name": null,
+    "area": 1,
+    "file": "0039"
+  },
+  {
+    "No": 40,
+    "branch": null,
+    "initial": "フ",
+    "name": "プクリン",
+    "sub_name": null,
+    "area": 1,
+    "file": "0040"
+  },
+  {
+    "No": 41,
+    "branch": null,
+    "initial": "ス",
+    "name": "ズバット",
+    "sub_name": null,
+    "area": 1,
+    "file": "0041"
+  },
+  {
+    "No": 42,
+    "branch": null,
+    "initial": "コ",
+    "name": "ゴルバット",
+    "sub_name": null,
+    "area": 1,
+    "file": "0042"
+  },
+  {
+    "No": 43,
+    "branch": null,
+    "initial": "ナ",
+    "name": "ナゾノクサ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0043"
+  },
+  {
+    "No": 44,
+    "branch": null,
+    "initial": "ク",
+    "name": "クサイハナ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0044"
+  },
+  {
+    "No": 45,
+    "branch": null,
+    "initial": "ラ",
+    "name": "ラフレシア",
+    "sub_name": null,
+    "area": 1,
+    "file": "0045"
+  },
+  {
+    "No": 46,
+    "branch": null,
+    "initial": "ハ",
+    "name": "パラス",
+    "sub_name": null,
+    "area": 1,
+    "file": "0046"
+  },
+  {
+    "No": 47,
+    "branch": null,
+    "initial": "ハ",
+    "name": "パラセクト",
+    "sub_name": null,
+    "area": 1,
+    "file": "0047"
+  },
+  {
+    "No": 48,
+    "branch": null,
+    "initial": "コ",
+    "name": "コンパン",
+    "sub_name": null,
+    "area": 1,
+    "file": "0048"
+  },
+  {
+    "No": 49,
+    "branch": null,
+    "initial": "モ",
+    "name": "モルフォン",
+    "sub_name": null,
+    "area": 1,
+    "file": "0049"
+  },
+  {
+    "No": 50,
+    "branch": null,
+    "initial": "テ",
+    "name": "ディグダ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0050"
+  },
+  {
+    "No": 50,
+    "branch": 1,
+    "initial": "テ",
+    "name": "ディグダ",
+    "sub_name": "アローラのすがた",
+    "area": 7,
+    "file": "0050_01"
+  },
+  {
+    "No": 51,
+    "branch": null,
+    "initial": "タ",
+    "name": "ダグトリオ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0051"
+  },
+  {
+    "No": 51,
+    "branch": 1,
+    "initial": "タ",
+    "name": "ダグトリオ",
+    "sub_name": "アローラのすがた",
+    "area": 7,
+    "file": "0051_01"
+  },
+  {
+    "No": 52,
+    "branch": null,
+    "initial": "ニ",
+    "name": "ニャース",
+    "sub_name": null,
+    "area": 1,
+    "file": "0052"
+  },
+  {
+    "No": 52,
+    "branch": 1,
+    "initial": "ニ",
+    "name": "ニャース",
+    "sub_name": "アローラのすがた",
+    "area": 7,
+    "file": "0052_01"
+  },
+  {
+    "No": 52,
+    "branch": 2,
+    "initial": "ニ",
+    "name": "ニャース",
+    "sub_name": "ガラルのすがた",
+    "area": 8,
+    "file": "0052_02"
+  },
+  {
+    "No": 53,
+    "branch": null,
+    "initial": "ヘ",
+    "name": "ペルシアン",
+    "sub_name": null,
+    "area": 1,
+    "file": "0053"
+  },
+  {
+    "No": 53,
+    "branch": 1,
+    "initial": "ヘ",
+    "name": "ペルシアン",
+    "sub_name": "アローラのすがた",
+    "area": 7,
+    "file": "0053_01"
+  },
+  {
+    "No": 54,
+    "branch": null,
+    "initial": "コ",
+    "name": "コダック",
+    "sub_name": null,
+    "area": 1,
+    "file": "0054"
+  },
+  {
+    "No": 55,
+    "branch": null,
+    "initial": "コ",
+    "name": "ゴルダック",
+    "sub_name": null,
+    "area": 1,
+    "file": "0055"
+  },
+  {
+    "No": 56,
+    "branch": null,
+    "initial": "マ",
+    "name": "マンキー",
+    "sub_name": null,
+    "area": 1,
+    "file": "0056"
+  },
+  {
+    "No": 57,
+    "branch": null,
+    "initial": "オ",
+    "name": "オコリザル",
+    "sub_name": null,
+    "area": 1,
+    "file": "0057"
+  },
+  {
+    "No": 58,
+    "branch": null,
+    "initial": "カ",
+    "name": "ガーディ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0058"
+  },
+  {
+    "No": 58,
+    "branch": 1,
+    "initial": "カ",
+    "name": "ガーディ",
+    "sub_name": "ヒスイのすがた",
+    "area": 9,
+    "file": "0058_01"
+  },
+  {
+    "No": 59,
+    "branch": null,
+    "initial": "ウ",
+    "name": "ウインディ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0059"
+  },
+  {
+    "No": 59,
+    "branch": 1,
+    "initial": "ウ",
+    "name": "ウインディ",
+    "sub_name": "ヒスイのすがた",
+    "area": 9,
+    "file": "0059_01"
+  },
+  {
+    "No": 60,
+    "branch": null,
+    "initial": "ニ",
+    "name": "ニョロモ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0060"
+  },
+  {
+    "No": 61,
+    "branch": null,
+    "initial": "ニ",
+    "name": "ニョロゾ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0061"
+  },
+  {
+    "No": 62,
+    "branch": null,
+    "initial": "ニ",
+    "name": "ニョロボン",
+    "sub_name": null,
+    "area": 1,
+    "file": "0062"
+  },
+  {
+    "No": 63,
+    "branch": null,
+    "initial": "ケ",
+    "name": "ケーシィ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0063"
+  },
+  {
+    "No": 64,
+    "branch": null,
+    "initial": "ユ",
+    "name": "ユンゲラー",
+    "sub_name": null,
+    "area": 1,
+    "file": "0064"
+  },
+  {
+    "No": 65,
+    "branch": null,
+    "initial": "フ",
+    "name": "フーディン",
+    "sub_name": null,
+    "area": 1,
+    "file": "0065"
+  },
+  {
+    "No": 66,
+    "branch": null,
+    "initial": "ワ",
+    "name": "ワンリキー",
+    "sub_name": null,
+    "area": 1,
+    "file": "0066"
+  },
+  {
+    "No": 67,
+    "branch": null,
+    "initial": "コ",
+    "name": "ゴーリキー",
+    "sub_name": null,
+    "area": 1,
+    "file": "0067"
+  },
+  {
+    "No": 68,
+    "branch": null,
+    "initial": "カ",
+    "name": "カイリキー",
+    "sub_name": null,
+    "area": 1,
+    "file": "0068"
+  },
+  {
+    "No": 69,
+    "branch": null,
+    "initial": "マ",
+    "name": "マダツボミ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0069"
+  },
+  {
+    "No": 70,
+    "branch": null,
+    "initial": "ウ",
+    "name": "ウツドン",
+    "sub_name": null,
+    "area": 1,
+    "file": "0070"
+  },
+  {
+    "No": 71,
+    "branch": null,
+    "initial": "ウ",
+    "name": "ウツボット",
+    "sub_name": null,
+    "area": 1,
+    "file": "0071"
+  },
+  {
+    "No": 72,
+    "branch": null,
+    "initial": "メ",
+    "name": "メノクラゲ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0072"
+  },
+  {
+    "No": 73,
+    "branch": null,
+    "initial": "ト",
+    "name": "ドククラゲ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0073"
+  },
+  {
+    "No": 74,
+    "branch": null,
+    "initial": "イ",
+    "name": "イシツブテ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0074"
+  },
+  {
+    "No": 74,
+    "branch": 1,
+    "initial": "イ",
+    "name": "イシツブテ",
+    "sub_name": "アローラのすがた",
+    "area": 7,
+    "file": "0074_01"
+  },
+  {
+    "No": 75,
+    "branch": null,
+    "initial": "コ",
+    "name": "ゴローン",
+    "sub_name": null,
+    "area": 1,
+    "file": "0075"
+  },
+  {
+    "No": 75,
+    "branch": 1,
+    "initial": "コ",
+    "name": "ゴローン",
+    "sub_name": "アローラのすがた",
+    "area": 7,
+    "file": "0075_01"
+  },
+  {
+    "No": 76,
+    "branch": null,
+    "initial": "コ",
+    "name": "ゴローニャ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0076"
+  },
+  {
+    "No": 76,
+    "branch": 1,
+    "initial": "コ",
+    "name": "ゴローニャ",
+    "sub_name": "アローラのすがた",
+    "area": 7,
+    "file": "0076_01"
+  },
+  {
+    "No": 77,
+    "branch": null,
+    "initial": "ホ",
+    "name": "ポニータ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0077"
+  },
+  {
+    "No": 77,
+    "branch": 1,
+    "initial": "ホ",
+    "name": "ポニータ",
+    "sub_name": "ガラルのすがた",
+    "area": 8,
+    "file": "0077_01"
+  },
+  {
+    "No": 78,
+    "branch": null,
+    "initial": "キ",
+    "name": "ギャロップ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0078"
+  },
+  {
+    "No": 78,
+    "branch": 1,
+    "initial": "キ",
+    "name": "ギャロップ",
+    "sub_name": "ガラルのすがた",
+    "area": 8,
+    "file": "0078_01"
+  },
+  {
+    "No": 79,
+    "branch": null,
+    "initial": "ヤ",
+    "name": "ヤドン",
+    "sub_name": null,
+    "area": 1,
+    "file": "0079"
+  },
+  {
+    "No": 79,
+    "branch": 1,
+    "initial": "ヤ",
+    "name": "ヤドン",
+    "sub_name": "ガラルのすがた",
+    "area": 8,
+    "file": "0079_01"
+  },
+  {
+    "No": 80,
+    "branch": null,
+    "initial": "ヤ",
+    "name": "ヤドラン",
+    "sub_name": null,
+    "area": 1,
+    "file": "0080"
+  },
+  {
+    "No": 80,
+    "branch": 2,
+    "initial": "ヤ",
+    "name": "ヤドラン",
+    "sub_name": "ガラルのすがた",
+    "area": 8,
+    "file": "0080_01"
+  },
+  {
+    "No": 81,
+    "branch": null,
+    "initial": "コ",
+    "name": "コイル",
+    "sub_name": null,
+    "area": 1,
+    "file": "0081"
+  },
+  {
+    "No": 82,
+    "branch": null,
+    "initial": "レ",
+    "name": "レアコイル",
+    "sub_name": null,
+    "area": 1,
+    "file": "0082"
+  },
+  {
+    "No": 83,
+    "branch": null,
+    "initial": "カ",
+    "name": "カモネギ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0083"
+  },
+  {
+    "No": 83,
+    "branch": 1,
+    "initial": "カ",
+    "name": "カモネギ",
+    "sub_name": "ガラルのすがた",
+    "area": 8,
+    "file": "0083_01"
+  },
+  {
+    "No": 84,
+    "branch": null,
+    "initial": "ト",
+    "name": "ドードー",
+    "sub_name": null,
+    "area": 1,
+    "file": "0084"
+  },
+  {
+    "No": 85,
+    "branch": null,
+    "initial": "ト",
+    "name": "ドードリオ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0085"
+  },
+  {
+    "No": 86,
+    "branch": null,
+    "initial": "ハ",
+    "name": "パウワウ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0086"
+  },
+  {
+    "No": 87,
+    "branch": null,
+    "initial": "シ",
+    "name": "ジュゴン",
+    "sub_name": null,
+    "area": 1,
+    "file": "0087"
+  },
+  {
+    "No": 88,
+    "branch": null,
+    "initial": "ヘ",
+    "name": "ベトベター",
+    "sub_name": null,
+    "area": 1,
+    "file": "0088"
+  },
+  {
+    "No": 88,
+    "branch": 1,
+    "initial": "ヘ",
+    "name": "ベトベター",
+    "sub_name": "アローラのすがた",
+    "area": 7,
+    "file": "0088_01"
+  },
+  {
+    "No": 89,
+    "branch": null,
+    "initial": "ヘ",
+    "name": "ベトベトン",
+    "sub_name": null,
+    "area": 1,
+    "file": "0089"
+  },
+  {
+    "No": 89,
+    "branch": 1,
+    "initial": "ヘ",
+    "name": "ベトベトン",
+    "sub_name": "アローラのすがた",
+    "area": 7,
+    "file": "0089_01"
+  },
+  {
+    "No": 90,
+    "branch": null,
+    "initial": "シ",
+    "name": "シェルダー",
+    "sub_name": null,
+    "area": 1,
+    "file": "0090"
+  },
+  {
+    "No": 91,
+    "branch": null,
+    "initial": "ハ",
+    "name": "パルシェン",
+    "sub_name": null,
+    "area": 1,
+    "file": "0091"
+  },
+  {
+    "No": 92,
+    "branch": null,
+    "initial": "コ",
+    "name": "ゴース",
+    "sub_name": null,
+    "area": 1,
+    "file": "0092"
+  },
+  {
+    "No": 93,
+    "branch": null,
+    "initial": "コ",
+    "name": "ゴースト",
+    "sub_name": null,
+    "area": 1,
+    "file": "0093"
+  },
+  {
+    "No": 94,
+    "branch": null,
+    "initial": "ケ",
+    "name": "ゲンガー",
+    "sub_name": null,
+    "area": 1,
+    "file": "0094"
+  },
+  {
+    "No": 95,
+    "branch": null,
+    "initial": "イ",
+    "name": "イワーク",
+    "sub_name": null,
+    "area": 1,
+    "file": "0095"
+  },
+  {
+    "No": 96,
+    "branch": null,
+    "initial": "ス",
+    "name": "スリープ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0096"
+  },
+  {
+    "No": 97,
+    "branch": null,
+    "initial": "ス",
+    "name": "スリーパー",
+    "sub_name": null,
+    "area": 1,
+    "file": "0097"
+  },
+  {
+    "No": 98,
+    "branch": null,
+    "initial": "ク",
+    "name": "クラブ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0098"
+  },
+  {
+    "No": 99,
+    "branch": null,
+    "initial": "キ",
+    "name": "キングラー",
+    "sub_name": null,
+    "area": 1,
+    "file": "0099"
+  },
+  {
+    "No": 100,
+    "branch": null,
+    "initial": "ヒ",
+    "name": "ビリリダマ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0100"
+  },
+  {
+    "No": 100,
+    "branch": 1,
+    "initial": "ヒ",
+    "name": "ビリリダマ",
+    "sub_name": "ヒスイのすがた",
+    "area": 9,
+    "file": "0100_01"
+  },
+  {
+    "No": 101,
+    "branch": null,
+    "initial": "マ",
+    "name": "マルマイン",
+    "sub_name": null,
+    "area": 1,
+    "file": "0101"
+  },
+  {
+    "No": 101,
+    "branch": 1,
+    "initial": "マ",
+    "name": "マルマイン",
+    "sub_name": "ヒスイのすがた",
+    "area": 9,
+    "file": "0101_01"
+  },
+  {
+    "No": 102,
+    "branch": null,
+    "initial": "タ",
+    "name": "タマタマ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0102"
+  },
+  {
+    "No": 103,
+    "branch": null,
+    "initial": "ナ",
+    "name": "ナッシー",
+    "sub_name": null,
+    "area": 1,
+    "file": "0103"
+  },
+  {
+    "No": 103,
+    "branch": 1,
+    "initial": "ナ",
+    "name": "ナッシー",
+    "sub_name": "アローラのすがた",
+    "area": 7,
+    "file": "0103_01"
+  },
+  {
+    "No": 104,
+    "branch": null,
+    "initial": "カ",
+    "name": "カラカラ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0104"
+  },
+  {
+    "No": 105,
+    "branch": null,
+    "initial": "カ",
+    "name": "ガラガラ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0105"
+  },
+  {
+    "No": 105,
+    "branch": 1,
+    "initial": "カ",
+    "name": "ガラガラ",
+    "sub_name": "アローラのすがた",
+    "area": 7,
+    "file": "0105_01"
+  },
+  {
+    "No": 106,
+    "branch": null,
+    "initial": "サ",
+    "name": "サワムラー",
+    "sub_name": null,
+    "area": 1,
+    "file": "0106"
+  },
+  {
+    "No": 107,
+    "branch": null,
+    "initial": "エ",
+    "name": "エビワラー",
+    "sub_name": null,
+    "area": 1,
+    "file": "0107"
+  },
+  {
+    "No": 108,
+    "branch": null,
+    "initial": "ヘ",
+    "name": "ベロリンガ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0108"
+  },
+  {
+    "No": 109,
+    "branch": null,
+    "initial": "ト",
+    "name": "ドガース",
+    "sub_name": null,
+    "area": 1,
+    "file": "0109"
+  },
+  {
+    "No": 110,
+    "branch": null,
+    "initial": "マ",
+    "name": "マタドガス",
+    "sub_name": null,
+    "area": 1,
+    "file": "0110"
+  },
+  {
+    "No": 110,
+    "branch": 1,
+    "initial": "マ",
+    "name": "マタドガス",
+    "sub_name": "ガラルのすがた",
+    "area": 8,
+    "file": "0110_01"
+  },
+  {
+    "No": 111,
+    "branch": null,
+    "initial": "サ",
+    "name": "サイホーン",
+    "sub_name": null,
+    "area": 1,
+    "file": "0111"
+  },
+  {
+    "No": 112,
+    "branch": null,
+    "initial": "サ",
+    "name": "サイドン",
+    "sub_name": null,
+    "area": 1,
+    "file": "0112"
+  },
+  {
+    "No": 113,
+    "branch": null,
+    "initial": "ラ",
+    "name": "ラッキー",
+    "sub_name": null,
+    "area": 1,
+    "file": "0113"
+  },
+  {
+    "No": 114,
+    "branch": null,
+    "initial": "モ",
+    "name": "モンジャラ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0114"
+  },
+  {
+    "No": 115,
+    "branch": null,
+    "initial": "カ",
+    "name": "ガルーラ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0115"
+  },
+  {
+    "No": 116,
+    "branch": null,
+    "initial": "タ",
+    "name": "タッツー",
+    "sub_name": null,
+    "area": 1,
+    "file": "0116"
+  },
+  {
+    "No": 117,
+    "branch": null,
+    "initial": "シ",
+    "name": "シードラ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0117"
+  },
+  {
+    "No": 118,
+    "branch": null,
+    "initial": "ト",
+    "name": "トサキント",
+    "sub_name": null,
+    "area": 1,
+    "file": "0118"
+  },
+  {
+    "No": 119,
+    "branch": null,
+    "initial": "ア",
+    "name": "アズマオウ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0119"
+  },
+  {
+    "No": 120,
+    "branch": null,
+    "initial": "ヒ",
+    "name": "ヒトデマン",
+    "sub_name": null,
+    "area": 1,
+    "file": "0120"
+  },
+  {
+    "No": 121,
+    "branch": null,
+    "initial": "ス",
+    "name": "スターミー",
+    "sub_name": null,
+    "area": 1,
+    "file": "0121"
+  },
+  {
+    "No": 122,
+    "branch": null,
+    "initial": "ハ",
+    "name": "バリヤード",
+    "sub_name": null,
+    "area": 1,
+    "file": "0122"
+  },
+  {
+    "No": 122,
+    "branch": 1,
+    "initial": "ハ",
+    "name": "バリヤード",
+    "sub_name": "ガラルのすがた",
+    "area": 8,
+    "file": "0122_01"
+  },
+  {
+    "No": 123,
+    "branch": null,
+    "initial": "ス",
+    "name": "ストライク",
+    "sub_name": null,
+    "area": 1,
+    "file": "0123"
+  },
+  {
+    "No": 124,
+    "branch": null,
+    "initial": "ル",
+    "name": "ルージュラ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0124"
+  },
+  {
+    "No": 125,
+    "branch": null,
+    "initial": "エ",
+    "name": "エレブー",
+    "sub_name": null,
+    "area": 1,
+    "file": "0125"
+  },
+  {
+    "No": 126,
+    "branch": null,
+    "initial": "フ",
+    "name": "ブーバー",
+    "sub_name": null,
+    "area": 1,
+    "file": "0126"
+  },
+  {
+    "No": 127,
+    "branch": null,
+    "initial": "カ",
+    "name": "カイロス",
+    "sub_name": null,
+    "area": 1,
+    "file": "0127"
+  },
+  {
+    "No": 128,
+    "branch": null,
+    "initial": "ケ",
+    "name": "ケンタロス",
+    "sub_name": null,
+    "area": 1,
+    "file": "0128"
+  },
+  {
+    "No": 128,
+    "branch": 1,
+    "initial": "ケ",
+    "name": "ケンタロス",
+    "sub_name": "パルデアのすがた・コンバットしゅ",
+    "area": 10,
+    "file": "0128_01"
+  },
+  {
+    "No": 129,
+    "branch": null,
+    "initial": "コ",
+    "name": "コイキング",
+    "sub_name": null,
+    "area": 1,
+    "file": "0129"
+  },
+  {
+    "No": 130,
+    "branch": null,
+    "initial": "キ",
+    "name": "ギャラドス",
+    "sub_name": null,
+    "area": 1,
+    "file": "0130"
+  },
+  {
+    "No": 131,
+    "branch": null,
+    "initial": "ラ",
+    "name": "ラプラス",
+    "sub_name": null,
+    "area": 1,
+    "file": "0131"
+  },
+  {
+    "No": 132,
+    "branch": null,
+    "initial": "メ",
+    "name": "メタモン",
+    "sub_name": null,
+    "area": 1,
+    "file": "0132"
+  },
+  {
+    "No": 133,
+    "branch": null,
+    "initial": "イ",
+    "name": "イーブイ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0133"
+  },
+  {
+    "No": 134,
+    "branch": null,
+    "initial": "シ",
+    "name": "シャワーズ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0134"
+  },
+  {
+    "No": 135,
+    "branch": null,
+    "initial": "サ",
+    "name": "サンダース",
+    "sub_name": null,
+    "area": 1,
+    "file": "0135"
+  },
+  {
+    "No": 136,
+    "branch": null,
+    "initial": "フ",
+    "name": "ブースター",
+    "sub_name": null,
+    "area": 1,
+    "file": "0136"
+  },
+  {
+    "No": 137,
+    "branch": null,
+    "initial": "ホ",
+    "name": "ポリゴン",
+    "sub_name": null,
+    "area": 1,
+    "file": "0137"
+  },
+  {
+    "No": 138,
+    "branch": null,
+    "initial": "オ",
+    "name": "オムナイト",
+    "sub_name": null,
+    "area": 1,
+    "file": "0138"
+  },
+  {
+    "No": 139,
+    "branch": null,
+    "initial": "オ",
+    "name": "オムスター",
+    "sub_name": null,
+    "area": 1,
+    "file": "0139"
+  },
+  {
+    "No": 140,
+    "branch": null,
+    "initial": "カ",
+    "name": "カブト",
+    "sub_name": null,
+    "area": 1,
+    "file": "0140"
+  },
+  {
+    "No": 141,
+    "branch": null,
+    "initial": "カ",
+    "name": "カブトプス",
+    "sub_name": null,
+    "area": 1,
+    "file": "0141"
+  },
+  {
+    "No": 142,
+    "branch": null,
+    "initial": "フ",
+    "name": "プテラ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0142"
+  },
+  {
+    "No": 143,
+    "branch": null,
+    "initial": "カ",
+    "name": "カビゴン",
+    "sub_name": null,
+    "area": 1,
+    "file": "0143"
+  },
+  {
+    "No": 144,
+    "branch": null,
+    "initial": "フ",
+    "name": "フリーザー",
+    "sub_name": null,
+    "area": 1,
+    "file": "0144"
+  },
+  {
+    "No": 144,
+    "branch": 1,
+    "initial": "フ",
+    "name": "フリーザー",
+    "sub_name": "ガラルのすがた",
+    "area": 8,
+    "file": "0144_01"
+  },
+  {
+    "No": 145,
+    "branch": null,
+    "initial": "サ",
+    "name": "サンダー",
+    "sub_name": null,
+    "area": 1,
+    "file": "0145"
+  },
+  {
+    "No": 145,
+    "branch": 1,
+    "initial": "サ",
+    "name": "サンダー",
+    "sub_name": "ガラルのすがた",
+    "area": 8,
+    "file": "0145_01"
+  },
+  {
+    "No": 146,
+    "branch": null,
+    "initial": "フ",
+    "name": "ファイヤー",
+    "sub_name": null,
+    "area": 1,
+    "file": "0146"
+  },
+  {
+    "No": 146,
+    "branch": 1,
+    "initial": "フ",
+    "name": "ファイヤー",
+    "sub_name": "ガラルのすがた",
+    "area": 8,
+    "file": "0146_01"
+  },
+  {
+    "No": 147,
+    "branch": null,
+    "initial": "ミ",
+    "name": "ミニリュウ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0147"
+  },
+  {
+    "No": 148,
+    "branch": null,
+    "initial": "ハ",
+    "name": "ハクリュー",
+    "sub_name": null,
+    "area": 1,
+    "file": "0148"
+  },
+  {
+    "No": 149,
+    "branch": null,
+    "initial": "カ",
+    "name": "カイリュー",
+    "sub_name": null,
+    "area": 1,
+    "file": "0149"
+  },
+  {
+    "No": 150,
+    "branch": null,
+    "initial": "ミ",
+    "name": "ミュウツー",
+    "sub_name": null,
+    "area": 1,
+    "file": "0150"
+  },
+  {
+    "No": 151,
+    "branch": null,
+    "initial": "ミ",
+    "name": "ミュウ",
+    "sub_name": null,
+    "area": 1,
+    "file": "0151"
+  },
+  {
+    "No": 152,
+    "branch": null,
+    "initial": "チ",
+    "name": "チコリータ",
+    "sub_name": null,
+    "area": 2,
+    "file": "0152"
+  },
+  {
+    "No": 153,
+    "branch": null,
+    "initial": "ヘ",
+    "name": "ベイリーフ",
+    "sub_name": null,
+    "area": 2,
+    "file": "0153"
+  },
+  {
+    "No": 154,
+    "branch": null,
+    "initial": "メ",
+    "name": "メガニウム",
+    "sub_name": null,
+    "area": 2,
+    "file": "0154"
+  },
+  {
+    "No": 155,
+    "branch": null,
+    "initial": "ヒ",
+    "name": "ヒノアラシ",
+    "sub_name": null,
+    "area": 2,
+    "file": "0155"
+  },
+  {
+    "No": 156,
+    "branch": null,
+    "initial": "マ",
+    "name": "マグマラシ",
+    "sub_name": null,
+    "area": 2,
+    "file": "0156"
+  },
+  {
+    "No": 157,
+    "branch": null,
+    "initial": "ハ",
+    "name": "バクフーン",
+    "sub_name": null,
+    "area": 2,
+    "file": "0157"
+  },
+  {
+    "No": 157,
+    "branch": 1,
+    "initial": "ハ",
+    "name": "バクフーン",
+    "sub_name": "ヒスイのすがた",
+    "area": 9,
+    "file": "0157_01"
+  },
+  {
+    "No": 158,
+    "branch": null,
+    "initial": "ワ",
+    "name": "ワニノコ",
+    "sub_name": null,
+    "area": 2,
+    "file": "0158"
+  },
+  {
+    "No": 159,
+    "branch": null,
+    "initial": "ア",
+    "name": "アリゲイツ",
+    "sub_name": null,
+    "area": 2,
+    "file": "0159"
+  },
+  {
+    "No": 160,
+    "branch": null,
+    "initial": "オ",
+    "name": "オーダイル",
+    "sub_name": null,
+    "area": 2,
+    "file": "0160"
+  },
+  {
+    "No": 161,
+    "branch": null,
+    "initial": "オ",
+    "name": "オタチ",
+    "sub_name": null,
+    "area": 2,
+    "file": "0161"
+  },
+  {
+    "No": 162,
+    "branch": null,
+    "initial": "オ",
+    "name": "オオタチ",
+    "sub_name": null,
+    "area": 2,
+    "file": "0162"
+  },
+  {
+    "No": 163,
+    "branch": null,
+    "initial": "ホ",
+    "name": "ホーホー",
+    "sub_name": null,
+    "area": 2,
+    "file": "0163"
+  },
+  {
+    "No": 164,
+    "branch": null,
+    "initial": "ヨ",
+    "name": "ヨルノズク",
+    "sub_name": null,
+    "area": 2,
+    "file": "0164"
+  },
+  {
+    "No": 165,
+    "branch": null,
+    "initial": "レ",
+    "name": "レディバ",
+    "sub_name": null,
+    "area": 2,
+    "file": "0165"
+  },
+  {
+    "No": 166,
+    "branch": null,
+    "initial": "レ",
+    "name": "レディアン",
+    "sub_name": null,
+    "area": 2,
+    "file": "0166"
+  },
+  {
+    "No": 167,
+    "branch": null,
+    "initial": "イ",
+    "name": "イトマル",
+    "sub_name": null,
+    "area": 2,
+    "file": "0167"
+  },
+  {
+    "No": 168,
+    "branch": null,
+    "initial": "ア",
+    "name": "アリアドス",
+    "sub_name": null,
+    "area": 2,
+    "file": "0168"
+  },
+  {
+    "No": 169,
+    "branch": null,
+    "initial": "ク",
+    "name": "クロバット",
+    "sub_name": null,
+    "area": 2,
+    "file": "0169"
+  },
+  {
+    "No": 170,
+    "branch": null,
+    "initial": "チ",
+    "name": "チョンチー",
+    "sub_name": null,
+    "area": 2,
+    "file": "0170"
+  },
+  {
+    "No": 171,
+    "branch": null,
+    "initial": "ラ",
+    "name": "ランターン",
+    "sub_name": null,
+    "area": 2,
+    "file": "0171"
+  },
+  {
+    "No": 172,
+    "branch": null,
+    "initial": "ヒ",
+    "name": "ピチュー",
+    "sub_name": null,
+    "area": 2,
+    "file": "0172"
+  },
+  {
+    "No": 173,
+    "branch": null,
+    "initial": "ヒ",
+    "name": "ピィ",
+    "sub_name": null,
+    "area": 2,
+    "file": "0173"
+  },
+  {
+    "No": 174,
+    "branch": null,
+    "initial": "フ",
+    "name": "ププリン",
+    "sub_name": null,
+    "area": 2,
+    "file": "0174"
+  },
+  {
+    "No": 175,
+    "branch": null,
+    "initial": "ト",
+    "name": "トゲピー",
+    "sub_name": null,
+    "area": 2,
+    "file": "0175"
+  },
+  {
+    "No": 176,
+    "branch": null,
+    "initial": "ト",
+    "name": "トゲチック",
+    "sub_name": null,
+    "area": 2,
+    "file": "0176"
+  },
+  {
+    "No": 177,
+    "branch": null,
+    "initial": "ネ",
+    "name": "ネイティ",
+    "sub_name": null,
+    "area": 2,
+    "file": "0177"
+  },
+  {
+    "No": 178,
+    "branch": null,
+    "initial": "ネ",
+    "name": "ネイティオ",
+    "sub_name": null,
+    "area": 2,
+    "file": "0178"
+  },
+  {
+    "No": 179,
+    "branch": null,
+    "initial": "メ",
+    "name": "メリープ",
+    "sub_name": null,
+    "area": 2,
+    "file": "0179"
+  },
+  {
+    "No": 180,
+    "branch": null,
+    "initial": "モ",
+    "name": "モココ",
+    "sub_name": null,
+    "area": 2,
+    "file": "0180"
+  },
+  {
+    "No": 181,
+    "branch": null,
+    "initial": "テ",
+    "name": "デンリュウ",
+    "sub_name": null,
+    "area": 2,
+    "file": "0181"
+  },
+  {
+    "No": 182,
+    "branch": null,
+    "initial": "キ",
+    "name": "キレイハナ",
+    "sub_name": null,
+    "area": 2,
+    "file": "0182"
+  },
+  {
+    "No": 183,
+    "branch": null,
+    "initial": "マ",
+    "name": "マリル",
+    "sub_name": null,
+    "area": 2,
+    "file": "0183"
+  },
+  {
+    "No": 184,
+    "branch": null,
+    "initial": "マ",
+    "name": "マリルリ",
+    "sub_name": null,
+    "area": 2,
+    "file": "0184"
+  },
+  {
+    "No": 185,
+    "branch": null,
+    "initial": "ウ",
+    "name": "ウソッキー",
+    "sub_name": null,
+    "area": 2,
+    "file": "0185"
+  },
+  {
+    "No": 186,
+    "branch": null,
+    "initial": "ニ",
+    "name": "ニョロトノ",
+    "sub_name": null,
+    "area": 2,
+    "file": "0186"
+  },
+  {
+    "No": 187,
+    "branch": null,
+    "initial": "ハ",
+    "name": "ハネッコ",
+    "sub_name": null,
+    "area": 2,
+    "file": "0187"
+  },
+  {
+    "No": 188,
+    "branch": null,
+    "initial": "ホ",
+    "name": "ポポッコ",
+    "sub_name": null,
+    "area": 2,
+    "file": "0188"
+  },
+  {
+    "No": 189,
+    "branch": null,
+    "initial": "ワ",
+    "name": "ワタッコ",
+    "sub_name": null,
+    "area": 2,
+    "file": "0189"
+  },
+  {
+    "No": 190,
+    "branch": null,
+    "initial": "エ",
+    "name": "エイパム",
+    "sub_name": null,
+    "area": 2,
+    "file": "0190"
+  },
+  {
+    "No": 191,
+    "branch": null,
+    "initial": "ヒ",
+    "name": "ヒマナッツ",
+    "sub_name": null,
+    "area": 2,
+    "file": "0191"
+  },
+  {
+    "No": 192,
+    "branch": null,
+    "initial": "キ",
+    "name": "キマワリ",
+    "sub_name": null,
+    "area": 2,
+    "file": "0192"
+  },
+  {
+    "No": 193,
+    "branch": null,
+    "initial": "ヤ",
+    "name": "ヤンヤンマ",
+    "sub_name": null,
+    "area": 2,
+    "file": "0193"
+  },
+  {
+    "No": 194,
+    "branch": null,
+    "initial": "ウ",
+    "name": "ウパー",
+    "sub_name": null,
+    "area": 2,
+    "file": "0194"
+  },
+  {
+    "No": 194,
+    "branch": 1,
+    "initial": "ウ",
+    "name": "ウパー",
+    "sub_name": "パルデアのすがた",
+    "area": 10,
+    "file": "0194_01"
+  },
+  {
+    "No": 195,
+    "branch": null,
+    "initial": "ヌ",
+    "name": "ヌオー",
+    "sub_name": null,
+    "area": 2,
+    "file": "0195"
+  },
+  {
+    "No": 196,
+    "branch": null,
+    "initial": "エ",
+    "name": "エーフィ",
+    "sub_name": null,
+    "area": 2,
+    "file": "0196"
+  },
+  {
+    "No": 197,
+    "branch": null,
+    "initial": "フ",
+    "name": "ブラッキー",
+    "sub_name": null,
+    "area": 2,
+    "file": "0197"
+  },
+  {
+    "No": 198,
+    "branch": null,
+    "initial": "ヤ",
+    "name": "ヤミカラス",
+    "sub_name": null,
+    "area": 2,
+    "file": "0198"
+  },
+  {
+    "No": 199,
+    "branch": null,
+    "initial": "ヤ",
+    "name": "ヤドキング",
+    "sub_name": null,
+    "area": 2,
+    "file": "0199"
+  },
+  {
+    "No": 199,
+    "branch": 1,
+    "initial": "ヤ",
+    "name": "ヤドキング",
+    "sub_name": "ガラルのすがた",
+    "area": 8,
+    "file": "0199_01"
+  },
+  {
+    "No": 200,
+    "branch": null,
+    "initial": "ム",
+    "name": "ムウマ",
+    "sub_name": null,
+    "area": 2,
+    "file": "0200"
+  },
+  {
+    "No": 201,
+    "branch": 5,
+    "initial": "ア",
+    "name": "アンノーン",
+    "sub_name": null,
+    "area": 2,
+    "file": "0201"
+  },
+  {
+    "No": 202,
+    "branch": null,
+    "initial": "ソ",
+    "name": "ソーナンス",
+    "sub_name": null,
+    "area": 2,
+    "file": "0202"
+  },
+  {
+    "No": 203,
+    "branch": null,
+    "initial": "キ",
+    "name": "キリンリキ",
+    "sub_name": null,
+    "area": 2,
+    "file": "0203"
+  },
+  {
+    "No": 204,
+    "branch": null,
+    "initial": "ク",
+    "name": "クヌギダマ",
+    "sub_name": null,
+    "area": 2,
+    "file": "0204"
+  },
+  {
+    "No": 205,
+    "branch": null,
+    "initial": "フ",
+    "name": "フォレトス",
+    "sub_name": null,
+    "area": 2,
+    "file": "0205"
+  },
+  {
+    "No": 206,
+    "branch": null,
+    "initial": "ノ",
+    "name": "ノコッチ",
+    "sub_name": null,
+    "area": 2,
+    "file": "0206"
+  },
+  {
+    "No": 207,
+    "branch": null,
+    "initial": "ク",
+    "name": "グライガー",
+    "sub_name": null,
+    "area": 2,
+    "file": "0207"
+  },
+  {
+    "No": 208,
+    "branch": null,
+    "initial": "ハ",
+    "name": "ハガネール",
+    "sub_name": null,
+    "area": 2,
+    "file": "0208"
+  },
+  {
+    "No": 209,
+    "branch": null,
+    "initial": "フ",
+    "name": "ブルー",
+    "sub_name": null,
+    "area": 2,
+    "file": "0209"
+  },
+  {
+    "No": 210,
+    "branch": null,
+    "initial": "ク",
+    "name": "グランブル",
+    "sub_name": null,
+    "area": 2,
+    "file": "0210"
+  },
+  {
+    "No": 211,
+    "branch": null,
+    "initial": "ハ",
+    "name": "ハリーセン",
+    "sub_name": null,
+    "area": 2,
+    "file": "0211"
+  },
+  {
+    "No": 211,
+    "branch": 1,
+    "initial": "ハ",
+    "name": "ハリーセン",
+    "sub_name": "ヒスイのすがた",
+    "area": 9,
+    "file": "0211_01"
+  },
+  {
+    "No": 212,
+    "branch": null,
+    "initial": "ハ",
+    "name": "ハッサム",
+    "sub_name": null,
+    "area": 2,
+    "file": "0212"
+  },
+  {
+    "No": 213,
+    "branch": null,
+    "initial": "ツ",
+    "name": "ツボツボ",
+    "sub_name": null,
+    "area": 2,
+    "file": "0213"
+  },
+  {
+    "No": 214,
+    "branch": null,
+    "initial": "ヘ",
+    "name": "ヘラクロス",
+    "sub_name": null,
+    "area": 2,
+    "file": "0214"
+  },
+  {
+    "No": 215,
+    "branch": null,
+    "initial": "ニ",
+    "name": "ニューラ",
+    "sub_name": null,
+    "area": 2,
+    "file": "0215"
+  },
+  {
+    "No": 215,
+    "branch": 1,
+    "initial": "ニ",
+    "name": "ニューラ",
+    "sub_name": "ヒスイのすがた",
+    "area": 9,
+    "file": "0215_01"
+  },
+  {
+    "No": 216,
+    "branch": null,
+    "initial": "ヒ",
+    "name": "ヒメグマ",
+    "sub_name": null,
+    "area": 2,
+    "file": "0216"
+  },
+  {
+    "No": 217,
+    "branch": null,
+    "initial": "リ",
+    "name": "リングマ",
+    "sub_name": null,
+    "area": 2,
+    "file": "0217"
+  },
+  {
+    "No": 218,
+    "branch": null,
+    "initial": "マ",
+    "name": "マグマッグ",
+    "sub_name": null,
+    "area": 2,
+    "file": "0218"
+  },
+  {
+    "No": 219,
+    "branch": null,
+    "initial": "マ",
+    "name": "マグカルゴ",
+    "sub_name": null,
+    "area": 2,
+    "file": "0219"
+  },
+  {
+    "No": 220,
+    "branch": null,
+    "initial": "ウ",
+    "name": "ウリムー",
+    "sub_name": null,
+    "area": 2,
+    "file": "0220"
+  },
+  {
+    "No": 221,
+    "branch": null,
+    "initial": "イ",
+    "name": "イノムー",
+    "sub_name": null,
+    "area": 2,
+    "file": "0221"
+  },
+  {
+    "No": 222,
+    "branch": null,
+    "initial": "サ",
+    "name": "サニーゴ",
+    "sub_name": null,
+    "area": 2,
+    "file": "0222"
+  },
+  {
+    "No": 222,
+    "branch": 1,
+    "initial": "サ",
+    "name": "サニーゴ",
+    "sub_name": "ガラルのすがた",
+    "area": 8,
+    "file": "0222_01"
+  },
+  {
+    "No": 223,
+    "branch": null,
+    "initial": "テ",
+    "name": "テッポウオ",
+    "sub_name": null,
+    "area": 2,
+    "file": "0223"
+  },
+  {
+    "No": 224,
+    "branch": null,
+    "initial": "オ",
+    "name": "オクタン",
+    "sub_name": null,
+    "area": 2,
+    "file": "0224"
+  },
+  {
+    "No": 225,
+    "branch": null,
+    "initial": "テ",
+    "name": "デリバード",
+    "sub_name": null,
+    "area": 2,
+    "file": "0225"
+  },
+  {
+    "No": 226,
+    "branch": null,
+    "initial": "マ",
+    "name": "マンタイン",
+    "sub_name": null,
+    "area": 2,
+    "file": "0226"
+  },
+  {
+    "No": 227,
+    "branch": null,
+    "initial": "エ",
+    "name": "エアームド",
+    "sub_name": null,
+    "area": 2,
+    "file": "0227"
+  },
+  {
+    "No": 228,
+    "branch": null,
+    "initial": "テ",
+    "name": "デルビル",
+    "sub_name": null,
+    "area": 2,
+    "file": "0228"
+  },
+  {
+    "No": 229,
+    "branch": null,
+    "initial": "ヘ",
+    "name": "ヘルガー",
+    "sub_name": null,
+    "area": 2,
+    "file": "0229"
+  },
+  {
+    "No": 230,
+    "branch": null,
+    "initial": "キ",
+    "name": "キングドラ",
+    "sub_name": null,
+    "area": 2,
+    "file": "0230"
+  },
+  {
+    "No": 231,
+    "branch": null,
+    "initial": "コ",
+    "name": "ゴマゾウ",
+    "sub_name": null,
+    "area": 2,
+    "file": "0231"
+  },
+  {
+    "No": 232,
+    "branch": null,
+    "initial": "ト",
+    "name": "ドンファン",
+    "sub_name": null,
+    "area": 2,
+    "file": "0232"
+  },
+  {
+    "No": 233,
+    "branch": null,
+    "initial": "ホ",
+    "name": "ポリゴン２",
+    "sub_name": null,
+    "area": 2,
+    "file": "0233"
+  },
+  {
+    "No": 234,
+    "branch": null,
+    "initial": "オ",
+    "name": "オドシシ",
+    "sub_name": null,
+    "area": 2,
+    "file": "0234"
+  },
+  {
+    "No": 235,
+    "branch": null,
+    "initial": "ト",
+    "name": "ドーブル",
+    "sub_name": null,
+    "area": 2,
+    "file": "0235"
+  },
+  {
+    "No": 236,
+    "branch": null,
+    "initial": "ハ",
+    "name": "バルキー",
+    "sub_name": null,
+    "area": 2,
+    "file": "0236"
+  },
+  {
+    "No": 237,
+    "branch": null,
+    "initial": "カ",
+    "name": "カポエラー",
+    "sub_name": null,
+    "area": 2,
+    "file": "0237"
+  },
+  {
+    "No": 238,
+    "branch": null,
+    "initial": "ム",
+    "name": "ムチュール",
+    "sub_name": null,
+    "area": 2,
+    "file": "0238"
+  },
+  {
+    "No": 239,
+    "branch": null,
+    "initial": "エ",
+    "name": "エレキッド",
+    "sub_name": null,
+    "area": 2,
+    "file": "0239"
+  },
+  {
+    "No": 240,
+    "branch": null,
+    "initial": "フ",
+    "name": "ブビィ",
+    "sub_name": null,
+    "area": 2,
+    "file": "0240"
+  },
+  {
+    "No": 241,
+    "branch": null,
+    "initial": "ミ",
+    "name": "ミルタンク",
+    "sub_name": null,
+    "area": 2,
+    "file": "0241"
+  },
+  {
+    "No": 242,
+    "branch": null,
+    "initial": "ハ",
+    "name": "ハピナス",
+    "sub_name": null,
+    "area": 2,
+    "file": "0242"
+  },
+  {
+    "No": 243,
+    "branch": null,
+    "initial": "ラ",
+    "name": "ライコウ",
+    "sub_name": null,
+    "area": 2,
+    "file": "0243"
+  },
+  {
+    "No": 244,
+    "branch": null,
+    "initial": "エ",
+    "name": "エンテイ",
+    "sub_name": null,
+    "area": 2,
+    "file": "0244"
+  },
+  {
+    "No": 245,
+    "branch": null,
+    "initial": "ス",
+    "name": "スイクン",
+    "sub_name": null,
+    "area": 2,
+    "file": "0245"
+  },
+  {
+    "No": 246,
+    "branch": null,
+    "initial": "ヨ",
+    "name": "ヨーギラス",
+    "sub_name": null,
+    "area": 2,
+    "file": "0246"
+  },
+  {
+    "No": 247,
+    "branch": null,
+    "initial": "サ",
+    "name": "サナギラス",
+    "sub_name": null,
+    "area": 2,
+    "file": "0247"
+  },
+  {
+    "No": 248,
+    "branch": null,
+    "initial": "ハ",
+    "name": "バンギラス",
+    "sub_name": null,
+    "area": 2,
+    "file": "0248"
+  },
+  {
+    "No": 249,
+    "branch": null,
+    "initial": "ル",
+    "name": "ルギア",
+    "sub_name": null,
+    "area": 2,
+    "file": "0249"
+  },
+  {
+    "No": 250,
+    "branch": null,
+    "initial": "ホ",
+    "name": "ホウオウ",
+    "sub_name": null,
+    "area": 2,
+    "file": "0250"
+  },
+  {
+    "No": 251,
+    "branch": null,
+    "initial": "セ",
+    "name": "セレビィ",
+    "sub_name": null,
+    "area": 2,
+    "file": "0251"
+  },
+  {
+    "No": 252,
+    "branch": null,
+    "initial": "キ",
+    "name": "キモリ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0252"
+  },
+  {
+    "No": 253,
+    "branch": null,
+    "initial": "シ",
+    "name": "ジュプトル",
+    "sub_name": null,
+    "area": 3,
+    "file": "0253"
+  },
+  {
+    "No": 254,
+    "branch": null,
+    "initial": "シ",
+    "name": "ジュカイン",
+    "sub_name": null,
+    "area": 3,
+    "file": "0254"
+  },
+  {
+    "No": 255,
+    "branch": null,
+    "initial": "ア",
+    "name": "アチャモ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0255"
+  },
+  {
+    "No": 256,
+    "branch": null,
+    "initial": "ワ",
+    "name": "ワカシャモ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0256"
+  },
+  {
+    "No": 257,
+    "branch": null,
+    "initial": "ハ",
+    "name": "バシャーモ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0257"
+  },
+  {
+    "No": 258,
+    "branch": null,
+    "initial": "ミ",
+    "name": "ミズゴロウ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0258"
+  },
+  {
+    "No": 259,
+    "branch": null,
+    "initial": "ヌ",
+    "name": "ヌマクロー",
+    "sub_name": null,
+    "area": 3,
+    "file": "0259"
+  },
+  {
+    "No": 260,
+    "branch": null,
+    "initial": "ラ",
+    "name": "ラグラージ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0260"
+  },
+  {
+    "No": 261,
+    "branch": null,
+    "initial": "ホ",
+    "name": "ポチエナ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0261"
+  },
+  {
+    "No": 262,
+    "branch": null,
+    "initial": "ク",
+    "name": "グラエナ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0262"
+  },
+  {
+    "No": 263,
+    "branch": null,
+    "initial": "シ",
+    "name": "ジグザグマ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0263"
+  },
+  {
+    "No": 263,
+    "branch": 1,
+    "initial": "シ",
+    "name": "ジグザグマ",
+    "sub_name": "ガラルのすがた",
+    "area": 8,
+    "file": "0263_01"
+  },
+  {
+    "No": 264,
+    "branch": null,
+    "initial": "マ",
+    "name": "マッスグマ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0264"
+  },
+  {
+    "No": 264,
+    "branch": 1,
+    "initial": "マ",
+    "name": "マッスグマ",
+    "sub_name": "ガラルのすがた",
+    "area": 8,
+    "file": "0264_01"
+  },
+  {
+    "No": 265,
+    "branch": null,
+    "initial": "ケ",
+    "name": "ケムッソ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0265"
+  },
+  {
+    "No": 266,
+    "branch": null,
+    "initial": "カ",
+    "name": "カラサリス",
+    "sub_name": null,
+    "area": 3,
+    "file": "0266"
+  },
+  {
+    "No": 267,
+    "branch": null,
+    "initial": "ア",
+    "name": "アゲハント",
+    "sub_name": null,
+    "area": 3,
+    "file": "0267"
+  },
+  {
+    "No": 268,
+    "branch": null,
+    "initial": "マ",
+    "name": "マユルド",
+    "sub_name": null,
+    "area": 3,
+    "file": "0268"
+  },
+  {
+    "No": 269,
+    "branch": null,
+    "initial": "ト",
+    "name": "ドクケイル",
+    "sub_name": null,
+    "area": 3,
+    "file": "0269"
+  },
+  {
+    "No": 270,
+    "branch": null,
+    "initial": "ハ",
+    "name": "ハスボー",
+    "sub_name": null,
+    "area": 3,
+    "file": "0270"
+  },
+  {
+    "No": 271,
+    "branch": null,
+    "initial": "ハ",
+    "name": "ハスブレロ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0271"
+  },
+  {
+    "No": 272,
+    "branch": null,
+    "initial": "ル",
+    "name": "ルンパッパ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0272"
+  },
+  {
+    "No": 273,
+    "branch": null,
+    "initial": "タ",
+    "name": "タネボー",
+    "sub_name": null,
+    "area": 3,
+    "file": "0273"
+  },
+  {
+    "No": 274,
+    "branch": null,
+    "initial": "コ",
+    "name": "コノハナ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0274"
+  },
+  {
+    "No": 275,
+    "branch": null,
+    "initial": "タ",
+    "name": "ダーテング",
+    "sub_name": null,
+    "area": 3,
+    "file": "0275"
+  },
+  {
+    "No": 276,
+    "branch": null,
+    "initial": "ス",
+    "name": "スバメ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0276"
+  },
+  {
+    "No": 277,
+    "branch": null,
+    "initial": "オ",
+    "name": "オオスバメ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0277"
+  },
+  {
+    "No": 278,
+    "branch": null,
+    "initial": "キ",
+    "name": "キャモメ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0278"
+  },
+  {
+    "No": 279,
+    "branch": null,
+    "initial": "ヘ",
+    "name": "ペリッパー",
+    "sub_name": null,
+    "area": 3,
+    "file": "0279"
+  },
+  {
+    "No": 280,
+    "branch": null,
+    "initial": "ラ",
+    "name": "ラルトス",
+    "sub_name": null,
+    "area": 3,
+    "file": "0280"
+  },
+  {
+    "No": 281,
+    "branch": null,
+    "initial": "キ",
+    "name": "キルリア",
+    "sub_name": null,
+    "area": 3,
+    "file": "0281"
+  },
+  {
+    "No": 282,
+    "branch": null,
+    "initial": "サ",
+    "name": "サーナイト",
+    "sub_name": null,
+    "area": 3,
+    "file": "0282"
+  },
+  {
+    "No": 283,
+    "branch": null,
+    "initial": "ア",
+    "name": "アメタマ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0283"
+  },
+  {
+    "No": 284,
+    "branch": null,
+    "initial": "ア",
+    "name": "アメモース",
+    "sub_name": null,
+    "area": 3,
+    "file": "0284"
+  },
+  {
+    "No": 285,
+    "branch": null,
+    "initial": "キ",
+    "name": "キノココ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0285"
+  },
+  {
+    "No": 286,
+    "branch": null,
+    "initial": "キ",
+    "name": "キノガッサ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0286"
+  },
+  {
+    "No": 287,
+    "branch": null,
+    "initial": "ナ",
+    "name": "ナマケロ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0287"
+  },
+  {
+    "No": 288,
+    "branch": null,
+    "initial": "ヤ",
+    "name": "ヤルキモノ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0288"
+  },
+  {
+    "No": 289,
+    "branch": null,
+    "initial": "ケ",
+    "name": "ケッキング",
+    "sub_name": null,
+    "area": 3,
+    "file": "0289"
+  },
+  {
+    "No": 290,
+    "branch": null,
+    "initial": "ツ",
+    "name": "ツチニン",
+    "sub_name": null,
+    "area": 3,
+    "file": "0290"
+  },
+  {
+    "No": 291,
+    "branch": null,
+    "initial": "テ",
+    "name": "テッカニン",
+    "sub_name": null,
+    "area": 3,
+    "file": "0291"
+  },
+  {
+    "No": 292,
+    "branch": null,
+    "initial": "ヌ",
+    "name": "ヌケニン",
+    "sub_name": null,
+    "area": 3,
+    "file": "0292"
+  },
+  {
+    "No": 293,
+    "branch": null,
+    "initial": "コ",
+    "name": "ゴニョニョ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0293"
+  },
+  {
+    "No": 294,
+    "branch": null,
+    "initial": "ト",
+    "name": "ドゴーム",
+    "sub_name": null,
+    "area": 3,
+    "file": "0294"
+  },
+  {
+    "No": 295,
+    "branch": null,
+    "initial": "ハ",
+    "name": "バクオング",
+    "sub_name": null,
+    "area": 3,
+    "file": "0295"
+  },
+  {
+    "No": 296,
+    "branch": null,
+    "initial": "マ",
+    "name": "マクノシタ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0296"
+  },
+  {
+    "No": 297,
+    "branch": null,
+    "initial": "ハ",
+    "name": "ハリテヤマ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0297"
+  },
+  {
+    "No": 298,
+    "branch": null,
+    "initial": "ル",
+    "name": "ルリリ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0298"
+  },
+  {
+    "No": 299,
+    "branch": null,
+    "initial": "ノ",
+    "name": "ノズパス",
+    "sub_name": null,
+    "area": 3,
+    "file": "0299"
+  },
+  {
+    "No": 300,
+    "branch": null,
+    "initial": "エ",
+    "name": "エネコ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0300"
+  },
+  {
+    "No": 301,
+    "branch": null,
+    "initial": "エ",
+    "name": "エネコロロ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0301"
+  },
+  {
+    "No": 302,
+    "branch": null,
+    "initial": "ヤ",
+    "name": "ヤミラミ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0302"
+  },
+  {
+    "No": 303,
+    "branch": null,
+    "initial": "ク",
+    "name": "クチート",
+    "sub_name": null,
+    "area": 3,
+    "file": "0303"
+  },
+  {
+    "No": 304,
+    "branch": null,
+    "initial": "コ",
+    "name": "ココドラ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0304"
+  },
+  {
+    "No": 305,
+    "branch": null,
+    "initial": "コ",
+    "name": "コドラ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0305"
+  },
+  {
+    "No": 306,
+    "branch": null,
+    "initial": "ホ",
+    "name": "ボスゴドラ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0306"
+  },
+  {
+    "No": 307,
+    "branch": null,
+    "initial": "ア",
+    "name": "アサナン",
+    "sub_name": null,
+    "area": 3,
+    "file": "0307"
+  },
+  {
+    "No": 308,
+    "branch": null,
+    "initial": "チ",
+    "name": "チャーレム",
+    "sub_name": null,
+    "area": 3,
+    "file": "0308"
+  },
+  {
+    "No": 309,
+    "branch": null,
+    "initial": "ラ",
+    "name": "ラクライ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0309"
+  },
+  {
+    "No": 310,
+    "branch": null,
+    "initial": "ラ",
+    "name": "ライボルト",
+    "sub_name": null,
+    "area": 3,
+    "file": "0310"
+  },
+  {
+    "No": 311,
+    "branch": null,
+    "initial": "フ",
+    "name": "プラスル",
+    "sub_name": null,
+    "area": 3,
+    "file": "0311"
+  },
+  {
+    "No": 312,
+    "branch": null,
+    "initial": "マ",
+    "name": "マイナン",
+    "sub_name": null,
+    "area": 3,
+    "file": "0312"
+  },
+  {
+    "No": 313,
+    "branch": null,
+    "initial": "ハ",
+    "name": "バルビート",
+    "sub_name": null,
+    "area": 3,
+    "file": "0313"
+  },
+  {
+    "No": 314,
+    "branch": null,
+    "initial": "イ",
+    "name": "イルミーゼ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0314"
+  },
+  {
+    "No": 315,
+    "branch": null,
+    "initial": "ロ",
+    "name": "ロゼリア",
+    "sub_name": null,
+    "area": 3,
+    "file": "0315"
+  },
+  {
+    "No": 316,
+    "branch": null,
+    "initial": "コ",
+    "name": "ゴクリン",
+    "sub_name": null,
+    "area": 3,
+    "file": "0316"
+  },
+  {
+    "No": 317,
+    "branch": null,
+    "initial": "マ",
+    "name": "マルノーム",
+    "sub_name": null,
+    "area": 3,
+    "file": "0317"
+  },
+  {
+    "No": 318,
+    "branch": null,
+    "initial": "キ",
+    "name": "キバニア",
+    "sub_name": null,
+    "area": 3,
+    "file": "0318"
+  },
+  {
+    "No": 319,
+    "branch": null,
+    "initial": "サ",
+    "name": "サメハダー",
+    "sub_name": null,
+    "area": 3,
+    "file": "0319"
+  },
+  {
+    "No": 320,
+    "branch": null,
+    "initial": "ホ",
+    "name": "ホエルコ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0320"
+  },
+  {
+    "No": 321,
+    "branch": null,
+    "initial": "ホ",
+    "name": "ホエルオー",
+    "sub_name": null,
+    "area": 3,
+    "file": "0321"
+  },
+  {
+    "No": 322,
+    "branch": null,
+    "initial": "ト",
+    "name": "ドンメル",
+    "sub_name": null,
+    "area": 3,
+    "file": "0322"
+  },
+  {
+    "No": 323,
+    "branch": null,
+    "initial": "ハ",
+    "name": "バクーダ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0323"
+  },
+  {
+    "No": 324,
+    "branch": null,
+    "initial": "コ",
+    "name": "コータス",
+    "sub_name": null,
+    "area": 3,
+    "file": "0324"
+  },
+  {
+    "No": 325,
+    "branch": null,
+    "initial": "ハ",
+    "name": "バネブー",
+    "sub_name": null,
+    "area": 3,
+    "file": "0325"
+  },
+  {
+    "No": 326,
+    "branch": null,
+    "initial": "フ",
+    "name": "ブーピッグ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0326"
+  },
+  {
+    "No": 327,
+    "branch": null,
+    "initial": "ハ",
+    "name": "パッチール",
+    "sub_name": null,
+    "area": 3,
+    "file": "0327"
+  },
+  {
+    "No": 328,
+    "branch": null,
+    "initial": "ナ",
+    "name": "ナックラー",
+    "sub_name": null,
+    "area": 3,
+    "file": "0328"
+  },
+  {
+    "No": 329,
+    "branch": null,
+    "initial": "ヒ",
+    "name": "ビブラーバ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0329"
+  },
+  {
+    "No": 330,
+    "branch": null,
+    "initial": "フ",
+    "name": "フライゴン",
+    "sub_name": null,
+    "area": 3,
+    "file": "0330"
+  },
+  {
+    "No": 331,
+    "branch": null,
+    "initial": "サ",
+    "name": "サボネア",
+    "sub_name": null,
+    "area": 3,
+    "file": "0331"
+  },
+  {
+    "No": 332,
+    "branch": null,
+    "initial": "ノ",
+    "name": "ノクタス",
+    "sub_name": null,
+    "area": 3,
+    "file": "0332"
+  },
+  {
+    "No": 333,
+    "branch": null,
+    "initial": "チ",
+    "name": "チルット",
+    "sub_name": null,
+    "area": 3,
+    "file": "0333"
+  },
+  {
+    "No": 334,
+    "branch": null,
+    "initial": "チ",
+    "name": "チルタリス",
+    "sub_name": null,
+    "area": 3,
+    "file": "0334"
+  },
+  {
+    "No": 335,
+    "branch": null,
+    "initial": "サ",
+    "name": "ザングース",
+    "sub_name": null,
+    "area": 3,
+    "file": "0335"
+  },
+  {
+    "No": 336,
+    "branch": null,
+    "initial": "ハ",
+    "name": "ハブネーク",
+    "sub_name": null,
+    "area": 3,
+    "file": "0336"
+  },
+  {
+    "No": 337,
+    "branch": null,
+    "initial": "ル",
+    "name": "ルナトーン",
+    "sub_name": null,
+    "area": 3,
+    "file": "0337"
+  },
+  {
+    "No": 338,
+    "branch": null,
+    "initial": "ソ",
+    "name": "ソルロック",
+    "sub_name": null,
+    "area": 3,
+    "file": "0338"
+  },
+  {
+    "No": 339,
+    "branch": null,
+    "initial": "ト",
+    "name": "ドジョッチ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0339"
+  },
+  {
+    "No": 340,
+    "branch": null,
+    "initial": "ナ",
+    "name": "ナマズン",
+    "sub_name": null,
+    "area": 3,
+    "file": "0340"
+  },
+  {
+    "No": 341,
+    "branch": null,
+    "initial": "ヘ",
+    "name": "ヘイガニ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0341"
+  },
+  {
+    "No": 342,
+    "branch": null,
+    "initial": "シ",
+    "name": "シザリガー",
+    "sub_name": null,
+    "area": 3,
+    "file": "0342"
+  },
+  {
+    "No": 343,
+    "branch": null,
+    "initial": "ヤ",
+    "name": "ヤジロン",
+    "sub_name": null,
+    "area": 3,
+    "file": "0343"
+  },
+  {
+    "No": 344,
+    "branch": null,
+    "initial": "ネ",
+    "name": "ネンドール",
+    "sub_name": null,
+    "area": 3,
+    "file": "0344"
+  },
+  {
+    "No": 345,
+    "branch": null,
+    "initial": "リ",
+    "name": "リリーラ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0345"
+  },
+  {
+    "No": 346,
+    "branch": null,
+    "initial": "ユ",
+    "name": "ユレイドル",
+    "sub_name": null,
+    "area": 3,
+    "file": "0346"
+  },
+  {
+    "No": 347,
+    "branch": null,
+    "initial": "ア",
+    "name": "アノプス",
+    "sub_name": null,
+    "area": 3,
+    "file": "0347"
+  },
+  {
+    "No": 348,
+    "branch": null,
+    "initial": "ア",
+    "name": "アーマルド",
+    "sub_name": null,
+    "area": 3,
+    "file": "0348"
+  },
+  {
+    "No": 349,
+    "branch": null,
+    "initial": "ヒ",
+    "name": "ヒンバス",
+    "sub_name": null,
+    "area": 3,
+    "file": "0349"
+  },
+  {
+    "No": 350,
+    "branch": null,
+    "initial": "ミ",
+    "name": "ミロカロス",
+    "sub_name": null,
+    "area": 3,
+    "file": "0350"
+  },
+  {
+    "No": 351,
+    "branch": null,
+    "initial": "ホ",
+    "name": "ポワルン",
+    "sub_name": null,
+    "area": 3,
+    "file": "0351"
+  },
+  {
+    "No": 352,
+    "branch": null,
+    "initial": "カ",
+    "name": "カクレオン",
+    "sub_name": null,
+    "area": 3,
+    "file": "0352"
+  },
+  {
+    "No": 353,
+    "branch": null,
+    "initial": "カ",
+    "name": "カゲボウズ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0353"
+  },
+  {
+    "No": 354,
+    "branch": null,
+    "initial": "シ",
+    "name": "ジュペッタ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0354"
+  },
+  {
+    "No": 355,
+    "branch": null,
+    "initial": "ヨ",
+    "name": "ヨマワル",
+    "sub_name": null,
+    "area": 3,
+    "file": "0355"
+  },
+  {
+    "No": 356,
+    "branch": null,
+    "initial": "サ",
+    "name": "サマヨール",
+    "sub_name": null,
+    "area": 3,
+    "file": "0356"
+  },
+  {
+    "No": 357,
+    "branch": null,
+    "initial": "ト",
+    "name": "トロピウス",
+    "sub_name": null,
+    "area": 3,
+    "file": "0357"
+  },
+  {
+    "No": 358,
+    "branch": null,
+    "initial": "チ",
+    "name": "チリーン",
+    "sub_name": null,
+    "area": 3,
+    "file": "0358"
+  },
+  {
+    "No": 359,
+    "branch": null,
+    "initial": "ア",
+    "name": "アブソル",
+    "sub_name": null,
+    "area": 3,
+    "file": "0359"
+  },
+  {
+    "No": 360,
+    "branch": null,
+    "initial": "ソ",
+    "name": "ソーナノ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0360"
+  },
+  {
+    "No": 361,
+    "branch": null,
+    "initial": "ユ",
+    "name": "ユキワラシ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0361"
+  },
+  {
+    "No": 362,
+    "branch": null,
+    "initial": "オ",
+    "name": "オニゴーリ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0362"
+  },
+  {
+    "No": 363,
+    "branch": null,
+    "initial": "タ",
+    "name": "タマザラシ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0363"
+  },
+  {
+    "No": 364,
+    "branch": null,
+    "initial": "ト",
+    "name": "トドグラー",
+    "sub_name": null,
+    "area": 3,
+    "file": "0364"
+  },
+  {
+    "No": 365,
+    "branch": null,
+    "initial": "ト",
+    "name": "トドゼルガ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0365"
+  },
+  {
+    "No": 366,
+    "branch": null,
+    "initial": "ハ",
+    "name": "パールル",
+    "sub_name": null,
+    "area": 3,
+    "file": "0366"
+  },
+  {
+    "No": 367,
+    "branch": null,
+    "initial": "ハ",
+    "name": "ハンテール",
+    "sub_name": null,
+    "area": 3,
+    "file": "0367"
+  },
+  {
+    "No": 368,
+    "branch": null,
+    "initial": "サ",
+    "name": "サクラビス",
+    "sub_name": null,
+    "area": 3,
+    "file": "0368"
+  },
+  {
+    "No": 369,
+    "branch": null,
+    "initial": "シ",
+    "name": "ジーランス",
+    "sub_name": null,
+    "area": 3,
+    "file": "0369"
+  },
+  {
+    "No": 370,
+    "branch": null,
+    "initial": "ラ",
+    "name": "ラブカス",
+    "sub_name": null,
+    "area": 3,
+    "file": "0370"
+  },
+  {
+    "No": 371,
+    "branch": null,
+    "initial": "タ",
+    "name": "タツベイ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0371"
+  },
+  {
+    "No": 372,
+    "branch": null,
+    "initial": "コ",
+    "name": "コモルー",
+    "sub_name": null,
+    "area": 3,
+    "file": "0372"
+  },
+  {
+    "No": 373,
+    "branch": null,
+    "initial": "ホ",
+    "name": "ボーマンダ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0373"
+  },
+  {
+    "No": 374,
+    "branch": null,
+    "initial": "タ",
+    "name": "ダンバル",
+    "sub_name": null,
+    "area": 3,
+    "file": "0374"
+  },
+  {
+    "No": 375,
+    "branch": null,
+    "initial": "メ",
+    "name": "メタング",
+    "sub_name": null,
+    "area": 3,
+    "file": "0375"
+  },
+  {
+    "No": 376,
+    "branch": null,
+    "initial": "メ",
+    "name": "メタグロス",
+    "sub_name": null,
+    "area": 3,
+    "file": "0376"
+  },
+  {
+    "No": 377,
+    "branch": null,
+    "initial": "レ",
+    "name": "レジロック",
+    "sub_name": null,
+    "area": 3,
+    "file": "0377"
+  },
+  {
+    "No": 378,
+    "branch": null,
+    "initial": "レ",
+    "name": "レジアイス",
+    "sub_name": null,
+    "area": 3,
+    "file": "0378"
+  },
+  {
+    "No": 379,
+    "branch": null,
+    "initial": "レ",
+    "name": "レジスチル",
+    "sub_name": null,
+    "area": 3,
+    "file": "0379"
+  },
+  {
+    "No": 380,
+    "branch": null,
+    "initial": "ラ",
+    "name": "ラティアス",
+    "sub_name": null,
+    "area": 3,
+    "file": "0380"
+  },
+  {
+    "No": 381,
+    "branch": null,
+    "initial": "ラ",
+    "name": "ラティオス",
+    "sub_name": null,
+    "area": 3,
+    "file": "0381"
+  },
+  {
+    "No": 382,
+    "branch": null,
+    "initial": "カ",
+    "name": "カイオーガ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0382"
+  },
+  {
+    "No": 383,
+    "branch": null,
+    "initial": "ク",
+    "name": "グラードン",
+    "sub_name": null,
+    "area": 3,
+    "file": "0383"
+  },
+  {
+    "No": 384,
+    "branch": null,
+    "initial": "レ",
+    "name": "レックウザ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0384"
+  },
+  {
+    "No": 385,
+    "branch": null,
+    "initial": "シ",
+    "name": "ジラーチ",
+    "sub_name": null,
+    "area": 3,
+    "file": "0385"
+  },
+  {
+    "No": 386,
+    "branch": null,
+    "initial": "テ",
+    "name": "デオキシス",
+    "sub_name": "ノーマルフォルム",
+    "area": 3,
+    "file": "0386"
+  },
+  {
+    "No": 387,
+    "branch": null,
+    "initial": "ナ",
+    "name": "ナエトル",
+    "sub_name": null,
+    "area": 4,
+    "file": "0387"
+  },
+  {
+    "No": 388,
+    "branch": null,
+    "initial": "ハ",
+    "name": "ハヤシガメ",
+    "sub_name": null,
+    "area": 4,
+    "file": "0388"
+  },
+  {
+    "No": 389,
+    "branch": null,
+    "initial": "ト",
+    "name": "ドダイトス",
+    "sub_name": null,
+    "area": 4,
+    "file": "0389"
+  },
+  {
+    "No": 390,
+    "branch": null,
+    "initial": "ヒ",
+    "name": "ヒコザル",
+    "sub_name": null,
+    "area": 4,
+    "file": "0390"
+  },
+  {
+    "No": 391,
+    "branch": null,
+    "initial": "モ",
+    "name": "モウカザル",
+    "sub_name": null,
+    "area": 4,
+    "file": "0391"
+  },
+  {
+    "No": 392,
+    "branch": null,
+    "initial": "コ",
+    "name": "ゴウカザル",
+    "sub_name": null,
+    "area": 4,
+    "file": "0392"
+  },
+  {
+    "No": 393,
+    "branch": null,
+    "initial": "ホ",
+    "name": "ポッチャマ",
+    "sub_name": null,
+    "area": 4,
+    "file": "0393"
+  },
+  {
+    "No": 394,
+    "branch": null,
+    "initial": "ホ",
+    "name": "ポッタイシ",
+    "sub_name": null,
+    "area": 4,
+    "file": "0394"
+  },
+  {
+    "No": 395,
+    "branch": null,
+    "initial": "エ",
+    "name": "エンペルト",
+    "sub_name": null,
+    "area": 4,
+    "file": "0395"
+  },
+  {
+    "No": 396,
+    "branch": null,
+    "initial": "ム",
+    "name": "ムックル",
+    "sub_name": null,
+    "area": 4,
+    "file": "0396"
+  },
+  {
+    "No": 397,
+    "branch": null,
+    "initial": "ム",
+    "name": "ムクバード",
+    "sub_name": null,
+    "area": 4,
+    "file": "0397"
+  },
+  {
+    "No": 398,
+    "branch": null,
+    "initial": "ム",
+    "name": "ムクホーク",
+    "sub_name": null,
+    "area": 4,
+    "file": "0398"
+  },
+  {
+    "No": 399,
+    "branch": null,
+    "initial": "ヒ",
+    "name": "ビッパ",
+    "sub_name": null,
+    "area": 4,
+    "file": "0399"
+  },
+  {
+    "No": 400,
+    "branch": null,
+    "initial": "ヒ",
+    "name": "ビーダル",
+    "sub_name": null,
+    "area": 4,
+    "file": "0400"
+  },
+  {
+    "No": 401,
+    "branch": null,
+    "initial": "コ",
+    "name": "コロボーシ",
+    "sub_name": null,
+    "area": 4,
+    "file": "0401"
+  },
+  {
+    "No": 402,
+    "branch": null,
+    "initial": "コ",
+    "name": "コロトック",
+    "sub_name": null,
+    "area": 4,
+    "file": "0402"
+  },
+  {
+    "No": 403,
+    "branch": null,
+    "initial": "コ",
+    "name": "コリンク",
+    "sub_name": null,
+    "area": 4,
+    "file": "0403"
+  },
+  {
+    "No": 404,
+    "branch": null,
+    "initial": "ル",
+    "name": "ルクシオ",
+    "sub_name": null,
+    "area": 4,
+    "file": "0404"
+  },
+  {
+    "No": 405,
+    "branch": null,
+    "initial": "レ",
+    "name": "レントラー",
+    "sub_name": null,
+    "area": 4,
+    "file": "0405"
+  },
+  {
+    "No": 406,
+    "branch": null,
+    "initial": "ス",
+    "name": "スボミー",
+    "sub_name": null,
+    "area": 4,
+    "file": "0406"
+  },
+  {
+    "No": 407,
+    "branch": null,
+    "initial": "ロ",
+    "name": "ロズレイド",
+    "sub_name": null,
+    "area": 4,
+    "file": "0407"
+  },
+  {
+    "No": 408,
+    "branch": null,
+    "initial": "ス",
+    "name": "ズガイドス",
+    "sub_name": null,
+    "area": 4,
+    "file": "0408"
+  },
+  {
+    "No": 409,
+    "branch": null,
+    "initial": "ラ",
+    "name": "ラムパルド",
+    "sub_name": null,
+    "area": 4,
+    "file": "0409"
+  },
+  {
+    "No": 410,
+    "branch": null,
+    "initial": "タ",
+    "name": "タテトプス",
+    "sub_name": null,
+    "area": 4,
+    "file": "0410"
+  },
+  {
+    "No": 411,
+    "branch": null,
+    "initial": "ト",
+    "name": "トリデプス",
+    "sub_name": null,
+    "area": 4,
+    "file": "0411"
+  },
+  {
+    "No": 412,
+    "branch": null,
+    "initial": "ミ",
+    "name": "ミノムッチ",
+    "sub_name": "くさきのミノ",
+    "area": 4,
+    "file": "0412"
+  },
+  {
+    "No": 413,
+    "branch": null,
+    "initial": "ミ",
+    "name": "ミノマダム",
+    "sub_name": "くさきのミノ",
+    "area": 4,
+    "file": "0413"
+  },
+  {
+    "No": 414,
+    "branch": null,
+    "initial": "カ",
+    "name": "ガーメイル",
+    "sub_name": null,
+    "area": 4,
+    "file": "0414"
+  },
+  {
+    "No": 415,
+    "branch": null,
+    "initial": "ミ",
+    "name": "ミツハニー",
+    "sub_name": null,
+    "area": 4,
+    "file": "0415"
+  },
+  {
+    "No": 416,
+    "branch": null,
+    "initial": "ヒ",
+    "name": "ビークイン",
+    "sub_name": null,
+    "area": 4,
+    "file": "0416"
+  },
+  {
+    "No": 417,
+    "branch": null,
+    "initial": "ハ",
+    "name": "パチリス",
+    "sub_name": null,
+    "area": 4,
+    "file": "0417"
+  },
+  {
+    "No": 418,
+    "branch": null,
+    "initial": "フ",
+    "name": "ブイゼル",
+    "sub_name": null,
+    "area": 4,
+    "file": "0418"
+  },
+  {
+    "No": 419,
+    "branch": null,
+    "initial": "フ",
+    "name": "フローゼル",
+    "sub_name": null,
+    "area": 4,
+    "file": "0419"
+  },
+  {
+    "No": 420,
+    "branch": null,
+    "initial": "チ",
+    "name": "チェリンボ",
+    "sub_name": null,
+    "area": 4,
+    "file": "0420"
+  },
+  {
+    "No": 421,
+    "branch": 1,
+    "initial": "チ",
+    "name": "チェリム",
+    "sub_name": "ポジフォルム",
+    "area": 4,
+    "file": "0421"
+  },
+  {
+    "No": 422,
+    "branch": null,
+    "initial": "カ",
+    "name": "カラナクシ",
+    "sub_name": "にしのうみ",
+    "area": 4,
+    "file": "0422"
+  },
+  {
+    "No": 422,
+    "branch": 1,
+    "initial": "カ",
+    "name": "カラナクシ",
+    "sub_name": "ひがしのうみ",
+    "area": 4,
+    "file": "0422_01"
+  },
+  {
+    "No": 423,
+    "branch": null,
+    "initial": "ト",
+    "name": "トリトドン",
+    "sub_name": "にしのうみ",
+    "area": 4,
+    "file": "0423"
+  },
+  {
+    "No": 423,
+    "branch": 1,
+    "initial": "ト",
+    "name": "トリトドン",
+    "sub_name": "ひがしのうみ",
+    "area": 4,
+    "file": "0423_01"
+  },
+  {
+    "No": 424,
+    "branch": null,
+    "initial": "エ",
+    "name": "エテボース",
+    "sub_name": null,
+    "area": 4,
+    "file": "0424"
+  },
+  {
+    "No": 425,
+    "branch": null,
+    "initial": "フ",
+    "name": "フワンテ",
+    "sub_name": null,
+    "area": 4,
+    "file": "0425"
+  },
+  {
+    "No": 426,
+    "branch": null,
+    "initial": "フ",
+    "name": "フワライド",
+    "sub_name": null,
+    "area": 4,
+    "file": "0426"
+  },
+  {
+    "No": 427,
+    "branch": null,
+    "initial": "ミ",
+    "name": "ミミロル",
+    "sub_name": null,
+    "area": 4,
+    "file": "0427"
+  },
+  {
+    "No": 428,
+    "branch": null,
+    "initial": "ミ",
+    "name": "ミミロップ",
+    "sub_name": null,
+    "area": 4,
+    "file": "0428"
+  },
+  {
+    "No": 429,
+    "branch": null,
+    "initial": "ム",
+    "name": "ムウマージ",
+    "sub_name": null,
+    "area": 4,
+    "file": "0429"
+  },
+  {
+    "No": 430,
+    "branch": null,
+    "initial": "ト",
+    "name": "ドンカラス",
+    "sub_name": null,
+    "area": 4,
+    "file": "0430"
+  },
+  {
+    "No": 431,
+    "branch": null,
+    "initial": "ニ",
+    "name": "ニャルマー",
+    "sub_name": null,
+    "area": 4,
+    "file": "0431"
+  },
+  {
+    "No": 432,
+    "branch": null,
+    "initial": "フ",
+    "name": "ブニャット",
+    "sub_name": null,
+    "area": 4,
+    "file": "0432"
+  },
+  {
+    "No": 433,
+    "branch": null,
+    "initial": "リ",
+    "name": "リーシャン",
+    "sub_name": null,
+    "area": 4,
+    "file": "0433"
+  },
+  {
+    "No": 434,
+    "branch": null,
+    "initial": "ス",
+    "name": "スカンプー",
+    "sub_name": null,
+    "area": 4,
+    "file": "0434"
+  },
+  {
+    "No": 435,
+    "branch": null,
+    "initial": "ス",
+    "name": "スカタンク",
+    "sub_name": null,
+    "area": 4,
+    "file": "0435"
+  },
+  {
+    "No": 436,
+    "branch": null,
+    "initial": "ト",
+    "name": "ドーミラー",
+    "sub_name": null,
+    "area": 4,
+    "file": "0436"
+  },
+  {
+    "No": 437,
+    "branch": null,
+    "initial": "ト",
+    "name": "ドータクン",
+    "sub_name": null,
+    "area": 4,
+    "file": "0437"
+  },
+  {
+    "No": 438,
+    "branch": null,
+    "initial": "ウ",
+    "name": "ウソハチ",
+    "sub_name": null,
+    "area": 4,
+    "file": "0438"
+  },
+  {
+    "No": 439,
+    "branch": null,
+    "initial": "マ",
+    "name": "マネネ",
+    "sub_name": null,
+    "area": 4,
+    "file": "0439"
+  },
+  {
+    "No": 440,
+    "branch": null,
+    "initial": "ヒ",
+    "name": "ピンプク",
+    "sub_name": null,
+    "area": 4,
+    "file": "0440"
+  },
+  {
+    "No": 441,
+    "branch": null,
+    "initial": "ヘ",
+    "name": "ペラップ",
+    "sub_name": null,
+    "area": 4,
+    "file": "0441"
+  },
+  {
+    "No": 442,
+    "branch": null,
+    "initial": "ミ",
+    "name": "ミカルゲ",
+    "sub_name": null,
+    "area": 4,
+    "file": "0442"
+  },
+  {
+    "No": 443,
+    "branch": null,
+    "initial": "フ",
+    "name": "フカマル",
+    "sub_name": null,
+    "area": 4,
+    "file": "0443"
+  },
+  {
+    "No": 444,
+    "branch": null,
+    "initial": "カ",
+    "name": "ガバイト",
+    "sub_name": null,
+    "area": 4,
+    "file": "0444"
+  },
+  {
+    "No": 445,
+    "branch": null,
+    "initial": "カ",
+    "name": "ガブリアス",
+    "sub_name": null,
+    "area": 4,
+    "file": "0445"
+  },
+  {
+    "No": 446,
+    "branch": null,
+    "initial": "コ",
+    "name": "ゴンベ",
+    "sub_name": null,
+    "area": 4,
+    "file": "0446"
+  },
+  {
+    "No": 447,
+    "branch": null,
+    "initial": "リ",
+    "name": "リオル",
+    "sub_name": null,
+    "area": 4,
+    "file": "0447"
+  },
+  {
+    "No": 448,
+    "branch": null,
+    "initial": "ル",
+    "name": "ルカリオ",
+    "sub_name": null,
+    "area": 4,
+    "file": "0448"
+  },
+  {
+    "No": 449,
+    "branch": null,
+    "initial": "ヒ",
+    "name": "ヒポポタス",
+    "sub_name": null,
+    "area": 4,
+    "file": "0449"
+  },
+  {
+    "No": 450,
+    "branch": null,
+    "initial": "カ",
+    "name": "カバルドン",
+    "sub_name": null,
+    "area": 4,
+    "file": "0450"
+  },
+  {
+    "No": 451,
+    "branch": null,
+    "initial": "ス",
+    "name": "スコルピ",
+    "sub_name": null,
+    "area": 4,
+    "file": "0451"
+  },
+  {
+    "No": 452,
+    "branch": null,
+    "initial": "ト",
+    "name": "ドラピオン",
+    "sub_name": null,
+    "area": 4,
+    "file": "0452"
+  },
+  {
+    "No": 453,
+    "branch": null,
+    "initial": "ク",
+    "name": "グレッグル",
+    "sub_name": null,
+    "area": 4,
+    "file": "0453"
+  },
+  {
+    "No": 454,
+    "branch": null,
+    "initial": "ト",
+    "name": "ドクロッグ",
+    "sub_name": null,
+    "area": 4,
+    "file": "0454"
+  },
+  {
+    "No": 455,
+    "branch": null,
+    "initial": "マ",
+    "name": "マスキッパ",
+    "sub_name": null,
+    "area": 4,
+    "file": "0455"
+  },
+  {
+    "No": 456,
+    "branch": null,
+    "initial": "ケ",
+    "name": "ケイコウオ",
+    "sub_name": null,
+    "area": 4,
+    "file": "0456"
+  },
+  {
+    "No": 457,
+    "branch": null,
+    "initial": "ネ",
+    "name": "ネオラント",
+    "sub_name": null,
+    "area": 4,
+    "file": "0457"
+  },
+  {
+    "No": 458,
+    "branch": null,
+    "initial": "タ",
+    "name": "タマンタ",
+    "sub_name": null,
+    "area": 4,
+    "file": "0458"
+  },
+  {
+    "No": 459,
+    "branch": null,
+    "initial": "ユ",
+    "name": "ユキカブリ",
+    "sub_name": null,
+    "area": 4,
+    "file": "0459"
+  },
+  {
+    "No": 460,
+    "branch": null,
+    "initial": "ユ",
+    "name": "ユキノオー",
+    "sub_name": null,
+    "area": 4,
+    "file": "0460"
+  },
+  {
+    "No": 461,
+    "branch": null,
+    "initial": "マ",
+    "name": "マニューラ",
+    "sub_name": null,
+    "area": 4,
+    "file": "0461"
+  },
+  {
+    "No": 462,
+    "branch": null,
+    "initial": "シ",
+    "name": "ジバコイル",
+    "sub_name": null,
+    "area": 4,
+    "file": "0462"
+  },
+  {
+    "No": 463,
+    "branch": null,
+    "initial": "ヘ",
+    "name": "ベロベルト",
+    "sub_name": null,
+    "area": 4,
+    "file": "0463"
+  },
+  {
+    "No": 464,
+    "branch": null,
+    "initial": "ト",
+    "name": "ドサイドン",
+    "sub_name": null,
+    "area": 4,
+    "file": "0464"
+  },
+  {
+    "No": 465,
+    "branch": null,
+    "initial": "モ",
+    "name": "モジャンボ",
+    "sub_name": null,
+    "area": 4,
+    "file": "0465"
+  },
+  {
+    "No": 466,
+    "branch": null,
+    "initial": "エ",
+    "name": "エレキブル",
+    "sub_name": null,
+    "area": 4,
+    "file": "0466"
+  },
+  {
+    "No": 467,
+    "branch": null,
+    "initial": "フ",
+    "name": "ブーバーン",
+    "sub_name": null,
+    "area": 4,
+    "file": "0467"
+  },
+  {
+    "No": 468,
+    "branch": null,
+    "initial": "ト",
+    "name": "トゲキッス",
+    "sub_name": null,
+    "area": 4,
+    "file": "0468"
+  },
+  {
+    "No": 469,
+    "branch": null,
+    "initial": "メ",
+    "name": "メガヤンマ",
+    "sub_name": null,
+    "area": 4,
+    "file": "0469"
+  },
+  {
+    "No": 470,
+    "branch": null,
+    "initial": "リ",
+    "name": "リーフィア",
+    "sub_name": null,
+    "area": 4,
+    "file": "0470"
+  },
+  {
+    "No": 471,
+    "branch": null,
+    "initial": "ク",
+    "name": "グレイシア",
+    "sub_name": null,
+    "area": 4,
+    "file": "0471"
+  },
+  {
+    "No": 472,
+    "branch": null,
+    "initial": "ク",
+    "name": "グライオン",
+    "sub_name": null,
+    "area": 4,
+    "file": "0472"
+  },
+  {
+    "No": 473,
+    "branch": null,
+    "initial": "マ",
+    "name": "マンムー",
+    "sub_name": null,
+    "area": 4,
+    "file": "0473"
+  },
+  {
+    "No": 474,
+    "branch": null,
+    "initial": "ホ",
+    "name": "ポリゴンＺ",
+    "sub_name": null,
+    "area": 4,
+    "file": "0474"
+  },
+  {
+    "No": 475,
+    "branch": null,
+    "initial": "エ",
+    "name": "エルレイド",
+    "sub_name": null,
+    "area": 4,
+    "file": "0475"
+  },
+  {
+    "No": 476,
+    "branch": null,
+    "initial": "タ",
+    "name": "ダイノーズ",
+    "sub_name": null,
+    "area": 4,
+    "file": "0476"
+  },
+  {
+    "No": 477,
+    "branch": null,
+    "initial": "ヨ",
+    "name": "ヨノワール",
+    "sub_name": null,
+    "area": 4,
+    "file": "0477"
+  },
+  {
+    "No": 478,
+    "branch": null,
+    "initial": "ユ",
+    "name": "ユキメノコ",
+    "sub_name": null,
+    "area": 4,
+    "file": "0478"
+  },
+  {
+    "No": 479,
+    "branch": null,
+    "initial": "ロ",
+    "name": "ロトム",
+    "sub_name": "ロトムのすがた",
+    "area": 4,
+    "file": "0479"
+  },
+  {
+    "No": 480,
+    "branch": null,
+    "initial": "ユ",
+    "name": "ユクシー",
+    "sub_name": null,
+    "area": 4,
+    "file": "0480"
+  },
+  {
+    "No": 481,
+    "branch": null,
+    "initial": "エ",
+    "name": "エムリット",
+    "sub_name": null,
+    "area": 4,
+    "file": "0481"
+  },
+  {
+    "No": 482,
+    "branch": null,
+    "initial": "ア",
+    "name": "アグノム",
+    "sub_name": null,
+    "area": 4,
+    "file": "0482"
+  },
+  {
+    "No": 483,
+    "branch": null,
+    "initial": "テ",
+    "name": "ディアルガ",
+    "sub_name": null,
+    "area": 4,
+    "file": "0483_01"
+  },
+  {
+    "No": 483,
+    "branch": 1,
+    "initial": "テ",
+    "name": "ディアルガ",
+    "sub_name": "オリジンフォルム",
+    "area": 9,
+    "file": "0483"
+  },
+  {
+    "No": 484,
+    "branch": null,
+    "initial": "ハ",
+    "name": "パルキア",
+    "sub_name": null,
+    "area": 4,
+    "file": "0484"
+  },
+  {
+    "No": 484,
+    "branch": 1,
+    "initial": "ハ",
+    "name": "パルキア",
+    "sub_name": "オリジンフォルム",
+    "area": 9,
+    "file": "0484_01"
+  },
+  {
+    "No": 485,
+    "branch": null,
+    "initial": "ヒ",
+    "name": "ヒードラン",
+    "sub_name": null,
+    "area": 4,
+    "file": "0485"
+  },
+  {
+    "No": 486,
+    "branch": null,
+    "initial": "レ",
+    "name": "レジギガス",
+    "sub_name": null,
+    "area": 4,
+    "file": "0486"
+  },
+  {
+    "No": 487,
+    "branch": null,
+    "initial": "キ",
+    "name": "ギラティナ",
+    "sub_name": "アナザーフォルム",
+    "area": 4,
+    "file": "0487"
+  },
+  {
+    "No": 487,
+    "branch": 1,
+    "initial": "キ",
+    "name": "ギラティナ",
+    "sub_name": "オリジンフォルム",
+    "area": 4,
+    "file": "0487_01"
+  },
+  {
+    "No": 488,
+    "branch": null,
+    "initial": "ク",
+    "name": "クレセリア",
+    "sub_name": null,
+    "area": 4,
+    "file": "0488"
+  },
+  {
+    "No": 489,
+    "branch": null,
+    "initial": "フ",
+    "name": "フィオネ",
+    "sub_name": null,
+    "area": 4,
+    "file": "0489"
+  },
+  {
+    "No": 490,
+    "branch": null,
+    "initial": "マ",
+    "name": "マナフィ",
+    "sub_name": null,
+    "area": 4,
+    "file": "0490"
+  },
+  {
+    "No": 491,
+    "branch": null,
+    "initial": "タ",
+    "name": "ダークライ",
+    "sub_name": null,
+    "area": 4,
+    "file": "0491"
+  },
+  {
+    "No": 492,
+    "branch": null,
+    "initial": "シ",
+    "name": "シェイミ",
+    "sub_name": "ランドフォルム",
+    "area": 4,
+    "file": "0492"
+  },
+  {
+    "No": 493,
+    "branch": null,
+    "initial": "ア",
+    "name": "アルセウス",
+    "sub_name": null,
+    "area": 4,
+    "file": "0493"
+  },
+  {
+    "No": 494,
+    "branch": null,
+    "initial": "ヒ",
+    "name": "ビクティニ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0494"
+  },
+  {
+    "No": 495,
+    "branch": null,
+    "initial": "ツ",
+    "name": "ツタージャ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0495"
+  },
+  {
+    "No": 496,
+    "branch": null,
+    "initial": "シ",
+    "name": "ジャノビー",
+    "sub_name": null,
+    "area": 5,
+    "file": "0496"
+  },
+  {
+    "No": 497,
+    "branch": null,
+    "initial": "シ",
+    "name": "ジャローダ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0497"
+  },
+  {
+    "No": 498,
+    "branch": null,
+    "initial": "ホ",
+    "name": "ポカブ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0498"
+  },
+  {
+    "No": 499,
+    "branch": null,
+    "initial": "チ",
+    "name": "チャオブー",
+    "sub_name": null,
+    "area": 5,
+    "file": "0499"
+  },
+  {
+    "No": 500,
+    "branch": null,
+    "initial": "エ",
+    "name": "エンブオー",
+    "sub_name": null,
+    "area": 5,
+    "file": "0500"
+  },
+  {
+    "No": 501,
+    "branch": null,
+    "initial": "ミ",
+    "name": "ミジュマル",
+    "sub_name": null,
+    "area": 5,
+    "file": "0501"
+  },
+  {
+    "No": 502,
+    "branch": null,
+    "initial": "フ",
+    "name": "フタチマル",
+    "sub_name": null,
+    "area": 5,
+    "file": "0502"
+  },
+  {
+    "No": 503,
+    "branch": null,
+    "initial": "タ",
+    "name": "ダイケンキ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0503"
+  },
+  {
+    "No": 503,
+    "branch": 1,
+    "initial": "タ",
+    "name": "ダイケンキ",
+    "sub_name": "ヒスイのすがた",
+    "area": 9,
+    "file": "0503_01"
+  },
+  {
+    "No": 504,
+    "branch": null,
+    "initial": "ミ",
+    "name": "ミネズミ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0504"
+  },
+  {
+    "No": 505,
+    "branch": null,
+    "initial": "ミ",
+    "name": "ミルホッグ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0505"
+  },
+  {
+    "No": 506,
+    "branch": null,
+    "initial": "ヨ",
+    "name": "ヨーテリー",
+    "sub_name": null,
+    "area": 5,
+    "file": "0506"
+  },
+  {
+    "No": 507,
+    "branch": null,
+    "initial": "ハ",
+    "name": "ハーデリア",
+    "sub_name": null,
+    "area": 5,
+    "file": "0507"
+  },
+  {
+    "No": 508,
+    "branch": null,
+    "initial": "ム",
+    "name": "ムーランド",
+    "sub_name": null,
+    "area": 5,
+    "file": "0508"
+  },
+  {
+    "No": 509,
+    "branch": null,
+    "initial": "チ",
+    "name": "チョロネコ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0509"
+  },
+  {
+    "No": 510,
+    "branch": null,
+    "initial": "レ",
+    "name": "レパルダス",
+    "sub_name": null,
+    "area": 5,
+    "file": "0510"
+  },
+  {
+    "No": 511,
+    "branch": null,
+    "initial": "ヤ",
+    "name": "ヤナップ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0511"
+  },
+  {
+    "No": 512,
+    "branch": null,
+    "initial": "ヤ",
+    "name": "ヤナッキー",
+    "sub_name": null,
+    "area": 5,
+    "file": "0512"
+  },
+  {
+    "No": 513,
+    "branch": null,
+    "initial": "ハ",
+    "name": "バオップ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0513"
+  },
+  {
+    "No": 514,
+    "branch": null,
+    "initial": "ハ",
+    "name": "バオッキー",
+    "sub_name": null,
+    "area": 5,
+    "file": "0514"
+  },
+  {
+    "No": 515,
+    "branch": null,
+    "initial": "ヒ",
+    "name": "ヒヤップ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0515"
+  },
+  {
+    "No": 516,
+    "branch": null,
+    "initial": "ヒ",
+    "name": "ヒヤッキー",
+    "sub_name": null,
+    "area": 5,
+    "file": "0516"
+  },
+  {
+    "No": 517,
+    "branch": null,
+    "initial": "ム",
+    "name": "ムンナ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0517"
+  },
+  {
+    "No": 518,
+    "branch": null,
+    "initial": "ム",
+    "name": "ムシャーナ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0518"
+  },
+  {
+    "No": 519,
+    "branch": null,
+    "initial": "マ",
+    "name": "マメパト",
+    "sub_name": null,
+    "area": 5,
+    "file": "0519"
+  },
+  {
+    "No": 520,
+    "branch": null,
+    "initial": "ハ",
+    "name": "ハトーボー",
+    "sub_name": null,
+    "area": 5,
+    "file": "0520"
+  },
+  {
+    "No": 521,
+    "branch": null,
+    "initial": "ケ",
+    "name": "ケンホロウ",
+    "sub_name": "オスのすがた",
+    "area": 5,
+    "file": "0521"
+  },
+  {
+    "No": 521,
+    "branch": 1,
+    "initial": "ケ",
+    "name": "ケンホロウ",
+    "sub_name": "メスのすがた",
+    "area": 5,
+    "file": "0521_01"
+  },
+  {
+    "No": 522,
+    "branch": null,
+    "initial": "シ",
+    "name": "シママ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0522"
+  },
+  {
+    "No": 523,
+    "branch": null,
+    "initial": "セ",
+    "name": "ゼブライカ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0523"
+  },
+  {
+    "No": 524,
+    "branch": null,
+    "initial": "タ",
+    "name": "ダンゴロ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0524"
+  },
+  {
+    "No": 525,
+    "branch": null,
+    "initial": "カ",
+    "name": "ガントル",
+    "sub_name": null,
+    "area": 5,
+    "file": "0525"
+  },
+  {
+    "No": 526,
+    "branch": null,
+    "initial": "キ",
+    "name": "ギガイアス",
+    "sub_name": null,
+    "area": 5,
+    "file": "0526"
+  },
+  {
+    "No": 527,
+    "branch": null,
+    "initial": "コ",
+    "name": "コロモリ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0527"
+  },
+  {
+    "No": 528,
+    "branch": null,
+    "initial": "コ",
+    "name": "ココロモリ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0528"
+  },
+  {
+    "No": 529,
+    "branch": null,
+    "initial": "モ",
+    "name": "モグリュー",
+    "sub_name": null,
+    "area": 5,
+    "file": "0529"
+  },
+  {
+    "No": 530,
+    "branch": null,
+    "initial": "ト",
+    "name": "ドリュウズ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0530"
+  },
+  {
+    "No": 531,
+    "branch": null,
+    "initial": "タ",
+    "name": "タブンネ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0531"
+  },
+  {
+    "No": 532,
+    "branch": null,
+    "initial": "ト",
+    "name": "ドッコラー",
+    "sub_name": null,
+    "area": 5,
+    "file": "0532"
+  },
+  {
+    "No": 533,
+    "branch": null,
+    "initial": "ト",
+    "name": "ドテッコツ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0533"
+  },
+  {
+    "No": 534,
+    "branch": null,
+    "initial": "ロ",
+    "name": "ローブシン",
+    "sub_name": null,
+    "area": 5,
+    "file": "0534"
+  },
+  {
+    "No": 535,
+    "branch": null,
+    "initial": "オ",
+    "name": "オタマロ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0535"
+  },
+  {
+    "No": 536,
+    "branch": null,
+    "initial": "カ",
+    "name": "ガマガル",
+    "sub_name": null,
+    "area": 5,
+    "file": "0536"
+  },
+  {
+    "No": 537,
+    "branch": null,
+    "initial": "カ",
+    "name": "ガマゲロゲ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0537"
+  },
+  {
+    "No": 538,
+    "branch": null,
+    "initial": "ナ",
+    "name": "ナゲキ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0538"
+  },
+  {
+    "No": 539,
+    "branch": null,
+    "initial": "タ",
+    "name": "ダゲキ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0539"
+  },
+  {
+    "No": 540,
+    "branch": null,
+    "initial": "ク",
+    "name": "クルミル",
+    "sub_name": null,
+    "area": 5,
+    "file": "0540"
+  },
+  {
+    "No": 541,
+    "branch": null,
+    "initial": "ク",
+    "name": "クルマユ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0541"
+  },
+  {
+    "No": 542,
+    "branch": null,
+    "initial": "ハ",
+    "name": "ハハコモリ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0542"
+  },
+  {
+    "No": 543,
+    "branch": null,
+    "initial": "フ",
+    "name": "フシデ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0543"
+  },
+  {
+    "No": 544,
+    "branch": null,
+    "initial": "ホ",
+    "name": "ホイーガ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0544"
+  },
+  {
+    "No": 545,
+    "branch": null,
+    "initial": "ヘ",
+    "name": "ペンドラー",
+    "sub_name": null,
+    "area": 5,
+    "file": "0545"
+  },
+  {
+    "No": 546,
+    "branch": null,
+    "initial": "モ",
+    "name": "モンメン",
+    "sub_name": null,
+    "area": 5,
+    "file": "0546"
+  },
+  {
+    "No": 547,
+    "branch": null,
+    "initial": "エ",
+    "name": "エルフーン",
+    "sub_name": null,
+    "area": 5,
+    "file": "0547"
+  },
+  {
+    "No": 548,
+    "branch": null,
+    "initial": "チ",
+    "name": "チュリネ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0548"
+  },
+  {
+    "No": 549,
+    "branch": null,
+    "initial": "ト",
+    "name": "ドレディア",
+    "sub_name": null,
+    "area": 5,
+    "file": "0549"
+  },
+  {
+    "No": 549,
+    "branch": 1,
+    "initial": "ト",
+    "name": "ドレディア",
+    "sub_name": "ヒスイのすがた",
+    "area": 9,
+    "file": "0549_01"
+  },
+  {
+    "No": 550,
+    "branch": null,
+    "initial": "ハ",
+    "name": "バスラオ",
+    "sub_name": "あかすじのすがた",
+    "area": 5,
+    "file": "0550"
+  },
+  {
+    "No": 550,
+    "branch": 1,
+    "initial": "ハ",
+    "name": "バスラオ",
+    "sub_name": "あおすじのすがた",
+    "area": 5,
+    "file": "0550_01"
+  },
+  {
+    "No": 550,
+    "branch": 2,
+    "initial": "ハ",
+    "name": "バスラオ",
+    "sub_name": "しろすじのすがた",
+    "area": 9,
+    "file": "0550_02"
+  },
+  {
+    "No": 551,
+    "branch": null,
+    "initial": "メ",
+    "name": "メグロコ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0551"
+  },
+  {
+    "No": 552,
+    "branch": null,
+    "initial": "ワ",
+    "name": "ワルビル",
+    "sub_name": null,
+    "area": 5,
+    "file": "0552"
+  },
+  {
+    "No": 553,
+    "branch": null,
+    "initial": "ワ",
+    "name": "ワルビアル",
+    "sub_name": null,
+    "area": 5,
+    "file": "0553"
+  },
+  {
+    "No": 554,
+    "branch": null,
+    "initial": "タ",
+    "name": "ダルマッカ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0554"
+  },
+  {
+    "No": 554,
+    "branch": 1,
+    "initial": "タ",
+    "name": "ダルマッカ",
+    "sub_name": "ガラルのすがた",
+    "area": 8,
+    "file": "0554_01"
+  },
+  {
+    "No": 555,
+    "branch": null,
+    "initial": "ヒ",
+    "name": "ヒヒダルマ",
+    "sub_name": "ノーマルモード",
+    "area": 5,
+    "file": "0555"
+  },
+  {
+    "No": 555,
+    "branch": 2,
+    "initial": "ヒ",
+    "name": "ヒヒダルマ",
+    "sub_name": "ガラルのすがた",
+    "area": 8,
+    "file": "0555_01"
+  },
+  {
+    "No": 556,
+    "branch": null,
+    "initial": "マ",
+    "name": "マラカッチ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0556"
+  },
+  {
+    "No": 557,
+    "branch": null,
+    "initial": "イ",
+    "name": "イシズマイ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0557"
+  },
+  {
+    "No": 558,
+    "branch": null,
+    "initial": "イ",
+    "name": "イワパレス",
+    "sub_name": null,
+    "area": 5,
+    "file": "0558"
+  },
+  {
+    "No": 559,
+    "branch": null,
+    "initial": "ス",
+    "name": "ズルッグ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0559"
+  },
+  {
+    "No": 560,
+    "branch": null,
+    "initial": "ス",
+    "name": "ズルズキン",
+    "sub_name": null,
+    "area": 5,
+    "file": "0560"
+  },
+  {
+    "No": 561,
+    "branch": null,
+    "initial": "シ",
+    "name": "シンボラー",
+    "sub_name": null,
+    "area": 5,
+    "file": "0561"
+  },
+  {
+    "No": 562,
+    "branch": null,
+    "initial": "テ",
+    "name": "デスマス",
+    "sub_name": null,
+    "area": 5,
+    "file": "0562"
+  },
+  {
+    "No": 562,
+    "branch": 1,
+    "initial": "テ",
+    "name": "デスマス",
+    "sub_name": "ガラルのすがた",
+    "area": 8,
+    "file": "0562_01"
+  },
+  {
+    "No": 563,
+    "branch": null,
+    "initial": "テ",
+    "name": "デスカーン",
+    "sub_name": null,
+    "area": 5,
+    "file": "0563"
+  },
+  {
+    "No": 564,
+    "branch": null,
+    "initial": "フ",
+    "name": "プロトーガ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0564"
+  },
+  {
+    "No": 565,
+    "branch": null,
+    "initial": "ア",
+    "name": "アバゴーラ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0565"
+  },
+  {
+    "No": 566,
+    "branch": null,
+    "initial": "ア",
+    "name": "アーケン",
+    "sub_name": null,
+    "area": 5,
+    "file": "0566"
+  },
+  {
+    "No": 567,
+    "branch": null,
+    "initial": "ア",
+    "name": "アーケオス",
+    "sub_name": null,
+    "area": 5,
+    "file": "0567"
+  },
+  {
+    "No": 568,
+    "branch": null,
+    "initial": "ヤ",
+    "name": "ヤブクロン",
+    "sub_name": null,
+    "area": 5,
+    "file": "0568"
+  },
+  {
+    "No": 569,
+    "branch": null,
+    "initial": "タ",
+    "name": "ダストダス",
+    "sub_name": null,
+    "area": 5,
+    "file": "0569"
+  },
+  {
+    "No": 570,
+    "branch": null,
+    "initial": "ソ",
+    "name": "ゾロア",
+    "sub_name": null,
+    "area": 5,
+    "file": "0570"
+  },
+  {
+    "No": 570,
+    "branch": 1,
+    "initial": "ソ",
+    "name": "ゾロア",
+    "sub_name": "ヒスイのすがた",
+    "area": 9,
+    "file": "0570_01"
+  },
+  {
+    "No": 571,
+    "branch": null,
+    "initial": "ソ",
+    "name": "ゾロアーク",
+    "sub_name": null,
+    "area": 5,
+    "file": "0571"
+  },
+  {
+    "No": 571,
+    "branch": 1,
+    "initial": "ソ",
+    "name": "ゾロアーク",
+    "sub_name": "ヒスイのすがた",
+    "area": 9,
+    "file": "0571_01"
+  },
+  {
+    "No": 572,
+    "branch": null,
+    "initial": "チ",
+    "name": "チラーミィ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0572"
+  },
+  {
+    "No": 573,
+    "branch": null,
+    "initial": "チ",
+    "name": "チラチーノ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0573"
+  },
+  {
+    "No": 574,
+    "branch": null,
+    "initial": "コ",
+    "name": "ゴチム",
+    "sub_name": null,
+    "area": 5,
+    "file": "0574"
+  },
+  {
+    "No": 575,
+    "branch": null,
+    "initial": "コ",
+    "name": "ゴチミル",
+    "sub_name": null,
+    "area": 5,
+    "file": "0575"
+  },
+  {
+    "No": 576,
+    "branch": null,
+    "initial": "コ",
+    "name": "ゴチルゼル",
+    "sub_name": null,
+    "area": 5,
+    "file": "0576"
+  },
+  {
+    "No": 577,
+    "branch": null,
+    "initial": "ユ",
+    "name": "ユニラン",
+    "sub_name": null,
+    "area": 5,
+    "file": "0577"
+  },
+  {
+    "No": 578,
+    "branch": null,
+    "initial": "タ",
+    "name": "ダブラン",
+    "sub_name": null,
+    "area": 5,
+    "file": "0578"
+  },
+  {
+    "No": 579,
+    "branch": null,
+    "initial": "ラ",
+    "name": "ランクルス",
+    "sub_name": null,
+    "area": 5,
+    "file": "0579"
+  },
+  {
+    "No": 580,
+    "branch": null,
+    "initial": "コ",
+    "name": "コアルヒー",
+    "sub_name": null,
+    "area": 5,
+    "file": "0580"
+  },
+  {
+    "No": 581,
+    "branch": null,
+    "initial": "ス",
+    "name": "スワンナ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0581"
+  },
+  {
+    "No": 582,
+    "branch": null,
+    "initial": "ハ",
+    "name": "バニプッチ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0582"
+  },
+  {
+    "No": 583,
+    "branch": null,
+    "initial": "ハ",
+    "name": "バニリッチ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0583"
+  },
+  {
+    "No": 584,
+    "branch": null,
+    "initial": "ハ",
+    "name": "バイバニラ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0584"
+  },
+  {
+    "No": 585,
+    "branch": null,
+    "initial": "シ",
+    "name": "シキジカ",
+    "sub_name": "はるのすがた",
+    "area": 5,
+    "file": "0585"
+  },
+  {
+    "No": 586,
+    "branch": null,
+    "initial": "メ",
+    "name": "メブキジカ",
+    "sub_name": "はるのすがた",
+    "area": 5,
+    "file": "0586"
+  },
+  {
+    "No": 587,
+    "branch": null,
+    "initial": "エ",
+    "name": "エモンガ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0587"
+  },
+  {
+    "No": 588,
+    "branch": null,
+    "initial": "カ",
+    "name": "カブルモ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0588"
+  },
+  {
+    "No": 589,
+    "branch": null,
+    "initial": "シ",
+    "name": "シュバルゴ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0589"
+  },
+  {
+    "No": 590,
+    "branch": null,
+    "initial": "タ",
+    "name": "タマゲタケ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0590"
+  },
+  {
+    "No": 591,
+    "branch": null,
+    "initial": "モ",
+    "name": "モロバレル",
+    "sub_name": null,
+    "area": 5,
+    "file": "0591"
+  },
+  {
+    "No": 592,
+    "branch": null,
+    "initial": "フ",
+    "name": "プルリル",
+    "sub_name": "オスのすがた",
+    "area": 5,
+    "file": "0592"
+  },
+  {
+    "No": 592,
+    "branch": 1,
+    "initial": "フ",
+    "name": "プルリル",
+    "sub_name": "メスのすがた",
+    "area": 5,
+    "file": "0592_01"
+  },
+  {
+    "No": 593,
+    "branch": null,
+    "initial": "フ",
+    "name": "ブルンゲル",
+    "sub_name": "オスのすがた",
+    "area": 5,
+    "file": "0593"
+  },
+  {
+    "No": 593,
+    "branch": 1,
+    "initial": "フ",
+    "name": "ブルンゲル",
+    "sub_name": "メスのすがた",
+    "area": 5,
+    "file": "0593_01"
+  },
+  {
+    "No": 594,
+    "branch": null,
+    "initial": "マ",
+    "name": "ママンボウ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0594"
+  },
+  {
+    "No": 595,
+    "branch": null,
+    "initial": "ハ",
+    "name": "バチュル",
+    "sub_name": null,
+    "area": 5,
+    "file": "0595"
+  },
+  {
+    "No": 596,
+    "branch": null,
+    "initial": "テ",
+    "name": "デンチュラ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0596"
+  },
+  {
+    "No": 597,
+    "branch": null,
+    "initial": "テ",
+    "name": "テッシード",
+    "sub_name": null,
+    "area": 5,
+    "file": "0597"
+  },
+  {
+    "No": 598,
+    "branch": null,
+    "initial": "ナ",
+    "name": "ナットレイ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0598"
+  },
+  {
+    "No": 599,
+    "branch": null,
+    "initial": "キ",
+    "name": "ギアル",
+    "sub_name": null,
+    "area": 5,
+    "file": "0599"
+  },
+  {
+    "No": 600,
+    "branch": null,
+    "initial": "キ",
+    "name": "ギギアル",
+    "sub_name": null,
+    "area": 5,
+    "file": "0600"
+  },
+  {
+    "No": 601,
+    "branch": null,
+    "initial": "キ",
+    "name": "ギギギアル",
+    "sub_name": null,
+    "area": 5,
+    "file": "0601"
+  },
+  {
+    "No": 602,
+    "branch": null,
+    "initial": "シ",
+    "name": "シビシラス",
+    "sub_name": null,
+    "area": 5,
+    "file": "0602"
+  },
+  {
+    "No": 603,
+    "branch": null,
+    "initial": "シ",
+    "name": "シビビール",
+    "sub_name": null,
+    "area": 5,
+    "file": "0603"
+  },
+  {
+    "No": 604,
+    "branch": null,
+    "initial": "シ",
+    "name": "シビルドン",
+    "sub_name": null,
+    "area": 5,
+    "file": "0604"
+  },
+  {
+    "No": 605,
+    "branch": null,
+    "initial": "リ",
+    "name": "リグレー",
+    "sub_name": null,
+    "area": 5,
+    "file": "0605"
+  },
+  {
+    "No": 606,
+    "branch": null,
+    "initial": "オ",
+    "name": "オーベム",
+    "sub_name": null,
+    "area": 5,
+    "file": "0606"
+  },
+  {
+    "No": 607,
+    "branch": null,
+    "initial": "ヒ",
+    "name": "ヒトモシ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0607"
+  },
+  {
+    "No": 608,
+    "branch": null,
+    "initial": "ラ",
+    "name": "ランプラー",
+    "sub_name": null,
+    "area": 5,
+    "file": "0608"
+  },
+  {
+    "No": 609,
+    "branch": null,
+    "initial": "シ",
+    "name": "シャンデラ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0609"
+  },
+  {
+    "No": 610,
+    "branch": null,
+    "initial": "キ",
+    "name": "キバゴ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0610"
+  },
+  {
+    "No": 611,
+    "branch": null,
+    "initial": "オ",
+    "name": "オノンド",
+    "sub_name": null,
+    "area": 5,
+    "file": "0611"
+  },
+  {
+    "No": 612,
+    "branch": null,
+    "initial": "オ",
+    "name": "オノノクス",
+    "sub_name": null,
+    "area": 5,
+    "file": "0612"
+  },
+  {
+    "No": 613,
+    "branch": null,
+    "initial": "ク",
+    "name": "クマシュン",
+    "sub_name": null,
+    "area": 5,
+    "file": "0613"
+  },
+  {
+    "No": 614,
+    "branch": null,
+    "initial": "ツ",
+    "name": "ツンベアー",
+    "sub_name": null,
+    "area": 5,
+    "file": "0614"
+  },
+  {
+    "No": 615,
+    "branch": null,
+    "initial": "フ",
+    "name": "フリージオ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0615"
+  },
+  {
+    "No": 616,
+    "branch": null,
+    "initial": "チ",
+    "name": "チョボマキ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0616"
+  },
+  {
+    "No": 617,
+    "branch": null,
+    "initial": "ア",
+    "name": "アギルダー",
+    "sub_name": null,
+    "area": 5,
+    "file": "0617"
+  },
+  {
+    "No": 618,
+    "branch": null,
+    "initial": "マ",
+    "name": "マッギョ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0618"
+  },
+  {
+    "No": 618,
+    "branch": 1,
+    "initial": "マ",
+    "name": "マッギョ",
+    "sub_name": "ガラルのすがた",
+    "area": 8,
+    "file": "0618_01"
+  },
+  {
+    "No": 619,
+    "branch": null,
+    "initial": "コ",
+    "name": "コジョフー",
+    "sub_name": null,
+    "area": 5,
+    "file": "0619"
+  },
+  {
+    "No": 620,
+    "branch": null,
+    "initial": "コ",
+    "name": "コジョンド",
+    "sub_name": null,
+    "area": 5,
+    "file": "0620"
+  },
+  {
+    "No": 621,
+    "branch": null,
+    "initial": "ク",
+    "name": "クリムガン",
+    "sub_name": null,
+    "area": 5,
+    "file": "0621"
+  },
+  {
+    "No": 622,
+    "branch": null,
+    "initial": "コ",
+    "name": "ゴビット",
+    "sub_name": null,
+    "area": 5,
+    "file": "0622"
+  },
+  {
+    "No": 623,
+    "branch": null,
+    "initial": "コ",
+    "name": "ゴルーグ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0623"
+  },
+  {
+    "No": 624,
+    "branch": null,
+    "initial": "コ",
+    "name": "コマタナ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0624"
+  },
+  {
+    "No": 625,
+    "branch": null,
+    "initial": "キ",
+    "name": "キリキザン",
+    "sub_name": null,
+    "area": 5,
+    "file": "0625"
+  },
+  {
+    "No": 626,
+    "branch": null,
+    "initial": "ハ",
+    "name": "バッフロン",
+    "sub_name": null,
+    "area": 5,
+    "file": "0626"
+  },
+  {
+    "No": 627,
+    "branch": null,
+    "initial": "ワ",
+    "name": "ワシボン",
+    "sub_name": null,
+    "area": 5,
+    "file": "0627"
+  },
+  {
+    "No": 628,
+    "branch": null,
+    "initial": "ウ",
+    "name": "ウォーグル",
+    "sub_name": null,
+    "area": 5,
+    "file": "0628"
+  },
+  {
+    "No": 628,
+    "branch": 1,
+    "initial": "ウ",
+    "name": "ウォーグル",
+    "sub_name": "ヒスイのすがた",
+    "area": 9,
+    "file": "0628_01"
+  },
+  {
+    "No": 629,
+    "branch": null,
+    "initial": "ハ",
+    "name": "バルチャイ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0629"
+  },
+  {
+    "No": 630,
+    "branch": null,
+    "initial": "ハ",
+    "name": "バルジーナ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0630"
+  },
+  {
+    "No": 631,
+    "branch": null,
+    "initial": "ク",
+    "name": "クイタラン",
+    "sub_name": null,
+    "area": 5,
+    "file": "0631"
+  },
+  {
+    "No": 632,
+    "branch": null,
+    "initial": "ア",
+    "name": "アイアント",
+    "sub_name": null,
+    "area": 5,
+    "file": "0632"
+  },
+  {
+    "No": 633,
+    "branch": null,
+    "initial": "モ",
+    "name": "モノズ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0633"
+  },
+  {
+    "No": 634,
+    "branch": null,
+    "initial": "シ",
+    "name": "ジヘッド",
+    "sub_name": null,
+    "area": 5,
+    "file": "0634"
+  },
+  {
+    "No": 635,
+    "branch": null,
+    "initial": "サ",
+    "name": "サザンドラ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0635"
+  },
+  {
+    "No": 636,
+    "branch": null,
+    "initial": "メ",
+    "name": "メラルバ",
+    "sub_name": null,
+    "area": 5,
+    "file": "0636"
+  },
+  {
+    "No": 637,
+    "branch": null,
+    "initial": "ウ",
+    "name": "ウルガモス",
+    "sub_name": null,
+    "area": 5,
+    "file": "0637"
+  },
+  {
+    "No": 638,
+    "branch": null,
+    "initial": "コ",
+    "name": "コバルオン",
+    "sub_name": null,
+    "area": 5,
+    "file": "0638"
+  },
+  {
+    "No": 639,
+    "branch": null,
+    "initial": "テ",
+    "name": "テラキオン",
+    "sub_name": null,
+    "area": 5,
+    "file": "0639"
+  },
+  {
+    "No": 640,
+    "branch": null,
+    "initial": "ヒ",
+    "name": "ビリジオン",
+    "sub_name": null,
+    "area": 5,
+    "file": "0640"
+  },
+  {
+    "No": 641,
+    "branch": null,
+    "initial": "ト",
+    "name": "トルネロス",
+    "sub_name": "けしんフォルム",
+    "area": 5,
+    "file": "0641"
+  },
+  {
+    "No": 642,
+    "branch": null,
+    "initial": "ホ",
+    "name": "ボルトロス",
+    "sub_name": "けしんフォルム",
+    "area": 5,
+    "file": "0642"
+  },
+  {
+    "No": 643,
+    "branch": null,
+    "initial": "レ",
+    "name": "レシラム",
+    "sub_name": null,
+    "area": 5,
+    "file": "0643"
+  },
+  {
+    "No": 644,
+    "branch": null,
+    "initial": "セ",
+    "name": "ゼクロム",
+    "sub_name": null,
+    "area": 5,
+    "file": "0644"
+  },
+  {
+    "No": 645,
+    "branch": null,
+    "initial": "ラ",
+    "name": "ランドロス",
+    "sub_name": "けしんフォルム",
+    "area": 5,
+    "file": "0645"
+  },
+  {
+    "No": 646,
+    "branch": null,
+    "initial": "キ",
+    "name": "キュレム",
+    "sub_name": "キュレムのすがた",
+    "area": 5,
+    "file": "0646"
+  },
+  {
+    "No": 646,
+    "branch": 1,
+    "initial": "キ",
+    "name": "キュレム",
+    "sub_name": "ホワイトキュレム",
+    "area": 5,
+    "file": "0646_01"
+  },
+  {
+    "No": 646,
+    "branch": 2,
+    "initial": "キ",
+    "name": "キュレム",
+    "sub_name": "ブラックキュレム",
+    "area": 5,
+    "file": "0646_02"
+  },
+  {
+    "No": 647,
+    "branch": null,
+    "initial": "ケ",
+    "name": "ケルディオ",
+    "sub_name": "いつものすがた",
+    "area": 5,
+    "file": "0647"
+  },
+  {
+    "No": 648,
+    "branch": null,
+    "initial": "メ",
+    "name": "メロエッタ",
+    "sub_name": "ボイスフォルム",
+    "area": 5,
+    "file": "0648"
+  },
+  {
+    "No": 649,
+    "branch": null,
+    "initial": "ケ",
+    "name": "ゲノセクト",
+    "sub_name": null,
+    "area": 5,
+    "file": "0649"
+  },
+  {
+    "No": 650,
+    "branch": null,
+    "initial": "ハ",
+    "name": "ハリマロン",
+    "sub_name": null,
+    "area": 6,
+    "file": "0650"
+  },
+  {
+    "No": 651,
+    "branch": null,
+    "initial": "ハ",
+    "name": "ハリボーグ",
+    "sub_name": null,
+    "area": 6,
+    "file": "0651"
+  },
+  {
+    "No": 652,
+    "branch": null,
+    "initial": "フ",
+    "name": "ブリガロン",
+    "sub_name": null,
+    "area": 6,
+    "file": "0652"
+  },
+  {
+    "No": 653,
+    "branch": null,
+    "initial": "フ",
+    "name": "フォッコ",
+    "sub_name": null,
+    "area": 6,
+    "file": "0653"
+  },
+  {
+    "No": 654,
+    "branch": null,
+    "initial": "テ",
+    "name": "テールナー",
+    "sub_name": null,
+    "area": 6,
+    "file": "0654"
+  },
+  {
+    "No": 655,
+    "branch": null,
+    "initial": "マ",
+    "name": "マフォクシー",
+    "sub_name": null,
+    "area": 6,
+    "file": "0655"
+  },
+  {
+    "No": 656,
+    "branch": null,
+    "initial": "ケ",
+    "name": "ケロマツ",
+    "sub_name": null,
+    "area": 6,
+    "file": "0656"
+  },
+  {
+    "No": 657,
+    "branch": null,
+    "initial": "ケ",
+    "name": "ゲコガシラ",
+    "sub_name": null,
+    "area": 6,
+    "file": "0657"
+  },
+  {
+    "No": 658,
+    "branch": null,
+    "initial": "ケ",
+    "name": "ゲッコウガ",
+    "sub_name": null,
+    "area": 6,
+    "file": "0658"
+  },
+  {
+    "No": 659,
+    "branch": null,
+    "initial": "ホ",
+    "name": "ホルビー",
+    "sub_name": null,
+    "area": 6,
+    "file": "0659"
+  },
+  {
+    "No": 660,
+    "branch": null,
+    "initial": "ホ",
+    "name": "ホルード",
+    "sub_name": null,
+    "area": 6,
+    "file": "0660"
+  },
+  {
+    "No": 661,
+    "branch": null,
+    "initial": "ヤ",
+    "name": "ヤヤコマ",
+    "sub_name": null,
+    "area": 6,
+    "file": "0661"
+  },
+  {
+    "No": 662,
+    "branch": null,
+    "initial": "ヒ",
+    "name": "ヒノヤコマ",
+    "sub_name": null,
+    "area": 6,
+    "file": "0662"
+  },
+  {
+    "No": 663,
+    "branch": null,
+    "initial": "フ",
+    "name": "ファイアロー",
+    "sub_name": null,
+    "area": 6,
+    "file": "0663"
+  },
+  {
+    "No": 664,
+    "branch": null,
+    "initial": "コ",
+    "name": "コフキムシ",
+    "sub_name": null,
+    "area": 6,
+    "file": "0664"
+  },
+  {
+    "No": 665,
+    "branch": null,
+    "initial": "コ",
+    "name": "コフーライ",
+    "sub_name": null,
+    "area": 6,
+    "file": "0665"
+  },
+  {
+    "No": 666,
+    "branch": null,
+    "initial": "ヒ",
+    "name": "ビビヨン",
+    "sub_name": "はなぞののもよう",
+    "area": 6,
+    "file": "0666"
+  },
+  {
+    "No": 667,
+    "branch": null,
+    "initial": "シ",
+    "name": "シシコ",
+    "sub_name": null,
+    "area": 6,
+    "file": "0667"
+  },
+  {
+    "No": 668,
+    "branch": null,
+    "initial": "カ",
+    "name": "カエンジシ",
+    "sub_name": "オスのすがた",
+    "area": 6,
+    "file": "0668"
+  },
+  {
+    "No": 668,
+    "branch": 1,
+    "initial": "カ",
+    "name": "カエンジシ",
+    "sub_name": "メスのすがた",
+    "area": 6,
+    "file": "0668_01"
+  },
+  {
+    "No": 669,
+    "branch": null,
+    "initial": "フ",
+    "name": "フラベベ",
+    "sub_name": "あかいはな",
+    "area": 6,
+    "file": "0669"
+  },
+  {
+    "No": 670,
+    "branch": null,
+    "initial": "フ",
+    "name": "フラエッテ",
+    "sub_name": "あかいはな",
+    "area": 6,
+    "file": "0670"
+  },
+  {
+    "No": 671,
+    "branch": null,
+    "initial": "フ",
+    "name": "フラージェス",
+    "sub_name": "あかいはな",
+    "area": 6,
+    "file": "0671"
+  },
+  {
+    "No": 672,
+    "branch": null,
+    "initial": "メ",
+    "name": "メェークル",
+    "sub_name": null,
+    "area": 6,
+    "file": "0672"
+  },
+  {
+    "No": 673,
+    "branch": null,
+    "initial": "コ",
+    "name": "ゴーゴート",
+    "sub_name": null,
+    "area": 6,
+    "file": "0673"
+  },
+  {
+    "No": 674,
+    "branch": null,
+    "initial": "ヤ",
+    "name": "ヤンチャム",
+    "sub_name": null,
+    "area": 6,
+    "file": "0674"
+  },
+  {
+    "No": 675,
+    "branch": null,
+    "initial": "コ",
+    "name": "ゴロンダ",
+    "sub_name": null,
+    "area": 6,
+    "file": "0675"
+  },
+  {
+    "No": 676,
+    "branch": null,
+    "initial": "ト",
+    "name": "トリミアン",
+    "sub_name": "やせいのすがた",
+    "area": 6,
+    "file": "0676"
+  },
+  {
+    "No": 677,
+    "branch": null,
+    "initial": "ニ",
+    "name": "ニャスパー",
+    "sub_name": null,
+    "area": 6,
+    "file": "0677"
+  },
+  {
+    "No": 678,
+    "branch": null,
+    "initial": "ニ",
+    "name": "ニャオニクス",
+    "sub_name": "オスのすがた",
+    "area": 6,
+    "file": "0678"
+  },
+  {
+    "No": 678,
+    "branch": 1,
+    "initial": "ニ",
+    "name": "ニャオニクス",
+    "sub_name": "メスのすがた",
+    "area": 6,
+    "file": "0678_01"
+  },
+  {
+    "No": 679,
+    "branch": null,
+    "initial": "ヒ",
+    "name": "ヒトツキ",
+    "sub_name": null,
+    "area": 6,
+    "file": "0679"
+  },
+  {
+    "No": 680,
+    "branch": null,
+    "initial": "ニ",
+    "name": "ニダンギル",
+    "sub_name": null,
+    "area": 6,
+    "file": "0680"
+  },
+  {
+    "No": 681,
+    "branch": null,
+    "initial": "キ",
+    "name": "ギルガルド",
+    "sub_name": "シールドフォルム",
+    "area": 6,
+    "file": "0681"
+  },
+  {
+    "No": 682,
+    "branch": null,
+    "initial": "シ",
+    "name": "シュシュプ",
+    "sub_name": null,
+    "area": 6,
+    "file": "0682"
+  },
+  {
+    "No": 683,
+    "branch": null,
+    "initial": "フ",
+    "name": "フレフワン",
+    "sub_name": null,
+    "area": 6,
+    "file": "0683"
+  },
+  {
+    "No": 684,
+    "branch": null,
+    "initial": "ヘ",
+    "name": "ペロッパフ",
+    "sub_name": null,
+    "area": 6,
+    "file": "0684"
+  },
+  {
+    "No": 685,
+    "branch": null,
+    "initial": "ヘ",
+    "name": "ペロリーム",
+    "sub_name": null,
+    "area": 6,
+    "file": "0685"
+  },
+  {
+    "No": 686,
+    "branch": null,
+    "initial": "マ",
+    "name": "マーイーカ",
+    "sub_name": null,
+    "area": 6,
+    "file": "0686"
+  },
+  {
+    "No": 687,
+    "branch": null,
+    "initial": "カ",
+    "name": "カラマネロ",
+    "sub_name": null,
+    "area": 6,
+    "file": "0687"
+  },
+  {
+    "No": 688,
+    "branch": null,
+    "initial": "カ",
+    "name": "カメテテ",
+    "sub_name": null,
+    "area": 6,
+    "file": "0688"
+  },
+  {
+    "No": 689,
+    "branch": null,
+    "initial": "カ",
+    "name": "ガメノデス",
+    "sub_name": null,
+    "area": 6,
+    "file": "0689"
+  },
+  {
+    "No": 690,
+    "branch": null,
+    "initial": "ク",
+    "name": "クズモー",
+    "sub_name": null,
+    "area": 6,
+    "file": "0690"
+  },
+  {
+    "No": 691,
+    "branch": null,
+    "initial": "ト",
+    "name": "ドラミドロ",
+    "sub_name": null,
+    "area": 6,
+    "file": "0691"
+  },
+  {
+    "No": 692,
+    "branch": null,
+    "initial": "ウ",
+    "name": "ウデッポウ",
+    "sub_name": null,
+    "area": 6,
+    "file": "0692"
+  },
+  {
+    "No": 693,
+    "branch": null,
+    "initial": "フ",
+    "name": "ブロスター",
+    "sub_name": null,
+    "area": 6,
+    "file": "0693"
+  },
+  {
+    "No": 694,
+    "branch": null,
+    "initial": "エ",
+    "name": "エリキテル",
+    "sub_name": null,
+    "area": 6,
+    "file": "0694"
+  },
+  {
+    "No": 695,
+    "branch": null,
+    "initial": "エ",
+    "name": "エレザード",
+    "sub_name": null,
+    "area": 6,
+    "file": "0695"
+  },
+  {
+    "No": 696,
+    "branch": null,
+    "initial": "チ",
+    "name": "チゴラス",
+    "sub_name": null,
+    "area": 6,
+    "file": "0696"
+  },
+  {
+    "No": 697,
+    "branch": null,
+    "initial": "カ",
+    "name": "ガチゴラス",
+    "sub_name": null,
+    "area": 6,
+    "file": "0697"
+  },
+  {
+    "No": 698,
+    "branch": null,
+    "initial": "ア",
+    "name": "アマルス",
+    "sub_name": null,
+    "area": 6,
+    "file": "0698"
+  },
+  {
+    "No": 699,
+    "branch": null,
+    "initial": "ア",
+    "name": "アマルルガ",
+    "sub_name": null,
+    "area": 6,
+    "file": "0699"
+  },
+  {
+    "No": 700,
+    "branch": null,
+    "initial": "ニ",
+    "name": "ニンフィア",
+    "sub_name": null,
+    "area": 6,
+    "file": "0700"
+  },
+  {
+    "No": 701,
+    "branch": null,
+    "initial": "ル",
+    "name": "ルチャブル",
+    "sub_name": null,
+    "area": 6,
+    "file": "0701"
+  },
+  {
+    "No": 702,
+    "branch": null,
+    "initial": "テ",
+    "name": "デデンネ",
+    "sub_name": null,
+    "area": 6,
+    "file": "0702"
+  },
+  {
+    "No": 703,
+    "branch": null,
+    "initial": "メ",
+    "name": "メレシー",
+    "sub_name": null,
+    "area": 6,
+    "file": "0703"
+  },
+  {
+    "No": 704,
+    "branch": null,
+    "initial": "ヌ",
+    "name": "ヌメラ",
+    "sub_name": null,
+    "area": 6,
+    "file": "0704"
+  },
+  {
+    "No": 705,
+    "branch": null,
+    "initial": "ヌ",
+    "name": "ヌメイル",
+    "sub_name": null,
+    "area": 6,
+    "file": "0705"
+  },
+  {
+    "No": 705,
+    "branch": 1,
+    "initial": "ヌ",
+    "name": "ヌメイル",
+    "sub_name": "ヒスイのすがた",
+    "area": 9,
+    "file": "0705_01"
+  },
+  {
+    "No": 706,
+    "branch": null,
+    "initial": "ヌ",
+    "name": "ヌメルゴン",
+    "sub_name": null,
+    "area": 6,
+    "file": "0706"
+  },
+  {
+    "No": 706,
+    "branch": 1,
+    "initial": "ヌ",
+    "name": "ヌメルゴン",
+    "sub_name": "ヒスイのすがた",
+    "area": 9,
+    "file": "0706_01"
+  },
+  {
+    "No": 707,
+    "branch": null,
+    "initial": "ク",
+    "name": "クレッフィ",
+    "sub_name": null,
+    "area": 6,
+    "file": "0707"
+  },
+  {
+    "No": 708,
+    "branch": null,
+    "initial": "ホ",
+    "name": "ボクレー",
+    "sub_name": null,
+    "area": 6,
+    "file": "0708"
+  },
+  {
+    "No": 709,
+    "branch": null,
+    "initial": "オ",
+    "name": "オーロット",
+    "sub_name": null,
+    "area": 6,
+    "file": "0709"
+  },
+  {
+    "No": 710,
+    "branch": null,
+    "initial": "ハ",
+    "name": "バケッチャ",
+    "sub_name": "ちゅうだましゅ",
+    "area": 6,
+    "file": "0710"
+  },
+  {
+    "No": 711,
+    "branch": null,
+    "initial": "ハ",
+    "name": "パンプジン",
+    "sub_name": "ちゅうだましゅ",
+    "area": 6,
+    "file": "0711"
+  },
+  {
+    "No": 712,
+    "branch": null,
+    "initial": "カ",
+    "name": "カチコール",
+    "sub_name": null,
+    "area": 6,
+    "file": "0712"
+  },
+  {
+    "No": 713,
+    "branch": null,
+    "initial": "ク",
+    "name": "クレベース",
+    "sub_name": null,
+    "area": 6,
+    "file": "0713"
+  },
+  {
+    "No": 713,
+    "branch": 1,
+    "initial": "ク",
+    "name": "クレベース",
+    "sub_name": "ヒスイのすがた",
+    "area": 9,
+    "file": "0713_01"
+  },
+  {
+    "No": 714,
+    "branch": null,
+    "initial": "オ",
+    "name": "オンバット",
+    "sub_name": null,
+    "area": 6,
+    "file": "0714"
+  },
+  {
+    "No": 715,
+    "branch": null,
+    "initial": "オ",
+    "name": "オンバーン",
+    "sub_name": null,
+    "area": 6,
+    "file": "0715"
+  },
+  {
+    "No": 716,
+    "branch": null,
+    "initial": "セ",
+    "name": "ゼルネアス",
+    "sub_name": null,
+    "area": 6,
+    "file": "0716"
+  },
+  {
+    "No": 717,
+    "branch": null,
+    "initial": "イ",
+    "name": "イベルタル",
+    "sub_name": null,
+    "area": 6,
+    "file": "0717"
+  },
+  {
+    "No": 718,
+    "branch": null,
+    "initial": "シ",
+    "name": "ジガルデ",
+    "sub_name": "５０％フォルム",
+    "area": 6,
+    "file": "0718"
+  },
+  {
+    "No": 718,
+    "branch": 1,
+    "initial": "シ",
+    "name": "ジガルデ",
+    "sub_name": "１０％フォルム",
+    "area": 6,
+    "file": "0718_01"
+  },
+  {
+    "No": 718,
+    "branch": 2,
+    "initial": "シ",
+    "name": "ジガルデ",
+    "sub_name": "パーフェクトフォルム",
+    "area": 6,
+    "file": "0718_02"
+  },
+  {
+    "No": 719,
+    "branch": null,
+    "initial": "テ",
+    "name": "ディアンシー",
+    "sub_name": null,
+    "area": 6,
+    "file": "0719"
+  },
+  {
+    "No": 720,
+    "branch": null,
+    "initial": "フ",
+    "name": "フーパ",
+    "sub_name": "いましめられしフーパ",
+    "area": 6,
+    "file": "0720"
+  },
+  {
+    "No": 721,
+    "branch": null,
+    "initial": "ホ",
+    "name": "ボルケニオン",
+    "sub_name": null,
+    "area": 6,
+    "file": "0721"
+  },
+  {
+    "No": 722,
+    "branch": null,
+    "initial": "モ",
+    "name": "モクロー",
+    "sub_name": null,
+    "area": 7,
+    "file": "0722"
+  },
+  {
+    "No": 723,
+    "branch": null,
+    "initial": "フ",
+    "name": "フクスロー",
+    "sub_name": null,
+    "area": 7,
+    "file": "0723"
+  },
+  {
+    "No": 724,
+    "branch": null,
+    "initial": "シ",
+    "name": "ジュナイパー",
+    "sub_name": null,
+    "area": 7,
+    "file": "0724"
+  },
+  {
+    "No": 724,
+    "branch": 1,
+    "initial": "シ",
+    "name": "ジュナイパー",
+    "sub_name": "ヒスイのすがた",
+    "area": 9,
+    "file": "0724_01"
+  },
+  {
+    "No": 725,
+    "branch": null,
+    "initial": "ニ",
+    "name": "ニャビー",
+    "sub_name": null,
+    "area": 7,
+    "file": "0725"
+  },
+  {
+    "No": 726,
+    "branch": null,
+    "initial": "ニ",
+    "name": "ニャヒート",
+    "sub_name": null,
+    "area": 7,
+    "file": "0726"
+  },
+  {
+    "No": 727,
+    "branch": null,
+    "initial": "カ",
+    "name": "ガオガエン",
+    "sub_name": null,
+    "area": 7,
+    "file": "0727"
+  },
+  {
+    "No": 728,
+    "branch": null,
+    "initial": "ア",
+    "name": "アシマリ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0728"
+  },
+  {
+    "No": 729,
+    "branch": null,
+    "initial": "オ",
+    "name": "オシャマリ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0729"
+  },
+  {
+    "No": 730,
+    "branch": null,
+    "initial": "ア",
+    "name": "アシレーヌ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0730"
+  },
+  {
+    "No": 731,
+    "branch": null,
+    "initial": "ツ",
+    "name": "ツツケラ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0731"
+  },
+  {
+    "No": 732,
+    "branch": null,
+    "initial": "ケ",
+    "name": "ケララッパ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0732"
+  },
+  {
+    "No": 733,
+    "branch": null,
+    "initial": "ト",
+    "name": "ドデカバシ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0733"
+  },
+  {
+    "No": 734,
+    "branch": null,
+    "initial": "ヤ",
+    "name": "ヤングース",
+    "sub_name": null,
+    "area": 7,
+    "file": "0734"
+  },
+  {
+    "No": 735,
+    "branch": null,
+    "initial": "テ",
+    "name": "デカグース",
+    "sub_name": null,
+    "area": 7,
+    "file": "0735"
+  },
+  {
+    "No": 736,
+    "branch": null,
+    "initial": "ア",
+    "name": "アゴジムシ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0736"
+  },
+  {
+    "No": 737,
+    "branch": null,
+    "initial": "テ",
+    "name": "デンヂムシ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0737"
+  },
+  {
+    "No": 738,
+    "branch": null,
+    "initial": "ク",
+    "name": "クワガノン",
+    "sub_name": null,
+    "area": 7,
+    "file": "0738"
+  },
+  {
+    "No": 739,
+    "branch": null,
+    "initial": "マ",
+    "name": "マケンカニ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0739"
+  },
+  {
+    "No": 740,
+    "branch": null,
+    "initial": "ケ",
+    "name": "ケケンカニ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0740"
+  },
+  {
+    "No": 741,
+    "branch": null,
+    "initial": "オ",
+    "name": "オドリドリ",
+    "sub_name": "めらめらスタイル",
+    "area": 7,
+    "file": "0741"
+  },
+  {
+    "No": 741,
+    "branch": 1,
+    "initial": "オ",
+    "name": "オドリドリ",
+    "sub_name": "ぱちぱちスタイル",
+    "area": 7,
+    "file": "0741_01"
+  },
+  {
+    "No": 741,
+    "branch": 2,
+    "initial": "オ",
+    "name": "オドリドリ",
+    "sub_name": "ふらふらスタイル",
+    "area": 7,
+    "file": "0741_02"
+  },
+  {
+    "No": 741,
+    "branch": 3,
+    "initial": "オ",
+    "name": "オドリドリ",
+    "sub_name": "まいまいスタイル",
+    "area": 7,
+    "file": "0741_03"
+  },
+  {
+    "No": 742,
+    "branch": null,
+    "initial": "ア",
+    "name": "アブリー",
+    "sub_name": null,
+    "area": 7,
+    "file": "0742"
+  },
+  {
+    "No": 743,
+    "branch": null,
+    "initial": "ア",
+    "name": "アブリボン",
+    "sub_name": null,
+    "area": 7,
+    "file": "0743"
+  },
+  {
+    "No": 744,
+    "branch": null,
+    "initial": "イ",
+    "name": "イワンコ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0744"
+  },
+  {
+    "No": 745,
+    "branch": null,
+    "initial": "ル",
+    "name": "ルガルガン",
+    "sub_name": "まひるのすがた",
+    "area": 7,
+    "file": "0745"
+  },
+  {
+    "No": 745,
+    "branch": 1,
+    "initial": "ル",
+    "name": "ルガルガン",
+    "sub_name": "まよなかのすがた",
+    "area": 7,
+    "file": "0745_01"
+  },
+  {
+    "No": 745,
+    "branch": 2,
+    "initial": "ル",
+    "name": "ルガルガン",
+    "sub_name": "たそがれのすがた",
+    "area": 7,
+    "file": "0745_02"
+  },
+  {
+    "No": 746,
+    "branch": null,
+    "initial": "ヨ",
+    "name": "ヨワシ",
+    "sub_name": "たんどくのすがた",
+    "area": 7,
+    "file": "0746"
+  },
+  {
+    "No": 747,
+    "branch": null,
+    "initial": "ヒ",
+    "name": "ヒドイデ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0747"
+  },
+  {
+    "No": 748,
+    "branch": null,
+    "initial": "ト",
+    "name": "ドヒドイデ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0748"
+  },
+  {
+    "No": 749,
+    "branch": null,
+    "initial": "ト",
+    "name": "ドロバンコ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0749"
+  },
+  {
+    "No": 750,
+    "branch": null,
+    "initial": "ハ",
+    "name": "バンバドロ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0750"
+  },
+  {
+    "No": 751,
+    "branch": null,
+    "initial": "シ",
+    "name": "シズクモ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0751"
+  },
+  {
+    "No": 752,
+    "branch": null,
+    "initial": "オ",
+    "name": "オニシズクモ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0752"
+  },
+  {
+    "No": 753,
+    "branch": null,
+    "initial": "カ",
+    "name": "カリキリ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0753"
+  },
+  {
+    "No": 754,
+    "branch": null,
+    "initial": "ラ",
+    "name": "ラランテス",
+    "sub_name": null,
+    "area": 7,
+    "file": "0754"
+  },
+  {
+    "No": 755,
+    "branch": null,
+    "initial": "ネ",
+    "name": "ネマシュ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0755"
+  },
+  {
+    "No": 756,
+    "branch": null,
+    "initial": "マ",
+    "name": "マシェード",
+    "sub_name": null,
+    "area": 7,
+    "file": "0756"
+  },
+  {
+    "No": 757,
+    "branch": null,
+    "initial": "ヤ",
+    "name": "ヤトウモリ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0757"
+  },
+  {
+    "No": 758,
+    "branch": null,
+    "initial": "エ",
+    "name": "エンニュート",
+    "sub_name": null,
+    "area": 7,
+    "file": "0758"
+  },
+  {
+    "No": 759,
+    "branch": null,
+    "initial": "ヌ",
+    "name": "ヌイコグマ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0759"
+  },
+  {
+    "No": 760,
+    "branch": null,
+    "initial": "キ",
+    "name": "キテルグマ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0760"
+  },
+  {
+    "No": 761,
+    "branch": null,
+    "initial": "ア",
+    "name": "アマカジ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0761"
+  },
+  {
+    "No": 762,
+    "branch": null,
+    "initial": "ア",
+    "name": "アママイコ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0762"
+  },
+  {
+    "No": 763,
+    "branch": null,
+    "initial": "ア",
+    "name": "アマージョ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0763"
+  },
+  {
+    "No": 764,
+    "branch": null,
+    "initial": "キ",
+    "name": "キュワワー",
+    "sub_name": null,
+    "area": 7,
+    "file": "0764"
+  },
+  {
+    "No": 765,
+    "branch": null,
+    "initial": "ヤ",
+    "name": "ヤレユータン",
+    "sub_name": null,
+    "area": 7,
+    "file": "0765"
+  },
+  {
+    "No": 766,
+    "branch": null,
+    "initial": "ナ",
+    "name": "ナゲツケサル",
+    "sub_name": null,
+    "area": 7,
+    "file": "0766"
+  },
+  {
+    "No": 767,
+    "branch": null,
+    "initial": "コ",
+    "name": "コソクムシ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0767"
+  },
+  {
+    "No": 768,
+    "branch": null,
+    "initial": "ク",
+    "name": "グソクムシャ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0768"
+  },
+  {
+    "No": 769,
+    "branch": null,
+    "initial": "ス",
+    "name": "スナバァ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0769"
+  },
+  {
+    "No": 770,
+    "branch": null,
+    "initial": "シ",
+    "name": "シロデスナ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0770"
+  },
+  {
+    "No": 771,
+    "branch": null,
+    "initial": "ナ",
+    "name": "ナマコブシ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0771"
+  },
+  {
+    "No": 772,
+    "branch": null,
+    "initial": "タ",
+    "name": "タイプ：ヌル",
+    "sub_name": null,
+    "area": 7,
+    "file": "0772"
+  },
+  {
+    "No": 773,
+    "branch": null,
+    "initial": "シ",
+    "name": "シルヴァディ",
+    "sub_name": "タイプ：ノーマル",
+    "area": 7,
+    "file": "0773"
+  },
+  {
+    "No": 774,
+    "branch": null,
+    "initial": "メ",
+    "name": "メテノ",
+    "sub_name": "りゅうせいのすがた",
+    "area": 7,
+    "file": "0774"
+  },
+  {
+    "No": 774,
+    "branch": 1,
+    "initial": "メ",
+    "name": "メテノ",
+    "sub_name": "あかいろのコア",
+    "area": 7,
+    "file": "0774_01"
+  },
+  {
+    "No": 775,
+    "branch": null,
+    "initial": "ネ",
+    "name": "ネッコアラ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0775"
+  },
+  {
+    "No": 776,
+    "branch": null,
+    "initial": "ハ",
+    "name": "バクガメス",
+    "sub_name": null,
+    "area": 7,
+    "file": "0776"
+  },
+  {
+    "No": 777,
+    "branch": null,
+    "initial": "ト",
+    "name": "トゲデマル",
+    "sub_name": null,
+    "area": 7,
+    "file": "0777"
+  },
+  {
+    "No": 778,
+    "branch": null,
+    "initial": "ミ",
+    "name": "ミミッキュ",
+    "sub_name": "ばけたすがた",
+    "area": 7,
+    "file": "0778"
+  },
+  {
+    "No": 779,
+    "branch": null,
+    "initial": "ハ",
+    "name": "ハギギシリ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0779"
+  },
+  {
+    "No": 780,
+    "branch": null,
+    "initial": "シ",
+    "name": "ジジーロン",
+    "sub_name": null,
+    "area": 7,
+    "file": "0780"
+  },
+  {
+    "No": 781,
+    "branch": null,
+    "initial": "タ",
+    "name": "ダダリン",
+    "sub_name": null,
+    "area": 7,
+    "file": "0781"
+  },
+  {
+    "No": 782,
+    "branch": null,
+    "initial": "シ",
+    "name": "ジャラコ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0782"
+  },
+  {
+    "No": 783,
+    "branch": null,
+    "initial": "シ",
+    "name": "ジャランゴ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0783"
+  },
+  {
+    "No": 784,
+    "branch": null,
+    "initial": "シ",
+    "name": "ジャラランガ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0784"
+  },
+  {
+    "No": 785,
+    "branch": null,
+    "initial": "カ",
+    "name": "カプ・コケコ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0785"
+  },
+  {
+    "No": 786,
+    "branch": null,
+    "initial": "カ",
+    "name": "カプ・テテフ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0786"
+  },
+  {
+    "No": 787,
+    "branch": null,
+    "initial": "カ",
+    "name": "カプ・ブルル",
+    "sub_name": null,
+    "area": 7,
+    "file": "0787"
+  },
+  {
+    "No": 788,
+    "branch": null,
+    "initial": "カ",
+    "name": "カプ・レヒレ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0788"
+  },
+  {
+    "No": 789,
+    "branch": null,
+    "initial": "コ",
+    "name": "コスモッグ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0789"
+  },
+  {
+    "No": 790,
+    "branch": null,
+    "initial": "コ",
+    "name": "コスモウム",
+    "sub_name": null,
+    "area": 7,
+    "file": "0790"
+  },
+  {
+    "No": 791,
+    "branch": null,
+    "initial": "ソ",
+    "name": "ソルガレオ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0791"
+  },
+  {
+    "No": 792,
+    "branch": null,
+    "initial": "ル",
+    "name": "ルナアーラ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0792"
+  },
+  {
+    "No": 793,
+    "branch": null,
+    "initial": "ウ",
+    "name": "ウツロイド",
+    "sub_name": null,
+    "area": 7,
+    "file": "0793"
+  },
+  {
+    "No": 794,
+    "branch": null,
+    "initial": "マ",
+    "name": "マッシブーン",
+    "sub_name": null,
+    "area": 7,
+    "file": "0794"
+  },
+  {
+    "No": 795,
+    "branch": null,
+    "initial": "フ",
+    "name": "フェローチェ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0795"
+  },
+  {
+    "No": 796,
+    "branch": null,
+    "initial": "テ",
+    "name": "デンジュモク",
+    "sub_name": null,
+    "area": 7,
+    "file": "0796"
+  },
+  {
+    "No": 797,
+    "branch": null,
+    "initial": "テ",
+    "name": "テッカグヤ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0797"
+  },
+  {
+    "No": 798,
+    "branch": null,
+    "initial": "カ",
+    "name": "カミツルギ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0798"
+  },
+  {
+    "No": 799,
+    "branch": null,
+    "initial": "ア",
+    "name": "アクジキング",
+    "sub_name": null,
+    "area": 7,
+    "file": "0799"
+  },
+  {
+    "No": 800,
+    "branch": null,
+    "initial": "ネ",
+    "name": "ネクロズマ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0800"
+  },
+  {
+    "No": 800,
+    "branch": 1,
+    "initial": "ネ",
+    "name": "ネクロズマ",
+    "sub_name": "たそがれのたてがみ",
+    "area": 7,
+    "file": "0800_01"
+  },
+  {
+    "No": 800,
+    "branch": 2,
+    "initial": "ネ",
+    "name": "ネクロズマ",
+    "sub_name": "あかつきのつばさ",
+    "area": 7,
+    "file": "0800_02"
+  },
+  {
+    "No": 800,
+    "branch": 3,
+    "initial": "ネ",
+    "name": "ネクロズマ",
+    "sub_name": "ウルトラネクロズマ",
+    "area": 7,
+    "file": "0800_03"
+  },
+  {
+    "No": 801,
+    "branch": null,
+    "initial": "マ",
+    "name": "マギアナ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0801"
+  },
+  {
+    "No": 802,
+    "branch": null,
+    "initial": "マ",
+    "name": "マーシャドー",
+    "sub_name": null,
+    "area": 7,
+    "file": "0802"
+  },
+  {
+    "No": 803,
+    "branch": null,
+    "initial": "ヘ",
+    "name": "ベベノム",
+    "sub_name": null,
+    "area": 7,
+    "file": "0803"
+  },
+  {
+    "No": 804,
+    "branch": null,
+    "initial": "ア",
+    "name": "アーゴヨン",
+    "sub_name": null,
+    "area": 7,
+    "file": "0804"
+  },
+  {
+    "No": 805,
+    "branch": null,
+    "initial": "ツ",
+    "name": "ツンデツンデ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0805"
+  },
+  {
+    "No": 806,
+    "branch": null,
+    "initial": "ス",
+    "name": "ズガドーン",
+    "sub_name": null,
+    "area": 7,
+    "file": "0806"
+  },
+  {
+    "No": 807,
+    "branch": null,
+    "initial": "セ",
+    "name": "ゼラオラ",
+    "sub_name": null,
+    "area": 7,
+    "file": "0807"
+  },
+  {
+    "No": 808,
+    "branch": null,
+    "initial": "メ",
+    "name": "メルタン",
+    "sub_name": null,
+    "area": 11,
+    "file": "0808"
+  },
+  {
+    "No": 809,
+    "branch": null,
+    "initial": "メ",
+    "name": "メルメタル",
+    "sub_name": null,
+    "area": 11,
+    "file": "0809"
+  },
+  {
+    "No": 810,
+    "branch": null,
+    "initial": "サ",
+    "name": "サルノリ",
+    "sub_name": null,
+    "area": 8,
+    "file": "0810"
+  },
+  {
+    "No": 811,
+    "branch": null,
+    "initial": "ハ",
+    "name": "バチンキー",
+    "sub_name": null,
+    "area": 8,
+    "file": "0811"
+  },
+  {
+    "No": 812,
+    "branch": null,
+    "initial": "コ",
+    "name": "ゴリランダー",
+    "sub_name": null,
+    "area": 8,
+    "file": "0812"
+  },
+  {
+    "No": 813,
+    "branch": null,
+    "initial": "ヒ",
+    "name": "ヒバニー",
+    "sub_name": null,
+    "area": 8,
+    "file": "0813"
+  },
+  {
+    "No": 814,
+    "branch": null,
+    "initial": "ラ",
+    "name": "ラビフット",
+    "sub_name": null,
+    "area": 8,
+    "file": "0814"
+  },
+  {
+    "No": 815,
+    "branch": null,
+    "initial": "エ",
+    "name": "エースバーン",
+    "sub_name": null,
+    "area": 8,
+    "file": "0815"
+  },
+  {
+    "No": 816,
+    "branch": null,
+    "initial": "メ",
+    "name": "メッソン",
+    "sub_name": null,
+    "area": 8,
+    "file": "0816"
+  },
+  {
+    "No": 817,
+    "branch": null,
+    "initial": "シ",
+    "name": "ジメレオン",
+    "sub_name": null,
+    "area": 8,
+    "file": "0817"
+  },
+  {
+    "No": 818,
+    "branch": null,
+    "initial": "イ",
+    "name": "インテレオン",
+    "sub_name": null,
+    "area": 8,
+    "file": "0818"
+  },
+  {
+    "No": 819,
+    "branch": null,
+    "initial": "ホ",
+    "name": "ホシガリス",
+    "sub_name": null,
+    "area": 8,
+    "file": "0819"
+  },
+  {
+    "No": 820,
+    "branch": null,
+    "initial": "ヨ",
+    "name": "ヨクバリス",
+    "sub_name": null,
+    "area": 8,
+    "file": "0820"
+  },
+  {
+    "No": 821,
+    "branch": null,
+    "initial": "コ",
+    "name": "ココガラ",
+    "sub_name": null,
+    "area": 8,
+    "file": "0821"
+  },
+  {
+    "No": 822,
+    "branch": null,
+    "initial": "ア",
+    "name": "アオガラス",
+    "sub_name": null,
+    "area": 8,
+    "file": "0822"
+  },
+  {
+    "No": 823,
+    "branch": null,
+    "initial": "ア",
+    "name": "アーマーガア",
+    "sub_name": null,
+    "area": 8,
+    "file": "0823"
+  },
+  {
+    "No": 824,
+    "branch": null,
+    "initial": "サ",
+    "name": "サッチムシ",
+    "sub_name": null,
+    "area": 8,
+    "file": "0824"
+  },
+  {
+    "No": 825,
+    "branch": null,
+    "initial": "レ",
+    "name": "レドームシ",
+    "sub_name": null,
+    "area": 8,
+    "file": "0825"
+  },
+  {
+    "No": 826,
+    "branch": null,
+    "initial": "イ",
+    "name": "イオルブ",
+    "sub_name": null,
+    "area": 8,
+    "file": "0826"
+  },
+  {
+    "No": 827,
+    "branch": null,
+    "initial": "ク",
+    "name": "クスネ",
+    "sub_name": null,
+    "area": 8,
+    "file": "0827"
+  },
+  {
+    "No": 828,
+    "branch": null,
+    "initial": "フ",
+    "name": "フォクスライ",
+    "sub_name": null,
+    "area": 8,
+    "file": "0828"
+  },
+  {
+    "No": 829,
+    "branch": null,
+    "initial": "ヒ",
+    "name": "ヒメンカ",
+    "sub_name": null,
+    "area": 8,
+    "file": "0829"
+  },
+  {
+    "No": 830,
+    "branch": null,
+    "initial": "ワ",
+    "name": "ワタシラガ",
+    "sub_name": null,
+    "area": 8,
+    "file": "0830"
+  },
+  {
+    "No": 831,
+    "branch": null,
+    "initial": "ウ",
+    "name": "ウールー",
+    "sub_name": null,
+    "area": 8,
+    "file": "0831"
+  },
+  {
+    "No": 832,
+    "branch": null,
+    "initial": "ハ",
+    "name": "バイウールー",
+    "sub_name": null,
+    "area": 8,
+    "file": "0832"
+  },
+  {
+    "No": 833,
+    "branch": null,
+    "initial": "カ",
+    "name": "カムカメ",
+    "sub_name": null,
+    "area": 8,
+    "file": "0833"
+  },
+  {
+    "No": 834,
+    "branch": null,
+    "initial": "カ",
+    "name": "カジリガメ",
+    "sub_name": null,
+    "area": 8,
+    "file": "0834"
+  },
+  {
+    "No": 835,
+    "branch": null,
+    "initial": "ワ",
+    "name": "ワンパチ",
+    "sub_name": null,
+    "area": 8,
+    "file": "0835"
+  },
+  {
+    "No": 836,
+    "branch": null,
+    "initial": "ハ",
+    "name": "パルスワン",
+    "sub_name": null,
+    "area": 8,
+    "file": "0836"
+  },
+  {
+    "No": 837,
+    "branch": null,
+    "initial": "タ",
+    "name": "タンドン",
+    "sub_name": null,
+    "area": 8,
+    "file": "0837"
+  },
+  {
+    "No": 838,
+    "branch": null,
+    "initial": "ト",
+    "name": "トロッゴン",
+    "sub_name": null,
+    "area": 8,
+    "file": "0838"
+  },
+  {
+    "No": 839,
+    "branch": null,
+    "initial": "セ",
+    "name": "セキタンザン",
+    "sub_name": null,
+    "area": 8,
+    "file": "0839"
+  },
+  {
+    "No": 840,
+    "branch": null,
+    "initial": "カ",
+    "name": "カジッチュ",
+    "sub_name": null,
+    "area": 8,
+    "file": "0840"
+  },
+  {
+    "No": 841,
+    "branch": null,
+    "initial": "ア",
+    "name": "アップリュー",
+    "sub_name": null,
+    "area": 8,
+    "file": "0841"
+  },
+  {
+    "No": 842,
+    "branch": null,
+    "initial": "タ",
+    "name": "タルップル",
+    "sub_name": null,
+    "area": 8,
+    "file": "0842"
+  },
+  {
+    "No": 843,
+    "branch": null,
+    "initial": "ス",
+    "name": "スナヘビ",
+    "sub_name": null,
+    "area": 8,
+    "file": "0843"
+  },
+  {
+    "No": 844,
+    "branch": null,
+    "initial": "サ",
+    "name": "サダイジャ",
+    "sub_name": null,
+    "area": 8,
+    "file": "0844"
+  },
+  {
+    "No": 845,
+    "branch": null,
+    "initial": "ウ",
+    "name": "ウッウ",
+    "sub_name": null,
+    "area": 8,
+    "file": "0845"
+  },
+  {
+    "No": 846,
+    "branch": null,
+    "initial": "サ",
+    "name": "サシカマス",
+    "sub_name": null,
+    "area": 8,
+    "file": "0846"
+  },
+  {
+    "No": 847,
+    "branch": null,
+    "initial": "カ",
+    "name": "カマスジョー",
+    "sub_name": null,
+    "area": 8,
+    "file": "0847"
+  },
+  {
+    "No": 848,
+    "branch": null,
+    "initial": "エ",
+    "name": "エレズン",
+    "sub_name": null,
+    "area": 8,
+    "file": "0848"
+  },
+  {
+    "No": 849,
+    "branch": null,
+    "initial": "ス",
+    "name": "ストリンダー",
+    "sub_name": "ハイなすがた",
+    "area": 8,
+    "file": "0849"
+  },
+  {
+    "No": 849,
+    "branch": 1,
+    "initial": "ス",
+    "name": "ストリンダー",
+    "sub_name": "ローなすがた",
+    "area": 8,
+    "file": "0849_01"
+  },
+  {
+    "No": 850,
+    "branch": null,
+    "initial": "ヤ",
+    "name": "ヤクデ",
+    "sub_name": null,
+    "area": 8,
+    "file": "0850"
+  },
+  {
+    "No": 851,
+    "branch": null,
+    "initial": "マ",
+    "name": "マルヤクデ",
+    "sub_name": null,
+    "area": 8,
+    "file": "0851"
+  },
+  {
+    "No": 852,
+    "branch": null,
+    "initial": "タ",
+    "name": "タタッコ",
+    "sub_name": null,
+    "area": 8,
+    "file": "0852"
+  },
+  {
+    "No": 853,
+    "branch": null,
+    "initial": "オ",
+    "name": "オトスパス",
+    "sub_name": null,
+    "area": 8,
+    "file": "0853"
+  },
+  {
+    "No": 854,
+    "branch": null,
+    "initial": "ヤ",
+    "name": "ヤバチャ",
+    "sub_name": "がんさくフォルム",
+    "area": 8,
+    "file": "0854"
+  },
+  {
+    "No": 855,
+    "branch": null,
+    "initial": "ホ",
+    "name": "ポットデス",
+    "sub_name": "がんさくフォルム",
+    "area": 8,
+    "file": "0855"
+  },
+  {
+    "No": 856,
+    "branch": null,
+    "initial": "ミ",
+    "name": "ミブリム",
+    "sub_name": null,
+    "area": 8,
+    "file": "0856"
+  },
+  {
+    "No": 857,
+    "branch": null,
+    "initial": "テ",
+    "name": "テブリム",
+    "sub_name": null,
+    "area": 8,
+    "file": "0857"
+  },
+  {
+    "No": 858,
+    "branch": null,
+    "initial": "フ",
+    "name": "ブリムオン",
+    "sub_name": null,
+    "area": 8,
+    "file": "0858"
+  },
+  {
+    "No": 859,
+    "branch": null,
+    "initial": "ヘ",
+    "name": "ベロバー",
+    "sub_name": null,
+    "area": 8,
+    "file": "0859"
+  },
+  {
+    "No": 860,
+    "branch": null,
+    "initial": "キ",
+    "name": "ギモー",
+    "sub_name": null,
+    "area": 8,
+    "file": "0860"
+  },
+  {
+    "No": 861,
+    "branch": null,
+    "initial": "オ",
+    "name": "オーロンゲ",
+    "sub_name": null,
+    "area": 8,
+    "file": "0861"
+  },
+  {
+    "No": 862,
+    "branch": null,
+    "initial": "タ",
+    "name": "タチフサグマ",
+    "sub_name": null,
+    "area": 8,
+    "file": "0862"
+  },
+  {
+    "No": 863,
+    "branch": null,
+    "initial": "ニ",
+    "name": "ニャイキング",
+    "sub_name": null,
+    "area": 8,
+    "file": "0863"
+  },
+  {
+    "No": 864,
+    "branch": null,
+    "initial": "サ",
+    "name": "サニゴーン",
+    "sub_name": null,
+    "area": 8,
+    "file": "0864"
+  },
+  {
+    "No": 865,
+    "branch": null,
+    "initial": "ネ",
+    "name": "ネギガナイト",
+    "sub_name": null,
+    "area": 8,
+    "file": "0865"
+  },
+  {
+    "No": 866,
+    "branch": null,
+    "initial": "ハ",
+    "name": "バリコオル",
+    "sub_name": null,
+    "area": 8,
+    "file": "0866"
+  },
+  {
+    "No": 867,
+    "branch": null,
+    "initial": "テ",
+    "name": "デスバーン",
+    "sub_name": null,
+    "area": 8,
+    "file": "0867"
+  },
+  {
+    "No": 868,
+    "branch": null,
+    "initial": "マ",
+    "name": "マホミル",
+    "sub_name": null,
+    "area": 8,
+    "file": "0868"
+  },
+  {
+    "No": 869,
+    "branch": null,
+    "initial": "マ",
+    "name": "マホイップ",
+    "sub_name": null,
+    "area": 8,
+    "file": "0869"
+  },
+  {
+    "No": 870,
+    "branch": null,
+    "initial": "タ",
+    "name": "タイレーツ",
+    "sub_name": null,
+    "area": 8,
+    "file": "0870"
+  },
+  {
+    "No": 871,
+    "branch": null,
+    "initial": "ハ",
+    "name": "バチンウニ",
+    "sub_name": null,
+    "area": 8,
+    "file": "0871"
+  },
+  {
+    "No": 872,
+    "branch": null,
+    "initial": "ユ",
+    "name": "ユキハミ",
+    "sub_name": null,
+    "area": 8,
+    "file": "0872"
+  },
+  {
+    "No": 873,
+    "branch": null,
+    "initial": "モ",
+    "name": "モスノウ",
+    "sub_name": null,
+    "area": 8,
+    "file": "0873"
+  },
+  {
+    "No": 874,
+    "branch": null,
+    "initial": "イ",
+    "name": "イシヘンジン",
+    "sub_name": null,
+    "area": 8,
+    "file": "0874"
+  },
+  {
+    "No": 875,
+    "branch": null,
+    "initial": "コ",
+    "name": "コオリッポ",
+    "sub_name": "アイスフェイス",
+    "area": 8,
+    "file": "0875"
+  },
+  {
+    "No": 876,
+    "branch": null,
+    "initial": "イ",
+    "name": "イエッサン",
+    "sub_name": "オスのすがた",
+    "area": 8,
+    "file": "0876"
+  },
+  {
+    "No": 876,
+    "branch": 1,
+    "initial": "イ",
+    "name": "イエッサン",
+    "sub_name": "メスのすがた",
+    "area": 8,
+    "file": "0876_01"
+  },
+  {
+    "No": 877,
+    "branch": null,
+    "initial": "モ",
+    "name": "モルペコ",
+    "sub_name": "まんぷくもよう",
+    "area": 8,
+    "file": "0877"
+  },
+  {
+    "No": 878,
+    "branch": null,
+    "initial": "ソ",
+    "name": "ゾウドウ",
+    "sub_name": null,
+    "area": 8,
+    "file": "0878"
+  },
+  {
+    "No": 879,
+    "branch": null,
+    "initial": "タ",
+    "name": "ダイオウドウ",
+    "sub_name": null,
+    "area": 8,
+    "file": "0879"
+  },
+  {
+    "No": 880,
+    "branch": null,
+    "initial": "ハ",
+    "name": "パッチラゴン",
+    "sub_name": null,
+    "area": 8,
+    "file": "0880"
+  },
+  {
+    "No": 881,
+    "branch": null,
+    "initial": "ハ",
+    "name": "パッチルドン",
+    "sub_name": null,
+    "area": 8,
+    "file": "0881"
+  },
+  {
+    "No": 882,
+    "branch": null,
+    "initial": "ウ",
+    "name": "ウオノラゴン",
+    "sub_name": null,
+    "area": 8,
+    "file": "0882"
+  },
+  {
+    "No": 883,
+    "branch": null,
+    "initial": "ウ",
+    "name": "ウオチルドン",
+    "sub_name": null,
+    "area": 8,
+    "file": "0883"
+  },
+  {
+    "No": 884,
+    "branch": null,
+    "initial": "シ",
+    "name": "ジュラルドン",
+    "sub_name": null,
+    "area": 8,
+    "file": "0884"
+  },
+  {
+    "No": 885,
+    "branch": null,
+    "initial": "ト",
+    "name": "ドラメシヤ",
+    "sub_name": null,
+    "area": 8,
+    "file": "0885"
+  },
+  {
+    "No": 886,
+    "branch": null,
+    "initial": "ト",
+    "name": "ドロンチ",
+    "sub_name": null,
+    "area": 8,
+    "file": "0886"
+  },
+  {
+    "No": 887,
+    "branch": null,
+    "initial": "ト",
+    "name": "ドラパルト",
+    "sub_name": null,
+    "area": 8,
+    "file": "0887"
+  },
+  {
+    "No": 888,
+    "branch": 1,
+    "initial": "サ",
+    "name": "ザシアン",
+    "sub_name": "けんのおう",
+    "area": 8,
+    "file": "0888"
+  },
+  {
+    "No": 889,
+    "branch": 1,
+    "initial": "サ",
+    "name": "ザマゼンタ",
+    "sub_name": "たてのおう",
+    "area": 8,
+    "file": "0889"
+  },
+  {
+    "No": 890,
+    "branch": null,
+    "initial": "ム",
+    "name": "ムゲンダイナ",
+    "sub_name": null,
+    "area": 8,
+    "file": "0890"
+  },
+  {
+    "No": 891,
+    "branch": null,
+    "initial": "タ",
+    "name": "ダクマ",
+    "sub_name": null,
+    "area": 8,
+    "file": "0891"
+  },
+  {
+    "No": 892,
+    "branch": null,
+    "initial": "ウ",
+    "name": "ウーラオス",
+    "sub_name": "いちげきのかた",
+    "area": 8,
+    "file": "0892"
+  },
+  {
+    "No": 892,
+    "branch": 1,
+    "initial": "ウ",
+    "name": "ウーラオス",
+    "sub_name": "れんげきのかた",
+    "area": 8,
+    "file": "0892_01"
+  },
+  {
+    "No": 893,
+    "branch": null,
+    "initial": "サ",
+    "name": "ザルード",
+    "sub_name": null,
+    "area": 8,
+    "file": "0893"
+  },
+  {
+    "No": 894,
+    "branch": null,
+    "initial": "レ",
+    "name": "レジエレキ",
+    "sub_name": null,
+    "area": 8,
+    "file": "0894"
+  },
+  {
+    "No": 895,
+    "branch": null,
+    "initial": "レ",
+    "name": "レジドラゴ",
+    "sub_name": null,
+    "area": 8,
+    "file": "0895"
+  },
+  {
+    "No": 896,
+    "branch": null,
+    "initial": "フ",
+    "name": "ブリザポス",
+    "sub_name": null,
+    "area": 8,
+    "file": "0896"
+  },
+  {
+    "No": 897,
+    "branch": null,
+    "initial": "レ",
+    "name": "レイスポス",
+    "sub_name": null,
+    "area": 8,
+    "file": "0897"
+  },
+  {
+    "No": 898,
+    "branch": null,
+    "initial": "ハ",
+    "name": "バドレックス",
+    "sub_name": null,
+    "area": 8,
+    "file": "0898"
+  },
+  {
+    "No": 899,
+    "branch": null,
+    "initial": "ア",
+    "name": "アヤシシ",
+    "sub_name": null,
+    "area": 9,
+    "file": "0899"
+  },
+  {
+    "No": 900,
+    "branch": null,
+    "initial": "ハ",
+    "name": "バサギリ",
+    "sub_name": null,
+    "area": 9,
+    "file": "0900"
+  },
+  {
+    "No": 901,
+    "branch": null,
+    "initial": "カ",
+    "name": "ガチグマ",
+    "sub_name": null,
+    "area": 9,
+    "file": "0901"
+  },
+  {
+    "No": 901,
+    "branch": 1,
+    "initial": "カ",
+    "name": "ガチグマ",
+    "sub_name": "アカツキ",
+    "area": 10,
+    "file": "0901_01"
+  },
+  {
+    "No": 902,
+    "branch": null,
+    "initial": "イ",
+    "name": "イダイトウ",
+    "sub_name": "オスのすがた",
+    "area": 9,
+    "file": "0902"
+  },
+  {
+    "No": 902,
+    "branch": 1,
+    "initial": "イ",
+    "name": "イダイトウ",
+    "sub_name": "メスのすがた",
+    "area": 9,
+    "file": "0902_01"
+  },
+  {
+    "No": 903,
+    "branch": null,
+    "initial": "オ",
+    "name": "オオニューラ",
+    "sub_name": null,
+    "area": 9,
+    "file": "0903"
+  },
+  {
+    "No": 904,
+    "branch": null,
+    "initial": "ハ",
+    "name": "ハリーマン",
+    "sub_name": null,
+    "area": 9,
+    "file": "0904"
+  },
+  {
+    "No": 905,
+    "branch": null,
+    "initial": "ラ",
+    "name": "ラブトロス",
+    "sub_name": "けしんフォルム",
+    "area": 9,
+    "file": "0905"
+  },
+  {
+    "No": 906,
+    "branch": null,
+    "initial": "ニ",
+    "name": "ニャオハ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0906"
+  },
+  {
+    "No": 907,
+    "branch": null,
+    "initial": "ニ",
+    "name": "ニャローテ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0907"
+  },
+  {
+    "No": 908,
+    "branch": null,
+    "initial": "マ",
+    "name": "マスカーニャ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0908"
+  },
+  {
+    "No": 909,
+    "branch": null,
+    "initial": "ホ",
+    "name": "ホゲータ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0909"
+  },
+  {
+    "No": 910,
+    "branch": null,
+    "initial": "ア",
+    "name": "アチゲータ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0910"
+  },
+  {
+    "No": 911,
+    "branch": null,
+    "initial": "ラ",
+    "name": "ラウドボーン",
+    "sub_name": null,
+    "area": 10,
+    "file": "0911"
+  },
+  {
+    "No": 912,
+    "branch": null,
+    "initial": "ク",
+    "name": "クワッス",
+    "sub_name": null,
+    "area": 10,
+    "file": "0912"
+  },
+  {
+    "No": 913,
+    "branch": null,
+    "initial": "ウ",
+    "name": "ウェルカモ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0913"
+  },
+  {
+    "No": 914,
+    "branch": null,
+    "initial": "ウ",
+    "name": "ウェーニバル",
+    "sub_name": null,
+    "area": 10,
+    "file": "0914"
+  },
+  {
+    "No": 915,
+    "branch": null,
+    "initial": "ク",
+    "name": "グルトン",
+    "sub_name": null,
+    "area": 10,
+    "file": "0915"
+  },
+  {
+    "No": 916,
+    "branch": null,
+    "initial": "ハ",
+    "name": "パフュートン",
+    "sub_name": "オスのすがた",
+    "area": 10,
+    "file": "0916"
+  },
+  {
+    "No": 916,
+    "branch": 1,
+    "initial": "ハ",
+    "name": "パフュートン",
+    "sub_name": "メスのすがた",
+    "area": 10,
+    "file": "0916_01"
+  },
+  {
+    "No": 917,
+    "branch": null,
+    "initial": "タ",
+    "name": "タマンチュラ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0917"
+  },
+  {
+    "No": 918,
+    "branch": null,
+    "initial": "ワ",
+    "name": "ワナイダー",
+    "sub_name": null,
+    "area": 10,
+    "file": "0918"
+  },
+  {
+    "No": 919,
+    "branch": null,
+    "initial": "マ",
+    "name": "マメバッタ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0919"
+  },
+  {
+    "No": 920,
+    "branch": null,
+    "initial": "エ",
+    "name": "エクスレッグ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0920"
+  },
+  {
+    "No": 921,
+    "branch": null,
+    "initial": "ハ",
+    "name": "パモ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0921"
+  },
+  {
+    "No": 922,
+    "branch": null,
+    "initial": "ハ",
+    "name": "パモット",
+    "sub_name": null,
+    "area": 10,
+    "file": "0922"
+  },
+  {
+    "No": 923,
+    "branch": null,
+    "initial": "ハ",
+    "name": "パーモット",
+    "sub_name": null,
+    "area": 10,
+    "file": "0923"
+  },
+  {
+    "No": 924,
+    "branch": null,
+    "initial": "ワ",
+    "name": "ワッカネズミ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0924"
+  },
+  {
+    "No": 925,
+    "branch": null,
+    "initial": "イ",
+    "name": "イッカネズミ",
+    "sub_name": "３びきかぞく",
+    "area": 10,
+    "file": "0925"
+  },
+  {
+    "No": 926,
+    "branch": null,
+    "initial": "ハ",
+    "name": "パピモッチ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0926"
+  },
+  {
+    "No": 927,
+    "branch": null,
+    "initial": "ハ",
+    "name": "バウッツェル",
+    "sub_name": null,
+    "area": 10,
+    "file": "0927"
+  },
+  {
+    "No": 928,
+    "branch": null,
+    "initial": "ミ",
+    "name": "ミニーブ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0928"
+  },
+  {
+    "No": 929,
+    "branch": null,
+    "initial": "オ",
+    "name": "オリーニョ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0929"
+  },
+  {
+    "No": 930,
+    "branch": null,
+    "initial": "オ",
+    "name": "オリーヴァ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0930"
+  },
+  {
+    "No": 931,
+    "branch": null,
+    "initial": "イ",
+    "name": "イキリンコ",
+    "sub_name": "グリーンフェザー",
+    "area": 10,
+    "file": "0931"
+  },
+  {
+    "No": 932,
+    "branch": null,
+    "initial": "コ",
+    "name": "コジオ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0932"
+  },
+  {
+    "No": 933,
+    "branch": null,
+    "initial": "シ",
+    "name": "ジオヅム",
+    "sub_name": null,
+    "area": 10,
+    "file": "0933"
+  },
+  {
+    "No": 934,
+    "branch": null,
+    "initial": "キ",
+    "name": "キョジオーン",
+    "sub_name": null,
+    "area": 10,
+    "file": "0934"
+  },
+  {
+    "No": 935,
+    "branch": null,
+    "initial": "カ",
+    "name": "カルボウ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0935"
+  },
+  {
+    "No": 936,
+    "branch": null,
+    "initial": "ク",
+    "name": "グレンアルマ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0936"
+  },
+  {
+    "No": 937,
+    "branch": null,
+    "initial": "ソ",
+    "name": "ソウブレイズ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0937"
+  },
+  {
+    "No": 938,
+    "branch": null,
+    "initial": "ス",
+    "name": "ズピカ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0938"
+  },
+  {
+    "No": 939,
+    "branch": null,
+    "initial": "ハ",
+    "name": "ハラバリー",
+    "sub_name": null,
+    "area": 10,
+    "file": "0939"
+  },
+  {
+    "No": 940,
+    "branch": null,
+    "initial": "カ",
+    "name": "カイデン",
+    "sub_name": null,
+    "area": 10,
+    "file": "0940"
+  },
+  {
+    "No": 941,
+    "branch": null,
+    "initial": "タ",
+    "name": "タイカイデン",
+    "sub_name": null,
+    "area": 10,
+    "file": "0941"
+  },
+  {
+    "No": 942,
+    "branch": null,
+    "initial": "オ",
+    "name": "オラチフ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0942"
+  },
+  {
+    "No": 943,
+    "branch": null,
+    "initial": "マ",
+    "name": "マフィティフ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0943"
+  },
+  {
+    "No": 944,
+    "branch": null,
+    "initial": "シ",
+    "name": "シルシュルー",
+    "sub_name": null,
+    "area": 10,
+    "file": "0944"
+  },
+  {
+    "No": 945,
+    "branch": null,
+    "initial": "タ",
+    "name": "タギングル",
+    "sub_name": null,
+    "area": 10,
+    "file": "0945"
+  },
+  {
+    "No": 946,
+    "branch": null,
+    "initial": "ア",
+    "name": "アノクサ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0946"
+  },
+  {
+    "No": 947,
+    "branch": null,
+    "initial": "ア",
+    "name": "アノホラグサ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0947"
+  },
+  {
+    "No": 948,
+    "branch": null,
+    "initial": "ノ",
+    "name": "ノノクラゲ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0948"
+  },
+  {
+    "No": 949,
+    "branch": null,
+    "initial": "リ",
+    "name": "リククラゲ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0949"
+  },
+  {
+    "No": 950,
+    "branch": null,
+    "initial": "カ",
+    "name": "ガケガニ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0950"
+  },
+  {
+    "No": 951,
+    "branch": null,
+    "initial": "カ",
+    "name": "カプサイジ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0951"
+  },
+  {
+    "No": 952,
+    "branch": null,
+    "initial": "ス",
+    "name": "スコヴィラン",
+    "sub_name": null,
+    "area": 10,
+    "file": "0952"
+  },
+  {
+    "No": 953,
+    "branch": null,
+    "initial": "シ",
+    "name": "シガロコ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0953"
+  },
+  {
+    "No": 954,
+    "branch": null,
+    "initial": "ヘ",
+    "name": "ベラカス",
+    "sub_name": null,
+    "area": 10,
+    "file": "0954"
+  },
+  {
+    "No": 955,
+    "branch": null,
+    "initial": "ヒ",
+    "name": "ヒラヒナ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0955"
+  },
+  {
+    "No": 956,
+    "branch": null,
+    "initial": "ク",
+    "name": "クエスパトラ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0956"
+  },
+  {
+    "No": 957,
+    "branch": null,
+    "initial": "カ",
+    "name": "カヌチャン",
+    "sub_name": null,
+    "area": 10,
+    "file": "0957"
+  },
+  {
+    "No": 958,
+    "branch": null,
+    "initial": "ナ",
+    "name": "ナカヌチャン",
+    "sub_name": null,
+    "area": 10,
+    "file": "0958"
+  },
+  {
+    "No": 959,
+    "branch": null,
+    "initial": "テ",
+    "name": "デカヌチャン",
+    "sub_name": null,
+    "area": 10,
+    "file": "0959"
+  },
+  {
+    "No": 960,
+    "branch": null,
+    "initial": "ウ",
+    "name": "ウミディグダ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0960"
+  },
+  {
+    "No": 961,
+    "branch": null,
+    "initial": "ウ",
+    "name": "ウミトリオ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0961"
+  },
+  {
+    "No": 962,
+    "branch": null,
+    "initial": "オ",
+    "name": "オトシドリ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0962"
+  },
+  {
+    "No": 963,
+    "branch": null,
+    "initial": "ナ",
+    "name": "ナミイルカ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0963"
+  },
+  {
+    "No": 964,
+    "branch": 1,
+    "initial": "イ",
+    "name": "イルカマン",
+    "sub_name": "マイティフォルム",
+    "area": 10,
+    "file": "0964"
+  },
+  {
+    "No": 965,
+    "branch": null,
+    "initial": "フ",
+    "name": "ブロロン",
+    "sub_name": null,
+    "area": 10,
+    "file": "0965"
+  },
+  {
+    "No": 966,
+    "branch": null,
+    "initial": "フ",
+    "name": "ブロロローム",
+    "sub_name": null,
+    "area": 10,
+    "file": "0966"
+  },
+  {
+    "No": 967,
+    "branch": null,
+    "initial": "モ",
+    "name": "モトトカゲ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0967"
+  },
+  {
+    "No": 968,
+    "branch": null,
+    "initial": "ミ",
+    "name": "ミミズズ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0968"
+  },
+  {
+    "No": 969,
+    "branch": null,
+    "initial": "キ",
+    "name": "キラーメ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0969"
+  },
+  {
+    "No": 970,
+    "branch": null,
+    "initial": "キ",
+    "name": "キラフロル",
+    "sub_name": null,
+    "area": 10,
+    "file": "0970"
+  },
+  {
+    "No": 971,
+    "branch": null,
+    "initial": "ホ",
+    "name": "ボチ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0971"
+  },
+  {
+    "No": 972,
+    "branch": null,
+    "initial": "ハ",
+    "name": "ハカドッグ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0972"
+  },
+  {
+    "No": 973,
+    "branch": null,
+    "initial": "カ",
+    "name": "カラミンゴ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0973"
+  },
+  {
+    "No": 974,
+    "branch": null,
+    "initial": "ア",
+    "name": "アルクジラ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0974"
+  },
+  {
+    "No": 975,
+    "branch": null,
+    "initial": "ハ",
+    "name": "ハルクジラ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0975"
+  },
+  {
+    "No": 976,
+    "branch": null,
+    "initial": "ミ",
+    "name": "ミガルーサ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0976"
+  },
+  {
+    "No": 977,
+    "branch": null,
+    "initial": "ヘ",
+    "name": "ヘイラッシャ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0977"
+  },
+  {
+    "No": 978,
+    "branch": null,
+    "initial": "シ",
+    "name": "シャリタツ",
+    "sub_name": "そったすがた",
+    "area": 10,
+    "file": "0978"
+  },
+  {
+    "No": 979,
+    "branch": null,
+    "initial": "コ",
+    "name": "コノヨザル",
+    "sub_name": null,
+    "area": 10,
+    "file": "0979"
+  },
+  {
+    "No": 980,
+    "branch": null,
+    "initial": "ト",
+    "name": "ドオー",
+    "sub_name": null,
+    "area": 10,
+    "file": "0980"
+  },
+  {
+    "No": 981,
+    "branch": null,
+    "initial": "リ",
+    "name": "リキキリン",
+    "sub_name": null,
+    "area": 10,
+    "file": "0981"
+  },
+  {
+    "No": 982,
+    "branch": null,
+    "initial": "ノ",
+    "name": "ノココッチ",
+    "sub_name": "ふたふしフォルム",
+    "area": 10,
+    "file": "0982"
+  },
+  {
+    "No": 983,
+    "branch": null,
+    "initial": "ト",
+    "name": "ドドゲザン",
+    "sub_name": null,
+    "area": 10,
+    "file": "0983"
+  },
+  {
+    "No": 984,
+    "branch": null,
+    "initial": "イ",
+    "name": "イダイナキバ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0984"
+  },
+  {
+    "No": 985,
+    "branch": null,
+    "initial": "サ",
+    "name": "サケブシッポ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0985"
+  },
+  {
+    "No": 986,
+    "branch": null,
+    "initial": "ア",
+    "name": "アラブルタケ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0986"
+  },
+  {
+    "No": 987,
+    "branch": null,
+    "initial": "ハ",
+    "name": "ハバタクカミ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0987"
+  },
+  {
+    "No": 988,
+    "branch": null,
+    "initial": "チ",
+    "name": "チヲハウハネ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0988"
+  },
+  {
+    "No": 989,
+    "branch": null,
+    "initial": "ス",
+    "name": "スナノケガワ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0989"
+  },
+  {
+    "No": 990,
+    "branch": null,
+    "initial": "テ",
+    "name": "テツノワダチ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0990"
+  },
+  {
+    "No": 991,
+    "branch": null,
+    "initial": "テ",
+    "name": "テツノツツミ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0991"
+  },
+  {
+    "No": 992,
+    "branch": null,
+    "initial": "テ",
+    "name": "テツノカイナ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0992"
+  },
+  {
+    "No": 993,
+    "branch": null,
+    "initial": "テ",
+    "name": "テツノコウベ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0993"
+  },
+  {
+    "No": 994,
+    "branch": null,
+    "initial": "テ",
+    "name": "テツノドクガ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0994"
+  },
+  {
+    "No": 995,
+    "branch": null,
+    "initial": "テ",
+    "name": "テツノイバラ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0995"
+  },
+  {
+    "No": 996,
+    "branch": null,
+    "initial": "セ",
+    "name": "セビエ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0996"
+  },
+  {
+    "No": 997,
+    "branch": null,
+    "initial": "セ",
+    "name": "セゴール",
+    "sub_name": null,
+    "area": 10,
+    "file": "0997"
+  },
+  {
+    "No": 998,
+    "branch": null,
+    "initial": "セ",
+    "name": "セグレイブ",
+    "sub_name": null,
+    "area": 10,
+    "file": "0998"
+  },
+  {
+    "No": 999,
+    "branch": null,
+    "initial": "コ",
+    "name": "コレクレー",
+    "sub_name": "はこフォルム",
+    "area": 10,
+    "file": "0999"
+  },
+  {
+    "No": 999,
+    "branch": 1,
+    "initial": "コ",
+    "name": "コレクレー",
+    "sub_name": "とほフォルム",
+    "area": 10,
+    "file": "0999_01"
+  },
+  {
+    "No": 1000,
+    "branch": null,
+    "initial": "サ",
+    "name": "サーフゴー",
+    "sub_name": null,
+    "area": 10,
+    "file": "1000"
+  },
+  {
+    "No": 1001,
+    "branch": null,
+    "initial": "チ",
+    "name": "チオンジェン",
+    "sub_name": null,
+    "area": 10,
+    "file": "1001"
+  },
+  {
+    "No": 1002,
+    "branch": null,
+    "initial": "ハ",
+    "name": "パオジアン",
+    "sub_name": null,
+    "area": 10,
+    "file": "1002"
+  },
+  {
+    "No": 1003,
+    "branch": null,
+    "initial": "テ",
+    "name": "ディンルー",
+    "sub_name": null,
+    "area": 10,
+    "file": "1003"
+  },
+  {
+    "No": 1004,
+    "branch": null,
+    "initial": "イ",
+    "name": "イーユイ",
+    "sub_name": null,
+    "area": 10,
+    "file": "1004"
+  },
+  {
+    "No": 1005,
+    "branch": null,
+    "initial": "ト",
+    "name": "トドロクツキ",
+    "sub_name": null,
+    "area": 10,
+    "file": "1005"
+  },
+  {
+    "No": 1006,
+    "branch": null,
+    "initial": "テ",
+    "name": "テツノブジン",
+    "sub_name": null,
+    "area": 10,
+    "file": "1006"
+  },
+  {
+    "No": 1007,
+    "branch": null,
+    "initial": "コ",
+    "name": "コライドン",
+    "sub_name": null,
+    "area": 10,
+    "file": "1007"
+  },
+  {
+    "No": 1008,
+    "branch": null,
+    "initial": "ミ",
+    "name": "ミライドン",
+    "sub_name": null,
+    "area": 10,
+    "file": "1008"
+  },
+  {
+    "No": 1009,
+    "branch": null,
+    "initial": "ウ",
+    "name": "ウネルミナモ",
+    "sub_name": null,
+    "area": 10,
+    "file": "1009"
+  },
+  {
+    "No": 1010,
+    "branch": null,
+    "initial": "テ",
+    "name": "テツノイサハ",
+    "sub_name": null,
+    "area": 10,
+    "file": "1010"
+  },
+  {
+    "No": 1011,
+    "branch": null,
+    "initial": "カ",
+    "name": "カミッチュ",
+    "sub_name": null,
+    "area": 10,
+    "file": "1011"
+  },
+  {
+    "No": 1012,
+    "branch": null,
+    "initial": "チ",
+    "name": "チャデス",
+    "sub_name": "マガイモノのすがた",
+    "area": 10,
+    "file": "1012"
+  },
+  {
+    "No": 1013,
+    "branch": null,
+    "initial": "ヤ",
+    "name": "ヤバソチャ",
+    "sub_name": "ボンサクのすがた",
+    "area": 10,
+    "file": "1013"
+  },
+  {
+    "No": 1014,
+    "branch": null,
+    "initial": "イ",
+    "name": "イイネイヌ",
+    "sub_name": null,
+    "area": 10,
+    "file": "1014"
+  },
+  {
+    "No": 1015,
+    "branch": null,
+    "initial": "マ",
+    "name": "マシマシラ",
+    "sub_name": null,
+    "area": 10,
+    "file": "1015"
+  },
+  {
+    "No": 1016,
+    "branch": null,
+    "initial": "キ",
+    "name": "キチキギス",
+    "sub_name": null,
+    "area": 10,
+    "file": "1016"
+  },
+  {
+    "No": 1017,
+    "branch": null,
+    "initial": "オ",
+    "name": "オーガポン",
+    "sub_name": "みどりのめん",
+    "area": 10,
+    "file": "1017"
+  },
+  {
+    "No": 1018,
+    "branch": null,
+    "initial": "フ",
+    "name": "ブリジュラス",
+    "sub_name": null,
+    "area": 10,
+    "file": "1018"
+  },
+  {
+    "No": 1019,
+    "branch": null,
+    "initial": "カ",
+    "name": "カミツオロチ",
+    "sub_name": null,
+    "area": 10,
+    "file": "1019"
+  },
+  {
+    "No": 1020,
+    "branch": null,
+    "initial": "ウ",
+    "name": "ウガツホムラ",
+    "sub_name": null,
+    "area": 10,
+    "file": "1020"
+  },
+  {
+    "No": 1021,
+    "branch": null,
+    "initial": "タ",
+    "name": "タケルライコ",
+    "sub_name": null,
+    "area": 10,
+    "file": "1021"
+  },
+  {
+    "No": 1022,
+    "branch": null,
+    "initial": "テ",
+    "name": "テツノイワオ",
+    "sub_name": null,
+    "area": 10,
+    "file": "1022"
+  },
+  {
+    "No": 1023,
+    "branch": null,
+    "initial": "テ",
+    "name": "テツノカシラ",
+    "sub_name": null,
+    "area": 10,
+    "file": "1023"
+  },
+  {
+    "No": 1024,
+    "branch": null,
+    "initial": "テ",
+    "name": "テラパゴス",
+    "sub_name": "ノーマルフォルム",
+    "area": 10,
+    "file": "1024"
+  },
+  {
+    "No": 1024,
+    "branch": 1,
+    "initial": "テ",
+    "name": "テラパゴス",
+    "sub_name": "テラスタルフォルム",
+    "area": 10,
+    "file": "1024_01"
+  },
+  {
+    "No": 1025,
+    "branch": null,
+    "initial": "モ",
+    "name": "モモワロウ",
+    "sub_name": null,
+    "area": 10,
+    "file": "1025"
+  }
+]
