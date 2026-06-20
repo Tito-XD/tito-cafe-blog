@@ -1,14 +1,20 @@
 ---
-import { Icon } from 'astro-icon/components';
 import PageHeading from '~/components/PageHeading.astro';
+import PokemonDex from '~/components/pokemon/PokemonDex.astro';
 import PokemonDexGridStyles from '~/components/pokemon/PokemonDexGridStyles.astro';
 import PokemonRegionNav from '~/components/pokemon/PokemonRegionNav.astro';
-import pokemon151Chains from '~/data/pokemon151-chains.json';
 import pokemon151 from '~/data/pokemon151.json';
+import pokemonChains from '~/data/pokemon-chains.json';
+import pokemonAll from '~/data/pokemon.json';
 import ScaffoldLayout from '~/layouts/ScaffoldLayout.astro';
+import {
+	filterChainsForRange,
+	filterPokemonByRange,
+} from '~/utils/pokemon-dex';
 
-const wikiBase = 'https://wiki.52poke.com/wiki/';
 const artworkBase = '/pokemon151/artwork';
+const pokemonList = filterPokemonByRange(pokemonAll, 1, 151);
+const chains = filterChainsForRange(pokemonChains, 1, 151);
 ---
 
 <ScaffoldLayout
@@ -35,22 +41,15 @@ const artworkBase = '/pokemon151/artwork';
 	</div>
 
 	<section class="p151-panel is-active" id="panel-dex" role="tabpanel" aria-labelledby="tab-dex">
-		<div class="p151-toolbar">
-			<label class="p151-search">
-				<Icon name="ri:search-line" class="p151-search__icon" aria-hidden="true" />
-				<input id="dex-search" type="search" placeholder="输入编号/中英文名" autocomplete="off" />
-			</label>
-			<button
-				class="p151-toolbar__toggle"
-				type="button"
-				id="dex-hide-names"
-				aria-pressed="false"
-			>
-				隐藏名字核对
-			</button>
-		</div>
-		<p class="p151-toolbar-hint" id="dex-hide-hint" hidden>名字已隐藏，点按卡片显示中文名核对。</p>
-		<ul class="p151-grid" id="dex-grid"></ul>
+		<PokemonDex
+			dexId="kanto-151"
+			pokemonList={pokemonList}
+			chains={chains}
+			artworkBase={artworkBase}
+			showFilters={true}
+			dexScope="regional"
+			pageRegionCn="关都"
+		/>
 	</section>
 
 	<section class="p151-panel" id="panel-quiz" role="tabpanel" hidden>
@@ -112,13 +111,12 @@ const artworkBase = '/pokemon151/artwork';
 		中文名与百科链接参考神奇宝贝百科。属性弱点按双属性倍率计算（含免疫、抵抗），数据来自 PokeAPI 现行相克表。本页为个人学习向速查工具，与任天堂等公司无关联。
 	</p>
 
-	<script is:inline define:vars={{ pokemon151, pokemon151Chains, wikiBase, artworkBase }}>
+	<script is:inline define:vars={{ pokemon151, artworkBase }}>
 		const ROUND3_SIZE = 3;
 		const ROUND3_TRIES = 3;
 
 		const state = {
 			tab: 'dex',
-			dexHideNames: false,
 			quizMode: 'choice',
 			queue: [],
 			index: 0,
@@ -143,10 +141,6 @@ const artworkBase = '/pokemon151/artwork';
 			tabs: [],
 			panelDex: null,
 			panelQuiz: null,
-			dexSearch: null,
-			dexGrid: null,
-			dexHideNamesBtn: null,
-			dexHideHint: null,
 			quizSetup: null,
 			quizPlay: null,
 			quizDone: null,
@@ -172,10 +166,6 @@ const artworkBase = '/pokemon151/artwork';
 			els.tabs = document.querySelectorAll('[data-tab]');
 			els.panelDex = document.getElementById('panel-dex');
 			els.panelQuiz = document.getElementById('panel-quiz');
-			els.dexSearch = document.getElementById('dex-search');
-			els.dexGrid = document.getElementById('dex-grid');
-			els.dexHideNamesBtn = document.getElementById('dex-hide-names');
-			els.dexHideHint = document.getElementById('dex-hide-hint');
 			els.quizSetup = document.getElementById('quiz-setup');
 			els.quizPlay = document.getElementById('quiz-play');
 			els.quizDone = document.getElementById('quiz-done');
@@ -197,61 +187,8 @@ const artworkBase = '/pokemon151/artwork';
 			els.quizModeTabs = document.querySelectorAll('[data-quiz-mode]');
 		};
 
-		const wikiUrl = (nameCn) => `${wikiBase}${encodeURIComponent(nameCn)}`;
 		const artUrl = (id) => `${artworkBase}/${id}.png`;
 		const formatNo = (id) => `#${String(id).padStart(3, '0')}`;
-		const pokemonById = Object.fromEntries(pokemon151.map((p) => [p.id, p]));
-
-		const TYPE_COLORS = {
-			normal: '#9fa19f',
-			fighting: '#c22e28',
-			fire: '#ee8130',
-			water: '#4592c4',
-			electric: '#c9a01e',
-			grass: '#5bbd4a',
-			ice: '#3aa8a3',
-			poison: '#9140a0',
-			ground: '#c9a227',
-			flying: '#8b7ad6',
-			psychic: '#ee6b76',
-			bug: '#91a119',
-			rock: '#bfb889',
-			ghost: '#735797',
-			dragon: '#6f35fc',
-			dark: '#715344',
-			steel: '#8a8aa8',
-			fairy: '#d685ad',
-		};
-
-		const renderTypeLabel = (typeName, label, kind = 'type') => {
-			const color = TYPE_COLORS[typeName] || TYPE_COLORS.normal;
-			const chipClass =
-				kind === 'weak'
-					? 'pokedex-type-chip pokedex-type-chip--weak'
-					: 'pokedex-type-chip';
-			return `<span class="${chipClass}" style="--type-color:${color}">${label}</span>`;
-		};
-
-		const renderTypeRow = (p) => {
-			const types = p.types || [];
-			const typesCn = p.typesCn || [];
-			return types
-				.map((typeName, index) => renderTypeLabel(typeName, typesCn[index] || typeName))
-				.join('');
-		};
-
-		const renderWeaknessRow = (p) => {
-			const weaknesses = p.weaknesses || [];
-			const labels = p.weaknessesCn || [];
-			if (weaknesses.length === 0) return '';
-			const items = weaknesses
-				.map((typeName, index) =>
-					renderTypeLabel(typeName, labels[index] || typeName, 'weak'),
-				)
-				.join('');
-			const weakLabel = labels.join('、');
-			return `<div class="p151-member__weak" aria-label="弱点 ${weakLabel}"><span class="p151-weak-prefix">弱</span>${items}</div>`;
-		};
 
 		const shuffle = (arr) => {
 			const copy = [...arr];
@@ -265,81 +202,6 @@ const artworkBase = '/pokemon151/artwork';
 		const pickWrongNames = (correct, count = 3) => {
 			const pool = pokemon151.filter((p) => p.nameCn !== correct.nameCn);
 			return shuffle(pool).slice(0, count);
-		};
-
-		const matchesPokemon = (p, filterText) => {
-			const q = filterText.trim().toLowerCase();
-			if (!q) return true;
-			const typesText = (p.typesCn || []).join('');
-			const weakText = (p.weaknessesCn || []).join('');
-			const genusText = p.genusCn || '';
-			const jaText = p.nameJa || '';
-			return (
-				String(p.id).includes(q) ||
-				p.nameCn.includes(filterText.trim()) ||
-				p.nameEn.toLowerCase().includes(q) ||
-				p.slug.includes(q) ||
-				typesText.includes(filterText.trim()) ||
-				weakText.includes(filterText.trim()) ||
-				genusText.includes(filterText.trim()) ||
-				jaText.includes(filterText.trim())
-			);
-		};
-
-		const getPrimaryTypeColor = (p) => {
-			const primaryType = p.types?.[0] || 'normal';
-			return TYPE_COLORS[primaryType] || TYPE_COLORS.normal;
-		};
-
-		const renderMember = (p) => {
-			const typeRow = renderTypeRow(p);
-			const weakRow = renderWeaknessRow(p);
-			const sup = String(p.id).padStart(3, '0');
-			const artAlt = state.dexHideNames ? '宝可梦立绘' : p.nameCn;
-			const maskClass = state.dexHideNames ? ' p151-member--mask-name' : '';
-			const typeColor = getPrimaryTypeColor(p);
-
-			return `
-    <a class="p151-member p151-member--card p151-member--typed${maskClass}" style="--p151-chain-type:${typeColor}" href="${wikiUrl(p.nameCn)}" target="_blank" rel="noreferrer noopener" data-id="${p.id}">
-      <img class="p151-member__art" src="${artUrl(p.id)}" alt="${artAlt}" width="72" height="72" loading="lazy" />
-      <span class="p151-member__no">${sup}</span>
-      <span class="p151-member__label">${p.nameCn}</span>
-      <span class="p151-member__en">${p.nameEn}</span>
-      ${typeRow ? `<div class="p151-member__types">${typeRow}</div>` : ''}
-      ${weakRow}
-    </a>`;
-		};
-
-		const setDexHideNames = (on) => {
-			state.dexHideNames = on;
-			els.panelDex.classList.toggle('p151-panel--hide-names', on);
-			els.dexHideNamesBtn?.setAttribute('aria-pressed', on ? 'true' : 'false');
-			els.dexHideNamesBtn?.classList.toggle('is-active', on);
-			if (els.dexHideNamesBtn) {
-				els.dexHideNamesBtn.textContent = on ? '显示全部名字' : '隐藏名字核对';
-			}
-			if (els.dexHideHint) els.dexHideHint.hidden = !on;
-			renderDex(els.dexSearch?.value || '');
-		};
-
-		const renderChainGroup = (ids) => {
-			const parts = [];
-			ids.forEach((id, index) => {
-				parts.push(renderMember(pokemonById[id]));
-				if (index < ids.length - 1) {
-					parts.push('<span class="pokedex-chain__sep" aria-hidden="true">›</span>');
-				}
-			});
-			return `<li class="pokedex-chain-group" data-count="${ids.length}"><div class="pokedex-chain-group__track">${parts.join('')}</div></li>`;
-		};
-
-		const renderDex = (filter = '') => {
-			const trimmed = filter.trim();
-			const chains = pokemon151Chains.filter(
-				(ids) => !trimmed || ids.some((id) => matchesPokemon(pokemonById[id], filter)),
-			);
-			els.dexGrid.classList.add('pokedex-grid--chains');
-			els.dexGrid.innerHTML = chains.map(renderChainGroup).join('');
 		};
 
 		const switchTab = (tab) => {
@@ -543,7 +405,6 @@ const artworkBase = '/pokemon151/artwork';
 			refreshEls();
 			if (!els.panelDex) return;
 
-			setDexHideNames(false);
 			switchTab('dex');
 			showQuizPhase('setup');
 			switchQuizMode('choice');
@@ -558,23 +419,6 @@ const artworkBase = '/pokemon151/artwork';
 				btn.addEventListener('click', () => onQuizModeClick(btn));
 			});
 
-			const onDexSearch = (e) => renderDex(e.target.value);
-			const onHideNames = () => setDexHideNames(!state.dexHideNames);
-			const onDexGridClick = (e) => {
-				if (!state.dexHideNames) return;
-				const member = e.target.closest('.p151-member');
-				if (!member) return;
-				if (!member.classList.contains('p151-member--revealed')) {
-					e.preventDefault();
-					member.classList.add('p151-member--revealed');
-					const id = Number(member.dataset.id);
-					const p = pokemonById[id];
-					if (p) {
-						const art = member.querySelector('.p151-member__art');
-						if (art) art.alt = p.nameCn;
-					}
-				}
-			};
 			const onQuizStart = () => startQuiz();
 			const onQuizEnd = () => showQuizPhase('setup');
 			const onQuizRestart = () => showQuizPhase('setup');
@@ -588,9 +432,6 @@ const artworkBase = '/pokemon151/artwork';
 				checkTypingAnswer();
 			};
 
-			els.dexSearch?.addEventListener('input', onDexSearch);
-			els.dexHideNamesBtn?.addEventListener('click', onHideNames);
-			els.dexGrid?.addEventListener('click', onDexGridClick);
 			els.quizStart?.addEventListener('click', onQuizStart);
 			els.quizEnd?.addEventListener('click', onQuizEnd);
 			els.quizRestart?.addEventListener('click', onQuizRestart);
@@ -599,9 +440,6 @@ const artworkBase = '/pokemon151/artwork';
 			els.quizTyping?.addEventListener('submit', onQuizTyping);
 
 			windowWithCleanup.__p151Cleanup = () => {
-				els.dexSearch?.removeEventListener('input', onDexSearch);
-				els.dexHideNamesBtn?.removeEventListener('click', onHideNames);
-				els.dexGrid?.removeEventListener('click', onDexGridClick);
 				els.quizStart?.removeEventListener('click', onQuizStart);
 				els.quizEnd?.removeEventListener('click', onQuizEnd);
 				els.quizRestart?.removeEventListener('click', onQuizRestart);
