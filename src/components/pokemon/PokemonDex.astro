@@ -253,7 +253,14 @@ const visiblePrimaryFilters = filterMeta
 			.map((key) => key.slice(prefix.length + 1));
 
 	const hasActiveFilters = () => state.activeFilters.length > 0;
-	const filterModeActive = () => showFilters && hasActiveFilters();
+
+	const filterModeActive = () => {
+		if (!showFilters || !filterMeta) return false;
+		const primaries = getPrimaries();
+		if (primaries.length === 0) return false;
+		if (primaries.includes('type') && getSubs('type').length === 0) return false;
+		return true;
+	};
 
 	const matchesScopedRegionalSpecies = (species) => {
 		if (filterMeta?.scope !== 'regional' || !filterMeta.pageRegionCn) {
@@ -515,6 +522,13 @@ const visiblePrimaryFilters = filterMeta
 		});
 	};
 
+	const findSubGroup = (filterKey) => {
+		if (!filterMeta) return null;
+		return filterMeta.subGroups.find((group) =>
+			group.options.some((option) => option.filterKey === filterKey),
+		);
+	};
+
 	const updateSubfilterVisibility = () => {
 		if (!filterMeta || !els.root) return;
 		const primaries = getPrimaries();
@@ -523,6 +537,8 @@ const visiblePrimaryFilters = filterMeta
 			if (!row) continue;
 			const parentActive = group.parentKeys.some((key) => primaries.includes(key));
 			row.hidden = !parentActive;
+			if (parentActive) row.removeAttribute('hidden');
+			else row.setAttribute('hidden', '');
 		}
 	};
 
@@ -548,9 +564,29 @@ const visiblePrimaryFilters = filterMeta
 
 	const toggleFilter = (filterKey) => {
 		if (!isFilterAllowed(filterKey)) return;
-		const idx = state.activeFilters.indexOf(filterKey);
-		if (idx >= 0) state.activeFilters.splice(idx, 1);
-		else state.activeFilters.push(filterKey);
+
+		const isPrimary = filterMeta.primaryKeys.includes(filterKey);
+
+		if (isPrimary) {
+			// 单选：同时只查看一个主分类
+			if (state.activeFilters.includes(filterKey)) {
+				state.activeFilters = [];
+			} else {
+				state.activeFilters = [filterKey];
+			}
+		} else {
+			const group = findSubGroup(filterKey);
+			if (!group) return;
+			const primaries = getPrimaries();
+			const parentActive = group.parentKeys.some((key) => primaries.includes(key));
+			if (!parentActive) return;
+
+			const groupKeys = group.options.map((option) => option.filterKey);
+			const wasActive = state.activeFilters.includes(filterKey);
+			state.activeFilters = state.activeFilters.filter((key) => !groupKeys.includes(key));
+			if (!wasActive) state.activeFilters.push(filterKey);
+		}
+
 		pruneOrphanSubfilters();
 		updateSubfilterVisibility();
 		syncFilterButtons();
@@ -623,6 +659,10 @@ const visiblePrimaryFilters = filterMeta
 		flex-wrap: wrap;
 		align-items: center;
 		gap: 0.4rem;
+	}
+
+	.pokedex-subfilters[hidden] {
+		display: none !important;
 	}
 
 	.pokedex-subfilters__label {
