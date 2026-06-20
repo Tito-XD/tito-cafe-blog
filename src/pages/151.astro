@@ -311,7 +311,7 @@ const artworkBase = '/pokemon151/artwork';
 			const maskClass = state.dexHideNames ? ' p151-member--mask-name' : '';
 
 			return `
-    <a class="p151-member${maskClass}" href="${wikiUrl(p.nameCn)}" target="_blank" rel="noreferrer noopener" data-id="${p.id}">
+    <a class="p151-member p151-member--card${maskClass}" href="${wikiUrl(p.nameCn)}" target="_blank" rel="noreferrer noopener" data-id="${p.id}">
       <img class="p151-member__art" src="${artUrl(p.id)}" alt="${artAlt}" width="72" height="72" loading="lazy" />
       <span class="p151-member__no">${sup}</span>
       <span class="p151-member__label">${p.nameCn}</span>
@@ -333,15 +333,15 @@ const artworkBase = '/pokemon151/artwork';
 			renderDex(els.dexSearch?.value || '');
 		};
 
-		const renderEvoline = (ids) => {
-			const members = ids
-				.map((id) => renderMember(pokemonById[id]))
-				.join('<span class="p151-evoline__sep" aria-hidden="true">›</span>');
-			const chainType = chainSharedType(ids);
-			const chainColor = TYPE_COLORS[chainType] || TYPE_COLORS.normal;
-			const chainStyle = ` style="--p151-chain-type: ${chainColor}"`;
-
-			return `<li class="p151-evoline p151-evoline--typed" data-count="${ids.length}"${chainStyle}>${members}</li>`;
+		const renderChainGroup = (ids) => {
+			const parts = [];
+			ids.forEach((id, index) => {
+				parts.push(renderMember(pokemonById[id]));
+				if (index < ids.length - 1) {
+					parts.push('<span class="pokedex-chain__sep" aria-hidden="true">›</span>');
+				}
+			});
+			return `<li class="pokedex-chain-group" data-count="${ids.length}"><div class="pokedex-chain-group__track">${parts.join('')}</div></li>`;
 		};
 
 		const renderDex = (filter = '') => {
@@ -349,7 +349,8 @@ const artworkBase = '/pokemon151/artwork';
 			const chains = pokemon151Chains.filter(
 				(ids) => !trimmed || ids.some((id) => matchesPokemon(pokemonById[id], filter)),
 			);
-			els.dexGrid.innerHTML = chains.map(renderEvoline).join('');
+			els.dexGrid.classList.add('pokedex-grid--chains');
+			els.dexGrid.innerHTML = chains.map(renderChainGroup).join('');
 		};
 
 		const switchTab = (tab) => {

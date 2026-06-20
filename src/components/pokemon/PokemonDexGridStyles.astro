@@ -120,7 +120,70 @@
 		border: none;
 		border-radius: 0.32rem;
 		background: transparent;
-		transition: background var(--motion-gentle);
+		transition:
+			background var(--motion-gentle),
+			border-color var(--motion-gentle);
+	}
+
+	.p151-member--card {
+		border: 1px solid color-mix(in srgb, var(--color-border) 86%, transparent);
+		border-radius: var(--radius-soft);
+		background: color-mix(in srgb, var(--color-surface) 96%, var(--color-accent-soft) 4%);
+		box-shadow: inset 0 1px 0 color-mix(in srgb, var(--color-accent) 8%, transparent);
+	}
+
+	.p151-member--card:hover,
+	.p151-member--card:focus-visible {
+		border-color: color-mix(in srgb, var(--color-accent) 32%, var(--color-border) 68%);
+		background: color-mix(in srgb, var(--color-accent) 10%, var(--color-surface) 90%);
+	}
+
+	.pokedex-chain-group {
+		list-style: none;
+		flex: 0 1 auto;
+		min-width: 0;
+		max-width: 100%;
+	}
+
+	.pokedex-chain-group__track {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: stretch;
+		gap: 0.28rem;
+	}
+
+	.pokedex-chain__sep {
+		flex: 0 0 auto;
+		align-self: center;
+		color: var(--color-muted);
+		font-size: 0.68rem;
+		opacity: 0.45;
+		line-height: 1;
+		padding: 0 0.05rem;
+	}
+
+	.pokedex-flat-cell {
+		list-style: none;
+		min-width: 0;
+	}
+
+	.pokedex-grid--flat {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(5.5rem, 1fr));
+		gap: 0.45rem;
+	}
+
+	.pokedex-grid--flat .p151-member {
+		width: 100%;
+		min-width: 0;
+		flex: none;
+	}
+
+	.pokedex-grid--chains {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.45rem;
+		align-items: stretch;
 	}
 
 	.p151-evoline .p151-member:hover,
@@ -218,11 +281,21 @@
 		display: none;
 	}
 
-	@media (max-width: 639px) {
+		@media (max-width: 639px) {
 		.p151-grid {
 			display: grid;
 			grid-template-columns: repeat(3, minmax(0, 1fr));
 			gap: 0.35rem;
+		}
+
+		.pokedex-grid--chains {
+			display: flex;
+			flex-direction: column;
+			gap: 0.4rem;
+		}
+
+		.pokedex-chain-group__track {
+			flex-wrap: wrap;
 		}
 
 		.p151-toolbar__toggle {

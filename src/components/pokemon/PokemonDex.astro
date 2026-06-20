@@ -55,38 +55,51 @@ const visiblePrimaryFilters = filterMeta
 	</div>
 	{
 		showFilters && (
-			<div class="pokedex-filters-wrap">
-				<div class="pokedex-filters" role="group" aria-label="图鉴筛选">
-					{visiblePrimaryFilters.map((filter) => (
-						<button class="pokedex-filter" type="button" data-filter={filter.key}>
-							{filter.label}
-						</button>
-					))}
+			<button
+				class="p151-toolbar__toggle pokedex-filters-toggle"
+				type="button"
+				aria-expanded="false"
+			>
+				展开筛选
+			</button>
+		)
+	}
+	{
+		showFilters && (
+			<div class="pokedex-filters-panel" hidden>
+				<div class="pokedex-filters-wrap">
+					<div class="pokedex-filters" role="group" aria-label="图鉴筛选">
+						{visiblePrimaryFilters.map((filter) => (
+							<button class="pokedex-filter" type="button" data-filter={filter.key}>
+								{filter.label}
+							</button>
+						))}
+					</div>
+					{
+						filterMeta?.subGroups.map((group) => (
+							<div
+								class="pokedex-subfilters"
+								data-sub-group={group.id}
+								role="group"
+								aria-label={group.ariaLabel}
+								hidden
+							>
+								{group.showLabel && group.label && (
+									<span class="pokedex-subfilters__label">{group.label}</span>
+								)}
+								{group.options.map((option) => (
+									<button
+										class="pokedex-filter pokedex-subfilter"
+										type="button"
+										data-filter={option.filterKey}
+									>
+										{option.label}
+									</button>
+								))}
+							</div>
+						))
+					}
 				</div>
-				{
-					filterMeta?.subGroups.map((group) => (
-						<div
-							class="pokedex-subfilters"
-							data-sub-group={group.id}
-							role="group"
-							aria-label={group.ariaLabel}
-							hidden
-						>
-							{group.showLabel && group.label && (
-								<span class="pokedex-subfilters__label">{group.label}</span>
-							)}
-							{group.options.map((option) => (
-								<button
-									class="pokedex-filter pokedex-subfilter"
-									type="button"
-									data-filter={option.filterKey}
-								>
-									{option.label}
-								</button>
-							))}
-						</div>
-					))
-				}
 			</div>
 		)
 	}
@@ -107,7 +120,7 @@ const visiblePrimaryFilters = filterMeta
 		generationHomeRegion: GENERATION_HOME_REGION,
 	}}
 >
-	const state = { dexHideNames: false, activeFilters: [] };
+	const state = { dexHideNames: false, activeFilters: [], filtersExpanded: false };
 
 	const els = {
 		root: null,
@@ -117,6 +130,8 @@ const visiblePrimaryFilters = filterMeta
 		dexHideNamesBtn: null,
 		dexHideHint: null,
 		filterBtns: [],
+		filtersToggle: null,
+		filtersPanel: null,
 	};
 
 	const refreshEls = () => {
@@ -128,6 +143,8 @@ const visiblePrimaryFilters = filterMeta
 		els.dexHideNamesBtn = els.root.querySelector('.pokemon-dex-hide-names');
 		els.dexHideHint = els.root.querySelector('.pokemon-dex-hide-hint');
 		els.filterBtns = [...els.root.querySelectorAll('.pokedex-filter')];
+		els.filtersToggle = els.root.querySelector('.pokedex-filters-toggle');
+		els.filtersPanel = els.root.querySelector('.pokedex-filters-panel');
 	};
 
 	const pokemonById = Object.fromEntries(pokemonList.map((p) => [p.id, p]));
@@ -251,8 +268,6 @@ const visiblePrimaryFilters = filterMeta
 		state.activeFilters
 			.filter((key) => key.startsWith(`${prefix}:`))
 			.map((key) => key.slice(prefix.length + 1));
-
-	const hasActiveFilters = () => state.activeFilters.length > 0;
 
 	const filterModeActive = () => {
 		if (!showFilters || !filterMeta) return false;
@@ -435,7 +450,7 @@ const visiblePrimaryFilters = filterMeta
 		const maskClass = state.dexHideNames ? ' p151-member--mask-name' : '';
 
 		return `
-    <a class="p151-member${maskClass}" href="${wikiUrl(entry.nameCn)}" target="_blank" rel="noreferrer noopener" data-key="${entry.key}" data-id="${entry.speciesId}">
+    <a class="p151-member p151-member--card${maskClass}" href="${wikiUrl(entry.nameCn)}" target="_blank" rel="noreferrer noopener" data-key="${entry.key}" data-id="${entry.speciesId}">
       <img class="p151-member__art" src="${artUrl(entry.artId)}" onerror="this.onerror=null;this.src='${artFallback(entry.artId)}'" alt="${artAlt}" width="72" height="72" loading="lazy" />
       <span class="p151-member__no">${sup}</span>
       <span class="p151-member__label">${label}</span>
@@ -449,16 +464,19 @@ const visiblePrimaryFilters = filterMeta
 		els.dexGrid.innerHTML = entries
 			.map((entry) => `<li class="pokedex-flat-cell">${renderMember(entry)}</li>`)
 			.join('');
+		els.dexGrid.classList.remove('pokedex-grid--chains');
 		els.dexGrid.classList.add('pokedex-grid--flat');
 	};
 
-	const renderEvoline = (ids) => {
-		const members = ids
-			.map((id) => renderMember(speciesToEntry(pokemonById[id])))
-			.join('<span class="p151-evoline__sep" aria-hidden="true">›</span>');
-		const chainType = chainSharedType(ids);
-		const chainColor = TYPE_COLORS[chainType] || TYPE_COLORS.normal;
-		return `<li class="p151-evoline p151-evoline--typed" data-count="${ids.length}" style="--p151-chain-type: ${chainColor}">${members}</li>`;
+	const renderChainGroup = (ids) => {
+		const parts = [];
+		ids.forEach((id, index) => {
+			parts.push(renderMember(speciesToEntry(pokemonById[id])));
+			if (index < ids.length - 1) {
+				parts.push('<span class="pokedex-chain__sep" aria-hidden="true">›</span>');
+			}
+		});
+		return `<li class="pokedex-chain-group" data-count="${ids.length}"><div class="pokedex-chain-group__track">${parts.join('')}</div></li>`;
 	};
 
 	const renderDex = (filter = '') => {
@@ -473,6 +491,7 @@ const visiblePrimaryFilters = filterMeta
 		}
 
 		els.dexGrid.classList.remove('pokedex-grid--flat');
+		els.dexGrid.classList.add('pokedex-grid--chains');
 		const trimmed = filter.trim();
 		const visibleChains = sortChainsByMinId(
 			chains.filter(
@@ -481,7 +500,7 @@ const visiblePrimaryFilters = filterMeta
 					ids.some((id) => matchesPokemon(speciesToEntry(pokemonById[id]), filter)),
 			),
 		);
-		els.dexGrid.innerHTML = visibleChains.map(renderEvoline).join('');
+		els.dexGrid.innerHTML = visibleChains.map(renderChainGroup).join('');
 	};
 
 	const syncFilterButtons = () => {
@@ -562,6 +581,28 @@ const visiblePrimaryFilters = filterMeta
 		renderDex(els.dexSearch?.value || '');
 	};
 
+	const setFiltersExpanded = (expanded) => {
+		state.filtersExpanded = expanded;
+		if (els.filtersPanel) {
+			els.filtersPanel.hidden = !expanded;
+			if (expanded) els.filtersPanel.removeAttribute('hidden');
+			else els.filtersPanel.setAttribute('hidden', '');
+		}
+		if (els.filtersToggle) {
+			els.filtersToggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+			els.filtersToggle.textContent = expanded ? '收起筛选' : '展开筛选';
+			els.filtersToggle.classList.toggle('is-active', expanded);
+		}
+		if (!expanded) {
+			state.activeFilters = [];
+			updateSubfilterVisibility();
+			syncFilterButtons();
+			renderDex(els.dexSearch?.value || '');
+		}
+	};
+
+	const onFiltersToggle = () => setFiltersExpanded(!state.filtersExpanded);
+
 	const toggleFilter = (filterKey) => {
 		if (!isFilterAllowed(filterKey)) return;
 
@@ -603,6 +644,7 @@ const visiblePrimaryFilters = filterMeta
 
 		setDexHideNames(false);
 		state.activeFilters = [];
+		setFiltersExpanded(false);
 		updateSubfilterVisibility();
 		syncFilterButtons();
 
@@ -630,6 +672,7 @@ const visiblePrimaryFilters = filterMeta
 		els.dexSearch?.addEventListener('input', onDexSearch);
 		els.dexHideNamesBtn?.addEventListener('click', onHideNames);
 		els.dexGrid?.addEventListener('click', onDexGridClick);
+		els.filtersToggle?.addEventListener('click', onFiltersToggle);
 		els.root.addEventListener('click', onFilterClick);
 		renderDex('');
 
@@ -637,6 +680,7 @@ const visiblePrimaryFilters = filterMeta
 			els.dexSearch?.removeEventListener('input', onDexSearch);
 			els.dexHideNamesBtn?.removeEventListener('click', onHideNames);
 			els.dexGrid?.removeEventListener('click', onDexGridClick);
+			els.filtersToggle?.removeEventListener('click', onFiltersToggle);
 			els.root?.removeEventListener('click', onFilterClick);
 		};
 	};
@@ -646,6 +690,14 @@ const visiblePrimaryFilters = filterMeta
 </script>
 
 <style is:global>
+	.pokedex-filters-panel[hidden] {
+		display: none !important;
+	}
+
+	.pokedex-filters-toggle {
+		margin-bottom: 0.45rem;
+	}
+
 	.pokedex-filters-wrap {
 		display: flex;
 		flex-direction: column;
@@ -705,7 +757,7 @@ const visiblePrimaryFilters = filterMeta
 		min-width: 0;
 	}
 
-	.pokedex-flat-cell .p151-member {
+	.pokedex-grid--flat .p151-member {
 		width: 100%;
 	}
 </style>
