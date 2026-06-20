@@ -210,20 +210,6 @@ const visiblePrimaryFilters = filterMeta
 		return `<div class="p151-member__weak" aria-label="弱点 ${weakLabel}"><span class="p151-weak-prefix">弱</span>${items}</div>`;
 	};
 
-	const chainSharedType = (ids) => {
-		const typeSets = ids.map((id) => (pokemonById[id]?.types || []));
-		if (typeSets.length === 0) return 'normal';
-		const sharedAcrossAll = [...new Set(typeSets.flat())].filter((typeName) =>
-			typeSets.every((set) => set.includes(typeName)),
-		);
-		if (sharedAcrossAll.length > 0) {
-			const firstPrimary = typeSets[0][0];
-			if (sharedAcrossAll.includes(firstPrimary)) return firstPrimary;
-			return sharedAcrossAll[0];
-		}
-		return typeSets[0][0] || 'normal';
-	};
-
 	const speciesToEntry = (species, variety) => {
 		const v = variety || species.varieties.find((row) => row.isDefault) || species.varieties[0];
 		return {
