@@ -1,5 +1,10 @@
 ---
 import { Icon } from 'astro-icon/components';
+import {
+	pokemonFormRegions,
+	pokemonHomeRegions,
+	pokemonPrimaryFilters,
+} from '~/data/pokemon-filters';
 
 type Props = {
 	dexId: string;
@@ -36,11 +41,52 @@ const wikiBase = 'https://wiki.52poke.com/wiki/';
 	</div>
 	{
 		showFilters && (
-			<div class="pokedex-filters" role="group" aria-label="图鉴筛选">
-				<button class="pokedex-filter" type="button" data-filter="legendary">传说</button>
-				<button class="pokedex-filter" type="button" data-filter="mythical">幻</button>
-				<button class="pokedex-filter" type="button" data-filter="forms">形态</button>
-				<button class="pokedex-filter" type="button" data-filter="regional">地区</button>
+			<div class="pokedex-filters-wrap">
+				<div class="pokedex-filters" role="group" aria-label="图鉴筛选">
+					{pokemonPrimaryFilters.map((filter) => (
+						<button
+							class="pokedex-filter"
+							type="button"
+							data-filter={filter.key}
+						>
+							{filter.label}
+						</button>
+					))}
+				</div>
+				<div
+					class="pokedex-subfilters pokedex-subfilters--home"
+					role="group"
+					aria-label="出身地区"
+					hidden
+				>
+					<span class="pokedex-subfilters__label">出身</span>
+					{pokemonHomeRegions.map((region) => (
+						<button
+							class="pokedex-filter pokedex-subfilter"
+							type="button"
+							data-filter={`home:${region}`}
+						>
+							{region}
+						</button>
+					))}
+				</div>
+				<div
+					class="pokedex-subfilters pokedex-subfilters--form"
+					role="group"
+					aria-label="地区形态"
+					hidden
+				>
+					<span class="pokedex-subfilters__label">形态</span>
+					{pokemonFormRegions.map((region) => (
+						<button
+							class="pokedex-filter pokedex-subfilter"
+							type="button"
+							data-filter={`form:${region}`}
+						>
+							{region}
+						</button>
+					))}
+				</div>
 			</div>
 		)
 	}
@@ -52,6 +98,9 @@ const wikiBase = 'https://wiki.52poke.com/wiki/';
 	is:inline
 	define:vars={{ dexId, pokemonList, chains, artworkBase, wikiBase, showFilters }}
 >
+	const PRIMARY_KEYS = ['legendary', 'mythical', 'forms', 'regional', 'paradox'];
+	const HOME_PARENT_KEYS = ['legendary', 'mythical', 'paradox'];
+
 	const state = {
 		dexHideNames: false,
 		activeFilters: [],
@@ -65,6 +114,8 @@ const wikiBase = 'https://wiki.52poke.com/wiki/';
 		dexHideNamesBtn: null,
 		dexHideHint: null,
 		filterBtns: [],
+		homeSubfilterRow: null,
+		formSubfilterRow: null,
 	};
 
 	const refreshEls = () => {
@@ -76,6 +127,8 @@ const wikiBase = 'https://wiki.52poke.com/wiki/';
 		els.dexHideNamesBtn = els.root.querySelector('.pokemon-dex-hide-names');
 		els.dexHideHint = els.root.querySelector('.pokemon-dex-hide-hint');
 		els.filterBtns = [...els.root.querySelectorAll('.pokedex-filter')];
+		els.homeSubfilterRow = els.root.querySelector('.pokedex-subfilters--home');
+		els.formSubfilterRow = els.root.querySelector('.pokedex-subfilters--form');
 	};
 
 	const pokemonById = Object.fromEntries(pokemonList.map((p) => [p.id, p]));
@@ -113,9 +166,11 @@ const wikiBase = 'https://wiki.52poke.com/wiki/';
 
 	const renderTypeLabel = (typeName, label, kind = 'type') => {
 		const color = TYPE_COLORS[typeName] || TYPE_COLORS.normal;
-		const fontSize = kind === 'weak' ? '0.66rem' : '0.72rem';
-		const fontWeight = kind === 'weak' ? '600' : '700';
-		return `<span style="color:${color};font-size:${fontSize};font-weight:${fontWeight};line-height:1.35">${label}</span>`;
+		const chipClass =
+			kind === 'weak'
+				? 'pokedex-type-chip pokedex-type-chip--weak'
+				: 'pokedex-type-chip';
+		return `<span class="${chipClass}" style="--type-color:${color}">${label}</span>`;
 	};
 
 	const renderTypeRow = (p) => {
@@ -180,6 +235,7 @@ const wikiBase = 'https://wiki.52poke.com/wiki/';
 		const species = pokemonById[entry.speciesId];
 		const genusText = species?.genusCn || '';
 		const jaText = species?.nameJa || '';
+		const regionText = species?.regionCn || '';
 		return (
 			String(entry.speciesId).includes(q) ||
 			entry.nameCn.includes(filterText.trim()) ||
@@ -188,22 +244,90 @@ const wikiBase = 'https://wiki.52poke.com/wiki/';
 			typesText.includes(filterText.trim()) ||
 			weakText.includes(filterText.trim()) ||
 			genusText.includes(filterText.trim()) ||
-			jaText.includes(filterText.trim())
+			jaText.includes(filterText.trim()) ||
+			regionText.includes(filterText.trim())
 		);
 	};
 
-	const filterModeActive = () => showFilters && state.activeFilters.length > 0;
+	const getPrimaries = () =>
+		state.activeFilters.filter((key) => PRIMARY_KEYS.includes(key));
+
+	const getHomeRegions = () =>
+		state.activeFilters
+			.filter((key) => key.startsWith('home:'))
+			.map((key) => key.slice(5));
+
+	const getFormRegions = () =>
+		state.activeFilters
+			.filter((key) => key.startsWith('form:'))
+			.map((key) => key.slice(5));
+
+	const hasActiveFilters = () => state.activeFilters.length > 0;
+
+	const filterModeActive = () => showFilters && hasActiveFilters();
 
 	const speciesMatchesFilters = (species) => {
-		if (state.activeFilters.length === 0) return true;
-		if (state.activeFilters.includes('legendary') && species.isLegendary) return true;
-		if (state.activeFilters.includes('mythical') && species.isMythical) return true;
-		if (state.activeFilters.includes('forms') && species.hasAltForms) return true;
-		if (state.activeFilters.includes('regional') && species.hasRegionalForm) return true;
-		return false;
+		const primaries = getPrimaries();
+		const homeRegions = getHomeRegions();
+		const formRegions = getFormRegions();
+
+		if (primaries.length === 0 && homeRegions.length === 0 && formRegions.length === 0) {
+			return true;
+		}
+
+		for (const key of primaries) {
+			if (key === 'legendary' && !species.isLegendary) return false;
+			if (key === 'mythical' && !species.isMythical) return false;
+			if (key === 'paradox' && !species.isParadox) return false;
+			if (key === 'forms' && !species.hasAltForms) return false;
+			if (key === 'regional' && !species.hasRegionalForm) return false;
+		}
+
+		if (homeRegions.length > 0 && !homeRegions.includes(species.regionCn)) return false;
+
+		if (formRegions.length > 0) {
+			const hasForm = species.varieties.some(
+				(v) => v.isRegional && formRegions.includes(v.formLabelCn),
+			);
+			if (!hasForm) return false;
+		}
+
+		return true;
+	};
+
+	const varietyMatchesFilters = (variety) => {
+		const primaries = getPrimaries();
+		const formRegions = getFormRegions();
+		const wantForms = primaries.includes('forms');
+		const wantRegional = primaries.includes('regional');
+
+		if (formRegions.length > 0) {
+			if (!variety.isRegional || !formRegions.includes(variety.formLabelCn)) return false;
+		}
+
+		if (wantForms && wantRegional) {
+			const isAlt = !variety.isDefault && !variety.isRegional;
+			const isReg = variety.isRegional;
+			return (wantForms && isAlt) || (wantRegional && isReg);
+		}
+
+		if (wantForms) return !variety.isDefault && !variety.isRegional;
+		if (wantRegional) return variety.isRegional;
+		if (formRegions.length > 0) {
+			return variety.isRegional && formRegions.includes(variety.formLabelCn);
+		}
+
+		return variety.isDefault;
 	};
 
 	const buildFilterEntries = () => {
+		const primaries = getPrimaries();
+		const formRegions = getFormRegions();
+		const varietyMode =
+			primaries.includes('forms') ||
+			primaries.includes('regional') ||
+			formRegions.length > 0;
+
 		const seen = new Set();
 		const entries = [];
 		const push = (entry) => {
@@ -211,42 +335,24 @@ const wikiBase = 'https://wiki.52poke.com/wiki/';
 			seen.add(entry.key);
 			entries.push(entry);
 		};
+
 		for (const species of pokemonList) {
 			if (!speciesMatchesFilters(species)) continue;
 
-			const wantForms = state.activeFilters.includes('forms');
-			const wantRegional = state.activeFilters.includes('regional');
-			const wantLegend = state.activeFilters.includes('legendary');
-			const wantMyth = state.activeFilters.includes('mythical');
-
-			if (wantForms || wantRegional) {
+			if (varietyMode) {
 				for (const variety of species.varieties) {
-					if (wantForms && !variety.isDefault && !variety.isRegional) {
-						push(speciesToEntry(species, variety));
-					}
-					if (wantRegional && variety.isRegional) {
+					if (varietyMatchesFilters(variety)) {
 						push(speciesToEntry(species, variety));
 					}
 				}
+				continue;
 			}
 
-			if (wantLegend && species.isLegendary) {
-				push(speciesToEntry(species));
-			}
-			if (wantMyth && species.isMythical) {
-				push(speciesToEntry(species));
-			}
-
-			if (
-				!wantLegend &&
-				!wantMyth &&
-				!wantForms &&
-				!wantRegional &&
-				speciesMatchesFilters(species)
-			) {
-				entries.push(speciesToEntry(species));
-			}
+			const defaultVariety =
+				species.varieties.find((row) => row.isDefault) || species.varieties[0];
+			push(speciesToEntry(species, defaultVariety));
 		}
+
 		return entries;
 	};
 
@@ -313,6 +419,34 @@ const wikiBase = 'https://wiki.52poke.com/wiki/';
 		els.dexGrid.innerHTML = visibleChains.map(renderEvoline).join('');
 	};
 
+	const syncFilterButtons = () => {
+		els.filterBtns.forEach((btn) => {
+			const active = state.activeFilters.includes(btn.dataset.filter);
+			btn.classList.toggle('is-active', active);
+			btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+		});
+	};
+
+	const pruneOrphanSubfilters = () => {
+		const primaries = getPrimaries();
+		const showHomeParents = primaries.some((key) => HOME_PARENT_KEYS.includes(key));
+		if (!showHomeParents) {
+			state.activeFilters = state.activeFilters.filter((key) => !key.startsWith('home:'));
+		}
+		if (!primaries.includes('regional')) {
+			state.activeFilters = state.activeFilters.filter((key) => !key.startsWith('form:'));
+		}
+	};
+
+	const updateSubfilterVisibility = () => {
+		const primaries = getPrimaries();
+		const showHome = primaries.some((key) => HOME_PARENT_KEYS.includes(key));
+		const showForm =
+			primaries.includes('regional') || getFormRegions().length > 0;
+		if (els.homeSubfilterRow) els.homeSubfilterRow.hidden = !showHome;
+		if (els.formSubfilterRow) els.formSubfilterRow.hidden = !showForm;
+	};
+
 	const setDexHideNames = (on) => {
 		state.dexHideNames = on;
 		els.panelDex?.classList.toggle('p151-panel--hide-names', on);
@@ -330,11 +464,9 @@ const wikiBase = 'https://wiki.52poke.com/wiki/';
 		if (idx >= 0) state.activeFilters.splice(idx, 1);
 		else state.activeFilters.push(filterKey);
 
-		els.filterBtns.forEach((btn) => {
-			const active = state.activeFilters.includes(btn.dataset.filter);
-			btn.classList.toggle('is-active', active);
-			btn.setAttribute('aria-pressed', active ? 'true' : 'false');
-		});
+		pruneOrphanSubfilters();
+		updateSubfilterVisibility();
+		syncFilterButtons();
 		renderDex(els.dexSearch?.value || '');
 	};
 
@@ -348,10 +480,8 @@ const wikiBase = 'https://wiki.52poke.com/wiki/';
 
 		setDexHideNames(false);
 		state.activeFilters = [];
-		els.filterBtns.forEach((btn) => {
-			btn.classList.remove('is-active');
-			btn.setAttribute('aria-pressed', 'false');
-		});
+		updateSubfilterVisibility();
+		syncFilterButtons();
 
 		const onDexSearch = (e) => renderDex(e.target.value);
 		const onHideNames = () => setDexHideNames(!state.dexHideNames);
@@ -395,11 +525,26 @@ const wikiBase = 'https://wiki.52poke.com/wiki/';
 </script>
 
 <style is:global>
-	.pokedex-filters {
+	.pokedex-filters-wrap {
+		display: flex;
+		flex-direction: column;
+		gap: 0.45rem;
+		margin-bottom: 0.85rem;
+	}
+
+	.pokedex-filters,
+	.pokedex-subfilters {
 		display: flex;
 		flex-wrap: wrap;
+		align-items: center;
 		gap: 0.4rem;
-		margin: 0 0 0.85rem;
+	}
+
+	.pokedex-subfilters__label {
+		font-size: 0.72rem;
+		font-weight: 600;
+		color: var(--color-muted);
+		margin-right: 0.1rem;
 	}
 
 	.pokedex-filter {
@@ -411,6 +556,11 @@ const wikiBase = 'https://wiki.52poke.com/wiki/';
 		font-size: 0.8rem;
 		font-weight: 600;
 		cursor: pointer;
+	}
+
+	.pokedex-subfilter {
+		padding: 0.32rem 0.58rem;
+		font-size: 0.74rem;
 	}
 
 	.pokedex-filter.is-active {

@@ -52,6 +52,43 @@ GENERATION_RANGES: dict[int, tuple[int, int]] = {
 	9: (906, 1025),
 }
 
+GENERATION_HOME_REGION_CN: dict[int, str] = {
+	1: '关都',
+	2: '城都',
+	3: '丰缘',
+	4: '神奥',
+	5: '合众',
+	6: '卡洛斯',
+	7: '阿罗拉',
+	8: '伽勒尔',
+	9: '帕底亚',
+}
+
+PARADOX_SPECIES_IDS = frozenset(
+	{
+		984,
+		985,
+		986,
+		987,
+		988,
+		989,
+		990,
+		991,
+		992,
+		993,
+		994,
+		995,
+		1005,
+		1006,
+		1009,
+		1010,
+		1020,
+		1021,
+		1022,
+		1023,
+	},
+)
+
 
 def fetch(url: str) -> dict:
 	req = urllib.request.Request(url, headers={'User-Agent': UA})
@@ -253,6 +290,7 @@ def main() -> None:
 		has_alt_forms = len(varieties) > 1
 		default_variety = next(v for v in varieties if v['isDefault'])
 
+		gen = generation_for_id(species_id)
 		rows.append(
 			{
 				'id': species_id,
@@ -265,9 +303,11 @@ def main() -> None:
 				'typesCn': default_variety['typesCn'],
 				'weaknesses': default_variety['weaknesses'],
 				'weaknessesCn': default_variety['weaknessesCn'],
-				'generation': generation_for_id(species_id),
+				'generation': gen,
+				'regionCn': GENERATION_HOME_REGION_CN.get(gen, ''),
 				'isLegendary': species.get('is_legendary', False),
 				'isMythical': species.get('is_mythical', False),
+				'isParadox': species_id in PARADOX_SPECIES_IDS,
 				'hasAltForms': has_alt_forms,
 				'hasRegionalForm': has_regional,
 				'defaultArtId': default_variety['artId'],

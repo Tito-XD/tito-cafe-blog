@@ -10,8 +10,10 @@ export type PokemonSpecies = {
 	weaknesses: string[];
 	weaknessesCn: string[];
 	generation: number;
+	regionCn: string;
 	isLegendary: boolean;
 	isMythical: boolean;
+	isParadox: boolean;
 	hasAltForms: boolean;
 	hasRegionalForm: boolean;
 	defaultArtId: number;

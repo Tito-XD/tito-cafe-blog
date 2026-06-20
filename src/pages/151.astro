@@ -225,9 +225,11 @@ const artworkBase = '/pokemon151/artwork';
 
 		const renderTypeLabel = (typeName, label, kind = 'type') => {
 			const color = TYPE_COLORS[typeName] || TYPE_COLORS.normal;
-			const fontSize = kind === 'weak' ? '0.66rem' : '0.72rem';
-			const fontWeight = kind === 'weak' ? '600' : '700';
-			return `<span style="color:${color};font-size:${fontSize};font-weight:${fontWeight};line-height:1.35">${label}</span>`;
+			const chipClass =
+				kind === 'weak'
+					? 'pokedex-type-chip pokedex-type-chip--weak'
+					: 'pokedex-type-chip';
+			return `<span class="${chipClass}" style="--type-color:${color}">${label}</span>`;
 		};
 
 		const renderTypeRow = (p) => {
