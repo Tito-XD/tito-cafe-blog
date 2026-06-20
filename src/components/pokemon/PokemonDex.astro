@@ -15,6 +15,8 @@ type Props = {
 	showFilters?: boolean;
 	/** National = full cross-region filters; regional = scoped to current dex page. */
 	dexScope?: DexScope;
+	/** Required when dexScope is regional — the page's region label (关都, 帕底亚, …). */
+	pageRegionCn?: string;
 };
 
 const {
@@ -24,10 +26,13 @@ const {
 	artworkBase,
 	showFilters = false,
 	dexScope = 'national',
+	pageRegionCn = '',
 } = Astro.props;
 const wikiBase = 'https://wiki.52poke.com/wiki/';
 const speciesList = pokemonList as PokemonSpecies[];
-const filterMeta = showFilters ? buildDexFilterMeta(speciesList, dexScope) : null;
+const filterMeta = showFilters
+	? buildDexFilterMeta(speciesList, dexScope, pageRegionCn)
+	: null;
 const visiblePrimaryFilters = filterMeta
 	? pokemonPrimaryFilters.filter((filter) =>
 			filterMeta.enabledPrimaries.includes(filter.key),
@@ -293,6 +298,22 @@ const visiblePrimaryFilters = filterMeta
 
 	const filterModeActive = () => showFilters && hasActiveFilters();
 
+	const matchesScopedRegionalSpecies = (species) => {
+		if (filterMeta?.scope !== 'regional' || !filterMeta.pageRegionCn) {
+			return species.hasRegionalForm;
+		}
+		return species.varieties.some(
+			(v) => v.isRegional && v.formLabelCn === filterMeta.pageRegionCn,
+		);
+	};
+
+	const matchesScopedRegionalVariety = (variety) => {
+		if (filterMeta?.scope !== 'regional' || !filterMeta.pageRegionCn) {
+			return variety.isRegional;
+		}
+		return variety.isRegional && variety.formLabelCn === filterMeta.pageRegionCn;
+	};
+
 	const speciesMatchesFilters = (species) => {
 		const primaries = getPrimaries();
 		const homeRegions = getHomeRegions();
@@ -307,7 +328,7 @@ const visiblePrimaryFilters = filterMeta
 			if (key === 'mythical' && !species.isMythical) return false;
 			if (key === 'paradox' && !species.isParadox) return false;
 			if (key === 'forms' && !species.hasAltForms) return false;
-			if (key === 'regional' && !species.hasRegionalForm) return false;
+			if (key === 'regional' && !matchesScopedRegionalSpecies(species)) return false;
 		}
 
 		if (homeRegions.length > 0 && !homeRegions.includes(species.regionCn)) return false;
@@ -334,12 +355,12 @@ const visiblePrimaryFilters = filterMeta
 
 		if (wantForms && wantRegional) {
 			const isAlt = !variety.isDefault && !variety.isRegional;
-			const isReg = variety.isRegional;
+			const isReg = matchesScopedRegionalVariety(variety);
 			return (wantForms && isAlt) || (wantRegional && isReg);
 		}
 
 		if (wantForms) return !variety.isDefault && !variety.isRegional;
-		if (wantRegional) return variety.isRegional;
+		if (wantRegional) return matchesScopedRegionalVariety(variety);
 		if (formRegions.length > 0) {
 			return variety.isRegional && formRegions.includes(variety.formLabelCn);
 		}

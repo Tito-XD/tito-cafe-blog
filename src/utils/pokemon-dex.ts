@@ -68,6 +68,8 @@ export type DexScope = 'national' | 'regional';
 
 export type DexFilterMeta = {
 	scope: DexScope;
+	/** Set on regional dex pages (e.g. 帕底亚); empty on national. */
+	pageRegionCn: string;
 	showHomeSubfilters: boolean;
 	availableHomeRegions: string[];
 	availableFormRegions: string[];
@@ -94,30 +96,66 @@ export function getAvailableFormRegions(list: PokemonSpecies[]): string[] {
 	return pokemonFormRegions.filter((region) => found.has(region));
 }
 
-export function getEnabledPrimaries(list: PokemonSpecies[]): PokemonPrimaryFilterKey[] {
+/** Regional dex pages only catalogue forms native to that region label. */
+export function getScopedFormRegions(
+	list: PokemonSpecies[],
+	pageRegionCn: string,
+): string[] {
+	if (!pokemonFormRegions.includes(pageRegionCn as (typeof pokemonFormRegions)[number])) {
+		return [];
+	}
+	const hasNativeForm = list.some((species) =>
+		species.varieties.some(
+			(variety) => variety.isRegional && variety.formLabelCn === pageRegionCn,
+		),
+	);
+	return hasNativeForm ? [pageRegionCn] : [];
+}
+
+export function speciesHasScopedRegionalForm(
+	species: PokemonSpecies,
+	pageRegionCn: string,
+): boolean {
+	if (!pageRegionCn) return species.hasRegionalForm;
+	return species.varieties.some(
+		(variety) => variety.isRegional && variety.formLabelCn === pageRegionCn,
+	);
+}
+
+export function getEnabledPrimaries(
+	list: PokemonSpecies[],
+	scope: DexScope,
+	pageRegionCn = '',
+): PokemonPrimaryFilterKey[] {
 	const keys: PokemonPrimaryFilterKey[] = [];
 	if (list.some((species) => species.isLegendary)) keys.push('legendary');
 	if (list.some((species) => species.isMythical)) keys.push('mythical');
 	if (list.some((species) => species.isParadox)) keys.push('paradox');
 	if (list.some((species) => species.hasAltForms)) keys.push('forms');
-	if (list.some((species) => species.hasRegionalForm)) keys.push('regional');
+	if (scope === 'national') {
+		if (list.some((species) => species.hasRegionalForm)) keys.push('regional');
+	} else if (getScopedFormRegions(list, pageRegionCn).length > 0) {
+		keys.push('regional');
+	}
 	return keys;
 }
 
 export function buildDexFilterMeta(
 	list: PokemonSpecies[],
 	scope: DexScope,
+	pageRegionCn = '',
 ): DexFilterMeta {
-	const availableHomeRegions = getAvailableHomeRegions(list);
-	const availableFormRegions = getAvailableFormRegions(list);
-	let enabledPrimaries = getEnabledPrimaries(list);
-
-	if (scope === 'regional' && availableFormRegions.length === 0) {
-		enabledPrimaries = enabledPrimaries.filter((key) => key !== 'regional');
-	}
+	const availableHomeRegions =
+		scope === 'national' ? getAvailableHomeRegions(list) : [];
+	const availableFormRegions =
+		scope === 'national'
+			? getAvailableFormRegions(list)
+			: getScopedFormRegions(list, pageRegionCn);
+	const enabledPrimaries = getEnabledPrimaries(list, scope, pageRegionCn);
 
 	return {
 		scope,
+		pageRegionCn: scope === 'regional' ? pageRegionCn : '',
 		showHomeSubfilters: scope === 'national' && availableHomeRegions.length > 1,
 		availableHomeRegions,
 		availableFormRegions,
