@@ -194,7 +194,9 @@ export function getEnabledPrimaries(
 	const keys: PokemonPrimaryFilterKey[] = [];
 	if (list.some((s) => s.isLegendary)) keys.push('legendary');
 	if (list.some((s) => s.isMythical)) keys.push('mythical');
-	if (list.some((s) => s.isParadox)) keys.push('paradox');
+	if (list.some((s) => s.isParadox) && (scope === 'national' || pageRegionCn === '帕底亚')) {
+		keys.push('paradox');
+	}
 	if (list.some((s) => s.isBaby)) keys.push('baby');
 	if (list.some((s) => s.isPseudoLegendary)) keys.push('pseudo');
 	if (list.some((s) => s.isUltraBeast)) keys.push('ultra');
@@ -229,7 +231,7 @@ function buildSubGroups(
 			ariaLabel: '出身地区',
 			showLabel: true,
 			label: '出身',
-			parentKeys: ['legendary', 'mythical', 'paradox'],
+			parentKeys: ['legendary', 'mythical'],
 			options: homeRegions.map((region) => ({
 				filterKey: `home:${region}`,
 				label: region,

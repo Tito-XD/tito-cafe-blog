@@ -48,7 +48,7 @@ export type PokemonFormKindKey = (typeof pokemonFormKindOptions)[number]['key'];
 export const pokemonPrimaryFilters = [
 	{ key: 'legendary', label: '传说', subGroup: 'home' },
 	{ key: 'mythical', label: '幻', subGroup: 'home' },
-	{ key: 'paradox', label: '悖谬', subGroup: 'home' },
+	{ key: 'paradox', label: '悖谬·朱紫' },
 	{ key: 'baby', label: '宝宝' },
 	{ key: 'pseudo', label: '准神' },
 	{ key: 'ultra', label: '究极异兽' },
