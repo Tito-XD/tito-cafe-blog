@@ -1,6 +1,7 @@
 ---
 import type { PokemonRegion } from '~/data/pokemon-regions';
 import { pokemonNational, pokemonRegions } from '~/data/pokemon-regions';
+import PokemonArtModeToggle from './PokemonArtModeToggle.astro';
 
 type Props = {
 	currentSlug?: string;
@@ -9,34 +10,56 @@ type Props = {
 const { currentSlug } = Astro.props;
 ---
 
-<nav class="pokedex-nav" aria-label="图鉴范围">
-	<a
-		class:list={['pokedex-nav__link', { 'is-active': !currentSlug }]}
-		href={pokemonNational.href}
-	>
-		全国图鉴
-	</a>
-	{
-		pokemonRegions.map((region: PokemonRegion) => (
-			<a
-				class:list={[
-					'pokedex-nav__link',
-					{ 'is-active': currentSlug === region.slug },
-				]}
-				href={region.legacyHref ?? `/pokedex/${region.slug}`}
-			>
-				{region.regionCn}
-			</a>
-		))
-	}
-</nav>
+<div class="pokedex-nav-header">
+	<nav class="pokedex-nav" aria-label="图鉴范围">
+		<a
+			class:list={['pokedex-nav__link', { 'is-active': !currentSlug }]}
+			href={pokemonNational.href}
+		>
+			全国图鉴
+		</a>
+		{
+			pokemonRegions.map((region: PokemonRegion) => (
+				<a
+					class:list={[
+						'pokedex-nav__link',
+						{ 'is-active': currentSlug === region.slug },
+					]}
+					href={region.legacyHref ?? `/pokedex/${region.slug}`}
+				>
+					{region.regionCn}
+				</a>
+			))
+		}
+	</nav>
+	<div class="pokedex-nav-actions">
+		<PokemonArtModeToggle />
+	</div>
+</div>
 
 <style>
+	.pokedex-nav-header {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.65rem;
+		margin: 0 0 1rem;
+	}
+
 	.pokedex-nav {
 		display: flex;
 		flex-wrap: wrap;
 		gap: 0.4rem;
-		margin: 0 0 1rem;
+		margin: 0;
+		flex: 1 1 auto;
+		min-width: 0;
+	}
+
+	.pokedex-nav-actions {
+		display: flex;
+		align-items: center;
+		flex: 0 0 auto;
 	}
 
 	.pokedex-nav__link {
