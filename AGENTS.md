@@ -6,6 +6,10 @@
 # Run development server
 bun run dev
 
+# Pokémon 30th anniversary logo artwork (Serebii; optional download)
+bun run sync:pokemon30          # copy src/assets/pokemon30 → public
+bun run sync:pokemon30 -- --download  # fetch missing logos into src/assets
+
 # Type checking and build
 bun run build                # Runs astro check && astro build
 bun run check                # Runs astro type checking only

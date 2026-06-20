@@ -1,0 +1,125 @@
+---
+---
+
+<div transition:persist class="pokemon-30-art-toggle-wrap">
+	<button
+		type="button"
+		class="pokemon-30-art-toggle ui-pressable"
+		data-pokemon-30-toggle
+		aria-pressed="false"
+		title="切换宝可梦 30 周年立绘"
+		aria-label="切换宝可梦 30 周年立绘彩蛋"
+	>
+		<span class="pokemon-30-art-toggle__mark" aria-hidden="true">30</span>
+	</button>
+</div>
+
+<style>
+	.pokemon-30-art-toggle {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		height: 2.15rem;
+		min-width: 2.15rem;
+		padding: 0 0.42rem;
+		border-radius: var(--radius-chip);
+		border: 1px solid color-mix(in srgb, var(--color-border) 88%, transparent);
+		background: color-mix(in srgb, var(--color-surface) 92%, var(--color-accent-soft) 8%);
+		color: var(--color-muted);
+		font-weight: 800;
+		font-size: 0.72rem;
+		line-height: 1;
+		font-variant-numeric: tabular-nums;
+		opacity: 0.88;
+		cursor: pointer;
+		transition:
+			transform var(--motion-gentle),
+			background var(--motion-gentle),
+			border-color var(--motion-gentle),
+			color var(--motion-gentle),
+			opacity var(--motion-gentle),
+			box-shadow var(--motion-gentle);
+	}
+
+	.pokemon-30-art-toggle:hover,
+	.pokemon-30-art-toggle:focus-visible {
+		opacity: 1;
+		border-color: color-mix(in srgb, var(--color-accent) 35%, var(--color-border) 65%);
+		color: var(--color-text);
+	}
+
+	.pokemon-30-art-toggle.is-active {
+		border-color: color-mix(in srgb, #ee8130 62%, var(--color-border) 38%);
+		background: color-mix(in srgb, #ee8130 18%, var(--color-surface) 82%);
+		color: color-mix(in srgb, #c45a10 78%, var(--color-text) 22%);
+		box-shadow: inset 0 1px 0 color-mix(in srgb, #fff 22%, transparent);
+	}
+
+	.pokemon-30-art-toggle__mark {
+		display: block;
+		letter-spacing: -0.03em;
+	}
+</style>
+
+<script>
+	import { pokemon30Art } from '~/store';
+
+	const toggleSelector = '[data-pokemon-30-toggle]';
+	type ToggleWindow = Window & {
+		__pokemon30ArtSubscribed?: boolean;
+	};
+
+	const isOn = (raw: string) => raw === 'on';
+
+	const syncDocument = (document: Document, enabled: boolean) => {
+		document.documentElement.dataset.pokemonArt = enabled ? '30th' : 'default';
+		const buttons = Array.from(document.querySelectorAll(toggleSelector));
+		for (const button of buttons) {
+			if (!(button instanceof HTMLButtonElement)) {
+				continue;
+			}
+			button.classList.toggle('is-active', enabled);
+			button.setAttribute('aria-pressed', enabled ? 'true' : 'false');
+			button.setAttribute(
+				'title',
+				enabled ? '恢复默认立绘' : '切换宝可梦 30 周年立绘',
+			);
+			button.setAttribute(
+				'aria-label',
+				enabled ? '恢复默认立绘' : '切换宝可梦 30 周年立绘彩蛋',
+			);
+		}
+	};
+
+	const dispatchChange = () => {
+		document.dispatchEvent(new CustomEvent('pokemon-art-mode-change'));
+	};
+
+	const toggleWindow = window as ToggleWindow;
+	if (!toggleWindow.__pokemon30ArtSubscribed) {
+		pokemon30Art.subscribe((raw) => {
+			syncDocument(document, isOn(raw));
+		});
+		toggleWindow.__pokemon30ArtSubscribed = true;
+	}
+
+	const bindToggles = (document: Document) => {
+		const enabled = isOn(pokemon30Art.get());
+		syncDocument(document, enabled);
+		const buttons = Array.from(document.querySelectorAll(toggleSelector));
+		for (const button of buttons) {
+			if (!(button instanceof HTMLButtonElement)) {
+				continue;
+			}
+			button.onclick = () => {
+				const next = isOn(pokemon30Art.get()) ? '' : 'on';
+				pokemon30Art.set(next);
+				syncDocument(document, isOn(next));
+				dispatchChange();
+			};
+		}
+	};
+
+	bindToggles(document);
+	document.addEventListener('astro:before-swap', (ev) => bindToggles(ev.newDocument));
+</script>

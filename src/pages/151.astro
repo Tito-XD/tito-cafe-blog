@@ -5,10 +5,13 @@ import PokemonDexGridStyles from '~/components/pokemon/PokemonDexGridStyles.astr
 import PokemonRegionNav from '~/components/pokemon/PokemonRegionNav.astro';
 import pokemon151Chains from '~/data/pokemon151-chains.json';
 import pokemon151 from '~/data/pokemon151.json';
+import pokemon30ArtKeys from '~/data/pokemon30-art-keys.json';
 import ScaffoldLayout from '~/layouts/ScaffoldLayout.astro';
 
 const wikiBase = 'https://wiki.52poke.com/wiki/';
 const artworkBase = '/pokemon151/artwork';
+const pokemon30ArtBase = '/pokemon30/artwork';
+const pokemon30RemoteBase = 'https://www.serebii.net/pokemon30';
 ---
 
 <ScaffoldLayout
@@ -112,7 +115,18 @@ const artworkBase = '/pokemon151/artwork';
 		中文名与百科链接参考神奇宝贝百科。属性弱点按双属性倍率计算（含免疫、抵抗），数据来自 PokeAPI 现行相克表。本页为个人学习向速查工具，与任天堂等公司无关联。
 	</p>
 
-	<script is:inline define:vars={{ pokemon151, pokemon151Chains, wikiBase, artworkBase }}>
+	<script
+		is:inline
+		define:vars={{
+			pokemon151,
+			pokemon151Chains,
+			wikiBase,
+			artworkBase,
+			pokemon30ArtKeys,
+			pokemon30ArtBase,
+			pokemon30RemoteBase,
+		}}
+	>
 		const ROUND3_SIZE = 3;
 		const ROUND3_TRIES = 3;
 
@@ -198,7 +212,32 @@ const artworkBase = '/pokemon151/artwork';
 		};
 
 		const wikiUrl = (nameCn) => `${wikiBase}${encodeURIComponent(nameCn)}`;
-		const artUrl = (id) => `${artworkBase}/${id}.png`;
+
+		const isPokemon30ArtOn = () => {
+			try {
+				const raw = localStorage.getItem('pokemon-30th-art');
+				if (raw === 'on' || raw === '"on"') return true;
+			} catch {
+				/* ignore */
+			}
+			return false;
+		};
+
+		const get30thArtKey = (id) =>
+			pokemon30ArtKeys.byArtId?.[id] || String(id).padStart(3, '0');
+
+		const artUrl = (id) => {
+			if (!isPokemon30ArtOn()) return `${artworkBase}/${id}.png`;
+			return `${pokemon30ArtBase}/${get30thArtKey(id)}.png`;
+		};
+
+		const artFallback = (id) => {
+			if (isPokemon30ArtOn()) {
+				return `${pokemon30RemoteBase}/${get30thArtKey(id)}.png`;
+			}
+			return `${artworkBase}/${id}.png`;
+		};
+
 		const formatNo = (id) => `#${String(id).padStart(3, '0')}`;
 		const pokemonById = Object.fromEntries(pokemon151.map((p) => [p.id, p]));
 
@@ -295,7 +334,7 @@ const artworkBase = '/pokemon151/artwork';
 
 			return `
     <a class="p151-member p151-member--card${maskClass}" href="${wikiUrl(p.nameCn)}" target="_blank" rel="noreferrer noopener" data-id="${p.id}">
-      <img class="p151-member__art" src="${artUrl(p.id)}" alt="${artAlt}" width="72" height="72" loading="lazy" />
+      <img class="p151-member__art" src="${artUrl(p.id)}" onerror="this.onerror=null;this.src='${artFallback(p.id)}'" alt="${artAlt}" width="72" height="72" loading="lazy" />
       <span class="p151-member__no">${sup}</span>
       <span class="p151-member__label">${p.nameCn}</span>
       <span class="p151-member__en">${p.nameEn}</span>
@@ -581,6 +620,13 @@ const artworkBase = '/pokemon151/artwork';
 				e.preventDefault();
 				checkTypingAnswer();
 			};
+			const onArtModeChange = () => {
+				renderDex(els.dexSearch?.value || '');
+				if (!els.quizPlay.hidden && state.queue.length > 0) {
+					const p = currentPokemon();
+					if (p) els.quizArt.src = artUrl(p.id);
+				}
+			};
 
 			els.dexSearch?.addEventListener('input', onDexSearch);
 			els.dexHideNamesBtn?.addEventListener('click', onHideNames);
@@ -591,6 +637,7 @@ const artworkBase = '/pokemon151/artwork';
 			els.quizNext?.addEventListener('click', onQuizNext);
 			els.quizChoice?.addEventListener('click', onQuizChoice);
 			els.quizTyping?.addEventListener('submit', onQuizTyping);
+			document.addEventListener('pokemon-art-mode-change', onArtModeChange);
 
 			windowWithCleanup.__p151Cleanup = () => {
 				els.dexSearch?.removeEventListener('input', onDexSearch);
@@ -602,6 +649,7 @@ const artworkBase = '/pokemon151/artwork';
 				els.quizNext?.removeEventListener('click', onQuizNext);
 				els.quizChoice?.removeEventListener('click', onQuizChoice);
 				els.quizTyping?.removeEventListener('submit', onQuizTyping);
+				document.removeEventListener('pokemon-art-mode-change', onArtModeChange);
 			};
 		};
 

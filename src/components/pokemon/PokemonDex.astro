@@ -6,6 +6,7 @@ import {
 	type DexScope,
 	type PokemonSpecies,
 } from '~/utils/pokemon-dex';
+import pokemon30ArtKeys from '~/data/pokemon30-art-keys.json';
 
 type Props = {
 	dexId: string;
@@ -118,6 +119,9 @@ const visiblePrimaryFilters = filterMeta
 		showFilters,
 		filterMeta,
 		generationHomeRegion: GENERATION_HOME_REGION,
+		pokemon30ArtKeys,
+		pokemon30ArtBase: '/pokemon30/artwork',
+		pokemon30RemoteBase: 'https://www.serebii.net/pokemon30',
 	}}
 >
 	const state = { dexHideNames: false, activeFilters: [], filtersExpanded: false };
@@ -174,8 +178,36 @@ const visiblePrimaryFilters = filterMeta
 		'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork';
 
 	const wikiUrl = (nameCn) => `${wikiBase}${encodeURIComponent(nameCn)}`;
-	const artUrl = (artId) => `${artworkBase}/${artId}.png`;
-	const artFallback = (artId) => `${REMOTE_ART}/${artId}.png`;
+
+	const isPokemon30ArtOn = () => {
+		try {
+			const raw = localStorage.getItem('pokemon-30th-art');
+			if (raw === 'on' || raw === '"on"') return true;
+		} catch {
+			/* ignore */
+		}
+		return false;
+	};
+
+	const get30thArtKey = (entry) => {
+		const mapped = pokemon30ArtKeys.byArtId?.[entry.artId];
+		if (mapped) return mapped;
+		return String(entry.speciesId).padStart(3, '0');
+	};
+
+	const artUrl = (entry) => {
+		if (!isPokemon30ArtOn()) {
+			return `${artworkBase}/${entry.artId}.png`;
+		}
+		return `${pokemon30ArtBase}/${get30thArtKey(entry)}.png`;
+	};
+
+	const artFallback = (entry) => {
+		if (isPokemon30ArtOn()) {
+			return `${pokemon30RemoteBase}/${get30thArtKey(entry)}.png`;
+		}
+		return `${REMOTE_ART}/${entry.artId}.png`;
+	};
 
 	const sortChainsByMinId = (list) =>
 		[...list].sort((a, b) => Math.min(...a) - Math.min(...b));
@@ -437,7 +469,7 @@ const visiblePrimaryFilters = filterMeta
 
 		return `
     <a class="p151-member p151-member--card${maskClass}" href="${wikiUrl(entry.nameCn)}" target="_blank" rel="noreferrer noopener" data-key="${entry.key}" data-id="${entry.speciesId}">
-      <img class="p151-member__art" src="${artUrl(entry.artId)}" onerror="this.onerror=null;this.src='${artFallback(entry.artId)}'" alt="${artAlt}" width="72" height="72" loading="lazy" />
+      <img class="p151-member__art" src="${artUrl(entry)}" onerror="this.onerror=null;this.src='${artFallback(entry)}'" alt="${artAlt}" width="72" height="72" loading="lazy" />
       <span class="p151-member__no">${sup}</span>
       <span class="p151-member__label">${label}</span>
       <span class="p151-member__en">${entry.nameEn}</span>
@@ -655,11 +687,14 @@ const visiblePrimaryFilters = filterMeta
 			toggleFilter(btn.dataset.filter);
 		};
 
+		const onArtModeChange = () => renderDex(els.dexSearch?.value || '');
+
 		els.dexSearch?.addEventListener('input', onDexSearch);
 		els.dexHideNamesBtn?.addEventListener('click', onHideNames);
 		els.dexGrid?.addEventListener('click', onDexGridClick);
 		els.filtersToggle?.addEventListener('click', onFiltersToggle);
 		els.root.addEventListener('click', onFilterClick);
+		document.addEventListener('pokemon-art-mode-change', onArtModeChange);
 		renderDex('');
 
 		windowWithCleanup[cleanupKey] = () => {
@@ -668,6 +703,7 @@ const visiblePrimaryFilters = filterMeta
 			els.dexGrid?.removeEventListener('click', onDexGridClick);
 			els.filtersToggle?.removeEventListener('click', onFiltersToggle);
 			els.root?.removeEventListener('click', onFilterClick);
+			document.removeEventListener('pokemon-art-mode-change', onArtModeChange);
 		};
 	};
 
