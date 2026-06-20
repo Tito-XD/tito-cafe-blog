@@ -2,7 +2,6 @@
 import { Icon } from 'astro-icon/components';
 import { Hide } from '~/config';
 import ThemeToggler from './ThemeToggler.astro';
-import PokemonArtModeToggle from './pokemon/PokemonArtModeToggle.astro';
 
 interface Props {
 	mobile?: boolean;
@@ -28,7 +27,6 @@ const showThemeToggler = !Hide.includes('themeToggler');
 					</a>
 				)
 			}
-			<PokemonArtModeToggle />
 			{showThemeToggler && <ThemeToggler />}
 		</div>
 	)
