@@ -1,10 +1,11 @@
 ---
 import { Icon } from 'astro-icon/components';
+import { pokemonPrimaryFilters } from '~/data/pokemon-filters';
 import {
-	pokemonFormRegions,
-	pokemonHomeRegions,
-	pokemonPrimaryFilters,
-} from '~/data/pokemon-filters';
+	buildDexFilterMeta,
+	type DexScope,
+	type PokemonSpecies,
+} from '~/utils/pokemon-dex';
 
 type Props = {
 	dexId: string;
@@ -12,6 +13,8 @@ type Props = {
 	chains: unknown;
 	artworkBase: string;
 	showFilters?: boolean;
+	/** National = full cross-region filters; regional = scoped to current dex page. */
+	dexScope?: DexScope;
 };
 
 const {
@@ -20,8 +23,16 @@ const {
 	chains,
 	artworkBase,
 	showFilters = false,
+	dexScope = 'national',
 } = Astro.props;
 const wikiBase = 'https://wiki.52poke.com/wiki/';
+const speciesList = pokemonList as PokemonSpecies[];
+const filterMeta = showFilters ? buildDexFilterMeta(speciesList, dexScope) : null;
+const visiblePrimaryFilters = filterMeta
+	? pokemonPrimaryFilters.filter((filter) =>
+			filterMeta.enabledPrimaries.includes(filter.key),
+		)
+	: [];
 ---
 
 <div class="pokemon-dex" data-dex-id={dexId}>
@@ -43,7 +54,7 @@ const wikiBase = 'https://wiki.52poke.com/wiki/';
 		showFilters && (
 			<div class="pokedex-filters-wrap">
 				<div class="pokedex-filters" role="group" aria-label="图鉴筛选">
-					{pokemonPrimaryFilters.map((filter) => (
+					{visiblePrimaryFilters.map((filter) => (
 						<button
 							class="pokedex-filter"
 							type="button"
@@ -53,40 +64,48 @@ const wikiBase = 'https://wiki.52poke.com/wiki/';
 						</button>
 					))}
 				</div>
-				<div
-					class="pokedex-subfilters pokedex-subfilters--home"
-					role="group"
-					aria-label="出身地区"
-					hidden
-				>
-					<span class="pokedex-subfilters__label">出身</span>
-					{pokemonHomeRegions.map((region) => (
-						<button
-							class="pokedex-filter pokedex-subfilter"
-							type="button"
-							data-filter={`home:${region}`}
+				{
+					filterMeta?.showHomeSubfilters && (
+						<div
+							class="pokedex-subfilters pokedex-subfilters--home"
+							role="group"
+							aria-label="出身地区"
+							hidden
 						>
-							{region}
-						</button>
-					))}
-				</div>
-				<div
-					class="pokedex-subfilters pokedex-subfilters--form"
-					role="group"
-					aria-label="地区形态"
-					hidden
-				>
-					<span class="pokedex-subfilters__label">形态</span>
-					{pokemonFormRegions.map((region) => (
-						<button
-							class="pokedex-filter pokedex-subfilter"
-							type="button"
-							data-filter={`form:${region}`}
+							<span class="pokedex-subfilters__label">出身</span>
+							{filterMeta.availableHomeRegions.map((region) => (
+								<button
+									class="pokedex-filter pokedex-subfilter"
+									type="button"
+									data-filter={`home:${region}`}
+								>
+									{region}
+								</button>
+							))}
+						</div>
+					)
+				}
+				{
+					filterMeta && filterMeta.availableFormRegions.length > 0 && (
+						<div
+							class="pokedex-subfilters pokedex-subfilters--form"
+							role="group"
+							aria-label="地区形态"
+							hidden
 						>
-							{region}
-						</button>
-					))}
-				</div>
+							<span class="pokedex-subfilters__label">形态</span>
+							{filterMeta.availableFormRegions.map((region) => (
+								<button
+									class="pokedex-filter pokedex-subfilter"
+									type="button"
+									data-filter={`form:${region}`}
+								>
+									{region}
+								</button>
+							))}
+						</div>
+					)
+				}
 			</div>
 		)
 	}
@@ -96,7 +115,15 @@ const wikiBase = 'https://wiki.52poke.com/wiki/';
 
 <script
 	is:inline
-	define:vars={{ dexId, pokemonList, chains, artworkBase, wikiBase, showFilters }}
+	define:vars={{
+		dexId,
+		pokemonList,
+		chains,
+		artworkBase,
+		wikiBase,
+		showFilters,
+		filterMeta,
+	}}
 >
 	const PRIMARY_KEYS = ['legendary', 'mythical', 'forms', 'regional', 'paradox'];
 	const HOME_PARENT_KEYS = ['legendary', 'mythical', 'paradox'];
@@ -436,15 +463,54 @@ const wikiBase = 'https://wiki.52poke.com/wiki/';
 		if (!primaries.includes('regional')) {
 			state.activeFilters = state.activeFilters.filter((key) => !key.startsWith('form:'));
 		}
+
+		if (!filterMeta) return;
+
+		state.activeFilters = state.activeFilters.filter((key) => {
+			if (PRIMARY_KEYS.includes(key)) {
+				return filterMeta.enabledPrimaries.includes(key);
+			}
+			if (key.startsWith('home:')) {
+				return (
+					filterMeta.showHomeSubfilters &&
+					filterMeta.availableHomeRegions.includes(key.slice(5))
+				);
+			}
+			if (key.startsWith('form:')) {
+				return filterMeta.availableFormRegions.includes(key.slice(5));
+			}
+			return false;
+		});
 	};
 
 	const updateSubfilterVisibility = () => {
 		const primaries = getPrimaries();
-		const showHome = primaries.some((key) => HOME_PARENT_KEYS.includes(key));
+		const showHome =
+			filterMeta?.showHomeSubfilters &&
+			primaries.some((key) => HOME_PARENT_KEYS.includes(key));
 		const showForm =
-			primaries.includes('regional') || getFormRegions().length > 0;
+			filterMeta &&
+			filterMeta.availableFormRegions.length > 0 &&
+			(primaries.includes('regional') || getFormRegions().length > 0);
 		if (els.homeSubfilterRow) els.homeSubfilterRow.hidden = !showHome;
 		if (els.formSubfilterRow) els.formSubfilterRow.hidden = !showForm;
+	};
+
+	const isFilterAllowed = (filterKey) => {
+		if (!filterMeta) return false;
+		if (PRIMARY_KEYS.includes(filterKey)) {
+			return filterMeta.enabledPrimaries.includes(filterKey);
+		}
+		if (filterKey.startsWith('home:')) {
+			return (
+				filterMeta.showHomeSubfilters &&
+				filterMeta.availableHomeRegions.includes(filterKey.slice(5))
+			);
+		}
+		if (filterKey.startsWith('form:')) {
+			return filterMeta.availableFormRegions.includes(filterKey.slice(5));
+		}
+		return false;
 	};
 
 	const setDexHideNames = (on) => {
@@ -460,6 +526,8 @@ const wikiBase = 'https://wiki.52poke.com/wiki/';
 	};
 
 	const toggleFilter = (filterKey) => {
+		if (!isFilterAllowed(filterKey)) return;
+
 		const idx = state.activeFilters.indexOf(filterKey);
 		if (idx >= 0) state.activeFilters.splice(idx, 1);
 		else state.activeFilters.push(filterKey);
