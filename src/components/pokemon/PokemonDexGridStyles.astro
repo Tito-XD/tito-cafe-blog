@@ -303,21 +303,27 @@
 		display: none;
 	}
 
-		@media (max-width: 639px) {
-		.p151-grid {
-			display: grid;
-			grid-template-columns: repeat(3, minmax(0, 1fr));
-			gap: 0.35rem;
-		}
-
+	@media (max-width: 639px) {
+		.p151-grid,
+		.pokedex-grid--flat,
 		.pokedex-grid--chains {
-			display: flex;
-			flex-direction: column;
-			gap: 0.4rem;
+			--p151-mobile-cell-min: 5.35rem;
+			display: grid;
+			grid-template-columns: repeat(
+				auto-fill,
+				minmax(min(100%, var(--p151-mobile-cell-min)), 1fr)
+			);
+			gap: 0.35rem;
+			align-items: stretch;
 		}
 
+		.pokedex-chain-group,
 		.pokedex-chain-group__track {
-			flex-wrap: wrap;
+			display: contents;
+		}
+
+		.pokedex-chain__sep {
+			display: none;
 		}
 
 		.p151-toolbar__toggle {
@@ -369,33 +375,43 @@
 
 		.p151-member--card {
 			--p151-card-width: 100%;
-			--p151-card-min-height: 7.85rem;
+			--p151-card-min-height: 7.65rem;
+			box-sizing: border-box;
 			width: 100%;
 			min-width: 0;
 			max-width: none;
-			flex: 1 1 auto;
-		}
-
-		.pokedex-grid--flat {
-			grid-template-columns: repeat(3, minmax(0, 1fr));
-			gap: 0.35rem;
+			flex: none;
+			min-height: var(--p151-card-min-height);
 		}
 
 		.pokedex-flat-cell {
-			min-height: var(--p151-card-min-height, 7.85rem);
+			display: block;
+			min-width: 0;
+			min-height: var(--p151-card-min-height, 7.65rem);
+		}
+
+		.pokedex-type-chip {
+			font-size: 0.58rem;
+			padding: 0.06rem 0.28rem;
+		}
+
+		.pokedex-type-chip--weak {
+			font-size: 0.52rem;
+			padding: 0.04rem 0.24rem;
 		}
 
 		.p151-member__art {
-			width: calc(2.65rem + 5px);
-			height: calc(2.65rem + 5px);
+			width: calc(2.45rem + 5px);
+			height: calc(2.45rem + 5px);
 		}
 
 		.p151-member__no {
-			font-size: 0.54rem;
+			font-size: 0.52rem;
 		}
 
 		.p151-member__label {
-			font-size: 0.62rem;
+			font-size: 0.58rem;
+			-webkit-line-clamp: 3;
 		}
 
 		.p151-member__en {
@@ -403,11 +419,15 @@
 		}
 
 		.p151-member__types {
-			gap: 0.16rem;
+			gap: 0.14rem;
 		}
 
 		.p151-member__weak {
-			gap: 0.12rem;
+			gap: 0.1rem;
+		}
+
+		.p151-weak-prefix {
+			font-size: 0.52rem;
 		}
 	}
 
