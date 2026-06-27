@@ -124,10 +124,13 @@ const chains = filterChainsForRange(pokemonChains, 1, 151);
 	>
 		const ROUND3_SIZE = 3;
 		const ROUND3_TRIES = 3;
+		const REMOTE_ART =
+			'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork';
 
 		const state = {
 			tab: 'dex',
 			quizMode: 'choice',
+			quizPhase: 'setup',
 			queue: [],
 			index: 0,
 			score: 0,
@@ -138,6 +141,7 @@ const chains = filterChainsForRange(pokemonChains, 1, 151);
 			round3MainScore: 0,
 			round3RetryScore: 0,
 			retryRoundSize: 0,
+			quizArtLoadId: 0,
 		};
 
 		const modeHints = {
@@ -173,7 +177,9 @@ const chains = filterChainsForRange(pokemonChains, 1, 151);
 		};
 
 		const refreshEls = () => {
-			els.tabs = document.querySelectorAll('[data-tab]');
+			els.tabs = document.querySelectorAll(
+				'[role="tablist"][aria-label="页面模式"] [data-tab]',
+			);
 			els.panelDex = document.getElementById('panel-dex');
 			els.panelQuiz = document.getElementById('panel-quiz');
 			els.quizSetup = document.getElementById('quiz-setup');
@@ -194,7 +200,7 @@ const chains = filterChainsForRange(pokemonChains, 1, 151);
 			els.quizNext = document.getElementById('quiz-next');
 			els.quizSummary = document.getElementById('quiz-summary');
 			els.quizModeHint = document.getElementById('quiz-mode-hint');
-			els.quizModeTabs = document.querySelectorAll('[data-quiz-mode]');
+			els.quizModeTabs = document.querySelectorAll('#quiz-setup [data-quiz-mode]');
 		};
 
 		const isPokemon30ArtOn = () => {
@@ -223,7 +229,7 @@ const chains = filterChainsForRange(pokemonChains, 1, 151);
 			if (isPokemon30ArtOn()) {
 				return `${pokemon30RemoteBase}/${get30thArtKey(id)}.png`;
 			}
-			return `${artworkBase}/${id}.png`;
+			return `${REMOTE_ART}/${id}.png`;
 		};
 
 		const formatNo = (id) => `#${String(id).padStart(3, '0')}`;
@@ -255,9 +261,30 @@ const chains = filterChainsForRange(pokemonChains, 1, 151);
 		};
 
 		const showQuizPhase = (phase) => {
+			state.quizPhase = phase;
 			els.quizSetup.hidden = phase !== 'setup';
 			els.quizPlay.hidden = phase !== 'play';
 			els.quizDone.hidden = phase !== 'done';
+		};
+
+		const syncQuizModeUi = () => {
+			els.quizModeTabs.forEach((btn) => {
+				const active = btn.dataset.quizMode === state.quizMode;
+				btn.classList.toggle('is-active', active);
+				btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+			});
+			if (els.quizModeHint) {
+				els.quizModeHint.textContent = modeHints[state.quizMode];
+			}
+		};
+
+		const restoreUiFromState = () => {
+			switchTab(state.tab);
+			syncQuizModeUi();
+			showQuizPhase(state.quizPhase);
+			if (state.quizPhase === 'play' && state.queue.length > 0) {
+				renderQuestion();
+			}
 		};
 
 		const currentPokemon = () => state.queue[state.index];
@@ -277,12 +304,31 @@ const chains = filterChainsForRange(pokemonChains, 1, 151);
 		};
 
 		const setQuizArt = (p) => {
+			if (!els.quizArt) return;
+			const loadId = p.id;
+			state.quizArtLoadId = loadId;
 			els.quizArt.onerror = null;
-			setQuizArt(p);
+			els.quizArt.onload = null;
+			els.quizArt.src = artUrl(loadId);
 			els.quizArt.onerror = function () {
+				if (state.quizArtLoadId !== loadId) return;
 				this.onerror = null;
-				this.src = artFallback(p.id);
+				this.src = artFallback(loadId);
 			};
+		};
+
+		const resetQuizSession = () => {
+			state.queue = [];
+			state.index = 0;
+			state.score = 0;
+			state.answered = false;
+			state.attemptsLeft = ROUND3_TRIES;
+			state.retryQueue = [];
+			state.roundPhase = 'main';
+			state.round3MainScore = 0;
+			state.round3RetryScore = 0;
+			state.retryRoundSize = 0;
+			state.quizArtLoadId = 0;
 		};
 
 		const renderQuestion = () => {
@@ -304,7 +350,7 @@ const chains = filterChainsForRange(pokemonChains, 1, 151);
 				els.quizChoice.innerHTML = options
 					.map(
 						(opt) =>
-							`<button type="button" class="p151-choice ui-pressable" data-cn="${opt.nameCn}">${opt.nameCn}</button>`,
+							`<button type="button" class="p151-choice ui-pressable" data-id="${opt.id}" data-cn="${opt.nameCn}">${opt.nameCn}</button>`,
 					)
 					.join('');
 			} else {
@@ -320,7 +366,7 @@ const chains = filterChainsForRange(pokemonChains, 1, 151);
 		const highlightChoiceAnswer = (p) => {
 			els.quizChoice.querySelectorAll('.p151-choice').forEach((btn) => {
 				btn.disabled = true;
-				if (btn.dataset.cn === p.nameCn) btn.classList.add('is-correct');
+				if (Number(btn.dataset.id) === p.id) btn.classList.add('is-correct');
 			});
 		};
 
@@ -336,25 +382,20 @@ const chains = filterChainsForRange(pokemonChains, 1, 151);
 		};
 
 		const switchQuizMode = (mode) => {
-			state.quizMode = modeHints[mode] ? mode : 'choice';
-			els.quizModeTabs.forEach((btn) => {
-				const active = btn.dataset.quizMode === state.quizMode;
-				btn.classList.toggle('is-active', active);
-				btn.setAttribute('aria-pressed', active ? 'true' : 'false');
-			});
-			if (els.quizModeHint) {
-				els.quizModeHint.textContent = modeHints[state.quizMode];
+			const nextMode = modeHints[mode] ? mode : 'choice';
+			if (nextMode === state.quizMode && state.quizPhase === 'setup') {
+				return;
+			}
+			state.quizMode = nextMode;
+			syncQuizModeUi();
+			if (state.quizPhase === 'play' || state.quizPhase === 'done') {
+				resetQuizSession();
+				showQuizPhase('setup');
 			}
 		};
 
 		const startQuiz = () => {
-			state.score = 0;
-			state.index = 0;
-			state.roundPhase = 'main';
-			state.retryQueue = [];
-			state.round3MainScore = 0;
-			state.round3RetryScore = 0;
-			state.retryRoundSize = 0;
+			resetQuizSession();
 
 			if (state.quizMode === 'round3') {
 				state.queue = shuffle(pokemon151).slice(0, ROUND3_SIZE);
@@ -400,7 +441,8 @@ const chains = filterChainsForRange(pokemonChains, 1, 151);
 		const checkChoiceAnswer = (btn) => {
 			if (!btn || state.answered || state.quizMode !== 'choice') return;
 			const p = currentPokemon();
-			const ok = btn.dataset.cn === p.nameCn;
+			const pickedId = Number(btn.dataset.id);
+			const ok = pickedId === p.id;
 			if (ok) state.score += 1;
 			showFeedback(ok, p);
 			updateQuizMeta();
@@ -452,9 +494,17 @@ const chains = filterChainsForRange(pokemonChains, 1, 151);
 			refreshEls();
 			if (!els.panelDex) return;
 
-			switchTab('dex');
-			showQuizPhase('setup');
-			switchQuizMode('choice');
+			const isRebind = Boolean(windowWithCleanup.__p151Bound);
+			windowWithCleanup.__p151Bound = true;
+
+			if (isRebind) {
+				restoreUiFromState();
+			} else {
+				switchTab('dex');
+				showQuizPhase('setup');
+				state.quizMode = 'choice';
+				syncQuizModeUi();
+			}
 
 			const onTabClick = (btn) => switchTab(btn.dataset.tab);
 			els.tabs.forEach((btn) => {
@@ -467,8 +517,14 @@ const chains = filterChainsForRange(pokemonChains, 1, 151);
 			});
 
 			const onQuizStart = () => startQuiz();
-			const onQuizEnd = () => showQuizPhase('setup');
-			const onQuizRestart = () => showQuizPhase('setup');
+			const onQuizEnd = () => {
+				resetQuizSession();
+				showQuizPhase('setup');
+			};
+			const onQuizRestart = () => {
+				resetQuizSession();
+				showQuizPhase('setup');
+			};
 			const onQuizNext = () => nextQuestion();
 			const onQuizChoice = (e) => {
 				const btn = e.target.closest('.p151-choice');
@@ -504,7 +560,6 @@ const chains = filterChainsForRange(pokemonChains, 1, 151);
 			};
 		};
 
-		setup();
 		document.addEventListener('astro:page-load', setup);
 	</script>
 </ScaffoldLayout>
