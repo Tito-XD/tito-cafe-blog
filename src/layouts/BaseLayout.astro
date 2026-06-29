@@ -1,6 +1,7 @@
 ---
 import { ClientRouter } from 'astro:transitions';
 import { FontConfig, SiteLanguage, SiteTitle } from '~/config';
+import { pokedexIconAssets, pokedexPwaThemeColor } from '~/config/pokedex-icons';
 
 export interface Props {
 	title?: string;
@@ -37,8 +38,32 @@ const fontFaceStyles = `
 		<link rel="canonical" href={Astro.url.href} />
 		<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 		<meta http-equiv="x-ua-compatible" content="ie=edge" />
-		<link rel="icon" href="/favicon.ico" />
-		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		{
+			appShell ? (
+				<>
+					<link rel="icon" href={pokedexIconAssets.svg} type="image/svg+xml" />
+					<link rel="icon" href={pokedexIconAssets.ico} sizes="any" />
+					<link
+						rel="icon"
+						type="image/png"
+						sizes="16x16"
+						href={pokedexIconAssets.png16}
+					/>
+					<link
+						rel="icon"
+						type="image/png"
+						sizes="32x32"
+						href={pokedexIconAssets.png32}
+					/>
+					<link rel="apple-touch-icon" href={pokedexIconAssets.appleTouch} />
+				</>
+			) : (
+				<>
+					<link rel="icon" href="/favicon.ico" />
+					<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+				</>
+			)
+		}
 		<title>{title}</title>
 		<meta name="title" content={title} />
 		<meta name="description" content={description} />
@@ -59,6 +84,7 @@ const fontFaceStyles = `
 			appShell && (
 				<>
 					<link rel="manifest" href="/manifest.webmanifest" />
+					<meta name="theme-color" content={pokedexPwaThemeColor} />
 					<meta name="mobile-web-app-capable" content="yes" />
 					<meta name="apple-mobile-web-app-capable" content="yes" />
 					<meta name="apple-mobile-web-app-title" content="图鉴" />
