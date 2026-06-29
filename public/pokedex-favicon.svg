@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Tito Cafe Pokédex icon">
+  <defs>
+    <linearGradient id="top" x1="122" y1="60" x2="356" y2="260" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#5DA9FF"/>
+      <stop offset="1" stop-color="#4A90E2"/>
+    </linearGradient>
+    <linearGradient id="bottom" x1="150" y1="268" x2="384" y2="460" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2C313A"/>
+      <stop offset="1" stop-color="#1E2126"/>
+    </linearGradient>
+    <radialGradient id="button" cx="38%" cy="34%" r="68%">
+      <stop offset="0" stop-color="#B9DCFF"/>
+      <stop offset=".48" stop-color="#4A90E2"/>
+      <stop offset="1" stop-color="#2A6FC7"/>
+    </radialGradient>
+    <filter id="shadow" x="-20%" y="-15%" width="140%" height="150%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="8" dy="16" stdDeviation="12" flood-color="#000" flood-opacity=".34"/>
+    </filter>
+    <clipPath id="ball">
+      <circle cx="256" cy="256" r="214"/>
+    </clipPath>
+  </defs>
+  <g filter="url(#shadow)">
+    <g clip-path="url(#ball)">
+      <rect width="512" height="256" fill="url(#top)"/>
+      <rect y="256" width="512" height="256" fill="url(#bottom)"/>
+      <ellipse cx="206" cy="120" rx="156" ry="72" fill="#fff" opacity=".18"/>
+      <ellipse cx="318" cy="384" rx="144" ry="62" fill="#2C313A" opacity=".65"/>
+      <rect x="42" y="228" width="428" height="56" rx="28" fill="#121417"/>
+      <rect x="64" y="244" width="384" height="24" rx="12" fill="#F5F7FA"/>
+    </g>
+    <circle cx="256" cy="256" r="214" fill="none" stroke="#121417" stroke-width="28"/>
+    <circle cx="256" cy="256" r="66" fill="#121417"/>
+    <circle cx="256" cy="256" r="48" fill="#F5F7FA"/>
+    <circle cx="256" cy="256" r="32" fill="url(#button)"/>
+    <ellipse cx="246" cy="244" rx="12" ry="8" fill="#fff" opacity=".5"/>
+    <path d="M130 155c28-42 74-68 126-70" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="14" opacity=".28"/>
+  </g>
+</svg>

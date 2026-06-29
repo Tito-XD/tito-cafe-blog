@@ -43,7 +43,17 @@ export default defineConfig({
 	integrations: [
 		AstroPWA({
 			registerType: 'autoUpdate',
-			includeAssets: ['favicon.ico', 'apple-touch-icon.png'],
+			includeAssets: [
+				'favicon.ico',
+				'apple-touch-icon.png',
+				'pokedex-favicon.ico',
+				'pokedex-favicon.svg',
+				'pokedex-favicon-180.png',
+				'pokedex-favicon-192.png',
+				'pokedex-favicon-512.png',
+				'pokedex-maskable-192.png',
+				'pokedex-maskable-512.png',
+			],
 			manifest: dexPwaManifest,
 			workbox: dexPwaWorkbox,
 			experimental: {

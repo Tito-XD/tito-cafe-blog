@@ -150,6 +150,7 @@ setup();
 
 - Integration: `@vite-pwa/astro` with dex-focused manifest (`start_url: /151`)
 - Layout: `PokemonDexAppLayout` on `/151` and `/pokedex/*`
+- Icons: `public/pokedex-favicon*` + `pokedex-maskable-*` (dex pages only via `appShell` in `BaseLayout`)
 - Service worker: `sw.js` (generated at build); Netlify serves from `dist/` — no Netlify-specific SW product
 - Headers: `public/_headers` sets short cache for `sw.js`
 
