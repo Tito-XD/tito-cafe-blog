@@ -1,0 +1,76 @@
+---
+import BackToTop from '~/components/BackToTop.astro';
+import PwaRegister from '~/components/PwaRegister.astro';
+import PokemonAppHeader from '~/components/pokemon/PokemonAppHeader.astro';
+import PokemonPwaInstallHint from '~/components/pokemon/PokemonPwaInstallHint.astro';
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+	title?: string;
+	description?: string;
+	socialImage?: string;
+}
+
+const props = Astro.props;
+---
+
+<BaseLayout {...props} appShell={true} bodyClass="pokemon-app-body" rootClass="scrollbar-none pokemon-app-root">
+	<PwaRegister />
+	<div class="pokemon-app-shell">
+		<PokemonAppHeader />
+		<PokemonPwaInstallHint />
+		<main class="pokemon-app-main">
+			<slot />
+		</main>
+	</div>
+	<BackToTop />
+</BaseLayout>
+
+<style>
+	:global(.pokemon-app-body) {
+		min-height: 100dvh;
+		padding:
+			env(safe-area-inset-top, 0)
+			env(safe-area-inset-right, 0)
+			env(safe-area-inset-bottom, 0)
+			env(safe-area-inset-left, 0);
+	}
+
+	:global(.pokemon-app-root) {
+		background: var(--color-bg);
+	}
+
+	.pokemon-app-shell {
+		margin: 0 auto;
+		width: min(100%, 44rem);
+		min-height: 100dvh;
+		padding: 0.65rem clamp(0.65rem, 2.5vw, 1rem) 1.25rem;
+	}
+
+	.pokemon-app-main {
+		padding: 0;
+	}
+
+	.pokemon-app-main :global(.page-heading) {
+		padding: 0 0 0.85rem;
+		gap: 0.35rem;
+	}
+
+	.pokemon-app-main :global(.page-title) {
+		font-size: clamp(1.45rem, 4.5vw, 2rem);
+		line-height: 1.1;
+	}
+
+	@media (min-width: 768px) {
+		.pokemon-app-shell {
+			padding-top: 1rem;
+			padding-bottom: 2rem;
+		}
+	}
+
+	@media (display-mode: standalone) {
+		.pokemon-app-shell {
+			padding-top: max(0.35rem, env(safe-area-inset-top, 0));
+		}
+	}
+</style>
