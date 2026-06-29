@@ -6,7 +6,7 @@ import PokemonRegionNav from '~/components/pokemon/PokemonRegionNav.astro';
 import pokemonChains from '~/data/pokemon-chains.json';
 import { pokemonRegions } from '~/data/pokemon-regions';
 import pokemonAll from '~/data/pokemon.json';
-import ScaffoldLayout from '~/layouts/ScaffoldLayout.astro';
+import PokemonDexAppLayout from '~/layouts/PokemonDexAppLayout.astro';
 import {
 	filterChainsForRange,
 	filterPokemonByRange,
@@ -31,7 +31,7 @@ const chains = filterChainsForRange(pokemonChains, region.idMin, region.idMax);
 const artworkBase = '/pokemon/artwork';
 ---
 
-<ScaffoldLayout title={region.title} description={region.description}>
+<PokemonDexAppLayout title={region.title} description={region.description}>
 	<PageHeading title={region.title} />
 	<p class="pokedex-lead">
 		{region.regionCn}地区新增宝可梦图鉴速查（全国编号 #{String(region.idMin).padStart(3, '0')}–#{String(region.idMax).padStart(3, '0')}）。数据来自
@@ -56,7 +56,7 @@ const artworkBase = '/pokemon/artwork';
 		<a href="https://github.com/PokeAPI/sprites" target="_blank" rel="noreferrer noopener">PokeAPI Sprites</a>。
 		本页为个人学习向速查工具，与任天堂等公司无关联。
 	</p>
-</ScaffoldLayout>
+</PokemonDexAppLayout>
 
 <PokemonDexGridStyles />
 

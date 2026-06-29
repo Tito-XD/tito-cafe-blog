@@ -146,6 +146,14 @@ setup();
 - **Node version:** 22.12.0+
 - **Base directory:** `/`
 
+## PWA (图鉴)
+
+- Integration: `@vite-pwa/astro` with dex-focused manifest (`start_url: /151`)
+- Layout: `PokemonDexAppLayout` on `/151` and `/pokedex/*`
+- Service worker: `sw.js` (generated at build); Netlify serves from `dist/` — no Netlify-specific SW product
+- Headers: `public/_headers` sets short cache for `sw.js`
+
+
 ## Before Submitting Work
 
 1. Run `bun run check` - ensure no type errors

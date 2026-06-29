@@ -5,12 +5,12 @@ import PokemonDexGridStyles from '~/components/pokemon/PokemonDexGridStyles.astr
 import PokemonRegionNav from '~/components/pokemon/PokemonRegionNav.astro';
 import pokemonChains from '~/data/pokemon-chains.json';
 import pokemonAll from '~/data/pokemon.json';
-import ScaffoldLayout from '~/layouts/ScaffoldLayout.astro';
+import PokemonDexAppLayout from '~/layouts/PokemonDexAppLayout.astro';
 
 const artworkBase = '/pokemon/artwork';
 ---
 
-<ScaffoldLayout
+<PokemonDexAppLayout
 	title="全国图鉴"
 	description="宝可梦全国图鉴速查，支持传说、幻、悖谬·朱紫、形态与地区形态交叉筛选，可按世代地区切换。"
 >
@@ -37,7 +37,7 @@ const artworkBase = '/pokemon/artwork';
 		<a href="https://github.com/PokeAPI/sprites" target="_blank" rel="noreferrer noopener">PokeAPI Sprites</a>。
 		本页为个人学习向速查工具，与任天堂等公司无关联。
 	</p>
-</ScaffoldLayout>
+</PokemonDexAppLayout>
 
 <PokemonDexGridStyles />
 

@@ -6,6 +6,7 @@ export interface Props {
 	title?: string;
 	description?: string;
 	socialImage?: string;
+	appShell?: boolean;
 	rootClass?:
 		| Iterable<
 				string | Record<string, boolean> | string[] | false | null | undefined
@@ -17,7 +18,7 @@ export interface Props {
 		  >
 		| string;
 }
-const { title, description, socialImage, rootClass, bodyClass } = Astro.props;
+const { title, description, socialImage, appShell = false, rootClass, bodyClass } = Astro.props;
 const socialImg = new URL(socialImage ?? '/og.png', Astro.url).href;
 const fontFaceStyles = `
 	@font-face {
@@ -34,7 +35,7 @@ const fontFaceStyles = `
 	<head>
 		<meta charset="utf-8" />
 		<link rel="canonical" href={Astro.url.href} />
-		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 		<meta http-equiv="x-ua-compatible" content="ie=edge" />
 		<link rel="icon" href="/favicon.ico" />
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -54,6 +55,17 @@ const fontFaceStyles = `
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
 		<meta name="twitter:image" content={socialImg} />
+		{
+			appShell && (
+				<>
+					<link rel="manifest" href="/manifest.webmanifest" />
+					<meta name="mobile-web-app-capable" content="yes" />
+					<meta name="apple-mobile-web-app-capable" content="yes" />
+					<meta name="apple-mobile-web-app-title" content="图鉴" />
+					<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+				</>
+			)
+		}
 		<ClientRouter />
 
 		<script is:inline>

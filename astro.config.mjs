@@ -3,6 +3,7 @@ import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
 //import toc from '@jsdevtools/rehype-toc';
 import compress from '@playform/compress';
+import AstroPWA from '@vite-pwa/astro';
 import {
 	transformerMetaHighlight,
 	transformerMetaWordHighlight,
@@ -21,6 +22,7 @@ import rehypeKatax from 'rehype-katex';
 import emoji from 'remark-emoji';
 import remarkMath from 'remark-math';
 import { Site } from './src/config';
+import { dexPwaManifest, dexPwaWorkbox } from './pwa-dex.config.mjs';
 import { getMarkdownEntries } from './src/utils/post';
 import { remarkPostTime, remarkReadingTime } from './src/utils/remark';
 import { transformerEnhanser } from './src/utils/shiki';
@@ -39,6 +41,18 @@ export default defineConfig({
 		format: 'file',
 	},
 	integrations: [
+		AstroPWA({
+			registerType: 'autoUpdate',
+			includeAssets: ['favicon.ico', 'apple-touch-icon.png'],
+			manifest: dexPwaManifest,
+			workbox: dexPwaWorkbox,
+			experimental: {
+				directoryAndTrailingSlashHandler: true,
+			},
+			devOptions: {
+				enabled: false,
+			},
+		}),
 		tailwind({
 			applyBaseStyles: false,
 		}),

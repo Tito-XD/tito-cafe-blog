@@ -7,7 +7,7 @@ import pokemon151 from '~/data/pokemon151.json';
 import pokemon30ArtKeys from '~/data/pokemon30-art-keys.json';
 import pokemonChains from '~/data/pokemon-chains.json';
 import pokemonAll from '~/data/pokemon.json';
-import ScaffoldLayout from '~/layouts/ScaffoldLayout.astro';
+import PokemonDexAppLayout from '~/layouts/PokemonDexAppLayout.astro';
 import {
 	filterChainsForRange,
 	filterPokemonByRange,
@@ -19,7 +19,7 @@ const pokemonList = filterPokemonByRange(pokemonAll, 1, 151);
 const chains = filterChainsForRange(pokemonChains, 1, 151);
 ---
 
-<ScaffoldLayout
+<PokemonDexAppLayout
 	title="宝可梦 151 · 关都图鉴"
 	description="关都地区 151 只宝可梦图鉴速查与中文名测验，备战线下答题。"
 >
@@ -562,7 +562,7 @@ const chains = filterChainsForRange(pokemonChains, 1, 151);
 
 		document.addEventListener('astro:page-load', setup);
 	</script>
-</ScaffoldLayout>
+</PokemonDexAppLayout>
 
 <style>
 	.p151-lead {

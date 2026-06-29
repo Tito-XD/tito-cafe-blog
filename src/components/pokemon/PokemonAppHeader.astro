@@ -1,0 +1,86 @@
+---
+import { Icon } from 'astro-icon/components';
+import ThemeToggler from '~/components/ThemeToggler.astro';
+---
+
+<header class="pokemon-app-header">
+	<a class="pokemon-app-header__home ui-pressable" href="/" title="返回博客首页" aria-label="返回博客首页">
+		<Icon name="ri:home-4-line" aria-hidden="true" />
+	</a>
+	<div class="pokemon-app-header__brand">
+		<p class="pokemon-app-header__title">宝可梦图鉴</p>
+		<p class="pokemon-app-header__subtitle">Pokémon Dex</p>
+	</div>
+	<div class="pokemon-app-header__actions">
+		<ThemeToggler />
+	</div>
+</header>
+
+<style>
+	.pokemon-app-header {
+		position: sticky;
+		top: 0;
+		z-index: 40;
+		display: grid;
+		grid-template-columns: auto 1fr auto;
+		align-items: center;
+		gap: 0.65rem;
+		margin: 0 0 0.85rem;
+		padding: 0.55rem 0.65rem;
+		border-radius: var(--radius-soft);
+		border: 1px solid color-mix(in srgb, var(--color-border) 82%, transparent);
+		background: color-mix(in srgb, var(--color-surface) 94%, var(--color-accent-soft) 6%);
+		backdrop-filter: blur(14px);
+		box-shadow: 0 0.35rem 1.2rem rgba(var(--color-shadow-rgb), 0.08);
+	}
+
+	.pokemon-app-header__home {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 2.15rem;
+		height: 2.15rem;
+		color: var(--color-text);
+		text-decoration: none;
+		opacity: 0.9;
+	}
+
+	.pokemon-app-header__home:hover,
+	.pokemon-app-header__home:focus-visible {
+		opacity: 1;
+	}
+
+	.pokemon-app-header__brand {
+		min-width: 0;
+		text-align: center;
+	}
+
+	.pokemon-app-header__title {
+		margin: 0;
+		font-size: 0.95rem;
+		font-weight: 700;
+		line-height: 1.2;
+	}
+
+	.pokemon-app-header__subtitle {
+		margin: 0.1rem 0 0;
+		font-size: 0.68rem;
+		font-weight: 600;
+		color: var(--color-muted);
+		line-height: 1.2;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+	}
+
+	.pokemon-app-header__actions {
+		display: inline-flex;
+		align-items: center;
+		justify-content: flex-end;
+	}
+
+	@media (display-mode: standalone) {
+		.pokemon-app-header {
+			top: env(safe-area-inset-top, 0);
+		}
+	}
+</style>
