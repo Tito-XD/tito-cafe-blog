@@ -260,11 +260,22 @@ const chains = filterChainsForRange(pokemonChains, 1, 151);
 			els.panelQuiz.hidden = tab !== 'quiz';
 		};
 
+		const resetQuizAnswerUi = () => {
+			if (!els.quizChoice || !els.quizTyping) return;
+			els.quizChoice.innerHTML = '';
+			els.quizChoice.hidden = true;
+			els.quizTyping.hidden = true;
+			if (els.quizInput) els.quizInput.value = '';
+		};
+
 		const showQuizPhase = (phase) => {
 			state.quizPhase = phase;
 			els.quizSetup.hidden = phase !== 'setup';
 			els.quizPlay.hidden = phase !== 'play';
 			els.quizDone.hidden = phase !== 'done';
+			if (phase === 'setup' || phase === 'done') {
+				resetQuizAnswerUi();
+			}
 		};
 
 		const syncQuizModeUi = () => {
@@ -354,6 +365,7 @@ const chains = filterChainsForRange(pokemonChains, 1, 151);
 					)
 					.join('');
 			} else {
+				els.quizChoice.innerHTML = '';
 				els.quizChoice.hidden = true;
 				els.quizTyping.hidden = false;
 				els.quizInput.value = '';
@@ -712,6 +724,11 @@ const chains = filterChainsForRange(pokemonChains, 1, 151);
 	.p151-choices {
 		display: grid;
 		gap: 0.5rem;
+	}
+
+	.p151-choices[hidden],
+	.p151-typing[hidden] {
+		display: none !important;
 	}
 
 	@media (min-width: 520px) {
