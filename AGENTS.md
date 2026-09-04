@@ -6,10 +6,6 @@
 # Run development server
 bun run dev
 
-# Pokémon 30th anniversary logo artwork (official Pokémon Japan site)
-bun run sync:pokemon30          # copy src/assets/pokemon30 → public
-bun run sync:pokemon30 -- --download  # fetch from pokemon.co.jp/ex/30th_logo
-
 # Type checking and build
 bun run build                # Runs astro check && astro build
 bun run check                # Runs astro type checking only
@@ -21,9 +17,6 @@ bun run format               # Biome formatter (write)
 # Preview production build
 bun run preview
 
-# Pokémon 151 page assets (official artwork from PokeAPI Sprites)
-bun run sync:pokemon151   # copy src/assets/pokemon151 → public (download if missing)
-bun run build:pokemon151    # regenerate src/data/pokemon151.json from PokeAPI
 ```
 
 **Note:** No test framework is currently configured. Add vitest/jest for unit tests.
@@ -146,14 +139,12 @@ setup();
 - **Node version:** 22.12.0+
 - **Base directory:** `/`
 
-## PWA (图鉴)
+## Pokémon content migration
 
-- Integration: `@vite-pwa/astro` with dex-focused manifest (`start_url: /151`)
-- Layout: `PokemonDexAppLayout` on `/151` and `/pokedex/*`
-- Icons: `public/pokedex-favicon*` + `pokedex-maskable-*` (dex pages only via `appShell` in `BaseLayout`)
-- Service worker: `sw.js` (generated at build); Netlify serves from `dist/` — no Netlify-specific SW product
-- Headers: `public/_headers` sets short cache for `sw.js`
-
+- 图鉴、151 测验与 1025 MV 切图已迁至 `Tito-XD/tito-pokemon`，独立 Cloudflare Pages 项目 `tito-pokemon`。
+- 主站 `/151`、`/pokedex/*`、`/1025` 只保留到 `https://tito-pokemon.pages.dev` 的跳转。
+- 不要在主站重新引入宝可梦页面、图片同步脚本或 PWA 构建集成。
+- `public/sw.js` 退役旧图鉴离线缓存，须保留以便老访客更新；Gallery 导航入口暂时隐藏。
 
 ## Before Submitting Work
 

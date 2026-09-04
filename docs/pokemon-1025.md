@@ -1,17 +1,9 @@
-# Pokémon 1025 collage gallery
+# 宝可梦内容已迁出主站
 
-- Route: `https://tito.cafe/1025` (Astro static page, wide gallery shell, compact dex-style header, and shared theme).
-- Entry: `1025 拼贴` in the Pokémon region navigation.
-- Cloudflare R2 bucket: `tito-cafe-1025`, APAC, Standard storage.
-- Public asset origin: `https://1025-assets.tito.cafe/v1`.
-- 1,025 species, national IDs 0001–1025; metadata: `src/data/pokemon-collages.json`.
+独立仓库：https://github.com/Tito-XD/tito-pokemon（私有）
+独立站点：https://tito-pokemon.pages.dev
+Cloudflare Pages 项目：`tito-pokemon`；R2 bucket：`tito-cafe-1025`。
 
-Asset keys are `thumbs/0001.webp` (390×480), `crops/0001.png` (780×960), and `frames/0001.png` (1920×1080). PNGs preserve the selected source pixels. Preview WebP files are separate resized derivatives. The original source is the official [Pokémon All Stars 1025 MV](https://www.youtube.com/watch?v=PqOBtBOsB_I), downloaded as a video-only 1080p stream; no AI enlargement or reconstruction was applied.
+主站不再构建图鉴、151、1025 页面或托管相关图片；`/151`、`/pokedex/*`、`/1025` 仅作 302 跳转。`public/sw.js` 是旧图鉴离线缓存的退役脚本，暂时保留以便老访客更新。Gallery 导航入口继续隐藏。
 
-`downloads/pokemon-1025-wallpapers.zip` and `downloads/pokemon-1025-original-frames.zip` provide complete offline archives. `manifest.json`, `index.csv`, and `readme.md` retain extraction times and source details. Large media files live in R2, outside Git and the Netlify build.
-
-The bucket permits cross-origin GET/HEAD from `https://tito.cafe`, `http://localhost:4321`, and `http://127.0.0.1:4321`. Individual PNG downloads use a browser Blob to preserve filenames; original images remain directly viewable. ZIP responses use attachment disposition. Assets use a one-year immutable cache: publish changed assets under a new version prefix and update `assetBase` in the page.
-
-The gallery uses native lazy-loaded images and client-side name/number filtering. The page and remote media are excluded from the dex offline precache. Normal checks and deployment use the repository's existing `bun run check` and `bun run build` commands, followed by its Git-connected Netlify deployment.
-
-The page has no main-site Header/Footer or PWA install prompt. Copyright and redistribution restrictions are displayed above the gallery. The main-site Gallery navigation entry is temporarily hidden in the shared Nav component (desktop and mobile); its route is unchanged.
+宝可梦页面的维护、版权说明、素材说明与独立下线步骤见新仓库 README。需要彻底停止分发时，除了当前站点和 R2 公开访问，还需检查历史部署（旧的 Netlify deploy URL 不因迁移自动消失）。独立项目便于分别下线，不构成版权授权或账号/域名风险隔离保证。
