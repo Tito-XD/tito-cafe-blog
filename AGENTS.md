@@ -141,8 +141,8 @@ setup();
 
 ## Pokémon content migration
 
-- 图鉴、151 测验与 1025 MV 切图已迁至 `Tito-XD/tito-pokemon`，独立 Cloudflare Pages 项目 `tito-pokemon`。
-- 主站 `/151`、`/pokedex/*`、`/1025` 只保留到 `https://tito-pokemon.pages.dev` 的跳转。
+- 图鉴、151 测验与 1025 MV 切图已迁至 `Tito-XD/tito-pokemon`，独立 Cloudflare Pages 项目 `titodex`。
+- 主站 `/151`、`/pokedex/*`、`/1025` 只保留到 `https://titodex.pages.dev` 的跳转。
 - 不要在主站重新引入宝可梦页面、图片同步脚本或 PWA 构建集成。
 - `public/sw.js` 退役旧图鉴离线缓存，须保留以便老访客更新；Gallery 导航入口暂时隐藏。
 

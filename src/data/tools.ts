@@ -7,14 +7,20 @@ export type ToolLink = {
 
 export const tools: ToolLink[] = [
 	{
+		title: 'TitoDex',
+		href: 'https://titodex.pages.dev',
+		description: 'TitoDex App、网页图鉴与 1025 MV 拼贴。',
+		tag: '宝可梦',
+	},
+	{
 		title: '全国图鉴',
-		href: 'https://tito-pokemon.pages.dev/pokedex',
+		href: 'https://titodex.pages.dev/pokedex',
 		description: '全国图鉴速查，可按地区切换，支持传说/幻/形态筛选。',
 		tag: '图鉴',
 	},
 	{
 		title: '宝可梦 151 · 关都',
-		href: 'https://tito-pokemon.pages.dev/151',
+		href: 'https://titodex.pages.dev/151',
 		description: '关都 151 只图鉴速查、属性弱点与中文名测验。',
 		tag: '图鉴',
 	},

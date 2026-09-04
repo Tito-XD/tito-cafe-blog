@@ -1,8 +1,8 @@
 # 宝可梦内容已迁出主站
 
 独立仓库：https://github.com/Tito-XD/tito-pokemon（私有）
-独立站点：https://tito-pokemon.pages.dev
-Cloudflare Pages 项目：`tito-pokemon`；R2 bucket：`tito-cafe-1025`。
+独立站点：https://titodex.pages.dev
+Cloudflare Pages 项目：`titodex`；R2 bucket：`tito-cafe-1025`。
 
 主站不再构建图鉴、151、1025 页面或托管相关图片；`/151`、`/pokedex/*`、`/1025` 仅作 302 跳转。`public/sw.js` 是旧图鉴离线缓存的退役脚本，暂时保留以便老访客更新。Gallery 导航入口继续隐藏。
 
