@@ -1,15 +1,28 @@
 ---
 import { Icon } from 'astro-icon/components';
 import ThemeToggler from '~/components/ThemeToggler.astro';
+
+interface Props {
+	title?: string;
+	subtitle?: string;
+	backHref?: string;
+	backLabel?: string;
+}
+const {
+	title = '宝可梦图鉴',
+	subtitle = 'Pokémon Dex',
+	backHref = '/',
+	backLabel = '返回博客首页',
+} = Astro.props;
 ---
 
 <header class="pokemon-app-header">
-	<a class="pokemon-app-header__home ui-pressable" href="/" title="返回博客首页" aria-label="返回博客首页">
-		<Icon name="ri:home-4-line" aria-hidden="true" />
+	<a class="pokemon-app-header__home ui-pressable" href={backHref} title={backLabel} aria-label={backLabel}>
+		<Icon name={backHref === '/' ? 'ri:home-4-line' : 'ri:arrow-left-line'} aria-hidden="true" />
 	</a>
 	<div class="pokemon-app-header__brand">
-		<p class="pokemon-app-header__title">宝可梦图鉴</p>
-		<p class="pokemon-app-header__subtitle">Pokémon Dex</p>
+		<p class="pokemon-app-header__title">{title}</p>
+		<p class="pokemon-app-header__subtitle">{subtitle}</p>
 	</div>
 	<div class="pokemon-app-header__actions">
 		<ThemeToggler />

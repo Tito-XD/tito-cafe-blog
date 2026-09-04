@@ -33,6 +33,7 @@ const { currentSlug } = Astro.props;
 		}
 	</nav>
 	<div class="pokedex-nav-actions">
+		<a class="pokedex-nav__link" href="/1025">1025 拼贴 ↗</a>
 		<PokemonArtModeToggle />
 	</div>
 </div>
@@ -57,6 +58,8 @@ const { currentSlug } = Astro.props;
 	}
 
 	.pokedex-nav-actions {
+		gap: 0.5rem;
+		flex-wrap: wrap;
 		display: flex;
 		align-items: center;
 		flex: 0 0 auto;

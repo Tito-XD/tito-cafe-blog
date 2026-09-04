@@ -1,0 +1,192 @@
+---
+import collages from '~/data/pokemon-collages.json';
+import pokemon from '~/data/pokemon.json';
+import PokemonCollageLayout from '~/layouts/PokemonCollageLayout.astro';
+
+const assetBase = 'https://1025-assets.tito.cafe/v1';
+const englishNames = new Map(pokemon.map((entry) => [entry.id, entry.nameEn]));
+---
+
+<PokemonCollageLayout
+	title="1025 宝可梦拼贴 · Tito's Cafe"
+	description="官方 Pokémon All Stars 1025 MV 切图，覆盖全国图鉴 1–1025，提供竖向裁切 PNG 和完整横屏原帧。"
+	socialImage={`${assetBase}/thumbs/0025.webp`}
+>
+	<section class="collages" aria-labelledby="collage-title" data-collage-gallery>
+		<header class="collage-intro">
+			<h1 id="collage-title">1025 MV 切图</h1>
+			<p class="intro-copy">官方《ポケモンオールスターズ1025》MV 的逐只切图，覆盖全国图鉴 #0001–#1025。提供竖向裁切 PNG 与完整横屏原帧。</p>
+			<div class="quality-notes"><span>1025 张拼贴</span><span>780 × 960 竖向裁切</span><span>1920 × 1080 完整原帧</span></div>
+			<div class="collection-downloads">
+				<a class="collection-link" href={`${assetBase}/downloads/pokemon-1025-wallpapers.zip`} data-astro-reload>下载全部裁切 PNG <span>ZIP · 770 MB</span></a>
+				<a class="collection-link secondary" href={`${assetBase}/downloads/pokemon-1025-original-frames.zip`} data-astro-reload>下载全部横屏原帧 <span>ZIP · 1.60 GB</span></a>
+			</div>
+		</header>
+		<aside class="copyright-notice" aria-labelledby="copyright-title">
+			<h2 id="copyright-title">版权声明</h2>
+			<p>本页为非官方爱好者整理，与宝可梦官方及原片制作方无关联。宝可梦角色、商标、原 MV、拼贴作品与截图的著作权及其他权利，均归原作者及各权利人所有；本站不拥有这些素材的版权。</p>
+			<p>本页仅作非商业个人欣赏与参考，不构成任何使用授权。下载不转移任何权利；未经相关权利人许可，不得用于商业用途、转载、再分发或建立二次素材库。请保留原作署名及版权信息。权利人如对本页展示有异议，请<a href="mailto:titow.xd@outlook.com">联系站长</a>，核实后将及时移除相关内容。</p>
+		</aside>
+		<div class="collage-tools">
+			<div class="search-wrap">
+				<label class="sr-only" for="collage-search">搜索宝可梦</label>
+				<input id="collage-search" type="search" placeholder="搜索名字或图鉴编号…" autocomplete="off" spellcheck="false" aria-controls="collage-grid" />
+			</div>
+			<p id="collage-count" aria-live="polite" aria-atomic="true">1025 / 1025 张</p>
+		</div>
+		<p id="collage-download-status" class="download-status" role="status" hidden></p>
+		<div id="collage-grid" class="collage-grid">
+			{collages.map((entry, index) => {
+				const id = String(entry.dex).padStart(4, '0');
+				const crop = `${assetBase}/crops/${id}.png`;
+				const frame = `${assetBase}/frames/${id}.png`;
+				return (
+					<article class="collage-card" data-dex={entry.dex} data-search={`${entry.name_zh} ${entry.name_ja} ${englishNames.get(entry.dex) || ''}`.toLowerCase()}>
+						<a class="collage-picture" href={crop} target="_blank" rel="noopener" aria-label={`查看${entry.name_zh}原尺寸拼贴图（新窗口）`}>
+							<img src={`${assetBase}/thumbs/${id}.webp`} width="390" height="480" loading={index < 5 ? 'eager' : 'lazy'} decoding="async" alt={`${entry.name_zh}的手工拼贴页`} />
+						</a>
+						<div class="collage-meta">
+							<small>#{id} <span>· {entry.timecode}</span></small>
+							<h2>{entry.name_zh}</h2>
+							<p lang="ja">{entry.name_ja}</p>
+							<nav aria-label={`${entry.name_zh}图片下载`}>
+								<a href={crop} download={`${id}_${entry.name_zh}.png`} data-collage-download data-astro-reload>裁切 PNG <span aria-hidden="true">↓</span></a>
+								<a href={frame} target="_blank" rel="noopener">完整原帧 <span aria-hidden="true">↗</span></a>
+							</nav>
+						</div>
+					</article>
+				);
+			})}
+		</div>
+		<div class="empty-state" id="collage-empty" hidden>
+			<p>没有找到这只宝可梦。</p>
+			<p>试试中文、日文、英文名字，或 1–1025 的图鉴编号。</p>
+			<button type="button" id="collage-reset">查看全部拼贴</button>
+		</div>
+		<footer class="collage-credits">
+			<p>画面来自 <a href="https://www.youtube.com/watch?v=PqOBtBOsB_I" target="_blank" rel="noreferrer">官方 MV《ポケモンオールスターズ1025》↗</a>。视频源为 1080p；PNG 保留选定帧的原始像素，未经 AI 放大或重绘。部分画面保留原片动作与特效。</p>
+			<p><a href={`${assetBase}/index.csv`} data-astro-reload>图片索引 CSV</a> · <a href={`${assetBase}/readme.md`} target="_blank" rel="noopener">提取说明</a></p>
+		</footer>
+	</section>
+</PokemonCollageLayout>
+
+<script>
+	function setupCollageGallery() {
+		const hostWindow = window as Window & { __collageCleanup?: () => void };
+		hostWindow.__collageCleanup?.();
+		const root = document.querySelector<HTMLElement>('[data-collage-gallery]');
+		if (!root) return;
+		const input = root.querySelector<HTMLInputElement>('#collage-search');
+		const count = root.querySelector<HTMLElement>('#collage-count');
+		const empty = root.querySelector<HTMLElement>('#collage-empty');
+		const status = root.querySelector<HTMLElement>('#collage-download-status');
+		if (!input || !count || !empty || !status) return;
+		const cards = [...root.querySelectorAll<HTMLElement>('.collage-card')];
+		const controller = new AbortController();
+		const { signal } = controller;
+		const objectUrls = new Set<string>();
+		const filter = () => {
+			const query = input.value.trim().toLowerCase().replace(/^#/, '');
+			const numeric = /^\d+$/.test(query);
+			let visible = 0;
+			for (const card of cards) {
+				const matches = numeric
+					? Number(card.dataset.dex) === Number(query)
+					: (card.dataset.search || '').includes(query);
+				card.hidden = !matches;
+				if (matches) visible++;
+			}
+			count.textContent = `${visible} / ${cards.length} 张`;
+			empty.hidden = visible > 0;
+		};
+		input.addEventListener('input', filter, { signal });
+		root.querySelector('#collage-reset')?.addEventListener('click', () => {
+			input.value = '';
+			filter();
+			input.focus();
+		}, { signal });
+		root.addEventListener('click', async (event) => {
+			if (!(event.target instanceof Element)) return;
+			const link = event.target.closest<HTMLAnchorElement>('[data-collage-download]');
+			if (!link || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+			event.preventDefault();
+			if (link.getAttribute('aria-busy') === 'true') return;
+			link.setAttribute('aria-busy', 'true');
+			status.hidden = false;
+			status.textContent = `正在下载 ${link.download}…`;
+			try {
+				const response = await fetch(link.href, { signal: AbortSignal.any([signal, AbortSignal.timeout(45000)]) });
+				if (!response.ok) throw new Error('Download failed');
+				const url = URL.createObjectURL(await response.blob());
+				objectUrls.add(url);
+				const download = document.createElement('a');
+				download.href = url;
+				download.download = link.download;
+				document.body.append(download);
+				download.click();
+				download.remove();
+				window.setTimeout(() => { URL.revokeObjectURL(url); objectUrls.delete(url); }, 10000);
+				status.textContent = `${link.download} 已准备下载。`;
+			} catch {
+				if (signal.aborted) return;
+				status.textContent = '下载暂时失败，请重试，或点击图片打开原图后保存。';
+			} finally {
+				link.removeAttribute('aria-busy');
+			}
+		}, { signal });
+		filter();
+		hostWindow.__collageCleanup = () => {
+			controller.abort();
+			for (const url of objectUrls) URL.revokeObjectURL(url);
+			objectUrls.clear();
+		};
+	}
+	document.addEventListener('astro:page-load', setupCollageGallery);
+	document.addEventListener('astro:before-swap', () => {
+		(window as Window & { __collageCleanup?: () => void }).__collageCleanup?.();
+	});
+	setupCollageGallery();
+</script>
+
+<style>
+	.collages { color: var(--color-text); }
+	.collage-intro { padding: clamp(1rem, 2vw, 1.5rem); border: 1px solid var(--color-border); border-radius: var(--radius-card); background: linear-gradient(125deg, var(--color-accent-soft), var(--color-surface)); }
+	h1 { margin: 0; font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.25; letter-spacing: -.045em; font-weight: 750; }
+	.intro-copy { max-width: 47rem; margin: 1rem 0; color: var(--color-muted); font-size: .95rem; line-height: 1.9; }
+	.quality-notes { display: flex; flex-wrap: wrap; gap: .5rem 1.1rem; color: var(--color-muted); font-size: .76rem; }
+	.collection-downloads { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.6rem; }
+	.collection-link { display: flex; align-items: center; flex-wrap: wrap; gap: .45rem .8rem; padding: .85rem 1.1rem; border: 1px solid var(--color-accent); border-radius: var(--radius-button); background: var(--color-accent); color: var(--color-surface); font-size: .85rem; font-weight: 650; text-decoration: none; }
+	.collection-link span { font-size: .72rem; font-weight: 400; }
+	.collection-link.secondary { color: var(--color-text); background: var(--color-surface); border-color: var(--color-border); }
+	.collection-link:hover { filter: brightness(.95); }
+	.collage-tools { position: sticky; top: 4.45rem; z-index: 5; display: flex; align-items: center; gap: 1rem; padding: 1.2rem 0; margin: .5rem 0 .35rem; background: color-mix(in srgb, var(--color-surface) 94%, transparent); backdrop-filter: blur(16px); }
+	.search-wrap { width: min(100%, 32rem); }
+	input { width: 100%; min-height: 48px; padding: .8rem 1rem; border: 1px solid var(--color-border); border-radius: var(--radius-button); background: var(--color-surface); color: var(--color-text); font: inherit; font-size: .9rem; }
+	input::placeholder { color: var(--color-muted); }
+	#collage-count { flex-shrink: 0; color: var(--color-muted); font-size: .8rem; font-variant-numeric: tabular-nums; }
+	.collage-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 195px), 1fr)); gap: 1.4rem; align-items: start; }
+	.collage-card { overflow: hidden; border: 1px solid var(--color-border); border-radius: var(--radius-card); background: var(--color-surface); box-shadow: 0 3px 12px rgba(var(--color-shadow-rgb), .06); }
+	.collage-picture { display: block; overflow: hidden; background: var(--color-surface-2); }
+	.collage-picture img { display: block; width: 100%; height: auto; aspect-ratio: 13 / 16; object-fit: contain; transition: transform var(--motion-gentle); }
+	@media (hover: hover) and (prefers-reduced-motion: no-preference) { .collage-picture:hover img { transform: scale(1.025); } }
+	.collage-meta { padding: .95rem; }
+	.collage-meta small { font-size: .7rem; font-variant-numeric: tabular-nums; color: var(--color-muted); }
+	.collage-meta h2 { margin: .45rem 0 .25rem; font-size: 1.12rem; font-weight: 650; }
+	.collage-meta p { margin: 0 0 .7rem; color: var(--color-muted); font-size: .78rem; }
+	.collage-meta nav { display: flex; flex-wrap: wrap; gap: .8rem; }
+	.collage-meta nav a { padding: .4rem 0; color: var(--color-accent); font-size: .78rem; text-decoration: none; }
+	.collage-meta nav a:hover { text-decoration: underline; }
+	[aria-busy='true'] { opacity: .6; cursor: wait; }
+	.copyright-notice { margin-top: 1rem; padding: 1rem 1.2rem; border: 1px solid var(--color-border); border-radius: var(--radius-soft); background: var(--color-surface); color: var(--color-muted); font-size: .78rem; line-height: 1.8; }
+	.copyright-notice h2 { margin: 0 0 .35rem; color: var(--color-text); font-size: .85rem; font-weight: 700; }
+	.copyright-notice p { margin: .3rem 0 0; }
+	.copyright-notice a { color: var(--color-accent); text-decoration: underline; }
+	.collage-credits { margin: 2rem 0; border-top: 1px solid var(--color-border); padding-top: 1.2rem; color: var(--color-muted); font-size: .78rem; line-height: 1.9; }
+	.collage-credits a { color: var(--color-accent); }
+	.empty-state { padding: 3rem 1rem; text-align: center; color: var(--color-muted); }
+	.empty-state button { margin-top: 1rem; padding: .65rem 1rem; border: 1px solid var(--color-border); border-radius: var(--radius-button); background: var(--color-accent-soft); color: var(--color-text); cursor: pointer; }
+	.download-status { padding: .65rem 0; color: var(--color-muted); font-size: .85rem; }
+	[hidden] { display: none !important; }
+	:where(a, button, input):focus-visible { outline: 2px solid var(--color-accent); outline-offset: 4px; }
+	@media (max-width: 540px) { .collage-tools { gap: .65rem; } #collage-count { font-size: .7rem; } input { font-size: .82rem; padding-inline: .65rem; } .collection-link { width: 100%; justify-content: space-between; } .collage-grid { gap: 1rem; } }
+</style>

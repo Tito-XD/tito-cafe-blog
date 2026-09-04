@@ -39,7 +39,12 @@ export const dexPwaManifest = {
 
 export const dexPwaWorkbox = {
 	navigateFallback: '/151.html',
-	navigateFallbackDenylist: [/^\/pagefind\//, /^\/rss\.xml/, /^\/og\.png/],
+	navigateFallbackDenylist: [
+		/^\/1025(?:\/|\.html|$)/,
+		/^\/pagefind\//,
+		/^\/rss\.xml/,
+		/^\/og\.png/,
+	],
 	globPatterns: ['**/*.{js,css,html,ico,svg,woff2,json}'],
 	globIgnores: [
 		'**/pokemon/**',
@@ -49,12 +54,15 @@ export const dexPwaWorkbox = {
 		'**/gallery/**',
 		'**/sbti/**',
 		'**/sbti.html',
+		'**/1025.html',
+		'**/1025/**',
 		'**/think/**',
 		'**/thinks/**',
 	],
 	runtimeCaching: [
 		{
-			urlPattern: /^https:\/\/raw\.githubusercontent\.com\/PokeAPI\/sprites\/.*/i,
+			urlPattern:
+				/^https:\/\/raw\.githubusercontent\.com\/PokeAPI\/sprites\/.*/i,
 			handler: 'CacheFirst',
 			options: {
 				cacheName: 'pokeapi-artwork',

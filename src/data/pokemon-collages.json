@@ -1,0 +1,6152 @@
+[
+	{
+		"dex": 1,
+		"name_zh": "妙蛙种子",
+		"name_ja": "フシギダネ",
+		"timecode": "00:43.043"
+	},
+	{
+		"dex": 2,
+		"name_zh": "妙蛙草",
+		"name_ja": "フシギソウ",
+		"timecode": "18:49.895"
+	},
+	{
+		"dex": 3,
+		"name_zh": "妙蛙花",
+		"name_ja": "フシギバナ",
+		"timecode": "10:40.206"
+	},
+	{
+		"dex": 4,
+		"name_zh": "小火龙",
+		"name_ja": "ヒトカゲ",
+		"timecode": "13:33.513"
+	},
+	{
+		"dex": 5,
+		"name_zh": "火恐龙",
+		"name_ja": "リザード",
+		"timecode": "17:25.544"
+	},
+	{
+		"dex": 6,
+		"name_zh": "喷火龙",
+		"name_ja": "リザードン",
+		"timecode": "04:36.510"
+	},
+	{
+		"dex": 7,
+		"name_zh": "杰尼龟",
+		"name_ja": "ゼニガメ",
+		"timecode": "13:33.112"
+	},
+	{
+		"dex": 8,
+		"name_zh": "卡咪龟",
+		"name_ja": "カメール",
+		"timecode": "05:59.659"
+	},
+	{
+		"dex": 9,
+		"name_zh": "水箭龟",
+		"name_ja": "カメックス",
+		"timecode": "03:30.544"
+	},
+	{
+		"dex": 10,
+		"name_zh": "绿毛虫",
+		"name_ja": "キャタピー",
+		"timecode": "01:33.594"
+	},
+	{
+		"dex": 11,
+		"name_zh": "铁甲蛹",
+		"name_ja": "トランセル",
+		"timecode": "15:36.502"
+	},
+	{
+		"dex": 12,
+		"name_zh": "巴大蝶",
+		"name_ja": "バタフリー",
+		"timecode": "19:04.543"
+	},
+	{
+		"dex": 13,
+		"name_zh": "独角虫",
+		"name_ja": "ビードル",
+		"timecode": "06:45.405"
+	},
+	{
+		"dex": 14,
+		"name_zh": "铁壳蛹",
+		"name_ja": "コクーン",
+		"timecode": "20:21.954"
+	},
+	{
+		"dex": 15,
+		"name_zh": "大针蜂",
+		"name_ja": "スピアー",
+		"timecode": "06:24.484"
+	},
+	{
+		"dex": 16,
+		"name_zh": "波波",
+		"name_ja": "ポッポ",
+		"timecode": "07:53.206"
+	},
+	{
+		"dex": 17,
+		"name_zh": "比比鸟",
+		"name_ja": "ピジョン",
+		"timecode": "00:14.815"
+	},
+	{
+		"dex": 18,
+		"name_zh": "大比鸟",
+		"name_ja": "ピジョット",
+		"timecode": "17:26.846"
+	},
+	{
+		"dex": 19,
+		"name_zh": "小拉达",
+		"name_ja": "コラッタ",
+		"timecode": "00:16.049"
+	},
+	{
+		"dex": 20,
+		"name_zh": "拉达",
+		"name_ja": "ラッタ",
+		"timecode": "15:25.691"
+	},
+	{
+		"dex": 21,
+		"name_zh": "烈雀",
+		"name_ja": "オニスズメ",
+		"timecode": "07:54.207"
+	},
+	{
+		"dex": 22,
+		"name_zh": "大嘴雀",
+		"name_ja": "オニドリル",
+		"timecode": "07:55.608"
+	},
+	{
+		"dex": 23,
+		"name_zh": "阿柏蛇",
+		"name_ja": "アーボ",
+		"timecode": "06:30.056"
+	},
+	{
+		"dex": 24,
+		"name_zh": "阿柏怪",
+		"name_ja": "アーボック",
+		"timecode": "13:23.736"
+	},
+	{
+		"dex": 25,
+		"name_zh": "皮卡丘",
+		"name_ja": "ピカチュウ",
+		"timecode": "00:12.846"
+	},
+	{
+		"dex": 26,
+		"name_zh": "雷丘",
+		"name_ja": "ライチュウ",
+		"timecode": "01:30.857"
+	},
+	{
+		"dex": 27,
+		"name_zh": "穿山鼠",
+		"name_ja": "サンド",
+		"timecode": "11:32.458"
+	},
+	{
+		"dex": 28,
+		"name_zh": "穿山王",
+		"name_ja": "サンドパン",
+		"timecode": "11:33.393"
+	},
+	{
+		"dex": 29,
+		"name_zh": "尼多兰",
+		"name_ja": "ニドラン♀",
+		"timecode": "13:15.194"
+	},
+	{
+		"dex": 30,
+		"name_zh": "尼多娜",
+		"name_ja": "ニドリーナ",
+		"timecode": "00:24.491"
+	},
+	{
+		"dex": 31,
+		"name_zh": "尼多后",
+		"name_ja": "ニドクイン",
+		"timecode": "11:49.108"
+	},
+	{
+		"dex": 32,
+		"name_zh": "尼多朗",
+		"name_ja": "ニドラン♂",
+		"timecode": "13:14.360"
+	},
+	{
+		"dex": 33,
+		"name_zh": "尼多力诺",
+		"name_ja": "ニドリーノ",
+		"timecode": "17:36.589"
+	},
+	{
+		"dex": 34,
+		"name_zh": "尼多王",
+		"name_ja": "ニドキング",
+		"timecode": "02:10.664"
+	},
+	{
+		"dex": 35,
+		"name_zh": "皮皮",
+		"name_ja": "ピッピ",
+		"timecode": "00:48.115"
+	},
+	{
+		"dex": 36,
+		"name_zh": "皮可西",
+		"name_ja": "ピクシー",
+		"timecode": "00:48.615"
+	},
+	{
+		"dex": 37,
+		"name_zh": "六尾",
+		"name_ja": "ロコン",
+		"timecode": "00:43.744"
+	},
+	{
+		"dex": 38,
+		"name_zh": "九尾",
+		"name_ja": "キュウコン",
+		"timecode": "04:33.840"
+	},
+	{
+		"dex": 39,
+		"name_zh": "胖丁",
+		"name_ja": "プリン",
+		"timecode": "17:45.998"
+	},
+	{
+		"dex": 40,
+		"name_zh": "胖可丁",
+		"name_ja": "プクリン",
+		"timecode": "14:22.995"
+	},
+	{
+		"dex": 41,
+		"name_zh": "超音蝠",
+		"name_ja": "ズバット",
+		"timecode": "00:16.750"
+	},
+	{
+		"dex": 42,
+		"name_zh": "大嘴蝠",
+		"name_ja": "ゴルバット",
+		"timecode": "17:28.748"
+	},
+	{
+		"dex": 43,
+		"name_zh": "走路草",
+		"name_ja": "ナゾノクサ",
+		"timecode": "18:48.995"
+	},
+	{
+		"dex": 44,
+		"name_zh": "臭臭花",
+		"name_ja": "クサイハナ",
+		"timecode": "02:05.859"
+	},
+	{
+		"dex": 45,
+		"name_zh": "霸王花",
+		"name_ja": "ラフレシア",
+		"timecode": "06:30.490"
+	},
+	{
+		"dex": 46,
+		"name_zh": "派拉斯",
+		"name_ja": "パラス",
+		"timecode": "03:30.944"
+	},
+	{
+		"dex": 47,
+		"name_zh": "派拉斯特",
+		"name_ja": "パラセクト",
+		"timecode": "19:07.513"
+	},
+	{
+		"dex": 48,
+		"name_zh": "毛球",
+		"name_ja": "コンパン",
+		"timecode": "06:31.892"
+	},
+	{
+		"dex": 49,
+		"name_zh": "摩鲁蛾",
+		"name_ja": "モルフォン",
+		"timecode": "13:18.765"
+	},
+	{
+		"dex": 50,
+		"name_zh": "地鼠",
+		"name_ja": "ディグダ",
+		"timecode": "11:36.362"
+	},
+	{
+		"dex": 51,
+		"name_zh": "三地鼠",
+		"name_ja": "ダグトリオ",
+		"timecode": "11:36.863"
+	},
+	{
+		"dex": 52,
+		"name_zh": "喵喵",
+		"name_ja": "ニャース",
+		"timecode": "03:31.311"
+	},
+	{
+		"dex": 53,
+		"name_zh": "猫老大",
+		"name_ja": "ペルシアン",
+		"timecode": "01:47.407"
+	},
+	{
+		"dex": 54,
+		"name_zh": "可达鸭",
+		"name_ja": "コダック",
+		"timecode": "00:15.415"
+	},
+	{
+		"dex": 55,
+		"name_zh": "哥达鸭",
+		"name_ja": "ゴルダック",
+		"timecode": "17:27.513"
+	},
+	{
+		"dex": 56,
+		"name_zh": "猴怪",
+		"name_ja": "マンキー",
+		"timecode": "01:32.259"
+	},
+	{
+		"dex": 57,
+		"name_zh": "火暴猴",
+		"name_ja": "オコリザル",
+		"timecode": "11:59.452"
+	},
+	{
+		"dex": 58,
+		"name_zh": "卡蒂狗",
+		"name_ja": "ガーディ",
+		"timecode": "04:34.841"
+	},
+	{
+		"dex": 59,
+		"name_zh": "风速狗",
+		"name_ja": "ウインディ",
+		"timecode": "04:23.063"
+	},
+	{
+		"dex": 60,
+		"name_zh": "蚊香蝌蚪",
+		"name_ja": "ニョロモ",
+		"timecode": "13:27.607"
+	},
+	{
+		"dex": 61,
+		"name_zh": "蚊香君",
+		"name_ja": "ニョロゾ",
+		"timecode": "13:28.341"
+	},
+	{
+		"dex": 62,
+		"name_zh": "蚊香泳士",
+		"name_ja": "ニョロボン",
+		"timecode": "06:00.861"
+	},
+	{
+		"dex": 63,
+		"name_zh": "凯西",
+		"name_ja": "ケーシィ",
+		"timecode": "04:54.895"
+	},
+	{
+		"dex": 64,
+		"name_zh": "勇基拉",
+		"name_ja": "ユンゲラー",
+		"timecode": "14:54.093"
+	},
+	{
+		"dex": 65,
+		"name_zh": "胡地",
+		"name_ja": "フーディン",
+		"timecode": "04:57.798"
+	},
+	{
+		"dex": 66,
+		"name_zh": "腕力",
+		"name_ja": "ワンリキー",
+		"timecode": "11:53.413"
+	},
+	{
+		"dex": 67,
+		"name_zh": "豪力",
+		"name_ja": "ゴーリキー",
+		"timecode": "00:54.254"
+	},
+	{
+		"dex": 68,
+		"name_zh": "怪力",
+		"name_ja": "カイリキー",
+		"timecode": "11:54.514"
+	},
+	{
+		"dex": 69,
+		"name_zh": "喇叭芽",
+		"name_ja": "マダツボミ",
+		"timecode": "00:50.884"
+	},
+	{
+		"dex": 70,
+		"name_zh": "口呆花",
+		"name_ja": "ウツドン",
+		"timecode": "14:40.913"
+	},
+	{
+		"dex": 71,
+		"name_zh": "大食花",
+		"name_ja": "ウツボット",
+		"timecode": "06:30.991"
+	},
+	{
+		"dex": 72,
+		"name_zh": "玛瑙水母",
+		"name_ja": "メノクラゲ",
+		"timecode": "13:13.493"
+	},
+	{
+		"dex": 73,
+		"name_zh": "毒刺水母",
+		"name_ja": "ドククラゲ",
+		"timecode": "06:35.962"
+	},
+	{
+		"dex": 74,
+		"name_zh": "小拳石",
+		"name_ja": "イシツブテ",
+		"timecode": "00:42.242"
+	},
+	{
+		"dex": 75,
+		"name_zh": "隆隆石",
+		"name_ja": "ゴローン",
+		"timecode": "11:37.997"
+	},
+	{
+		"dex": 76,
+		"name_zh": "隆隆岩",
+		"name_ja": "ゴローニャ",
+		"timecode": "07:41.795"
+	},
+	{
+		"dex": 77,
+		"name_zh": "小火马",
+		"name_ja": "ポニータ",
+		"timecode": "00:27.494"
+	},
+	{
+		"dex": 78,
+		"name_zh": "烈焰马",
+		"name_ja": "ギャロップ",
+		"timecode": "00:17.551"
+	},
+	{
+		"dex": 79,
+		"name_zh": "呆呆兽",
+		"name_ja": "ヤドン",
+		"timecode": "14:51.290"
+	},
+	{
+		"dex": 80,
+		"name_zh": "呆壳兽",
+		"name_ja": "ヤドラン",
+		"timecode": "00:14.147"
+	},
+	{
+		"dex": 81,
+		"name_zh": "小磁怪",
+		"name_ja": "コイル",
+		"timecode": "03:27.908"
+	},
+	{
+		"dex": 82,
+		"name_zh": "三合一磁怪",
+		"name_ja": "レアコイル",
+		"timecode": "03:28.542"
+	},
+	{
+		"dex": 83,
+		"name_zh": "大葱鸭",
+		"name_ja": "カモネギ",
+		"timecode": "07:30.216"
+	},
+	{
+		"dex": 84,
+		"name_zh": "嘟嘟",
+		"name_ja": "ドードー",
+		"timecode": "07:27.747"
+	},
+	{
+		"dex": 85,
+		"name_zh": "嘟嘟利",
+		"name_ja": "ドードリオ",
+		"timecode": "07:26.913"
+	},
+	{
+		"dex": 86,
+		"name_zh": "小海狮",
+		"name_ja": "パウワウ",
+		"timecode": "06:02.696"
+	},
+	{
+		"dex": 87,
+		"name_zh": "白海狮",
+		"name_ja": "ジュゴン",
+		"timecode": "06:01.494"
+	},
+	{
+		"dex": 88,
+		"name_zh": "臭泥",
+		"name_ja": "ベトベター",
+		"timecode": "06:24.985"
+	},
+	{
+		"dex": 89,
+		"name_zh": "臭臭泥",
+		"name_ja": "ベトベトン",
+		"timecode": "14:01.407"
+	},
+	{
+		"dex": 90,
+		"name_zh": "大舌贝",
+		"name_ja": "シェルダー",
+		"timecode": "13:31.744"
+	},
+	{
+		"dex": 91,
+		"name_zh": "刺甲贝",
+		"name_ja": "パルシェン",
+		"timecode": "17:45.398"
+	},
+	{
+		"dex": 92,
+		"name_zh": "鬼斯",
+		"name_ja": "ゴース",
+		"timecode": "00:53.353"
+	},
+	{
+		"dex": 93,
+		"name_zh": "鬼斯通",
+		"name_ja": "ゴースト",
+		"timecode": "00:53.687"
+	},
+	{
+		"dex": 94,
+		"name_zh": "耿鬼",
+		"name_ja": "ゲンガー",
+		"timecode": "03:17.197"
+	},
+	{
+		"dex": 95,
+		"name_zh": "大岩蛇",
+		"name_ja": "イワーク",
+		"timecode": "07:44.898"
+	},
+	{
+		"dex": 96,
+		"name_zh": "催眠貘",
+		"name_ja": "スリープ",
+		"timecode": "04:51.958"
+	},
+	{
+		"dex": 97,
+		"name_zh": "引梦貘人",
+		"name_ja": "スリーパー",
+		"timecode": "04:52.759"
+	},
+	{
+		"dex": 98,
+		"name_zh": "大钳蟹",
+		"name_ja": "クラブ",
+		"timecode": "14:37.043"
+	},
+	{
+		"dex": 99,
+		"name_zh": "巨钳蟹",
+		"name_ja": "キングラー",
+		"timecode": "02:09.963"
+	},
+	{
+		"dex": 100,
+		"name_zh": "霹雳电球",
+		"name_ja": "ビリリダマ",
+		"timecode": "09:03.143"
+	},
+	{
+		"dex": 101,
+		"name_zh": "顽皮雷弹",
+		"name_ja": "マルマイン",
+		"timecode": "09:10.116"
+	},
+	{
+		"dex": 102,
+		"name_zh": "蛋蛋",
+		"name_ja": "タマタマ",
+		"timecode": "00:49.850"
+	},
+	{
+		"dex": 103,
+		"name_zh": "椰蛋树",
+		"name_ja": "ナッシー",
+		"timecode": "00:50.183"
+	},
+	{
+		"dex": 104,
+		"name_zh": "卡拉卡拉",
+		"name_ja": "カラカラ",
+		"timecode": "00:49.049"
+	},
+	{
+		"dex": 105,
+		"name_zh": "嘎啦嘎啦",
+		"name_ja": "ガラガラ",
+		"timecode": "00:49.416"
+	},
+	{
+		"dex": 106,
+		"name_zh": "飞腿郎",
+		"name_ja": "サワムラー",
+		"timecode": "11:57.584"
+	},
+	{
+		"dex": 107,
+		"name_zh": "快拳郎",
+		"name_ja": "エビワラー",
+		"timecode": "11:58.685"
+	},
+	{
+		"dex": 108,
+		"name_zh": "大舌头",
+		"name_ja": "ベロリンガ",
+		"timecode": "03:16.863"
+	},
+	{
+		"dex": 109,
+		"name_zh": "瓦斯弹",
+		"name_ja": "ドガース",
+		"timecode": "03:31.645"
+	},
+	{
+		"dex": 110,
+		"name_zh": "双弹瓦斯",
+		"name_ja": "マタドガス",
+		"timecode": "03:23.804"
+	},
+	{
+		"dex": 111,
+		"name_zh": "独角犀牛",
+		"name_ja": "サイホーン",
+		"timecode": "11:34.494"
+	},
+	{
+		"dex": 112,
+		"name_zh": "钻角犀兽",
+		"name_ja": "サイドン",
+		"timecode": "00:21.788"
+	},
+	{
+		"dex": 113,
+		"name_zh": "吉利蛋",
+		"name_ja": "ラッキー",
+		"timecode": "01:31.491"
+	},
+	{
+		"dex": 114,
+		"name_zh": "蔓藤怪",
+		"name_ja": "モンジャラ",
+		"timecode": "10:38.605"
+	},
+	{
+		"dex": 115,
+		"name_zh": "袋兽",
+		"name_ja": "ガルーラ",
+		"timecode": "14:30.403"
+	},
+	{
+		"dex": 116,
+		"name_zh": "墨海马",
+		"name_ja": "タッツー",
+		"timecode": "14:32.205"
+	},
+	{
+		"dex": 117,
+		"name_zh": "海刺龙",
+		"name_ja": "シードラ",
+		"timecode": "15:56.989"
+	},
+	{
+		"dex": 118,
+		"name_zh": "角金鱼",
+		"name_ja": "トサキント",
+		"timecode": "18:41.387"
+	},
+	{
+		"dex": 119,
+		"name_zh": "金鱼王",
+		"name_ja": "アズマオウ",
+		"timecode": "01:34.895"
+	},
+	{
+		"dex": 120,
+		"name_zh": "海星星",
+		"name_ja": "ヒトデマン",
+		"timecode": "17:42.061"
+	},
+	{
+		"dex": 121,
+		"name_zh": "宝石海星",
+		"name_ja": "スターミー",
+		"timecode": "17:32.585"
+	},
+	{
+		"dex": 122,
+		"name_zh": "魔墙人偶",
+		"name_ja": "バリヤード",
+		"timecode": "14:58.097"
+	},
+	{
+		"dex": 123,
+		"name_zh": "飞天螳螂",
+		"name_ja": "ストライク",
+		"timecode": "15:50.616"
+	},
+	{
+		"dex": 124,
+		"name_zh": "迷唇姐",
+		"name_ja": "ルージュラ",
+		"timecode": "17:51.103"
+	},
+	{
+		"dex": 125,
+		"name_zh": "电击兽",
+		"name_ja": "エレブー",
+		"timecode": "09:17.157"
+	},
+	{
+		"dex": 126,
+		"name_zh": "鸭嘴火兽",
+		"name_ja": "ブーバー",
+		"timecode": "14:29.736"
+	},
+	{
+		"dex": 127,
+		"name_zh": "凯罗斯",
+		"name_ja": "カイロス",
+		"timecode": "03:32.012"
+	},
+	{
+		"dex": 128,
+		"name_zh": "肯泰罗",
+		"name_ja": "ケンタロス",
+		"timecode": "03:32.412"
+	},
+	{
+		"dex": 129,
+		"name_zh": "鲤鱼王",
+		"name_ja": "コイキング",
+		"timecode": "02:14.901"
+	},
+	{
+		"dex": 130,
+		"name_zh": "暴鲤龙",
+		"name_ja": "ギャラドス",
+		"timecode": "03:32.913"
+	},
+	{
+		"dex": 131,
+		"name_zh": "拉普拉斯",
+		"name_ja": "ラプラス",
+		"timecode": "17:35.087"
+	},
+	{
+		"dex": 132,
+		"name_zh": "百变怪",
+		"name_ja": "メタモン",
+		"timecode": "00:20.454"
+	},
+	{
+		"dex": 133,
+		"name_zh": "伊布",
+		"name_ja": "イーブイ",
+		"timecode": "17:24.911"
+	},
+	{
+		"dex": 134,
+		"name_zh": "水伊布",
+		"name_ja": "シャワーズ",
+		"timecode": "06:00.193"
+	},
+	{
+		"dex": 135,
+		"name_zh": "雷伊布",
+		"name_ja": "サンダース",
+		"timecode": "09:15.688"
+	},
+	{
+		"dex": 136,
+		"name_zh": "火伊布",
+		"name_ja": "ブースター",
+		"timecode": "15:24.090"
+	},
+	{
+		"dex": 137,
+		"name_zh": "多边兽",
+		"name_ja": "ポリゴン",
+		"timecode": "13:16.162"
+	},
+	{
+		"dex": 138,
+		"name_zh": "菊石兽",
+		"name_ja": "オムナイト",
+		"timecode": "16:07.500"
+	},
+	{
+		"dex": 139,
+		"name_zh": "多刺菊石兽",
+		"name_ja": "オムスター",
+		"timecode": "16:08.301"
+	},
+	{
+		"dex": 140,
+		"name_zh": "化石盔",
+		"name_ja": "カブト",
+		"timecode": "17:59.812"
+	},
+	{
+		"dex": 141,
+		"name_zh": "镰刀盔",
+		"name_ja": "カブトプス",
+		"timecode": "18:54.400"
+	},
+	{
+		"dex": 142,
+		"name_zh": "化石翼龙",
+		"name_ja": "プテラ",
+		"timecode": "07:48.401"
+	},
+	{
+		"dex": 143,
+		"name_zh": "卡比兽",
+		"name_ja": "カビゴン",
+		"timecode": "07:33.486"
+	},
+	{
+		"dex": 144,
+		"name_zh": "急冻鸟",
+		"name_ja": "フリーザー",
+		"timecode": "02:40.293"
+	},
+	{
+		"dex": 145,
+		"name_zh": "闪电鸟",
+		"name_ja": "サンダー",
+		"timecode": "02:38.859"
+	},
+	{
+		"dex": 146,
+		"name_zh": "火焰鸟",
+		"name_ja": "ファイヤー",
+		"timecode": "02:39.493"
+	},
+	{
+		"dex": 147,
+		"name_zh": "迷你龙",
+		"name_ja": "ミニリュウ",
+		"timecode": "10:28.561"
+	},
+	{
+		"dex": 148,
+		"name_zh": "哈克龙",
+		"name_ja": "ハクリュー",
+		"timecode": "10:29.095"
+	},
+	{
+		"dex": 149,
+		"name_zh": "快龙",
+		"name_ja": "カイリュー",
+		"timecode": "00:13.447"
+	},
+	{
+		"dex": 150,
+		"name_zh": "超梦",
+		"name_ja": "ミュウツー",
+		"timecode": "20:29.562"
+	},
+	{
+		"dex": 151,
+		"name_zh": "梦幻",
+		"name_ja": "ミュウ",
+		"timecode": "20:41.407"
+	},
+	{
+		"dex": 152,
+		"name_zh": "菊草叶",
+		"name_ja": "チコリータ",
+		"timecode": "00:25.592"
+	},
+	{
+		"dex": 153,
+		"name_zh": "月桂叶",
+		"name_ja": "ベイリーフ",
+		"timecode": "10:42.809"
+	},
+	{
+		"dex": 154,
+		"name_zh": "大竺葵",
+		"name_ja": "メガニウム",
+		"timecode": "10:52.185"
+	},
+	{
+		"dex": 155,
+		"name_zh": "火球鼠",
+		"name_ja": "ヒノアラシ",
+		"timecode": "18:57.536"
+	},
+	{
+		"dex": 156,
+		"name_zh": "火岩鼠",
+		"name_ja": "マグマラシ",
+		"timecode": "18:58.104"
+	},
+	{
+		"dex": 157,
+		"name_zh": "火暴兽",
+		"name_ja": "バクフーン",
+		"timecode": "04:32.606"
+	},
+	{
+		"dex": 158,
+		"name_zh": "小锯鳄",
+		"name_ja": "ワニノコ",
+		"timecode": "01:51.712"
+	},
+	{
+		"dex": 159,
+		"name_zh": "蓝鳄",
+		"name_ja": "アリゲイツ",
+		"timecode": "20:14.046"
+	},
+	{
+		"dex": 160,
+		"name_zh": "大力鳄",
+		"name_ja": "オーダイル",
+		"timecode": "01:59.553"
+	},
+	{
+		"dex": 161,
+		"name_zh": "尾立",
+		"name_ja": "オタチ",
+		"timecode": "15:31.297"
+	},
+	{
+		"dex": 162,
+		"name_zh": "大尾立",
+		"name_ja": "オオタチ",
+		"timecode": "07:30.784"
+	},
+	{
+		"dex": 163,
+		"name_zh": "咕咕",
+		"name_ja": "ホーホー",
+		"timecode": "07:29.449"
+	},
+	{
+		"dex": 164,
+		"name_zh": "猫头夜鹰",
+		"name_ja": "ヨルノズク",
+		"timecode": "07:28.615"
+	},
+	{
+		"dex": 165,
+		"name_zh": "芭瓢虫",
+		"name_ja": "レディバ",
+		"timecode": "14:31.604"
+	},
+	{
+		"dex": 166,
+		"name_zh": "安瓢虫",
+		"name_ja": "レディアン",
+		"timecode": "07:58.945"
+	},
+	{
+		"dex": 167,
+		"name_zh": "圆丝蛛",
+		"name_ja": "イトマル",
+		"timecode": "06:28.955"
+	},
+	{
+		"dex": 168,
+		"name_zh": "阿利多斯",
+		"name_ja": "アリアドス",
+		"timecode": "15:52.185"
+	},
+	{
+		"dex": 169,
+		"name_zh": "叉字蝠",
+		"name_ja": "クロバット",
+		"timecode": "06:29.489"
+	},
+	{
+		"dex": 170,
+		"name_zh": "灯笼鱼",
+		"name_ja": "チョンチー",
+		"timecode": "15:39.906"
+	},
+	{
+		"dex": 171,
+		"name_zh": "电灯怪",
+		"name_ja": "ランターン",
+		"timecode": "09:29.936"
+	},
+	{
+		"dex": 172,
+		"name_zh": "皮丘",
+		"name_ja": "ピチュー",
+		"timecode": "01:28.789"
+	},
+	{
+		"dex": 173,
+		"name_zh": "皮宝宝",
+		"name_ja": "ピィ",
+		"timecode": "00:47.748"
+	},
+	{
+		"dex": 174,
+		"name_zh": "宝宝丁",
+		"name_ja": "ププリン",
+		"timecode": "04:48.054"
+	},
+	{
+		"dex": 175,
+		"name_zh": "波克比",
+		"name_ja": "トゲピー",
+		"timecode": "19:13.386"
+	},
+	{
+		"dex": 176,
+		"name_zh": "波克基古",
+		"name_ja": "トゲチック",
+		"timecode": "04:47.354"
+	},
+	{
+		"dex": 177,
+		"name_zh": "天然雀",
+		"name_ja": "ネイティ",
+		"timecode": "07:58.611"
+	},
+	{
+		"dex": 178,
+		"name_zh": "天然鸟",
+		"name_ja": "ネイティオ",
+		"timecode": "08:08.955"
+	},
+	{
+		"dex": 179,
+		"name_zh": "咩利羊",
+		"name_ja": "メリープ",
+		"timecode": "16:47.340"
+	},
+	{
+		"dex": 180,
+		"name_zh": "茸茸羊",
+		"name_ja": "モココ",
+		"timecode": "01:53.947"
+	},
+	{
+		"dex": 181,
+		"name_zh": "电龙",
+		"name_ja": "デンリュウ",
+		"timecode": "09:29.102"
+	},
+	{
+		"dex": 182,
+		"name_zh": "美丽花",
+		"name_ja": "キレイハナ",
+		"timecode": "02:06.693"
+	},
+	{
+		"dex": 183,
+		"name_zh": "玛力露",
+		"name_ja": "マリル",
+		"timecode": "18:04.216"
+	},
+	{
+		"dex": 184,
+		"name_zh": "玛力露丽",
+		"name_ja": "マリルリ",
+		"timecode": "06:02.095"
+	},
+	{
+		"dex": 185,
+		"name_zh": "树才怪",
+		"name_ja": "ウソッキー",
+		"timecode": "14:09.749"
+	},
+	{
+		"dex": 186,
+		"name_zh": "蚊香蛙皇",
+		"name_ja": "ニョロトノ",
+		"timecode": "13:45.558"
+	},
+	{
+		"dex": 187,
+		"name_zh": "毽子草",
+		"name_ja": "ハネッコ",
+		"timecode": "10:55.855"
+	},
+	{
+		"dex": 188,
+		"name_zh": "毽子花",
+		"name_ja": "ポポッコ",
+		"timecode": "20:17.516"
+	},
+	{
+		"dex": 189,
+		"name_zh": "毽子棉",
+		"name_ja": "ワタッコ",
+		"timecode": "08:03.883"
+	},
+	{
+		"dex": 190,
+		"name_zh": "长尾怪手",
+		"name_ja": "エイパム",
+		"timecode": "19:12.585"
+	},
+	{
+		"dex": 191,
+		"name_zh": "向日种子",
+		"name_ja": "ヒマナッツ",
+		"timecode": "10:47.814"
+	},
+	{
+		"dex": 192,
+		"name_zh": "向日花怪",
+		"name_ja": "キマワリ",
+		"timecode": "14:14.487"
+	},
+	{
+		"dex": 193,
+		"name_zh": "蜻蜻蜓",
+		"name_ja": "ヤンヤンマ",
+		"timecode": "14:24.797"
+	},
+	{
+		"dex": 194,
+		"name_zh": "乌波",
+		"name_ja": "ウパー",
+		"timecode": "15:30.897"
+	},
+	{
+		"dex": 195,
+		"name_zh": "沼王",
+		"name_ja": "ヌオー",
+		"timecode": "01:58.852"
+	},
+	{
+		"dex": 196,
+		"name_zh": "太阳伊布",
+		"name_ja": "エーフィ",
+		"timecode": "15:48.714"
+	},
+	{
+		"dex": 197,
+		"name_zh": "月亮伊布",
+		"name_ja": "ブラッキー",
+		"timecode": "01:31.892"
+	},
+	{
+		"dex": 198,
+		"name_zh": "黑暗鸦",
+		"name_ja": "ヤミカラス",
+		"timecode": "05:15.415"
+	},
+	{
+		"dex": 199,
+		"name_zh": "呆呆王",
+		"name_ja": "ヤドキング",
+		"timecode": "02:08.562"
+	},
+	{
+		"dex": 200,
+		"name_zh": "梦妖",
+		"name_ja": "ムウマ",
+		"timecode": "12:28.715"
+	},
+	{
+		"dex": 201,
+		"name_zh": "未知图腾",
+		"name_ja": "アンノーン",
+		"timecode": "05:00.534"
+	},
+	{
+		"dex": 202,
+		"name_zh": "果然翁",
+		"name_ja": "ソーナンス",
+		"timecode": "17:31.050"
+	},
+	{
+		"dex": 203,
+		"name_zh": "麒麟奇",
+		"name_ja": "キリンリキ",
+		"timecode": "07:21.741"
+	},
+	{
+		"dex": 204,
+		"name_zh": "榛果球",
+		"name_ja": "クヌギダマ",
+		"timecode": "14:25.698"
+	},
+	{
+		"dex": 205,
+		"name_zh": "佛烈托斯",
+		"name_ja": "フォレトス",
+		"timecode": "06:38.899"
+	},
+	{
+		"dex": 206,
+		"name_zh": "土龙弟弟",
+		"name_ja": "ノコッチ",
+		"timecode": "15:31.798"
+	},
+	{
+		"dex": 207,
+		"name_zh": "天蝎",
+		"name_ja": "グライガー",
+		"timecode": "08:01.648"
+	},
+	{
+		"dex": 208,
+		"name_zh": "大钢蛇",
+		"name_ja": "ハガネール",
+		"timecode": "09:32.505"
+	},
+	{
+		"dex": 209,
+		"name_zh": "布鲁",
+		"name_ja": "ブルー",
+		"timecode": "20:21.487"
+	},
+	{
+		"dex": 210,
+		"name_zh": "布鲁皇",
+		"name_ja": "グランブル",
+		"timecode": "15:37.336"
+	},
+	{
+		"dex": 211,
+		"name_zh": "千针鱼",
+		"name_ja": "ハリーセン",
+		"timecode": "20:16.649"
+	},
+	{
+		"dex": 212,
+		"name_zh": "巨钳螳螂",
+		"name_ja": "ハッサム",
+		"timecode": "06:44.104"
+	},
+	{
+		"dex": 213,
+		"name_zh": "壶壶",
+		"name_ja": "ツボツボ",
+		"timecode": "13:10.790"
+	},
+	{
+		"dex": 214,
+		"name_zh": "赫拉克罗斯",
+		"name_ja": "ヘラクロス",
+		"timecode": "06:42.035"
+	},
+	{
+		"dex": 215,
+		"name_zh": "狃拉",
+		"name_ja": "ニューラ",
+		"timecode": "02:03.557"
+	},
+	{
+		"dex": 216,
+		"name_zh": "熊宝宝",
+		"name_ja": "ヒメグマ",
+		"timecode": "17:47.300"
+	},
+	{
+		"dex": 217,
+		"name_zh": "圈圈熊",
+		"name_ja": "リングマ",
+		"timecode": "17:47.934"
+	},
+	{
+		"dex": 218,
+		"name_zh": "熔岩虫",
+		"name_ja": "マグマッグ",
+		"timecode": "13:22.502"
+	},
+	{
+		"dex": 219,
+		"name_zh": "熔岩蜗牛",
+		"name_ja": "マグカルゴ",
+		"timecode": "04:35.542"
+	},
+	{
+		"dex": 220,
+		"name_zh": "小山猪",
+		"name_ja": "ウリムー",
+		"timecode": "11:40.667"
+	},
+	{
+		"dex": 221,
+		"name_zh": "长毛猪",
+		"name_ja": "イノムー",
+		"timecode": "11:41.134"
+	},
+	{
+		"dex": 222,
+		"name_zh": "太阳珊瑚",
+		"name_ja": "サニーゴ",
+		"timecode": "18:42.855"
+	},
+	{
+		"dex": 223,
+		"name_zh": "铁炮鱼",
+		"name_ja": "テッポウオ",
+		"timecode": "13:25.104"
+	},
+	{
+		"dex": 224,
+		"name_zh": "章鱼桶",
+		"name_ja": "オクタン",
+		"timecode": "06:06.299"
+	},
+	{
+		"dex": 225,
+		"name_zh": "信使鸟",
+		"name_ja": "デリバード",
+		"timecode": "07:59.446"
+	},
+	{
+		"dex": 226,
+		"name_zh": "巨翅飞鱼",
+		"name_ja": "マンタイン",
+		"timecode": "08:07.554"
+	},
+	{
+		"dex": 227,
+		"name_zh": "盔甲鸟",
+		"name_ja": "エアームド",
+		"timecode": "08:02.949"
+	},
+	{
+		"dex": 228,
+		"name_zh": "戴鲁比",
+		"name_ja": "デルビル",
+		"timecode": "13:25.738"
+	},
+	{
+		"dex": 229,
+		"name_zh": "黑鲁加",
+		"name_ja": "ヘルガー",
+		"timecode": "13:31.010"
+	},
+	{
+		"dex": 230,
+		"name_zh": "刺龙王",
+		"name_ja": "キングドラ",
+		"timecode": "02:09.262"
+	},
+	{
+		"dex": 231,
+		"name_zh": "小小象",
+		"name_ja": "ゴマゾウ",
+		"timecode": "11:37.397"
+	},
+	{
+		"dex": 232,
+		"name_zh": "顿甲",
+		"name_ja": "ドンファン",
+		"timecode": "13:26.205"
+	},
+	{
+		"dex": 233,
+		"name_zh": "多边兽２型",
+		"name_ja": "ポリゴン２",
+		"timecode": "13:16.863"
+	},
+	{
+		"dex": 234,
+		"name_zh": "惊角鹿",
+		"name_ja": "オドシシ",
+		"timecode": "19:00.940"
+	},
+	{
+		"dex": 235,
+		"name_zh": "图图犬",
+		"name_ja": "ドーブル",
+		"timecode": "15:38.304"
+	},
+	{
+		"dex": 236,
+		"name_zh": "无畏小子",
+		"name_ja": "バルキー",
+		"timecode": "13:41.387"
+	},
+	{
+		"dex": 237,
+		"name_zh": "战舞郎",
+		"name_ja": "カポエラー",
+		"timecode": "20:06.706"
+	},
+	{
+		"dex": 238,
+		"name_zh": "迷唇娃",
+		"name_ja": "ムチュール",
+		"timecode": "19:06.812"
+	},
+	{
+		"dex": 239,
+		"name_zh": "电击怪",
+		"name_ja": "エレキッド",
+		"timecode": "09:16.489"
+	},
+	{
+		"dex": 240,
+		"name_zh": "鸭嘴宝宝",
+		"name_ja": "ブビィ",
+		"timecode": "04:34.407"
+	},
+	{
+		"dex": 241,
+		"name_zh": "大奶罐",
+		"name_ja": "ミルタンク",
+		"timecode": "17:42.862"
+	},
+	{
+		"dex": 242,
+		"name_zh": "幸福蛋",
+		"name_ja": "ハピナス",
+		"timecode": "00:33.200"
+	},
+	{
+		"dex": 243,
+		"name_zh": "雷公",
+		"name_ja": "ライコウ",
+		"timecode": "02:41.395"
+	},
+	{
+		"dex": 244,
+		"name_zh": "炎帝",
+		"name_ja": "エンテイ",
+		"timecode": "02:42.062"
+	},
+	{
+		"dex": 245,
+		"name_zh": "水君",
+		"name_ja": "スイクン",
+		"timecode": "02:42.896"
+	},
+	{
+		"dex": 246,
+		"name_zh": "幼基拉斯",
+		"name_ja": "ヨーギラス",
+		"timecode": "17:33.185"
+	},
+	{
+		"dex": 247,
+		"name_zh": "沙基拉斯",
+		"name_ja": "サナギラス",
+		"timecode": "11:44.637"
+	},
+	{
+		"dex": 248,
+		"name_zh": "班基拉斯",
+		"name_ja": "バンギラス",
+		"timecode": "17:33.586"
+	},
+	{
+		"dex": 249,
+		"name_zh": "洛奇亚",
+		"name_ja": "ルギア",
+		"timecode": "02:57.544"
+	},
+	{
+		"dex": 250,
+		"name_zh": "凤王",
+		"name_ja": "ホウオウ",
+		"timecode": "02:58.245"
+	},
+	{
+		"dex": 251,
+		"name_zh": "时拉比",
+		"name_ja": "セレビィ",
+		"timecode": "10:41.508"
+	},
+	{
+		"dex": 252,
+		"name_zh": "木守宫",
+		"name_ja": "キモリ",
+		"timecode": "10:58.358"
+	},
+	{
+		"dex": 253,
+		"name_zh": "森林蜥蜴",
+		"name_ja": "ジュプトル",
+		"timecode": "15:46.245"
+	},
+	{
+		"dex": 254,
+		"name_zh": "蜥蜴王",
+		"name_ja": "ジュカイン",
+		"timecode": "17:44.297"
+	},
+	{
+		"dex": 255,
+		"name_zh": "火稚鸡",
+		"name_ja": "アチャモ",
+		"timecode": "18:45.992"
+	},
+	{
+		"dex": 256,
+		"name_zh": "力壮鸡",
+		"name_ja": "ワカシャモ",
+		"timecode": "12:03.156"
+	},
+	{
+		"dex": 257,
+		"name_zh": "火焰鸡",
+		"name_ja": "バシャーモ",
+		"timecode": "04:27.334"
+	},
+	{
+		"dex": 258,
+		"name_zh": "水跃鱼",
+		"name_ja": "ミズゴロウ",
+		"timecode": "17:40.893"
+	},
+	{
+		"dex": 259,
+		"name_zh": "沼跃鱼",
+		"name_ja": "ヌマクロー",
+		"timecode": "14:55.161"
+	},
+	{
+		"dex": 260,
+		"name_zh": "巨沼怪",
+		"name_ja": "ラグラージ",
+		"timecode": "06:12.005"
+	},
+	{
+		"dex": 261,
+		"name_zh": "土狼犬",
+		"name_ja": "ポチエナ",
+		"timecode": "20:06.305"
+	},
+	{
+		"dex": 262,
+		"name_zh": "大狼犬",
+		"name_ja": "グラエナ",
+		"timecode": "15:49.715"
+	},
+	{
+		"dex": 263,
+		"name_zh": "蛇纹熊",
+		"name_ja": "ジグザグマ",
+		"timecode": "07:19.940"
+	},
+	{
+		"dex": 264,
+		"name_zh": "直冲熊",
+		"name_ja": "マッスグマ",
+		"timecode": "17:48.634"
+	},
+	{
+		"dex": 265,
+		"name_zh": "刺尾虫",
+		"name_ja": "ケムッソ",
+		"timecode": "18:46.892"
+	},
+	{
+		"dex": 266,
+		"name_zh": "甲壳茧",
+		"name_ja": "カラサリス",
+		"timecode": "13:18.064"
+	},
+	{
+		"dex": 267,
+		"name_zh": "狩猎凤蝶",
+		"name_ja": "アゲハント",
+		"timecode": "20:09.408"
+	},
+	{
+		"dex": 268,
+		"name_zh": "盾甲茧",
+		"name_ja": "マユルド",
+		"timecode": "19:26.866"
+	},
+	{
+		"dex": 269,
+		"name_zh": "毒粉蛾",
+		"name_ja": "ドクケイル",
+		"timecode": "06:35.195"
+	},
+	{
+		"dex": 270,
+		"name_zh": "莲叶童子",
+		"name_ja": "ハスボー",
+		"timecode": "19:24.764"
+	},
+	{
+		"dex": 271,
+		"name_zh": "莲帽小童",
+		"name_ja": "ハスブレロ",
+		"timecode": "10:59.659"
+	},
+	{
+		"dex": 272,
+		"name_zh": "乐天河童",
+		"name_ja": "ルンパッパ",
+		"timecode": "01:38.699"
+	},
+	{
+		"dex": 273,
+		"name_zh": "橡实果",
+		"name_ja": "タネボー",
+		"timecode": "10:58.892"
+	},
+	{
+		"dex": 274,
+		"name_zh": "长鼻叶",
+		"name_ja": "コノハナ",
+		"timecode": "01:29.356"
+	},
+	{
+		"dex": 275,
+		"name_zh": "狡猾天狗",
+		"name_ja": "ダーテング",
+		"timecode": "05:04.304"
+	},
+	{
+		"dex": 276,
+		"name_zh": "傲骨燕",
+		"name_ja": "スバメ",
+		"timecode": "08:07.954"
+	},
+	{
+		"dex": 277,
+		"name_zh": "大王燕",
+		"name_ja": "オオスバメ",
+		"timecode": "08:08.355"
+	},
+	{
+		"dex": 278,
+		"name_zh": "长翅鸥",
+		"name_ja": "キャモメ",
+		"timecode": "13:42.455"
+	},
+	{
+		"dex": 279,
+		"name_zh": "大嘴鸥",
+		"name_ja": "ペリッパー",
+		"timecode": "01:37.297"
+	},
+	{
+		"dex": 280,
+		"name_zh": "拉鲁拉丝",
+		"name_ja": "ラルトス",
+		"timecode": "13:30.109"
+	},
+	{
+		"dex": 281,
+		"name_zh": "奇鲁莉安",
+		"name_ja": "キルリア",
+		"timecode": "14:17.090"
+	},
+	{
+		"dex": 282,
+		"name_zh": "沙奈朵",
+		"name_ja": "サーナイト",
+		"timecode": "04:49.689"
+	},
+	{
+		"dex": 283,
+		"name_zh": "溜溜糖球",
+		"name_ja": "アメタマ",
+		"timecode": "16:50.042"
+	},
+	{
+		"dex": 284,
+		"name_zh": "雨翅蛾",
+		"name_ja": "アメモース",
+		"timecode": "06:41.301"
+	},
+	{
+		"dex": 285,
+		"name_zh": "蘑蘑菇",
+		"name_ja": "キノココ",
+		"timecode": "01:54.514"
+	},
+	{
+		"dex": 286,
+		"name_zh": "斗笠菇",
+		"name_ja": "キノガッサ",
+		"timecode": "01:32.759"
+	},
+	{
+		"dex": 287,
+		"name_zh": "懒人獭",
+		"name_ja": "ナマケロ",
+		"timecode": "07:34.087"
+	},
+	{
+		"dex": 288,
+		"name_zh": "过动猿",
+		"name_ja": "ヤルキモノ",
+		"timecode": "13:44.490"
+	},
+	{
+		"dex": 289,
+		"name_zh": "请假王",
+		"name_ja": "ケッキング",
+		"timecode": "02:07.861"
+	},
+	{
+		"dex": 290,
+		"name_zh": "土居忍士",
+		"name_ja": "ツチニン",
+		"timecode": "17:44.697"
+	},
+	{
+		"dex": 291,
+		"name_zh": "铁面忍者",
+		"name_ja": "テッカニン",
+		"timecode": "03:21.635"
+	},
+	{
+		"dex": 292,
+		"name_zh": "脱壳忍者",
+		"name_ja": "ヌケニン",
+		"timecode": "12:23.543"
+	},
+	{
+		"dex": 293,
+		"name_zh": "咕妞妞",
+		"name_ja": "ゴニョニョ",
+		"timecode": "20:17.116"
+	},
+	{
+		"dex": 294,
+		"name_zh": "吼爆弹",
+		"name_ja": "ドゴーム",
+		"timecode": "00:54.788"
+	},
+	{
+		"dex": 295,
+		"name_zh": "爆音怪",
+		"name_ja": "バクオング",
+		"timecode": "16:13.206"
+	},
+	{
+		"dex": 296,
+		"name_zh": "幕下力士",
+		"name_ja": "マクノシタ",
+		"timecode": "12:02.655"
+	},
+	{
+		"dex": 297,
+		"name_zh": "铁掌力士",
+		"name_ja": "ハリテヤマ",
+		"timecode": "15:20.486"
+	},
+	{
+		"dex": 298,
+		"name_zh": "露力丽",
+		"name_ja": "ルリリ",
+		"timecode": "17:55.841"
+	},
+	{
+		"dex": 299,
+		"name_zh": "朝北鼻",
+		"name_ja": "ノズパス",
+		"timecode": "03:22.402"
+	},
+	{
+		"dex": 300,
+		"name_zh": "向尾喵",
+		"name_ja": "エネコ",
+		"timecode": "07:35.255"
+	},
+	{
+		"dex": 301,
+		"name_zh": "优雅猫",
+		"name_ja": "エネコロロ",
+		"timecode": "15:16.516"
+	},
+	{
+		"dex": 302,
+		"name_zh": "勾魂眼",
+		"name_ja": "ヤミラミ",
+		"timecode": "05:20.654"
+	},
+	{
+		"dex": 303,
+		"name_zh": "大嘴娃",
+		"name_ja": "クチート",
+		"timecode": "09:39.846"
+	},
+	{
+		"dex": 304,
+		"name_zh": "可可多拉",
+		"name_ja": "ココドラ",
+		"timecode": "09:35.308"
+	},
+	{
+		"dex": 305,
+		"name_zh": "可多拉",
+		"name_ja": "コドラ",
+		"timecode": "07:49.202"
+	},
+	{
+		"dex": 306,
+		"name_zh": "波士可多拉",
+		"name_ja": "ボスゴドラ",
+		"timecode": "07:50.403"
+	},
+	{
+		"dex": 307,
+		"name_zh": "玛沙那",
+		"name_ja": "アサナン",
+		"timecode": "17:43.663"
+	},
+	{
+		"dex": 308,
+		"name_zh": "恰雷姆",
+		"name_ja": "チャーレム",
+		"timecode": "15:57.890"
+	},
+	{
+		"dex": 309,
+		"name_zh": "落雷兽",
+		"name_ja": "ラクライ",
+		"timecode": "20:11.911"
+	},
+	{
+		"dex": 310,
+		"name_zh": "雷电兽",
+		"name_ja": "ライボルト",
+		"timecode": "09:05.645"
+	},
+	{
+		"dex": 311,
+		"name_zh": "正电拍拍",
+		"name_ja": "プラスル",
+		"timecode": "09:08.615"
+	},
+	{
+		"dex": 312,
+		"name_zh": "負电拍拍",
+		"name_ja": "マイナン",
+		"timecode": "09:09.249"
+	},
+	{
+		"dex": 313,
+		"name_zh": "电萤虫",
+		"name_ja": "バルビート",
+		"timecode": "14:52.458"
+	},
+	{
+		"dex": 314,
+		"name_zh": "甜甜萤",
+		"name_ja": "イルミーゼ",
+		"timecode": "18:42.154"
+	},
+	{
+		"dex": 315,
+		"name_zh": "毒蔷薇",
+		"name_ja": "ロゼリア",
+		"timecode": "01:46.606"
+	},
+	{
+		"dex": 316,
+		"name_zh": "溶食兽",
+		"name_ja": "ゴクリン",
+		"timecode": "06:18.812"
+	},
+	{
+		"dex": 317,
+		"name_zh": "吞食兽",
+		"name_ja": "マルノーム",
+		"timecode": "15:34.400"
+	},
+	{
+		"dex": 318,
+		"name_zh": "利牙鱼",
+		"name_ja": "キバニア",
+		"timecode": "01:45.739"
+	},
+	{
+		"dex": 319,
+		"name_zh": "巨牙鲨",
+		"name_ja": "サメハダー",
+		"timecode": "05:17.384"
+	},
+	{
+		"dex": 320,
+		"name_zh": "吼吼鲸",
+		"name_ja": "ホエルコ",
+		"timecode": "14:32.805"
+	},
+	{
+		"dex": 321,
+		"name_zh": "吼鲸王",
+		"name_ja": "ホエルオー",
+		"timecode": "14:33.606"
+	},
+	{
+		"dex": 322,
+		"name_zh": "呆火驼",
+		"name_ja": "ドンメル",
+		"timecode": "11:38.565"
+	},
+	{
+		"dex": 323,
+		"name_zh": "喷火驼",
+		"name_ja": "バクーダ",
+		"timecode": "19:21.193"
+	},
+	{
+		"dex": 324,
+		"name_zh": "煤炭龟",
+		"name_ja": "コータス",
+		"timecode": "00:28.195"
+	},
+	{
+		"dex": 325,
+		"name_zh": "跳跳猪",
+		"name_ja": "バネブー",
+		"timecode": "19:21.594"
+	},
+	{
+		"dex": 326,
+		"name_zh": "噗噗猪",
+		"name_ja": "ブーピッグ",
+		"timecode": "19:10.750"
+	},
+	{
+		"dex": 327,
+		"name_zh": "晃晃斑",
+		"name_ja": "パッチール",
+		"timecode": "17:53.005"
+	},
+	{
+		"dex": 328,
+		"name_zh": "大颚蚁",
+		"name_ja": "ナックラー",
+		"timecode": "16:11.904"
+	},
+	{
+		"dex": 329,
+		"name_zh": "超音波幼虫",
+		"name_ja": "ビブラーバ",
+		"timecode": "19:22.294"
+	},
+	{
+		"dex": 330,
+		"name_zh": "沙漠蜻蜓",
+		"name_ja": "フライゴン",
+		"timecode": "10:24.591"
+	},
+	{
+		"dex": 331,
+		"name_zh": "刺球仙人掌",
+		"name_ja": "サボネア",
+		"timecode": "17:58.344"
+	},
+	{
+		"dex": 332,
+		"name_zh": "梦歌仙人掌",
+		"name_ja": "ノクタス",
+		"timecode": "17:58.811"
+	},
+	{
+		"dex": 333,
+		"name_zh": "青绵鸟",
+		"name_ja": "チルット",
+		"timecode": "08:01.214"
+	},
+	{
+		"dex": 334,
+		"name_zh": "七夕青鸟",
+		"name_ja": "チルタリス",
+		"timecode": "08:10.957"
+	},
+	{
+		"dex": 335,
+		"name_zh": "猫鼬斩",
+		"name_ja": "ザングース",
+		"timecode": "16:10.603"
+	},
+	{
+		"dex": 336,
+		"name_zh": "饭匙蛇",
+		"name_ja": "ハブネーク",
+		"timecode": "17:54.407"
+	},
+	{
+		"dex": 337,
+		"name_zh": "月石",
+		"name_ja": "ルナトーン",
+		"timecode": "05:01.301"
+	},
+	{
+		"dex": 338,
+		"name_zh": "太阳岩",
+		"name_ja": "ソルロック",
+		"timecode": "19:09.949"
+	},
+	{
+		"dex": 339,
+		"name_zh": "泥泥鳅",
+		"name_ja": "ドジョッチ",
+		"timecode": "11:50.210"
+	},
+	{
+		"dex": 340,
+		"name_zh": "鲶鱼王",
+		"name_ja": "ナマズン",
+		"timecode": "11:39.098"
+	},
+	{
+		"dex": 341,
+		"name_zh": "龙虾小兵",
+		"name_ja": "ヘイガニ",
+		"timecode": "03:19.566"
+	},
+	{
+		"dex": 342,
+		"name_zh": "铁螯龙虾",
+		"name_ja": "シザリガー",
+		"timecode": "14:17.857"
+	},
+	{
+		"dex": 343,
+		"name_zh": "天秤偶",
+		"name_ja": "ヤジロン",
+		"timecode": "00:44.244"
+	},
+	{
+		"dex": 344,
+		"name_zh": "念力土偶",
+		"name_ja": "ネンドール",
+		"timecode": "14:43.516"
+	},
+	{
+		"dex": 345,
+		"name_zh": "触手百合",
+		"name_ja": "リリーラ",
+		"timecode": "10:53.486"
+	},
+	{
+		"dex": 346,
+		"name_zh": "摇篮百合",
+		"name_ja": "ユレイドル",
+		"timecode": "07:46.399"
+	},
+	{
+		"dex": 347,
+		"name_zh": "太古羽虫",
+		"name_ja": "アノプス",
+		"timecode": "06:39.566"
+	},
+	{
+		"dex": 348,
+		"name_zh": "太古盔甲",
+		"name_ja": "アーマルド",
+		"timecode": "01:49.710"
+	},
+	{
+		"dex": 349,
+		"name_zh": "丑丑鱼",
+		"name_ja": "ヒンバス",
+		"timecode": "14:45.351"
+	},
+	{
+		"dex": 350,
+		"name_zh": "美纳斯",
+		"name_ja": "ミロカロス",
+		"timecode": "15:54.353"
+	},
+	{
+		"dex": 351,
+		"name_zh": "飘浮泡泡",
+		"name_ja": "ポワルン",
+		"timecode": "19:11.384"
+	},
+	{
+		"dex": 352,
+		"name_zh": "变隐龙",
+		"name_ja": "カクレオン",
+		"timecode": "14:44.550"
+	},
+	{
+		"dex": 353,
+		"name_zh": "怨影娃娃",
+		"name_ja": "カゲボウズ",
+		"timecode": "12:22.408"
+	},
+	{
+		"dex": 354,
+		"name_zh": "诅咒娃娃",
+		"name_ja": "ジュペッタ",
+		"timecode": "12:28.147"
+	},
+	{
+		"dex": 355,
+		"name_zh": "夜巡灵",
+		"name_ja": "ヨマワル",
+		"timecode": "12:11.998"
+	},
+	{
+		"dex": 356,
+		"name_zh": "彷徨夜灵",
+		"name_ja": "サマヨール",
+		"timecode": "12:20.506"
+	},
+	{
+		"dex": 357,
+		"name_zh": "热带龙",
+		"name_ja": "トロピウス",
+		"timecode": "18:55.201"
+	},
+	{
+		"dex": 358,
+		"name_zh": "风铃铃",
+		"name_ja": "チリーン",
+		"timecode": "19:27.667"
+	},
+	{
+		"dex": 359,
+		"name_zh": "阿勃梭鲁",
+		"name_ja": "アブソル",
+		"timecode": "01:48.141"
+	},
+	{
+		"dex": 360,
+		"name_zh": "小果然",
+		"name_ja": "ソーナノ",
+		"timecode": "15:18.251"
+	},
+	{
+		"dex": 361,
+		"name_zh": "雪童子",
+		"name_ja": "ユキワラシ",
+		"timecode": "18:58.704"
+	},
+	{
+		"dex": 362,
+		"name_zh": "冰鬼护",
+		"name_ja": "オニゴーリ",
+		"timecode": "00:52.152"
+	},
+	{
+		"dex": 363,
+		"name_zh": "海豹球",
+		"name_ja": "タマザラシ",
+		"timecode": "06:05.665"
+	},
+	{
+		"dex": 364,
+		"name_zh": "海魔狮",
+		"name_ja": "トドグラー",
+		"timecode": "16:41.200"
+	},
+	{
+		"dex": 365,
+		"name_zh": "帝牙海狮",
+		"name_ja": "トドゼルガ",
+		"timecode": "13:37.984"
+	},
+	{
+		"dex": 366,
+		"name_zh": "珍珠贝",
+		"name_ja": "パールル",
+		"timecode": "19:11.751"
+	},
+	{
+		"dex": 367,
+		"name_zh": "猎斑鱼",
+		"name_ja": "ハンテール",
+		"timecode": "17:55.141"
+	},
+	{
+		"dex": 368,
+		"name_zh": "樱花鱼",
+		"name_ja": "サクラビス",
+		"timecode": "02:05.092"
+	},
+	{
+		"dex": 369,
+		"name_zh": "古空棘鱼",
+		"name_ja": "ジーランス",
+		"timecode": "17:00.786"
+	},
+	{
+		"dex": 370,
+		"name_zh": "爱心鱼",
+		"name_ja": "ラブカス",
+		"timecode": "00:32.299"
+	},
+	{
+		"dex": 371,
+		"name_zh": "宝贝龙",
+		"name_ja": "タツベイ",
+		"timecode": "10:07.240"
+	},
+	{
+		"dex": 372,
+		"name_zh": "甲壳龙",
+		"name_ja": "コモルー",
+		"timecode": "10:20.753"
+	},
+	{
+		"dex": 373,
+		"name_zh": "暴飞龙",
+		"name_ja": "ボーマンダ",
+		"timecode": "10:13.613"
+	},
+	{
+		"dex": 374,
+		"name_zh": "铁哑铃",
+		"name_ja": "ダンバル",
+		"timecode": "09:33.239"
+	},
+	{
+		"dex": 375,
+		"name_zh": "金属怪",
+		"name_ja": "メタング",
+		"timecode": "09:44.584"
+	},
+	{
+		"dex": 376,
+		"name_zh": "巨金怪",
+		"name_ja": "メタグロス",
+		"timecode": "09:41.414"
+	},
+	{
+		"dex": 377,
+		"name_zh": "雷吉洛克",
+		"name_ja": "レジロック",
+		"timecode": "02:44.364"
+	},
+	{
+		"dex": 378,
+		"name_zh": "雷吉艾斯",
+		"name_ja": "レジアイス",
+		"timecode": "02:45.065"
+	},
+	{
+		"dex": 379,
+		"name_zh": "雷吉斯奇鲁",
+		"name_ja": "レジスチル",
+		"timecode": "02:45.766"
+	},
+	{
+		"dex": 380,
+		"name_zh": "拉帝亚斯",
+		"name_ja": "ラティアス",
+		"timecode": "00:31.765"
+	},
+	{
+		"dex": 381,
+		"name_zh": "拉帝欧斯",
+		"name_ja": "ラティオス",
+		"timecode": "14:48.688"
+	},
+	{
+		"dex": 382,
+		"name_zh": "盖欧卡",
+		"name_ja": "カイオーガ",
+		"timecode": "03:18.598"
+	},
+	{
+		"dex": 383,
+		"name_zh": "固拉多",
+		"name_ja": "グラードン",
+		"timecode": "11:46.806"
+	},
+	{
+		"dex": 384,
+		"name_zh": "烈空坐",
+		"name_ja": "レックウザ",
+		"timecode": "10:32.198"
+	},
+	{
+		"dex": 385,
+		"name_zh": "基拉祈",
+		"name_ja": "ジラーチ",
+		"timecode": "09:39.212"
+	},
+	{
+		"dex": 386,
+		"name_zh": "代欧奇希斯",
+		"name_ja": "デオキシス",
+		"timecode": "20:37.303"
+	},
+	{
+		"dex": 387,
+		"name_zh": "草苗龟",
+		"name_ja": "ナエトル",
+		"timecode": "16:42.902"
+	},
+	{
+		"dex": 388,
+		"name_zh": "树林龟",
+		"name_ja": "ハヤシガメ",
+		"timecode": "00:40.841"
+	},
+	{
+		"dex": 389,
+		"name_zh": "土台龟",
+		"name_ja": "ドダイトス",
+		"timecode": "13:15.695"
+	},
+	{
+		"dex": 390,
+		"name_zh": "小火焰猴",
+		"name_ja": "ヒコザル",
+		"timecode": "19:12.084"
+	},
+	{
+		"dex": 391,
+		"name_zh": "猛火猴",
+		"name_ja": "モウカザル",
+		"timecode": "12:00.553"
+	},
+	{
+		"dex": 392,
+		"name_zh": "烈焰猴",
+		"name_ja": "ゴウカザル",
+		"timecode": "12:01.054"
+	},
+	{
+		"dex": 393,
+		"name_zh": "波加曼",
+		"name_ja": "ポッチャマ",
+		"timecode": "20:14.346"
+	},
+	{
+		"dex": 394,
+		"name_zh": "波皇子",
+		"name_ja": "ポッタイシ",
+		"timecode": "19:01.807"
+	},
+	{
+		"dex": 395,
+		"name_zh": "帝王拿波",
+		"name_ja": "エンペルト",
+		"timecode": "09:49.189"
+	},
+	{
+		"dex": 396,
+		"name_zh": "姆克儿",
+		"name_ja": "ムックル",
+		"timecode": "07:54.541"
+	},
+	{
+		"dex": 397,
+		"name_zh": "姆克鸟",
+		"name_ja": "ムクバード",
+		"timecode": "08:00.847"
+	},
+	{
+		"dex": 398,
+		"name_zh": "姆克鹰",
+		"name_ja": "ムクホーク",
+		"timecode": "08:09.656"
+	},
+	{
+		"dex": 399,
+		"name_zh": "大牙狸",
+		"name_ja": "ビッパ",
+		"timecode": "01:36.797"
+	},
+	{
+		"dex": 400,
+		"name_zh": "大尾狸",
+		"name_ja": "ビーダル",
+		"timecode": "07:34.688"
+	},
+	{
+		"dex": 401,
+		"name_zh": "圆法师",
+		"name_ja": "コロボーシ",
+		"timecode": "18:59.505"
+	},
+	{
+		"dex": 402,
+		"name_zh": "音箱蟀",
+		"name_ja": "コロトック",
+		"timecode": "15:41.541"
+	},
+	{
+		"dex": 403,
+		"name_zh": "小猫怪",
+		"name_ja": "コリンク",
+		"timecode": "17:28.114"
+	},
+	{
+		"dex": 404,
+		"name_zh": "勒克猫",
+		"name_ja": "ルクシオ",
+		"timecode": "09:24.497"
+	},
+	{
+		"dex": 405,
+		"name_zh": "伦琴猫",
+		"name_ja": "レントラー",
+		"timecode": "15:00.700"
+	},
+	{
+		"dex": 406,
+		"name_zh": "含羞苞",
+		"name_ja": "スボミー",
+		"timecode": "06:21.615"
+	},
+	{
+		"dex": 407,
+		"name_zh": "罗丝雷朵",
+		"name_ja": "ロズレイド",
+		"timecode": "11:01.194"
+	},
+	{
+		"dex": 408,
+		"name_zh": "头盖龙",
+		"name_ja": "ズガイドス",
+		"timecode": "17:34.186"
+	},
+	{
+		"dex": 409,
+		"name_zh": "战槌龙",
+		"name_ja": "ラムパルド",
+		"timecode": "15:58.891"
+	},
+	{
+		"dex": 410,
+		"name_zh": "盾甲龙",
+		"name_ja": "タテトプス",
+		"timecode": "07:42.796"
+	},
+	{
+		"dex": 411,
+		"name_zh": "护城龙",
+		"name_ja": "トリデプス",
+		"timecode": "09:40.547"
+	},
+	{
+		"dex": 412,
+		"name_zh": "结草儿",
+		"name_ja": "ミノムッチ",
+		"timecode": "06:44.938"
+	},
+	{
+		"dex": 413,
+		"name_zh": "结草贵妇",
+		"name_ja": "ミノマダム",
+		"timecode": "16:03.896"
+	},
+	{
+		"dex": 414,
+		"name_zh": "绅士蛾",
+		"name_ja": "ガーメイル",
+		"timecode": "13:19.365"
+	},
+	{
+		"dex": 415,
+		"name_zh": "三蜜蜂",
+		"name_ja": "ミツハニー",
+		"timecode": "19:05.211"
+	},
+	{
+		"dex": 416,
+		"name_zh": "蜂女王",
+		"name_ja": "ビークイン",
+		"timecode": "08:14.260"
+	},
+	{
+		"dex": 417,
+		"name_zh": "帕奇利兹",
+		"name_ja": "パチリス",
+		"timecode": "09:11.951"
+	},
+	{
+		"dex": 418,
+		"name_zh": "泳圈鼬",
+		"name_ja": "ブイゼル",
+		"timecode": "15:34.901"
+	},
+	{
+		"dex": 419,
+		"name_zh": "浮潜鼬",
+		"name_ja": "フローゼル",
+		"timecode": "15:35.635"
+	},
+	{
+		"dex": 420,
+		"name_zh": "樱花宝",
+		"name_ja": "チェリンボ",
+		"timecode": "10:48.815"
+	},
+	{
+		"dex": 421,
+		"name_zh": "樱花儿",
+		"name_ja": "チェリム",
+		"timecode": "15:32.265"
+	},
+	{
+		"dex": 422,
+		"name_zh": "无壳海兔",
+		"name_ja": "カラナクシ",
+		"timecode": "06:15.609"
+	},
+	{
+		"dex": 423,
+		"name_zh": "海兔兽",
+		"name_ja": "トリトドン",
+		"timecode": "11:48.141"
+	},
+	{
+		"dex": 424,
+		"name_zh": "双尾怪手",
+		"name_ja": "エテボース",
+		"timecode": "20:25.357"
+	},
+	{
+		"dex": 425,
+		"name_zh": "飘飘球",
+		"name_ja": "フワンテ",
+		"timecode": "12:24.744"
+	},
+	{
+		"dex": 426,
+		"name_zh": "随风球",
+		"name_ja": "フワライド",
+		"timecode": "12:29.916"
+	},
+	{
+		"dex": 427,
+		"name_zh": "卷卷耳",
+		"name_ja": "ミミロル",
+		"timecode": "18:02.715"
+	},
+	{
+		"dex": 428,
+		"name_zh": "长耳兔",
+		"name_ja": "ミミロップ",
+		"timecode": "13:23.102"
+	},
+	{
+		"dex": 429,
+		"name_zh": "梦妖魔",
+		"name_ja": "ムウマージ",
+		"timecode": "12:19.505"
+	},
+	{
+		"dex": 430,
+		"name_zh": "乌鸦头头",
+		"name_ja": "ドンカラス",
+		"timecode": "15:24.791"
+	},
+	{
+		"dex": 431,
+		"name_zh": "魅力喵",
+		"name_ja": "ニャルマー",
+		"timecode": "20:07.206"
+	},
+	{
+		"dex": 432,
+		"name_zh": "东施喵",
+		"name_ja": "ブニャット",
+		"timecode": "18:46.392"
+	},
+	{
+		"dex": 433,
+		"name_zh": "铃铛响",
+		"name_ja": "リーシャン",
+		"timecode": "04:58.498"
+	},
+	{
+		"dex": 434,
+		"name_zh": "臭鼬噗",
+		"name_ja": "スカンプー",
+		"timecode": "05:16.416"
+	},
+	{
+		"dex": 435,
+		"name_zh": "坦克臭鼬",
+		"name_ja": "スカタンク",
+		"timecode": "18:47.393"
+	},
+	{
+		"dex": 436,
+		"name_zh": "铜镜怪",
+		"name_ja": "ドーミラー",
+		"timecode": "09:55.495"
+	},
+	{
+		"dex": 437,
+		"name_zh": "青铜钟",
+		"name_ja": "ドータクン",
+		"timecode": "09:37.010"
+	},
+	{
+		"dex": 438,
+		"name_zh": "盆才怪",
+		"name_ja": "ウソハチ",
+		"timecode": "14:12.351"
+	},
+	{
+		"dex": 439,
+		"name_zh": "魔尼尼",
+		"name_ja": "マネネ",
+		"timecode": "04:44.551"
+	},
+	{
+		"dex": 440,
+		"name_zh": "小福蛋",
+		"name_ja": "ピンプク",
+		"timecode": "20:10.409"
+	},
+	{
+		"dex": 441,
+		"name_zh": "聒噪鸟",
+		"name_ja": "ペラップ",
+		"timecode": "07:54.908"
+	},
+	{
+		"dex": 442,
+		"name_zh": "花岩怪",
+		"name_ja": "ミカルゲ",
+		"timecode": "18:01.314"
+	},
+	{
+		"dex": 443,
+		"name_zh": "圆陆鲨",
+		"name_ja": "フカマル",
+		"timecode": "10:20.253"
+	},
+	{
+		"dex": 444,
+		"name_zh": "尖牙陆鲨",
+		"name_ja": "ガバイト",
+		"timecode": "15:40.840"
+	},
+	{
+		"dex": 445,
+		"name_zh": "烈咬陆鲨",
+		"name_ja": "ガブリアス",
+		"timecode": "00:30.964"
+	},
+	{
+		"dex": 446,
+		"name_zh": "小卡比兽",
+		"name_ja": "ゴンベ",
+		"timecode": "20:10.810"
+	},
+	{
+		"dex": 447,
+		"name_zh": "利欧路",
+		"name_ja": "リオル",
+		"timecode": "15:45.545"
+	},
+	{
+		"dex": 448,
+		"name_zh": "路卡利欧",
+		"name_ja": "ルカリオ",
+		"timecode": "11:56.516"
+	},
+	{
+		"dex": 449,
+		"name_zh": "沙河马",
+		"name_ja": "ヒポポタス",
+		"timecode": "00:28.996"
+	},
+	{
+		"dex": 450,
+		"name_zh": "河马兽",
+		"name_ja": "カバルドン",
+		"timecode": "11:47.407"
+	},
+	{
+		"dex": 451,
+		"name_zh": "钳尾蝎",
+		"name_ja": "スコルピ",
+		"timecode": "18:48.361"
+	},
+	{
+		"dex": 452,
+		"name_zh": "龙王蝎",
+		"name_ja": "ドラピオン",
+		"timecode": "05:21.588"
+	},
+	{
+		"dex": 453,
+		"name_zh": "不良蛙",
+		"name_ja": "グレッグル",
+		"timecode": "12:01.588"
+	},
+	{
+		"dex": 454,
+		"name_zh": "毒骷蛙",
+		"name_ja": "ドクロッグ",
+		"timecode": "06:34.461"
+	},
+	{
+		"dex": 455,
+		"name_zh": "尖牙笼",
+		"name_ja": "マスキッパ",
+		"timecode": "01:37.898"
+	},
+	{
+		"dex": 456,
+		"name_zh": "荧光鱼",
+		"name_ja": "ケイコウオ",
+		"timecode": "20:25.891"
+	},
+	{
+		"dex": 457,
+		"name_zh": "霓虹鱼",
+		"name_ja": "ネオラント",
+		"timecode": "06:03.496"
+	},
+	{
+		"dex": 458,
+		"name_zh": "小球飞鱼",
+		"name_ja": "タマンタ",
+		"timecode": "06:04.998"
+	},
+	{
+		"dex": 459,
+		"name_zh": "雪笠怪",
+		"name_ja": "ユキカブリ",
+		"timecode": "19:03.042"
+	},
+	{
+		"dex": 460,
+		"name_zh": "暴雪王",
+		"name_ja": "ユキノオー",
+		"timecode": "01:56.717"
+	},
+	{
+		"dex": 461,
+		"name_zh": "玛狃拉",
+		"name_ja": "マニューラ",
+		"timecode": "02:03.890"
+	},
+	{
+		"dex": 462,
+		"name_zh": "自爆磁怪",
+		"name_ja": "ジバコイル",
+		"timecode": "03:29.409"
+	},
+	{
+		"dex": 463,
+		"name_zh": "大舌舔",
+		"name_ja": "ベロベルト",
+		"timecode": "14:04.210"
+	},
+	{
+		"dex": 464,
+		"name_zh": "超甲狂犀",
+		"name_ja": "ドサイドン",
+		"timecode": "11:35.495"
+	},
+	{
+		"dex": 465,
+		"name_zh": "巨蔓藤",
+		"name_ja": "モジャンボ",
+		"timecode": "11:00.393"
+	},
+	{
+		"dex": 466,
+		"name_zh": "电击魔兽",
+		"name_ja": "エレキブル",
+		"timecode": "09:17.791"
+	},
+	{
+		"dex": 467,
+		"name_zh": "鸭嘴炎兽",
+		"name_ja": "ブーバーン",
+		"timecode": "04:32.005"
+	},
+	{
+		"dex": 468,
+		"name_zh": "波克基斯",
+		"name_ja": "トゲキッス",
+		"timecode": "19:48.187"
+	},
+	{
+		"dex": 469,
+		"name_zh": "远古巨蜓",
+		"name_ja": "メガヤンマ",
+		"timecode": "08:13.059"
+	},
+	{
+		"dex": 470,
+		"name_zh": "叶伊布",
+		"name_ja": "リーフィア",
+		"timecode": "15:47.814"
+	},
+	{
+		"dex": 471,
+		"name_zh": "冰伊布",
+		"name_ja": "グレイシア",
+		"timecode": "15:47.046"
+	},
+	{
+		"dex": 472,
+		"name_zh": "天蝎王",
+		"name_ja": "グライオン",
+		"timecode": "00:21.455"
+	},
+	{
+		"dex": 473,
+		"name_zh": "象牙猪",
+		"name_ja": "マンムー",
+		"timecode": "11:41.634"
+	},
+	{
+		"dex": 474,
+		"name_zh": "多边兽乙型",
+		"name_ja": "ポリゴンＺ",
+		"timecode": "18:44.991"
+	},
+	{
+		"dex": 475,
+		"name_zh": "艾路雷朵",
+		"name_ja": "エルレイド",
+		"timecode": "16:01.494"
+	},
+	{
+		"dex": 476,
+		"name_zh": "大朝北鼻",
+		"name_ja": "ダイノーズ",
+		"timecode": "07:43.897"
+	},
+	{
+		"dex": 477,
+		"name_zh": "黑夜魔灵",
+		"name_ja": "ヨノワール",
+		"timecode": "19:20.693"
+	},
+	{
+		"dex": 478,
+		"name_zh": "雪妖女",
+		"name_ja": "ユキメノコ",
+		"timecode": "01:51.011"
+	},
+	{
+		"dex": 479,
+		"name_zh": "洛托姆",
+		"name_ja": "ロトム",
+		"timecode": "18:51.597"
+	},
+	{
+		"dex": 480,
+		"name_zh": "由克希",
+		"name_ja": "ユクシー",
+		"timecode": "20:32.998"
+	},
+	{
+		"dex": 481,
+		"name_zh": "艾姆利多",
+		"name_ja": "エムリット",
+		"timecode": "20:33.699"
+	},
+	{
+		"dex": 482,
+		"name_zh": "亚克诺姆",
+		"name_ja": "アグノム",
+		"timecode": "20:34.366"
+	},
+	{
+		"dex": 483,
+		"name_zh": "帝牙卢卡",
+		"name_ja": "ディアルガ",
+		"timecode": "20:27.460"
+	},
+	{
+		"dex": 484,
+		"name_zh": "帕路奇亚",
+		"name_ja": "パルキア",
+		"timecode": "20:28.160"
+	},
+	{
+		"dex": 485,
+		"name_zh": "席多蓝恩",
+		"name_ja": "ヒードラン",
+		"timecode": "04:30.237"
+	},
+	{
+		"dex": 486,
+		"name_zh": "雷吉奇卡斯",
+		"name_ja": "レジギガス",
+		"timecode": "02:46.466"
+	},
+	{
+		"dex": 487,
+		"name_zh": "骑拉帝纳",
+		"name_ja": "ギラティナ",
+		"timecode": "20:28.861"
+	},
+	{
+		"dex": 488,
+		"name_zh": "克雷色利亚",
+		"name_ja": "クレセリア",
+		"timecode": "20:35.000"
+	},
+	{
+		"dex": 489,
+		"name_zh": "霏欧纳",
+		"name_ja": "フィオネ",
+		"timecode": "20:05.204"
+	},
+	{
+		"dex": 490,
+		"name_zh": "玛纳霏",
+		"name_ja": "マナフィ",
+		"timecode": "20:32.298"
+	},
+	{
+		"dex": 491,
+		"name_zh": "达克莱伊",
+		"name_ja": "ダークライ",
+		"timecode": "05:05.705"
+	},
+	{
+		"dex": 492,
+		"name_zh": "谢米",
+		"name_ja": "シェイミ",
+		"timecode": "13:41.854"
+	},
+	{
+		"dex": 493,
+		"name_zh": "阿尔宙斯",
+		"name_ja": "アルセウス",
+		"timecode": "20:38.704"
+	},
+	{
+		"dex": 494,
+		"name_zh": "比克提尼",
+		"name_ja": "ビクティニ",
+		"timecode": "19:03.809"
+	},
+	{
+		"dex": 495,
+		"name_zh": "藤藤蛇",
+		"name_ja": "ツタージャ",
+		"timecode": "10:57.857"
+	},
+	{
+		"dex": 496,
+		"name_zh": "青藤蛇",
+		"name_ja": "ジャノビー",
+		"timecode": "10:42.041"
+	},
+	{
+		"dex": 497,
+		"name_zh": "君主蛇",
+		"name_ja": "ジャローダ",
+		"timecode": "13:43.289"
+	},
+	{
+		"dex": 498,
+		"name_zh": "暖暖猪",
+		"name_ja": "ポカブ",
+		"timecode": "18:06.452"
+	},
+	{
+		"dex": 499,
+		"name_zh": "炒炒猪",
+		"name_ja": "チャオブー",
+		"timecode": "18:05.584"
+	},
+	{
+		"dex": 500,
+		"name_zh": "炎武王",
+		"name_ja": "エンブオー",
+		"timecode": "01:57.484"
+	},
+	{
+		"dex": 501,
+		"name_zh": "水水獭",
+		"name_ja": "ミジュマル",
+		"timecode": "16:04.997"
+	},
+	{
+		"dex": 502,
+		"name_zh": "双刃丸",
+		"name_ja": "フタチマル",
+		"timecode": "16:05.698"
+	},
+	{
+		"dex": 503,
+		"name_zh": "大剑鬼",
+		"name_ja": "ダイケンキ",
+		"timecode": "00:40.140"
+	},
+	{
+		"dex": 504,
+		"name_zh": "探探鼠",
+		"name_ja": "ミネズミ",
+		"timecode": "18:01.714"
+	},
+	{
+		"dex": 505,
+		"name_zh": "步哨鼠",
+		"name_ja": "ミルホッグ",
+		"timecode": "17:51.804"
+	},
+	{
+		"dex": 506,
+		"name_zh": "小约克",
+		"name_ja": "ヨーテリー",
+		"timecode": "20:07.740"
+	},
+	{
+		"dex": 507,
+		"name_zh": "哈约克",
+		"name_ja": "ハーデリア",
+		"timecode": "20:08.307"
+	},
+	{
+		"dex": 508,
+		"name_zh": "长毛狗",
+		"name_ja": "ムーランド",
+		"timecode": "13:21.000"
+	},
+	{
+		"dex": 509,
+		"name_zh": "扒手猫",
+		"name_ja": "チョロネコ",
+		"timecode": "17:57.310"
+	},
+	{
+		"dex": 510,
+		"name_zh": "酷豹",
+		"name_ja": "レパルダス",
+		"timecode": "03:23.003"
+	},
+	{
+		"dex": 511,
+		"name_zh": "花椰猴",
+		"name_ja": "ヤナップ",
+		"timecode": "14:10.416"
+	},
+	{
+		"dex": 512,
+		"name_zh": "花椰猿",
+		"name_ja": "ヤナッキー",
+		"timecode": "14:07.647"
+	},
+	{
+		"dex": 513,
+		"name_zh": "爆香猴",
+		"name_ja": "バオップ",
+		"timecode": "14:11.651"
+	},
+	{
+		"dex": 514,
+		"name_zh": "爆香猿",
+		"name_ja": "バオッキー",
+		"timecode": "14:09.048"
+	},
+	{
+		"dex": 515,
+		"name_zh": "冷水猴",
+		"name_ja": "ヒヤップ",
+		"timecode": "14:10.983"
+	},
+	{
+		"dex": 516,
+		"name_zh": "冷水猿",
+		"name_ja": "ヒヤッキー",
+		"timecode": "14:08.347"
+	},
+	{
+		"dex": 517,
+		"name_zh": "食梦梦",
+		"name_ja": "ムンナ",
+		"timecode": "14:30.036"
+	},
+	{
+		"dex": 518,
+		"name_zh": "梦梦蚀",
+		"name_ja": "ムシャーナ",
+		"timecode": "01:43.904"
+	},
+	{
+		"dex": 519,
+		"name_zh": "豆豆鸽",
+		"name_ja": "マメパト",
+		"timecode": "08:02.315"
+	},
+	{
+		"dex": 520,
+		"name_zh": "咕咕鸽",
+		"name_ja": "ハトーボー",
+		"timecode": "13:46.492"
+	},
+	{
+		"dex": 521,
+		"name_zh": "高傲雉鸡",
+		"name_ja": "ケンホロウ",
+		"timecode": "08:06.286"
+	},
+	{
+		"dex": 522,
+		"name_zh": "斑斑马",
+		"name_ja": "シママ",
+		"timecode": "09:00.540"
+	},
+	{
+		"dex": 523,
+		"name_zh": "雷电斑马",
+		"name_ja": "ゼブライカ",
+		"timecode": "09:25.298"
+	},
+	{
+		"dex": 524,
+		"name_zh": "石丸子",
+		"name_ja": "ダンゴロ",
+		"timecode": "13:47.493"
+	},
+	{
+		"dex": 525,
+		"name_zh": "地幔岩",
+		"name_ja": "ガントル",
+		"timecode": "07:45.565"
+	},
+	{
+		"dex": 526,
+		"name_zh": "庞岩怪",
+		"name_ja": "ギガイアス",
+		"timecode": "00:34.001"
+	},
+	{
+		"dex": 527,
+		"name_zh": "滚滚蝙蝠",
+		"name_ja": "コロモリ",
+		"timecode": "14:36.242"
+	},
+	{
+		"dex": 528,
+		"name_zh": "心蝙蝠",
+		"name_ja": "ココロモリ",
+		"timecode": "14:34.540"
+	},
+	{
+		"dex": 529,
+		"name_zh": "螺钉地鼠",
+		"name_ja": "モグリュー",
+		"timecode": "11:42.101"
+	},
+	{
+		"dex": 530,
+		"name_zh": "龙头地鼠",
+		"name_ja": "ドリュウズ",
+		"timecode": "09:43.416"
+	},
+	{
+		"dex": 531,
+		"name_zh": "差不多娃娃",
+		"name_ja": "タブンネ",
+		"timecode": "17:30.416"
+	},
+	{
+		"dex": 532,
+		"name_zh": "搬运小匠",
+		"name_ja": "ドッコラー",
+		"timecode": "17:50.703"
+	},
+	{
+		"dex": 533,
+		"name_zh": "铁骨土人",
+		"name_ja": "ドテッコツ",
+		"timecode": "11:55.248"
+	},
+	{
+		"dex": 534,
+		"name_zh": "修建老匠",
+		"name_ja": "ローブシン",
+		"timecode": "15:23.489"
+	},
+	{
+		"dex": 535,
+		"name_zh": "圆蝌蚪",
+		"name_ja": "オタマロ",
+		"timecode": "17:39.392"
+	},
+	{
+		"dex": 536,
+		"name_zh": "蓝蟾蜍",
+		"name_ja": "ガマガル",
+		"timecode": "06:04.364"
+	},
+	{
+		"dex": 537,
+		"name_zh": "蟾蜍王",
+		"name_ja": "ガマゲロゲ",
+		"timecode": "13:11.758"
+	},
+	{
+		"dex": 538,
+		"name_zh": "投摔鬼",
+		"name_ja": "ナゲキ",
+		"timecode": "00:38.105"
+	},
+	{
+		"dex": 539,
+		"name_zh": "打击鬼",
+		"name_ja": "ダゲキ",
+		"timecode": "00:38.639"
+	},
+	{
+		"dex": 540,
+		"name_zh": "虫宝包",
+		"name_ja": "クルミル",
+		"timecode": "16:44.737"
+	},
+	{
+		"dex": 541,
+		"name_zh": "宝包茧",
+		"name_ja": "クルマユ",
+		"timecode": "06:44.504"
+	},
+	{
+		"dex": 542,
+		"name_zh": "保姆虫",
+		"name_ja": "ハハコモリ",
+		"timecode": "14:35.408"
+	},
+	{
+		"dex": 543,
+		"name_zh": "百足蜈蚣",
+		"name_ja": "フシデ",
+		"timecode": "06:24.050"
+	},
+	{
+		"dex": 544,
+		"name_zh": "车轮球",
+		"name_ja": "ホイーガ",
+		"timecode": "06:32.692"
+	},
+	{
+		"dex": 545,
+		"name_zh": "蜈蚣王",
+		"name_ja": "ペンドラー",
+		"timecode": "15:22.889"
+	},
+	{
+		"dex": 546,
+		"name_zh": "木棉球",
+		"name_ja": "モンメン",
+		"timecode": "14:30.937"
+	},
+	{
+		"dex": 547,
+		"name_zh": "风妖精",
+		"name_ja": "エルフーン",
+		"timecode": "04:41.748"
+	},
+	{
+		"dex": 548,
+		"name_zh": "百合根娃娃",
+		"name_ja": "チュリネ",
+		"timecode": "10:44.911"
+	},
+	{
+		"dex": 549,
+		"name_zh": "裙儿小姐",
+		"name_ja": "ドレディア",
+		"timecode": "10:46.212"
+	},
+	{
+		"dex": 550,
+		"name_zh": "野蛮鲈鱼",
+		"name_ja": "バスラオ",
+		"timecode": "14:53.259"
+	},
+	{
+		"dex": 551,
+		"name_zh": "黑眼鳄",
+		"name_ja": "メグロコ",
+		"timecode": "01:53.246"
+	},
+	{
+		"dex": 552,
+		"name_zh": "混混鳄",
+		"name_ja": "ワルビル",
+		"timecode": "00:19.753"
+	},
+	{
+		"dex": 553,
+		"name_zh": "流氓鳄",
+		"name_ja": "ワルビアル",
+		"timecode": "05:11.011"
+	},
+	{
+		"dex": 554,
+		"name_zh": "火红不倒翁",
+		"name_ja": "ダルマッカ",
+		"timecode": "15:26.993"
+	},
+	{
+		"dex": 555,
+		"name_zh": "达摩狒狒",
+		"name_ja": "ヒヒダルマ",
+		"timecode": "04:23.797"
+	},
+	{
+		"dex": 556,
+		"name_zh": "沙铃仙人掌",
+		"name_ja": "マラカッチ",
+		"timecode": "10:43.810"
+	},
+	{
+		"dex": 557,
+		"name_zh": "石居蟹",
+		"name_ja": "イシズマイ",
+		"timecode": "12:55.508"
+	},
+	{
+		"dex": 558,
+		"name_zh": "岩殿居蟹",
+		"name_ja": "イワパレス",
+		"timecode": "06:40.400"
+	},
+	{
+		"dex": 559,
+		"name_zh": "滑滑小子",
+		"name_ja": "ズルッグ",
+		"timecode": "19:09.315"
+	},
+	{
+		"dex": 560,
+		"name_zh": "头巾混混",
+		"name_ja": "ズルズキン",
+		"timecode": "05:06.640"
+	},
+	{
+		"dex": 561,
+		"name_zh": "象征鸟",
+		"name_ja": "シンボラー",
+		"timecode": "04:59.800"
+	},
+	{
+		"dex": 562,
+		"name_zh": "哭哭面具",
+		"name_ja": "デスマス",
+		"timecode": "03:15.195"
+	},
+	{
+		"dex": 563,
+		"name_zh": "迭失棺",
+		"name_ja": "デスカーン",
+		"timecode": "12:16.703"
+	},
+	{
+		"dex": 564,
+		"name_zh": "原盖海龟",
+		"name_ja": "プロトーガ",
+		"timecode": "14:19.559"
+	},
+	{
+		"dex": 565,
+		"name_zh": "肋骨海龟",
+		"name_ja": "アバゴーラ",
+		"timecode": "00:52.853"
+	},
+	{
+		"dex": 566,
+		"name_zh": "始祖小鸟",
+		"name_ja": "アーケン",
+		"timecode": "07:57.210"
+	},
+	{
+		"dex": 567,
+		"name_zh": "始祖大鸟",
+		"name_ja": "アーケオス",
+		"timecode": "15:59.992"
+	},
+	{
+		"dex": 568,
+		"name_zh": "破破袋",
+		"name_ja": "ヤブクロン",
+		"timecode": "00:44.611"
+	},
+	{
+		"dex": 569,
+		"name_zh": "灰尘山",
+		"name_ja": "ダストダス",
+		"timecode": "16:48.207"
+	},
+	{
+		"dex": 570,
+		"name_zh": "索罗亚",
+		"name_ja": "ゾロア",
+		"timecode": "05:18.885"
+	},
+	{
+		"dex": 571,
+		"name_zh": "索罗亚克",
+		"name_ja": "ゾロアーク",
+		"timecode": "14:20.393"
+	},
+	{
+		"dex": 572,
+		"name_zh": "泡沫栗鼠",
+		"name_ja": "チラーミィ",
+		"timecode": "07:32.786"
+	},
+	{
+		"dex": 573,
+		"name_zh": "奇诺栗鼠",
+		"name_ja": "チラチーノ",
+		"timecode": "17:37.590"
+	},
+	{
+		"dex": 574,
+		"name_zh": "哥德宝宝",
+		"name_ja": "ゴチム",
+		"timecode": "02:02.089"
+	},
+	{
+		"dex": 575,
+		"name_zh": "哥德小童",
+		"name_ja": "ゴチミル",
+		"timecode": "02:02.456"
+	},
+	{
+		"dex": 576,
+		"name_zh": "哥德小姐",
+		"name_ja": "ゴチルゼル",
+		"timecode": "02:02.990"
+	},
+	{
+		"dex": 577,
+		"name_zh": "单卵细胞球",
+		"name_ja": "ユニラン",
+		"timecode": "15:42.141"
+	},
+	{
+		"dex": 578,
+		"name_zh": "双卵细胞球",
+		"name_ja": "ダブラン",
+		"timecode": "17:26.212"
+	},
+	{
+		"dex": 579,
+		"name_zh": "人造细胞卵",
+		"name_ja": "ランクルス",
+		"timecode": "18:56.002"
+	},
+	{
+		"dex": 580,
+		"name_zh": "鸭宝宝",
+		"name_ja": "コアルヒー",
+		"timecode": "17:03.689"
+	},
+	{
+		"dex": 581,
+		"name_zh": "舞天鹅",
+		"name_ja": "スワンナ",
+		"timecode": "07:59.846"
+	},
+	{
+		"dex": 582,
+		"name_zh": "迷你冰",
+		"name_ja": "バニプッチ",
+		"timecode": "06:50.510"
+	},
+	{
+		"dex": 583,
+		"name_zh": "多多冰",
+		"name_ja": "バニリッチ",
+		"timecode": "06:51.811"
+	},
+	{
+		"dex": 584,
+		"name_zh": "双倍多多冰",
+		"name_ja": "バイバニラ",
+		"timecode": "06:53.113"
+	},
+	{
+		"dex": 585,
+		"name_zh": "四季鹿",
+		"name_ja": "シキジカ",
+		"timecode": "14:15.788"
+	},
+	{
+		"dex": 586,
+		"name_zh": "萌芽鹿",
+		"name_ja": "メブキジカ",
+		"timecode": "14:16.456"
+	},
+	{
+		"dex": 587,
+		"name_zh": "电飞鼠",
+		"name_ja": "エモンガ",
+		"timecode": "03:16.496"
+	},
+	{
+		"dex": 588,
+		"name_zh": "盖盖虫",
+		"name_ja": "カブルモ",
+		"timecode": "14:29.035"
+	},
+	{
+		"dex": 589,
+		"name_zh": "骑士蜗牛",
+		"name_ja": "シュバルゴ",
+		"timecode": "16:45.605"
+	},
+	{
+		"dex": 590,
+		"name_zh": "哎呀球菇",
+		"name_ja": "タマゲタケ",
+		"timecode": "00:35.936"
+	},
+	{
+		"dex": 591,
+		"name_zh": "败露球菇",
+		"name_ja": "モロバレル",
+		"timecode": "06:25.785"
+	},
+	{
+		"dex": 592,
+		"name_zh": "轻飘飘",
+		"name_ja": "プルリル",
+		"timecode": "12:21.608"
+	},
+	{
+		"dex": 593,
+		"name_zh": "胖嘟嘟",
+		"name_ja": "ブルンゲル",
+		"timecode": "12:16.102"
+	},
+	{
+		"dex": 594,
+		"name_zh": "保姆曼波",
+		"name_ja": "ママンボウ",
+		"timecode": "16:57.116"
+	},
+	{
+		"dex": 595,
+		"name_zh": "电电虫",
+		"name_ja": "バチュル",
+		"timecode": "09:12.585"
+	},
+	{
+		"dex": 596,
+		"name_zh": "电蜘蛛",
+		"name_ja": "デンチュラ",
+		"timecode": "06:45.739"
+	},
+	{
+		"dex": 597,
+		"name_zh": "种子铁球",
+		"name_ja": "テッシード",
+		"timecode": "09:46.086"
+	},
+	{
+		"dex": 598,
+		"name_zh": "坚果哑铃",
+		"name_ja": "ナットレイ",
+		"timecode": "10:03.503"
+	},
+	{
+		"dex": 599,
+		"name_zh": "齿轮儿",
+		"name_ja": "ギアル",
+		"timecode": "03:25.205"
+	},
+	{
+		"dex": 600,
+		"name_zh": "齿轮组",
+		"name_ja": "ギギアル",
+		"timecode": "03:25.839"
+	},
+	{
+		"dex": 601,
+		"name_zh": "齿轮怪",
+		"name_ja": "ギギギアル",
+		"timecode": "03:26.707"
+	},
+	{
+		"dex": 602,
+		"name_zh": "麻麻小鱼",
+		"name_ja": "シビシラス",
+		"timecode": "09:01.207"
+	},
+	{
+		"dex": 603,
+		"name_zh": "麻麻鳗",
+		"name_ja": "シビビール",
+		"timecode": "09:30.804"
+	},
+	{
+		"dex": 604,
+		"name_zh": "麻麻鳗鱼王",
+		"name_ja": "シビルドン",
+		"timecode": "09:02.108"
+	},
+	{
+		"dex": 605,
+		"name_zh": "小灰怪",
+		"name_ja": "リグレー",
+		"timecode": "20:05.938"
+	},
+	{
+		"dex": 606,
+		"name_zh": "大宇怪",
+		"name_ja": "オーベム",
+		"timecode": "01:59.987"
+	},
+	{
+		"dex": 607,
+		"name_zh": "烛光灵",
+		"name_ja": "ヒトモシ",
+		"timecode": "12:52.705"
+	},
+	{
+		"dex": 608,
+		"name_zh": "灯火幽灵",
+		"name_ja": "ランプラー",
+		"timecode": "12:13.299"
+	},
+	{
+		"dex": 609,
+		"name_zh": "水晶灯火灵",
+		"name_ja": "シャンデラ",
+		"timecode": "12:23.009"
+	},
+	{
+		"dex": 610,
+		"name_zh": "牙牙",
+		"name_ja": "キバゴ",
+		"timecode": "10:15.415"
+	},
+	{
+		"dex": 611,
+		"name_zh": "斧牙龙",
+		"name_ja": "オノンド",
+		"timecode": "10:11.845"
+	},
+	{
+		"dex": 612,
+		"name_zh": "双斧战龙",
+		"name_ja": "オノノクス",
+		"timecode": "10:27.460"
+	},
+	{
+		"dex": 613,
+		"name_zh": "喷嚏熊",
+		"name_ja": "クマシュン",
+		"timecode": "20:04.804"
+	},
+	{
+		"dex": 614,
+		"name_zh": "冻原熊",
+		"name_ja": "ツンベアー",
+		"timecode": "06:56.616"
+	},
+	{
+		"dex": 615,
+		"name_zh": "几何雪花",
+		"name_ja": "フリージオ",
+		"timecode": "06:58.084"
+	},
+	{
+		"dex": 616,
+		"name_zh": "小嘴蜗",
+		"name_ja": "チョボマキ",
+		"timecode": "15:39.105"
+	},
+	{
+		"dex": 617,
+		"name_zh": "敏捷虫",
+		"name_ja": "アギルダー",
+		"timecode": "20:26.392"
+	},
+	{
+		"dex": 618,
+		"name_zh": "泥巴鱼",
+		"name_ja": "マッギョ",
+		"timecode": "12:57.510"
+	},
+	{
+		"dex": 619,
+		"name_zh": "功夫鼬",
+		"name_ja": "コジョフー",
+		"timecode": "11:55.748"
+	},
+	{
+		"dex": 620,
+		"name_zh": "师父鼬",
+		"name_ja": "コジョンド",
+		"timecode": "12:05.592"
+	},
+	{
+		"dex": 621,
+		"name_zh": "赤面龙",
+		"name_ja": "クリムガン",
+		"timecode": "15:43.409"
+	},
+	{
+		"dex": 622,
+		"name_zh": "泥偶小人",
+		"name_ja": "ゴビット",
+		"timecode": "12:29.148"
+	},
+	{
+		"dex": 623,
+		"name_zh": "泥偶巨人",
+		"name_ja": "ゴルーグ",
+		"timecode": "12:12.565"
+	},
+	{
+		"dex": 624,
+		"name_zh": "驹刀小兵",
+		"name_ja": "コマタナ",
+		"timecode": "09:36.042"
+	},
+	{
+		"dex": 625,
+		"name_zh": "劈斩司令",
+		"name_ja": "キリキザン",
+		"timecode": "05:13.213"
+	},
+	{
+		"dex": 626,
+		"name_zh": "爆炸头水牛",
+		"name_ja": "バッフロン",
+		"timecode": "07:32.052"
+	},
+	{
+		"dex": 627,
+		"name_zh": "毛头小鹰",
+		"name_ja": "ワシボン",
+		"timecode": "08:00.213"
+	},
+	{
+		"dex": 628,
+		"name_zh": "勇士雄鹰",
+		"name_ja": "ウォーグル",
+		"timecode": "13:27.006"
+	},
+	{
+		"dex": 629,
+		"name_zh": "秃鹰丫头",
+		"name_ja": "バルチャイ",
+		"timecode": "08:06.986"
+	},
+	{
+		"dex": 630,
+		"name_zh": "秃鹰娜",
+		"name_ja": "バルジーナ",
+		"timecode": "01:40.300"
+	},
+	{
+		"dex": 631,
+		"name_zh": "熔蚁兽",
+		"name_ja": "クイタラン",
+		"timecode": "04:31.104"
+	},
+	{
+		"dex": 632,
+		"name_zh": "铁蚁",
+		"name_ja": "アイアント",
+		"timecode": "12:51.204"
+	},
+	{
+		"dex": 633,
+		"name_zh": "单首龙",
+		"name_ja": "モノズ",
+		"timecode": "12:54.107"
+	},
+	{
+		"dex": 634,
+		"name_zh": "双首暴龙",
+		"name_ja": "ジヘッド",
+		"timecode": "10:10.410"
+	},
+	{
+		"dex": 635,
+		"name_zh": "三首恶龙",
+		"name_ja": "サザンドラ",
+		"timecode": "10:21.488"
+	},
+	{
+		"dex": 636,
+		"name_zh": "燃烧虫",
+		"name_ja": "メラルバ",
+		"timecode": "13:26.606"
+	},
+	{
+		"dex": 637,
+		"name_zh": "火神蛾",
+		"name_ja": "ウルガモス",
+		"timecode": "06:42.902"
+	},
+	{
+		"dex": 638,
+		"name_zh": "勾帕路翁",
+		"name_ja": "コバルオン",
+		"timecode": "02:54.141"
+	},
+	{
+		"dex": 639,
+		"name_zh": "代拉基翁",
+		"name_ja": "テラキオン",
+		"timecode": "02:54.841"
+	},
+	{
+		"dex": 640,
+		"name_zh": "毕力吉翁",
+		"name_ja": "ビリジオン",
+		"timecode": "02:55.709"
+	},
+	{
+		"dex": 641,
+		"name_zh": "龙卷云",
+		"name_ja": "トルネロス",
+		"timecode": "13:19.866"
+	},
+	{
+		"dex": 642,
+		"name_zh": "雷电云",
+		"name_ja": "ボルトロス",
+		"timecode": "09:14.387"
+	},
+	{
+		"dex": 643,
+		"name_zh": "莱希拉姆",
+		"name_ja": "レシラム",
+		"timecode": "20:30.262"
+	},
+	{
+		"dex": 644,
+		"name_zh": "捷克罗姆",
+		"name_ja": "ゼクロム",
+		"timecode": "20:30.896"
+	},
+	{
+		"dex": 645,
+		"name_zh": "土地云",
+		"name_ja": "ランドロス",
+		"timecode": "11:39.899"
+	},
+	{
+		"dex": 646,
+		"name_zh": "酋雷姆",
+		"name_ja": "キュレム",
+		"timecode": "20:31.564"
+	},
+	{
+		"dex": 647,
+		"name_zh": "凯路迪欧",
+		"name_ja": "ケルディオ",
+		"timecode": "19:05.711"
+	},
+	{
+		"dex": 648,
+		"name_zh": "美洛耶塔",
+		"name_ja": "メロエッタ",
+		"timecode": "15:28.094"
+	},
+	{
+		"dex": 649,
+		"name_zh": "盖诺赛克特",
+		"name_ja": "ゲノセクト",
+		"timecode": "09:51.891"
+	},
+	{
+		"dex": 650,
+		"name_zh": "哈力栗",
+		"name_ja": "ハリマロン",
+		"timecode": "00:45.312"
+	},
+	{
+		"dex": 651,
+		"name_zh": "胖胖哈力",
+		"name_ja": "ハリボーグ",
+		"timecode": "20:11.143"
+	},
+	{
+		"dex": 652,
+		"name_zh": "布里卡隆",
+		"name_ja": "ブリガロン",
+		"timecode": "03:04.751"
+	},
+	{
+		"dex": 653,
+		"name_zh": "火狐狸",
+		"name_ja": "フォッコ",
+		"timecode": "03:02.549"
+	},
+	{
+		"dex": 654,
+		"name_zh": "长尾火狐",
+		"name_ja": "テールナー",
+		"timecode": "19:06.112"
+	},
+	{
+		"dex": 655,
+		"name_zh": "妖火红狐",
+		"name_ja": "マフォクシー",
+		"timecode": "19:46.652"
+	},
+	{
+		"dex": 656,
+		"name_zh": "呱呱泡蛙",
+		"name_ja": "ケロマツ",
+		"timecode": "19:06.445"
+	},
+	{
+		"dex": 657,
+		"name_zh": "呱头蛙",
+		"name_ja": "ゲコガシラ",
+		"timecode": "03:06.887"
+	},
+	{
+		"dex": 658,
+		"name_zh": "甲贺忍蛙",
+		"name_ja": "ゲッコウガ",
+		"timecode": "01:35.662"
+	},
+	{
+		"dex": 659,
+		"name_zh": "掘掘兔",
+		"name_ja": "ホルビー",
+		"timecode": "03:02.849"
+	},
+	{
+		"dex": 660,
+		"name_zh": "掘地兔",
+		"name_ja": "ホルード",
+		"timecode": "07:31.384"
+	},
+	{
+		"dex": 661,
+		"name_zh": "小箭雀",
+		"name_ja": "ヤヤコマ",
+		"timecode": "03:09.990"
+	},
+	{
+		"dex": 662,
+		"name_zh": "火箭雀",
+		"name_ja": "ヒノヤコマ",
+		"timecode": "19:47.353"
+	},
+	{
+		"dex": 663,
+		"name_zh": "烈箭鹰",
+		"name_ja": "ファイアロー",
+		"timecode": "08:05.652"
+	},
+	{
+		"dex": 664,
+		"name_zh": "粉蝶虫",
+		"name_ja": "コフキムシ",
+		"timecode": "17:10.997"
+	},
+	{
+		"dex": 665,
+		"name_zh": "粉蝶蛹",
+		"name_ja": "コフーライ",
+		"timecode": "20:23.089"
+	},
+	{
+		"dex": 666,
+		"name_zh": "彩粉蝶",
+		"name_ja": "ビビヨン",
+		"timecode": "03:08.889"
+	},
+	{
+		"dex": 667,
+		"name_zh": "小狮狮",
+		"name_ja": "シシコ",
+		"timecode": "03:09.256"
+	},
+	{
+		"dex": 668,
+		"name_zh": "火炎狮",
+		"name_ja": "カエンジシ",
+		"timecode": "03:10.557"
+	},
+	{
+		"dex": 669,
+		"name_zh": "花蓓蓓",
+		"name_ja": "フラベベ",
+		"timecode": "03:08.555"
+	},
+	{
+		"dex": 670,
+		"name_zh": "花叶蒂",
+		"name_ja": "フラエッテ",
+		"timecode": "04:41.114"
+	},
+	{
+		"dex": 671,
+		"name_zh": "花洁夫人",
+		"name_ja": "フラージェス",
+		"timecode": "13:29.142"
+	},
+	{
+		"dex": 672,
+		"name_zh": "坐骑小羊",
+		"name_ja": "メェークル",
+		"timecode": "13:17.497"
+	},
+	{
+		"dex": 673,
+		"name_zh": "坐骑山羊",
+		"name_ja": "ゴーゴート",
+		"timecode": "00:56.490"
+	},
+	{
+		"dex": 674,
+		"name_zh": "顽皮熊猫",
+		"name_ja": "ヤンチャム",
+		"timecode": "03:05.952"
+	},
+	{
+		"dex": 675,
+		"name_zh": "霸道熊猫",
+		"name_ja": "ゴロンダ",
+		"timecode": "03:12.059"
+	},
+	{
+		"dex": 676,
+		"name_zh": "多丽米亚",
+		"name_ja": "トリミアン",
+		"timecode": "14:41.914"
+	},
+	{
+		"dex": 677,
+		"name_zh": "妙喵",
+		"name_ja": "ニャスパー",
+		"timecode": "03:03.216"
+	},
+	{
+		"dex": 678,
+		"name_zh": "超能妙喵",
+		"name_ja": "ニャオニクス",
+		"timecode": "04:56.396"
+	},
+	{
+		"dex": 679,
+		"name_zh": "独剑鞘",
+		"name_ja": "ヒトツキ",
+		"timecode": "09:56.596"
+	},
+	{
+		"dex": 680,
+		"name_zh": "双剑鞘",
+		"name_ja": "ニダンギル",
+		"timecode": "12:25.712"
+	},
+	{
+		"dex": 681,
+		"name_zh": "坚盾剑怪",
+		"name_ja": "ギルガルド",
+		"timecode": "09:48.455"
+	},
+	{
+		"dex": 682,
+		"name_zh": "粉香香",
+		"name_ja": "シュシュプ",
+		"timecode": "18:43.389"
+	},
+	{
+		"dex": 683,
+		"name_zh": "芳香精",
+		"name_ja": "フレフワン",
+		"timecode": "04:40.447"
+	},
+	{
+		"dex": 684,
+		"name_zh": "绵绵泡芙",
+		"name_ja": "ペロッパフ",
+		"timecode": "14:22.161"
+	},
+	{
+		"dex": 685,
+		"name_zh": "胖甜妮",
+		"name_ja": "ペロリーム",
+		"timecode": "04:45.986"
+	},
+	{
+		"dex": 686,
+		"name_zh": "好啦鱿",
+		"name_ja": "マーイーカ",
+		"timecode": "01:45.038"
+	},
+	{
+		"dex": 687,
+		"name_zh": "乌贼王",
+		"name_ja": "カラマネロ",
+		"timecode": "05:14.314"
+	},
+	{
+		"dex": 688,
+		"name_zh": "龟脚脚",
+		"name_ja": "カメテテ",
+		"timecode": "03:08.188"
+	},
+	{
+		"dex": 689,
+		"name_zh": "龟足巨铠",
+		"name_ja": "ガメノデス",
+		"timecode": "03:15.896"
+	},
+	{
+		"dex": 690,
+		"name_zh": "垃垃藻",
+		"name_ja": "クズモー",
+		"timecode": "06:11.137"
+	},
+	{
+		"dex": 691,
+		"name_zh": "毒藻龙",
+		"name_ja": "ドラミドロ",
+		"timecode": "10:11.144"
+	},
+	{
+		"dex": 692,
+		"name_zh": "铁臂枪虾",
+		"name_ja": "ウデッポウ",
+		"timecode": "03:12.692"
+	},
+	{
+		"dex": 693,
+		"name_zh": "钢炮臂虾",
+		"name_ja": "ブロスター",
+		"timecode": "14:37.910"
+	},
+	{
+		"dex": 694,
+		"name_zh": "伞电蜥",
+		"name_ja": "エリキテル",
+		"timecode": "16:49.242"
+	},
+	{
+		"dex": 695,
+		"name_zh": "光电伞蜥",
+		"name_ja": "エレザード",
+		"timecode": "09:18.458"
+	},
+	{
+		"dex": 696,
+		"name_zh": "宝宝暴龙",
+		"name_ja": "チゴラス",
+		"timecode": "10:27.994"
+	},
+	{
+		"dex": 697,
+		"name_zh": "怪颚龙",
+		"name_ja": "ガチゴラス",
+		"timecode": "14:39.812"
+	},
+	{
+		"dex": 698,
+		"name_zh": "冰雪龙",
+		"name_ja": "アマルス",
+		"timecode": "01:48.842"
+	},
+	{
+		"dex": 699,
+		"name_zh": "冰雪巨龙",
+		"name_ja": "アマルルガ",
+		"timecode": "03:11.691"
+	},
+	{
+		"dex": 700,
+		"name_zh": "仙子伊布",
+		"name_ja": "ニンフィア",
+		"timecode": "03:11.058"
+	},
+	{
+		"dex": 701,
+		"name_zh": "摔角鹰人",
+		"name_ja": "ルチャブル",
+		"timecode": "03:06.286"
+	},
+	{
+		"dex": 702,
+		"name_zh": "咚咚鼠",
+		"name_ja": "デデンネ",
+		"timecode": "03:09.589"
+	},
+	{
+		"dex": 703,
+		"name_zh": "小碎钻",
+		"name_ja": "メレシー",
+		"timecode": "03:03.583"
+	},
+	{
+		"dex": 704,
+		"name_zh": "黏黏宝",
+		"name_ja": "ヌメラ",
+		"timecode": "10:06.706"
+	},
+	{
+		"dex": 705,
+		"name_zh": "黏美儿",
+		"name_ja": "ヌメイル",
+		"timecode": "19:20.159"
+	},
+	{
+		"dex": 706,
+		"name_zh": "黏美龙",
+		"name_ja": "ヌメルゴン",
+		"timecode": "03:04.084"
+	},
+	{
+		"dex": 707,
+		"name_zh": "钥圈儿",
+		"name_ja": "クレッフィ",
+		"timecode": "13:40.987"
+	},
+	{
+		"dex": 708,
+		"name_zh": "小木灵",
+		"name_ja": "ボクレー",
+		"timecode": "03:05.652"
+	},
+	{
+		"dex": 709,
+		"name_zh": "朽木妖",
+		"name_ja": "オーロット",
+		"timecode": "02:00.387"
+	},
+	{
+		"dex": 710,
+		"name_zh": "南瓜精",
+		"name_ja": "バケッチャ",
+		"timecode": "12:18.504"
+	},
+	{
+		"dex": 711,
+		"name_zh": "南瓜怪人",
+		"name_ja": "パンプジン",
+		"timecode": "12:11.264"
+	},
+	{
+		"dex": 712,
+		"name_zh": "冰宝",
+		"name_ja": "カチコール",
+		"timecode": "14:21.394"
+	},
+	{
+		"dex": 713,
+		"name_zh": "冰岩怪",
+		"name_ja": "クレベース",
+		"timecode": "20:24.890"
+	},
+	{
+		"dex": 714,
+		"name_zh": "嗡蝠",
+		"name_ja": "オンバット",
+		"timecode": "10:12.612"
+	},
+	{
+		"dex": 715,
+		"name_zh": "音波龙",
+		"name_ja": "オンバーン",
+		"timecode": "14:55.962"
+	},
+	{
+		"dex": 716,
+		"name_zh": "哲尔尼亚斯",
+		"name_ja": "ゼルネアス",
+		"timecode": "00:30.063"
+	},
+	{
+		"dex": 717,
+		"name_zh": "伊裴尔塔尔",
+		"name_ja": "イベルタル",
+		"timecode": "03:05.285"
+	},
+	{
+		"dex": 718,
+		"name_zh": "基格尔德",
+		"name_ja": "ジガルデ",
+		"timecode": "13:32.312"
+	},
+	{
+		"dex": 719,
+		"name_zh": "蒂安希",
+		"name_ja": "ディアンシー",
+		"timecode": "04:50.791"
+	},
+	{
+		"dex": 720,
+		"name_zh": "胡帕",
+		"name_ja": "フーパ",
+		"timecode": "03:11.358"
+	},
+	{
+		"dex": 721,
+		"name_zh": "波尔凯尼恩",
+		"name_ja": "ボルケニオン",
+		"timecode": "04:22.295"
+	},
+	{
+		"dex": 722,
+		"name_zh": "木木枭",
+		"name_ja": "モクロー",
+		"timecode": "08:05.251"
+	},
+	{
+		"dex": 723,
+		"name_zh": "投羽枭",
+		"name_ja": "フクスロー",
+		"timecode": "17:40.059"
+	},
+	{
+		"dex": 724,
+		"name_zh": "狙射树枭",
+		"name_ja": "ジュナイパー",
+		"timecode": "10:56.689"
+	},
+	{
+		"dex": 725,
+		"name_zh": "火斑喵",
+		"name_ja": "ニャビー",
+		"timecode": "18:07.253"
+	},
+	{
+		"dex": 726,
+		"name_zh": "炎热喵",
+		"name_ja": "ニャヒート",
+		"timecode": "18:07.954"
+	},
+	{
+		"dex": 727,
+		"name_zh": "炽焰咆哮虎",
+		"name_ja": "ガオガエン",
+		"timecode": "04:25.499"
+	},
+	{
+		"dex": 728,
+		"name_zh": "球球海狮",
+		"name_ja": "アシマリ",
+		"timecode": "14:13.052"
+	},
+	{
+		"dex": 729,
+		"name_zh": "花漾海狮",
+		"name_ja": "オシャマリ",
+		"timecode": "14:13.753"
+	},
+	{
+		"dex": 730,
+		"name_zh": "西狮海壬",
+		"name_ja": "アシレーヌ",
+		"timecode": "04:42.449"
+	},
+	{
+		"dex": 731,
+		"name_zh": "小笃儿",
+		"name_ja": "ツツケラ",
+		"timecode": "07:53.540"
+	},
+	{
+		"dex": 732,
+		"name_zh": "喇叭啄鸟",
+		"name_ja": "ケララッパ",
+		"timecode": "01:36.363"
+	},
+	{
+		"dex": 733,
+		"name_zh": "铳嘴大鸟",
+		"name_ja": "ドデカバシ",
+		"timecode": "15:21.788"
+	},
+	{
+		"dex": 734,
+		"name_zh": "猫鼬少",
+		"name_ja": "ヤングース",
+		"timecode": "18:52.398"
+	},
+	{
+		"dex": 735,
+		"name_zh": "猫鼬探长",
+		"name_ja": "デカグース",
+		"timecode": "18:53.399"
+	},
+	{
+		"dex": 736,
+		"name_zh": "强颚鸡母虫",
+		"name_ja": "アゴジムシ",
+		"timecode": "20:19.585"
+	},
+	{
+		"dex": 737,
+		"name_zh": "虫电宝",
+		"name_ja": "デンヂムシ",
+		"timecode": "09:28.101"
+	},
+	{
+		"dex": 738,
+		"name_zh": "锹农炮虫",
+		"name_ja": "クワガノン",
+		"timecode": "09:07.414"
+	},
+	{
+		"dex": 739,
+		"name_zh": "好胜蟹",
+		"name_ja": "マケンカニ",
+		"timecode": "03:20.167"
+	},
+	{
+		"dex": 740,
+		"name_zh": "好胜毛蟹",
+		"name_ja": "ケケンカニ",
+		"timecode": "03:20.834"
+	},
+	{
+		"dex": 741,
+		"name_zh": "花舞鸟",
+		"name_ja": "オドリドリ",
+		"timecode": "07:56.209"
+	},
+	{
+		"dex": 742,
+		"name_zh": "萌虻",
+		"name_ja": "アブリー",
+		"timecode": "04:43.150"
+	},
+	{
+		"dex": 743,
+		"name_zh": "蝶结萌虻",
+		"name_ja": "アブリボン",
+		"timecode": "16:44.003"
+	},
+	{
+		"dex": 744,
+		"name_zh": "岩狗狗",
+		"name_ja": "イワンコ",
+		"timecode": "13:38.951"
+	},
+	{
+		"dex": 745,
+		"name_zh": "鬃岩狼人",
+		"name_ja": "ルガルガン",
+		"timecode": "15:17.550"
+	},
+	{
+		"dex": 746,
+		"name_zh": "弱丁鱼",
+		"name_ja": "ヨワシ",
+		"timecode": "06:14.107"
+	},
+	{
+		"dex": 747,
+		"name_zh": "好坏星",
+		"name_ja": "ヒドイデ",
+		"timecode": "06:09.803"
+	},
+	{
+		"dex": 748,
+		"name_zh": "超坏星",
+		"name_ja": "ドヒドイデ",
+		"timecode": "06:10.437"
+	},
+	{
+		"dex": 749,
+		"name_zh": "泥驴仔",
+		"name_ja": "ドロバンコ",
+		"timecode": "15:15.314"
+	},
+	{
+		"dex": 750,
+		"name_zh": "重泥挽马",
+		"name_ja": "バンバドロ",
+		"timecode": "17:06.392"
+	},
+	{
+		"dex": 751,
+		"name_zh": "滴蛛",
+		"name_ja": "シズクモ",
+		"timecode": "19:26.098"
+	},
+	{
+		"dex": 752,
+		"name_zh": "滴蛛霸",
+		"name_ja": "オニシズクモ",
+		"timecode": "16:09.202"
+	},
+	{
+		"dex": 753,
+		"name_zh": "伪螳草",
+		"name_ja": "カリキリ",
+		"timecode": "14:28.401"
+	},
+	{
+		"dex": 754,
+		"name_zh": "兰螳花",
+		"name_ja": "ラランテス",
+		"timecode": "18:56.836"
+	},
+	{
+		"dex": 755,
+		"name_zh": "睡睡菇",
+		"name_ja": "ネマシュ",
+		"timecode": "04:45.352"
+	},
+	{
+		"dex": 756,
+		"name_zh": "灯罩夜菇",
+		"name_ja": "マシェード",
+		"timecode": "15:44.510"
+	},
+	{
+		"dex": 757,
+		"name_zh": "夜盗火蜥",
+		"name_ja": "ヤトウモリ",
+		"timecode": "06:28.488"
+	},
+	{
+		"dex": 758,
+		"name_zh": "焰后蜥",
+		"name_ja": "エンニュート",
+		"timecode": "17:07.793"
+	},
+	{
+		"dex": 759,
+		"name_zh": "童偶熊",
+		"name_ja": "ヌイコグマ",
+		"timecode": "17:49.502"
+	},
+	{
+		"dex": 760,
+		"name_zh": "穿着熊",
+		"name_ja": "キテルグマ",
+		"timecode": "12:04.190"
+	},
+	{
+		"dex": 761,
+		"name_zh": "甜竹竹",
+		"name_ja": "アマカジ",
+		"timecode": "20:13.212"
+	},
+	{
+		"dex": 762,
+		"name_zh": "甜舞妮",
+		"name_ja": "アママイコ",
+		"timecode": "10:55.088"
+	},
+	{
+		"dex": 763,
+		"name_zh": "甜冷美后",
+		"name_ja": "アマージョ",
+		"timecode": "20:13.612"
+	},
+	{
+		"dex": 764,
+		"name_zh": "花疗环环",
+		"name_ja": "キュワワー",
+		"timecode": "04:43.784"
+	},
+	{
+		"dex": 765,
+		"name_zh": "智挥猩",
+		"name_ja": "ヤレユータン",
+		"timecode": "15:45.011"
+	},
+	{
+		"dex": 766,
+		"name_zh": "投掷猴",
+		"name_ja": "ナゲツケサル",
+		"timecode": "19:17.857"
+	},
+	{
+		"dex": 767,
+		"name_zh": "胆小虫",
+		"name_ja": "コソクムシ",
+		"timecode": "06:14.741"
+	},
+	{
+		"dex": 768,
+		"name_zh": "具甲武者",
+		"name_ja": "グソクムシャ",
+		"timecode": "17:05.391"
+	},
+	{
+		"dex": 769,
+		"name_zh": "沙丘娃",
+		"name_ja": "スナバァ",
+		"timecode": "11:43.036"
+	},
+	{
+		"dex": 770,
+		"name_zh": "噬沙堡爷",
+		"name_ja": "シロデスナ",
+		"timecode": "11:43.803"
+	},
+	{
+		"dex": 771,
+		"name_zh": "拳海参",
+		"name_ja": "ナマコブシ",
+		"timecode": "14:26.699"
+	},
+	{
+		"dex": 772,
+		"name_zh": "属性：空",
+		"name_ja": "タイプ：ヌル",
+		"timecode": "16:46.639"
+	},
+	{
+		"dex": 773,
+		"name_zh": "银伴战兽",
+		"name_ja": "シルヴァディ",
+		"timecode": "14:27.500"
+	},
+	{
+		"dex": 774,
+		"name_zh": "小陨星",
+		"name_ja": "メテノ",
+		"timecode": "14:18.758"
+	},
+	{
+		"dex": 775,
+		"name_zh": "树枕尾熊",
+		"name_ja": "ネッコアラ",
+		"timecode": "18:00.746"
+	},
+	{
+		"dex": 776,
+		"name_zh": "爆焰龟兽",
+		"name_ja": "バクガメス",
+		"timecode": "04:21.461"
+	},
+	{
+		"dex": 777,
+		"name_zh": "托戈德玛尔",
+		"name_ja": "トゲデマル",
+		"timecode": "09:34.607"
+	},
+	{
+		"dex": 778,
+		"name_zh": "谜拟丘",
+		"name_ja": "ミミッキュ",
+		"timecode": "12:10.196"
+	},
+	{
+		"dex": 779,
+		"name_zh": "磨牙彩皮鱼",
+		"name_ja": "ハギギシリ",
+		"timecode": "16:42.001"
+	},
+	{
+		"dex": 780,
+		"name_zh": "老翁龙",
+		"name_ja": "ジジーロン",
+		"timecode": "10:23.490"
+	},
+	{
+		"dex": 781,
+		"name_zh": "破破舵轮",
+		"name_ja": "ダダリン",
+		"timecode": "12:24.043"
+	},
+	{
+		"dex": 782,
+		"name_zh": "心鳞宝",
+		"name_ja": "ジャラコ",
+		"timecode": "10:16.816"
+	},
+	{
+		"dex": 783,
+		"name_zh": "鳞甲龙",
+		"name_ja": "ジャランゴ",
+		"timecode": "10:08.308"
+	},
+	{
+		"dex": 784,
+		"name_zh": "杖尾鳞甲龙",
+		"name_ja": "ジャラランガ",
+		"timecode": "03:17.764"
+	},
+	{
+		"dex": 785,
+		"name_zh": "卡璞・鸣鸣",
+		"name_ja": "カプ・コケコ",
+		"timecode": "09:06.513"
+	},
+	{
+		"dex": 786,
+		"name_zh": "卡璞・蝶蝶",
+		"name_ja": "カプ・テテフ",
+		"timecode": "04:59.099"
+	},
+	{
+		"dex": 787,
+		"name_zh": "卡璞・哞哞",
+		"name_ja": "カプ・ブルル",
+		"timecode": "20:35.701"
+	},
+	{
+		"dex": 788,
+		"name_zh": "卡璞・鳍鳍",
+		"name_ja": "カプ・レヒレ",
+		"timecode": "13:12.392"
+	},
+	{
+		"dex": 789,
+		"name_zh": "科斯莫古",
+		"name_ja": "コスモッグ",
+		"timecode": "04:53.693"
+	},
+	{
+		"dex": 790,
+		"name_zh": "科斯莫姆",
+		"name_ja": "コスモウム",
+		"timecode": "17:02.288"
+	},
+	{
+		"dex": 791,
+		"name_zh": "索尔迦雷欧",
+		"name_ja": "ソルガレオ",
+		"timecode": "09:51.157"
+	},
+	{
+		"dex": 792,
+		"name_zh": "露奈雅拉",
+		"name_ja": "ルナアーラ",
+		"timecode": "12:31.884"
+	},
+	{
+		"dex": 793,
+		"name_zh": "虚吾伊德",
+		"name_ja": "ウツロイド",
+		"timecode": "18:40.786"
+	},
+	{
+		"dex": 794,
+		"name_zh": "爆肌蚊",
+		"name_ja": "マッシブーン",
+		"timecode": "06:49.509"
+	},
+	{
+		"dex": 795,
+		"name_zh": "费洛美螂",
+		"name_ja": "フェローチェ",
+		"timecode": "19:15.588"
+	},
+	{
+		"dex": 796,
+		"name_zh": "电束木",
+		"name_ja": "デンジュモク",
+		"timecode": "09:27.200"
+	},
+	{
+		"dex": 797,
+		"name_zh": "铁火辉夜",
+		"name_ja": "テッカグヤ",
+		"timecode": "09:58.097"
+	},
+	{
+		"dex": 798,
+		"name_zh": "纸御剑",
+		"name_ja": "カミツルギ",
+		"timecode": "09:59.499"
+	},
+	{
+		"dex": 799,
+		"name_zh": "恶食大王",
+		"name_ja": "アクジキング",
+		"timecode": "02:12.399"
+	},
+	{
+		"dex": 800,
+		"name_zh": "奈克洛兹玛",
+		"name_ja": "ネクロズマ",
+		"timecode": "20:36.435"
+	},
+	{
+		"dex": 801,
+		"name_zh": "玛机雅娜",
+		"name_ja": "マギアナ",
+		"timecode": "10:01.000"
+	},
+	{
+		"dex": 802,
+		"name_zh": "玛夏多",
+		"name_ja": "マーシャドー",
+		"timecode": "12:07.193"
+	},
+	{
+		"dex": 803,
+		"name_zh": "毒贝比",
+		"name_ja": "ベベノム",
+		"timecode": "06:32.292"
+	},
+	{
+		"dex": 804,
+		"name_zh": "四颚针龙",
+		"name_ja": "アーゴヨン",
+		"timecode": "14:59.399"
+	},
+	{
+		"dex": 805,
+		"name_zh": "垒磊石",
+		"name_ja": "ツンデツンデ",
+		"timecode": "07:40.694"
+	},
+	{
+		"dex": 806,
+		"name_zh": "砰头小丑",
+		"name_ja": "ズガドーン",
+		"timecode": "04:33.206"
+	},
+	{
+		"dex": 807,
+		"name_zh": "捷拉奥拉",
+		"name_ja": "ゼラオラ",
+		"timecode": "09:19.159"
+	},
+	{
+		"dex": 808,
+		"name_zh": "美录坦",
+		"name_ja": "メルタン",
+		"timecode": "10:02.635"
+	},
+	{
+		"dex": 809,
+		"name_zh": "美录梅塔",
+		"name_ja": "メルメタル",
+		"timecode": "09:33.907"
+	},
+	{
+		"dex": 810,
+		"name_zh": "敲音猴",
+		"name_ja": "サルノリ",
+		"timecode": "14:15.188"
+	},
+	{
+		"dex": 811,
+		"name_zh": "啪咚猴",
+		"name_ja": "バチンキー",
+		"timecode": "20:16.248"
+	},
+	{
+		"dex": 812,
+		"name_zh": "轰擂金刚猩",
+		"name_ja": "ゴリランダー",
+		"timecode": "14:56.796"
+	},
+	{
+		"dex": 813,
+		"name_zh": "炎兔儿",
+		"name_ja": "ヒバニー",
+		"timecode": "20:15.915"
+	},
+	{
+		"dex": 814,
+		"name_zh": "腾蹴小将",
+		"name_ja": "ラビフット",
+		"timecode": "20:17.883"
+	},
+	{
+		"dex": 815,
+		"name_zh": "闪焰王牌",
+		"name_ja": "エースバーン",
+		"timecode": "04:20.494"
+	},
+	{
+		"dex": 816,
+		"name_zh": "泪眼蜥",
+		"name_ja": "メッソン",
+		"timecode": "00:21.054"
+	},
+	{
+		"dex": 817,
+		"name_zh": "变涩蜥",
+		"name_ja": "ジメレオン",
+		"timecode": "16:59.285"
+	},
+	{
+		"dex": 818,
+		"name_zh": "千面避役",
+		"name_ja": "インテレオン",
+		"timecode": "14:50.189"
+	},
+	{
+		"dex": 819,
+		"name_zh": "贪心栗鼠",
+		"name_ja": "ホシガリス",
+		"timecode": "07:25.211"
+	},
+	{
+		"dex": 820,
+		"name_zh": "藏饱栗鼠",
+		"name_ja": "ヨクバリス",
+		"timecode": "07:26.046"
+	},
+	{
+		"dex": 821,
+		"name_zh": "稚山雀",
+		"name_ja": "ココガラ",
+		"timecode": "00:18.285"
+	},
+	{
+		"dex": 822,
+		"name_zh": "蓝鸦",
+		"name_ja": "アオガラス",
+		"timecode": "18:00.212"
+	},
+	{
+		"dex": 823,
+		"name_zh": "钢铠鸦",
+		"name_ja": "アーマーガア",
+		"timecode": "01:42.402"
+	},
+	{
+		"dex": 824,
+		"name_zh": "索侦虫",
+		"name_ja": "サッチムシ",
+		"timecode": "06:46.339"
+	},
+	{
+		"dex": 825,
+		"name_zh": "天罩虫",
+		"name_ja": "レドームシ",
+		"timecode": "20:18.851"
+	},
+	{
+		"dex": 826,
+		"name_zh": "以欧路普",
+		"name_ja": "イオルブ",
+		"timecode": "20:08.707"
+	},
+	{
+		"dex": 827,
+		"name_zh": "狡小狐",
+		"name_ja": "クスネ",
+		"timecode": "05:18.351"
+	},
+	{
+		"dex": 828,
+		"name_zh": "猾大狐",
+		"name_ja": "フォクスライ",
+		"timecode": "05:09.910"
+	},
+	{
+		"dex": 829,
+		"name_zh": "幼棉棉",
+		"name_ja": "ヒメンカ",
+		"timecode": "17:50.236"
+	},
+	{
+		"dex": 830,
+		"name_zh": "白蓬蓬",
+		"name_ja": "ワタシラガ",
+		"timecode": "10:36.903"
+	},
+	{
+		"dex": 831,
+		"name_zh": "毛辫羊",
+		"name_ja": "ウールー",
+		"timecode": "13:24.404"
+	},
+	{
+		"dex": 832,
+		"name_zh": "毛毛角羊",
+		"name_ja": "バイウールー",
+		"timecode": "15:33.766"
+	},
+	{
+		"dex": 833,
+		"name_zh": "咬咬龟",
+		"name_ja": "カムカメ",
+		"timecode": "13:11.190"
+	},
+	{
+		"dex": 834,
+		"name_zh": "暴噬龟",
+		"name_ja": "カジリガメ",
+		"timecode": "00:41.541"
+	},
+	{
+		"dex": 835,
+		"name_zh": "来电汪",
+		"name_ja": "ワンパチ",
+		"timecode": "09:11.251"
+	},
+	{
+		"dex": 836,
+		"name_zh": "逐电犬",
+		"name_ja": "パルスワン",
+		"timecode": "16:50.910"
+	},
+	{
+		"dex": 837,
+		"name_zh": "小炭仔",
+		"name_ja": "タンドン",
+		"timecode": "13:20.400"
+	},
+	{
+		"dex": 838,
+		"name_zh": "大炭车",
+		"name_ja": "トロッゴン",
+		"timecode": "04:26.399"
+	},
+	{
+		"dex": 839,
+		"name_zh": "巨炭山",
+		"name_ja": "セキタンザン",
+		"timecode": "04:19.292"
+	},
+	{
+		"dex": 840,
+		"name_zh": "啃果虫",
+		"name_ja": "カジッチュ",
+		"timecode": "10:07.740"
+	},
+	{
+		"dex": 841,
+		"name_zh": "苹裹龙",
+		"name_ja": "アップリュー",
+		"timecode": "10:50.517"
+	},
+	{
+		"dex": 842,
+		"name_zh": "丰蜜龙",
+		"name_ja": "タルップル",
+		"timecode": "17:29.615"
+	},
+	{
+		"dex": 843,
+		"name_zh": "沙包蛇",
+		"name_ja": "スナヘビ",
+		"timecode": "11:42.535"
+	},
+	{
+		"dex": 844,
+		"name_zh": "沙螺蟒",
+		"name_ja": "サダイジャ",
+		"timecode": "11:45.205"
+	},
+	{
+		"dex": 845,
+		"name_zh": "古月鸟",
+		"name_ja": "ウッウ",
+		"timecode": "06:09.236"
+	},
+	{
+		"dex": 846,
+		"name_zh": "刺梭鱼",
+		"name_ja": "サシカマス",
+		"timecode": "17:31.784"
+	},
+	{
+		"dex": 847,
+		"name_zh": "戽斗尖梭",
+		"name_ja": "カマスジョー",
+		"timecode": "19:45.351"
+	},
+	{
+		"dex": 848,
+		"name_zh": "电音婴",
+		"name_ja": "エレズン",
+		"timecode": "06:31.491"
+	},
+	{
+		"dex": 849,
+		"name_zh": "颤弦蝾螈",
+		"name_ja": "ストリンダー",
+		"timecode": "19:45.951"
+	},
+	{
+		"dex": 850,
+		"name_zh": "烧火蚣",
+		"name_ja": "ヤクデ",
+		"timecode": "13:12.892"
+	},
+	{
+		"dex": 851,
+		"name_zh": "焚焰蚣",
+		"name_ja": "マルヤクデ",
+		"timecode": "04:18.458"
+	},
+	{
+		"dex": 852,
+		"name_zh": "拳拳蛸",
+		"name_ja": "タタッコ",
+		"timecode": "18:47.860"
+	},
+	{
+		"dex": 853,
+		"name_zh": "八爪武师",
+		"name_ja": "オトスパス",
+		"timecode": "20:11.510"
+	},
+	{
+		"dex": 854,
+		"name_zh": "来悲茶",
+		"name_ja": "ヤバチャ",
+		"timecode": "12:27.614"
+	},
+	{
+		"dex": 855,
+		"name_zh": "怖思壶",
+		"name_ja": "ポットデス",
+		"timecode": "03:14.561"
+	},
+	{
+		"dex": 856,
+		"name_zh": "迷布莉姆",
+		"name_ja": "ミブリム",
+		"timecode": "04:55.595"
+	},
+	{
+		"dex": 857,
+		"name_zh": "提布莉姆",
+		"name_ja": "テブリム",
+		"timecode": "18:04.850"
+	},
+	{
+		"dex": 858,
+		"name_zh": "布莉姆温",
+		"name_ja": "ブリムオン",
+		"timecode": "04:48.788"
+	},
+	{
+		"dex": 859,
+		"name_zh": "捣蛋小妖",
+		"name_ja": "ベロバー",
+		"timecode": "14:06.913"
+	},
+	{
+		"dex": 860,
+		"name_zh": "诈唬魔",
+		"name_ja": "ギモー",
+		"timecode": "05:08.909"
+	},
+	{
+		"dex": 861,
+		"name_zh": "长毛巨魔",
+		"name_ja": "オーロンゲ",
+		"timecode": "05:03.336"
+	},
+	{
+		"dex": 862,
+		"name_zh": "堵拦熊",
+		"name_ja": "タチフサグマ",
+		"timecode": "07:20.807"
+	},
+	{
+		"dex": 863,
+		"name_zh": "喵头目",
+		"name_ja": "ニャイキング",
+		"timecode": "02:11.465"
+	},
+	{
+		"dex": 864,
+		"name_zh": "魔灵珊瑚",
+		"name_ja": "サニゴーン",
+		"timecode": "00:55.789"
+	},
+	{
+		"dex": 865,
+		"name_zh": "葱游兵",
+		"name_ja": "ネギガナイト",
+		"timecode": "12:06.259"
+	},
+	{
+		"dex": 866,
+		"name_zh": "踏冰人偶",
+		"name_ja": "バリコオル",
+		"timecode": "20:24.490"
+	},
+	{
+		"dex": 867,
+		"name_zh": "迭失板",
+		"name_ja": "デスバーン",
+		"timecode": "13:09.989"
+	},
+	{
+		"dex": 868,
+		"name_zh": "小仙奶",
+		"name_ja": "マホミル",
+		"timecode": "18:02.148"
+	},
+	{
+		"dex": 869,
+		"name_zh": "霜奶仙",
+		"name_ja": "マホイップ",
+		"timecode": "04:46.653"
+	},
+	{
+		"dex": 870,
+		"name_zh": "列阵兵",
+		"name_ja": "タイレーツ",
+		"timecode": "18:44.090"
+	},
+	{
+		"dex": 871,
+		"name_zh": "啪嚓海胆",
+		"name_ja": "バチンウニ",
+		"timecode": "09:13.386"
+	},
+	{
+		"dex": 872,
+		"name_zh": "雪吞虫",
+		"name_ja": "ユキハミ",
+		"timecode": "06:55.115"
+	},
+	{
+		"dex": 873,
+		"name_zh": "雪绒蛾",
+		"name_ja": "モスノウ",
+		"timecode": "15:44.110"
+	},
+	{
+		"dex": 874,
+		"name_zh": "巨石丁",
+		"name_ja": "イシヘンジン",
+		"timecode": "07:39.392"
+	},
+	{
+		"dex": 875,
+		"name_zh": "冰砌鹅",
+		"name_ja": "コオリッポ",
+		"timecode": "15:42.708"
+	},
+	{
+		"dex": 876,
+		"name_zh": "爱管侍",
+		"name_ja": "イエッサン",
+		"timecode": "07:35.989"
+	},
+	{
+		"dex": 877,
+		"name_zh": "莫鲁贝可",
+		"name_ja": "モルペコ",
+		"timecode": "19:25.464"
+	},
+	{
+		"dex": 878,
+		"name_zh": "铜象",
+		"name_ja": "ゾウドウ",
+		"timecode": "09:47.287"
+	},
+	{
+		"dex": 879,
+		"name_zh": "大王铜象",
+		"name_ja": "ダイオウドウ",
+		"timecode": "09:50.090"
+	},
+	{
+		"dex": 880,
+		"name_zh": "雷鸟龙",
+		"name_ja": "パッチラゴン",
+		"timecode": "09:04.711"
+	},
+	{
+		"dex": 881,
+		"name_zh": "雷鸟海兽",
+		"name_ja": "パッチルドン",
+		"timecode": "17:11.998"
+	},
+	{
+		"dex": 882,
+		"name_zh": "鳃鱼龙",
+		"name_ja": "ウオノラゴン",
+		"timecode": "10:25.692"
+	},
+	{
+		"dex": 883,
+		"name_zh": "鳃鱼海兽",
+		"name_ja": "ウオチルドン",
+		"timecode": "20:23.856"
+	},
+	{
+		"dex": 884,
+		"name_zh": "铝钢龙",
+		"name_ja": "ジュラルドン",
+		"timecode": "09:52.792"
+	},
+	{
+		"dex": 885,
+		"name_zh": "多龙梅西亚",
+		"name_ja": "ドラメシヤ",
+		"timecode": "10:19.252"
+	},
+	{
+		"dex": 886,
+		"name_zh": "多龙奇",
+		"name_ja": "ドロンチ",
+		"timecode": "10:09.309"
+	},
+	{
+		"dex": 887,
+		"name_zh": "多龙巴鲁托",
+		"name_ja": "ドラパルト",
+		"timecode": "10:29.896"
+	},
+	{
+		"dex": 888,
+		"name_zh": "苍响",
+		"name_ja": "ザシアン",
+		"timecode": "02:58.945"
+	},
+	{
+		"dex": 889,
+		"name_zh": "藏玛然特",
+		"name_ja": "ザマゼンタ",
+		"timecode": "02:59.646"
+	},
+	{
+		"dex": 890,
+		"name_zh": "无极汰那",
+		"name_ja": "ムゲンダイナ",
+		"timecode": "03:00.514"
+	},
+	{
+		"dex": 891,
+		"name_zh": "熊徒弟",
+		"name_ja": "ダクマ",
+		"timecode": "12:03.656"
+	},
+	{
+		"dex": 892,
+		"name_zh": "武道熊师",
+		"name_ja": "ウーラオス",
+		"timecode": "12:04.958"
+	},
+	{
+		"dex": 893,
+		"name_zh": "萨戮德",
+		"name_ja": "ザルード",
+		"timecode": "05:07.607"
+	},
+	{
+		"dex": 894,
+		"name_zh": "雷吉艾勒奇",
+		"name_ja": "レジエレキ",
+		"timecode": "00:39.339"
+	},
+	{
+		"dex": 895,
+		"name_zh": "雷吉铎拉戈",
+		"name_ja": "レジドラゴ",
+		"timecode": "10:17.784"
+	},
+	{
+		"dex": 896,
+		"name_zh": "雪暴马",
+		"name_ja": "ブリザポス",
+		"timecode": "07:00.687"
+	},
+	{
+		"dex": 897,
+		"name_zh": "灵幽马",
+		"name_ja": "レイスポス",
+		"timecode": "12:30.883"
+	},
+	{
+		"dex": 898,
+		"name_zh": "蕾冠王",
+		"name_ja": "バドレックス",
+		"timecode": "02:56.910"
+	},
+	{
+		"dex": 899,
+		"name_zh": "诡角鹿",
+		"name_ja": "アヤシシ",
+		"timecode": "19:00.306"
+	},
+	{
+		"dex": 900,
+		"name_zh": "劈斧螳螂",
+		"name_ja": "バサギリ",
+		"timecode": "15:32.965"
+	},
+	{
+		"dex": 901,
+		"name_zh": "月月熊",
+		"name_ja": "ガチグマ",
+		"timecode": "11:52.212"
+	},
+	{
+		"dex": 902,
+		"name_zh": "幽尾玄鱼",
+		"name_ja": "イダイトウ",
+		"timecode": "01:34.361"
+	},
+	{
+		"dex": 903,
+		"name_zh": "大狃拉",
+		"name_ja": "オオニューラ",
+		"timecode": "02:04.391"
+	},
+	{
+		"dex": 904,
+		"name_zh": "万针鱼",
+		"name_ja": "ハリーマン",
+		"timecode": "05:12.112"
+	},
+	{
+		"dex": 905,
+		"name_zh": "眷恋云",
+		"name_ja": "ラブトロス",
+		"timecode": "14:46.185"
+	},
+	{
+		"dex": 906,
+		"name_zh": "新叶喵",
+		"name_ja": "ニャオハ",
+		"timecode": "10:52.752"
+	},
+	{
+		"dex": 907,
+		"name_zh": "蒂蕾喵",
+		"name_ja": "ニャローテ",
+		"timecode": "19:19.692"
+	},
+	{
+		"dex": 908,
+		"name_zh": "魔幻假面喵",
+		"name_ja": "マスカーニャ",
+		"timecode": "13:36.115"
+	},
+	{
+		"dex": 909,
+		"name_zh": "呆火鳄",
+		"name_ja": "ホゲータ",
+		"timecode": "01:43.236"
+	},
+	{
+		"dex": 910,
+		"name_zh": "炙烫鳄",
+		"name_ja": "アチゲータ",
+		"timecode": "00:26.593"
+	},
+	{
+		"dex": 911,
+		"name_zh": "骨纹巨声鳄",
+		"name_ja": "ラウドボーン",
+		"timecode": "13:21.734"
+	},
+	{
+		"dex": 912,
+		"name_zh": "润水鸭",
+		"name_ja": "クワッス",
+		"timecode": "19:08.648"
+	},
+	{
+		"dex": 913,
+		"name_zh": "涌跃鸭",
+		"name_ja": "ウェルカモ",
+		"timecode": "17:38.691"
+	},
+	{
+		"dex": 914,
+		"name_zh": "狂欢浪舞鸭",
+		"name_ja": "ウェーニバル",
+		"timecode": "16:06.599"
+	},
+	{
+		"dex": 915,
+		"name_zh": "爱吃豚",
+		"name_ja": "グルトン",
+		"timecode": "15:53.452"
+	},
+	{
+		"dex": 916,
+		"name_zh": "飘香豚",
+		"name_ja": "パフュートン",
+		"timecode": "20:22.488"
+	},
+	{
+		"dex": 917,
+		"name_zh": "团珠蛛",
+		"name_ja": "タマンチュラ",
+		"timecode": "16:02.595"
+	},
+	{
+		"dex": 918,
+		"name_zh": "操陷蛛",
+		"name_ja": "ワナイダー",
+		"timecode": "13:39.886"
+	},
+	{
+		"dex": 919,
+		"name_zh": "豆蟋蟀",
+		"name_ja": "マメバッタ",
+		"timecode": "15:28.995"
+	},
+	{
+		"dex": 920,
+		"name_zh": "烈腿蝗",
+		"name_ja": "エクスレッグ",
+		"timecode": "05:22.789"
+	},
+	{
+		"dex": 921,
+		"name_zh": "布拨",
+		"name_ja": "パモ",
+		"timecode": "00:46.313"
+	},
+	{
+		"dex": 922,
+		"name_zh": "布土拨",
+		"name_ja": "パモット",
+		"timecode": "00:46.713"
+	},
+	{
+		"dex": 923,
+		"name_zh": "巴布土拨",
+		"name_ja": "パーモット",
+		"timecode": "00:47.247"
+	},
+	{
+		"dex": 924,
+		"name_zh": "一对鼠",
+		"name_ja": "ワッカネズミ",
+		"timecode": "07:23.543"
+	},
+	{
+		"dex": 925,
+		"name_zh": "一家鼠",
+		"name_ja": "イッカネズミ",
+		"timecode": "07:24.411"
+	},
+	{
+		"dex": 926,
+		"name_zh": "狗仔包",
+		"name_ja": "パピモッチ",
+		"timecode": "20:18.284"
+	},
+	{
+		"dex": 927,
+		"name_zh": "麻花犬",
+		"name_ja": "バウッツェル",
+		"timecode": "17:53.706"
+	},
+	{
+		"dex": 928,
+		"name_zh": "迷你芙",
+		"name_ja": "ミニーブ",
+		"timecode": "14:42.648"
+	},
+	{
+		"dex": 929,
+		"name_zh": "奥利纽",
+		"name_ja": "オリーニョ",
+		"timecode": "18:08.654"
+	},
+	{
+		"dex": 930,
+		"name_zh": "奥利瓦",
+		"name_ja": "オリーヴァ",
+		"timecode": "18:09.388"
+	},
+	{
+		"dex": 931,
+		"name_zh": "怒鹦哥",
+		"name_ja": "イキリンコ",
+		"timecode": "08:04.351"
+	},
+	{
+		"dex": 932,
+		"name_zh": "盐石宝",
+		"name_ja": "コジオ",
+		"timecode": "19:24.063"
+	},
+	{
+		"dex": 933,
+		"name_zh": "盐石垒",
+		"name_ja": "ジオヅム",
+		"timecode": "14:47.487"
+	},
+	{
+		"dex": 934,
+		"name_zh": "盐石巨灵",
+		"name_ja": "キョジオーン",
+		"timecode": "07:38.391"
+	},
+	{
+		"dex": 935,
+		"name_zh": "炭小侍",
+		"name_ja": "カルボウ",
+		"timecode": "14:29.402"
+	},
+	{
+		"dex": 936,
+		"name_zh": "红莲铠骑",
+		"name_ja": "グレンアルマ",
+		"timecode": "04:24.664"
+	},
+	{
+		"dex": 937,
+		"name_zh": "苍炎刃鬼",
+		"name_ja": "ソウブレイズ",
+		"timecode": "04:28.301"
+	},
+	{
+		"dex": 938,
+		"name_zh": "光蚪仔",
+		"name_ja": "ズピカ",
+		"timecode": "09:03.843"
+	},
+	{
+		"dex": 939,
+		"name_zh": "电肚蛙",
+		"name_ja": "ハラバリー",
+		"timecode": "09:19.993"
+	},
+	{
+		"dex": 940,
+		"name_zh": "电海燕",
+		"name_ja": "カイデン",
+		"timecode": "07:57.644"
+	},
+	{
+		"dex": 941,
+		"name_zh": "大电海燕",
+		"name_ja": "タイカイデン",
+		"timecode": "07:58.211"
+	},
+	{
+		"dex": 942,
+		"name_zh": "偶叫獒",
+		"name_ja": "オラチフ",
+		"timecode": "05:23.690"
+	},
+	{
+		"dex": 943,
+		"name_zh": "獒教父",
+		"name_ja": "マフィティフ",
+		"timecode": "17:09.395"
+	},
+	{
+		"dex": 944,
+		"name_zh": "滋汁鼹",
+		"name_ja": "シルシュルー",
+		"timecode": "06:23.450"
+	},
+	{
+		"dex": 945,
+		"name_zh": "涂标客",
+		"name_ja": "タギングル",
+		"timecode": "20:05.538"
+	},
+	{
+		"dex": 946,
+		"name_zh": "纳噬草",
+		"name_ja": "アノクサ",
+		"timecode": "12:26.613"
+	},
+	{
+		"dex": 947,
+		"name_zh": "怖纳噬草",
+		"name_ja": "アノホラグサ",
+		"timecode": "19:49.588"
+	},
+	{
+		"dex": 948,
+		"name_zh": "原野水母",
+		"name_ja": "ノノクラゲ",
+		"timecode": "00:36.637"
+	},
+	{
+		"dex": 949,
+		"name_zh": "陆地水母",
+		"name_ja": "リククラゲ",
+		"timecode": "20:12.711"
+	},
+	{
+		"dex": 950,
+		"name_zh": "毛崖蟹",
+		"name_ja": "ガケガニ",
+		"timecode": "17:56.442"
+	},
+	{
+		"dex": 951,
+		"name_zh": "热辣娃",
+		"name_ja": "カプサイジ",
+		"timecode": "20:12.244"
+	},
+	{
+		"dex": 952,
+		"name_zh": "狠辣椒",
+		"name_ja": "スコヴィラン",
+		"timecode": "04:29.436"
+	},
+	{
+		"dex": 953,
+		"name_zh": "虫滚泥",
+		"name_ja": "シガロコ",
+		"timecode": "01:52.446"
+	},
+	{
+		"dex": 954,
+		"name_zh": "虫甲圣",
+		"name_ja": "ベラカス",
+		"timecode": "00:32.699"
+	},
+	{
+		"dex": 955,
+		"name_zh": "飘飘雏",
+		"name_ja": "ヒラヒナ",
+		"timecode": "01:30.057"
+	},
+	{
+		"dex": 956,
+		"name_zh": "超能艳鸵",
+		"name_ja": "クエスパトラ",
+		"timecode": "05:01.801"
+	},
+	{
+		"dex": 957,
+		"name_zh": "小锻匠",
+		"name_ja": "カヌチャン",
+		"timecode": "13:34.113"
+	},
+	{
+		"dex": 958,
+		"name_zh": "巧锻匠",
+		"name_ja": "ナカヌチャン",
+		"timecode": "13:35.014"
+	},
+	{
+		"dex": 959,
+		"name_zh": "巨锻匠",
+		"name_ja": "デカヌチャン",
+		"timecode": "09:38.545"
+	},
+	{
+		"dex": 960,
+		"name_zh": "海地鼠",
+		"name_ja": "ウミディグダ",
+		"timecode": "19:18.691"
+	},
+	{
+		"dex": 961,
+		"name_zh": "三海地鼠",
+		"name_ja": "ウミトリオ",
+		"timecode": "20:20.486"
+	},
+	{
+		"dex": 962,
+		"name_zh": "下石鸟",
+		"name_ja": "オトシドリ",
+		"timecode": "07:56.843"
+	},
+	{
+		"dex": 963,
+		"name_zh": "波普海豚",
+		"name_ja": "ナミイルカ",
+		"timecode": "00:18.986"
+	},
+	{
+		"dex": 964,
+		"name_zh": "海豚侠",
+		"name_ja": "イルカマン",
+		"timecode": "06:07.100"
+	},
+	{
+		"dex": 965,
+		"name_zh": "噗隆隆",
+		"name_ja": "ブロロン",
+		"timecode": "10:01.935"
+	},
+	{
+		"dex": 966,
+		"name_zh": "普隆隆姆",
+		"name_ja": "ブロロローム",
+		"timecode": "06:22.749"
+	},
+	{
+		"dex": 967,
+		"name_zh": "摩托蜥",
+		"name_ja": "モトトカゲ",
+		"timecode": "00:37.404"
+	},
+	{
+		"dex": 968,
+		"name_zh": "拖拖蚓",
+		"name_ja": "ミミズズ",
+		"timecode": "09:37.844"
+	},
+	{
+		"dex": 969,
+		"name_zh": "晶光芽",
+		"name_ja": "キラーメ",
+		"timecode": "13:32.712"
+	},
+	{
+		"dex": 970,
+		"name_zh": "晶光花",
+		"name_ja": "キラフロル",
+		"timecode": "06:33.393"
+	},
+	{
+		"dex": 971,
+		"name_zh": "墓仔狗",
+		"name_ja": "ボチ",
+		"timecode": "12:14.200"
+	},
+	{
+		"dex": 972,
+		"name_zh": "墓扬犬",
+		"name_ja": "ハカドッグ",
+		"timecode": "12:15.101"
+	},
+	{
+		"dex": 973,
+		"name_zh": "纏红鹤",
+		"name_ja": "カラミンゴ",
+		"timecode": "08:04.884"
+	},
+	{
+		"dex": 974,
+		"name_zh": "走鲸",
+		"name_ja": "アルクジラ",
+		"timecode": "17:59.312"
+	},
+	{
+		"dex": 975,
+		"name_zh": "浩大鲸",
+		"name_ja": "ハルクジラ",
+		"timecode": "18:10.289"
+	},
+	{
+		"dex": 976,
+		"name_zh": "轻身鳕",
+		"name_ja": "ミガルーサ",
+		"timecode": "01:41.301"
+	},
+	{
+		"dex": 977,
+		"name_zh": "吃吼霸",
+		"name_ja": "ヘイラッシャ",
+		"timecode": "20:14.814"
+	},
+	{
+		"dex": 978,
+		"name_zh": "米立龙",
+		"name_ja": "シャリタツ",
+		"timecode": "10:19.752"
+	},
+	{
+		"dex": 979,
+		"name_zh": "弃世猴",
+		"name_ja": "コノヨザル",
+		"timecode": "11:59.986"
+	},
+	{
+		"dex": 980,
+		"name_zh": "土王",
+		"name_ja": "ドオー",
+		"timecode": "01:58.151"
+	},
+	{
+		"dex": 981,
+		"name_zh": "奇麒麟",
+		"name_ja": "リキキリン",
+		"timecode": "07:22.642"
+	},
+	{
+		"dex": 982,
+		"name_zh": "土龙节节",
+		"name_ja": "ノココッチ",
+		"timecode": "01:55.315"
+	},
+	{
+		"dex": 983,
+		"name_zh": "仆刀将军",
+		"name_ja": "ドドゲザン",
+		"timecode": "05:19.686"
+	},
+	{
+		"dex": 984,
+		"name_zh": "雄伟牙",
+		"name_ja": "イダイナキバ",
+		"timecode": "11:46.005"
+	},
+	{
+		"dex": 985,
+		"name_zh": "吼叫尾",
+		"name_ja": "サケブシッポ",
+		"timecode": "15:19.085"
+	},
+	{
+		"dex": 986,
+		"name_zh": "猛恶菇",
+		"name_ja": "アラブルタケ",
+		"timecode": "00:35.235"
+	},
+	{
+		"dex": 987,
+		"name_zh": "振翼发",
+		"name_ja": "ハバタクカミ",
+		"timecode": "12:32.785"
+	},
+	{
+		"dex": 988,
+		"name_zh": "爬地翅",
+		"name_ja": "チヲハウハネ",
+		"timecode": "19:16.288"
+	},
+	{
+		"dex": 989,
+		"name_zh": "沙铁皮",
+		"name_ja": "スナノケガワ",
+		"timecode": "09:22.095"
+	},
+	{
+		"dex": 990,
+		"name_zh": "铁轍迹",
+		"name_ja": "テツノワダチ",
+		"timecode": "15:55.388"
+	},
+	{
+		"dex": 991,
+		"name_zh": "铁包袱",
+		"name_ja": "テツノツツミ",
+		"timecode": "19:14.353"
+	},
+	{
+		"dex": 992,
+		"name_zh": "铁臂膀",
+		"name_ja": "テツノカイナ",
+		"timecode": "09:23.496"
+	},
+	{
+		"dex": 993,
+		"name_zh": "铁脖颈",
+		"name_ja": "テツノコウベ",
+		"timecode": "19:15.054"
+	},
+	{
+		"dex": 994,
+		"name_zh": "铁毒蛾",
+		"name_ja": "テツノドクガ",
+		"timecode": "06:36.796"
+	},
+	{
+		"dex": 995,
+		"name_zh": "铁荆棘",
+		"name_ja": "テツノイバラ",
+		"timecode": "07:47.600"
+	},
+	{
+		"dex": 996,
+		"name_zh": "凉脊龙",
+		"name_ja": "セビエ",
+		"timecode": "10:08.808"
+	},
+	{
+		"dex": 997,
+		"name_zh": "冻脊龙",
+		"name_ja": "セゴール",
+		"timecode": "00:55.188"
+	},
+	{
+		"dex": 998,
+		"name_zh": "戟脊龙",
+		"name_ja": "セグレイブ",
+		"timecode": "07:03.390"
+	},
+	{
+		"dex": 999,
+		"name_zh": "索财灵",
+		"name_ja": "コレクレー",
+		"timecode": "12:17.503"
+	},
+	{
+		"dex": 1000,
+		"name_zh": "赛富豪",
+		"name_ja": "サーフゴー",
+		"timecode": "00:57.291"
+	},
+	{
+		"dex": 1001,
+		"name_zh": "古简蜗",
+		"name_ja": "チオンジェン",
+		"timecode": "02:47.100"
+	},
+	{
+		"dex": 1002,
+		"name_zh": "古剑豹",
+		"name_ja": "パオジアン",
+		"timecode": "02:47.734"
+	},
+	{
+		"dex": 1003,
+		"name_zh": "古鼎鹿",
+		"name_ja": "ディンルー",
+		"timecode": "02:48.435"
+	},
+	{
+		"dex": 1004,
+		"name_zh": "古玉鱼",
+		"name_ja": "イーユイ",
+		"timecode": "02:49.236"
+	},
+	{
+		"dex": 1005,
+		"name_zh": "轰鸣月",
+		"name_ja": "トドロクツキ",
+		"timecode": "05:24.991"
+	},
+	{
+		"dex": 1006,
+		"name_zh": "铁武者",
+		"name_ja": "テツノブジン",
+		"timecode": "12:08.595"
+	},
+	{
+		"dex": 1007,
+		"name_zh": "故勒顿",
+		"name_ja": "コライドン",
+		"timecode": "00:22.189"
+	},
+	{
+		"dex": 1008,
+		"name_zh": "密勒顿",
+		"name_ja": "ミライドン",
+		"timecode": "00:22.890"
+	},
+	{
+		"dex": 1009,
+		"name_zh": "波荡水",
+		"name_ja": "ウネルミナモ",
+		"timecode": "02:51.338"
+	},
+	{
+		"dex": 1010,
+		"name_zh": "铁斑叶",
+		"name_ja": "テツノイサハ",
+		"timecode": "02:53.440"
+	},
+	{
+		"dex": 1011,
+		"name_zh": "裹蜜虫",
+		"name_ja": "カミッチュ",
+		"timecode": "10:09.843"
+	},
+	{
+		"dex": 1012,
+		"name_zh": "斯魔茶",
+		"name_ja": "チャデス",
+		"timecode": "03:13.894"
+	},
+	{
+		"dex": 1013,
+		"name_zh": "来悲粗茶",
+		"name_ja": "ヤバソチャ",
+		"timecode": "12:27.113"
+	},
+	{
+		"dex": 1014,
+		"name_zh": "够赞狗",
+		"name_ja": "イイネイヌ",
+		"timecode": "12:02.155"
+	},
+	{
+		"dex": 1015,
+		"name_zh": "愿增猿",
+		"name_ja": "マシマシラ",
+		"timecode": "14:23.996"
+	},
+	{
+		"dex": 1016,
+		"name_zh": "吉雉鸡",
+		"name_ja": "キチキギス",
+		"timecode": "03:33.547"
+	},
+	{
+		"dex": 1017,
+		"name_zh": "厄诡椪",
+		"name_ja": "オーガポン",
+		"timecode": "02:01.088"
+	},
+	{
+		"dex": 1018,
+		"name_zh": "铝钢桥龙",
+		"name_ja": "ブリジュラス",
+		"timecode": "03:34.247"
+	},
+	{
+		"dex": 1019,
+		"name_zh": "蜜集大蛇",
+		"name_ja": "カミツオロチ",
+		"timecode": "19:17.156"
+	},
+	{
+		"dex": 1020,
+		"name_zh": "破空焰",
+		"name_ja": "ウガツホムラ",
+		"timecode": "02:50.704"
+	},
+	{
+		"dex": 1021,
+		"name_zh": "猛雷鼓",
+		"name_ja": "タケルライコ",
+		"timecode": "02:50.037"
+	},
+	{
+		"dex": 1022,
+		"name_zh": "铁磐岩",
+		"name_ja": "テツノイワオ",
+		"timecode": "02:52.806"
+	},
+	{
+		"dex": 1023,
+		"name_zh": "铁头壳",
+		"name_ja": "テツノカシラ",
+		"timecode": "02:52.105"
+	},
+	{
+		"dex": 1024,
+		"name_zh": "太乐巴戈斯",
+		"name_ja": "テラパゴス",
+		"timecode": "03:35.115"
+	},
+	{
+		"dex": 1025,
+		"name_zh": "桃歹郎",
+		"name_ja": "モモワロウ",
+		"timecode": "03:36.516"
+	}
+]
