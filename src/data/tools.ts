@@ -25,6 +25,12 @@ export const tools: ToolLink[] = [
 		tag: '图鉴',
 	},
 	{
+		title: 'CRT 显像工坊',
+		href: 'https://crt.tito.cafe',
+		description: 'CRT、录像带、旧印刷效果，裁成壁纸比例，本地处理导出 PNG。',
+		tag: '图片',
+	},
+	{
 		title: 'Markdown',
 		href: '/markdown',
 		description: '本地 Markdown 写作，导出 .md 或带素材的 .zip。',
