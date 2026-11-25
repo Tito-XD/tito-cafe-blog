@@ -1,12 +1,18 @@
 # 重构 demo：菜单式首页
 
-暂存的重构方向，还没有接进站点，也不参与构建和部署。
+暂存的重构方向，还没有接进站点的页面和组件。
 
-直接用浏览器打开 `index.html` 即可，三个文件要放在同一目录：
+demo 的三个文件放在 `public/redesign-demo/`，构建时会被原样拷进 `dist`，所以这个分支的 Netlify 分支部署可以直接访问：
+
+https://redesign-menu-demo--titocafe.netlify.app/redesign-demo/
+
+本地也可以直接用浏览器打开 `public/redesign-demo/index.html`。
 
 - `index.html`：首页、文章列表（`#/blog`）、文章页（`#/posts/<slug>`），含开灯 / 关灯
 - `logo.svg`：`src/icons/logo.svg` 的副本
 - `tito.webp`：`src/assets/tito_xd-cafe-manager-by-frankuwu.png` 裁边缩小后的版本
+
+这个目录只在重构分支上，不要合进 main，否则 demo 会出现在正式站点的 `/redesign-demo/` 下。
 
 ## 想法
 
