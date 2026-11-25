@@ -1,0 +1,773 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f4f6fa" />
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1b212b" />
+<title>头头咖啡屋 重构 Demo</title>
+<script>
+	// 首屏前定主题，避免闪烁。?theme=dark|light 仅用于截图检查。
+	(function () {
+		var forced = new URLSearchParams(location.search).get('theme');
+		var saved = null;
+		try { saved = localStorage.getItem('cafe-demo-theme'); } catch (_) {}
+		var theme = forced || saved || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+		document.documentElement.classList.add(theme === 'dark' ? 'dark' : 'light');
+	})();
+</script>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/lxgwwenkai-regular.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/lxgwwenkai-bold.css" />
+<style>
+	/* 颜色全部取自店长立绘：围裙、衬衫、皮背带、毛色 */
+	:root {
+		--paper: #f4f6fa;
+		--paper-2: #e8edf5;
+		--ink: #1f2630; /* 围裙 */
+		--fur: #596270; /* 毛色：次要文字 */
+		--line: #d0d7e2;
+		--dots: #a9b4c4;
+		--shirt: #2a63b6; /* 衬衫蓝：链接 */
+		--leather: #b47636; /* 皮背带：只做点缀 */
+		--leather-ink: #86511c;
+		--ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+		--font-hand: 'LXGW WenKai', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+		--font-ui: system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+		color-scheme: light;
+	}
+
+	:root.dark {
+		--paper: #1b212b; /* 深色模式的底就是围裙 */
+		--paper-2: #252d3a;
+		--ink: #e7eaf0;
+		--fur: #9ba5b3;
+		--line: #353e4c;
+		--dots: #556173;
+		--shirt: #86b4f2;
+		--leather: #d6a066;
+		--leather-ink: #e2b680;
+		color-scheme: dark;
+	}
+
+	*, *::before, *::after { box-sizing: border-box; }
+
+	html {
+		-webkit-tap-highlight-color: transparent;
+		-webkit-text-size-adjust: 100%;
+	}
+
+	body {
+		margin: 0;
+		min-height: 100dvh;
+		background: var(--paper);
+		color: var(--ink);
+		font-family: var(--font-hand);
+		font-size: 1.0625rem;
+		line-height: 1.75;
+		-webkit-font-smoothing: antialiased;
+	}
+
+	h1, h2, p, ul { margin: 0; }
+	ul { padding: 0; list-style: none; }
+	img { display: block; max-width: 100%; height: auto; }
+
+	a {
+		color: var(--shirt);
+		text-decoration-thickness: 1px;
+		text-underline-offset: 0.22em;
+		transition: color 160ms var(--ease-out);
+	}
+
+	:focus-visible {
+		outline: 2px solid var(--shirt);
+		outline-offset: 3px;
+		border-radius: 4px;
+	}
+
+	.skip {
+		position: absolute;
+		left: 1rem;
+		top: -4rem;
+		padding: 0.5rem 0.9rem;
+		background: var(--ink);
+		color: var(--paper);
+		border-radius: 0.5rem;
+	}
+	.skip:focus { top: 1rem; }
+
+	.shell {
+		max-width: 64rem;
+		margin-inline: auto;
+		padding: 0 max(1.25rem, env(safe-area-inset-right)) 0 max(1.25rem, env(safe-area-inset-left));
+	}
+
+	/* ---------- 顶栏 ---------- */
+	.top {
+		display: grid;
+		grid-template-columns: 1fr auto;
+		align-items: center;
+		gap: 0.25rem 1.5rem;
+		padding-block: max(1rem, env(safe-area-inset-top)) 0.75rem;
+	}
+
+	.brand { display: inline-flex; justify-self: start; border-radius: 6px; }
+	.brand img { height: 2.5rem; width: auto; }
+	:root.dark .brand img { filter: invert(1); }
+
+	.nav {
+		grid-column: 1 / -1;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0 1.5rem;
+	}
+
+	.nav a {
+		display: inline-flex;
+		align-items: center;
+		min-height: 2.75rem;
+		color: var(--ink);
+		text-decoration: none;
+		font-size: 1.125rem;
+	}
+
+	.nav a[aria-current='page'] {
+		text-decoration: underline;
+		text-decoration-color: var(--leather);
+		text-decoration-thickness: 2px;
+		text-underline-offset: 0.4em;
+	}
+
+	.lamp {
+		grid-row: 1;
+		grid-column: 2;
+		min-height: 2.5rem;
+		padding: 0 0.9rem;
+		border: 1px solid var(--line);
+		border-radius: 999px;
+		background: none;
+		color: var(--ink);
+		font: inherit;
+		font-size: 1rem;
+		cursor: pointer;
+		touch-action: manipulation;
+		user-select: none;
+		-webkit-user-select: none;
+		transition: transform 140ms var(--ease-out), border-color 160ms var(--ease-out);
+	}
+	.lamp:active { transform: scale(0.97); }
+
+	@media (min-width: 48rem) {
+		.top { grid-template-columns: auto 1fr auto; padding-block: 1.5rem 1rem; }
+		.nav { grid-row: 1; grid-column: 2; justify-content: flex-end; gap: 0 2rem; }
+		.lamp { grid-column: 3; }
+	}
+
+	/* ---------- 首页：柜台 + 菜单 ---------- */
+	.home {
+		display: grid;
+		gap: 1.75rem;
+		padding-block: 1.25rem 3rem;
+	}
+
+	.greet h1 {
+		font-size: clamp(2.1rem, 6vw, 3.25rem);
+		line-height: 1.25;
+		font-weight: 700;
+		text-wrap: balance;
+	}
+
+	.greet p {
+		max-width: 34em;
+		margin-top: 0.75rem;
+		text-wrap: pretty;
+	}
+	.greet h1 + p { margin-top: 1.25rem; }
+
+	/* 窄屏：店长从柜台后露出半身，底边就是台面 */
+	.counter__stage {
+		height: 13.5rem;
+		overflow: hidden;
+		border-bottom: 3px solid var(--ink);
+	}
+	.counter__stage img { width: 11.5rem; margin-inline: auto; }
+
+	.counter__credit {
+		margin-top: 0.5rem;
+		font-family: var(--font-ui);
+		font-size: 0.8125rem;
+		color: var(--fur);
+		text-align: center;
+	}
+
+	.menu { display: grid; gap: 3rem; min-width: 0; }
+
+	@media (min-width: 56rem) {
+		.home {
+			grid-template-columns: 14rem minmax(0, 40rem);
+			grid-template-areas: 'counter greet' 'counter menu';
+			justify-content: center;
+			column-gap: clamp(3rem, 7vw, 5.5rem);
+			row-gap: 3rem;
+			padding-block: 2.5rem 4rem;
+		}
+		.greet { grid-area: greet; }
+		.menu { grid-area: menu; }
+		.counter {
+			grid-area: counter;
+			align-self: start;
+			position: sticky;
+			top: 2rem;
+		}
+		.counter__stage { height: auto; overflow: visible; border-bottom: 0; }
+		.counter__stage img { width: 100%; }
+	}
+
+	/* ---------- 菜单分区与条目 ---------- */
+	.sec { scroll-margin-top: 1.5rem; }
+
+	.sec__head {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 1rem;
+		padding-bottom: 0.5rem;
+		border-bottom: 2px solid var(--ink);
+	}
+
+	.sec__head h2 { font-size: 1.375rem; line-height: 1.4; font-weight: 700; }
+
+	.note {
+		font-family: var(--font-ui);
+		font-size: 0.8125rem;
+		color: var(--fur);
+		white-space: nowrap;
+	}
+
+	.sec__lead { margin-top: 0.9rem; color: var(--fur); font-size: 1rem; }
+	.sec__more { margin-top: 1rem; }
+
+	.rows { margin-top: 0.4rem; }
+
+	.row {
+		position: relative;
+		display: grid;
+		grid-template-columns: minmax(0, max-content) minmax(1.5rem, 1fr) max-content;
+		align-items: baseline;
+		column-gap: 0.6rem;
+		padding-block: 0.7rem;
+	}
+
+	.row__name { font-size: 1.1875rem; font-weight: 700; line-height: 1.5; overflow-wrap: anywhere; }
+
+	.row__name a { color: var(--ink); text-decoration: none; }
+	/* 整行可点，但链接文字只有名字 */
+	.row__name a::after { content: ''; position: absolute; inset: 0 -0.6rem; border-radius: 0.6rem; }
+	.row__name a:focus-visible { outline: none; }
+	.row__name a:focus-visible::after { outline: 2px solid var(--shirt); }
+
+	.row__tag {
+		display: inline-block;
+		margin-left: 0.35rem;
+		padding: 0 0.4rem;
+		border: 1px solid var(--leather);
+		border-radius: 4px;
+		color: var(--leather-ink);
+		font-family: var(--font-ui);
+		font-size: 0.75rem;
+		font-weight: 400;
+		line-height: 1.5;
+		white-space: nowrap;
+		vertical-align: 0.15em;
+	}
+
+	.row__dots {
+		height: 0;
+		border-bottom: 2px dotted var(--dots);
+		transform: translateY(-0.22em);
+		transition: border-color 160ms var(--ease-out);
+	}
+
+	.row__price { justify-self: end; white-space: nowrap; }
+
+	.row__desc { grid-column: 1 / 3; color: var(--fur); font-size: 1rem; overflow-wrap: anywhere; }
+
+	.row__meta {
+		justify-self: end;
+		font-family: var(--font-ui);
+		font-size: 0.8125rem;
+		font-variant-numeric: tabular-nums;
+		color: var(--fur);
+		white-space: nowrap;
+	}
+
+	.row__subs {
+		grid-column: 1 / -1;
+		position: relative;
+		z-index: 1;
+		justify-self: start;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0 1.1rem;
+		font-size: 0.9375rem;
+	}
+	.row__subs a { display: inline-flex; align-items: center; min-height: 2.25rem; }
+
+	@media (hover: hover) and (pointer: fine) {
+		.row:hover .row__name a { color: var(--shirt); }
+		.row:hover .row__dots { border-color: var(--leather); }
+		.lamp:hover { border-color: var(--ink); }
+		.nav a:hover { color: var(--shirt); }
+		.chip:hover { border-color: var(--ink); }
+	}
+
+	.about p + p { margin-top: 0.35rem; }
+	.about__find { color: var(--fur); font-size: 1rem; }
+	.about .sec__head { margin-bottom: 0.9rem; }
+
+	/* ---------- 文章列表页 ---------- */
+	.page { max-width: 40rem; margin-inline: auto; padding-block: 1.25rem 3.5rem; }
+
+	.page__title { font-size: clamp(2rem, 5.5vw, 2.75rem); line-height: 1.25; font-weight: 700; }
+	.page__count { margin-top: 0.4rem; font-family: var(--font-ui); font-size: 0.875rem; color: var(--fur); }
+
+	.chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.25rem; }
+
+	.chip {
+		min-height: 2.5rem;
+		padding: 0 0.85rem;
+		border: 1px solid var(--line);
+		border-radius: 999px;
+		background: none;
+		color: var(--ink);
+		font-family: var(--font-ui);
+		font-size: 0.875rem;
+		font-variant-numeric: tabular-nums;
+		cursor: pointer;
+		touch-action: manipulation;
+		user-select: none;
+		-webkit-user-select: none;
+		transition: transform 140ms var(--ease-out), border-color 160ms var(--ease-out);
+	}
+	.chip:active { transform: scale(0.97); }
+	.chip[aria-pressed='true'] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+	.chip span { opacity: 0.65; margin-left: 0.3rem; }
+
+	.years { display: grid; gap: 2.5rem; margin-top: 2.25rem; }
+
+	/* ---------- 文章页 ---------- */
+	.post__back a { display: inline-flex; align-items: center; min-height: 2.75rem; }
+	.post h1 { font-size: clamp(1.9rem, 5.5vw, 2.6rem); line-height: 1.3; font-weight: 700; text-wrap: balance; }
+	.post__meta { margin-top: 0.6rem; font-family: var(--font-ui); font-size: 0.875rem; color: var(--fur); }
+
+	.post__body { margin-top: 2rem; max-width: 34em; font-size: 1.125rem; line-height: 2; }
+	.post__body p + p { margin-top: 1.2em; }
+	.post__body p { text-wrap: pretty; }
+
+	.post__tags { display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; margin-top: 2rem; font-size: 1rem; color: var(--fur); }
+	.post__near { margin-top: 3rem; }
+
+	/* ---------- 页脚 ---------- */
+	.foot {
+		padding-block: 1.5rem max(2rem, env(safe-area-inset-bottom));
+		border-top: 1px solid var(--line);
+		color: var(--fur);
+		font-size: 1rem;
+	}
+	.foot__row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.25rem 2rem; }
+	.foot__demo { margin-top: 0.75rem; font-family: var(--font-ui); font-size: 0.8125rem; }
+
+	[hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<div class="shell">
+	<header class="top">
+		<a class="brand" href="#/" aria-label="头头咖啡屋 首页"><img src="logo.svg" alt="" width="500" height="150" /></a>
+		<nav class="nav" aria-label="主导航">
+			<a href="#/blog" data-nav="blog">文章</a>
+			<a href="#/@touls">Touls</a>
+			<a href="#/@friends">友链</a>
+			<a href="#/@about">关于</a>
+		</nav>
+		<button class="lamp" type="button" id="lamp"></button>
+	</header>
+
+	<main id="main">
+		<!-- 首页 -->
+		<div class="home" data-view="home">
+			<section class="greet">
+				<h1>路上辛苦了，<br />喝点什么？</h1>
+				<p>我是 Tito_XD，本店的店长，也可以叫我头头。</p>
+				<p>总归还是生活碎碎念。如果我的寥寥几字也能让你驻足停看，那也不错，谢谢。</p>
+				<p>欢迎光临，请开心。</p>
+			</section>
+
+			<aside class="counter">
+				<div class="counter__stage">
+					<img src="tito.webp" width="491" height="1100" alt="店长头头：蓝发灰狼，穿蓝衬衫和深色围裙，胸前别着 Tito 名牌" />
+				</div>
+				<p class="counter__credit">立绘 <a href="https://frankuwu.link/" target="_blank" rel="noopener">Frank uwu</a></p>
+			</aside>
+
+			<div class="menu">
+				<section class="sec" id="latest" aria-labelledby="latest-h">
+					<div class="sec__head">
+						<h2 id="latest-h">最近在写</h2>
+						<span class="note">读完大约</span>
+					</div>
+					<ul class="rows" id="latest-rows"></ul>
+					<p class="sec__more"><a href="#/blog" id="all-link"></a></p>
+				</section>
+
+				<section class="sec" id="touls" aria-labelledby="touls-h">
+					<div class="sec__head"><h2 id="touls-h">Touls</h2></div>
+					<p class="sec__lead">小工具角。名字是 Tools 的故意拼写版——毕竟是头头（Tito）的地盘。</p>
+					<ul class="rows">
+						<li class="row">
+							<span class="row__name"><a href="https://titodex.pages.dev" target="_blank" rel="noopener">TitoDex</a></span>
+							<span class="row__dots" aria-hidden="true"></span>
+							<span class="row__price">宝可梦</span>
+							<span class="row__desc">TitoDex App、网页图鉴与 1025 MV 拼贴。</span>
+							<span class="row__meta">titodex.pages.dev ↗</span>
+							<span class="row__subs">
+								<a href="https://titodex.pages.dev/pokedex" target="_blank" rel="noopener">全国图鉴</a>
+								<a href="https://titodex.pages.dev/151" target="_blank" rel="noopener">关都 151</a>
+								<a href="https://titodex.pages.dev/1025" target="_blank" rel="noopener">1025 MV 拼贴</a>
+							</span>
+						</li>
+						<li class="row">
+							<span class="row__name"><a href="https://crt.tito.cafe" target="_blank" rel="noopener">CRT 显像工坊</a></span>
+							<span class="row__dots" aria-hidden="true"></span>
+							<span class="row__price">图片</span>
+							<span class="row__desc">CRT、录像带、旧印刷效果，裁成壁纸比例，本地处理导出 PNG。</span>
+							<span class="row__meta">crt.tito.cafe ↗</span>
+						</li>
+						<li class="row">
+							<span class="row__name"><a href="https://tito.cafe/markdown" target="_blank" rel="noopener">Markdown</a></span>
+							<span class="row__dots" aria-hidden="true"></span>
+							<span class="row__price">写作</span>
+							<span class="row__desc">本地 Markdown 写作，导出 .md 或带素材的 .zip。</span>
+						</li>
+						<li class="row">
+							<span class="row__name"><a href="https://tito.cafe/think" target="_blank" rel="noopener">Think</a></span>
+							<span class="row__dots" aria-hidden="true"></span>
+							<span class="row__price">笔记</span>
+							<span class="row__desc">本地优先的短文写作台，碎片与深夜随记。</span>
+							<span class="row__subs">
+								<a href="https://tito.cafe/thinks" target="_blank" rel="noopener">翻看写过的条目</a>
+							</span>
+						</li>
+						<li class="row">
+							<span class="row__name"><a href="https://tito.cafe/tito-cursor" target="_blank" rel="noopener">Tito 光标</a></span>
+							<span class="row__dots" aria-hidden="true"></span>
+							<span class="row__price">下载</span>
+							<span class="row__desc">头头狼主题 Windows 鼠标指针下载与 SoftCursor 指引。</span>
+						</li>
+						<li class="row">
+							<span class="row__name"><a href="https://tito.cafe/sbti" target="_blank" rel="noopener">SBTI 人格测试</a></span>
+							<span class="row__dots" aria-hidden="true"></span>
+							<span class="row__price">测验</span>
+							<span class="row__desc">人格类型小测验（复建页，仅供学习向）。</span>
+						</li>
+					</ul>
+				</section>
+
+				<section class="sec" id="friends" aria-labelledby="friends-h">
+					<div class="sec__head"><h2 id="friends-h">友链</h2></div>
+					<ul class="rows">
+						<li class="row">
+							<span class="row__name"><a href="https://rachelt.one/zh/" target="_blank" rel="noopener">Rachel</a></span>
+							<span class="row__dots" aria-hidden="true"></span>
+							<span class="row__meta">rachelt.one ↗</span>
+							<span class="row__desc">Hi, would you like a cup of Rachel today?</span>
+						</li>
+						<li class="row">
+							<span class="row__name"><a href="https://qpomelo.dev" target="_blank" rel="noopener">QPomelo</a></span>
+							<span class="row__dots" aria-hidden="true"></span>
+							<span class="row__meta">qpomelo.dev ↗</span>
+							<span class="row__desc">aka 柚子</span>
+						</li>
+						<li class="row">
+							<span class="row__name"><a href="https://hugo.heuluck.dev" target="_blank" rel="noopener">Heuluck</a></span>
+							<span class="row__dots" aria-hidden="true"></span>
+							<span class="row__meta">hugo.heuluck.dev ↗</span>
+						</li>
+						<li class="row">
+							<span class="row__name"><a href="https://wrye.dev/" target="_blank" rel="noopener">Wr</a></span>
+							<span class="row__dots" aria-hidden="true"></span>
+							<span class="row__meta">wrye.dev ↗</span>
+						</li>
+						<li class="row">
+							<span class="row__name"><a href="https://frankuwu.link/" target="_blank" rel="noopener">Frank uwu</a></span>
+							<span class="row__dots" aria-hidden="true"></span>
+							<span class="row__meta">frankuwu.link ↗</span>
+						</li>
+						<li class="row">
+							<span class="row__name"><a href="https://blog.grilledfish9.xyz" target="_blank" rel="noopener">烤鱼</a></span>
+							<span class="row__dots" aria-hidden="true"></span>
+							<span class="row__meta">blog.grilledfish9.xyz ↗</span>
+						</li>
+					</ul>
+				</section>
+
+				<section class="sec about" id="about" aria-labelledby="about-h">
+					<div class="sec__head"><h2 id="about-h">关于店长</h2></div>
+					<p>nameless nobody but still exploring this world.</p>
+					<p>want to make 21 grams interesting.</p>
+					<p>lives in Hubei, Wuhan and working as marketing, website maintainer.</p>
+					<p class="about__find" style="margin-top: 0.9rem">
+						也可以在
+						<a href="https://www.xiaohongshu.com/user/profile/606528a100000000010092d3" target="_blank" rel="noopener">小红书</a>、
+						<a href="https://x.com/Tito_XD2333" target="_blank" rel="noopener">X</a>、
+						<a href="https://weibo.com/u/2100498774" target="_blank" rel="noopener">微博</a>、
+						<a href="https://space.bilibili.com/5895560" target="_blank" rel="noopener">bilibili</a>
+						找到我，或者订阅 <a href="https://tito.cafe/rss.xml" target="_blank" rel="noopener">RSS</a>。
+					</p>
+				</section>
+			</div>
+		</div>
+
+		<!-- 文章列表 -->
+		<div class="page" data-view="blog" hidden>
+			<h1 class="page__title">文章</h1>
+			<p class="page__count" id="blog-count" aria-live="polite"></p>
+			<div class="chips" id="chips" role="group" aria-label="按标签筛选"></div>
+			<div class="years" id="years"></div>
+		</div>
+
+		<!-- 文章 -->
+		<article class="page post" data-view="post" hidden>
+			<p class="post__back"><a href="#/blog">← 全部文章</a></p>
+			<h1 id="post-title"></h1>
+			<p class="post__meta" id="post-meta"></p>
+			<div class="post__body" id="post-body"></div>
+			<ul class="post__tags" id="post-tags" aria-label="标签"></ul>
+			<section class="post__near sec" aria-labelledby="near-h">
+				<div class="sec__head">
+					<h2 id="near-h">接着看</h2>
+					<span class="note">读完大约</span>
+				</div>
+				<ul class="rows" id="near-rows"></ul>
+			</section>
+		</article>
+	</main>
+
+	<footer class="foot">
+		<div class="foot__row">
+			<span>make 21 grams interesting.</span>
+			<span>© 2026 头头咖啡屋 / Tito's Cafe</span>
+		</div>
+		<p class="foot__demo">重构 demo：标题、简介、日期取自仓库里的文章；“读完大约”按正文字数粗估（每分钟 400 字，含图片链接，偏高）。</p>
+	</footer>
+</div>
+
+<script>
+	(function () {
+		// 取自 src/content/posts 的 frontmatter；min 为按字数的粗估
+		var POSTS = [
+			{ slug: 'onward-2026', title: 'ONWARD 2026', desc: '每一次中转，都多一倍离家的感觉。', date: '2026-02-21', min: 9, tags: ['家人', '故乡'], annual: true },
+			{ slug: 'rewind-2025', title: 'REWIND 2025', desc: '以上，我的2025。', date: '2026-01-31', min: 110, tags: ['朋友', '工作'], annual: true },
+			{ slug: 'goodbye-24', title: '写在即将结束的24岁', desc: '开始奔三啦', date: '2025-12-19', min: 2, tags: ['生活'] },
+			{ slug: '1000-days', title: '一千天与你', desc: '此刻起，一千天归一。', date: '2025-11-03', min: 4, tags: ['生活', '情绪', '爱情'] },
+			{ slug: 'maximum-overload', title: '最大过载', desc: '累累累累累累', date: '2025-05-25', min: 7, tags: ['工作', '咖啡'] },
+			{ slug: 'note-about-eyes', title: '关于眼睛的一点小事', desc: '小的时候', date: '2025-03-24', min: 4, tags: ['生活'] },
+			{ slug: 'working-hours', title: '工作时间', desc: '忙忙忙忙摇摇摇摇忙忙忙忙抖腿抖腿忙忙忙忙', date: '2025-03-19', min: 4, tags: ['工作'] },
+			{ slug: 'saturday-afternoon', title: '独自一人的周六午后', desc: '独自听风也不错', date: '2025-03-08', min: 5, tags: ['生活', '咖啡', '朋友'] },
+			{ slug: 'want-some-coffee', title: '小时候的向往/过萃的咖啡', desc: '这俩有什么关系呢，无所谓了', date: '2025-03-06', min: 6, tags: ['情绪', '生活', '工作', '咖啡'] },
+			{ slug: 'normal-weekend', title: '一个平凡的周末', desc: '你有在看，那也很好', date: '2025-03-03', min: 7, tags: ['情绪', '生活', '工作'] },
+			{ slug: 'wtf-mess-work', title: '讨厌混在一起的拼图', desc: '我的工作节奏呢！哪里去了！', date: '2025-02-21', min: 3, tags: ['情绪', '生活', '工作'] },
+			{ slug: 'origin-to-the-start', title: '是原点、也是新起点', desc: '春天来了，有你真好', date: '2025-02-08', min: 12, tags: ['生活', '爱情', '工作'] },
+			{ slug: 'rewind-2024', title: 'REWIND 2024', desc: '这是我的2024。', date: '2024-12-30', min: 53, tags: ['朋友', '工作'], annual: true }
+		];
+
+		var BODIES = {
+			'saturday-afternoon': [
+				'能看到这些内容的朋友应该知道，通常的周末是两人同时出没城市探险的。',
+				'为什么我很喜欢「城市探险」这个词，因为相比真正意义上的户外环境，完全切断或隔离电源网络，我会觉得有不安的感觉，倒也并不是说我是十足的线上型人格。一直以来对城市的一些向往很难说是从什么时候开始的，但是每每看到红绿灯、箭头、车站、地铁标识之类的记号，会让我有一种井然有序的感觉，十分安心。',
+				'因为加班的缘故，在一起午饭过后将他送往地铁站，两站后暂时分别。',
+				'天气不是很好，想到了早些时候与朋友提起的寄送东西，便踩着帆布鞋前往店中挑选些许小礼品，几次翻看和店员推荐，终于是选择了一套礼盒和几件小装饰品，提着纸袋摸索着方向前行，刚好几步开外的小区有快递柜，遂绕进小区，选购、打包、寄出，一气呵成。',
+				'结束得未免有些太快了，以至于不知道接下来该做什么，看到群友提到的新饮品，便刚好接着，前往附近的店面，品上一杯。还是预料之内的风味和感觉（因为已被提到过风味），只是不清楚和隔壁省市的门店出品，是否有差很远呢。',
+				'闲逛十余分钟，天色还早，便想起之前有和朋友提起过的森林书屋咖啡馆，公交车不远便能抵达，想来也可以去逛一下。漫长等车之后十几分钟便到了公园入口处，未走多远便已经看到了咖啡书屋，或者应该是书院，虽然因为周末略显嘈杂但仍有空位，点上了一杯气泡咖啡在院子中听风，虽然是景区店但会员价格仍然适用、实属难得。端杯信步在公园中各个角落，凭着感觉沿路闲逛，留下一两张照片。手机电量告急后想到这附近最近的熟悉地点就是公司，沿着导航走到半程就到了熟悉的道路，晃到公司门前又不小心打上了加班的卡。',
+				'最终还是补电期间回复了几封工单，毕竟工作总是要做的嘛，闲着也是闲着，不如给周一减减负了。',
+				'刚刚好，他下班了。就先写到这里，祝你生活愉快吧~'
+			]
+		};
+		var SAMPLE = 'saturday-afternoon';
+
+		var dateFmt = new Intl.DateTimeFormat('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' });
+		var numFmt = new Intl.NumberFormat('zh-CN');
+
+		function $(id) { return document.getElementById(id); }
+		function el(tag, cls, text) {
+			var node = document.createElement(tag);
+			if (cls) node.className = cls;
+			if (text !== undefined) node.textContent = text;
+			return node;
+		}
+		function toDate(iso) {
+			var p = iso.split('-').map(Number);
+			return new Date(p[0], p[1] - 1, p[2]);
+		}
+		function minutes(n) { return numFmt.format(n) + ' 分钟'; }
+
+		function postRow(post) {
+			var li = el('li', 'row');
+			var name = el('span', 'row__name');
+			var link = el('a', '', post.title);
+			link.href = '#/posts/' + post.slug;
+			name.appendChild(link);
+			if (post.annual) name.appendChild(el('span', 'row__tag', '年度'));
+			var dots = el('span', 'row__dots');
+			dots.setAttribute('aria-hidden', 'true');
+			var time = el('time', 'row__meta', dateFmt.format(toDate(post.date)));
+			time.dateTime = post.date;
+			li.append(name, dots, el('span', 'row__price', minutes(post.min)), el('span', 'row__desc', post.desc), time);
+			return li;
+		}
+
+		function fill(list, posts) {
+			list.replaceChildren.apply(list, posts.map(postRow));
+		}
+
+		// ----- 首页 -----
+		fill($('latest-rows'), POSTS.slice(0, 5));
+		$('all-link').textContent = '全部 ' + numFmt.format(POSTS.length) + ' 篇文章';
+
+		// ----- 文章列表：按年分组 + 标签筛选 -----
+		var activeTag = null;
+
+		function tagCounts() {
+			var counts = {};
+			POSTS.forEach(function (p) {
+				p.tags.forEach(function (t) { counts[t] = (counts[t] || 0) + 1; });
+			});
+			return Object.keys(counts)
+				.map(function (t) { return { tag: t, n: counts[t] }; })
+				.sort(function (a, b) { return b.n - a.n; });
+		}
+
+		function renderChips() {
+			var chips = tagCounts().map(function (item) {
+				var btn = el('button', 'chip', item.tag);
+				btn.type = 'button';
+				btn.setAttribute('aria-pressed', String(activeTag === item.tag));
+				btn.appendChild(el('span', '', numFmt.format(item.n)));
+				btn.addEventListener('click', function () {
+					activeTag = activeTag === item.tag ? null : item.tag;
+					renderBlog();
+				});
+				return btn;
+			});
+			var box = $('chips');
+			box.replaceChildren.apply(box, chips);
+		}
+
+		function renderBlog() {
+			var shown = POSTS.filter(function (p) { return !activeTag || p.tags.indexOf(activeTag) !== -1; });
+			var byYear = {};
+			shown.forEach(function (p) {
+				var y = p.date.slice(0, 4);
+				(byYear[y] = byYear[y] || []).push(p);
+			});
+			var groups = Object.keys(byYear).sort().reverse().map(function (y) {
+				var sec = el('section', 'sec');
+				var head = el('div', 'sec__head');
+				head.append(el('h2', '', y), el('span', 'note', numFmt.format(byYear[y].length) + ' 篇'));
+				var list = el('ul', 'rows');
+				fill(list, byYear[y]);
+				sec.append(head, list);
+				return sec;
+			});
+			var years = $('years');
+			years.replaceChildren.apply(years, groups);
+			$('blog-count').textContent = activeTag
+				? '「' + activeTag + '」下有 ' + numFmt.format(shown.length) + ' 篇，再点一次标签看全部'
+				: '共 ' + numFmt.format(POSTS.length) + ' 篇，从 2024 年底写到现在';
+			renderChips();
+		}
+
+		// ----- 文章页 -----
+		function renderPost(slug) {
+			var index = POSTS.findIndex(function (p) { return p.slug === slug; });
+			if (index === -1) return false;
+			var post = POSTS[index];
+			$('post-title').textContent = post.title;
+
+			var meta = $('post-meta');
+			var time = el('time', '', dateFmt.format(toDate(post.date)));
+			time.dateTime = post.date;
+			meta.replaceChildren(time, document.createTextNode('，读完大约 ' + minutes(post.min)));
+
+			var body = $('post-body');
+			if (BODIES[slug]) {
+				body.replaceChildren.apply(body, BODIES[slug].map(function (text) { return el('p', '', text); }));
+			} else {
+				var note = el('p', '', '这篇的正文没有放进 demo。想看正文排版，可以打开');
+				var sample = el('a', '', '《独自一人的周六午后》');
+				sample.href = '#/posts/' + SAMPLE;
+				note.append(sample, document.createTextNode('。'));
+				body.replaceChildren(el('p', '', post.desc), note);
+			}
+
+			var tags = $('post-tags');
+			tags.replaceChildren.apply(tags, post.tags.map(function (t) { return el('li', '', '#' + t); }));
+
+			var near = [POSTS[index - 1], POSTS[index + 1]].filter(Boolean);
+			fill($('near-rows'), near);
+			return true;
+		}
+
+		// ----- 路由：#/ 首页，#/@分区 首页锚点，#/blog，#/posts/slug -----
+		function show(view) {
+			document.querySelectorAll('[data-view]').forEach(function (node) {
+				node.hidden = node.dataset.view !== view;
+			});
+			var blogNav = document.querySelector('[data-nav="blog"]');
+			if (view === 'home') blogNav.removeAttribute('aria-current');
+			else blogNav.setAttribute('aria-current', 'page');
+		}
+
+		function route() {
+			var path = location.hash.replace(/^#\/?/, '');
+			if (path === 'blog') {
+				renderBlog();
+				show('blog');
+			} else if (path.indexOf('posts/') === 0 && renderPost(path.slice(6))) {
+				show('post');
+			} else {
+				show('home');
+				var target = path.charAt(0) === '@' ? $(path.slice(1)) : null;
+				if (target) {
+					target.scrollIntoView();
+					return;
+				}
+			}
+			window.scrollTo(0, 0);
+		}
+
+		window.addEventListener('hashchange', route);
+		route();
+
+		// ----- 开灯 / 关灯 -----
+		var root = document.documentElement;
+		var lamp = $('lamp');
+		function paintLamp() {
+			var dark = root.classList.contains('dark');
+			lamp.textContent = dark ? '开灯' : '关灯';
+			lamp.setAttribute('aria-label', dark ? '开灯（切换到浅色模式）' : '关灯（切换到深色模式）');
+		}
+		lamp.addEventListener('click', function () {
+			var dark = !root.classList.contains('dark');
+			root.classList.toggle('dark', dark);
+			root.classList.toggle('light', !dark);
+			try { localStorage.setItem('cafe-demo-theme', dark ? 'dark' : 'light'); } catch (_) {}
+			paintLamp();
+		});
+		paintLamp();
+	})();
+</script>
+</body>
+</html>
