@@ -1,24 +1,23 @@
 ---
 import { Icon } from 'astro-icon/components';
 import { Hide, SiteBrand, SiteTitle } from '~/config';
-
-const brandClasses =
-	SiteBrand.variant === 'icon'
-		? `${SiteBrand.widthClass} ${SiteBrand.heightClass}`
-		: undefined;
 ---
 
 {
 	!Hide.includes('logo') ? (
 		<a
-			transition:persist
 			href="/"
-			aria-label="go to index"
-			class:list={['site-brand', brandClasses]}
+			aria-label={`${SiteTitle} 首页`}
+			class="site-brand"
 		>
 			{
-				SiteBrand.variant === 'icon' ? (
-					<Icon name={SiteBrand.icon} title="go to index" class="site-brand__icon" />
+				SiteBrand.variant === 'wordmark' ? (
+					<span class="site-brand__wordmark">
+						<span class="site-brand__en">{SiteBrand.enText}</span>
+						<span class="site-brand__zh">{SiteBrand.zhText}</span>
+					</span>
+				) : SiteBrand.variant === 'icon' ? (
+					<Icon name={SiteBrand.icon} title="首页" class="site-brand__icon" />
 				) : (
 					SiteTitle
 				)
@@ -32,25 +31,41 @@ const brandClasses =
 <style>
 	.site-brand {
 		display: inline-flex;
-		align-items: flex-start;
-		justify-content: flex-start;
+		align-items: center;
 		width: fit-content;
-		max-width: min(100%, 14rem);
-		flex-shrink: 1;
+		color: var(--color-text);
 		text-decoration: none;
+		border-radius: 4px;
+	}
+
+	.site-brand:hover {
+		color: var(--color-accent);
+	}
+
+	.site-brand__wordmark {
+		display: inline-flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.14rem;
+		font-synthesis: none;
+	}
+
+	.site-brand__en {
+		font-family: 'Tito Brand En', sans-serif;
+		font-size: clamp(1.42rem, 2.5vw, 1.75rem);
+		line-height: 0.96;
+	}
+
+	.site-brand__zh {
+		font-family: 'Tito Brand Zh', sans-serif;
+		font-size: clamp(1.06rem, 1.85vw, 1.3rem);
+		line-height: 1;
 	}
 
 	.site-brand :global(svg),
 	.site-brand__icon {
 		display: block;
-		height: 100%;
+		height: 2.5rem;
 		width: auto;
-		max-width: 100%;
-	}
-
-	@media (min-width: 1024px) {
-		.site-brand {
-			max-width: 20rem;
-		}
 	}
 </style>

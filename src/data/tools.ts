@@ -1,8 +1,15 @@
+export type ToolSubLink = {
+	label: string;
+	href: string;
+};
+
 export type ToolLink = {
 	title: string;
 	href: string;
 	description: string;
 	tag?: string;
+	externalHost?: string;
+	subLinks?: ToolSubLink[];
 };
 
 export const tools: ToolLink[] = [
@@ -11,24 +18,19 @@ export const tools: ToolLink[] = [
 		href: 'https://titodex.pages.dev',
 		description: 'TitoDex App、网页图鉴与 1025 MV 拼贴。',
 		tag: '宝可梦',
-	},
-	{
-		title: '全国图鉴',
-		href: 'https://titodex.pages.dev/pokedex',
-		description: '全国图鉴速查，可按地区切换，支持传说/幻/形态筛选。',
-		tag: '图鉴',
-	},
-	{
-		title: '宝可梦 151 · 关都',
-		href: 'https://titodex.pages.dev/151',
-		description: '关都 151 只图鉴速查、属性弱点与中文名测验。',
-		tag: '图鉴',
+		externalHost: 'titodex.pages.dev ↗',
+		subLinks: [
+			{ label: '全国图鉴', href: 'https://titodex.pages.dev/pokedex' },
+			{ label: '关都 151', href: 'https://titodex.pages.dev/151' },
+			{ label: '1025 MV 拼贴', href: 'https://titodex.pages.dev/1025' },
+		],
 	},
 	{
 		title: 'CRT 显像工坊',
 		href: 'https://crt.tito.cafe',
 		description: 'CRT、录像带、旧印刷效果，裁成壁纸比例，本地处理导出 PNG。',
 		tag: '图片',
+		externalHost: 'crt.tito.cafe ↗',
 	},
 	{
 		title: 'Markdown',
@@ -41,12 +43,7 @@ export const tools: ToolLink[] = [
 		href: '/think',
 		description: '本地优先的短文写作台，碎片与深夜随记。',
 		tag: '笔记',
-	},
-	{
-		title: 'Thinks',
-		href: '/thinks',
-		description: '浏览与筛选 Think 里写下的条目。',
-		tag: '笔记',
+		subLinks: [{ label: '翻看写过的条目', href: '/thinks' }],
 	},
 	{
 		title: 'Tito 光标',

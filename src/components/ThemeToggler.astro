@@ -1,53 +1,63 @@
 ---
-import { Icon } from 'astro-icon/components';
 ---
 
-<div transition:persist class="forced-colors:hidden">
-	<button
-		type="button"
-		data-theme-toggle
-		class="theme-toggler ui-pressable"
-		aria-label="Switch to dark theme"
-		title="Switch to dark theme"
-		data-theme="light"
-	>
-		<Icon name="ri:sun-fill" class="theme-icon-light size-5 fill-current" />
-		<Icon name="ri:moon-line" class="theme-icon-dark size-5 fill-current" />
-	</button>
-</div>
+<button
+	type="button"
+	data-theme-toggle
+	class="lamp-btn forced-colors:hidden"
+	aria-label="关灯（切换到深色模式）"
+	data-theme="light"
+>
+	<span class="lamp-btn__light">关灯</span>
+	<span class="lamp-btn__dark">开灯</span>
+</button>
 
 <style>
-	.theme-toggler {
+	.lamp-btn {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		height: 2.15rem;
-		width: 2.15rem;
+		min-height: 2.35rem;
+		padding: 0 0.85rem;
+		border: 1px solid var(--color-border);
+		border-radius: 999px;
+		background: none;
 		color: var(--color-text);
-		opacity: 0.88;
+		font: inherit;
+		font-size: 0.95rem;
+		line-height: 1;
+		cursor: pointer;
+		touch-action: manipulation;
+		user-select: none;
+		-webkit-user-select: none;
 		transition:
-			transform var(--motion-gentle),
-			background var(--motion-gentle),
-			color var(--motion-gentle),
-			opacity var(--motion-gentle),
-			box-shadow var(--motion-gentle);
+			transform 140ms cubic-bezier(0.23, 1, 0.32, 1),
+			border-color var(--motion-gentle),
+			color var(--motion-gentle);
 	}
 
-	.theme-toggler:hover,
-	.theme-toggler:focus-visible {
-		opacity: 1;
+	.lamp-btn:active {
+		transform: scale(0.97);
 	}
 
-	.theme-toggler .theme-icon-dark {
+	.lamp-btn__dark {
 		display: none;
 	}
 
-	.theme-toggler[data-theme='dark'] .theme-icon-light {
+	:global(:root.dark) .lamp-btn__light,
+	.lamp-btn[data-theme='dark'] .lamp-btn__light {
 		display: none;
 	}
 
-	.theme-toggler[data-theme='dark'] .theme-icon-dark {
-		display: block;
+	:global(:root.dark) .lamp-btn__dark,
+	.lamp-btn[data-theme='dark'] .lamp-btn__dark {
+		display: inline;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.lamp-btn:hover {
+			border-color: var(--color-text);
+		}
 	}
 </style>
 
@@ -69,36 +79,37 @@ import { Icon } from 'astro-icon/components';
 			: 'light';
 	};
 
-	const syncThemeButtons = (document: Document, resolvedTheme: 'dark' | 'light') => {
-		const buttons = Array.from(document.querySelectorAll(themeToggleSelector));
+	const syncThemeButtons = (doc: Document, resolvedTheme: 'dark' | 'light') => {
+		const buttons = Array.from(doc.querySelectorAll(themeToggleSelector));
 		for (const button of buttons) {
 			if (!(button instanceof HTMLButtonElement)) {
 				continue;
 			}
-
 			button.setAttribute('data-theme', resolvedTheme);
-			const nextTheme = resolvedTheme === 'dark' ? 'light' : 'dark';
-			button.setAttribute('aria-label', `Switch to ${nextTheme} theme`);
-			button.setAttribute('title', `Switch to ${nextTheme} theme`);
+			const label =
+				resolvedTheme === 'dark'
+					? '开灯（切换到浅色模式）'
+					: '关灯（切换到深色模式）';
+			button.setAttribute('aria-label', label);
+			button.setAttribute('title', label);
 		}
 	};
 
-	const applyTheme = (document: Document, rawTheme: string) => {
+	const applyTheme = (doc: Document, rawTheme: string) => {
 		const resolvedTheme = resolveTheme(rawTheme);
-		document.documentElement.classList.remove('dark', 'light', 'os-default');
-		document.documentElement.classList.add(resolvedTheme);
-		syncThemeButtons(document, resolvedTheme);
+		doc.documentElement.classList.remove('dark', 'light', 'os-default');
+		doc.documentElement.classList.add(resolvedTheme);
+		syncThemeButtons(doc, resolvedTheme);
 		return resolvedTheme;
 	};
 
-	const bindToggle = (document: Document) => {
-		applyTheme(document, theme.get());
-		const buttons = Array.from(document.querySelectorAll(themeToggleSelector));
+	const bindToggle = (doc: Document) => {
+		applyTheme(doc, theme.get());
+		const buttons = Array.from(doc.querySelectorAll(themeToggleSelector));
 		for (const button of buttons) {
 			if (!(button instanceof HTMLButtonElement)) {
 				continue;
 			}
-
 			button.onclick = () => {
 				const currentTheme =
 					button.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
@@ -116,14 +127,19 @@ import { Icon } from 'astro-icon/components';
 	}
 
 	bindToggle(document);
-	document.addEventListener('astro:before-swap', (ev) => bindToggle(ev.newDocument));
+	document.addEventListener('astro:before-swap', (ev) =>
+		bindToggle(ev.newDocument),
+	);
+	document.addEventListener('astro:page-load', () => bindToggle(document));
 
 	if (!themeWindow.__themeToggleMediaBound) {
-		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-			if (theme.get() === 'os-default') {
-				applyTheme(document, 'os-default');
-			}
-		});
+		window
+			.matchMedia('(prefers-color-scheme: dark)')
+			.addEventListener('change', () => {
+				if (theme.get() === 'os-default') {
+					applyTheme(document, 'os-default');
+				}
+			});
 		themeWindow.__themeToggleMediaBound = true;
 	}
 </script>

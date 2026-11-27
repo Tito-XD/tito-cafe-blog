@@ -1,33 +1,96 @@
 ---
-import { Hide, SiteDescription } from '~/config';
-import { getEnabledSocialLinks } from '~/utils/socials';
-import HeaderActions from './HeaderActions.astro';
+import { Hide } from '~/config';
 import HeaderBrand from './HeaderBrand.astro';
-import HeaderMobileMenu from './HeaderMobileMenu.astro';
-import HeaderSocialLinks from './HeaderSocialLinks.astro';
 import Nav from './Nav.astro';
+import ThemeToggler from './ThemeToggler.astro';
 
 interface Props {
 	currentNav?: string;
 }
 
 const { currentNav } = Astro.props;
-const socials = getEnabledSocialLinks();
 ---
 
-<header class="relative grid grid-cols-2 items-start justify-between lg:flex">
+<header class="site-top">
 	<HeaderBrand />
-	<HeaderMobileMenu currentNav={currentNav} socials={socials} />
-	<div class="col-span-2 hidden flex-col gap-3 text-center lg:flex lg:items-end">
-		<div class="mb-[2dvh] flex flex-col items-center gap-3 lg:mb-7 lg:flex-row lg:gap-8">
-			<Nav currentNav={currentNav} />
-			<HeaderActions />
-		</div>
-		<Fragment transition:persist>
-			{!Hide.includes('siteDescription') && <div>{SiteDescription}</div>}
-			<div class="mt-[2dvh] lg:mt-0">
-				<HeaderSocialLinks socials={socials} />
-			</div>
-		</Fragment>
+	<Nav currentNav={currentNav} />
+	<div class="site-top__actions">
+		{
+			!Hide.includes('search') && (
+				<a
+					href="/search"
+					class="site-top__search"
+					aria-current={currentNav === 'Search' ? 'page' : undefined}
+					aria-label="搜索文章"
+				>
+					搜索
+				</a>
+			)
+		}
+		{!Hide.includes('themeToggler') && <ThemeToggler />}
 	</div>
 </header>
+
+<style>
+	.site-top {
+		display: grid;
+		grid-template-columns: 1fr auto;
+		align-items: center;
+		gap: 0.35rem 1.25rem;
+		padding-block: max(1rem, env(safe-area-inset-top)) 0.75rem;
+	}
+
+	.site-top :global(.site-nav) {
+		grid-column: 1 / -1;
+	}
+
+	.site-top__actions {
+		grid-row: 1;
+		grid-column: 2;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.75rem;
+	}
+
+	.site-top__search {
+		display: inline-flex;
+		align-items: center;
+		min-height: 2.35rem;
+		color: var(--color-muted);
+		font-size: 0.95rem;
+		text-decoration: none;
+		transition: color var(--motion-gentle);
+	}
+
+	.site-top__search[aria-current='page'] {
+		color: var(--color-text);
+		text-decoration: underline;
+		text-decoration-color: var(--color-leather);
+		text-decoration-thickness: 2px;
+		text-underline-offset: 0.42em;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.site-top__search:hover {
+			color: var(--color-accent);
+		}
+	}
+
+	@media (min-width: 48rem) {
+		.site-top {
+			grid-template-columns: auto 1fr auto;
+			padding-block: 1.5rem 1rem;
+		}
+
+		.site-top :global(.site-nav) {
+			grid-row: 1;
+			grid-column: 2;
+			justify-self: end;
+		}
+
+		.site-top__actions {
+			grid-column: 3;
+			gap: 1rem;
+		}
+	}
+</style>

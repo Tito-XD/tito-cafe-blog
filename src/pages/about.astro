@@ -1,21 +1,15 @@
----
-import { Picture } from 'astro:assets';
-import img from '~/assets/tito_xd-walk-by-frankuwu.png';
-import SplitHero from '~/components/SplitHero.astro';
-import ScaffoldLayout from '~/layouts/ScaffoldLayout.astro';
----
-
-<ScaffoldLayout title="About" description="About this site and its maintainer." currentNav="About">
-	<SplitHero title="About" className="about-intro">
-		<Picture
-			slot="art"
-			class="about-intro__art"
-			src={img}
-			formats={['avif', 'webp', 'png']}
-			alt="Tito_XD original character walking posture by artist Frankuwu"
-		/>
-		<p>nameless nobody but still exploring this world.</p>
-		<p>want to make 21 grams interesting.</p>
-		<p>lives in Hubei, Wuhan and working as marketing, website maintainer.</p>
-	</SplitHero>
-</ScaffoldLayout>
+<!doctype html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="refresh" content="0;url=/#about" />
+		<link rel="canonical" href="/#about" />
+		<title>跳转至关于</title>
+		<script is:inline>
+			window.location.replace('/#about');
+		</script>
+	</head>
+	<body>
+		<p><a href="/#about">正在跳转至关于…</a></p>
+	</body>
+</html>

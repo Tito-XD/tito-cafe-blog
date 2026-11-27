@@ -1,46 +1,627 @@
 ---
 import { Picture } from 'astro:assets';
-import img from '~/assets/tito_xd-cafe-manager-by-frankuwu.png';
-import SplitHero from '~/components/SplitHero.astro';
-import { SiteDescription, SiteTitle } from '~/config';
+import managerImg from '~/assets/tito_xd-cafe-manager-by-frankuwu.png';
+import MenuPostRow from '~/components/MenuPostRow.astro';
+import { SiteDescription, SiteTitle, Socials } from '~/config';
+import { friends } from '~/data/friends';
+import { tools } from '~/data/tools';
 import ScaffoldLayout from '~/layouts/ScaffoldLayout.astro';
+import { getPosts } from '~/utils/collection';
+import { isAnnualPost } from '~/utils/readingTime';
+
+const allPosts = await getPosts(false, 'desc');
+const annualPosts = allPosts.filter((post) => isAnnualPost(post)).slice(0, 2);
+const annualIds = new Set(annualPosts.map((post) => post.id));
+const recentRegularPosts = allPosts
+	.filter((post) => !annualIds.has(post.id))
+	.slice(0, 5);
+
+const formatHost = (rawUrl?: string) => {
+	if (!rawUrl) {
+		return '';
+	}
+	try {
+		return new URL(rawUrl).hostname.replace(/^www\./, '');
+	} catch {
+		return rawUrl;
+	}
+};
+
+const socialNames: { key: string; label: string }[] = [
+	{ key: 'xiaohongshu', label: '小红书' },
+	{ key: 'x', label: 'X' },
+	{ key: 'weibo', label: '微博' },
+	{ key: 'bilibili', label: 'bilibili' },
+	{ key: 'telegram', label: 'Telegram' },
+	{ key: 'mail', label: '邮件' },
+];
+
+const activeSocials = socialNames.filter((item) =>
+	Boolean(Socials[item.key]?.url),
+);
 ---
 
 <ScaffoldLayout title={SiteTitle} description={SiteDescription} currentNav="Home">
-	<SplitHero title={`路上辛苦了\n喝点什么？`} className="home-intro">
-		<Picture
-			slot="art"
-			class="home-intro__art"
-			src={img}
-			formats={['avif', 'webp']}
-			alt="Tito_XD original character coffee master version by Frankuwu"
-			sizes="(max-width: 767px) 18rem, (max-width: 1023px) 20rem, 21rem"
-			loading="eager"
-		/>
-		<p>我是 Tito_XD，本店的店长，也可以叫我头头。</p>
-		<p>不知不觉已经走进春天了，生活又要这样继续往前走了。捡着空闲时间和摸鱼稍稍微装修了一下这里，看到这里不知道有没有觉得有点新意呢。</p>
-		<p>总归还是生活碎碎念。如果我的寥寥几字也能让你驻足停看，那也不错，谢谢。</p>
-		<p class="home-intro__links">
-			<a href="/posts/rewind-2025">2025 年的 REWIND 在这里</a>，
-			<a href="/posts/onward-2026">2026 年的 ONWARD 在这里</a>。
-		</p>
-		<p>欢迎光临，请开心。</p>
-	</SplitHero>
+	<div class="home-layout">
+		<section class="home-greet">
+			<h1>
+				路上辛苦了，
+				<br />
+				喝点什么？
+			</h1>
+			<p>我是 Tito_XD，本店的店长，也可以叫我头头。</p>
+			<p>
+				总归还是生活碎碎念。如果我的寥寥几字也能让你驻足停看，那也不错，谢谢。
+			</p>
+			<p>欢迎光临，请开心。</p>
+		</section>
+
+		<aside class="home-counter">
+			<div class="home-counter__stage">
+				<Picture
+					class="home-counter__art"
+					src={managerImg}
+					formats={['avif', 'webp']}
+					alt="店长头头：蓝发灰狼，穿蓝衬衫和深色围裙，胸前别着 Tito 名牌"
+					sizes="(max-width: 895px) 12rem, 14rem"
+					loading="eager"
+				/>
+			</div>
+			<p class="home-counter__credit">
+				立绘{' '}
+				<a href="https://frankuwu.link/" target="_blank" rel="noopener">
+					Frank uwu
+				</a>
+			</p>
+		</aside>
+
+		<div class="home-menu">
+			<!-- 01 文章 -->
+			<section class="menu-sec" id="posts" aria-labelledby="sec-posts-h">
+				<div class="menu-sec-head">
+					<h2 class="menu-sec-title" id="sec-posts-h">
+						<span class="menu-sec-num">01</span>
+						<span>文章</span>
+					</h2>
+					<span class="menu-sec-note">读完大约</span>
+				</div>
+
+				{
+					annualPosts.length > 0 && (
+						<div class="annual-box">
+							<ul class="menu-list">
+								{annualPosts.map((post) => (
+									<MenuPostRow post={post} showAnnualBadge={true} />
+								))}
+							</ul>
+						</div>
+					)
+				}
+
+				<ul class="menu-list menu-list--regular">
+					{
+						recentRegularPosts.map((post) => (
+							<MenuPostRow post={post} showAnnualBadge={false} />
+						))
+					}
+				</ul>
+
+				<p class="menu-sec__more">
+					<a href="/blog">全部 {allPosts.length} 篇文章 →</a>
+				</p>
+			</section>
+
+			<!-- 02 Touls -->
+			<section class="menu-sec" id="touls" aria-labelledby="sec-touls-h">
+				<div class="menu-sec-head">
+					<h2 class="menu-sec-title" id="sec-touls-h">
+						<span class="menu-sec-num">02</span>
+						<span>Touls</span>
+					</h2>
+				</div>
+				<p class="menu-sec__lead">
+					小工具角。名字是 Tools 的故意拼写版——毕竟是头头（Tito）的地盘。
+				</p>
+
+				<ul class="menu-list">
+					{
+						tools.map((tool) => {
+							const isExternal = tool.href.startsWith('http');
+							return (
+								<li class="tool-row">
+									<span class="tool-row__name">
+										<a
+											href={tool.href}
+											target={isExternal ? '_blank' : undefined}
+											rel={isExternal ? 'noopener' : undefined}
+										>
+											{tool.title}
+										</a>
+									</span>
+									<span class="tool-row__dots" aria-hidden="true" />
+									{tool.tag && <span class="tool-row__tag">{tool.tag}</span>}
+									<span
+										class:list={[
+											'tool-row__desc',
+											!tool.externalHost && 'tool-row__desc--full',
+										]}
+									>
+										{tool.description}
+									</span>
+									{tool.externalHost && (
+										<span class="tool-row__host">{tool.externalHost}</span>
+									)}
+									{tool.subLinks && tool.subLinks.length > 0 && (
+										<span class="tool-row__subs">
+											{tool.subLinks.map((sub) => {
+												const subExt = sub.href.startsWith('http');
+												return (
+													<a
+														href={sub.href}
+														target={subExt ? '_blank' : undefined}
+														rel={subExt ? 'noopener' : undefined}
+													>
+														{sub.label}
+													</a>
+												);
+											})}
+										</span>
+									)}
+								</li>
+							);
+						})
+					}
+				</ul>
+			</section>
+
+			<!-- 03 邻座 -->
+			<section class="menu-sec" id="neighbors" aria-labelledby="sec-neighbors-h">
+				<span id="friends" class="anchor-alias" aria-hidden="true"></span>
+				<div class="menu-sec-head">
+					<h2 class="menu-sec-title" id="sec-neighbors-h">
+						<span class="menu-sec-num">03</span>
+						<span>邻座</span>
+					</h2>
+					<span class="menu-sec-note">{friends.length} 位</span>
+				</div>
+
+				<ul class="neighbors-grid">
+					{
+						friends.map((friend) => {
+							const name = friend.id ?? 'Friend';
+							const host = formatHost(friend.link);
+							return (
+								<li>
+									<a
+										class="neighbor-card"
+										href={friend.link}
+										target="_blank"
+										rel="noopener"
+									>
+										<span class="neighbor-card__avatar">
+											{friend.avatar ? (
+												<img
+													src={friend.avatar}
+													alt=""
+													loading="lazy"
+													decoding="async"
+												/>
+											) : (
+												<span>{name.slice(0, 1)}</span>
+											)}
+										</span>
+										<span class="neighbor-card__body">
+											<span class="neighbor-card__head">
+												<span class="neighbor-card__name">{name}</span>
+												{host && (
+													<span class="neighbor-card__host">{host} ↗</span>
+												)}
+											</span>
+											{friend.bio && (
+												<span class="neighbor-card__bio">{friend.bio}</span>
+											)}
+										</span>
+									</a>
+								</li>
+							);
+						})
+					}
+				</ul>
+			</section>
+
+			<!-- 04 关于 -->
+			<section class="menu-sec about-sec" id="about" aria-labelledby="sec-about-h">
+				<div class="menu-sec-head">
+					<h2 class="menu-sec-title" id="sec-about-h">
+						<span class="menu-sec-num">04</span>
+						<span>关于</span>
+					</h2>
+				</div>
+				<div class="about-sec__copy">
+					<p>nameless nobody but still exploring this world.</p>
+					<p>want to make 21 grams interesting.</p>
+					<p>lives in Hubei, Wuhan and working as marketing, website maintainer.</p>
+					<p class="about-sec__find">
+						也可以在{' '}
+						{
+							activeSocials.map((item, idx) => (
+								<>
+									{idx > 0 && '、'}
+									<a
+										href={Socials[item.key].url}
+										target={
+											Socials[item.key].url.startsWith('mailto:')
+												? undefined
+												: '_blank'
+										}
+										rel={
+											Socials[item.key].url.startsWith('mailto:')
+												? undefined
+												: 'noopener'
+										}
+									>
+										{item.label}
+									</a>
+								</>
+							))
+						}{' '}
+						找到我，或者订阅 <a href="/rss.xml">RSS</a>。
+					</p>
+				</div>
+			</section>
+		</div>
+	</div>
 </ScaffoldLayout>
 
 <style>
-	.home-intro__links {
-		color: color-mix(in srgb, var(--color-text) 92%, var(--color-muted));
+	.home-layout {
+		display: grid;
+		gap: 1.85rem;
+		padding-block: 1.25rem 2.5rem;
 	}
 
-	.home-intro__links a {
-		color: var(--color-accent);
-		text-decoration-color: color-mix(in srgb, var(--color-accent) 54%, transparent);
-		text-underline-offset: 0.18em;
+	.home-greet h1 {
+		margin: 0;
+		font-size: clamp(2.1rem, 6vw, 3.15rem);
+		line-height: 1.25;
+		font-weight: 520;
+		text-wrap: balance;
 	}
 
-	.home-intro__links a:hover,
-	.home-intro__links a:focus-visible {
-		color: color-mix(in srgb, var(--color-accent) 84%, var(--color-text));
+	.home-greet p {
+		max-width: 34em;
+		margin: 0.75rem 0 0;
+		text-wrap: pretty;
+	}
+
+	.home-greet h1 + p {
+		margin-top: 1.2rem;
+	}
+
+	.home-counter__stage {
+		height: 13.5rem;
+		overflow: hidden;
+		border-bottom: 3px solid var(--color-text);
+	}
+
+	.home-counter :global(picture) {
+		display: block;
+	}
+
+	.home-counter :global(img),
+	.home-counter__art {
+		display: block;
+		width: 11.5rem;
+		height: auto;
+		margin-inline: auto;
+	}
+
+	.home-counter__credit {
+		margin: 0.5rem 0 0;
+		font-family: var(--font-ui);
+		font-size: 0.8125rem;
+		color: var(--color-muted);
+		text-align: center;
+	}
+
+	.home-menu {
+		display: grid;
+		gap: 3rem;
+		min-width: 0;
+	}
+
+	@media (min-width: 56rem) {
+		.home-layout {
+			grid-template-columns: 14rem minmax(0, 40rem);
+			grid-template-areas:
+				'counter greet'
+				'counter menu';
+			justify-content: center;
+			column-gap: clamp(3rem, 7vw, 5.25rem);
+			row-gap: 2.75rem;
+			padding-block: 2.25rem 3.5rem;
+		}
+
+		.home-greet {
+			grid-area: greet;
+		}
+
+		.home-menu {
+			grid-area: menu;
+		}
+
+		.home-counter {
+			grid-area: counter;
+			align-self: start;
+			position: sticky;
+			top: 2rem;
+		}
+
+		.home-counter__stage {
+			height: auto;
+			overflow: visible;
+			border-bottom: 0;
+		}
+
+		.home-counter :global(img),
+		.home-counter__art {
+			width: 100%;
+		}
+	}
+
+	.menu-sec {
+		scroll-margin-top: 1.5rem;
+		position: relative;
+	}
+
+	.anchor-alias {
+		position: absolute;
+		top: -1.5rem;
+	}
+
+	.menu-list {
+		margin: 0.4rem 0 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.annual-box {
+		margin-top: 0.9rem;
+		padding: 0.25rem 0.95rem;
+		border: 1px solid var(--color-border);
+		border-radius: 0.5rem;
+		background: color-mix(in srgb, var(--color-surface) 45%, var(--color-bg));
+	}
+
+	.annual-box .menu-list {
+		margin-top: 0;
+	}
+
+	.menu-list--regular {
+		margin-top: 0.55rem;
+	}
+
+	.menu-sec__more {
+		margin: 0.95rem 0 0;
+	}
+
+	.menu-sec__lead {
+		margin: 0.85rem 0 0;
+		color: var(--color-muted);
+		font-size: 0.98rem;
+	}
+
+	/* Tool rows */
+	.tool-row {
+		position: relative;
+		display: grid;
+		grid-template-columns: minmax(0, max-content) minmax(1.25rem, 1fr) max-content;
+		align-items: baseline;
+		column-gap: 0.6rem;
+		row-gap: 0.15rem;
+		padding-block: 0.68rem;
+	}
+
+	.tool-row__name {
+		font-size: 1.15rem;
+		font-weight: 520;
+		line-height: 1.5;
+	}
+
+	.tool-row__name a {
+		color: var(--color-text);
+		text-decoration: none;
+		transition: color var(--motion-gentle);
+	}
+
+	.tool-row__name a::after {
+		content: '';
+		position: absolute;
+		inset: 0 -0.5rem;
+		border-radius: 0.5rem;
+	}
+
+	.tool-row__name a:focus-visible {
+		outline: none;
+	}
+
+	.tool-row__name a:focus-visible::after {
+		outline: 2px solid var(--color-accent);
+	}
+
+	.tool-row__dots {
+		height: 0;
+		border-bottom: 2px dotted var(--color-dots);
+		transform: translateY(-0.22em);
+		transition: border-color var(--motion-gentle);
+	}
+
+	.tool-row__tag {
+		justify-self: end;
+		white-space: nowrap;
+		font-size: 1rem;
+	}
+
+	.tool-row__desc {
+		grid-column: 1 / 3;
+		color: var(--color-muted);
+		font-size: 0.96rem;
+		line-height: 1.6;
+	}
+
+	.tool-row__desc--full {
+		grid-column: 1 / -1;
+	}
+
+	.tool-row__host {
+		grid-column: 3;
+		justify-self: end;
+		font-family: var(--font-ui);
+		font-size: 0.8125rem;
+		color: var(--color-muted);
+		white-space: nowrap;
+	}
+
+	.tool-row__subs {
+		grid-column: 1 / -1;
+		position: relative;
+		z-index: 1;
+		justify-self: start;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0 1.1rem;
+		font-size: 0.92rem;
+		margin-top: 0.1rem;
+	}
+
+	.tool-row__subs a {
+		display: inline-flex;
+		align-items: center;
+		min-height: 2rem;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.tool-row:hover .tool-row__name a {
+			color: var(--color-accent);
+		}
+
+		.tool-row:hover .tool-row__dots {
+			border-color: var(--color-leather);
+		}
+	}
+
+	/* 03 Neighbors two-column compact cards */
+	.neighbors-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(min(100%, 17.5rem), 1fr));
+		gap: 0.65rem;
+		margin: 0.95rem 0 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.neighbor-card {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		height: 100%;
+		padding: 0.65rem 0.8rem;
+		border: 1px solid var(--color-border);
+		border-radius: 0.55rem;
+		color: var(--color-text);
+		text-decoration: none;
+		transition:
+			border-color var(--motion-gentle),
+			background var(--motion-gentle);
+	}
+
+	.neighbor-card__avatar {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+		width: 2.35rem;
+		height: 2.35rem;
+		border-radius: 999px;
+		overflow: hidden;
+		border: 1px solid var(--color-border);
+		background: var(--color-surface-2);
+		font-family: var(--font-ui);
+		font-size: 0.875rem;
+		color: var(--color-muted);
+	}
+
+	.neighbor-card__avatar img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.neighbor-card__body {
+		display: flex;
+		flex-direction: column;
+		gap: 0.1rem;
+		min-width: 0;
+		flex: 1;
+	}
+
+	.neighbor-card__head {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 0.5rem;
+	}
+
+	.neighbor-card__name {
+		font-size: 1.05rem;
+		font-weight: 520;
+		line-height: 1.35;
+		transition: color var(--motion-gentle);
+	}
+
+	.neighbor-card__host {
+		font-family: var(--font-ui);
+		font-size: 0.75rem;
+		color: var(--color-muted);
+		white-space: nowrap;
+	}
+
+	.neighbor-card__bio {
+		color: var(--color-muted);
+		font-size: 0.85rem;
+		line-height: 1.45;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.neighbor-card:hover {
+			border-color: var(--color-leather);
+			background: color-mix(in srgb, var(--color-surface) 50%, var(--color-bg));
+		}
+
+		.neighbor-card:hover .neighbor-card__name {
+			color: var(--color-accent);
+		}
+	}
+
+	/* 04 About */
+	.about-sec__copy {
+		margin-top: 0.9rem;
+	}
+
+	.about-sec__copy p {
+		margin: 0;
+	}
+
+	.about-sec__copy p + p {
+		margin-top: 0.35rem;
+	}
+
+	.about-sec__copy .about-sec__find {
+		margin-top: 0.9rem;
+		color: var(--color-muted);
+		font-size: 0.98rem;
 	}
 </style>

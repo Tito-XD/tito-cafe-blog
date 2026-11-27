@@ -4,6 +4,26 @@ import Search from 'astro-pagefind/components/Search';
 import ScaffoldLayout from '~/layouts/ScaffoldLayout.astro';
 ---
 
-<ScaffoldLayout title="Search" description="Search this site">
-	<Search id="searcher" />
+<ScaffoldLayout title="搜索" description="搜索头头咖啡屋的文章" currentNav="Search">
+	<div class="search-page">
+		<h1 class="search-title">搜索</h1>
+		<div class="search-box">
+			<Search id="searcher" />
+		</div>
+	</div>
 </ScaffoldLayout>
+
+<style>
+	.search-page {
+		max-width: 40rem;
+		margin-inline: auto;
+		padding-block: 1.25rem 3rem;
+	}
+
+	.search-title {
+		margin: 0 0 1.25rem;
+		font-size: clamp(2rem, 5.5vw, 2.75rem);
+		line-height: 1.25;
+		font-weight: 520;
+	}
+</style>

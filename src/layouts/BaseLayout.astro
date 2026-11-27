@@ -1,13 +1,11 @@
 ---
 import { ClientRouter } from 'astro:transitions';
 import { FontConfig, SiteLanguage, SiteTitle } from '~/config';
-import { pokedexIconAssets, pokedexPwaThemeColor } from '~/config/pokedex-icons';
 
 export interface Props {
 	title?: string;
 	description?: string;
 	socialImage?: string;
-	appShell?: boolean;
 	rootClass?:
 		| Iterable<
 				string | Record<string, boolean> | string[] | false | null | undefined
@@ -19,15 +17,30 @@ export interface Props {
 		  >
 		| string;
 }
-const { title, description, socialImage, appShell = false, rootClass, bodyClass } = Astro.props;
+const { title, description, socialImage, rootClass, bodyClass } = Astro.props;
 const socialImg = new URL(socialImage ?? '/og.png', Astro.url).href;
 const fontFaceStyles = `
 	@font-face {
-		font-family: 'Inter';
-		src: url('${FontConfig.sansLatinPath}') format('woff2');
+		font-family: '${FontConfig.latinFamily}';
+		src: url('${FontConfig.latinPath}') format('woff2');
+		font-style: normal;
+		font-weight: 100 900;
+		font-display: swap;
+		size-adjust: 102%;
+	}
+	@font-face {
+		font-family: '${FontConfig.brandEnFamily}';
+		src: url('${FontConfig.brandEnPath}') format('woff');
 		font-style: normal;
 		font-weight: 400;
-		font-display: swap;
+		font-display: block;
+	}
+	@font-face {
+		font-family: '${FontConfig.brandZhFamily}';
+		src: url('${FontConfig.brandZhPath}') format('woff');
+		font-style: normal;
+		font-weight: 400;
+		font-display: block;
 	}
 `;
 ---
@@ -38,37 +51,23 @@ const fontFaceStyles = `
 		<link rel="canonical" href={Astro.url.href} />
 		<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 		<meta http-equiv="x-ua-compatible" content="ie=edge" />
-		{
-			appShell ? (
-				<>
-					<link rel="icon" href={pokedexIconAssets.svg} type="image/svg+xml" />
-					<link rel="icon" href={pokedexIconAssets.ico} sizes="any" />
-					<link
-						rel="icon"
-						type="image/png"
-						sizes="16x16"
-						href={pokedexIconAssets.png16}
-					/>
-					<link
-						rel="icon"
-						type="image/png"
-						sizes="32x32"
-						href={pokedexIconAssets.png32}
-					/>
-					<link rel="apple-touch-icon" href={pokedexIconAssets.appleTouch} />
-				</>
-			) : (
-				<>
-					<link rel="icon" href="/favicon.ico" />
-					<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-				</>
-			)
-		}
+		<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f4f6fa" />
+		<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1b212b" />
+		<link rel="icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		<link
+			rel="preload"
+			href={FontConfig.latinPath}
+			as="font"
+			type="font/woff2"
+			crossorigin="anonymous"
+		/>
+		<link rel="stylesheet" href={FontConfig.cjkSerifCssPath} />
 		<title>{title}</title>
 		<meta name="title" content={title} />
 		<meta name="description" content={description} />
-		<link rel="alternate" type="application/rss+xml" title=`${SiteTitle} RSS Feed` href="/rss.xml" />
-		<link rel="sitemap" type="application/xml" title=`${SiteTitle} site map` href="/sitemap-index.xml" />
+		<link rel="alternate" type="application/rss+xml" title={`${SiteTitle} RSS Feed`} href="/rss.xml" />
+		<link rel="sitemap" type="application/xml" title={`${SiteTitle} site map`} href="/sitemap-index.xml" />
 		<meta property="og:url" content={Astro.url.href} />
 		<meta property="og:title" content={title} />
 		<meta property="og:type" content="website" />
@@ -80,32 +79,21 @@ const fontFaceStyles = `
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
 		<meta name="twitter:image" content={socialImg} />
-		{
-			appShell && (
-				<>
-					<link rel="manifest" href="/manifest.webmanifest" />
-					<meta name="theme-color" content={pokedexPwaThemeColor} />
-					<meta name="mobile-web-app-capable" content="yes" />
-					<meta name="apple-mobile-web-app-capable" content="yes" />
-					<meta name="apple-mobile-web-app-title" content="图鉴" />
-					<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-				</>
-			)
-		}
 		<ClientRouter />
 
 		<script is:inline>
 			// Blocking theme init — runs before first paint to prevent FOUC.
-			// Reads from the same localStorage key used by @nanostores/persistent in store.ts.
 			(function () {
 				try {
 					var raw = localStorage.getItem('theme');
 					var resolved =
 						raw === '"dark"' || raw === '"light"'
 							? raw.slice(1, -1)
-							: window.matchMedia('(prefers-color-scheme: dark)').matches
-								? 'dark'
-								: 'light';
+							: raw === 'dark' || raw === 'light'
+								? raw
+								: window.matchMedia('(prefers-color-scheme: dark)').matches
+									? 'dark'
+									: 'light';
 					document.documentElement.classList.add(resolved);
 				} catch (_) {}
 			})();
@@ -123,43 +111,59 @@ const fontFaceStyles = `
 
 				:root {
 					@apply scroll-smooth antialiased;
+					color-scheme: light;
 
-					--color-bg: #f5f7fa;
+					/* Colors drawn from cafe manager portrait: apron, fur, shirt, leather */
+					--color-bg: #f4f6fa;
 					--color-surface: #ffffff;
-					--color-surface-2: #e9edf2;
-					--color-text: #2d3436;
-					--color-muted: #636e72;
-					--color-border: #dfe6e9;
-					--color-accent: #4a90e2;
-					--color-accent-soft: #e1f0ff;
-					--color-shadow-rgb: 74 144 226;
-					--radius-shell: 1.9rem;
-					--radius-card: 1.3rem;
-					--radius-soft: 1rem;
-					--radius-button: 0.95rem;
-					--radius-chip: 0.8rem;
-					--radius-media: 1.05rem;
-					--motion-gentle: 260ms cubic-bezier(0.22, 1, 0.36, 1);
-					--motion-lift: 320ms cubic-bezier(0.2, 0.9, 0.2, 1);
-					--pagefind-ui-scale: 1;
+					--color-surface-2: #e8edf5;
+					--color-text: #1f2630;
+					--color-muted: #596270;
+					--color-border: #d0d7e2;
+					--color-dots: #a9b4c4;
+					--color-accent: #2a63b6;
+					--color-accent-soft: rgba(42, 99, 182, 0.1);
+					--color-leather: #b47636;
+					--color-leather-ink: #86511c;
+					--color-shadow-rgb: 31 38 48;
+
+					--font-menu: 'Allo', 'LXGW Neo ZhiSong', 'Songti SC', 'SimSun', serif;
+					--font-ui: 'Allo', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', system-ui, sans-serif;
+
+					--radius-shell: 1rem;
+					--radius-card: 0.75rem;
+					--radius-soft: 0.65rem;
+					--radius-button: 999px;
+					--radius-chip: 999px;
+					--radius-media: 0.5rem;
+					--motion-gentle: 180ms cubic-bezier(0.23, 1, 0.32, 1);
+					--motion-lift: 240ms cubic-bezier(0.23, 1, 0.32, 1);
+
+					--pagefind-ui-scale: 0.92;
 					--pagefind-ui-primary: var(--color-text);
 					--pagefind-ui-text: var(--color-muted);
-					--pagefind-ui-background: var(--color-surface);
+					--pagefind-ui-background: var(--color-bg);
 					--pagefind-ui-border: var(--color-border);
 					--pagefind-ui-tag: var(--color-surface-2);
-					--pagefind-ui-font: inherit;
+					--pagefind-ui-font: var(--font-ui);
 				}
 
 				:root:is(.dark) {
-					--color-bg: #121417;
-					--color-surface: #1e2126;
-					--color-surface-2: #2c313a;
-					--color-text: #e1e6eb;
-					--color-muted: #a0a7b1;
-					--color-border: #383e4a;
-					--color-accent: #5da9ff;
-					--color-accent-soft: rgba(93, 169, 255, 0.15);
-					--color-shadow-rgb: 93 169 255;
+					color-scheme: dark;
+
+					--color-bg: #1b212b;
+					--color-surface: #222a36;
+					--color-surface-2: #283140;
+					--color-text: #e7eaf0;
+					--color-muted: #9ba5b3;
+					--color-border: #353e4c;
+					--color-dots: #556173;
+					--color-accent: #86b4f2;
+					--color-accent-soft: rgba(134, 180, 242, 0.14);
+					--color-leather: #d6a066;
+					--color-leather-ink: #e2b680;
+					--color-shadow-rgb: 10 14 20;
+
 					--pagefind-ui-primary: var(--color-text);
 					--pagefind-ui-text: var(--color-muted);
 					--pagefind-ui-background: var(--color-surface);
@@ -167,96 +171,85 @@ const fontFaceStyles = `
 					--pagefind-ui-tag: var(--color-surface-2);
 				}
 
+				html {
+					-webkit-tap-highlight-color: transparent;
+					-webkit-text-size-adjust: 100%;
+				}
+
 				body {
-					background:
-						radial-gradient(circle at top left, color-mix(in srgb, var(--color-accent-soft) 88%, transparent) 0, transparent 34%),
-						radial-gradient(circle at right 12%, color-mix(in srgb, var(--color-surface-2) 78%, transparent) 0, transparent 26%),
-						var(--color-bg);
+					min-height: 100dvh;
+					background: var(--color-bg);
 					color: var(--color-text);
-					font-family:
-						'Inter',
-						'PingFang SC',
-						'Hiragino Sans GB',
-						'Microsoft YaHei',
-						'Noto Sans CJK SC',
-						'Source Han Sans SC',
-						'Segoe UI',
-						system-ui,
-						sans-serif;
+					font-family: var(--font-menu);
+					font-size: 1.0625rem;
+					line-height: 1.75;
+					font-variant-numeric: tabular-nums;
+					font-feature-settings: 'tnum' 1, 'ss03' 1, 'cv01' 1;
+					font-variation-settings: 'ROND' 0;
+					font-synthesis-weight: none;
+				}
+
+				h1,
+				h2,
+				h3,
+				h4 {
+					font-weight: 520;
+					font-synthesis-weight: none;
 				}
 
 				:focus-visible {
-					outline: 2px solid color-mix(in srgb, var(--color-accent) 72%, transparent);
-					outline-offset: 2px;
+					outline: 2px solid var(--color-accent);
+					outline-offset: 3px;
+					border-radius: 4px;
 				}
 
 				a {
-					text-decoration-color: color-mix(in srgb, var(--color-accent) 38%, transparent);
-				}
-
-				.ui-type-link {
-					display: inline-flex;
-					line-height: 1.08;
-					text-decoration: none;
-					transition:
-						color var(--motion-gentle),
-						opacity var(--motion-gentle);
-				}
-
-				.ui-type-link__text {
-					display: inline;
-				}
-
-				.ui-type-link::after {
-					content: none;
-				}
-
-				.ui-type-link:hover,
-				.ui-type-link:focus-visible {
 					color: var(--color-accent);
-				}
-
-				.ui-pressable {
-					border-radius: var(--radius-button);
-					background: color-mix(in srgb, var(--color-surface) 92%, var(--color-accent-soft) 8%);
-					box-shadow:
-						inset 0 1px 0 color-mix(in srgb, var(--color-surface) 82%, transparent),
-						inset 0 -1px 0 color-mix(in srgb, var(--color-border) 68%, transparent),
-						0 1px 0 color-mix(in srgb, var(--color-bg) 72%, transparent);
-					transition:
-						transform var(--motion-gentle),
-						background var(--motion-gentle),
-						color var(--motion-gentle),
-						box-shadow var(--motion-gentle),
-						opacity var(--motion-gentle);
-				}
-
-				.ui-pressable:hover,
-				.ui-pressable:focus-visible {
-					transform: translateY(1px);
-					background: color-mix(in srgb, var(--color-surface-2) 82%, var(--color-accent-soft) 18%);
-					box-shadow:
-						inset 0 0.2rem 0.55rem rgba(var(--color-shadow-rgb), 0.16),
-						inset 0 1px 0 color-mix(in srgb, var(--color-surface) 46%, transparent),
-						0 0 0 1px color-mix(in srgb, var(--color-accent) 14%, transparent);
-					color: var(--color-accent);
-				}
-
-				.ui-pressable.is-active,
-				.ui-pressable[aria-current='page'] {
-					transform: translateY(1px);
-					background: color-mix(in srgb, var(--color-accent) 90%, var(--color-surface));
-					box-shadow:
-						inset 0 0.26rem 0.7rem rgba(var(--color-shadow-rgb), 0.28),
-						inset 0 1px 0 color-mix(in srgb, var(--color-surface) 18%, transparent),
-						0 0 0 1px color-mix(in srgb, var(--color-accent) 22%, transparent);
-					color: var(--color-surface);
-					font-weight: 600;
+					text-decoration-thickness: 1px;
+					text-underline-offset: 0.22em;
+					transition: color var(--motion-gentle);
 				}
 
 				::selection {
-					background: color-mix(in srgb, var(--color-accent) 24%, var(--color-surface));
+					background: color-mix(in srgb, var(--color-accent) 22%, var(--color-bg));
 					color: var(--color-text);
+				}
+
+				/* Shared menu typography primitives */
+				.menu-sec-head {
+					display: flex;
+					align-items: baseline;
+					justify-content: space-between;
+					gap: 1rem;
+					padding: 0.45rem 0;
+					border-top: 2px solid var(--color-text);
+					border-bottom: 1px solid var(--color-border);
+				}
+
+				.menu-sec-title {
+					display: inline-flex;
+					align-items: baseline;
+					gap: 0.55rem;
+					margin: 0;
+					font-size: 1.25rem;
+					line-height: 1.35;
+					font-weight: 520;
+					color: var(--color-text);
+				}
+
+				.menu-sec-num {
+					font-family: var(--font-ui);
+					font-size: 0.85rem;
+					font-weight: 500;
+					color: var(--color-muted);
+					letter-spacing: 0.02em;
+				}
+
+				.menu-sec-note {
+					font-family: var(--font-ui);
+					font-size: 0.8125rem;
+					color: var(--color-muted);
+					white-space: nowrap;
 				}
 
 				.prose pre {
@@ -281,4 +274,3 @@ const fontFaceStyles = `
 		<slot />
 	</body>
 </html>
-

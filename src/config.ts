@@ -1,37 +1,49 @@
 ﻿import type { PostHideElements } from '~/content.config';
 
 export const Site = 'https://tito.cafe';
-export const SiteLanguage = 'zh';
+export const SiteLanguage = 'zh-CN';
 export const SiteTitle = "头头咖啡屋 / Tito's Cafe";
 export const SiteDescription = '记录日常，写一些想到的东西';
 export const FooterDescription = 'make 21 grams interesting.';
 export const AdminName = 'Tito_XD';
 export const PageSize = 15;
+
 export const FontConfig = {
+	latinFamily: 'Allo',
+	latinPath: '/fonts/AlloVariable.woff2',
+	cjkSerifFamily: 'LXGW Neo ZhiSong',
+	cjkSerifCssPath: '/fonts/lxgw-neo-zhisong/font.css',
 	sansLatinFamily: 'Inter',
 	sansLatinPath: '/fonts/Inter-Regular.woff2',
 	sansCjkFamily: 'Noto Sans SC',
 	sansCjkPath: '/fonts/NotoSansSC-Regular.otf',
+	brandEnFamily: 'Tito Brand En',
+	brandEnPath: '/fonts/tito-brand-en.woff',
+	brandZhFamily: 'Tito Brand Zh',
+	brandZhPath: '/fonts/tito-brand-zh.woff',
 };
+
 export const OpenGraphConfig = {
 	fontFamily: FontConfig.sansCjkFamily,
 	fontPath: 'public/fonts/NotoSansSC-Regular.otf',
-	background: '#f5f7fa',
+	background: '#f4f6fa',
 	surface: '#ffffff',
-	text: '#2d3436',
-	muted: '#636e72',
-	accent: '#4a90e2',
-	shadow: 'rgba(93, 169, 255, 0.14)',
+	text: '#1f2630',
+	muted: '#596270',
+	accent: '#2a63b6',
+	shadow: 'rgba(31, 38, 48, 0.10)',
 };
+
 export const SiteBrand = {
-	variant: 'icon' as const,
+	variant: 'wordmark' as 'wordmark' | 'icon' | 'text',
+	enText: "Tito's Cafe",
+	zhText: '头头咖啡屋',
 	icon: 'logo',
-	widthClass: 'lg:w-[20rem]',
-	heightClass: 'h-[4.5rem] lg:h-[6rem]',
+	widthClass: 'w-auto',
+	heightClass: 'h-auto',
 };
 
 // socialPlatform => userName
-// check components/Header.astro socialConfig for more info
 export const Socials: Record<string, Record<string, string>> = {
 	xiaohongshu: {
 		url: 'https://www.xiaohongshu.com/user/profile/606528a100000000010092d3',

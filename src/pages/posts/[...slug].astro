@@ -1,18 +1,44 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import MarkdownLayout from '~/layouts/MarkdownLayout.astro';
-import { getPostRouteSlug, getPosts, render } from '~/utils/collection';
+import {
+	type PostEntry,
+	getPostRouteSlug,
+	getPosts,
+	render,
+} from '~/utils/collection';
 
 export async function getStaticPaths() {
-	return (await getPosts()).map((post) => ({
-		params: { slug: getPostRouteSlug(post) },
-		props: post,
-	}));
+	const allPosts = await getPosts();
+	const visibleDesc = await getPosts(false, 'desc');
+	const visibleIndexById = new Map(
+		visibleDesc.map((entry, idx) => [entry.id, idx]),
+	);
+
+	return allPosts.map((post) => {
+		const visIdx = visibleIndexById.get(post.id);
+		const nearPosts: PostEntry[] = [];
+		if (visIdx !== undefined) {
+			if (visibleDesc[visIdx - 1]) {
+				nearPosts.push(visibleDesc[visIdx - 1]);
+			}
+			if (visibleDesc[visIdx + 1]) {
+				nearPosts.push(visibleDesc[visIdx + 1]);
+			}
+		}
+		return {
+			params: { slug: getPostRouteSlug(post) },
+			props: { post, nearPosts },
+		};
+	});
 }
 
-type Props = CollectionEntry<'posts'>;
+type Props = {
+	post: CollectionEntry<'posts'>;
+	nearPosts: PostEntry[];
+};
 
-const post = Astro.props;
+const { post, nearPosts } = Astro.props;
 const socialImage = post.data.image?.src ?? `${Astro.url.pathname}.png`;
 const { Content, remarkPluginFrontmatter } = await render(post);
 
@@ -25,6 +51,11 @@ if (typeof remarkPluginFrontmatter.lastmod === 'string') {
 post.data.readingTime = remarkPluginFrontmatter.readingTime;
 ---
 
-<MarkdownLayout {...post.data} socialImage={socialImage} currentNav="Blog">
+<MarkdownLayout
+	{...post.data}
+	nearPosts={nearPosts}
+	socialImage={socialImage}
+	currentNav="Blog"
+>
 	<Content />
 </MarkdownLayout>

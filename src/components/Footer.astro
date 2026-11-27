@@ -2,106 +2,57 @@
 import { FooterDescription, Hide } from '~/config';
 ---
 
-<footer class="site-footer" transition:persist>
-	{!Hide.includes('footerDescription') && <p class="site-footer__tagline">{FooterDescription}</p>}
-	<p class="site-footer__badge">
-		<a href="https://app.netlify.com/projects/titocafe/deploys">
-			<img
-				src="https://api.netlify.com/api/v1/badges/aeecbae6-3875-47c0-a923-9ef102e4928b/deploy-status"
-				alt="Netlify Status"
-			/>
-		</a>
-	</p>
-	<p class="site-footer__hosting">
-		<a
-			class="site-footer__link"
-			href="https://www.netlify.com/"
-			target="_blank"
-			rel="noopener"
-			aria-label="This site is powered by Netlify"
-		>
-			This site is powered by Netlify
-		</a>
-	</p>
-	<p class="site-footer__copyright">
-		&copy; {new Date().getFullYear()} Tito's Cafe / &#x5934;&#x5934;&#x5496;&#x5561;&#x5C4B;. Powered by <a
-			class="site-footer__link"
-			href="https://astro.build"
-			target="_blank"
-			rel="noopener"
-			aria-label="Read more about Astro">Astro</a
-		> and <a
-			class="site-footer__link"
-			href="https://github.com/ladit/astro-blog-zozo"
-			target="_blank"
-			rel="noopener"
-			aria-label="Read more about this theme">Zozo</a
-		>.
+<footer class="site-foot">
+	<div class="site-foot__row">
+		{
+			!Hide.includes('footerDescription') && (
+				<span>{FooterDescription}</span>
+			)
+		}
+		<span>
+			&copy; {new Date().getFullYear()} 头头咖啡屋 / Tito&apos;s Cafe ·{' '}
+			<a href="/rss.xml">RSS</a>
+		</span>
+	</div>
+	<p class="site-foot__colophon">
+		Powered by <a href="https://astro.build" target="_blank" rel="noopener">Astro</a> ·
+		字体使用 <a href="https://github.com/lxgw/LxgwNeoZhiSong" target="_blank" rel="noopener">霞鹜新致宋</a>（IPA Font License 1.0）与 <a href="https://allo.joshpuckett.me" target="_blank" rel="noopener">Allo</a>（SIL OFL 1.1）
 	</p>
 </footer>
 
 <style>
-	.site-footer {
-		margin-top: clamp(2rem, 4vw, 3.5rem);
-		padding-top: clamp(1.25rem, 3vw, 2rem);
-		border-top: 1px solid color-mix(
-			in srgb,
-			var(--color-border) 82%,
-			var(--color-accent-soft)
-		);
-		text-align: center;
+	.site-foot {
+		margin-top: 2.5rem;
+		padding-block: 1.4rem max(2rem, env(safe-area-inset-bottom));
+		border-top: 1px solid var(--color-border);
 		color: var(--color-muted);
-	}
-
-	.site-footer__tagline {
-		margin: 0 0 0.75rem;
 		font-size: 0.95rem;
-		letter-spacing: 0.01em;
-		color: color-mix(in srgb, var(--color-muted) 84%, var(--color-text));
 	}
 
-	.site-footer__badge {
-		margin: 0 0 0.9rem;
+	.site-foot__row {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		gap: 0.35rem 1.5rem;
 	}
 
-	.site-footer__hosting {
-		margin: 0 0 0.9rem;
-		font-size: 0.92rem;
+	.site-foot__colophon {
+		margin: 0.5rem 0 0;
+		font-family: var(--font-ui);
+		font-size: 0.78rem;
+		line-height: 1.6;
+		opacity: 0.85;
 	}
 
-	.site-footer__badge a {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		border-radius: var(--radius-button);
-		padding: 0.3rem 0.45rem;
+	.site-foot a {
+		color: inherit;
+		text-decoration-color: var(--color-border);
 	}
 
-	.site-footer__badge img {
-		height: 1.25rem;
-		width: auto;
-	}
-
-	.site-footer__copyright {
-		margin: 0;
-		font-size: 0.95rem;
-		opacity: 0.9;
-		text-wrap: balance;
-	}
-
-	.site-footer__link {
-		color: var(--color-accent);
-		text-decoration: underline;
-		text-decoration-color: color-mix(
-			in srgb,
-			var(--color-accent) 64%,
-			transparent
-		);
-		text-underline-offset: 0.2em;
-	}
-
-	.site-footer__link:hover,
-	.site-footer__link:focus-visible {
-		color: color-mix(in srgb, var(--color-accent) 82%, var(--color-text));
+	@media (hover: hover) and (pointer: fine) {
+		.site-foot a:hover {
+			color: var(--color-accent);
+			text-decoration-color: var(--color-accent);
+		}
 	}
 </style>

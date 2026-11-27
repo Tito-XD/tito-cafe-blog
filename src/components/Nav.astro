@@ -1,33 +1,28 @@
 ---
 interface Props {
 	currentNav?: string;
-	compact?: boolean;
 }
-const { currentNav, compact = false } = Astro.props;
+const { currentNav } = Astro.props;
 
 const navs = [
-	{ name: 'Home', href: '/' },
-	{ name: 'Blog', href: '/blog' },
-	{ name: 'Friends', href: '/friends' },
-	{ name: 'Touls', href: '/touls' },
-	{ name: 'About', href: '/about' },
+	{ key: 'Blog', label: '文章', href: '/blog' },
+	{ key: 'Touls', label: 'Touls', href: '/#touls' },
+	{ key: 'Friends', label: '邻座', href: '/#neighbors' },
+	{ key: 'About', label: '关于', href: '/#about' },
 ];
 ---
 
-<nav>
-	<ul class:list={['font-default-sans', compact ? 'grid grid-cols-2 gap-2 sm:grid-cols-3' : 'flex flex-col gap-3 lg:flex-row']}>
+<nav class="site-nav" aria-label="主导航">
+	<ul class="site-nav__list">
 		{
 			navs.map((nav) => (
 				<li>
 					<a
 						href={nav.href}
-						class="nav-link ui-type-link ui-pressable"
-						data-text={nav.name}
-						aria-label={`Navigate to ${nav.name}`}
-						aria-current={currentNav === nav.name ? 'page' : undefined}
-						data-compact={compact ? 'true' : 'false'}
+						class="site-nav__link"
+						aria-current={currentNav === nav.key ? 'page' : undefined}
 					>
-						<span class="ui-type-link__text">{nav.name}</span>
+						{nav.label}
 					</a>
 				</li>
 			))
@@ -36,33 +31,42 @@ const navs = [
 </nav>
 
 <style>
-	.nav-link {
+	.site-nav__list {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0 1.35rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.site-nav__link {
 		display: inline-flex;
 		align-items: center;
-		justify-content: center;
-		min-width: 0;
-		border-radius: var(--radius-button);
-		padding: 0.45rem 0.8rem;
+		min-height: 2.5rem;
 		color: var(--color-text);
-		opacity: 0.78;
 		text-decoration: none;
-		transition:
-			transform var(--motion-gentle),
-			background var(--motion-gentle),
-			color var(--motion-gentle),
-			opacity var(--motion-gentle),
-			box-shadow var(--motion-gentle);
+		font-size: 1.0625rem;
+		transition: color var(--motion-gentle);
 	}
 
-	.nav-link[data-compact='true'] {
-		width: 100%;
-		padding: 0.6rem 0.8rem;
-		font-size: 0.98rem;
+	.site-nav__link[aria-current='page'] {
+		text-decoration: underline;
+		text-decoration-color: var(--color-leather);
+		text-decoration-thickness: 2px;
+		text-underline-offset: 0.42em;
 	}
 
-	.nav-link:hover,
-	.nav-link:focus-visible,
-	.nav-link[aria-current='page'] {
-		opacity: 1;
+	@media (hover: hover) and (pointer: fine) {
+		.site-nav__link:hover {
+			color: var(--color-accent);
+		}
+	}
+
+	@media (min-width: 48rem) {
+		.site-nav__list {
+			gap: 0 1.85rem;
+		}
 	}
 </style>

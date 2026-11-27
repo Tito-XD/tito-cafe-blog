@@ -1,0 +1,270 @@
+---
+import MenuPostRow from '~/components/MenuPostRow.astro';
+import ScaffoldLayout from '~/layouts/ScaffoldLayout.astro';
+import { type PostEntry, getPosts } from '~/utils/collection';
+import { getDisplayTags } from '~/utils/readingTime';
+
+const posts = await getPosts(false, 'desc');
+
+// Group posts by year (descending)
+const byYearMap = new Map<string, PostEntry[]>();
+const tagCountMap = new Map<string, number>();
+
+for (const post of posts) {
+	const d = post.data.date ?? post.data.lastmod;
+	const year = d ? String(d.getFullYear()) : '其他';
+	const list = byYearMap.get(year) ?? [];
+	list.push(post);
+	byYearMap.set(year, list);
+
+	for (const tag of getDisplayTags(post.data.tags)) {
+		tagCountMap.set(tag, (tagCountMap.get(tag) ?? 0) + 1);
+	}
+}
+
+const yearGroups = Array.from(byYearMap.entries()).sort((a, b) =>
+	b[0].localeCompare(a[0], 'en'),
+);
+
+const tagChips = Array.from(tagCountMap.entries())
+	.map(([tag, count]) => ({ tag, count }))
+	.sort((a, b) => b.count - a.count || a.tag.localeCompare(b.tag, 'zh-CN'));
+---
+
+<ScaffoldLayout title="文章" description="全部文章归档与标签筛选" currentNav="Blog">
+	<div class="blog-page" data-total-posts={posts.length}>
+		<header class="blog-head">
+			<h1 class="blog-title">文章</h1>
+			<p class="blog-count" id="blog-count" aria-live="polite">
+				共 {posts.length} 篇
+			</p>
+		</header>
+
+		{
+			tagChips.length > 0 && (
+				<div class="blog-chips" id="blog-chips" role="group" aria-label="按标签筛选">
+					{tagChips.map(({ tag, count }) => (
+						<button
+							type="button"
+							class="tag-chip"
+							data-tag-chip={tag}
+							aria-pressed="false"
+						>
+							<span>{tag}</span>
+							<span class="tag-chip__count">{count}</span>
+						</button>
+					))}
+				</div>
+			)
+		}
+
+		<div class="blog-years" id="blog-years">
+			{
+				yearGroups.map(([year, items], idx) => (
+					<section class="year-sec" data-year-sec>
+						<div class="menu-sec-head">
+							<h2 class="menu-sec-title">
+								<span>{year}</span>
+							</h2>
+							<span class="menu-sec-note">
+								<span data-year-count>{items.length}</span> 篇
+								{idx === 0 ? ' · 读完大约' : ''}
+							</span>
+						</div>
+						<ul class="year-rows">
+							{items.map((post) => (
+								<MenuPostRow post={post} />
+							))}
+						</ul>
+					</section>
+				))
+			}
+		</div>
+	</div>
+</ScaffoldLayout>
+
+<style>
+	.blog-page {
+		max-width: 40rem;
+		margin-inline: auto;
+		padding-block: 1.25rem 3rem;
+	}
+
+	.blog-title {
+		margin: 0;
+		font-size: clamp(2rem, 5.5vw, 2.75rem);
+		line-height: 1.25;
+		font-weight: 520;
+	}
+
+	.blog-count {
+		margin: 0.4rem 0 0;
+		font-family: var(--font-ui);
+		font-size: 0.875rem;
+		color: var(--color-muted);
+	}
+
+	.blog-chips {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.48rem;
+		margin-top: 1.25rem;
+	}
+
+	.tag-chip {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.32rem;
+		min-height: 2.3rem;
+		padding: 0 0.82rem;
+		border: 1px solid var(--color-border);
+		border-radius: 999px;
+		background: none;
+		color: var(--color-text);
+		font-family: var(--font-ui);
+		font-size: 0.85rem;
+		cursor: pointer;
+		touch-action: manipulation;
+		user-select: none;
+		-webkit-user-select: none;
+		transition:
+			transform 140ms cubic-bezier(0.23, 1, 0.32, 1),
+			border-color var(--motion-gentle),
+			background var(--motion-gentle),
+			color var(--motion-gentle);
+	}
+
+	.tag-chip:active {
+		transform: scale(0.97);
+	}
+
+	.tag-chip[aria-pressed='true'] {
+		background: var(--color-text);
+		border-color: var(--color-text);
+		color: var(--color-bg);
+	}
+
+	.tag-chip__count {
+		opacity: 0.65;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.tag-chip:hover {
+			border-color: var(--color-text);
+		}
+	}
+
+	.blog-years {
+		display: grid;
+		gap: 2.5rem;
+		margin-top: 2.2rem;
+	}
+
+	.year-rows {
+		margin: 0.35rem 0 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	:global([hidden]) {
+		display: none !important;
+	}
+</style>
+
+<script>
+	function setupBlogFilter() {
+		const win = window as Window & { __blogFilterCleanup?: () => void };
+		win.__blogFilterCleanup?.();
+
+		const root = document.querySelector('.blog-page');
+		if (!(root instanceof HTMLElement)) {
+			return;
+		}
+
+		const totalPosts = Number(root.dataset.totalPosts ?? '0');
+		const countEl = document.getElementById('blog-count');
+		const chipsBox = document.getElementById('blog-chips');
+		const chipBtns = Array.from(
+			document.querySelectorAll<HTMLButtonElement>('[data-tag-chip]'),
+		);
+		const yearSecs = Array.from(
+			document.querySelectorAll<HTMLElement>('[data-year-sec]'),
+		);
+
+		let activeTag = new URLSearchParams(window.location.search).get('tag');
+		if (
+			activeTag &&
+			!chipBtns.some((btn) => btn.dataset.tagChip === activeTag)
+		) {
+			activeTag = null;
+		}
+
+		const applyFilter = (syncUrl: boolean) => {
+			let shownTotal = 0;
+
+			for (const sec of yearSecs) {
+				const rows = Array.from(sec.querySelectorAll<HTMLElement>('.menu-row'));
+				let yearShown = 0;
+				for (const row of rows) {
+					const rowTags = (row.dataset.tags ?? '').split(',').filter(Boolean);
+					const match = !activeTag || rowTags.includes(activeTag);
+					row.hidden = !match;
+					if (match) {
+						yearShown += 1;
+					}
+				}
+				sec.hidden = yearShown === 0;
+				const yearCountEl = sec.querySelector('[data-year-count]');
+				if (yearCountEl) {
+					yearCountEl.textContent = String(yearShown);
+				}
+				shownTotal += yearShown;
+			}
+
+			for (const btn of chipBtns) {
+				const pressed = btn.dataset.tagChip === activeTag;
+				btn.setAttribute('aria-pressed', String(pressed));
+			}
+
+			if (countEl) {
+				countEl.textContent = activeTag
+					? `「${activeTag}」下有 ${shownTotal} 篇，再点一次标签看全部`
+					: `共 ${totalPosts} 篇`;
+			}
+
+			if (syncUrl) {
+				const url = new URL(window.location.href);
+				if (activeTag) {
+					url.searchParams.set('tag', activeTag);
+				} else {
+					url.searchParams.delete('tag');
+				}
+				window.history.replaceState({}, '', url);
+			}
+		};
+
+		const handleChipClick = (event: Event) => {
+			const target = event.target;
+			if (!(target instanceof Element)) {
+				return;
+			}
+			const btn = target.closest<HTMLButtonElement>('[data-tag-chip]');
+			if (!btn) {
+				return;
+			}
+			const clicked = btn.dataset.tagChip ?? null;
+			activeTag = activeTag === clicked ? null : clicked;
+			applyFilter(true);
+		};
+
+		chipsBox?.addEventListener('click', handleChipClick);
+		applyFilter(false);
+
+		win.__blogFilterCleanup = () => {
+			chipsBox?.removeEventListener('click', handleChipClick);
+		};
+	}
+
+	setupBlogFilter();
+	document.addEventListener('astro:page-load', setupBlogFilter);
+</script>
