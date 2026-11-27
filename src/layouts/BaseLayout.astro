@@ -301,5 +301,30 @@ const fontFaceStyles = `
 	</head>
 	<body class:list={bodyClass}>
 		<slot />
+		<script is:inline>
+			(function () {
+				function syncAvatars() {
+					var imgs = document.querySelectorAll('img[data-avatar-img]');
+					for (var i = 0; i < imgs.length; i++) {
+						var img = imgs[i];
+						if (img.getAttribute('data-bound') === '1') continue;
+						img.setAttribute('data-bound', '1');
+						if (img.complete) {
+							if (img.naturalWidth > 0) img.setAttribute('data-loaded', 'true');
+							else img.remove();
+						} else {
+							img.addEventListener('load', function (e) {
+								e.currentTarget.setAttribute('data-loaded', 'true');
+							});
+							img.addEventListener('error', function (e) {
+								e.currentTarget.remove();
+							});
+						}
+					}
+				}
+				syncAvatars();
+				document.addEventListener('astro:page-load', syncAvatars);
+			})();
+		</script>
 	</body>
 </html>

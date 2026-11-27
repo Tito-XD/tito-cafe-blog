@@ -5,35 +5,35 @@ export interface FriendLink {
 	link?: string;
 }
 
-// Edit this list only, the /friends page will update automatically.
+// Edit this list only, the /friends and home pages will update automatically.
 export const friends: FriendLink[] = [
 	{
 		id: 'Rachel',
-		avatar: 'https://rachelt.one/res/small_avatar.svg',
+		avatar: '/friends/rachel.svg',
 		bio: 'Hi, would you like a cup of Rachel today?',
 		link: 'https://rachelt.one/zh/',
 	},
 	{
 		id: 'QPomelo',
-		avatar: 'https://qpomelo.dev/icons/avatar.jpeg',
+		avatar: '/friends/qpomelo.webp',
 		bio: 'aka 柚子',
 		link: 'https://qpomelo.dev',
 	},
 	{
 		id: 'Heuluck',
-		avatar: 'https://avatars.githubusercontent.com/u/89375068?v=4',
+		avatar: '/friends/heuluck.webp',
 		bio: '',
 		link: 'https://hugo.heuluck.dev',
 	},
 	{
 		id: 'Wr',
-		avatar: 'https://avatars.githubusercontent.com/u/45558679?v=4',
+		avatar: '/friends/wr.webp',
 		bio: '',
 		link: 'https://wrye.dev/',
 	},
 	{
 		id: 'Frank uwu',
-		avatar: 'https://frankuwu.link/_astro/profile-picture.B3m_m6U7_gWWnD.webp',
+		avatar: '/friends/frank-uwu.webp',
 		bio: '',
 		link: 'https://frankuwu.link/',
 	},
