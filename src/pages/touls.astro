@@ -1,57 +1,32 @@
 ---
 import MenuToolRow from '~/components/MenuToolRow.astro';
-import { type ToolSection, tools } from '~/data/tools';
+import { tools } from '~/data/tools';
 import ScaffoldLayout from '~/layouts/ScaffoldLayout.astro';
-
-const sectionOrder: ToolSection[] = [
-	'独立站点与企划',
-	'站内写作与随记',
-	'桌面周边与小测验',
-];
-
-const grouped = sectionOrder
-	.map((sec, idx) => ({
-		num: String(idx + 1).padStart(2, '0'),
-		title: sec,
-		items: tools.filter((t) => t.section === sec),
-	}))
-	.filter((g) => g.items.length > 0);
 ---
 
 <ScaffoldLayout
 	title="Touls"
-	description="头头咖啡屋的小工具合集：图鉴、显像工坊、写作、光标与测验。"
+	description="店长写来自用的小工具。"
 	currentNav="Touls"
 >
 	<div class="paper-sheet paper-page touls-page">
 		<header class="subpage-head">
 			<h1 class="subpage-title">Touls</h1>
-			<p class="subpage-lead">
-				小工具角。名字是 Tools 的故意拼写版——毕竟是头头（Tito）的地盘。共收纳{' '}
-				{tools.length} 项。
-			</p>
+			<p class="subpage-lead">店长写来自用的小工具。</p>
 		</header>
 
-		<div class="touls-sections">
-			{
-				grouped.map((group) => (
-					<section class="touls-sec">
-						<div class="menu-sec-head">
-							<h2 class="menu-sec-title">
-								<span class="menu-sec-num">{group.num}</span>
-								<span>{group.title}</span>
-							</h2>
-							<span class="menu-sec-note">{group.items.length} 项</span>
-						</div>
-						<ul class="touls-rows">
-							{group.items.map((tool) => (
-								<MenuToolRow tool={tool} />
-							))}
-						</ul>
-					</section>
-				))
-			}
-		</div>
+		<section class="touls-sec" aria-label="小工具列表">
+			<div class="menu-sec-head">
+				<h2 class="menu-sec-title">
+					<span class="menu-sec-num">01</span>
+					<span>列表</span>
+				</h2>
+				<span class="menu-sec-note">类别</span>
+			</div>
+			<ul class="touls-rows">
+				{tools.map((tool) => <MenuToolRow tool={tool} />)}
+			</ul>
+		</section>
 	</div>
 </ScaffoldLayout>
 
@@ -64,20 +39,13 @@ const grouped = sectionOrder
 	}
 
 	.subpage-lead {
-		margin: 0.55rem 0 0;
+		margin: 0.5rem 0 0;
 		color: var(--color-muted);
 		font-size: 0.98rem;
 	}
 
-	.touls-sections {
-		display: grid;
-		grid-template-columns: minmax(0, 1fr);
-		gap: 2.5rem;
-		margin-top: 2rem;
-		min-width: 0;
-	}
-
 	.touls-sec {
+		margin-top: 1.85rem;
 		min-width: 0;
 	}
 

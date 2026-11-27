@@ -40,7 +40,7 @@ const formatHost = (rawUrl?: string) => {
 					src={managerImg}
 					formats={['avif', 'webp']}
 					alt="店长头头：蓝发灰狼，穿蓝衬衫和深色围裙，胸前别着 Tito 名牌"
-					sizes="(max-width: 895px) 9.5rem, 13.5rem"
+					sizes="(max-width: 735px) 8.5rem, 12.75rem"
 					loading="eager"
 				/>
 			</div>
@@ -117,7 +117,7 @@ const formatHost = (rawUrl?: string) => {
 					</ul>
 
 					<p class="menu-sec__more">
-						<a href="/touls">全部 {tools.length} 项小工具与光标 →</a>
+						<a href="/touls">全部 {tools.length} 个小工具 →</a>
 					</p>
 				</section>
 
@@ -202,12 +202,6 @@ const formatHost = (rawUrl?: string) => {
 							lives in Hubei, Wuhan and working as marketing, website
 							maintainer.
 						</p>
-						<p class="about-sec__mobile-credit">
-							店长立绘{' '}
-							<a href="https://frankuwu.link/" target="_blank" rel="noopener">
-								Frank uwu
-							</a>
-						</p>
 					</div>
 					<p class="menu-sec__more">
 						<a href="/about">更多关于店长与出没地点 →</a>
@@ -222,53 +216,46 @@ const formatHost = (rawUrl?: string) => {
 	.home-layout {
 		display: grid;
 		grid-template-columns: minmax(0, 1fr);
-		gap: 0;
+		gap: 1.15rem;
 		padding-block: 0.5rem 2rem;
 	}
 
-	/* Mobile (<56rem): trimmed manager stands centered behind the top counter edge of the paper menu */
+	/* Narrow screens (<46rem): show full-body portrait completely without cropping */
 	.home-counter {
-		position: relative;
-		z-index: 1;
-		margin-bottom: -1px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 	}
 
 	.home-counter__stage {
-		height: 11.25rem;
-		overflow: hidden;
+		width: 100%;
 		display: flex;
 		justify-content: center;
-		align-items: flex-start;
 	}
 
 	.home-counter :global(picture) {
 		display: block;
-		flex-shrink: 0;
 	}
 
 	.home-counter :global(img),
 	.home-counter__art {
 		display: block;
-		width: 9.25rem;
+		width: clamp(7.5rem, 30vw, 9rem);
 		height: auto;
 		margin-inline: auto;
 	}
 
 	.home-counter__credit {
-		display: none;
-		margin: 0.55rem 0 0;
+		margin: 0.35rem 0 0;
 		font-family: var(--font-ui);
-		font-size: 0.8125rem;
+		font-size: 0.8rem;
 		color: var(--color-muted);
 		text-align: center;
 	}
 
 	.home-sheet {
-		position: relative;
-		z-index: 2;
 		min-width: 0;
 		width: 100%;
-		border-top: 2px solid var(--color-text);
 		padding: clamp(1.35rem, 4vw, 2.75rem) clamp(1rem, 4.2vw, 2.85rem);
 	}
 
@@ -301,43 +288,28 @@ const formatHost = (rawUrl?: string) => {
 		min-width: 0;
 	}
 
-	@media (min-width: 56rem) {
+	@media (min-width: 46rem) {
 		.home-layout {
-			grid-template-columns: 12.75rem minmax(0, 44rem);
+			grid-template-columns: clamp(10rem, 22vw, 12.75rem) minmax(0, 44rem);
 			justify-content: center;
 			align-items: start;
-			column-gap: clamp(2.25rem, 5vw, 3.75rem);
+			column-gap: clamp(1.75rem, 4.5vw, 3.75rem);
 			padding-block: 1.5rem 2.75rem;
 		}
 
 		.home-counter {
 			position: sticky;
 			top: 2rem;
-			margin-bottom: 0;
-			padding-top: 0.35rem;
+			padding-top: 0.25rem;
 		}
 
 		.home-counter__stage {
-			height: auto;
-			overflow: visible;
 			display: block;
 		}
 
 		.home-counter :global(img),
 		.home-counter__art {
 			width: 100%;
-		}
-
-		.home-counter__credit {
-			display: block;
-		}
-
-		.home-sheet {
-			border-top: 1px solid var(--color-border);
-		}
-
-		.about-sec__mobile-credit {
-			display: none;
 		}
 	}
 
@@ -499,12 +471,5 @@ const formatHost = (rawUrl?: string) => {
 
 	.about-sec__copy p + p {
 		margin-top: 0.35rem;
-	}
-
-	.about-sec__mobile-credit {
-		font-family: var(--font-ui);
-		font-size: 0.82rem;
-		color: var(--color-muted);
-		padding-top: 0.3rem;
 	}
 </style>

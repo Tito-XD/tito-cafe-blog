@@ -3,11 +3,6 @@ export type ToolSubLink = {
 	href: string;
 };
 
-export type ToolSection =
-	| '独立站点与企划'
-	| '站内写作与随记'
-	| '桌面周边与小测验';
-
 export type ToolLink = {
 	title: string;
 	href: string;
@@ -15,7 +10,6 @@ export type ToolLink = {
 	tag?: string;
 	externalHost?: string;
 	featured?: boolean;
-	section: ToolSection;
 	subLinks?: ToolSubLink[];
 };
 
@@ -27,7 +21,6 @@ export const tools: ToolLink[] = [
 		tag: '宝可梦',
 		externalHost: 'titodex.pages.dev ↗',
 		featured: true,
-		section: '独立站点与企划',
 		subLinks: [
 			{ label: '全国图鉴', href: 'https://titodex.pages.dev/pokedex' },
 			{ label: '关都 151', href: 'https://titodex.pages.dev/151' },
@@ -41,7 +34,6 @@ export const tools: ToolLink[] = [
 		tag: '图片',
 		externalHost: 'crt.tito.cafe ↗',
 		featured: true,
-		section: '独立站点与企划',
 	},
 	{
 		title: 'Markdown',
@@ -49,15 +41,13 @@ export const tools: ToolLink[] = [
 		description: '本地 Markdown 写作，导出 .md 或带素材的 .zip。',
 		tag: '写作',
 		featured: true,
-		section: '站内写作与随记',
 	},
 	{
 		title: 'Think',
 		href: '/think',
-		description: '本地优先的短文写作台，碎片与深夜随记。',
+		description: '本地优先的短文写作台，随手记一点碎片。',
 		tag: '笔记',
 		featured: true,
-		section: '站内写作与随记',
 		subLinks: [{ label: '翻看写过的条目（Thinks）', href: '/thinks' }],
 	},
 	{
@@ -65,13 +55,5 @@ export const tools: ToolLink[] = [
 		href: '/tito-cursor',
 		description: '头头狼主题 Windows 鼠标指针下载与 SoftCursor 指引。',
 		tag: '下载',
-		section: '桌面周边与小测验',
-	},
-	{
-		title: 'SBTI 人格测试',
-		href: '/sbti',
-		description: '人格类型小测验（复建页，仅供学习向）。',
-		tag: '测验',
-		section: '桌面周边与小测验',
 	},
 ];
