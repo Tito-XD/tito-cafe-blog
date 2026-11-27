@@ -26,12 +26,12 @@ export const FontConfig = {
 export const OpenGraphConfig = {
 	fontFamily: FontConfig.sansCjkFamily,
 	fontPath: 'public/fonts/NotoSansSC-Regular.otf',
-	background: '#f4f6fa',
-	surface: '#ffffff',
-	text: '#1f2630',
-	muted: '#596270',
-	accent: '#2a63b6',
-	shadow: 'rgba(31, 38, 48, 0.10)',
+	background: '#ebe5d8',
+	surface: '#faf7f0',
+	text: '#24211d',
+	muted: '#686156',
+	accent: '#295b9e',
+	shadow: 'rgba(42, 35, 25, 0.10)',
 };
 
 export const SiteBrand = {

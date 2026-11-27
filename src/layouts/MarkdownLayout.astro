@@ -42,7 +42,7 @@ const displayTags = show('tags') ? getDisplayTags(tags) : [];
 ---
 
 <ScaffoldLayout {...Astro.props}>
-	<article class="post-page">
+	<article class="paper-sheet paper-page post-page">
 		<p class="post-back">
 			<a href="/blog">← 全部文章</a>
 		</p>
@@ -112,12 +112,6 @@ const displayTags = show('tags') ? getDisplayTags(tags) : [];
 </ScaffoldLayout>
 
 <style>
-	.post-page {
-		max-width: 40rem;
-		margin-inline: auto;
-		padding-block: 1.25rem 3.25rem;
-	}
-
 	.post-back {
 		margin: 0 0 0.75rem;
 		font-size: 0.95rem;

@@ -1,15 +1,290 @@
-<!doctype html>
-<html lang="zh-CN">
-	<head>
-		<meta charset="utf-8" />
-		<meta http-equiv="refresh" content="0;url=/#neighbors" />
-		<link rel="canonical" href="/#neighbors" />
-		<title>跳转至邻座</title>
-		<script is:inline>
-			window.location.replace('/#neighbors');
-		</script>
-	</head>
-	<body>
-		<p><a href="/#neighbors">正在跳转至邻座…</a></p>
-	</body>
-</html>
+---
+import { Site, SiteDescription, SiteTitle, Socials } from '~/config';
+import { type FriendLink, friends } from '~/data/friends';
+import ScaffoldLayout from '~/layouts/ScaffoldLayout.astro';
+
+const trim = (value?: string) => value?.trim() ?? '';
+
+const normalizedFriends = friends
+	.map((friend: FriendLink) => ({
+		id: trim(friend.id),
+		avatar: trim(friend.avatar),
+		bio: trim(friend.bio),
+		link: trim(friend.link),
+	}))
+	.filter((friend) => friend.id || friend.avatar || friend.bio || friend.link);
+
+const formatHost = (rawUrl: string) => {
+	if (!rawUrl) {
+		return '';
+	}
+	try {
+		return new URL(rawUrl).hostname.replace(/^www\./, '');
+	} catch {
+		return rawUrl;
+	}
+};
+
+const mailHref = Socials.mail?.url;
+---
+
+<ScaffoldLayout
+	title="邻座"
+	description="常来坐坐的朋友们与友链信息"
+	currentNav="Friends"
+>
+	<div class="paper-sheet paper-page friends-page">
+		<header class="subpage-head">
+			<h1 class="subpage-title">邻座</h1>
+			<p class="subpage-lead">常来串门的朋友们，共 {normalizedFriends.length} 位。</p>
+		</header>
+
+		<section class="friends-sec" aria-labelledby="friends-list-h">
+			<div class="menu-sec-head">
+				<h2 class="menu-sec-title" id="friends-list-h">
+					<span class="menu-sec-num">01</span>
+					<span>朋友们</span>
+				</h2>
+				<span class="menu-sec-note">点击前往各自站点</span>
+			</div>
+
+			<ul class="friends-grid">
+				{
+					normalizedFriends.map((friend) => {
+						const host = formatHost(friend.link);
+						return (
+							<li>
+								<a
+									class="friend-item"
+									href={friend.link}
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									<span class="friend-item__avatar">
+										{friend.avatar ? (
+											<img
+												src={friend.avatar}
+												alt=""
+												loading="lazy"
+												decoding="async"
+											/>
+										) : (
+											<span>{friend.id.slice(0, 1)}</span>
+										)}
+									</span>
+									<span class="friend-item__body">
+										<span class="friend-item__top">
+											<span class="friend-item__name">{friend.id}</span>
+											{host && (
+												<span class="friend-item__host">{host} ↗</span>
+											)}
+										</span>
+										{friend.bio ? (
+											<span class="friend-item__bio">{friend.bio}</span>
+										) : (
+											<span class="friend-item__bio friend-item__bio--empty">
+												{friend.link}
+											</span>
+										)}
+									</span>
+								</a>
+							</li>
+						);
+					})
+				}
+			</ul>
+		</section>
+
+		<section class="friends-sec" aria-labelledby="site-card-h">
+			<div class="menu-sec-head">
+				<h2 class="menu-sec-title" id="site-card-h">
+					<span class="menu-sec-num">02</span>
+					<span>本店名片</span>
+				</h2>
+				<span class="menu-sec-note">互换友链参考</span>
+			</div>
+
+			<dl class="site-card">
+				<div class="site-card__row">
+					<dt>名称</dt>
+					<dd>{SiteTitle}</dd>
+				</div>
+				<div class="site-card__row">
+					<dt>地址</dt>
+					<dd>{Site}</dd>
+				</div>
+				<div class="site-card__row">
+					<dt>简介</dt>
+					<dd>{SiteDescription}</dd>
+				</div>
+				<div class="site-card__row">
+					<dt>头像</dt>
+					<dd>{Site}/apple-touch-icon.png</dd>
+				</div>
+			</dl>
+
+			{
+				mailHref && (
+					<p class="friends-contact">
+						想留个位置或者更新友链信息，可以发信到{' '}
+						<a href={mailHref}>{mailHref.replace(/^mailto:/, '')}</a>。
+					</p>
+				)
+			}
+		</section>
+	</div>
+</ScaffoldLayout>
+
+<style>
+	.subpage-title {
+		margin: 0;
+		font-size: clamp(2rem, 5.2vw, 2.7rem);
+		line-height: 1.25;
+		font-weight: 520;
+	}
+
+	.subpage-lead {
+		margin: 0.5rem 0 0;
+		color: var(--color-muted);
+		font-size: 0.98rem;
+	}
+
+	.friends-sec {
+		margin-top: 2.2rem;
+	}
+
+	.friends-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(min(100%, 17.5rem), 1fr));
+		gap: 0.75rem;
+		margin: 1rem 0 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.friend-item {
+		display: flex;
+		align-items: flex-start;
+		gap: 0.85rem;
+		height: 100%;
+		padding: 0.85rem 0.95rem;
+		border: 1px solid var(--color-border);
+		border-radius: 0.375rem;
+		background: var(--color-surface-raised);
+		color: var(--color-text);
+		text-decoration: none;
+		transition:
+			border-color var(--motion-gentle),
+			background var(--motion-gentle);
+	}
+
+	.friend-item__avatar {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+		width: 2.75rem;
+		height: 2.75rem;
+		margin-top: 0.1rem;
+		border-radius: 999px;
+		overflow: hidden;
+		border: 1px solid var(--color-border);
+		background: var(--color-surface-2);
+		font-family: var(--font-ui);
+		font-size: 0.95rem;
+		color: var(--color-muted);
+	}
+
+	.friend-item__avatar img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.friend-item__body {
+		display: flex;
+		flex-direction: column;
+		gap: 0.2rem;
+		min-width: 0;
+		flex: 1;
+	}
+
+	.friend-item__top {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 0.5rem;
+	}
+
+	.friend-item__name {
+		font-size: 1.1rem;
+		font-weight: 520;
+		line-height: 1.35;
+		transition: color var(--motion-gentle);
+	}
+
+	.friend-item__host {
+		font-family: var(--font-ui);
+		font-size: 0.76rem;
+		color: var(--color-muted);
+		white-space: nowrap;
+	}
+
+	.friend-item__bio {
+		color: var(--color-muted);
+		font-size: 0.9rem;
+		line-height: 1.55;
+		overflow-wrap: anywhere;
+	}
+
+	.friend-item__bio--empty {
+		font-family: var(--font-ui);
+		font-size: 0.8rem;
+		opacity: 0.75;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.friend-item:hover {
+			border-color: var(--color-leather);
+		}
+
+		.friend-item:hover .friend-item__name {
+			color: var(--color-accent);
+		}
+	}
+
+	.site-card {
+		display: grid;
+		gap: 0.55rem;
+		margin: 1rem 0 0;
+		padding: 0.95rem 1.1rem;
+		border: 1px solid var(--color-border);
+		border-radius: 0.375rem;
+		background: var(--color-surface-raised);
+		font-size: 0.95rem;
+	}
+
+	.site-card__row {
+		display: grid;
+		grid-template-columns: 3.5rem minmax(0, 1fr);
+		gap: 0.75rem;
+		align-items: baseline;
+	}
+
+	.site-card dt {
+		font-family: var(--font-ui);
+		font-size: 0.82rem;
+		color: var(--color-muted);
+	}
+
+	.site-card dd {
+		margin: 0;
+		overflow-wrap: anywhere;
+	}
+
+	.friends-contact {
+		margin: 0.85rem 0 0;
+		color: var(--color-muted);
+		font-size: 0.94rem;
+	}
+</style>

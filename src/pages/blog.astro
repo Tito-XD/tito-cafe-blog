@@ -32,7 +32,7 @@ const tagChips = Array.from(tagCountMap.entries())
 ---
 
 <ScaffoldLayout title="文章" description="全部文章归档与标签筛选" currentNav="Blog">
-	<div class="blog-page" data-total-posts={posts.length}>
+	<div class="paper-sheet paper-page blog-page" data-total-posts={posts.length}>
 		<header class="blog-head">
 			<h1 class="blog-title">文章</h1>
 			<p class="blog-count" id="blog-count" aria-live="polite">
@@ -84,12 +84,6 @@ const tagChips = Array.from(tagCountMap.entries())
 </ScaffoldLayout>
 
 <style>
-	.blog-page {
-		max-width: 40rem;
-		margin-inline: auto;
-		padding-block: 1.25rem 3rem;
-	}
-
 	.blog-title {
 		margin: 0;
 		font-size: clamp(2rem, 5.5vw, 2.75rem);

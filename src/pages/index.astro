@@ -2,7 +2,8 @@
 import { Picture } from 'astro:assets';
 import managerImg from '~/assets/tito_xd-cafe-manager-by-frankuwu.png';
 import MenuPostRow from '~/components/MenuPostRow.astro';
-import { SiteDescription, SiteTitle, Socials } from '~/config';
+import MenuToolRow from '~/components/MenuToolRow.astro';
+import { SiteDescription, SiteTitle } from '~/config';
 import { friends } from '~/data/friends';
 import { tools } from '~/data/tools';
 import ScaffoldLayout from '~/layouts/ScaffoldLayout.astro';
@@ -14,7 +15,9 @@ const annualPosts = allPosts.filter((post) => isAnnualPost(post)).slice(0, 2);
 const annualIds = new Set(annualPosts.map((post) => post.id));
 const recentRegularPosts = allPosts
 	.filter((post) => !annualIds.has(post.id))
-	.slice(0, 5);
+	.slice(0, 4);
+
+const featuredTools = tools.filter((tool) => tool.featured);
 
 const formatHost = (rawUrl?: string) => {
 	if (!rawUrl) {
@@ -26,36 +29,10 @@ const formatHost = (rawUrl?: string) => {
 		return rawUrl;
 	}
 };
-
-const socialNames: { key: string; label: string }[] = [
-	{ key: 'xiaohongshu', label: '小红书' },
-	{ key: 'x', label: 'X' },
-	{ key: 'weibo', label: '微博' },
-	{ key: 'bilibili', label: 'bilibili' },
-	{ key: 'telegram', label: 'Telegram' },
-	{ key: 'mail', label: '邮件' },
-];
-
-const activeSocials = socialNames.filter((item) =>
-	Boolean(Socials[item.key]?.url),
-);
 ---
 
 <ScaffoldLayout title={SiteTitle} description={SiteDescription} currentNav="Home">
 	<div class="home-layout">
-		<section class="home-greet">
-			<h1>
-				路上辛苦了，
-				<br />
-				喝点什么？
-			</h1>
-			<p>我是 Tito_XD，本店的店长，也可以叫我头头。</p>
-			<p>
-				总归还是生活碎碎念。如果我的寥寥几字也能让你驻足停看，那也不错，谢谢。
-			</p>
-			<p>欢迎光临，请开心。</p>
-		</section>
-
 		<aside class="home-counter">
 			<div class="home-counter__stage">
 				<Picture
@@ -63,7 +40,7 @@ const activeSocials = socialNames.filter((item) =>
 					src={managerImg}
 					formats={['avif', 'webp']}
 					alt="店长头头：蓝发灰狼，穿蓝衬衫和深色围裙，胸前别着 Tito 名牌"
-					sizes="(max-width: 895px) 12rem, 14rem"
+					sizes="(max-width: 895px) 12rem, 14.5rem"
 					loading="eager"
 				/>
 			</div>
@@ -75,200 +52,162 @@ const activeSocials = socialNames.filter((item) =>
 			</p>
 		</aside>
 
-		<div class="home-menu">
-			<!-- 01 文章 -->
-			<section class="menu-sec" id="posts" aria-labelledby="sec-posts-h">
-				<div class="menu-sec-head">
-					<h2 class="menu-sec-title" id="sec-posts-h">
-						<span class="menu-sec-num">01</span>
-						<span>文章</span>
-					</h2>
-					<span class="menu-sec-note">读完大约</span>
-				</div>
-
-				{
-					annualPosts.length > 0 && (
-						<div class="annual-box">
-							<ul class="menu-list">
-								{annualPosts.map((post) => (
-									<MenuPostRow post={post} showAnnualBadge={true} />
-								))}
-							</ul>
-						</div>
-					)
-				}
-
-				<ul class="menu-list menu-list--regular">
-					{
-						recentRegularPosts.map((post) => (
-							<MenuPostRow post={post} showAnnualBadge={false} />
-						))
-					}
-				</ul>
-
-				<p class="menu-sec__more">
-					<a href="/blog">全部 {allPosts.length} 篇文章 →</a>
+		<div class="home-sheet paper-sheet">
+			<section class="home-greet">
+				<h1>
+					路上辛苦了，
+					<br />
+					喝点什么？
+				</h1>
+				<p>我是 Tito_XD，本店的店长，也可以叫我头头。</p>
+				<p>
+					总归还是生活碎碎念。如果我的寥寥几字也能让你驻足停看，那也不错，谢谢。
 				</p>
+				<p>欢迎光临，请开心。</p>
 			</section>
 
-			<!-- 02 Touls -->
-			<section class="menu-sec" id="touls" aria-labelledby="sec-touls-h">
-				<div class="menu-sec-head">
-					<h2 class="menu-sec-title" id="sec-touls-h">
-						<span class="menu-sec-num">02</span>
-						<span>Touls</span>
-					</h2>
-				</div>
-				<p class="menu-sec__lead">
-					小工具角。名字是 Tools 的故意拼写版——毕竟是头头（Tito）的地盘。
-				</p>
+			<div class="home-menu">
+				<!-- 01 文章 -->
+				<section class="menu-sec" id="posts" aria-labelledby="sec-posts-h">
+					<div class="menu-sec-head">
+						<h2 class="menu-sec-title" id="sec-posts-h">
+							<span class="menu-sec-num">01</span>
+							<span>文章</span>
+						</h2>
+						<span class="menu-sec-note">读完大约</span>
+					</div>
 
-				<ul class="menu-list">
 					{
-						tools.map((tool) => {
-							const isExternal = tool.href.startsWith('http');
-							return (
-								<li class="tool-row">
-									<span class="tool-row__name">
+						annualPosts.length > 0 && (
+							<div class="annual-box">
+								<ul class="menu-list">
+									{annualPosts.map((post) => (
+										<MenuPostRow post={post} showAnnualBadge={true} />
+									))}
+								</ul>
+							</div>
+						)
+					}
+
+					<ul class="menu-list menu-list--regular">
+						{
+							recentRegularPosts.map((post) => (
+								<MenuPostRow post={post} showAnnualBadge={false} />
+							))
+						}
+					</ul>
+
+					<p class="menu-sec__more">
+						<a href="/blog">全部 {allPosts.length} 篇文章 →</a>
+					</p>
+				</section>
+
+				<!-- 02 Touls -->
+				<section class="menu-sec" id="touls" aria-labelledby="sec-touls-h">
+					<div class="menu-sec-head">
+						<h2 class="menu-sec-title" id="sec-touls-h">
+							<span class="menu-sec-num">02</span>
+							<span>Touls</span>
+						</h2>
+						<span class="menu-sec-note">精选</span>
+					</div>
+
+					<ul class="menu-list">
+						{featuredTools.map((tool) => <MenuToolRow tool={tool} />)}
+					</ul>
+
+					<p class="menu-sec__more">
+						<a href="/touls">全部 {tools.length} 项小工具与光标 →</a>
+					</p>
+				</section>
+
+				<!-- 03 邻座 -->
+				<section
+					class="menu-sec"
+					id="neighbors"
+					aria-labelledby="sec-neighbors-h"
+				>
+					<div class="menu-sec-head">
+						<h2 class="menu-sec-title" id="sec-neighbors-h">
+							<span class="menu-sec-num">03</span>
+							<span>邻座</span>
+						</h2>
+						<span class="menu-sec-note">{friends.length} 位</span>
+					</div>
+
+					<ul class="neighbors-grid">
+						{
+							friends.map((friend) => {
+								const name = friend.id ?? 'Friend';
+								const host = formatHost(friend.link);
+								return (
+									<li>
 										<a
-											href={tool.href}
-											target={isExternal ? '_blank' : undefined}
-											rel={isExternal ? 'noopener' : undefined}
+											class="neighbor-card"
+											href={friend.link}
+											target="_blank"
+											rel="noopener"
 										>
-											{tool.title}
-										</a>
-									</span>
-									<span class="tool-row__dots" aria-hidden="true" />
-									{tool.tag && <span class="tool-row__tag">{tool.tag}</span>}
-									<span
-										class:list={[
-											'tool-row__desc',
-											!tool.externalHost && 'tool-row__desc--full',
-										]}
-									>
-										{tool.description}
-									</span>
-									{tool.externalHost && (
-										<span class="tool-row__host">{tool.externalHost}</span>
-									)}
-									{tool.subLinks && tool.subLinks.length > 0 && (
-										<span class="tool-row__subs">
-											{tool.subLinks.map((sub) => {
-												const subExt = sub.href.startsWith('http');
-												return (
-													<a
-														href={sub.href}
-														target={subExt ? '_blank' : undefined}
-														rel={subExt ? 'noopener' : undefined}
-													>
-														{sub.label}
-													</a>
-												);
-											})}
-										</span>
-									)}
-								</li>
-							);
-						})
-					}
-				</ul>
-			</section>
-
-			<!-- 03 邻座 -->
-			<section class="menu-sec" id="neighbors" aria-labelledby="sec-neighbors-h">
-				<span id="friends" class="anchor-alias" aria-hidden="true"></span>
-				<div class="menu-sec-head">
-					<h2 class="menu-sec-title" id="sec-neighbors-h">
-						<span class="menu-sec-num">03</span>
-						<span>邻座</span>
-					</h2>
-					<span class="menu-sec-note">{friends.length} 位</span>
-				</div>
-
-				<ul class="neighbors-grid">
-					{
-						friends.map((friend) => {
-							const name = friend.id ?? 'Friend';
-							const host = formatHost(friend.link);
-							return (
-								<li>
-									<a
-										class="neighbor-card"
-										href={friend.link}
-										target="_blank"
-										rel="noopener"
-									>
-										<span class="neighbor-card__avatar">
-											{friend.avatar ? (
-												<img
-													src={friend.avatar}
-													alt=""
-													loading="lazy"
-													decoding="async"
-												/>
-											) : (
-												<span>{name.slice(0, 1)}</span>
-											)}
-										</span>
-										<span class="neighbor-card__body">
-											<span class="neighbor-card__head">
-												<span class="neighbor-card__name">{name}</span>
-												{host && (
-													<span class="neighbor-card__host">{host} ↗</span>
+											<span class="neighbor-card__avatar">
+												{friend.avatar ? (
+													<img
+														src={friend.avatar}
+														alt=""
+														loading="lazy"
+														decoding="async"
+													/>
+												) : (
+													<span>{name.slice(0, 1)}</span>
 												)}
 											</span>
-											{friend.bio && (
-												<span class="neighbor-card__bio">{friend.bio}</span>
-											)}
-										</span>
-									</a>
-								</li>
-							);
-						})
-					}
-				</ul>
-			</section>
+											<span class="neighbor-card__body">
+												<span class="neighbor-card__head">
+													<span class="neighbor-card__name">{name}</span>
+													{host && (
+														<span class="neighbor-card__host">{host} ↗</span>
+													)}
+												</span>
+												{friend.bio && (
+													<span class="neighbor-card__bio">{friend.bio}</span>
+												)}
+											</span>
+										</a>
+									</li>
+								);
+							})
+						}
+					</ul>
 
-			<!-- 04 关于 -->
-			<section class="menu-sec about-sec" id="about" aria-labelledby="sec-about-h">
-				<div class="menu-sec-head">
-					<h2 class="menu-sec-title" id="sec-about-h">
-						<span class="menu-sec-num">04</span>
-						<span>关于</span>
-					</h2>
-				</div>
-				<div class="about-sec__copy">
-					<p>nameless nobody but still exploring this world.</p>
-					<p>want to make 21 grams interesting.</p>
-					<p>lives in Hubei, Wuhan and working as marketing, website maintainer.</p>
-					<p class="about-sec__find">
-						也可以在{' '}
-						{
-							activeSocials.map((item, idx) => (
-								<>
-									{idx > 0 && '、'}
-									<a
-										href={Socials[item.key].url}
-										target={
-											Socials[item.key].url.startsWith('mailto:')
-												? undefined
-												: '_blank'
-										}
-										rel={
-											Socials[item.key].url.startsWith('mailto:')
-												? undefined
-												: 'noopener'
-										}
-									>
-										{item.label}
-									</a>
-								</>
-							))
-						}{' '}
-						找到我，或者订阅 <a href="/rss.xml">RSS</a>。
+					<p class="menu-sec__more">
+						<a href="/friends">邻座详情与本店名片 →</a>
 					</p>
-				</div>
-			</section>
+				</section>
+
+				<!-- 04 关于 -->
+				<section
+					class="menu-sec about-sec"
+					id="about"
+					aria-labelledby="sec-about-h"
+				>
+					<div class="menu-sec-head">
+						<h2 class="menu-sec-title" id="sec-about-h">
+							<span class="menu-sec-num">04</span>
+							<span>关于</span>
+						</h2>
+					</div>
+					<div class="about-sec__copy">
+						<p>nameless nobody but still exploring this world.</p>
+						<p>want to make 21 grams interesting.</p>
+						<p>
+							lives in Hubei, Wuhan and working as marketing, website
+							maintainer.
+						</p>
+					</div>
+					<p class="menu-sec__more">
+						<a href="/about">更多关于店长与出没地点 →</a>
+					</p>
+				</section>
+			</div>
 		</div>
 	</div>
 </ScaffoldLayout>
@@ -276,32 +215,14 @@ const activeSocials = socialNames.filter((item) =>
 <style>
 	.home-layout {
 		display: grid;
-		gap: 1.85rem;
-		padding-block: 1.25rem 2.5rem;
-	}
-
-	.home-greet h1 {
-		margin: 0;
-		font-size: clamp(2.1rem, 6vw, 3.15rem);
-		line-height: 1.25;
-		font-weight: 520;
-		text-wrap: balance;
-	}
-
-	.home-greet p {
-		max-width: 34em;
-		margin: 0.75rem 0 0;
-		text-wrap: pretty;
-	}
-
-	.home-greet h1 + p {
-		margin-top: 1.2rem;
+		gap: 1.5rem;
+		padding-block: 0.75rem 2rem;
 	}
 
 	.home-counter__stage {
 		height: 13.5rem;
 		overflow: hidden;
-		border-bottom: 3px solid var(--color-text);
+		border-bottom: 2px solid var(--color-text);
 	}
 
 	.home-counter :global(picture) {
@@ -324,37 +245,52 @@ const activeSocials = socialNames.filter((item) =>
 		text-align: center;
 	}
 
+	.home-sheet {
+		min-width: 0;
+		padding: clamp(1.5rem, 4vw, 2.75rem) clamp(1.25rem, 4.2vw, 2.85rem);
+	}
+
+	.home-greet {
+		padding-bottom: 2.25rem;
+	}
+
+	.home-greet h1 {
+		margin: 0;
+		font-size: clamp(2rem, 5.6vw, 3rem);
+		line-height: 1.25;
+		font-weight: 520;
+		text-wrap: balance;
+	}
+
+	.home-greet p {
+		max-width: 34em;
+		margin: 0.7rem 0 0;
+		text-wrap: pretty;
+	}
+
+	.home-greet h1 + p {
+		margin-top: 1.15rem;
+	}
+
 	.home-menu {
 		display: grid;
-		gap: 3rem;
+		gap: 2.75rem;
 		min-width: 0;
 	}
 
 	@media (min-width: 56rem) {
 		.home-layout {
-			grid-template-columns: 14rem minmax(0, 40rem);
-			grid-template-areas:
-				'counter greet'
-				'counter menu';
+			grid-template-columns: 14rem minmax(0, 44rem);
 			justify-content: center;
-			column-gap: clamp(3rem, 7vw, 5.25rem);
-			row-gap: 2.75rem;
-			padding-block: 2.25rem 3.5rem;
-		}
-
-		.home-greet {
-			grid-area: greet;
-		}
-
-		.home-menu {
-			grid-area: menu;
+			align-items: start;
+			column-gap: clamp(2.25rem, 5vw, 3.75rem);
+			padding-block: 1.5rem 2.75rem;
 		}
 
 		.home-counter {
-			grid-area: counter;
-			align-self: start;
 			position: sticky;
 			top: 2rem;
+			padding-top: 0.5rem;
 		}
 
 		.home-counter__stage {
@@ -371,12 +307,6 @@ const activeSocials = socialNames.filter((item) =>
 
 	.menu-sec {
 		scroll-margin-top: 1.5rem;
-		position: relative;
-	}
-
-	.anchor-alias {
-		position: absolute;
-		top: -1.5rem;
 	}
 
 	.menu-list {
@@ -387,10 +317,10 @@ const activeSocials = socialNames.filter((item) =>
 
 	.annual-box {
 		margin-top: 0.9rem;
-		padding: 0.25rem 0.95rem;
+		padding: 0.2rem 0.9rem;
 		border: 1px solid var(--color-border);
-		border-radius: 0.5rem;
-		background: color-mix(in srgb, var(--color-surface) 45%, var(--color-bg));
+		border-radius: 0.375rem;
+		background: var(--color-surface-raised);
 	}
 
 	.annual-box .menu-list {
@@ -398,123 +328,19 @@ const activeSocials = socialNames.filter((item) =>
 	}
 
 	.menu-list--regular {
-		margin-top: 0.55rem;
+		margin-top: 0.5rem;
 	}
 
 	.menu-sec__more {
-		margin: 0.95rem 0 0;
+		margin: 0.9rem 0 0;
+		font-size: 0.95rem;
 	}
 
-	.menu-sec__lead {
-		margin: 0.85rem 0 0;
-		color: var(--color-muted);
-		font-size: 0.98rem;
-	}
-
-	/* Tool rows */
-	.tool-row {
-		position: relative;
-		display: grid;
-		grid-template-columns: minmax(0, max-content) minmax(1.25rem, 1fr) max-content;
-		align-items: baseline;
-		column-gap: 0.6rem;
-		row-gap: 0.15rem;
-		padding-block: 0.68rem;
-	}
-
-	.tool-row__name {
-		font-size: 1.15rem;
-		font-weight: 520;
-		line-height: 1.5;
-	}
-
-	.tool-row__name a {
-		color: var(--color-text);
-		text-decoration: none;
-		transition: color var(--motion-gentle);
-	}
-
-	.tool-row__name a::after {
-		content: '';
-		position: absolute;
-		inset: 0 -0.5rem;
-		border-radius: 0.5rem;
-	}
-
-	.tool-row__name a:focus-visible {
-		outline: none;
-	}
-
-	.tool-row__name a:focus-visible::after {
-		outline: 2px solid var(--color-accent);
-	}
-
-	.tool-row__dots {
-		height: 0;
-		border-bottom: 2px dotted var(--color-dots);
-		transform: translateY(-0.22em);
-		transition: border-color var(--motion-gentle);
-	}
-
-	.tool-row__tag {
-		justify-self: end;
-		white-space: nowrap;
-		font-size: 1rem;
-	}
-
-	.tool-row__desc {
-		grid-column: 1 / 3;
-		color: var(--color-muted);
-		font-size: 0.96rem;
-		line-height: 1.6;
-	}
-
-	.tool-row__desc--full {
-		grid-column: 1 / -1;
-	}
-
-	.tool-row__host {
-		grid-column: 3;
-		justify-self: end;
-		font-family: var(--font-ui);
-		font-size: 0.8125rem;
-		color: var(--color-muted);
-		white-space: nowrap;
-	}
-
-	.tool-row__subs {
-		grid-column: 1 / -1;
-		position: relative;
-		z-index: 1;
-		justify-self: start;
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0 1.1rem;
-		font-size: 0.92rem;
-		margin-top: 0.1rem;
-	}
-
-	.tool-row__subs a {
-		display: inline-flex;
-		align-items: center;
-		min-height: 2rem;
-	}
-
-	@media (hover: hover) and (pointer: fine) {
-		.tool-row:hover .tool-row__name a {
-			color: var(--color-accent);
-		}
-
-		.tool-row:hover .tool-row__dots {
-			border-color: var(--color-leather);
-		}
-	}
-
-	/* 03 Neighbors two-column compact cards */
+	/* 03 Neighbors compact cards */
 	.neighbors-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(min(100%, 17.5rem), 1fr));
-		gap: 0.65rem;
+		grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+		gap: 0.6rem;
 		margin: 0.95rem 0 0;
 		padding: 0;
 		list-style: none;
@@ -523,11 +349,12 @@ const activeSocials = socialNames.filter((item) =>
 	.neighbor-card {
 		display: flex;
 		align-items: center;
-		gap: 0.75rem;
+		gap: 0.7rem;
 		height: 100%;
-		padding: 0.65rem 0.8rem;
+		padding: 0.6rem 0.75rem;
 		border: 1px solid var(--color-border);
-		border-radius: 0.55rem;
+		border-radius: 0.375rem;
+		background: var(--color-surface-raised);
 		color: var(--color-text);
 		text-decoration: none;
 		transition:
@@ -540,14 +367,14 @@ const activeSocials = socialNames.filter((item) =>
 		align-items: center;
 		justify-content: center;
 		flex-shrink: 0;
-		width: 2.35rem;
-		height: 2.35rem;
+		width: 2.25rem;
+		height: 2.25rem;
 		border-radius: 999px;
 		overflow: hidden;
 		border: 1px solid var(--color-border);
 		background: var(--color-surface-2);
 		font-family: var(--font-ui);
-		font-size: 0.875rem;
+		font-size: 0.85rem;
 		color: var(--color-muted);
 	}
 
@@ -560,7 +387,7 @@ const activeSocials = socialNames.filter((item) =>
 	.neighbor-card__body {
 		display: flex;
 		flex-direction: column;
-		gap: 0.1rem;
+		gap: 0.08rem;
 		min-width: 0;
 		flex: 1;
 	}
@@ -569,11 +396,11 @@ const activeSocials = socialNames.filter((item) =>
 		display: flex;
 		align-items: baseline;
 		justify-content: space-between;
-		gap: 0.5rem;
+		gap: 0.45rem;
 	}
 
 	.neighbor-card__name {
-		font-size: 1.05rem;
+		font-size: 1.02rem;
 		font-weight: 520;
 		line-height: 1.35;
 		transition: color var(--motion-gentle);
@@ -581,14 +408,14 @@ const activeSocials = socialNames.filter((item) =>
 
 	.neighbor-card__host {
 		font-family: var(--font-ui);
-		font-size: 0.75rem;
+		font-size: 0.74rem;
 		color: var(--color-muted);
 		white-space: nowrap;
 	}
 
 	.neighbor-card__bio {
 		color: var(--color-muted);
-		font-size: 0.85rem;
+		font-size: 0.84rem;
 		line-height: 1.45;
 		overflow: hidden;
 		text-overflow: ellipsis;
@@ -598,7 +425,6 @@ const activeSocials = socialNames.filter((item) =>
 	@media (hover: hover) and (pointer: fine) {
 		.neighbor-card:hover {
 			border-color: var(--color-leather);
-			background: color-mix(in srgb, var(--color-surface) 50%, var(--color-bg));
 		}
 
 		.neighbor-card:hover .neighbor-card__name {
@@ -606,9 +432,8 @@ const activeSocials = socialNames.filter((item) =>
 		}
 	}
 
-	/* 04 About */
 	.about-sec__copy {
-		margin-top: 0.9rem;
+		margin-top: 0.85rem;
 	}
 
 	.about-sec__copy p {
@@ -617,11 +442,5 @@ const activeSocials = socialNames.filter((item) =>
 
 	.about-sec__copy p + p {
 		margin-top: 0.35rem;
-	}
-
-	.about-sec__copy .about-sec__find {
-		margin-top: 0.9rem;
-		color: var(--color-muted);
-		font-size: 0.98rem;
 	}
 </style>

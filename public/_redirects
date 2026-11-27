@@ -10,12 +10,6 @@
 /pokedex/ https://titodex.pages.dev/pokedex 302!
 /pokedex.html https://titodex.pages.dev/pokedex 302!
 /pokedex/* https://titodex.pages.dev/pokedex/:splat 302!
-/touls /#touls 302!
-/touls/ /#touls 302!
-/friends /#neighbors 302!
-/friends/ /#neighbors 302!
-/about /#about 302!
-/about/ /#about 302!
 /archives /blog 302!
 /archives/* /blog 302!
 /tags /blog 302!

@@ -1,0 +1,151 @@
+---
+import type { ToolLink } from '~/data/tools';
+
+interface Props {
+	tool: ToolLink;
+}
+
+const { tool } = Astro.props;
+const isExternal = tool.href.startsWith('http');
+---
+
+<li class="tool-row">
+	<span class="tool-row__name">
+		<a
+			href={tool.href}
+			target={isExternal ? '_blank' : undefined}
+			rel={isExternal ? 'noopener' : undefined}
+		>
+			{tool.title}
+		</a>
+	</span>
+	<span class="tool-row__dots" aria-hidden="true"></span>
+	{tool.tag && <span class="tool-row__tag">{tool.tag}</span>}
+	<span
+		class:list={[
+			'tool-row__desc',
+			!tool.externalHost && 'tool-row__desc--full',
+		]}
+	>
+		{tool.description}
+	</span>
+	{tool.externalHost && <span class="tool-row__host">{tool.externalHost}</span>}
+	{
+		tool.subLinks && tool.subLinks.length > 0 && (
+			<span class="tool-row__subs">
+				{tool.subLinks.map((sub) => {
+					const subExt = sub.href.startsWith('http');
+					return (
+						<a
+							href={sub.href}
+							target={subExt ? '_blank' : undefined}
+							rel={subExt ? 'noopener' : undefined}
+						>
+							{sub.label}
+						</a>
+					);
+				})}
+			</span>
+		)
+	}
+</li>
+
+<style>
+	.tool-row {
+		position: relative;
+		display: grid;
+		grid-template-columns: minmax(0, max-content) minmax(1.25rem, 1fr) max-content;
+		align-items: baseline;
+		column-gap: 0.6rem;
+		row-gap: 0.15rem;
+		padding-block: 0.68rem;
+	}
+
+	.tool-row__name {
+		font-size: 1.15rem;
+		font-weight: 520;
+		line-height: 1.5;
+	}
+
+	.tool-row__name a {
+		color: var(--color-text);
+		text-decoration: none;
+		transition: color var(--motion-gentle);
+	}
+
+	.tool-row__name a::after {
+		content: '';
+		position: absolute;
+		inset: 0 -0.5rem;
+		border-radius: 0.4rem;
+	}
+
+	.tool-row__name a:focus-visible {
+		outline: none;
+	}
+
+	.tool-row__name a:focus-visible::after {
+		outline: 2px solid var(--color-accent);
+	}
+
+	.tool-row__dots {
+		height: 0;
+		border-bottom: 2px dotted var(--color-dots);
+		transform: translateY(-0.22em);
+		transition: border-color var(--motion-gentle);
+	}
+
+	.tool-row__tag {
+		justify-self: end;
+		white-space: nowrap;
+		font-size: 1rem;
+	}
+
+	.tool-row__desc {
+		grid-column: 1 / 3;
+		color: var(--color-muted);
+		font-size: 0.96rem;
+		line-height: 1.6;
+	}
+
+	.tool-row__desc--full {
+		grid-column: 1 / -1;
+	}
+
+	.tool-row__host {
+		grid-column: 3;
+		justify-self: end;
+		font-family: var(--font-ui);
+		font-size: 0.8125rem;
+		color: var(--color-muted);
+		white-space: nowrap;
+	}
+
+	.tool-row__subs {
+		grid-column: 1 / -1;
+		position: relative;
+		z-index: 1;
+		justify-self: start;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0 1.1rem;
+		font-size: 0.92rem;
+		margin-top: 0.1rem;
+	}
+
+	.tool-row__subs a {
+		display: inline-flex;
+		align-items: center;
+		min-height: 2rem;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.tool-row:hover .tool-row__name a {
+			color: var(--color-accent);
+		}
+
+		.tool-row:hover .tool-row__dots {
+			border-color: var(--color-leather);
+		}
+	}
+</style>
