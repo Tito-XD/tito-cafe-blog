@@ -150,8 +150,14 @@ const tagChips = Array.from(tagCountMap.entries())
 
 	.blog-years {
 		display: grid;
+		grid-template-columns: minmax(0, 1fr);
 		gap: 2.5rem;
 		margin-top: 2.2rem;
+		min-width: 0;
+	}
+
+	.year-sec {
+		min-width: 0;
 	}
 
 	.year-rows {

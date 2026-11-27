@@ -1,6 +1,6 @@
 ---
 import { Picture } from 'astro:assets';
-import managerImg from '~/assets/tito_xd-cafe-manager-by-frankuwu.png';
+import managerImg from '~/assets/tito_xd-cafe-manager-trimmed.png';
 import MenuPostRow from '~/components/MenuPostRow.astro';
 import MenuToolRow from '~/components/MenuToolRow.astro';
 import { SiteDescription, SiteTitle } from '~/config';
@@ -40,7 +40,7 @@ const formatHost = (rawUrl?: string) => {
 					src={managerImg}
 					formats={['avif', 'webp']}
 					alt="店长头头：蓝发灰狼，穿蓝衬衫和深色围裙，胸前别着 Tito 名牌"
-					sizes="(max-width: 895px) 12rem, 14.5rem"
+					sizes="(max-width: 895px) 9.5rem, 13.5rem"
 					loading="eager"
 				/>
 			</div>
@@ -202,6 +202,12 @@ const formatHost = (rawUrl?: string) => {
 							lives in Hubei, Wuhan and working as marketing, website
 							maintainer.
 						</p>
+						<p class="about-sec__mobile-credit">
+							店长立绘{' '}
+							<a href="https://frankuwu.link/" target="_blank" rel="noopener">
+								Frank uwu
+							</a>
+						</p>
 					</div>
 					<p class="menu-sec__more">
 						<a href="/about">更多关于店长与出没地点 →</a>
@@ -215,30 +221,42 @@ const formatHost = (rawUrl?: string) => {
 <style>
 	.home-layout {
 		display: grid;
-		gap: 1.5rem;
-		padding-block: 0.75rem 2rem;
+		grid-template-columns: minmax(0, 1fr);
+		gap: 0;
+		padding-block: 0.5rem 2rem;
+	}
+
+	/* Mobile (<56rem): trimmed manager stands centered behind the top counter edge of the paper menu */
+	.home-counter {
+		position: relative;
+		z-index: 1;
+		margin-bottom: -1px;
 	}
 
 	.home-counter__stage {
-		height: 13.5rem;
+		height: 11.25rem;
 		overflow: hidden;
-		border-bottom: 2px solid var(--color-text);
+		display: flex;
+		justify-content: center;
+		align-items: flex-start;
 	}
 
 	.home-counter :global(picture) {
 		display: block;
+		flex-shrink: 0;
 	}
 
 	.home-counter :global(img),
 	.home-counter__art {
 		display: block;
-		width: 11.5rem;
+		width: 9.25rem;
 		height: auto;
 		margin-inline: auto;
 	}
 
 	.home-counter__credit {
-		margin: 0.5rem 0 0;
+		display: none;
+		margin: 0.55rem 0 0;
 		font-family: var(--font-ui);
 		font-size: 0.8125rem;
 		color: var(--color-muted);
@@ -246,17 +264,21 @@ const formatHost = (rawUrl?: string) => {
 	}
 
 	.home-sheet {
+		position: relative;
+		z-index: 2;
 		min-width: 0;
-		padding: clamp(1.5rem, 4vw, 2.75rem) clamp(1.25rem, 4.2vw, 2.85rem);
+		width: 100%;
+		border-top: 2px solid var(--color-text);
+		padding: clamp(1.35rem, 4vw, 2.75rem) clamp(1rem, 4.2vw, 2.85rem);
 	}
 
 	.home-greet {
-		padding-bottom: 2.25rem;
+		padding-bottom: 2.1rem;
 	}
 
 	.home-greet h1 {
 		margin: 0;
-		font-size: clamp(2rem, 5.6vw, 3rem);
+		font-size: clamp(1.9rem, 5.6vw, 2.95rem);
 		line-height: 1.25;
 		font-weight: 520;
 		text-wrap: balance;
@@ -269,18 +291,19 @@ const formatHost = (rawUrl?: string) => {
 	}
 
 	.home-greet h1 + p {
-		margin-top: 1.15rem;
+		margin-top: 1.1rem;
 	}
 
 	.home-menu {
 		display: grid;
-		gap: 2.75rem;
+		grid-template-columns: minmax(0, 1fr);
+		gap: 2.6rem;
 		min-width: 0;
 	}
 
 	@media (min-width: 56rem) {
 		.home-layout {
-			grid-template-columns: 14rem minmax(0, 44rem);
+			grid-template-columns: 12.75rem minmax(0, 44rem);
 			justify-content: center;
 			align-items: start;
 			column-gap: clamp(2.25rem, 5vw, 3.75rem);
@@ -290,22 +313,36 @@ const formatHost = (rawUrl?: string) => {
 		.home-counter {
 			position: sticky;
 			top: 2rem;
-			padding-top: 0.5rem;
+			margin-bottom: 0;
+			padding-top: 0.35rem;
 		}
 
 		.home-counter__stage {
 			height: auto;
 			overflow: visible;
-			border-bottom: 0;
+			display: block;
 		}
 
 		.home-counter :global(img),
 		.home-counter__art {
 			width: 100%;
 		}
+
+		.home-counter__credit {
+			display: block;
+		}
+
+		.home-sheet {
+			border-top: 1px solid var(--color-border);
+		}
+
+		.about-sec__mobile-credit {
+			display: none;
+		}
 	}
 
 	.menu-sec {
+		min-width: 0;
 		scroll-margin-top: 1.5rem;
 	}
 
@@ -313,11 +350,15 @@ const formatHost = (rawUrl?: string) => {
 		margin: 0.4rem 0 0;
 		padding: 0;
 		list-style: none;
+		min-width: 0;
 	}
 
 	.annual-box {
-		margin-top: 0.9rem;
-		padding: 0.2rem 0.9rem;
+		min-width: 0;
+		max-width: 100%;
+		box-sizing: border-box;
+		margin-top: 0.85rem;
+		padding: 0.15rem clamp(0.65rem, 2.5vw, 0.95rem);
 		border: 1px solid var(--color-border);
 		border-radius: 0.375rem;
 		background: var(--color-surface-raised);
@@ -332,26 +373,35 @@ const formatHost = (rawUrl?: string) => {
 	}
 
 	.menu-sec__more {
-		margin: 0.9rem 0 0;
+		margin: 0.85rem 0 0;
 		font-size: 0.95rem;
 	}
 
-	/* 03 Neighbors compact cards */
+	/* 03 Neighbors compact cards — min-width: 0 on grid items prevents overflow! */
 	.neighbors-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+		grid-template-columns: repeat(auto-fill, minmax(min(100%, 15.5rem), 1fr));
 		gap: 0.6rem;
 		margin: 0.95rem 0 0;
 		padding: 0;
 		list-style: none;
+		min-width: 0;
+	}
+
+	.neighbors-grid > li {
+		min-width: 0;
 	}
 
 	.neighbor-card {
 		display: flex;
 		align-items: center;
-		gap: 0.7rem;
+		gap: 0.68rem;
+		width: 100%;
+		min-width: 0;
+		max-width: 100%;
 		height: 100%;
-		padding: 0.6rem 0.75rem;
+		box-sizing: border-box;
+		padding: 0.6rem 0.72rem;
 		border: 1px solid var(--color-border);
 		border-radius: 0.375rem;
 		background: var(--color-surface-raised);
@@ -367,8 +417,8 @@ const formatHost = (rawUrl?: string) => {
 		align-items: center;
 		justify-content: center;
 		flex-shrink: 0;
-		width: 2.25rem;
-		height: 2.25rem;
+		width: 2.2rem;
+		height: 2.2rem;
 		border-radius: 999px;
 		overflow: hidden;
 		border: 1px solid var(--color-border);
@@ -396,10 +446,15 @@ const formatHost = (rawUrl?: string) => {
 		display: flex;
 		align-items: baseline;
 		justify-content: space-between;
-		gap: 0.45rem;
+		gap: 0.4rem;
+		min-width: 0;
 	}
 
 	.neighbor-card__name {
+		min-width: 0;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 		font-size: 1.02rem;
 		font-weight: 520;
 		line-height: 1.35;
@@ -407,13 +462,15 @@ const formatHost = (rawUrl?: string) => {
 	}
 
 	.neighbor-card__host {
+		flex-shrink: 0;
 		font-family: var(--font-ui);
-		font-size: 0.74rem;
+		font-size: 0.73rem;
 		color: var(--color-muted);
 		white-space: nowrap;
 	}
 
 	.neighbor-card__bio {
+		min-width: 0;
 		color: var(--color-muted);
 		font-size: 0.84rem;
 		line-height: 1.45;
@@ -442,5 +499,12 @@ const formatHost = (rawUrl?: string) => {
 
 	.about-sec__copy p + p {
 		margin-top: 0.35rem;
+	}
+
+	.about-sec__mobile-credit {
+		font-family: var(--font-ui);
+		font-size: 0.82rem;
+		color: var(--color-muted);
+		padding-top: 0.3rem;
 	}
 </style>

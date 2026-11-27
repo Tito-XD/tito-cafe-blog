@@ -71,8 +71,14 @@ const grouped = sectionOrder
 
 	.touls-sections {
 		display: grid;
+		grid-template-columns: minmax(0, 1fr);
 		gap: 2.5rem;
 		margin-top: 2rem;
+		min-width: 0;
+	}
+
+	.touls-sec {
+		min-width: 0;
 	}
 
 	.touls-rows {

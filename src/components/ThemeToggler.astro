@@ -6,10 +6,48 @@
 	data-theme-toggle
 	class="lamp-btn forced-colors:hidden"
 	aria-label="关灯（切换到深色模式）"
+	title="关灯"
 	data-theme="light"
 >
-	<span class="lamp-btn__light">关灯</span>
-	<span class="lamp-btn__dark">开灯</span>
+	<!-- Lit cafe pendant lamp (shown in light mode) -->
+	<svg
+		class="lamp-icon lamp-icon--on"
+		xmlns="http://www.w3.org/2000/svg"
+		width="19"
+		height="19"
+		viewBox="0 0 24 24"
+		fill="none"
+		stroke="currentColor"
+		stroke-width="1.75"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+		aria-hidden="true"
+	>
+		<path d="M12 2v3" />
+		<path d="M5.5 11.5a6.5 6.5 0 0 1 13 0Z" />
+		<path d="M10 11.5a2 2 0 1 0 4 0" />
+		<path class="lamp-rays" d="M12 16.5v2.5M7.5 15.2l-1.5 1.8M16.5 15.2l1.5 1.8" />
+	</svg>
+
+	<!-- Unlit night lamp with crescent (shown in dark mode) -->
+	<svg
+		class="lamp-icon lamp-icon--off"
+		xmlns="http://www.w3.org/2000/svg"
+		width="19"
+		height="19"
+		viewBox="0 0 24 24"
+		fill="none"
+		stroke="currentColor"
+		stroke-width="1.75"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+		aria-hidden="true"
+	>
+		<path d="M12 2v3" />
+		<path d="M5.5 11.5a6.5 6.5 0 0 1 13 0Z" />
+		<path d="M10 11.5a2 2 0 1 0 4 0" opacity="0.45" />
+		<path class="lamp-moon" d="M14.5 16.2a3 3 0 1 1-3.2 3.2 2.4 2.4 0 0 0 3.2-3.2Z" />
+	</svg>
 </button>
 
 <style>
@@ -17,15 +55,13 @@
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		min-height: 2.35rem;
-		padding: 0 0.85rem;
+		width: 2.3rem;
+		height: 2.3rem;
+		padding: 0;
 		border: 1px solid var(--color-border);
 		border-radius: 999px;
 		background: var(--color-surface);
 		color: var(--color-text);
-		font: inherit;
-		font-size: 0.95rem;
-		line-height: 1;
 		cursor: pointer;
 		touch-action: manipulation;
 		user-select: none;
@@ -33,30 +69,40 @@
 		transition:
 			transform 140ms cubic-bezier(0.23, 1, 0.32, 1),
 			border-color var(--motion-gentle),
-			color var(--motion-gentle);
+			color var(--motion-gentle),
+			background var(--motion-gentle);
 	}
 
 	.lamp-btn:active {
-		transform: scale(0.97);
+		transform: scale(0.95);
 	}
 
-	.lamp-btn__dark {
+	.lamp-rays {
+		stroke: var(--color-leather);
+	}
+
+	.lamp-moon {
+		stroke: var(--color-leather);
+	}
+
+	.lamp-icon--off {
 		display: none;
 	}
 
-	:global(:root.dark) .lamp-btn__light,
-	.lamp-btn[data-theme='dark'] .lamp-btn__light {
+	:global(:root.dark) .lamp-icon--on,
+	.lamp-btn[data-theme='dark'] .lamp-icon--on {
 		display: none;
 	}
 
-	:global(:root.dark) .lamp-btn__dark,
-	.lamp-btn[data-theme='dark'] .lamp-btn__dark {
-		display: inline;
+	:global(:root.dark) .lamp-icon--off,
+	.lamp-btn[data-theme='dark'] .lamp-icon--off {
+		display: block;
 	}
 
 	@media (hover: hover) and (pointer: fine) {
 		.lamp-btn:hover {
-			border-color: var(--color-text);
+			border-color: var(--color-leather);
+			color: var(--color-accent);
 		}
 	}
 </style>
@@ -86,12 +132,13 @@
 				continue;
 			}
 			button.setAttribute('data-theme', resolvedTheme);
-			const label =
+			const shortTitle = resolvedTheme === 'dark' ? '开灯' : '关灯';
+			const ariaLabel =
 				resolvedTheme === 'dark'
 					? '开灯（切换到浅色模式）'
 					: '关灯（切换到深色模式）';
-			button.setAttribute('aria-label', label);
-			button.setAttribute('title', label);
+			button.setAttribute('aria-label', ariaLabel);
+			button.setAttribute('title', shortTitle);
 		}
 	};
 

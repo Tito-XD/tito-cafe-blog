@@ -225,6 +225,9 @@ const fontFaceStyles = `
 
 				/* Tactile cotton paper sheet lifted off the linen desk backdrop */
 				.paper-sheet {
+					min-width: 0;
+					max-width: 100%;
+					box-sizing: border-box;
 					background-color: var(--color-surface);
 					background-image: var(--paper-grain);
 					border: 1px solid var(--color-border);
@@ -235,9 +238,10 @@ const fontFaceStyles = `
 				}
 
 				.paper-page {
+					width: 100%;
 					max-width: 46rem;
 					margin: 0.75rem auto 2rem;
-					padding: clamp(1.5rem, 4vw, 2.75rem) clamp(1.25rem, 4.5vw, 3rem);
+					padding: clamp(1.35rem, 4vw, 2.75rem) clamp(1rem, 4.5vw, 3rem);
 				}
 
 				/* Shared menu typography primitives */

@@ -1,4 +1,5 @@
 ---
+import { Icon } from 'astro-icon/components';
 import { Hide } from '~/config';
 import HeaderBrand from './HeaderBrand.astro';
 import Nav from './Nav.astro';
@@ -19,11 +20,12 @@ const { currentNav } = Astro.props;
 			!Hide.includes('search') && (
 				<a
 					href="/search"
-					class="site-top__search"
+					class="site-top__icon-btn"
 					aria-current={currentNav === 'Search' ? 'page' : undefined}
 					aria-label="搜索文章"
+					title="搜索"
 				>
-					搜索
+					<Icon name="ri:search-line" class="size-[1.1rem]" aria-hidden="true" />
 				</a>
 			)
 		}
@@ -34,9 +36,9 @@ const { currentNav } = Astro.props;
 <style>
 	.site-top {
 		display: grid;
-		grid-template-columns: 1fr auto;
+		grid-template-columns: minmax(0, 1fr) auto;
 		align-items: center;
-		gap: 0.35rem 1.25rem;
+		gap: 0.35rem 1rem;
 		padding-block: max(1rem, env(safe-area-inset-top)) 0.75rem;
 	}
 
@@ -49,29 +51,33 @@ const { currentNav } = Astro.props;
 		grid-column: 2;
 		display: inline-flex;
 		align-items: center;
-		gap: 0.75rem;
+		gap: 0.5rem;
 	}
 
-	.site-top__search {
+	.site-top__icon-btn {
 		display: inline-flex;
 		align-items: center;
-		min-height: 2.35rem;
-		color: var(--color-muted);
-		font-size: 0.95rem;
+		justify-content: center;
+		width: 2.3rem;
+		height: 2.3rem;
+		border: 1px solid var(--color-border);
+		border-radius: 999px;
+		background: var(--color-surface);
+		color: var(--color-text);
 		text-decoration: none;
-		transition: color var(--motion-gentle);
+		transition:
+			border-color var(--motion-gentle),
+			color var(--motion-gentle);
 	}
 
-	.site-top__search[aria-current='page'] {
-		color: var(--color-text);
-		text-decoration: underline;
-		text-decoration-color: var(--color-leather);
-		text-decoration-thickness: 2px;
-		text-underline-offset: 0.42em;
+	.site-top__icon-btn[aria-current='page'] {
+		border-color: var(--color-leather);
+		color: var(--color-leather-ink);
 	}
 
 	@media (hover: hover) and (pointer: fine) {
-		.site-top__search:hover {
+		.site-top__icon-btn:hover {
+			border-color: var(--color-leather);
 			color: var(--color-accent);
 		}
 	}
@@ -79,6 +85,7 @@ const { currentNav } = Astro.props;
 	@media (min-width: 48rem) {
 		.site-top {
 			grid-template-columns: auto 1fr auto;
+			gap: 0.35rem 1.5rem;
 			padding-block: 1.5rem 1rem;
 		}
 
@@ -90,7 +97,7 @@ const { currentNav } = Astro.props;
 
 		.site-top__actions {
 			grid-column: 3;
-			gap: 1rem;
+			gap: 0.6rem;
 		}
 	}
 </style>

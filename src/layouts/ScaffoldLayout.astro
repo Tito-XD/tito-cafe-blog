@@ -46,14 +46,25 @@ interface Props {
 	.cafe-shell {
 		display: flex;
 		min-height: 100dvh;
-		flex-direction: column;
+		width: 100%;
 		max-width: 64rem;
+		box-sizing: border-box;
+		flex-direction: column;
 		margin-inline: auto;
-		padding: 0 max(1.25rem, env(safe-area-inset-right)) 0
-			max(1.25rem, env(safe-area-inset-left));
+		padding: 0 max(0.9rem, env(safe-area-inset-right)) 0
+			max(0.9rem, env(safe-area-inset-left));
+	}
+
+	@media (min-width: 40rem) {
+		.cafe-shell {
+			padding: 0 max(1.35rem, env(safe-area-inset-right)) 0
+				max(1.35rem, env(safe-area-inset-left));
+		}
 	}
 
 	.cafe-main {
 		flex: 1;
+		min-width: 0;
+		width: 100%;
 	}
 </style>
